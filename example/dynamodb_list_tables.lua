@@ -12,15 +12,15 @@
 --   ./example/dynamodb_list_tables.lua [region]
 --
 
--- Wire up LUA_PATH: sdk runtime + smithy-lua runtime + generated service code
+-- Wire up LUA_PATH: smithy-lua runtime + sdk runtime + generated service code
 local sdk_root = debug.getinfo(1, "S").source:match("^@(.*)/example/") or "."
 local smithy_root = sdk_root .. "/../smithy-lua"
 package.path = table.concat({
-    sdk_root .. "/runtime/?.lua",
-    sdk_root .. "/service/?.lua",
     smithy_root .. "/runtime/?.lua",
-    smithy_root .. "/runtime/?/init.lua",
-    smithy_root .. "/?.lua",
+    smithy_root .. "/runtime/smithy/?.lua",
+    sdk_root .. "/runtime/?.lua",
+    sdk_root .. "/runtime/aws/?.lua",
+    sdk_root .. "/service/?.lua",
     "",
 }, ";")
 

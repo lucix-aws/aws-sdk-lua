@@ -10,7 +10,7 @@ function M.resolve_identity_resolver(cfg)
 
     local load_config = require("aws.load_config")
     local chain = require("aws.credentials.chain")
-    local env_provider = require("aws.credentials.environment")
+    local env_provider = require("smithy.credentials.environment")
 
     local resolved = load_config.load(cfg) or {}
     local providers = {}
