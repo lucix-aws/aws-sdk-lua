@@ -30,5 +30,19 @@
       "go ahead and implement"
     ],
     "outcome": "Implemented config resolver system across both repos. smithy-lua: added ConfigResolver record, getConfigResolvers() hook on LuaIntegration, updated DirectedLuaCodegen to detect protocol traits and emit resolver calls, created defaults.lua runtime module (resolve_signer, resolve_http_client, resolve_retry_strategy), fixed enum codegen for old-style @enum string shapes (routed to types.lua explicitly), fixed service namespace to use sdkId from aws.api#service trait (eliminates collisions, produces clean names like 'dynamodb', 's3', 'sts'). aws-sdk-lua: created codegen gradle project (smithy-aws-lua-codegen + sdk-codegen), AwsSdkIntegration registers identity_resolver resolver via hook, copied 424 aws-models, dynamic smithy-build.json generation. Build produces 424 service clients in service/ with zero failures. Each client wires protocol, endpoint, signer, http_client, retry, identity_resolver."
+  },
+  {
+    "session": 3,
+    "task": "Default credential chain + DynamoDB example + codegen fixes",
+    "start": "2026-05-04T14:48:00-04:00",
+    "end": "2026-05-04T15:08:00-04:00",
+    "duration_minutes": 20,
+    "branch": null,
+    "prompts": [
+      "create example/ folder to test generated clients",
+      "implement default credential chain with process credentials",
+      "commit directly in both repos"
+    ],
+    "outcome": "Built default credential chain: credentials/static.lua, credentials/shared_config.lua, credentials/process.lua, credentials/chain.lua. Rewrote sdk_defaults.lua to build chain (static > env > shared config > process) using load_config.load(). Created example/dynamodb_list_tables.lua. Found and fixed two codegen bugs in smithy-lua: (1) awsJson protocol missing service_id for X-Amz-Target, (2) signing_name using shape name instead of aws.auth#sigv4 trait. End-to-end DynamoDB ListTables call succeeded via credential_process. Regenerated all 424 service clients."
   }
 ]

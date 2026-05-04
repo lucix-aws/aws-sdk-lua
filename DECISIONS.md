@@ -45,3 +45,13 @@ Base codegen handles: protocol (detected from service traits), endpoint (from en
 **Context:** `getServiceNamespace()` used the Smithy shape name, causing collisions (RDS/DocDB/Neptune all mapped to `amazonRDSv19`) and ugly names (`aWSSecurityTokenServiceV20110615`).
 **Decision:** Use `sdkId` from the `aws.api#service` trait when present, normalized (remove dashes/spaces, lowercase). Falls back to uncapitalized shape name for non-AWS services. Produces clean names: `dynamodb`, `s3`, `sts`, `lambda`.
 **Affects:** All generated service client directory names, all require() paths in generated code.
+
+## 2026-05-04 — Default credential chain: static > env > shared config > process
+**Context:** Only the environment credential provider existed. Generated clients couldn't resolve credentials from ~/.aws/credentials or credential_process.
+**Decision:** Built a 4-provider chain in aws-sdk-lua/runtime/credentials/: (1) static.lua — explicit ak/sk in config, (2) environment.lua — AWS_ACCESS_KEY_ID env vars (from smithy-lua), (3) shared_config.lua — reads from resolved profile via load_config, (4) process.lua — runs credential_process command, parses JSON Version 1 output. chain.lua tries providers in order. sdk_defaults.lua builds the chain using load_config.load() and also propagates region from config.
+**Affects:** All generated clients (via sdk_defaults.resolve_identity_resolver), user-facing credential configuration.
+
+## 2026-05-04 — sdk_defaults.lua propagates region from shared config
+**Context:** Users with region set in ~/.aws/config but not in the client constructor got no region.
+**Decision:** sdk_defaults.resolve_identity_resolver also sets cfg.region from the resolved config if not already set. This is a side effect of the credential resolver, which is slightly impure, but pragmatic for the hackathon.
+**Affects:** Client construction — region can now come from shared config without explicit config.
