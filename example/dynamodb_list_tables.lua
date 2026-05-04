@@ -26,7 +26,7 @@ local region = arg[1] or os.getenv("AWS_REGION") or "us-east-1"
 local client = dynamodb.new({ region = region })
 
 print("DynamoDB ListTables (" .. region .. ")")
-print(string.rep("-", 40))
+print("--------------------------------------")
 
 local result, err = client:listTables({})
 if err then
