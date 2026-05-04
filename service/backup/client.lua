@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "CryoControllerUserManager"
-    cfg.signing_name = "backup"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "backup", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateBackupVaultMpaApprovalTeam(input, options)
         output_schema = types.AssociateBackupVaultMpaApprovalTeamOutput,
         http_method = "PUT",
         http_path = "/backup-vaults/{BackupVaultName}/mpaApprovalTeam",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:cancelLegalHold(input, options)
         output_schema = types.CancelLegalHoldOutput,
         http_method = "DELETE",
         http_path = "/legal-holds/{LegalHoldId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createBackupPlan(input, options)
         output_schema = types.CreateBackupPlanOutput,
         http_method = "PUT",
         http_path = "/backup/plans",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createBackupSelection(input, options)
         output_schema = types.CreateBackupSelectionOutput,
         http_method = "PUT",
         http_path = "/backup/plans/{BackupPlanId}/selections",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createBackupVault(input, options)
         output_schema = types.CreateBackupVaultOutput,
         http_method = "PUT",
         http_path = "/backup-vaults/{BackupVaultName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createFramework(input, options)
         output_schema = types.CreateFrameworkOutput,
         http_method = "POST",
         http_path = "/audit/frameworks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createLegalHold(input, options)
         output_schema = types.CreateLegalHoldOutput,
         http_method = "POST",
         http_path = "/legal-holds",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createLogicallyAirGappedBackupVault(input, options)
         output_schema = types.CreateLogicallyAirGappedBackupVaultOutput,
         http_method = "PUT",
         http_path = "/logically-air-gapped-backup-vaults/{BackupVaultName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createReportPlan(input, options)
         output_schema = types.CreateReportPlanOutput,
         http_method = "POST",
         http_path = "/audit/report-plans",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createRestoreAccessBackupVault(input, options)
         output_schema = types.CreateRestoreAccessBackupVaultOutput,
         http_method = "PUT",
         http_path = "/restore-access-backup-vaults",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createRestoreTestingPlan(input, options)
         output_schema = types.CreateRestoreTestingPlanOutput,
         http_method = "PUT",
         http_path = "/restore-testing/plans",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createRestoreTestingSelection(input, options)
         output_schema = types.CreateRestoreTestingSelectionOutput,
         http_method = "PUT",
         http_path = "/restore-testing/plans/{RestoreTestingPlanName}/selections",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createTieringConfiguration(input, options)
         output_schema = types.CreateTieringConfigurationOutput,
         http_method = "PUT",
         http_path = "/tiering-configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteBackupPlan(input, options)
         output_schema = types.DeleteBackupPlanOutput,
         http_method = "DELETE",
         http_path = "/backup/plans/{BackupPlanId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteBackupSelection(input, options)
         output_schema = types.DeleteBackupSelectionOutput,
         http_method = "DELETE",
         http_path = "/backup/plans/{BackupPlanId}/selections/{SelectionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteBackupVault(input, options)
         output_schema = types.DeleteBackupVaultOutput,
         http_method = "DELETE",
         http_path = "/backup-vaults/{BackupVaultName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deleteBackupVaultAccessPolicy(input, options)
         output_schema = types.DeleteBackupVaultAccessPolicyOutput,
         http_method = "DELETE",
         http_path = "/backup-vaults/{BackupVaultName}/access-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteBackupVaultLockConfiguration(input, options)
         output_schema = types.DeleteBackupVaultLockConfigurationOutput,
         http_method = "DELETE",
         http_path = "/backup-vaults/{BackupVaultName}/vault-lock",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteBackupVaultNotifications(input, options)
         output_schema = types.DeleteBackupVaultNotificationsOutput,
         http_method = "DELETE",
         http_path = "/backup-vaults/{BackupVaultName}/notification-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deleteFramework(input, options)
         output_schema = types.DeleteFrameworkOutput,
         http_method = "DELETE",
         http_path = "/audit/frameworks/{FrameworkName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deleteRecoveryPoint(input, options)
         output_schema = types.DeleteRecoveryPointOutput,
         http_method = "DELETE",
         http_path = "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:deleteReportPlan(input, options)
         output_schema = types.DeleteReportPlanOutput,
         http_method = "DELETE",
         http_path = "/audit/report-plans/{ReportPlanName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:deleteRestoreTestingPlan(input, options)
         output_schema = types.DeleteRestoreTestingPlanOutput,
         http_method = "DELETE",
         http_path = "/restore-testing/plans/{RestoreTestingPlanName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:deleteRestoreTestingSelection(input, options)
         output_schema = types.DeleteRestoreTestingSelectionOutput,
         http_method = "DELETE",
         http_path = "/restore-testing/plans/{RestoreTestingPlanName}/selections/{RestoreTestingSelectionName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:deleteTieringConfiguration(input, options)
         output_schema = types.DeleteTieringConfigurationOutput,
         http_method = "DELETE",
         http_path = "/tiering-configurations/{TieringConfigurationName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:describeBackupJob(input, options)
         output_schema = types.DescribeBackupJobOutput,
         http_method = "GET",
         http_path = "/backup-jobs/{BackupJobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:describeBackupVault(input, options)
         output_schema = types.DescribeBackupVaultOutput,
         http_method = "GET",
         http_path = "/backup-vaults/{BackupVaultName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:describeCopyJob(input, options)
         output_schema = types.DescribeCopyJobOutput,
         http_method = "GET",
         http_path = "/copy-jobs/{CopyJobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:describeFramework(input, options)
         output_schema = types.DescribeFrameworkOutput,
         http_method = "GET",
         http_path = "/audit/frameworks/{FrameworkName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:describeGlobalSettings(input, options)
         output_schema = types.DescribeGlobalSettingsOutput,
         http_method = "GET",
         http_path = "/global-settings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:describeProtectedResource(input, options)
         output_schema = types.DescribeProtectedResourceOutput,
         http_method = "GET",
         http_path = "/resources/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:describeRecoveryPoint(input, options)
         output_schema = types.DescribeRecoveryPointOutput,
         http_method = "GET",
         http_path = "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:describeRegionSettings(input, options)
         output_schema = types.DescribeRegionSettingsOutput,
         http_method = "GET",
         http_path = "/account-settings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:describeReportJob(input, options)
         output_schema = types.DescribeReportJobOutput,
         http_method = "GET",
         http_path = "/audit/report-jobs/{ReportJobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:describeReportPlan(input, options)
         output_schema = types.DescribeReportPlanOutput,
         http_method = "GET",
         http_path = "/audit/report-plans/{ReportPlanName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:describeRestoreJob(input, options)
         output_schema = types.DescribeRestoreJobOutput,
         http_method = "GET",
         http_path = "/restore-jobs/{RestoreJobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:describeScanJob(input, options)
         output_schema = types.DescribeScanJobOutput,
         http_method = "GET",
         http_path = "/scan/jobs/{ScanJobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:disassociateBackupVaultMpaApprovalTeam(input, options)
         output_schema = types.DisassociateBackupVaultMpaApprovalTeamOutput,
         http_method = "POST",
         http_path = "/backup-vaults/{BackupVaultName}/mpaApprovalTeam?delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:disassociateRecoveryPoint(input, options)
         output_schema = types.DisassociateRecoveryPointOutput,
         http_method = "POST",
         http_path = "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}/disassociate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:disassociateRecoveryPointFromParent(input, options)
         output_schema = types.DisassociateRecoveryPointFromParentOutput,
         http_method = "DELETE",
         http_path = "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}/parentAssociation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:exportBackupPlanTemplate(input, options)
         output_schema = types.ExportBackupPlanTemplateOutput,
         http_method = "GET",
         http_path = "/backup/plans/{BackupPlanId}/toTemplate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:getBackupPlan(input, options)
         output_schema = types.GetBackupPlanOutput,
         http_method = "GET",
         http_path = "/backup/plans/{BackupPlanId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:getBackupPlanFromJSON(input, options)
         output_schema = types.GetBackupPlanFromJSONOutput,
         http_method = "POST",
         http_path = "/backup/template/json/toPlan",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:getBackupPlanFromTemplate(input, options)
         output_schema = types.GetBackupPlanFromTemplateOutput,
         http_method = "GET",
         http_path = "/backup/template/plans/{BackupPlanTemplateId}/toPlan",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:getBackupSelection(input, options)
         output_schema = types.GetBackupSelectionOutput,
         http_method = "GET",
         http_path = "/backup/plans/{BackupPlanId}/selections/{SelectionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:getBackupVaultAccessPolicy(input, options)
         output_schema = types.GetBackupVaultAccessPolicyOutput,
         http_method = "GET",
         http_path = "/backup-vaults/{BackupVaultName}/access-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:getBackupVaultNotifications(input, options)
         output_schema = types.GetBackupVaultNotificationsOutput,
         http_method = "GET",
         http_path = "/backup-vaults/{BackupVaultName}/notification-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:getLegalHold(input, options)
         output_schema = types.GetLegalHoldOutput,
         http_method = "GET",
         http_path = "/legal-holds/{LegalHoldId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:getRecoveryPointIndexDetails(input, options)
         output_schema = types.GetRecoveryPointIndexDetailsOutput,
         http_method = "GET",
         http_path = "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}/index",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:getRecoveryPointRestoreMetadata(input, options)
         output_schema = types.GetRecoveryPointRestoreMetadataOutput,
         http_method = "GET",
         http_path = "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}/restore-metadata",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:getRestoreJobMetadata(input, options)
         output_schema = types.GetRestoreJobMetadataOutput,
         http_method = "GET",
         http_path = "/restore-jobs/{RestoreJobId}/metadata",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:getRestoreTestingInferredMetadata(input, options)
         output_schema = types.GetRestoreTestingInferredMetadataOutput,
         http_method = "GET",
         http_path = "/restore-testing/inferred-metadata",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:getRestoreTestingPlan(input, options)
         output_schema = types.GetRestoreTestingPlanOutput,
         http_method = "GET",
         http_path = "/restore-testing/plans/{RestoreTestingPlanName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:getRestoreTestingSelection(input, options)
         output_schema = types.GetRestoreTestingSelectionOutput,
         http_method = "GET",
         http_path = "/restore-testing/plans/{RestoreTestingPlanName}/selections/{RestoreTestingSelectionName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:getSupportedResourceTypes(input, options)
         output_schema = types.GetSupportedResourceTypesOutput,
         http_method = "GET",
         http_path = "/supported-resource-types",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:getTieringConfiguration(input, options)
         output_schema = types.GetTieringConfigurationOutput,
         http_method = "GET",
         http_path = "/tiering-configurations/{TieringConfigurationName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:listBackupJobs(input, options)
         output_schema = types.ListBackupJobsOutput,
         http_method = "GET",
         http_path = "/backup-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:listBackupJobSummaries(input, options)
         output_schema = types.ListBackupJobSummariesOutput,
         http_method = "GET",
         http_path = "/audit/backup-job-summaries",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:listBackupPlans(input, options)
         output_schema = types.ListBackupPlansOutput,
         http_method = "GET",
         http_path = "/backup/plans",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:listBackupPlanTemplates(input, options)
         output_schema = types.ListBackupPlanTemplatesOutput,
         http_method = "GET",
         http_path = "/backup/template/plans",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:listBackupPlanVersions(input, options)
         output_schema = types.ListBackupPlanVersionsOutput,
         http_method = "GET",
         http_path = "/backup/plans/{BackupPlanId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:listBackupSelections(input, options)
         output_schema = types.ListBackupSelectionsOutput,
         http_method = "GET",
         http_path = "/backup/plans/{BackupPlanId}/selections",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:listBackupVaults(input, options)
         output_schema = types.ListBackupVaultsOutput,
         http_method = "GET",
         http_path = "/backup-vaults",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:listCopyJobs(input, options)
         output_schema = types.ListCopyJobsOutput,
         http_method = "GET",
         http_path = "/copy-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:listCopyJobSummaries(input, options)
         output_schema = types.ListCopyJobSummariesOutput,
         http_method = "GET",
         http_path = "/audit/copy-job-summaries",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:listFrameworks(input, options)
         output_schema = types.ListFrameworksOutput,
         http_method = "GET",
         http_path = "/audit/frameworks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:listIndexedRecoveryPoints(input, options)
         output_schema = types.ListIndexedRecoveryPointsOutput,
         http_method = "GET",
         http_path = "/indexes/recovery-point",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:listLegalHolds(input, options)
         output_schema = types.ListLegalHoldsOutput,
         http_method = "GET",
         http_path = "/legal-holds",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:listProtectedResources(input, options)
         output_schema = types.ListProtectedResourcesOutput,
         http_method = "GET",
         http_path = "/resources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:listProtectedResourcesByBackupVault(input, options)
         output_schema = types.ListProtectedResourcesByBackupVaultOutput,
         http_method = "GET",
         http_path = "/backup-vaults/{BackupVaultName}/resources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:listRecoveryPointsByBackupVault(input, options)
         output_schema = types.ListRecoveryPointsByBackupVaultOutput,
         http_method = "GET",
         http_path = "/backup-vaults/{BackupVaultName}/recovery-points",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:listRecoveryPointsByLegalHold(input, options)
         output_schema = types.ListRecoveryPointsByLegalHoldOutput,
         http_method = "GET",
         http_path = "/legal-holds/{LegalHoldId}/recovery-points",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:listRecoveryPointsByResource(input, options)
         output_schema = types.ListRecoveryPointsByResourceOutput,
         http_method = "GET",
         http_path = "/resources/{ResourceArn}/recovery-points",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:listReportJobs(input, options)
         output_schema = types.ListReportJobsOutput,
         http_method = "GET",
         http_path = "/audit/report-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:listReportPlans(input, options)
         output_schema = types.ListReportPlansOutput,
         http_method = "GET",
         http_path = "/audit/report-plans",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:listRestoreAccessBackupVaults(input, options)
         output_schema = types.ListRestoreAccessBackupVaultsOutput,
         http_method = "GET",
         http_path = "/logically-air-gapped-backup-vaults/{BackupVaultName}/restore-access-backup-vaults",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:listRestoreJobs(input, options)
         output_schema = types.ListRestoreJobsOutput,
         http_method = "GET",
         http_path = "/restore-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:listRestoreJobsByProtectedResource(input, options)
         output_schema = types.ListRestoreJobsByProtectedResourceOutput,
         http_method = "GET",
         http_path = "/resources/{ResourceArn}/restore-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:listRestoreJobSummaries(input, options)
         output_schema = types.ListRestoreJobSummariesOutput,
         http_method = "GET",
         http_path = "/audit/restore-job-summaries",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:listRestoreTestingPlans(input, options)
         output_schema = types.ListRestoreTestingPlansOutput,
         http_method = "GET",
         http_path = "/restore-testing/plans",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:listRestoreTestingSelections(input, options)
         output_schema = types.ListRestoreTestingSelectionsOutput,
         http_method = "GET",
         http_path = "/restore-testing/plans/{RestoreTestingPlanName}/selections",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:listScanJobs(input, options)
         output_schema = types.ListScanJobsOutput,
         http_method = "GET",
         http_path = "/scan/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:listScanJobSummaries(input, options)
         output_schema = types.ListScanJobSummariesOutput,
         http_method = "GET",
         http_path = "/audit/scan-job-summaries",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:listTags(input, options)
         output_schema = types.ListTagsOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:listTieringConfigurations(input, options)
         output_schema = types.ListTieringConfigurationsOutput,
         http_method = "GET",
         http_path = "/tiering-configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -890,6 +1158,9 @@ function Client:putBackupVaultAccessPolicy(input, options)
         output_schema = types.PutBackupVaultAccessPolicyOutput,
         http_method = "PUT",
         http_path = "/backup-vaults/{BackupVaultName}/access-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -900,6 +1171,9 @@ function Client:putBackupVaultLockConfiguration(input, options)
         output_schema = types.PutBackupVaultLockConfigurationOutput,
         http_method = "PUT",
         http_path = "/backup-vaults/{BackupVaultName}/vault-lock",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -910,6 +1184,9 @@ function Client:putBackupVaultNotifications(input, options)
         output_schema = types.PutBackupVaultNotificationsOutput,
         http_method = "PUT",
         http_path = "/backup-vaults/{BackupVaultName}/notification-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -920,6 +1197,9 @@ function Client:putRestoreValidationResult(input, options)
         output_schema = types.PutRestoreValidationResultOutput,
         http_method = "PUT",
         http_path = "/restore-jobs/{RestoreJobId}/validations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -930,6 +1210,9 @@ function Client:revokeRestoreAccessBackupVault(input, options)
         output_schema = types.RevokeRestoreAccessBackupVaultOutput,
         http_method = "DELETE",
         http_path = "/logically-air-gapped-backup-vaults/{BackupVaultName}/restore-access-backup-vaults/{RestoreAccessBackupVaultArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -940,6 +1223,9 @@ function Client:startBackupJob(input, options)
         output_schema = types.StartBackupJobOutput,
         http_method = "PUT",
         http_path = "/backup-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -950,6 +1236,9 @@ function Client:startCopyJob(input, options)
         output_schema = types.StartCopyJobOutput,
         http_method = "PUT",
         http_path = "/copy-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -960,6 +1249,9 @@ function Client:startReportJob(input, options)
         output_schema = types.StartReportJobOutput,
         http_method = "POST",
         http_path = "/audit/report-jobs/{ReportPlanName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -970,6 +1262,9 @@ function Client:startRestoreJob(input, options)
         output_schema = types.StartRestoreJobOutput,
         http_method = "PUT",
         http_path = "/restore-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -980,6 +1275,9 @@ function Client:startScanJob(input, options)
         output_schema = types.StartScanJobOutput,
         http_method = "PUT",
         http_path = "/scan/job",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -990,6 +1288,9 @@ function Client:stopBackupJob(input, options)
         output_schema = types.StopBackupJobOutput,
         http_method = "POST",
         http_path = "/backup-jobs/{BackupJobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1000,6 +1301,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1010,6 +1314,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/untag/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1020,6 +1327,9 @@ function Client:updateBackupPlan(input, options)
         output_schema = types.UpdateBackupPlanOutput,
         http_method = "POST",
         http_path = "/backup/plans/{BackupPlanId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1030,6 +1340,9 @@ function Client:updateFramework(input, options)
         output_schema = types.UpdateFrameworkOutput,
         http_method = "PUT",
         http_path = "/audit/frameworks/{FrameworkName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1040,6 +1353,9 @@ function Client:updateGlobalSettings(input, options)
         output_schema = types.UpdateGlobalSettingsOutput,
         http_method = "PUT",
         http_path = "/global-settings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1050,6 +1366,9 @@ function Client:updateRecoveryPointIndexSettings(input, options)
         output_schema = types.UpdateRecoveryPointIndexSettingsOutput,
         http_method = "POST",
         http_path = "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}/index",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1060,6 +1379,9 @@ function Client:updateRecoveryPointLifecycle(input, options)
         output_schema = types.UpdateRecoveryPointLifecycleOutput,
         http_method = "POST",
         http_path = "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1070,6 +1392,9 @@ function Client:updateRegionSettings(input, options)
         output_schema = types.UpdateRegionSettingsOutput,
         http_method = "PUT",
         http_path = "/account-settings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1080,6 +1405,9 @@ function Client:updateReportPlan(input, options)
         output_schema = types.UpdateReportPlanOutput,
         http_method = "PUT",
         http_path = "/audit/report-plans/{ReportPlanName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1090,6 +1418,9 @@ function Client:updateRestoreTestingPlan(input, options)
         output_schema = types.UpdateRestoreTestingPlanOutput,
         http_method = "PUT",
         http_path = "/restore-testing/plans/{RestoreTestingPlanName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1100,6 +1431,9 @@ function Client:updateRestoreTestingSelection(input, options)
         output_schema = types.UpdateRestoreTestingSelectionOutput,
         http_method = "PUT",
         http_path = "/restore-testing/plans/{RestoreTestingPlanName}/selections/{RestoreTestingSelectionName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1110,6 +1444,9 @@ function Client:updateTieringConfiguration(input, options)
         output_schema = types.UpdateTieringConfigurationOutput,
         http_method = "PUT",
         http_path = "/tiering-configurations/{TieringConfigurationName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

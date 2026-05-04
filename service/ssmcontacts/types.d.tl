@@ -1642,9 +1642,9 @@ local type ActivationStatus = "ACTIVATED" | "NOT_ACTIVATED"
 
 local type ContactType = "PERSONAL" | "ESCALATION" | "ONCALL_SCHEDULE"
 
-local type AcceptType = "DELIVERED" | "READ"
-
 local type ChannelType = "SMS" | "VOICE" | "EMAIL"
+
+local type AcceptType = "DELIVERED" | "READ"
 
 local record M
     AcceptPageInput: AcceptPageInput

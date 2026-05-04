@@ -77,6 +77,9 @@ M.CreateClusterInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         multiRegionProperties = M.MultiRegionProperties,
         policy = {
@@ -309,6 +312,7 @@ M.DeleteClusterInput = {
             type = "string",
             traits = {
                 http_query = "client-token",
+                idempotency_token = true,
             },
         },
     },
@@ -389,6 +393,7 @@ M.DeleteClusterPolicyInput = {
             type = "string",
             traits = {
                 http_query = "client-token",
+                idempotency_token = true,
             },
         },
     },
@@ -604,6 +609,9 @@ M.PutClusterPolicyInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -638,6 +646,9 @@ M.UpdateClusterInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         multiRegionProperties = M.MultiRegionProperties,
     },

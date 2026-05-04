@@ -16,16 +16,29 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "OvertureService"
-    cfg.signing_name = "directconnect"
     if not cfg.protocol then
-        cfg.protocol = awsjson_protocol.new({ version = "1.1", service_id = cfg.service_id })
+        cfg.protocol = awsjson_protocol.new("1.1")
     end
     if not cfg.endpoint_provider then
         cfg.endpoint_provider = function(params)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "directconnect", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:acceptDirectConnectGatewayAssociationProposal(input, options)
         output_schema = types.AcceptDirectConnectGatewayAssociationProposalOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:allocateConnectionOnInterconnect(input, options)
         output_schema = types.AllocateConnectionOnInterconnectOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:allocateHostedConnection(input, options)
         output_schema = types.AllocateHostedConnectionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:allocatePrivateVirtualInterface(input, options)
         output_schema = types.AllocatePrivateVirtualInterfaceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:allocatePublicVirtualInterface(input, options)
         output_schema = types.AllocatePublicVirtualInterfaceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:allocateTransitVirtualInterface(input, options)
         output_schema = types.AllocateTransitVirtualInterfaceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:associateConnectionWithLag(input, options)
         output_schema = types.AssociateConnectionWithLagOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:associateHostedConnection(input, options)
         output_schema = types.AssociateHostedConnectionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:associateMacSecKey(input, options)
         output_schema = types.AssociateMacSecKeyOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:associateVirtualInterface(input, options)
         output_schema = types.AssociateVirtualInterfaceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:confirmConnection(input, options)
         output_schema = types.ConfirmConnectionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:confirmCustomerAgreement(input, options)
         output_schema = types.ConfirmCustomerAgreementOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:confirmPrivateVirtualInterface(input, options)
         output_schema = types.ConfirmPrivateVirtualInterfaceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:confirmPublicVirtualInterface(input, options)
         output_schema = types.ConfirmPublicVirtualInterfaceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:confirmTransitVirtualInterface(input, options)
         output_schema = types.ConfirmTransitVirtualInterfaceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:createBGPPeer(input, options)
         output_schema = types.CreateBGPPeerOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:createConnection(input, options)
         output_schema = types.CreateConnectionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:createDirectConnectGateway(input, options)
         output_schema = types.CreateDirectConnectGatewayOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:createDirectConnectGatewayAssociation(input, options)
         output_schema = types.CreateDirectConnectGatewayAssociationOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:createDirectConnectGatewayAssociationProposal(input, options)
         output_schema = types.CreateDirectConnectGatewayAssociationProposalOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:createInterconnect(input, options)
         output_schema = types.CreateInterconnectOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:createLag(input, options)
         output_schema = types.CreateLagOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:createPrivateVirtualInterface(input, options)
         output_schema = types.CreatePrivateVirtualInterfaceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:createPublicVirtualInterface(input, options)
         output_schema = types.CreatePublicVirtualInterfaceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:createTransitVirtualInterface(input, options)
         output_schema = types.CreateTransitVirtualInterfaceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:deleteBGPPeer(input, options)
         output_schema = types.DeleteBGPPeerOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:deleteConnection(input, options)
         output_schema = types.DeleteConnectionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:deleteDirectConnectGateway(input, options)
         output_schema = types.DeleteDirectConnectGatewayOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:deleteDirectConnectGatewayAssociation(input, options)
         output_schema = types.DeleteDirectConnectGatewayAssociationOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:deleteDirectConnectGatewayAssociationProposal(input, options)
         output_schema = types.DeleteDirectConnectGatewayAssociationProposalOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:deleteInterconnect(input, options)
         output_schema = types.DeleteInterconnectOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:deleteLag(input, options)
         output_schema = types.DeleteLagOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:deleteVirtualInterface(input, options)
         output_schema = types.DeleteVirtualInterfaceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:describeConnectionLoa(input, options)
         output_schema = types.DescribeConnectionLoaOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:describeConnections(input, options)
         output_schema = types.DescribeConnectionsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:describeConnectionsOnInterconnect(input, options)
         output_schema = types.DescribeConnectionsOnInterconnectOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:describeCustomerMetadata(input, options)
         output_schema = types.DescribeCustomerMetadataOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:describeDirectConnectGatewayAssociationProposals(input, options)
         output_schema = types.DescribeDirectConnectGatewayAssociationProposalsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:describeDirectConnectGatewayAssociations(input, options)
         output_schema = types.DescribeDirectConnectGatewayAssociationsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:describeDirectConnectGatewayAttachments(input, options)
         output_schema = types.DescribeDirectConnectGatewayAttachmentsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:describeDirectConnectGateways(input, options)
         output_schema = types.DescribeDirectConnectGatewaysOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:describeHostedConnections(input, options)
         output_schema = types.DescribeHostedConnectionsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:describeInterconnectLoa(input, options)
         output_schema = types.DescribeInterconnectLoaOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:describeInterconnects(input, options)
         output_schema = types.DescribeInterconnectsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:describeLags(input, options)
         output_schema = types.DescribeLagsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:describeLoa(input, options)
         output_schema = types.DescribeLoaOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:describeLocations(input, options)
         output_schema = types.DescribeLocationsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:describeRouterConfiguration(input, options)
         output_schema = types.DescribeRouterConfigurationOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:describeTags(input, options)
         output_schema = types.DescribeTagsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:describeVirtualGateways(input, options)
         output_schema = types.DescribeVirtualGatewaysOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:describeVirtualInterfaces(input, options)
         output_schema = types.DescribeVirtualInterfacesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:disassociateConnectionFromLag(input, options)
         output_schema = types.DisassociateConnectionFromLagOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:disassociateMacSecKey(input, options)
         output_schema = types.DisassociateMacSecKeyOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:listVirtualInterfaceTestHistory(input, options)
         output_schema = types.ListVirtualInterfaceTestHistoryOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:startBgpFailoverTest(input, options)
         output_schema = types.StartBgpFailoverTestOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:stopBgpFailoverTest(input, options)
         output_schema = types.StopBgpFailoverTestOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:updateConnection(input, options)
         output_schema = types.UpdateConnectionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:updateDirectConnectGateway(input, options)
         output_schema = types.UpdateDirectConnectGatewayOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:updateDirectConnectGatewayAssociation(input, options)
         output_schema = types.UpdateDirectConnectGatewayAssociationOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:updateLag(input, options)
         output_schema = types.UpdateLagOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:updateVirtualInterfaceAttributes(input, options)
         output_schema = types.UpdateVirtualInterfaceAttributesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

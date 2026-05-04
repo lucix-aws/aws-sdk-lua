@@ -1319,6 +1319,9 @@ M.CreateAppInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         assessmentSchedule = {
             type = "string",
@@ -1374,6 +1377,9 @@ M.CreateAppVersionAppComponentInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1468,6 +1474,9 @@ M.CreateAppVersionResourceInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1574,6 +1583,9 @@ M.CreateRecommendationTemplateInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -1711,6 +1723,9 @@ M.CreateResiliencyPolicyInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -1743,6 +1758,9 @@ M.DeleteAppInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1770,6 +1788,9 @@ M.DeleteAppAssessmentInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1807,6 +1828,9 @@ M.DeleteAppInputSourceInput = {
         terraformSource = M.TerraformSource,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         eksSourceClusterNamespace = M.EksSourceClusterNamespace,
     },
@@ -1839,6 +1863,9 @@ M.DeleteAppVersionAppComponentInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1886,6 +1913,9 @@ M.DeleteAppVersionResourceInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1920,6 +1950,9 @@ M.DeleteRecommendationTemplateInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1953,6 +1986,9 @@ M.DeleteResiliencyPolicyInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -4168,6 +4204,9 @@ M.StartAppAssessmentInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -4194,6 +4233,9 @@ M.StartMetricsExportInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

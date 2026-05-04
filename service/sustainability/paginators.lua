@@ -1,0 +1,41 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for getEstimatedCarbonEmissions.
+function M.pages_get_estimated_carbon_emissions(client, input)
+    return paginator.pages(client, "getEstimatedCarbonEmissions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Results",
+    })
+end
+
+--- Returns an item iterator for getEstimatedCarbonEmissions.
+function M.items_get_estimated_carbon_emissions(client, input)
+    return paginator.items(client, "getEstimatedCarbonEmissions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Results",
+    })
+end
+
+--- Returns a page iterator for getEstimatedCarbonEmissionsDimensionValues.
+function M.pages_get_estimated_carbon_emissions_dimension_values(client, input)
+    return paginator.pages(client, "getEstimatedCarbonEmissionsDimensionValues", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Results",
+    })
+end
+
+--- Returns an item iterator for getEstimatedCarbonEmissionsDimensionValues.
+function M.items_get_estimated_carbon_emissions_dimension_values(client, input)
+    return paginator.items(client, "getEstimatedCarbonEmissionsDimensionValues", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Results",
+    })
+end
+
+return M

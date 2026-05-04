@@ -2375,39 +2375,39 @@ local record UnauthorizedException
     message: string
 end
 
-local type DataSourceType = "AWS_LAMBDA" | "AMAZON_DYNAMODB" | "AMAZON_ELASTICSEARCH" | "NONE" | "HTTP" | "RELATIONAL_DATABASE" | "AMAZON_OPENSEARCH_SERVICE" | "AMAZON_EVENTBRIDGE" | "AMAZON_BEDROCK_RUNTIME"
+local type ResolverLevelMetricsConfig = "ENABLED" | "DISABLED"
 
 local type DataSourceIntrospectionStatus = "PROCESSING" | "FAILED" | "SUCCESS"
 
-local type ResolverLevelMetricsConfig = "ENABLED" | "DISABLED"
+local type DataSourceType = "AWS_LAMBDA" | "AMAZON_DYNAMODB" | "AMAZON_ELASTICSEARCH" | "NONE" | "HTTP" | "RELATIONAL_DATABASE" | "AMAZON_OPENSEARCH_SERVICE" | "AMAZON_EVENTBRIDGE" | "AMAZON_BEDROCK_RUNTIME"
 
 local type OutputType = "SDL" | "JSON"
 
-local type Ownership = "CURRENT_ACCOUNT" | "OTHER_ACCOUNTS"
-
-local type GraphQLApiIntrospectionConfig = "ENABLED" | "DISABLED"
-
-local type ApiCachingBehavior = "FULL_REQUEST_CACHING" | "PER_RESOLVER_CACHING" | "OPERATION_LEVEL_CACHING"
-
-local type DataSourceLevelMetricsConfig = "ENABLED" | "DISABLED"
-
-local type GraphQLApiType = "GRAPHQL" | "MERGED"
-
-local type ApiCacheType = "T2_SMALL" | "T2_MEDIUM" | "R4_LARGE" | "R4_XLARGE" | "R4_2XLARGE" | "R4_4XLARGE" | "R4_8XLARGE" | "SMALL" | "MEDIUM" | "LARGE" | "XLARGE" | "LARGE_2X" | "LARGE_4X" | "LARGE_8X" | "LARGE_12X"
-
-local type GraphQLApiVisibility = "GLOBAL" | "PRIVATE"
-
-local type AuthenticationType = "API_KEY" | "AWS_IAM" | "AMAZON_COGNITO_USER_POOLS" | "OPENID_CONNECT" | "AWS_LAMBDA"
+local type CacheHealthMetricsConfig = "ENABLED" | "DISABLED"
 
 local type SchemaStatus = "PROCESSING" | "ACTIVE" | "DELETING" | "FAILED" | "SUCCESS" | "NOT_APPLICABLE"
 
-local type CacheHealthMetricsConfig = "ENABLED" | "DISABLED"
+local type ResolverKind = "UNIT" | "PIPELINE"
+
+local type AuthenticationType = "API_KEY" | "AWS_IAM" | "AMAZON_COGNITO_USER_POOLS" | "OPENID_CONNECT" | "AWS_LAMBDA"
+
+local type TypeDefinitionFormat = "SDL" | "JSON"
+
+local type GraphQLApiType = "GRAPHQL" | "MERGED"
+
+local type DataSourceLevelMetricsConfig = "ENABLED" | "DISABLED"
+
+local type GraphQLApiIntrospectionConfig = "ENABLED" | "DISABLED"
 
 local type SourceApiAssociationStatus = "MERGE_SCHEDULED" | "MERGE_FAILED" | "MERGE_SUCCESS" | "MERGE_IN_PROGRESS" | "AUTO_MERGE_SCHEDULE_FAILED" | "DELETION_SCHEDULED" | "DELETION_IN_PROGRESS" | "DELETION_FAILED"
 
-local type ResolverKind = "UNIT" | "PIPELINE"
+local type GraphQLApiVisibility = "GLOBAL" | "PRIVATE"
 
-local type TypeDefinitionFormat = "SDL" | "JSON"
+local type ApiCacheType = "T2_SMALL" | "T2_MEDIUM" | "R4_LARGE" | "R4_XLARGE" | "R4_2XLARGE" | "R4_4XLARGE" | "R4_8XLARGE" | "SMALL" | "MEDIUM" | "LARGE" | "XLARGE" | "LARGE_2X" | "LARGE_4X" | "LARGE_8X" | "LARGE_12X"
+
+local type Ownership = "CURRENT_ACCOUNT" | "OTHER_ACCOUNTS"
+
+local type ApiCachingBehavior = "FULL_REQUEST_CACHING" | "PER_RESOLVER_CACHING" | "OPERATION_LEVEL_CACHING"
 
 local record M
     AssociateApiInput: AssociateApiInput

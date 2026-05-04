@@ -1,0 +1,95 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for getComplianceSummary.
+function M.pages_get_compliance_summary(client, input)
+    return paginator.pages(client, "getComplianceSummary", input, {
+        input_token = "PaginationToken",
+        output_token = "PaginationToken",
+        items = "SummaryList",
+    })
+end
+
+--- Returns an item iterator for getComplianceSummary.
+function M.items_get_compliance_summary(client, input)
+    return paginator.items(client, "getComplianceSummary", input, {
+        input_token = "PaginationToken",
+        output_token = "PaginationToken",
+        items = "SummaryList",
+    })
+end
+
+--- Returns a page iterator for getResources.
+function M.pages_get_resources(client, input)
+    return paginator.pages(client, "getResources", input, {
+        input_token = "PaginationToken",
+        output_token = "PaginationToken",
+        items = "ResourceTagMappingList",
+    })
+end
+
+--- Returns an item iterator for getResources.
+function M.items_get_resources(client, input)
+    return paginator.items(client, "getResources", input, {
+        input_token = "PaginationToken",
+        output_token = "PaginationToken",
+        items = "ResourceTagMappingList",
+    })
+end
+
+--- Returns a page iterator for getTagKeys.
+function M.pages_get_tag_keys(client, input)
+    return paginator.pages(client, "getTagKeys", input, {
+        input_token = "PaginationToken",
+        output_token = "PaginationToken",
+        items = "TagKeys",
+    })
+end
+
+--- Returns an item iterator for getTagKeys.
+function M.items_get_tag_keys(client, input)
+    return paginator.items(client, "getTagKeys", input, {
+        input_token = "PaginationToken",
+        output_token = "PaginationToken",
+        items = "TagKeys",
+    })
+end
+
+--- Returns a page iterator for getTagValues.
+function M.pages_get_tag_values(client, input)
+    return paginator.pages(client, "getTagValues", input, {
+        input_token = "PaginationToken",
+        output_token = "PaginationToken",
+        items = "TagValues",
+    })
+end
+
+--- Returns an item iterator for getTagValues.
+function M.items_get_tag_values(client, input)
+    return paginator.items(client, "getTagValues", input, {
+        input_token = "PaginationToken",
+        output_token = "PaginationToken",
+        items = "TagValues",
+    })
+end
+
+--- Returns a page iterator for listRequiredTags.
+function M.pages_list_required_tags(client, input)
+    return paginator.pages(client, "listRequiredTags", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RequiredTags",
+    })
+end
+
+--- Returns an item iterator for listRequiredTags.
+function M.items_list_required_tags(client, input)
+    return paginator.items(client, "listRequiredTags", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RequiredTags",
+    })
+end
+
+return M

@@ -1,0 +1,149 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listDatasets.
+function M.pages_list_datasets(client, input)
+    return paginator.pages(client, "listDatasets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Datasets",
+    })
+end
+
+--- Returns an item iterator for listDatasets.
+function M.items_list_datasets(client, input)
+    return paginator.items(client, "listDatasets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Datasets",
+    })
+end
+
+--- Returns a page iterator for listJobRuns.
+function M.pages_list_job_runs(client, input)
+    return paginator.pages(client, "listJobRuns", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "JobRuns",
+    })
+end
+
+--- Returns an item iterator for listJobRuns.
+function M.items_list_job_runs(client, input)
+    return paginator.items(client, "listJobRuns", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "JobRuns",
+    })
+end
+
+--- Returns a page iterator for listJobs.
+function M.pages_list_jobs(client, input)
+    return paginator.pages(client, "listJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Jobs",
+    })
+end
+
+--- Returns an item iterator for listJobs.
+function M.items_list_jobs(client, input)
+    return paginator.items(client, "listJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Jobs",
+    })
+end
+
+--- Returns a page iterator for listProjects.
+function M.pages_list_projects(client, input)
+    return paginator.pages(client, "listProjects", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Projects",
+    })
+end
+
+--- Returns an item iterator for listProjects.
+function M.items_list_projects(client, input)
+    return paginator.items(client, "listProjects", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Projects",
+    })
+end
+
+--- Returns a page iterator for listRecipeVersions.
+function M.pages_list_recipe_versions(client, input)
+    return paginator.pages(client, "listRecipeVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Recipes",
+    })
+end
+
+--- Returns an item iterator for listRecipeVersions.
+function M.items_list_recipe_versions(client, input)
+    return paginator.items(client, "listRecipeVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Recipes",
+    })
+end
+
+--- Returns a page iterator for listRecipes.
+function M.pages_list_recipes(client, input)
+    return paginator.pages(client, "listRecipes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Recipes",
+    })
+end
+
+--- Returns an item iterator for listRecipes.
+function M.items_list_recipes(client, input)
+    return paginator.items(client, "listRecipes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Recipes",
+    })
+end
+
+--- Returns a page iterator for listRulesets.
+function M.pages_list_rulesets(client, input)
+    return paginator.pages(client, "listRulesets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Rulesets",
+    })
+end
+
+--- Returns an item iterator for listRulesets.
+function M.items_list_rulesets(client, input)
+    return paginator.items(client, "listRulesets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Rulesets",
+    })
+end
+
+--- Returns a page iterator for listSchedules.
+function M.pages_list_schedules(client, input)
+    return paginator.pages(client, "listSchedules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Schedules",
+    })
+end
+
+--- Returns an item iterator for listSchedules.
+function M.items_list_schedules(client, input)
+    return paginator.items(client, "listSchedules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Schedules",
+    })
+end
+
+return M

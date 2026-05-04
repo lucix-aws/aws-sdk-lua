@@ -16,16 +16,29 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSStepFunctions"
-    cfg.signing_name = "states"
     if not cfg.protocol then
-        cfg.protocol = awsjson_protocol.new({ version = "1.0", service_id = cfg.service_id })
+        cfg.protocol = awsjson_protocol.new("1.0")
     end
     if not cfg.endpoint_provider then
         cfg.endpoint_provider = function(params)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "states", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createActivity(input, options)
         output_schema = types.CreateActivityOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createStateMachine(input, options)
         output_schema = types.CreateStateMachineOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createStateMachineAlias(input, options)
         output_schema = types.CreateStateMachineAliasOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:deleteActivity(input, options)
         output_schema = types.DeleteActivityOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteStateMachine(input, options)
         output_schema = types.DeleteStateMachineOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteStateMachineAlias(input, options)
         output_schema = types.DeleteStateMachineAliasOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteStateMachineVersion(input, options)
         output_schema = types.DeleteStateMachineVersionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:describeActivity(input, options)
         output_schema = types.DescribeActivityOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:describeExecution(input, options)
         output_schema = types.DescribeExecutionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:describeMapRun(input, options)
         output_schema = types.DescribeMapRunOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:describeStateMachine(input, options)
         output_schema = types.DescribeStateMachineOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:describeStateMachineAlias(input, options)
         output_schema = types.DescribeStateMachineAliasOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:describeStateMachineForExecution(input, options)
         output_schema = types.DescribeStateMachineForExecutionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getActivityTask(input, options)
         output_schema = types.GetActivityTaskOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getExecutionHistory(input, options)
         output_schema = types.GetExecutionHistoryOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listActivities(input, options)
         output_schema = types.ListActivitiesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listExecutions(input, options)
         output_schema = types.ListExecutionsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listMapRuns(input, options)
         output_schema = types.ListMapRunsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listStateMachineAliases(input, options)
         output_schema = types.ListStateMachineAliasesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listStateMachines(input, options)
         output_schema = types.ListStateMachinesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listStateMachineVersions(input, options)
         output_schema = types.ListStateMachineVersionsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:publishStateMachineVersion(input, options)
         output_schema = types.PublishStateMachineVersionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:redriveExecution(input, options)
         output_schema = types.RedriveExecutionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:sendTaskFailure(input, options)
         output_schema = types.SendTaskFailureOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:sendTaskHeartbeat(input, options)
         output_schema = types.SendTaskHeartbeatOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:sendTaskSuccess(input, options)
         output_schema = types.SendTaskSuccessOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:startExecution(input, options)
         output_schema = types.StartExecutionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:startSyncExecution(input, options)
         output_schema = types.StartSyncExecutionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:stopExecution(input, options)
         output_schema = types.StopExecutionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:testState(input, options)
         output_schema = types.TestStateOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:updateMapRun(input, options)
         output_schema = types.UpdateMapRunOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:updateStateMachine(input, options)
         output_schema = types.UpdateStateMachineOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:updateStateMachineAlias(input, options)
         output_schema = types.UpdateStateMachineAliasOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:validateStateMachineDefinition(input, options)
         output_schema = types.ValidateStateMachineDefinitionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

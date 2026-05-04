@@ -85,13 +85,20 @@ M.GetAsyncInvokeOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         outputDataConfig = setmetatable({ traits = {
             required = true,
@@ -145,12 +152,14 @@ M.ListAsyncInvokesInput = {
             type = "timestamp",
             traits = {
                 http_query = "submitTimeAfter",
+                timestamp_format = "date-time",
             },
         },
         submitTimeBefore = {
             type = "timestamp",
             traits = {
                 http_query = "submitTimeBefore",
+                timestamp_format = "date-time",
             },
         },
         statusEquals = {
@@ -216,13 +225,20 @@ M.AsyncInvokeSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         outputDataConfig = setmetatable({ traits = {
             required = true,
@@ -306,6 +322,9 @@ M.StartAsyncInvokeInput = {
     members = {
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         modelId = {
             type = "string",

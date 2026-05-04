@@ -1,0 +1,10779 @@
+-- Generated endpoint ruleset tests — do not edit
+
+package.path = "runtime/?.lua;runtime/?/init.lua;" .. package.path
+
+local endpoint = require("endpoint")
+local ruleset = require("s3.endpoint_rules")
+
+local pass_count = 0
+local fail_count = 0
+
+local function test(name, fn)
+    local ok, err = pcall(fn)
+    if ok then
+        pass_count = pass_count + 1
+        print("PASS: " .. name)
+    else
+        fail_count = fail_count + 1
+        print("FAIL: " .. name .. "\n  " .. tostring(err))
+    end
+end
+
+local function assert_eq(a, b, msg)
+    if a ~= b then
+        error((msg or "assert_eq") .. ": expected " .. tostring(b) .. ", got " .. tostring(a), 2)
+    end
+end
+
+test("region is not a valid DNS-suffix", function()
+    local params = {
+        Region = "a b",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid region: region was not a valid DNS name.", "error message")
+end)
+
+test("Invalid access point ARN: Not S3", function()
+    local params = {
+        Region = "us-east-1",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        Bucket = "arn:aws:not-s3:us-west-2:123456789012:accesspoint:myendpoint",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid ARN: The ARN was not for the S3 service, found: not-s3", "error message")
+end)
+
+test("Invalid access point ARN: invalid resource", function()
+    local params = {
+        Region = "us-east-1",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        Bucket = "arn:aws:s3:us-west-2:123456789012:accesspoint:myendpoint:more-data",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid ARN: The ARN may only contain a single resource component after `accesspoint`.", "error message")
+end)
+
+test("Invalid access point ARN: invalid no ap name", function()
+    local params = {
+        Region = "us-east-1",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        Bucket = "arn:aws:s3:us-west-2:123456789012:accesspoint:",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid ARN: Expected a resource of the format `accesspoint:<accesspoint name>` but no name was provided", "error message")
+end)
+
+test("Invalid access point ARN: AccountId is invalid", function()
+    local params = {
+        Region = "us-east-1",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        Bucket = "arn:aws:s3:us-west-2:123456_789012:accesspoint:apname",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid ARN: The account id may only contain a-z, A-Z, 0-9 and `-`. Found: `123456_789012`", "error message")
+end)
+
+test("Invalid access point ARN: access point name is invalid", function()
+    local params = {
+        Region = "us-east-1",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        Bucket = "arn:aws:s3:us-west-2:123456789012:accesspoint:ap_name",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid ARN: The access point name may only contain a-z, A-Z, 0-9 and `-`. Found: `ap_name`", "error message")
+end)
+
+test("Access points (disable access points explicitly false)", function()
+    local params = {
+        Region = "us-east-1",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        DisableAccessPoints = false,
+        Bucket = "arn:aws:s3:us-west-2:123456789012:accesspoint:myendpoint",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myendpoint-123456789012.s3-accesspoint.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Access points: partition does not support FIPS", function()
+    local params = {
+        Region = "cn-north-1",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        Bucket = "arn:aws:s3:cn-north-1:123456789012:accesspoint:myendpoint",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Partition does not support FIPS", "error message")
+end)
+
+test("Bucket region is invalid", function()
+    local params = {
+        Region = "us-east-1",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        DisableAccessPoints = false,
+        Bucket = "arn:aws:s3:us-west -2:123456789012:accesspoint:myendpoint",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid region in ARN: `us-west -2` (invalid DNS name)", "error message")
+end)
+
+test("Access points when Access points explicitly disabled (used for CreateBucket)", function()
+    local params = {
+        Region = "us-east-1",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        DisableAccessPoints = true,
+        Bucket = "arn:aws:s3:us-west-2:123456789012:accesspoint:myendpoint",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Access points are not supported for this operation", "error message")
+end)
+
+test("missing arn type", function()
+    local params = {
+        Region = "us-east-1",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        DisableAccessPoints = true,
+        Bucket = "arn:aws:s3:us-west-2:123456789012:",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid ARN: `arn:aws:s3:us-west-2:123456789012:` was not a valid ARN", "error message")
+end)
+
+test("SDK::Host + access point + Dualstack is an error", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:aws-cn:s3:cn-north-1:123456789012:accesspoint:myendpoint",
+        ForcePathStyle = false,
+        Endpoint = "https://beta.example.com",
+        Region = "cn-north-1",
+        UseDualStack = true,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Cannot set dual-stack in combination with a custom endpoint.", "error message")
+end)
+
+test("Access point ARN with FIPS & Dualstack", function()
+    local params = {
+        Region = "us-east-1",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+        DisableAccessPoints = false,
+        Bucket = "arn:aws:s3:us-west-2:123456789012:accesspoint:myendpoint",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myendpoint-123456789012.s3-accesspoint-fips.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Access point ARN with Dualstack", function()
+    local params = {
+        Region = "us-east-1",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        DisableAccessPoints = false,
+        Bucket = "arn:aws:s3:us-west-2:123456789012:accesspoint:myendpoint",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myendpoint-123456789012.s3-accesspoint.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("vanilla MRAP", function()
+    local params = {
+        Bucket = "arn:aws:s3::123456789012:accesspoint:mfzwi23gnjvgw.mrap",
+        Region = "us-east-1",
+        DisableMultiRegionAccessPoints = false,
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mfzwi23gnjvgw.mrap.accesspoint.s3-global.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4a",
+        signingRegionSet = {
+        "*",
+    },
+        signingName = "s3",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("MRAP does not support FIPS", function()
+    local params = {
+        Bucket = "arn:aws:s3::123456789012:accesspoint:mfzwi23gnjvgw.mrap",
+        Region = "us-east-1",
+        DisableMultiRegionAccessPoints = false,
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "S3 MRAP does not support FIPS", "error message")
+end)
+
+test("MRAP does not support DualStack", function()
+    local params = {
+        Bucket = "arn:aws:s3::123456789012:accesspoint:mfzwi23gnjvgw.mrap",
+        Region = "us-east-1",
+        DisableMultiRegionAccessPoints = false,
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "S3 MRAP does not support dual-stack", "error message")
+end)
+
+test("MRAP does not support S3 Accelerate", function()
+    local params = {
+        Bucket = "arn:aws:s3::123456789012:accesspoint:mfzwi23gnjvgw.mrap",
+        Region = "us-east-1",
+        DisableMultiRegionAccessPoints = false,
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "S3 MRAP does not support S3 Accelerate", "error message")
+end)
+
+test("MRAP explicitly disabled", function()
+    local params = {
+        Bucket = "arn:aws:s3::123456789012:accesspoint:mfzwi23gnjvgw.mrap",
+        Region = "us-east-1",
+        DisableMultiRegionAccessPoints = true,
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid configuration: Multi-Region Access Point ARNs are disabled.", "error message")
+end)
+
+test("Dual-stack endpoint with path-style forced", function()
+    local params = {
+        Bucket = "bucketname",
+        Region = "us-west-2",
+        ForcePathStyle = true,
+        UseFIPS = false,
+        Accelerate = false,
+        UseDualStack = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.dualstack.us-west-2.amazonaws.com/bucketname", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Dual-stack endpoint + SDK::Host is error", function()
+    local params = {
+        Bucket = "bucketname",
+        Region = "us-west-2",
+        ForcePathStyle = true,
+        UseFIPS = false,
+        Accelerate = false,
+        UseDualStack = true,
+        Endpoint = "https://abc.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Cannot set dual-stack in combination with a custom endpoint.", "error message")
+end)
+
+test("path style + ARN bucket", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:aws:s3::123456789012:accesspoint:mfzwi23gnjvgw.mrap",
+        ForcePathStyle = true,
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Path-style addressing cannot be used with ARN buckets", "error message")
+end)
+
+test("implicit path style bucket + dualstack", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "99_ab",
+        Region = "us-west-2",
+        UseDualStack = true,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.dualstack.us-west-2.amazonaws.com/99_ab", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("implicit path style bucket + dualstack", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "99_ab",
+        Region = "us-west-2",
+        UseDualStack = true,
+        UseFIPS = false,
+        Endpoint = "http://abc.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Cannot set dual-stack in combination with a custom endpoint.", "error message")
+end)
+
+test("don't allow URL injections in the bucket", function()
+    local params = {
+        Bucket = "example.com#",
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.us-west-2.amazonaws.com/example.com%23", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("URI encode bucket names in the path", function()
+    local params = {
+        Bucket = "bucket name",
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.us-west-2.amazonaws.com/bucket%20name", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("scheme is respected", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "99_ab",
+        Endpoint = "http://control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com",
+        Region = "af-south-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "http://control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com/99_ab", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "af-south-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("scheme is respected (virtual addressing)", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucketname",
+        Endpoint = "http://control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com/foo",
+        Region = "af-south-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "http://bucketname.control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com/foo", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "af-south-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("path style + implicit private link", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "99_ab",
+        Endpoint = "https://control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com",
+        Region = "af-south-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com/99_ab", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "af-south-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("invalid Endpoint override", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucketname",
+        Endpoint = "abcde://nota#url",
+        Region = "af-south-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Custom endpoint `abcde://nota#url` was not a valid URI", "error message")
+end)
+
+test("using an IPv4 address forces path style", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucketname",
+        Endpoint = "https://123.123.0.1",
+        Region = "af-south-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://123.123.0.1/bucketname", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "af-south-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("vanilla access point arn with region mismatch and UseArnRegion=false", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:aws:s3:us-east-1:123456789012:accesspoint:myendpoint",
+        ForcePathStyle = false,
+        UseArnRegion = false,
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid configuration: region from ARN `us-east-1` does not match client region `us-west-2` and UseArnRegion is `false`", "error message")
+end)
+
+test("vanilla access point arn with region mismatch and UseArnRegion unset", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:aws:s3:us-west-2:123456789012:accesspoint:myendpoint",
+        ForcePathStyle = false,
+        Region = "us-east-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myendpoint-123456789012.s3-accesspoint.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("vanilla access point arn with region mismatch and UseArnRegion=true", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:aws:s3:us-west-2:123456789012:accesspoint:myendpoint",
+        ForcePathStyle = false,
+        UseArnRegion = true,
+        Region = "us-east-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myendpoint-123456789012.s3-accesspoint.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("subdomains are not allowed in virtual buckets", function()
+    local params = {
+        Bucket = "bucket.name",
+        Region = "us-east-1",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.us-east-1.amazonaws.com/bucket.name", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+        signingRegion = "us-east-1",
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("bucket names with 3 characters are allowed in virtual buckets", function()
+    local params = {
+        Bucket = "aaa",
+        Region = "us-east-1",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://aaa.s3.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+        signingRegion = "us-east-1",
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("bucket names with fewer than 3 characters are not allowed in virtual host", function()
+    local params = {
+        Bucket = "aa",
+        Region = "us-east-1",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.us-east-1.amazonaws.com/aa", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+        signingRegion = "us-east-1",
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("bucket names with uppercase characters are not allowed in virtual host", function()
+    local params = {
+        Bucket = "BucketName",
+        Region = "us-east-1",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.us-east-1.amazonaws.com/BucketName", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+        signingRegion = "us-east-1",
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("subdomains are allowed in virtual buckets on http endpoints", function()
+    local params = {
+        Bucket = "bucket.name",
+        Region = "us-east-1",
+        Endpoint = "http://example.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "http://bucket.name.example.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+        signingRegion = "us-east-1",
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("no region set", function()
+    local params = {
+        Bucket = "bucket-name",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "A region must be set when sending requests to S3.", "error message")
+end)
+
+test("UseGlobalEndpoints=true, region=us-east-1 uses the global endpoint", function()
+    local params = {
+        Region = "us-east-1",
+        UseGlobalEndpoint = true,
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("UseGlobalEndpoints=true, region=us-west-2 uses the regional endpoint", function()
+    local params = {
+        Region = "us-west-2",
+        UseGlobalEndpoint = true,
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("UseGlobalEndpoints=true, region=cn-north-1 uses the regional endpoint", function()
+    local params = {
+        Region = "cn-north-1",
+        UseGlobalEndpoint = true,
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.cn-north-1.amazonaws.com.cn", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "cn-north-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("UseGlobalEndpoints=true, region=us-east-1, fips=true uses the regional endpoint with fips", function()
+    local params = {
+        Region = "us-east-1",
+        UseGlobalEndpoint = true,
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3-fips.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("UseGlobalEndpoints=true, region=us-east-1, dualstack=true uses the regional endpoint with dualstack", function()
+    local params = {
+        Region = "us-east-1",
+        UseGlobalEndpoint = true,
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.dualstack.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("UseGlobalEndpoints=true, region=us-east-1, dualstack and fips uses the regional endpoint with fips/dualstack", function()
+    local params = {
+        Region = "us-east-1",
+        UseGlobalEndpoint = true,
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3-fips.dualstack.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("UseGlobalEndpoints=true, region=us-east-1 with custom endpoint, uses custom", function()
+    local params = {
+        Region = "us-east-1",
+        Endpoint = "https://example.com",
+        UseGlobalEndpoint = true,
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://example.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("UseGlobalEndpoints=true, region=us-west-2 with custom endpoint, uses custom", function()
+    local params = {
+        Region = "us-west-2",
+        Endpoint = "https://example.com",
+        UseGlobalEndpoint = true,
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://example.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("UseGlobalEndpoints=true, region=us-east-1 with accelerate on non bucket case uses the global endpoint and ignores accelerate", function()
+    local params = {
+        Region = "us-east-1",
+        UseGlobalEndpoint = true,
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("aws-global region uses the global endpoint", function()
+    local params = {
+        Region = "aws-global",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("aws-global region with fips uses the regional endpoint", function()
+    local params = {
+        Region = "aws-global",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3-fips.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("aws-global region with dualstack uses the regional endpoint", function()
+    local params = {
+        Region = "aws-global",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.dualstack.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("aws-global region with fips and dualstack uses the regional endpoint", function()
+    local params = {
+        Region = "aws-global",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3-fips.dualstack.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("aws-global region with accelerate on non-bucket case, uses global endpoint and ignores accelerate", function()
+    local params = {
+        Region = "aws-global",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("aws-global region with custom endpoint, uses custom", function()
+    local params = {
+        Region = "aws-global",
+        Endpoint = "https://example.com",
+        UseGlobalEndpoint = false,
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://example.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing, aws-global region uses the global endpoint", function()
+    local params = {
+        Region = "aws-global",
+        Bucket = "bucket-name",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing, aws-global region with Prefix, and Key uses the global endpoint. Prefix and Key parameters should not be used in endpoint evaluation.", function()
+    local params = {
+        Region = "aws-global",
+        Bucket = "bucket-name",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        Prefix = "prefix",
+        Key = "key",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing, aws-global region with Copy Source, and Key uses the global endpoint. Copy Source and Key parameters should not be used in endpoint evaluation.", function()
+    local params = {
+        Region = "aws-global",
+        Bucket = "bucket-name",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        CopySource = "/copy/source",
+        Key = "key",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing, aws-global region with fips uses the regional fips endpoint", function()
+    local params = {
+        Region = "aws-global",
+        Bucket = "bucket-name",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3-fips.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing, aws-global region with dualstack uses the regional dualstack endpoint", function()
+    local params = {
+        Region = "aws-global",
+        Bucket = "bucket-name",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3.dualstack.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing, aws-global region with fips/dualstack uses the regional fips/dualstack endpoint", function()
+    local params = {
+        Region = "aws-global",
+        Bucket = "bucket-name",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3-fips.dualstack.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing, aws-global region with accelerate uses the global accelerate endpoint", function()
+    local params = {
+        Region = "aws-global",
+        Bucket = "bucket-name",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3-accelerate.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing, aws-global region with custom endpoint", function()
+    local params = {
+        Region = "aws-global",
+        Endpoint = "https://example.com",
+        Bucket = "bucket-name",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.example.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing, UseGlobalEndpoint and us-east-1 region uses the global endpoint", function()
+    local params = {
+        Region = "us-east-1",
+        UseGlobalEndpoint = true,
+        Bucket = "bucket-name",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing, UseGlobalEndpoint and us-west-2 region uses the regional endpoint", function()
+    local params = {
+        Region = "us-west-2",
+        UseGlobalEndpoint = true,
+        Bucket = "bucket-name",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing, UseGlobalEndpoint and us-east-1 region and fips uses the regional fips endpoint", function()
+    local params = {
+        Region = "us-east-1",
+        UseGlobalEndpoint = true,
+        Bucket = "bucket-name",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3-fips.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing, UseGlobalEndpoint and us-east-1 region and dualstack uses the regional dualstack endpoint", function()
+    local params = {
+        Region = "us-east-1",
+        UseGlobalEndpoint = true,
+        Bucket = "bucket-name",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3.dualstack.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing, UseGlobalEndpoint and us-east-1 region and accelerate uses the global accelerate endpoint", function()
+    local params = {
+        Region = "us-east-1",
+        UseGlobalEndpoint = true,
+        Bucket = "bucket-name",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3-accelerate.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing, UseGlobalEndpoint and us-east-1 region with custom endpoint", function()
+    local params = {
+        Region = "us-east-1",
+        Endpoint = "https://example.com",
+        UseGlobalEndpoint = true,
+        Bucket = "bucket-name",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.example.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("ForcePathStyle, aws-global region uses the global endpoint", function()
+    local params = {
+        Region = "aws-global",
+        Bucket = "bucket-name",
+        ForcePathStyle = true,
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.amazonaws.com/bucket-name", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("ForcePathStyle, aws-global region with fips is invalid", function()
+    local params = {
+        Region = "aws-global",
+        Bucket = "bucket-name",
+        ForcePathStyle = true,
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3-fips.us-east-1.amazonaws.com/bucket-name", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+        name = "sigv4",
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("ForcePathStyle, aws-global region with dualstack uses regional dualstack endpoint", function()
+    local params = {
+        Region = "aws-global",
+        Bucket = "bucket-name",
+        ForcePathStyle = true,
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.dualstack.us-east-1.amazonaws.com/bucket-name", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("ForcePathStyle, aws-global region custom endpoint uses the custom endpoint", function()
+    local params = {
+        Region = "aws-global",
+        Endpoint = "https://example.com",
+        Bucket = "bucket-name",
+        ForcePathStyle = true,
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://example.com/bucket-name", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("ForcePathStyle, UseGlobalEndpoint us-east-1 region uses the global endpoint", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "bucket-name",
+        UseGlobalEndpoint = true,
+        ForcePathStyle = true,
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.amazonaws.com/bucket-name", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("ForcePathStyle, UseGlobalEndpoint us-west-2 region uses the regional endpoint", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "bucket-name",
+        UseGlobalEndpoint = true,
+        ForcePathStyle = true,
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.us-west-2.amazonaws.com/bucket-name", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("ForcePathStyle, UseGlobalEndpoint us-east-1 region, dualstack uses the regional dualstack endpoint", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "bucket-name",
+        UseGlobalEndpoint = true,
+        ForcePathStyle = true,
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.dualstack.us-east-1.amazonaws.com/bucket-name", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("ForcePathStyle, UseGlobalEndpoint us-east-1 region custom endpoint uses the custom endpoint", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "bucket-name",
+        Endpoint = "https://example.com",
+        UseGlobalEndpoint = true,
+        ForcePathStyle = true,
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://example.com/bucket-name", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("ARN with aws-global region and  UseArnRegion uses the regional endpoint", function()
+    local params = {
+        Region = "aws-global",
+        UseArnRegion = true,
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        Bucket = "arn:aws:s3-outposts:us-east-1:123456789012:outpost/op-01234567890123456/accesspoint/reports",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://reports-123456789012.op-01234567890123456.s3-outposts.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4a",
+        signingName = "s3-outposts",
+        signingRegionSet = {
+        "*",
+    },
+        disableDoubleEncoding = true,
+    },
+        {
+        name = "sigv4",
+        signingName = "s3-outposts",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("cross partition MRAP ARN is an error", function()
+    local params = {
+        Bucket = "arn:aws-cn:s3::123456789012:accesspoint:mfzwi23gnjvgw.mrap",
+        Region = "us-west-1",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Client was configured for partition `aws` but bucket referred to partition `aws-cn`", "error message")
+end)
+
+test("Endpoint override, accesspoint with HTTP, port", function()
+    local params = {
+        Endpoint = "http://beta.example.com:1234",
+        Region = "us-west-2",
+        Bucket = "arn:aws:s3:us-west-2:123456789012:accesspoint:myendpoint",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "http://myendpoint-123456789012.beta.example.com:1234", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Endpoint override, accesspoint with http, path, query, and port", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "arn:aws:s3:us-west-2:123456789012:accesspoint:myendpoint",
+        Endpoint = "http://beta.example.com:1234/path",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "http://myendpoint-123456789012.beta.example.com:1234/path", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("non-bucket endpoint override with FIPS = error", function()
+    local params = {
+        Region = "us-west-2",
+        Endpoint = "http://beta.example.com:1234/path",
+        UseFIPS = true,
+        UseDualStack = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "A custom endpoint cannot be combined with FIPS", "error message")
+end)
+
+test("FIPS + dualstack + custom endpoint", function()
+    local params = {
+        Region = "us-west-2",
+        Endpoint = "http://beta.example.com:1234/path",
+        UseFIPS = true,
+        UseDualStack = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Cannot set dual-stack in combination with a custom endpoint.", "error message")
+end)
+
+test("dualstack + custom endpoint", function()
+    local params = {
+        Region = "us-west-2",
+        Endpoint = "http://beta.example.com:1234/path",
+        UseFIPS = false,
+        UseDualStack = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Cannot set dual-stack in combination with a custom endpoint.", "error message")
+end)
+
+test("custom endpoint without FIPS/dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Endpoint = "http://beta.example.com:1234/path",
+        UseFIPS = false,
+        UseDualStack = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "http://beta.example.com:1234/path", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("s3 object lambda with access points disabled", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "arn:aws:s3-object-lambda:us-west-2:123456789012:accesspoint:myendpoint",
+        DisableAccessPoints = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Access points are not supported for this operation", "error message")
+end)
+
+test("non bucket + FIPS", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = true,
+        UseDualStack = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3-fips.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("standard non bucket endpoint", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = false,
+        UseDualStack = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("non bucket endpoint with FIPS + Dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = true,
+        UseDualStack = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3-fips.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("non bucket endpoint with dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = false,
+        UseDualStack = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("use global endpoint + IP address endpoint override", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "bucket",
+        UseFIPS = false,
+        UseDualStack = false,
+        Endpoint = "http://127.0.0.1",
+        UseGlobalEndpoint = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "http://127.0.0.1/bucket", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+        signingRegion = "us-east-1",
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("non-dns endpoint + global endpoint", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "bucket!",
+        UseFIPS = false,
+        UseDualStack = false,
+        UseGlobalEndpoint = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.amazonaws.com/bucket%21", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+        signingRegion = "us-east-1",
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("endpoint override + use global endpoint", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "bucket!",
+        UseFIPS = false,
+        UseDualStack = false,
+        UseGlobalEndpoint = true,
+        Endpoint = "http://foo.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "http://foo.com/bucket%21", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+        signingRegion = "us-east-1",
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("FIPS + dualstack + non-bucket endpoint", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "bucket!",
+        UseFIPS = true,
+        UseDualStack = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3-fips.dualstack.us-east-1.amazonaws.com/bucket%21", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+        signingRegion = "us-east-1",
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("FIPS + dualstack + non-DNS endpoint", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "bucket!",
+        ForcePathStyle = true,
+        UseFIPS = true,
+        UseDualStack = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3-fips.dualstack.us-east-1.amazonaws.com/bucket%21", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+        signingRegion = "us-east-1",
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("endpoint override + FIPS + dualstack (BUG)", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "bucket!",
+        ForcePathStyle = true,
+        UseFIPS = true,
+        UseDualStack = false,
+        Endpoint = "http://foo.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "A custom endpoint cannot be combined with FIPS", "error message")
+end)
+
+test("endpoint override + non-dns bucket + FIPS (BUG)", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "bucket!",
+        UseFIPS = true,
+        UseDualStack = false,
+        Endpoint = "http://foo.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "A custom endpoint cannot be combined with FIPS", "error message")
+end)
+
+test("FIPS + bucket endpoint + force path style", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "bucket!",
+        ForcePathStyle = true,
+        UseFIPS = true,
+        UseDualStack = false,
+        UseGlobalEndpoint = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3-fips.us-east-1.amazonaws.com/bucket%21", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+        signingRegion = "us-east-1",
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("bucket + FIPS + force path style", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "bucket",
+        ForcePathStyle = true,
+        UseFIPS = true,
+        UseDualStack = true,
+        UseGlobalEndpoint = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3-fips.dualstack.us-east-1.amazonaws.com/bucket", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+        signingRegion = "us-east-1",
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("FIPS + dualstack + use global endpoint", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "bucket",
+        UseFIPS = true,
+        UseDualStack = true,
+        UseGlobalEndpoint = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket.s3-fips.dualstack.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+        signingRegion = "us-east-1",
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("URI encoded bucket + use global endpoint", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "bucket!",
+        UseFIPS = true,
+        UseDualStack = false,
+        UseGlobalEndpoint = true,
+        Endpoint = "https://foo.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "A custom endpoint cannot be combined with FIPS", "error message")
+end)
+
+test("FIPS + path based endpoint", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "bucket!",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseGlobalEndpoint = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3-fips.us-east-1.amazonaws.com/bucket%21", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+        signingRegion = "us-east-1",
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("accelerate + dualstack + global endpoint", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "bucket",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = true,
+        UseGlobalEndpoint = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket.s3-accelerate.dualstack.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+        signingRegion = "us-east-1",
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("dualstack + global endpoint + non URI safe bucket", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "bucket!",
+        Accelerate = false,
+        UseDualStack = true,
+        UseFIPS = false,
+        UseGlobalEndpoint = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.dualstack.us-east-1.amazonaws.com/bucket%21", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+        signingRegion = "us-east-1",
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("FIPS + uri encoded bucket", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "bucket!",
+        ForcePathStyle = true,
+        Accelerate = false,
+        UseDualStack = false,
+        UseFIPS = true,
+        UseGlobalEndpoint = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3-fips.us-east-1.amazonaws.com/bucket%21", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+        signingRegion = "us-east-1",
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("endpoint override + non-uri safe endpoint + force path style", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "bucket!",
+        ForcePathStyle = true,
+        Accelerate = false,
+        UseDualStack = false,
+        UseFIPS = true,
+        Endpoint = "http://foo.com",
+        UseGlobalEndpoint = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "A custom endpoint cannot be combined with FIPS", "error message")
+end)
+
+test("FIPS + Dualstack + global endpoint + non-dns bucket", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "bucket!",
+        Accelerate = false,
+        UseDualStack = true,
+        UseFIPS = true,
+        UseGlobalEndpoint = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3-fips.dualstack.us-east-1.amazonaws.com/bucket%21", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+        signingRegion = "us-east-1",
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("endpoint override + FIPS + dualstack", function()
+    local params = {
+        Region = "us-east-1",
+        UseDualStack = true,
+        UseFIPS = true,
+        UseGlobalEndpoint = true,
+        Endpoint = "http://foo.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Cannot set dual-stack in combination with a custom endpoint.", "error message")
+end)
+
+test("non-bucket endpoint override + dualstack + global endpoint", function()
+    local params = {
+        Region = "us-east-1",
+        UseFIPS = false,
+        UseDualStack = true,
+        UseGlobalEndpoint = true,
+        Endpoint = "http://foo.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Cannot set dual-stack in combination with a custom endpoint.", "error message")
+end)
+
+test("Endpoint override + UseGlobalEndpoint + us-east-1", function()
+    local params = {
+        Region = "us-east-1",
+        UseFIPS = true,
+        UseDualStack = false,
+        UseGlobalEndpoint = true,
+        Endpoint = "http://foo.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "A custom endpoint cannot be combined with FIPS", "error message")
+end)
+
+test("non-FIPS partition with FIPS set + custom endpoint", function()
+    local params = {
+        Region = "cn-north-1",
+        UseFIPS = true,
+        UseDualStack = false,
+        UseGlobalEndpoint = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Partition does not support FIPS", "error message")
+end)
+
+test("aws-global signs as us-east-1", function()
+    local params = {
+        Region = "aws-global",
+        Bucket = "bucket!",
+        UseFIPS = true,
+        Accelerate = false,
+        UseDualStack = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3-fips.dualstack.us-east-1.amazonaws.com/bucket%21", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        signingRegion = "us-east-1",
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("aws-global signs as us-east-1", function()
+    local params = {
+        Region = "aws-global",
+        Bucket = "bucket",
+        UseDualStack = false,
+        UseFIPS = false,
+        Accelerate = false,
+        Endpoint = "https://foo.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket.foo.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        signingRegion = "us-east-1",
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("aws-global + dualstack + path-only bucket", function()
+    local params = {
+        Region = "aws-global",
+        Bucket = "bucket!",
+        UseDualStack = true,
+        UseFIPS = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.dualstack.us-east-1.amazonaws.com/bucket%21", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        signingRegion = "us-east-1",
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("aws-global + path-only bucket", function()
+    local params = {
+        Region = "aws-global",
+        Bucket = "bucket!",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.amazonaws.com/bucket%21", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        signingRegion = "us-east-1",
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("aws-global + fips + custom endpoint", function()
+    local params = {
+        Region = "aws-global",
+        Bucket = "bucket!",
+        UseDualStack = false,
+        UseFIPS = true,
+        Accelerate = false,
+        Endpoint = "http://foo.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "A custom endpoint cannot be combined with FIPS", "error message")
+end)
+
+test("aws-global, endpoint override & path only-bucket", function()
+    local params = {
+        Region = "aws-global",
+        Bucket = "bucket!",
+        UseDualStack = false,
+        UseFIPS = false,
+        Accelerate = false,
+        Endpoint = "http://foo.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "http://foo.com/bucket%21", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        signingRegion = "us-east-1",
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("aws-global + dualstack + custom endpoint", function()
+    local params = {
+        Region = "aws-global",
+        UseDualStack = true,
+        UseFIPS = false,
+        Accelerate = false,
+        Endpoint = "http://foo.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Cannot set dual-stack in combination with a custom endpoint.", "error message")
+end)
+
+test("accelerate, dualstack + aws-global", function()
+    local params = {
+        Region = "aws-global",
+        Bucket = "bucket",
+        UseDualStack = true,
+        UseFIPS = false,
+        Accelerate = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket.s3-accelerate.dualstack.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        signingRegion = "us-east-1",
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("FIPS + aws-global + path only bucket. This is not supported by S3 but we allow garbage in garbage out", function()
+    local params = {
+        Region = "aws-global",
+        Bucket = "bucket!",
+        ForcePathStyle = true,
+        UseDualStack = true,
+        UseFIPS = true,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3-fips.dualstack.us-east-1.amazonaws.com/bucket%21", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        signingRegion = "us-east-1",
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("aws-global + FIPS + endpoint override.", function()
+    local params = {
+        Region = "aws-global",
+        UseFIPS = true,
+        Endpoint = "http://foo.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "A custom endpoint cannot be combined with FIPS", "error message")
+end)
+
+test("force path style, FIPS, aws-global & endpoint override", function()
+    local params = {
+        Region = "aws-global",
+        Bucket = "bucket!",
+        ForcePathStyle = true,
+        UseFIPS = true,
+        Endpoint = "http://foo.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "A custom endpoint cannot be combined with FIPS", "error message")
+end)
+
+test("ip address causes path style to be forced", function()
+    local params = {
+        Region = "aws-global",
+        Bucket = "bucket",
+        Endpoint = "http://192.168.1.1",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "http://192.168.1.1/bucket", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        signingRegion = "us-east-1",
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("endpoint override with aws-global region", function()
+    local params = {
+        Region = "aws-global",
+        UseFIPS = true,
+        UseDualStack = true,
+        Endpoint = "http://foo.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Cannot set dual-stack in combination with a custom endpoint.", "error message")
+end)
+
+test("FIPS + path-only (TODO: consider making this an error)", function()
+    local params = {
+        Region = "aws-global",
+        Bucket = "bucket!",
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3-fips.us-east-1.amazonaws.com/bucket%21", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        signingRegion = "us-east-1",
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("empty arn type", function()
+    local params = {
+        Region = "us-east-2",
+        Bucket = "arn:aws:not-s3:us-west-2:123456789012::myendpoint",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid ARN: No ARN type specified", "error message")
+end)
+
+test("path style can't be used with accelerate", function()
+    local params = {
+        Region = "us-east-2",
+        Bucket = "bucket!",
+        Accelerate = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Path-style addressing cannot be used with S3 Accelerate", "error message")
+end)
+
+test("invalid region", function()
+    local params = {
+        Region = "us-east-2!",
+        Bucket = "bucket.subdomain",
+        Endpoint = "http://foo.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid region: region was not a valid DNS name.", "error message")
+end)
+
+test("invalid region", function()
+    local params = {
+        Region = "us-east-2!",
+        Bucket = "bucket",
+        Endpoint = "http://foo.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid region: region was not a valid DNS name.", "error message")
+end)
+
+test("empty arn type", function()
+    local params = {
+        Region = "us-east-2",
+        Bucket = "arn:aws:s3::123456789012:accesspoint:my_endpoint",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid Access Point Name", "error message")
+end)
+
+test("empty arn type", function()
+    local params = {
+        Region = "us-east-2",
+        Bucket = "arn:aws:s3:cn-north-1:123456789012:accesspoint:my-endpoint",
+        UseArnRegion = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Client was configured for partition `aws` but ARN (`arn:aws:s3:cn-north-1:123456789012:accesspoint:my-endpoint`) has `aws-cn`", "error message")
+end)
+
+test("invalid arn region", function()
+    local params = {
+        Region = "us-east-2",
+        Bucket = "arn:aws:s3-object-lambda:us-east_2:123456789012:accesspoint:my-endpoint",
+        UseArnRegion = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid region in ARN: `us-east_2` (invalid DNS name)", "error message")
+end)
+
+test("invalid ARN outpost", function()
+    local params = {
+        Region = "us-east-2",
+        Bucket = "arn:aws:s3-outposts:us-east-1:123456789012:outpost/op_01234567890123456/accesspoint/reports",
+        UseArnRegion = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid ARN: The outpost Id may only contain a-z, A-Z, 0-9 and `-`. Found: `op_01234567890123456`", "error message")
+end)
+
+test("invalid ARN", function()
+    local params = {
+        Region = "us-east-2",
+        Bucket = "arn:aws:s3-outposts:us-east-1:123456789012:outpost/op-01234567890123456/reports",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid ARN: expected an access point name", "error message")
+end)
+
+test("invalid ARN", function()
+    local params = {
+        Region = "us-east-2",
+        Bucket = "arn:aws:s3-outposts:us-east-1:123456789012:outpost/op-01234567890123456",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid ARN: Expected a 4-component resource", "error message")
+end)
+
+test("invalid outpost type", function()
+    local params = {
+        Region = "us-east-2",
+        Bucket = "arn:aws:s3-outposts:us-east-1:123456789012:outpost/op-01234567890123456/not-accesspoint/reports",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Expected an outpost type `accesspoint`, found not-accesspoint", "error message")
+end)
+
+test("invalid outpost type", function()
+    local params = {
+        Region = "us-east-2",
+        Bucket = "arn:aws:s3-outposts:us-east_1:123456789012:outpost/op-01234567890123456/not-accesspoint/reports",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid region in ARN: `us-east_1` (invalid DNS name)", "error message")
+end)
+
+test("invalid outpost type", function()
+    local params = {
+        Region = "us-east-2",
+        Bucket = "arn:aws:s3-outposts:us-east-1:12345_789012:outpost/op-01234567890123456/not-accesspoint/reports",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid ARN: The account id may only contain a-z, A-Z, 0-9 and `-`. Found: `12345_789012`", "error message")
+end)
+
+test("invalid outpost type", function()
+    local params = {
+        Region = "us-east-2",
+        Bucket = "arn:aws:s3-outposts:us-east-1:12345789012:outpost",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid ARN: The Outpost Id was not set", "error message")
+end)
+
+test("use global endpoint virtual addressing", function()
+    local params = {
+        Region = "us-east-2",
+        Bucket = "bucket",
+        Endpoint = "http://example.com",
+        UseGlobalEndpoint = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "http://bucket.example.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        signingRegion = "us-east-2",
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("global endpoint + ip address", function()
+    local params = {
+        Region = "us-east-2",
+        Bucket = "bucket",
+        Endpoint = "http://192.168.0.1",
+        UseGlobalEndpoint = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "http://192.168.0.1/bucket", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        signingRegion = "us-east-2",
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("invalid outpost type", function()
+    local params = {
+        Region = "us-east-2",
+        Bucket = "bucket!",
+        UseGlobalEndpoint = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.us-east-2.amazonaws.com/bucket%21", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        signingRegion = "us-east-2",
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("invalid outpost type", function()
+    local params = {
+        Region = "us-east-2",
+        Bucket = "bucket",
+        Accelerate = true,
+        UseGlobalEndpoint = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket.s3-accelerate.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        signingRegion = "us-east-2",
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("use global endpoint + custom endpoint", function()
+    local params = {
+        Region = "us-east-2",
+        Bucket = "bucket!",
+        UseGlobalEndpoint = true,
+        Endpoint = "http://foo.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "http://foo.com/bucket%21", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        signingRegion = "us-east-2",
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("use global endpoint, not us-east-1, force path style", function()
+    local params = {
+        Region = "us-east-2",
+        Bucket = "bucket!",
+        UseGlobalEndpoint = true,
+        ForcePathStyle = true,
+        Endpoint = "http://foo.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "http://foo.com/bucket%21", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        signingRegion = "us-east-2",
+        name = "sigv4",
+        signingName = "s3",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("vanilla virtual addressing@us-west-2", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing + dualstack@us-west-2", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Region = "us-west-2",
+        UseDualStack = true,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("accelerate + dualstack@us-west-2", function()
+    local params = {
+        Accelerate = true,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Region = "us-west-2",
+        UseDualStack = true,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3-accelerate.dualstack.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("accelerate (dualstack=false)@us-west-2", function()
+    local params = {
+        Accelerate = true,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3-accelerate.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing + fips@us-west-2", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3-fips.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing + dualstack + fips@us-west-2", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Region = "us-west-2",
+        UseDualStack = true,
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3-fips.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("accelerate + fips = error@us-west-2", function()
+    local params = {
+        Accelerate = true,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Accelerate cannot be used with FIPS", "error message")
+end)
+
+test("vanilla virtual addressing@cn-north-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Region = "cn-north-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3.cn-north-1.amazonaws.com.cn", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "cn-north-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing + dualstack@cn-north-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Region = "cn-north-1",
+        UseDualStack = true,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3.dualstack.cn-north-1.amazonaws.com.cn", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "cn-north-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("accelerate (dualstack=false)@cn-north-1", function()
+    local params = {
+        Accelerate = true,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Region = "cn-north-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "S3 Accelerate cannot be used in this region", "error message")
+end)
+
+test("virtual addressing + fips@cn-north-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Region = "cn-north-1",
+        UseDualStack = false,
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Partition does not support FIPS", "error message")
+end)
+
+test("vanilla virtual addressing@af-south-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Region = "af-south-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3.af-south-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "af-south-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing + dualstack@af-south-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Region = "af-south-1",
+        UseDualStack = true,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3.dualstack.af-south-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "af-south-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("accelerate + dualstack@af-south-1", function()
+    local params = {
+        Accelerate = true,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Region = "af-south-1",
+        UseDualStack = true,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3-accelerate.dualstack.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "af-south-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("accelerate (dualstack=false)@af-south-1", function()
+    local params = {
+        Accelerate = true,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Region = "af-south-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3-accelerate.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "af-south-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing + fips@af-south-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Region = "af-south-1",
+        UseDualStack = false,
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3-fips.af-south-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "af-south-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing + dualstack + fips@af-south-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Region = "af-south-1",
+        UseDualStack = true,
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.s3-fips.dualstack.af-south-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "af-south-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("accelerate + fips = error@af-south-1", function()
+    local params = {
+        Accelerate = true,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Region = "af-south-1",
+        UseDualStack = false,
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Accelerate cannot be used with FIPS", "error message")
+end)
+
+test("vanilla path style@us-west-2", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = true,
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.us-west-2.amazonaws.com/bucket-name", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("fips@us-gov-west-2, bucket is not S3-dns-compatible (subdomains)", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket.with.dots",
+        Region = "us-gov-west-1",
+        UseDualStack = false,
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3-fips.us-gov-west-1.amazonaws.com/bucket.with.dots", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        signingName = "s3",
+        signingRegion = "us-gov-west-1",
+        disableDoubleEncoding = true,
+        name = "sigv4",
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("path style + accelerate = error@us-west-2", function()
+    local params = {
+        Accelerate = true,
+        Bucket = "bucket-name",
+        ForcePathStyle = true,
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Path-style addressing cannot be used with S3 Accelerate", "error message")
+end)
+
+test("path style + dualstack@us-west-2", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = true,
+        Region = "us-west-2",
+        UseDualStack = true,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.dualstack.us-west-2.amazonaws.com/bucket-name", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("path style + arn is error@us-west-2", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:PARTITION:s3-outposts:REGION:123456789012:outpost:op-01234567890123456:bucket:mybucket",
+        ForcePathStyle = true,
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Path-style addressing cannot be used with ARN buckets", "error message")
+end)
+
+test("path style + invalid DNS name@us-west-2", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "99a_b",
+        ForcePathStyle = true,
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.us-west-2.amazonaws.com/99a_b", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("no path style + invalid DNS name@us-west-2", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "99a_b",
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.us-west-2.amazonaws.com/99a_b", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("vanilla path style@cn-north-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = true,
+        Region = "cn-north-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.cn-north-1.amazonaws.com.cn/bucket-name", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "cn-north-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("path style + fips@cn-north-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = true,
+        Region = "cn-north-1",
+        UseDualStack = false,
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Partition does not support FIPS", "error message")
+end)
+
+test("path style + accelerate = error@cn-north-1", function()
+    local params = {
+        Accelerate = true,
+        Bucket = "bucket-name",
+        ForcePathStyle = true,
+        Region = "cn-north-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Path-style addressing cannot be used with S3 Accelerate", "error message")
+end)
+
+test("path style + dualstack@cn-north-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = true,
+        Region = "cn-north-1",
+        UseDualStack = true,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.dualstack.cn-north-1.amazonaws.com.cn/bucket-name", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "cn-north-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("path style + arn is error@cn-north-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:PARTITION:s3-outposts:REGION:123456789012:outpost:op-01234567890123456:bucket:mybucket",
+        ForcePathStyle = true,
+        Region = "cn-north-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Path-style addressing cannot be used with ARN buckets", "error message")
+end)
+
+test("path style + invalid DNS name@cn-north-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "99a_b",
+        ForcePathStyle = true,
+        Region = "cn-north-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.cn-north-1.amazonaws.com.cn/99a_b", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "cn-north-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("no path style + invalid DNS name@cn-north-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "99a_b",
+        Region = "cn-north-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.cn-north-1.amazonaws.com.cn/99a_b", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "cn-north-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("vanilla path style@af-south-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = true,
+        Region = "af-south-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.af-south-1.amazonaws.com/bucket-name", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "af-south-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("path style + fips@af-south-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = true,
+        Region = "af-south-1",
+        UseDualStack = false,
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3-fips.af-south-1.amazonaws.com/bucket-name", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        signingName = "s3",
+        signingRegion = "af-south-1",
+        disableDoubleEncoding = true,
+        name = "sigv4",
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("path style + accelerate = error@af-south-1", function()
+    local params = {
+        Accelerate = true,
+        Bucket = "bucket-name",
+        ForcePathStyle = true,
+        Region = "af-south-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Path-style addressing cannot be used with S3 Accelerate", "error message")
+end)
+
+test("path style + dualstack@af-south-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = true,
+        Region = "af-south-1",
+        UseDualStack = true,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.dualstack.af-south-1.amazonaws.com/bucket-name", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "af-south-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("path style + arn is error@af-south-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:PARTITION:s3-outposts:REGION:123456789012:outpost:op-01234567890123456:bucket:mybucket",
+        ForcePathStyle = true,
+        Region = "af-south-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Path-style addressing cannot be used with ARN buckets", "error message")
+end)
+
+test("path style + invalid DNS name@af-south-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "99a_b",
+        ForcePathStyle = true,
+        Region = "af-south-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.af-south-1.amazonaws.com/99a_b", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "af-south-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("no path style + invalid DNS name@af-south-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "99a_b",
+        Region = "af-south-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3.af-south-1.amazonaws.com/99a_b", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "af-south-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing + private link@us-west-2", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Endpoint = "http://control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com",
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "http://bucket-name.control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("path style + private link@us-west-2", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = true,
+        Endpoint = "https://control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com",
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com/bucket-name", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("SDK::Host + FIPS@us-west-2", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Endpoint = "https://control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com",
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "A custom endpoint cannot be combined with FIPS", "error message")
+end)
+
+test("SDK::Host + DualStack@us-west-2", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Endpoint = "https://control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com",
+        Region = "us-west-2",
+        UseDualStack = true,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Cannot set dual-stack in combination with a custom endpoint.", "error message")
+end)
+
+test("SDK::HOST + accelerate@us-west-2", function()
+    local params = {
+        Accelerate = true,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Endpoint = "http://control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com",
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "A custom endpoint cannot be combined with S3 Accelerate", "error message")
+end)
+
+test("SDK::Host + access point ARN@us-west-2", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:aws:s3:us-west-2:123456789012:accesspoint:myendpoint",
+        ForcePathStyle = false,
+        Endpoint = "https://beta.example.com",
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myendpoint-123456789012.beta.example.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing + private link@cn-north-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Endpoint = "https://control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com",
+        Region = "cn-north-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "cn-north-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("path style + private link@cn-north-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = true,
+        Endpoint = "https://control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com",
+        Region = "cn-north-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com/bucket-name", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "cn-north-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("FIPS@cn-north-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Region = "cn-north-1",
+        UseDualStack = false,
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Partition does not support FIPS", "error message")
+end)
+
+test("SDK::Host + DualStack@cn-north-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Endpoint = "https://control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com",
+        Region = "cn-north-1",
+        UseDualStack = true,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Cannot set dual-stack in combination with a custom endpoint.", "error message")
+end)
+
+test("SDK::HOST + accelerate@cn-north-1", function()
+    local params = {
+        Accelerate = true,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Endpoint = "https://control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com",
+        Region = "cn-north-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "A custom endpoint cannot be combined with S3 Accelerate", "error message")
+end)
+
+test("SDK::Host + access point ARN@cn-north-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:aws-cn:s3:cn-north-1:123456789012:accesspoint:myendpoint",
+        ForcePathStyle = false,
+        Endpoint = "https://beta.example.com",
+        Region = "cn-north-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myendpoint-123456789012.beta.example.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "cn-north-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("virtual addressing + private link@af-south-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Endpoint = "https://control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com",
+        Region = "af-south-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://bucket-name.control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "af-south-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("path style + private link@af-south-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = true,
+        Endpoint = "https://control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com",
+        Region = "af-south-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com/bucket-name", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "af-south-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("SDK::Host + FIPS@af-south-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Endpoint = "https://control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com",
+        Region = "af-south-1",
+        UseDualStack = false,
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "A custom endpoint cannot be combined with FIPS", "error message")
+end)
+
+test("SDK::Host + DualStack@af-south-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Endpoint = "https://control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com",
+        Region = "af-south-1",
+        UseDualStack = true,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Cannot set dual-stack in combination with a custom endpoint.", "error message")
+end)
+
+test("SDK::HOST + accelerate@af-south-1", function()
+    local params = {
+        Accelerate = true,
+        Bucket = "bucket-name",
+        ForcePathStyle = false,
+        Endpoint = "https://control.vpce-1a2b3c4d-5e6f.s3.us-west-2.vpce.amazonaws.com",
+        Region = "af-south-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "A custom endpoint cannot be combined with S3 Accelerate", "error message")
+end)
+
+test("SDK::Host + access point ARN@af-south-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:aws:s3:af-south-1:123456789012:accesspoint:myendpoint",
+        ForcePathStyle = false,
+        Endpoint = "https://beta.example.com",
+        Region = "af-south-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myendpoint-123456789012.beta.example.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "af-south-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("vanilla access point arn@us-west-2", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:aws:s3:us-west-2:123456789012:accesspoint:myendpoint",
+        ForcePathStyle = false,
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myendpoint-123456789012.s3-accesspoint.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("access point arn + FIPS@us-west-2", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:aws:s3:us-west-2:123456789012:accesspoint:myendpoint",
+        ForcePathStyle = false,
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myendpoint-123456789012.s3-accesspoint-fips.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("access point arn + accelerate = error@us-west-2", function()
+    local params = {
+        Accelerate = true,
+        Bucket = "arn:aws:s3:us-west-2:123456789012:accesspoint:myendpoint",
+        ForcePathStyle = false,
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Access Points do not support S3 Accelerate", "error message")
+end)
+
+test("access point arn + FIPS + DualStack@us-west-2", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:aws:s3:us-west-2:123456789012:accesspoint:myendpoint",
+        ForcePathStyle = false,
+        Region = "us-west-2",
+        UseDualStack = true,
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myendpoint-123456789012.s3-accesspoint-fips.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("vanilla access point arn@cn-north-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:aws-cn:s3:cn-north-1:123456789012:accesspoint:myendpoint",
+        ForcePathStyle = false,
+        Region = "cn-north-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myendpoint-123456789012.s3-accesspoint.cn-north-1.amazonaws.com.cn", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "cn-north-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("access point arn + FIPS@cn-north-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:aws-cn:s3:cn-north-1:123456789012:accesspoint:myendpoint",
+        ForcePathStyle = false,
+        Region = "cn-north-1",
+        UseDualStack = false,
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Partition does not support FIPS", "error message")
+end)
+
+test("access point arn + accelerate = error@cn-north-1", function()
+    local params = {
+        Accelerate = true,
+        Bucket = "arn:aws-cn:s3:cn-north-1:123456789012:accesspoint:myendpoint",
+        ForcePathStyle = false,
+        Region = "cn-north-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Access Points do not support S3 Accelerate", "error message")
+end)
+
+test("access point arn + FIPS + DualStack@cn-north-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:aws-cn:s3:cn-north-1:123456789012:accesspoint:myendpoint",
+        ForcePathStyle = false,
+        Region = "cn-north-1",
+        UseDualStack = true,
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Partition does not support FIPS", "error message")
+end)
+
+test("vanilla access point arn@af-south-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:aws:s3:af-south-1:123456789012:accesspoint:myendpoint",
+        ForcePathStyle = false,
+        Region = "af-south-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myendpoint-123456789012.s3-accesspoint.af-south-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "af-south-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("access point arn + FIPS@af-south-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:aws:s3:af-south-1:123456789012:accesspoint:myendpoint",
+        ForcePathStyle = false,
+        Region = "af-south-1",
+        UseDualStack = false,
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myendpoint-123456789012.s3-accesspoint-fips.af-south-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "af-south-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("access point arn + accelerate = error@af-south-1", function()
+    local params = {
+        Accelerate = true,
+        Bucket = "arn:aws:s3:af-south-1:123456789012:accesspoint:myendpoint",
+        ForcePathStyle = false,
+        Region = "af-south-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Access Points do not support S3 Accelerate", "error message")
+end)
+
+test("access point arn + FIPS + DualStack@af-south-1", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:aws:s3:af-south-1:123456789012:accesspoint:myendpoint",
+        ForcePathStyle = false,
+        Region = "af-south-1",
+        UseDualStack = true,
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myendpoint-123456789012.s3-accesspoint-fips.dualstack.af-south-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "af-south-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("S3 outposts vanilla test", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        Bucket = "arn:aws:s3-outposts:us-west-2:123456789012:outpost/op-01234567890123456/accesspoint/reports",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://reports-123456789012.op-01234567890123456.s3-outposts.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4a",
+        signingName = "s3-outposts",
+        signingRegionSet = {
+        "*",
+    },
+        disableDoubleEncoding = true,
+    },
+        {
+        name = "sigv4",
+        signingName = "s3-outposts",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("S3 outposts custom endpoint", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        Bucket = "arn:aws:s3-outposts:us-west-2:123456789012:outpost/op-01234567890123456/accesspoint/reports",
+        Endpoint = "https://example.amazonaws.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://reports-123456789012.op-01234567890123456.example.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4a",
+        signingName = "s3-outposts",
+        signingRegionSet = {
+        "*",
+    },
+        disableDoubleEncoding = true,
+    },
+        {
+        name = "sigv4",
+        signingName = "s3-outposts",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("outposts arn with region mismatch and UseArnRegion=false", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:aws:s3-outposts:us-east-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+        ForcePathStyle = false,
+        UseArnRegion = false,
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid configuration: region from ARN `us-east-1` does not match client region `us-west-2` and UseArnRegion is `false`", "error message")
+end)
+
+test("outposts arn with region mismatch, custom region and UseArnRegion=false", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:aws:s3-outposts:us-east-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+        Endpoint = "https://example.com",
+        ForcePathStyle = false,
+        UseArnRegion = false,
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid configuration: region from ARN `us-east-1` does not match client region `us-west-2` and UseArnRegion is `false`", "error message")
+end)
+
+test("outposts arn with region mismatch and UseArnRegion=true", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:aws:s3-outposts:us-east-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+        ForcePathStyle = false,
+        UseArnRegion = true,
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint-123456789012.op-01234567890123456.s3-outposts.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4a",
+        signingName = "s3-outposts",
+        signingRegionSet = {
+        "*",
+    },
+        disableDoubleEncoding = true,
+    },
+        {
+        name = "sigv4",
+        signingName = "s3-outposts",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("outposts arn with region mismatch and UseArnRegion unset", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:aws:s3-outposts:us-east-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+        ForcePathStyle = false,
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint-123456789012.op-01234567890123456.s3-outposts.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4a",
+        signingName = "s3-outposts",
+        signingRegionSet = {
+        "*",
+    },
+        disableDoubleEncoding = true,
+    },
+        {
+        name = "sigv4",
+        signingName = "s3-outposts",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("outposts arn with partition mismatch and UseArnRegion=true", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:aws:s3-outposts:cn-north-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+        ForcePathStyle = false,
+        UseArnRegion = true,
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Client was configured for partition `aws` but ARN (`arn:aws:s3-outposts:cn-north-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint`) has `aws-cn`", "error message")
+end)
+
+test("ARN with UseGlobalEndpoint and use-east-1 region uses the regional endpoint", function()
+    local params = {
+        Region = "us-east-1",
+        UseGlobalEndpoint = true,
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        Bucket = "arn:aws:s3-outposts:us-east-1:123456789012:outpost/op-01234567890123456/accesspoint/reports",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://reports-123456789012.op-01234567890123456.s3-outposts.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4a",
+        signingName = "s3-outposts",
+        signingRegionSet = {
+        "*",
+    },
+        disableDoubleEncoding = true,
+    },
+        {
+        name = "sigv4",
+        signingName = "s3-outposts",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("S3 outposts does not support dualstack", function()
+    local params = {
+        Region = "us-east-1",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        Bucket = "arn:aws:s3-outposts:us-west-2:123456789012:outpost/op-01234567890123456/accesspoint/reports",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "S3 Outposts does not support Dual-stack", "error message")
+end)
+
+test("S3 outposts does not support fips", function()
+    local params = {
+        Region = "us-east-1",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        Bucket = "arn:aws:s3-outposts:us-west-2:123456789012:outpost/op-01234567890123456/accesspoint/reports",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "S3 Outposts does not support FIPS", "error message")
+end)
+
+test("S3 outposts does not support accelerate", function()
+    local params = {
+        Region = "us-east-1",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = true,
+        Bucket = "arn:aws:s3-outposts:us-west-2:123456789012:outpost/op-01234567890123456/accesspoint/reports",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "S3 Outposts does not support S3 Accelerate", "error message")
+end)
+
+test("validates against subresource", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        Bucket = "arn:aws:s3-outposts:us-west-2:123456789012:outpost:op-01234567890123456:accesspoint:mybucket:object:foo",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid Arn: Outpost Access Point ARN contains sub resources", "error message")
+end)
+
+test("object lambda @us-east-1", function()
+    local params = {
+        Region = "us-east-1",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseArnRegion = false,
+        Bucket = "arn:aws:s3-object-lambda:us-east-1:123456789012:accesspoint/mybanner",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybanner-123456789012.s3-object-lambda.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3-object-lambda",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("object lambda @us-west-2", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseArnRegion = false,
+        Bucket = "arn:aws:s3-object-lambda:us-west-2:123456789012:accesspoint/mybanner",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybanner-123456789012.s3-object-lambda.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3-object-lambda",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("object lambda, colon resource deliminator @us-west-2", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseArnRegion = false,
+        Bucket = "arn:aws:s3-object-lambda:us-west-2:123456789012:accesspoint:mybanner",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybanner-123456789012.s3-object-lambda.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3-object-lambda",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("object lambda @us-east-1, client region us-west-2, useArnRegion=true", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseArnRegion = true,
+        Bucket = "arn:aws:s3-object-lambda:us-east-1:123456789012:accesspoint/mybanner",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybanner-123456789012.s3-object-lambda.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3-object-lambda",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("object lambda @us-east-1, client region s3-external-1, useArnRegion=true", function()
+    local params = {
+        Region = "s3-external-1",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseArnRegion = true,
+        Bucket = "arn:aws:s3-object-lambda:us-east-1:123456789012:accesspoint/mybanner",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybanner-123456789012.s3-object-lambda.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3-object-lambda",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("object lambda @us-east-1, client region s3-external-1, useArnRegion=false", function()
+    local params = {
+        Region = "s3-external-1",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseArnRegion = false,
+        Bucket = "arn:aws:s3-object-lambda:us-east-1:123456789012:accesspoint/mybanner",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid configuration: region from ARN `us-east-1` does not match client region `s3-external-1` and UseArnRegion is `false`", "error message")
+end)
+
+test("object lambda @us-east-1, client region aws-global, useArnRegion=true", function()
+    local params = {
+        Region = "aws-global",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseArnRegion = true,
+        Bucket = "arn:aws:s3-object-lambda:us-east-1:123456789012:accesspoint/mybanner",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybanner-123456789012.s3-object-lambda.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3-object-lambda",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("object lambda @us-east-1, client region aws-global, useArnRegion=false", function()
+    local params = {
+        Region = "aws-global",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseArnRegion = false,
+        Bucket = "arn:aws:s3-object-lambda:us-east-1:123456789012:accesspoint/mybanner",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid configuration: region from ARN `us-east-1` does not match client region `aws-global` and UseArnRegion is `false`", "error message")
+end)
+
+test("object lambda @cn-north-1, client region us-west-2 (cross partition), useArnRegion=true", function()
+    local params = {
+        Region = "aws-global",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseArnRegion = true,
+        Bucket = "arn:aws-cn:s3-object-lambda:cn-north-1:123456789012:accesspoint/mybanner",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Client was configured for partition `aws` but ARN (`arn:aws-cn:s3-object-lambda:cn-north-1:123456789012:accesspoint/mybanner`) has `aws-cn`", "error message")
+end)
+
+test("object lambda with dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        UseArnRegion = false,
+        Bucket = "arn:aws:s3-object-lambda:us-west-2:123456789012:accesspoint/mybanner",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "S3 Object Lambda does not support Dual-stack", "error message")
+end)
+
+test("object lambda @us-gov-east-1", function()
+    local params = {
+        Region = "us-gov-east-1",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseArnRegion = false,
+        Bucket = "arn:aws-us-gov:s3-object-lambda:us-gov-east-1:123456789012:accesspoint/mybanner",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybanner-123456789012.s3-object-lambda.us-gov-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3-object-lambda",
+        signingRegion = "us-gov-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("object lambda @us-gov-east-1, with fips", function()
+    local params = {
+        Region = "us-gov-east-1",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseArnRegion = false,
+        Bucket = "arn:aws-us-gov:s3-object-lambda:us-gov-east-1:123456789012:accesspoint/mybanner",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybanner-123456789012.s3-object-lambda-fips.us-gov-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3-object-lambda",
+        signingRegion = "us-gov-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("object lambda @cn-north-1, with fips", function()
+    local params = {
+        Region = "cn-north-1",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseArnRegion = false,
+        Bucket = "arn:aws-cn:s3-object-lambda:cn-north-1:123456789012:accesspoint/mybanner",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Partition does not support FIPS", "error message")
+end)
+
+test("object lambda with accelerate", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = true,
+        UseArnRegion = false,
+        Bucket = "arn:aws:s3-object-lambda:us-west-2:123456789012:accesspoint/mybanner",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "S3 Object Lambda does not support S3 Accelerate", "error message")
+end)
+
+test("object lambda with invalid arn - bad service and someresource", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseArnRegion = false,
+        Bucket = "arn:aws:sqs:us-west-2:123456789012:someresource",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid ARN: Unrecognized format: arn:aws:sqs:us-west-2:123456789012:someresource (type: someresource)", "error message")
+end)
+
+test("object lambda with invalid arn - invalid resource", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseArnRegion = false,
+        Bucket = "arn:aws:s3-object-lambda:us-west-2:123456789012:bucket_name:mybucket",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid ARN: Object Lambda ARNs only support `accesspoint` arn types, but found: `bucket_name`", "error message")
+end)
+
+test("object lambda with invalid arn - missing region", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseArnRegion = false,
+        Bucket = "arn:aws:s3-object-lambda::123456789012:accesspoint/mybanner",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid ARN: bucket ARN is missing a region", "error message")
+end)
+
+test("object lambda with invalid arn - missing account-id", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseArnRegion = true,
+        Bucket = "arn:aws:s3-object-lambda:us-west-2::accesspoint/mybanner",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid ARN: Missing account id", "error message")
+end)
+
+test("object lambda with invalid arn - account id contains invalid characters", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseArnRegion = true,
+        Bucket = "arn:aws:s3-object-lambda:us-west-2:123.45678.9012:accesspoint:mybucket",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid ARN: The account id may only contain a-z, A-Z, 0-9 and `-`. Found: `123.45678.9012`", "error message")
+end)
+
+test("object lambda with invalid arn - missing access point name", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseArnRegion = true,
+        Bucket = "arn:aws:s3-object-lambda:us-west-2:123456789012:accesspoint",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid ARN: Expected a resource of the format `accesspoint:<accesspoint name>` but no name was provided", "error message")
+end)
+
+test("object lambda with invalid arn - access point name contains invalid character: *", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseArnRegion = true,
+        Bucket = "arn:aws:s3-object-lambda:us-west-2:123456789012:accesspoint:*",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid ARN: The access point name may only contain a-z, A-Z, 0-9 and `-`. Found: `*`", "error message")
+end)
+
+test("object lambda with invalid arn - access point name contains invalid character: .", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseArnRegion = true,
+        Bucket = "arn:aws:s3-object-lambda:us-west-2:123456789012:accesspoint:my.bucket",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid ARN: The access point name may only contain a-z, A-Z, 0-9 and `-`. Found: `my.bucket`", "error message")
+end)
+
+test("object lambda with invalid arn - access point name contains sub resources", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseArnRegion = true,
+        Bucket = "arn:aws:s3-object-lambda:us-west-2:123456789012:accesspoint:mybucket:object:foo",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid ARN: The ARN may only contain a single resource component after `accesspoint`.", "error message")
+end)
+
+test("object lambda with custom endpoint", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseArnRegion = false,
+        Bucket = "arn:aws:s3-object-lambda:us-west-2:123456789012:accesspoint/mybanner",
+        Endpoint = "https://my-endpoint.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybanner-123456789012.my-endpoint.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3-object-lambda",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("object lambda arn with region mismatch and UseArnRegion=false", function()
+    local params = {
+        Accelerate = false,
+        Bucket = "arn:aws:s3-object-lambda:us-east-1:123456789012:accesspoint/mybanner",
+        ForcePathStyle = false,
+        UseArnRegion = false,
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid configuration: region from ARN `us-east-1` does not match client region `us-west-2` and UseArnRegion is `false`", "error message")
+end)
+
+test("WriteGetObjectResponse @ us-west-2", function()
+    local params = {
+        Accelerate = false,
+        UseObjectLambdaEndpoint = true,
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3-object-lambda.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3-object-lambda",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("WriteGetObjectResponse with custom endpoint", function()
+    local params = {
+        Accelerate = false,
+        UseObjectLambdaEndpoint = true,
+        Endpoint = "https://my-endpoint.com",
+        Region = "us-west-2",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://my-endpoint.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3-object-lambda",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("WriteGetObjectResponse @ us-east-1", function()
+    local params = {
+        Accelerate = false,
+        UseObjectLambdaEndpoint = true,
+        Region = "us-east-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3-object-lambda.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3-object-lambda",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("WriteGetObjectResponse with fips", function()
+    local params = {
+        Accelerate = false,
+        UseObjectLambdaEndpoint = true,
+        Region = "us-east-1",
+        UseDualStack = false,
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3-object-lambda-fips.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3-object-lambda",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("WriteGetObjectResponse with dualstack", function()
+    local params = {
+        Accelerate = false,
+        UseObjectLambdaEndpoint = true,
+        Region = "us-east-1",
+        UseDualStack = true,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "S3 Object Lambda does not support Dual-stack", "error message")
+end)
+
+test("WriteGetObjectResponse with accelerate", function()
+    local params = {
+        Accelerate = true,
+        UseObjectLambdaEndpoint = true,
+        Region = "us-east-1",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "S3 Object Lambda does not support S3 Accelerate", "error message")
+end)
+
+test("WriteGetObjectResponse with fips in CN", function()
+    local params = {
+        Accelerate = false,
+        Region = "cn-north-1",
+        UseObjectLambdaEndpoint = true,
+        UseDualStack = false,
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Partition does not support FIPS", "error message")
+end)
+
+test("WriteGetObjectResponse with invalid partition", function()
+    local params = {
+        Accelerate = false,
+        UseObjectLambdaEndpoint = true,
+        Region = "not a valid DNS name",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid region: region was not a valid DNS name.", "error message")
+end)
+
+test("WriteGetObjectResponse with an unknown partition", function()
+    local params = {
+        Accelerate = false,
+        UseObjectLambdaEndpoint = true,
+        Region = "us-east.special",
+        UseDualStack = false,
+        UseFIPS = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3-object-lambda.us-east.special.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3-object-lambda",
+        disableDoubleEncoding = true,
+        signingRegion = "us-east.special",
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("S3 Outposts bucketAlias Real Outpost Prod us-west-1", function()
+    local params = {
+        Region = "us-west-1",
+        Bucket = "test-accessp-o0b1d075431d83bebde8xz5w8ijx1qzlbp3i3kuse10--op-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://test-accessp-o0b1d075431d83bebde8xz5w8ijx1qzlbp3i3kuse10--op-s3.op-0b1d075431d83bebd.s3-outposts.us-west-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4a",
+        signingName = "s3-outposts",
+        signingRegionSet = {
+        "*",
+    },
+        disableDoubleEncoding = true,
+    },
+        {
+        name = "sigv4",
+        signingName = "s3-outposts",
+        signingRegion = "us-west-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("S3 Outposts bucketAlias Real Outpost Prod ap-east-1", function()
+    local params = {
+        Region = "ap-east-1",
+        Bucket = "test-accessp-o0b1d075431d83bebde8xz5w8ijx1qzlbp3i3kuse10--op-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://test-accessp-o0b1d075431d83bebde8xz5w8ijx1qzlbp3i3kuse10--op-s3.op-0b1d075431d83bebd.s3-outposts.ap-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4a",
+        signingName = "s3-outposts",
+        signingRegionSet = {
+        "*",
+    },
+        disableDoubleEncoding = true,
+    },
+        {
+        name = "sigv4",
+        signingName = "s3-outposts",
+        signingRegion = "ap-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("S3 Outposts bucketAlias Ec2 Outpost Prod us-east-1", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "test-accessp-e0000075431d83bebde8xz5w8ijx1qzlbp3i3kuse10--op-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://test-accessp-e0000075431d83bebde8xz5w8ijx1qzlbp3i3kuse10--op-s3.ec2.s3-outposts.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4a",
+        signingName = "s3-outposts",
+        signingRegionSet = {
+        "*",
+    },
+        disableDoubleEncoding = true,
+    },
+        {
+        name = "sigv4",
+        signingName = "s3-outposts",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("S3 Outposts bucketAlias Ec2 Outpost Prod me-south-1", function()
+    local params = {
+        Region = "me-south-1",
+        Bucket = "test-accessp-e0000075431d83bebde8xz5w8ijx1qzlbp3i3kuse10--op-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://test-accessp-e0000075431d83bebde8xz5w8ijx1qzlbp3i3kuse10--op-s3.ec2.s3-outposts.me-south-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4a",
+        signingName = "s3-outposts",
+        signingRegionSet = {
+        "*",
+    },
+        disableDoubleEncoding = true,
+    },
+        {
+        name = "sigv4",
+        signingName = "s3-outposts",
+        signingRegion = "me-south-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("S3 Outposts bucketAlias Real Outpost Beta", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "test-accessp-o0b1d075431d83bebde8xz5w8ijx1qzlbp3i3kbeta0--op-s3",
+        Endpoint = "https://example.amazonaws.com",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://test-accessp-o0b1d075431d83bebde8xz5w8ijx1qzlbp3i3kbeta0--op-s3.op-0b1d075431d83bebd.example.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4a",
+        signingName = "s3-outposts",
+        signingRegionSet = {
+        "*",
+    },
+        disableDoubleEncoding = true,
+    },
+        {
+        name = "sigv4",
+        signingName = "s3-outposts",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("S3 Outposts bucketAlias Ec2 Outpost Beta", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "161743052723-e00000136899934034jeahy1t8gpzpbwjj8kb7beta0--op-s3",
+        Endpoint = "https://example.amazonaws.com",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://161743052723-e00000136899934034jeahy1t8gpzpbwjj8kb7beta0--op-s3.ec2.example.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4a",
+        signingName = "s3-outposts",
+        signingRegionSet = {
+        "*",
+    },
+        disableDoubleEncoding = true,
+    },
+        {
+        name = "sigv4",
+        signingName = "s3-outposts",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("S3 Outposts bucketAlias - No endpoint set for beta", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "test-accessp-o0b1d075431d83bebde8xz5w8ijx1qzlbp3i3kbeta0--op-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Expected a endpoint to be specified but no endpoint was found", "error message")
+end)
+
+test("S3 Outposts invalid bucket name", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "test-accessp-o0b1de75431d83bebd/8xz5w8ijx1qzlbp3i3kbeta0--op-s3",
+        Endpoint = "https://example.amazonaws.com",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid Outposts Bucket alias - it must be a valid bucket name.", "error message")
+end)
+
+test("S3 Outposts bucketAlias Invalid hardware type", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "test-accessp-h0000075431d83bebde8xz5w8ijx1qzlbp3i3kuse10--op-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Unrecognized hardware type: \"Expected hardware type o or e but got h\"", "error message")
+end)
+
+test("S3 Outposts bucketAlias Special character in Outpost Arn", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "test-accessp-o00000754%1d83bebde8xz5w8ijx1qzlbp3i3kuse10--op-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid ARN: The outpost Id must only contain a-z, A-Z, 0-9 and `-`.", "error message")
+end)
+
+test("S3 Outposts bucketAlias - No endpoint set for beta", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "test-accessp-e0b1d075431d83bebde8xz5w8ijx1qzlbp3i3ebeta0--op-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Expected a endpoint to be specified but no endpoint was found", "error message")
+end)
+
+test("S3 Snow with bucket", function()
+    local params = {
+        Region = "snow",
+        Bucket = "bucketName",
+        Endpoint = "http://10.0.1.12:433",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "http://10.0.1.12:433/bucketName", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "snow",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("S3 Snow without bucket", function()
+    local params = {
+        Region = "snow",
+        Endpoint = "https://10.0.1.12:433",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://10.0.1.12:433", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "snow",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("S3 Snow no port", function()
+    local params = {
+        Region = "snow",
+        Bucket = "bucketName",
+        Endpoint = "http://10.0.1.12",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "http://10.0.1.12/bucketName", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "snow",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("S3 Snow dns endpoint", function()
+    local params = {
+        Region = "snow",
+        Bucket = "bucketName",
+        Endpoint = "https://amazonaws.com",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://amazonaws.com/bucketName", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3",
+        signingRegion = "snow",
+        disableDoubleEncoding = true,
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with short zone name", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "mybucket--abcd-ab1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--abcd-ab1--x-s3.s3express-abcd-ab1.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with short zone name china region", function()
+    local params = {
+        Region = "cn-north-1",
+        Bucket = "mybucket--abcd-ab1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--abcd-ab1--x-s3.s3express-abcd-ab1.cn-north-1.amazonaws.com.cn", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "cn-north-1",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with short zone name with AP", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "myaccesspoint--abcd-ab1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--abcd-ab1--xa-s3.s3express-abcd-ab1.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with short zone name with AP china region", function()
+    local params = {
+        Region = "cn-north-1",
+        Bucket = "myaccesspoint--abcd-ab1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--abcd-ab1--xa-s3.s3express-abcd-ab1.cn-north-1.amazonaws.com.cn", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "cn-north-1",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with short zone names (13 chars)", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test-zone-ab1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test-zone-ab1--x-s3.s3express-test-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with short zone names (13 chars) with AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test-zone-ab1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test-zone-ab1--xa-s3.s3express-test-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with medium zone names (14 chars)", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test1-zone-ab1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test1-zone-ab1--x-s3.s3express-test1-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with medium zone names (14 chars) with AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test1-zone-ab1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test1-zone-ab1--xa-s3.s3express-test1-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with long zone names (20 chars)", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test1-long1-zone-ab1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test1-long1-zone-ab1--x-s3.s3express-test1-long1-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with long zone names (20 chars)", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test1-long1-zone-ab1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test1-long1-zone-ab1--xa-s3.s3express-test1-long1-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with short zone fips", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "mybucket--test-ab1--x-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test-ab1--x-s3.s3express-fips-test-ab1.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with short zone fips china region", function()
+    local params = {
+        Region = "cn-north-1",
+        Bucket = "mybucket--test-ab1--x-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Partition does not support FIPS", "error message")
+end)
+
+test("Data Plane with short zone fips with AP", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "myaccesspoint--test-ab1--xa-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test-ab1--xa-s3.s3express-fips-test-ab1.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with short zone fips with AP china region", function()
+    local params = {
+        Region = "cn-north-1",
+        Bucket = "myaccesspoint--test-ab1--xa-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Partition does not support FIPS", "error message")
+end)
+
+test("Data Plane with short zone (13 chars) fips", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test-zone-ab1--x-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test-zone-ab1--x-s3.s3express-fips-test-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with short zone (13 chars) fips with AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test-zone-ab1--xa-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test-zone-ab1--xa-s3.s3express-fips-test-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with medium zone (14 chars) fips", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test1-zone-ab1--x-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test1-zone-ab1--x-s3.s3express-fips-test1-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with medium zone (14 chars) fips with AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test1-zone-ab1--xa-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test1-zone-ab1--xa-s3.s3express-fips-test1-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with long zone (20 chars) fips", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test1-long1-zone-ab1--x-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test1-long1-zone-ab1--x-s3.s3express-fips-test1-long1-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with long zone (20 chars) fips with AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test1-long1-zone-ab1--xa-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test1-long1-zone-ab1--xa-s3.s3express-fips-test1-long1-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with long AZ", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test1-az1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test1-az1--x-s3.s3express-test1-az1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with long AZ with AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test1-az1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test1-az1--xa-s3.s3express-test1-az1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with long AZ fips", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test1-az1--x-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test1-az1--x-s3.s3express-fips-test1-az1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with long AZ fips with AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test1-az1--xa-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test1-az1--xa-s3.s3express-fips-test1-az1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Control plane with short AZ bucket", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "mybucket--test-ab1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = true,
+        DisableS3ExpressSessionAuth = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3express-control.us-east-1.amazonaws.com/mybucket--test-ab1--x-s3", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Control plane with short AZ bucket china region", function()
+    local params = {
+        Region = "cn-north-1",
+        Bucket = "mybucket--test-ab1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = true,
+        DisableS3ExpressSessionAuth = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3express-control.cn-north-1.amazonaws.com.cn/mybucket--test-ab1--x-s3", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "cn-north-1",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Control plane with short AZ bucket and fips", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "mybucket--test-ab1--x-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = true,
+        DisableS3ExpressSessionAuth = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3express-control-fips.us-east-1.amazonaws.com/mybucket--test-ab1--x-s3", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Control plane with short AZ bucket and fips china region", function()
+    local params = {
+        Region = "cn-north-1",
+        Bucket = "mybucket--test-ab1--x-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = true,
+        DisableS3ExpressSessionAuth = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Partition does not support FIPS", "error message")
+end)
+
+test("Control plane without bucket", function()
+    local params = {
+        Region = "us-east-1",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = true,
+        DisableS3ExpressSessionAuth = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3express-control.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Control plane without bucket and fips", function()
+    local params = {
+        Region = "us-east-1",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = true,
+        DisableS3ExpressSessionAuth = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3express-control-fips.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with short AZ", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--usw2-az1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--usw2-az1--x-s3.s3express-usw2-az1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with short AZ with AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--usw2-az1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--usw2-az1--xa-s3.s3express-usw2-az1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with short zone (13 chars)", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test-zone-ab1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test-zone-ab1--x-s3.s3express-test-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with short zone (13 chars) with AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test-zone-ab1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test-zone-ab1--xa-s3.s3express-test-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with short AZ fips", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--usw2-az1--x-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--usw2-az1--x-s3.s3express-fips-usw2-az1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with short AZ fips with AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--usw2-az1--xa-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--usw2-az1--xa-s3.s3express-fips-usw2-az1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with short zone (13 chars) fips", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test-zone-ab1--x-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test-zone-ab1--x-s3.s3express-fips-test-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with short zone (13 chars) fips with AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test-zone-ab1--xa-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test-zone-ab1--xa-s3.s3express-fips-test-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with long AZ", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test1-az1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test1-az1--x-s3.s3express-test1-az1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with long AZ with AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test1-az1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test1-az1--xa-s3.s3express-test1-az1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with medium zone(14 chars)", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test1-zone-ab1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test1-zone-ab1--x-s3.s3express-test1-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with medium zone(14 chars) with AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test1-zone-ab1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test1-zone-ab1--xa-s3.s3express-test1-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with long zone(20 chars)", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test1-long1-zone-ab1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test1-long1-zone-ab1--x-s3.s3express-test1-long1-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with long zone(20 chars) with AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test1-long1-zone-ab1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test1-long1-zone-ab1--xa-s3.s3express-test1-long1-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with long AZ fips", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test1-az1--x-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test1-az1--x-s3.s3express-fips-test1-az1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with long AZ fips with AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test1-az1--xa-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test1-az1--xa-s3.s3express-fips-test1-az1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with medium zone (14 chars) fips", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test1-zone-ab1--x-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test1-zone-ab1--x-s3.s3express-fips-test1-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with medium zone (14 chars) fips with AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test1-zone-ab1--xa-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test1-zone-ab1--xa-s3.s3express-fips-test1-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with long zone (20 chars) fips", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test1-long1-zone-ab1--x-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test1-long1-zone-ab1--x-s3.s3express-fips-test1-long1-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with long zone (20 chars) fips with AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test1-long1-zone-ab1--xa-s3",
+        UseFIPS = true,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test1-long1-zone-ab1--xa-s3.s3express-fips-test1-long1-zone-ab1.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Control Plane host override", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--usw2-az1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = true,
+        DisableS3ExpressSessionAuth = true,
+        Endpoint = "https://custom.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--usw2-az1--x-s3.custom.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Control Plane host override with AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--usw2-az1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = true,
+        DisableS3ExpressSessionAuth = true,
+        Endpoint = "https://custom.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--usw2-az1--xa-s3.custom.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Control Plane host override no bucket", function()
+    local params = {
+        Region = "us-west-2",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = true,
+        DisableS3ExpressSessionAuth = true,
+        Endpoint = "https://custom.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://custom.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data plane host override non virtual session auth", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--usw2-az1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        Endpoint = "https://10.0.0.1",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://10.0.0.1/mybucket--usw2-az1--x-s3", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data plane host override non virtual session auth with AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--usw2-az1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        Endpoint = "https://10.0.0.1",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://10.0.0.1/myaccesspoint--usw2-az1--xa-s3", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Control Plane host override ip", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--usw2-az1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = true,
+        DisableS3ExpressSessionAuth = true,
+        Endpoint = "https://10.0.0.1",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://10.0.0.1/mybucket--usw2-az1--x-s3", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Control Plane host override ip with AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--usw2-az1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = true,
+        DisableS3ExpressSessionAuth = true,
+        Endpoint = "https://10.0.0.1",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://10.0.0.1/myaccesspoint--usw2-az1--xa-s3", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data plane host override", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--usw2-az1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        Endpoint = "https://custom.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--usw2-az1--x-s3.custom.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data plane host override with AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--usw2-az1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        Endpoint = "https://custom.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--usw2-az1--xa-s3.custom.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("bad format error", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "mybucket--usaz1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Unrecognized S3Express bucket name format.", "error message")
+end)
+
+test("bad AP format error", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "myaccesspoint--usaz1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Unrecognized S3Express bucket name format.", "error message")
+end)
+
+test("bad format error no session auth", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "mybucket--usaz1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Unrecognized S3Express bucket name format.", "error message")
+end)
+
+test("bad AP format error no session auth", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "myaccesspoint--usaz1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Unrecognized S3Express bucket name format.", "error message")
+end)
+
+test("accelerate error", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "mybucket--test-ab1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = true,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "S3Express does not support S3 Accelerate.", "error message")
+end)
+
+test("accelerate error with AP", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "myaccesspoint--test-ab1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = true,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "S3Express does not support S3 Accelerate.", "error message")
+end)
+
+test("Data plane bucket format error", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "my.bucket--test-ab1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "S3Express bucket name is not a valid virtual hostable name.", "error message")
+end)
+
+test("Data plane AP format error", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "my.myaccesspoint--test-ab1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "S3Express bucket name is not a valid virtual hostable name.", "error message")
+end)
+
+test("host override data plane bucket error session auth", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "my.bucket--usw2-az1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        Endpoint = "https://custom.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "S3Express bucket name is not a valid virtual hostable name.", "error message")
+end)
+
+test("host override data plane AP error session auth", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "my.myaccesspoint--usw2-az1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        Endpoint = "https://custom.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "S3Express bucket name is not a valid virtual hostable name.", "error message")
+end)
+
+test("host override data plane bucket error", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "my.bucket--usw2-az1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        Endpoint = "https://custom.com",
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "S3Express bucket name is not a valid virtual hostable name.", "error message")
+end)
+
+test("host override data plane AP error", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "my.myaccesspoint--usw2-az1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        Endpoint = "https://custom.com",
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "S3Express bucket name is not a valid virtual hostable name.", "error message")
+end)
+
+test("Control plane without bucket and dualstack", function()
+    local params = {
+        Region = "us-east-1",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = true,
+        DisableS3ExpressSessionAuth = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3express-control.dualstack.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Control plane without bucket, fips and dualstack", function()
+    local params = {
+        Region = "us-east-1",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = true,
+        DisableS3ExpressSessionAuth = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3express-control-fips.dualstack.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with bucket containing delimiters", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "my--s3--bucket--abcd-ab1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://my--s3--bucket--abcd-ab1--x-s3.s3express-abcd-ab1.us-east-1.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Control plane with with bucket containing delimiters", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "my--s3--bucket--abcd-ab1--x-s3",
+        UseFIPS = false,
+        UseDualStack = false,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = true,
+        DisableS3ExpressSessionAuth = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3express-control.us-east-1.amazonaws.com/my--s3--bucket--abcd-ab1--x-s3", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with short AZ and dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--usw2-az1--x-s3",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--usw2-az1--x-s3.s3express-usw2-az1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with short AZ and FIPS with dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--usw2-az1--x-s3",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--usw2-az1--x-s3.s3express-fips-usw2-az1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with short AZ and dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--usw2-az1--x-s3",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--usw2-az1--x-s3.s3express-usw2-az1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with short AZ and FIPS with dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--usw2-az1--x-s3",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--usw2-az1--x-s3.s3express-fips-usw2-az1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with zone and dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--usw2-az12--x-s3",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--usw2-az12--x-s3.s3express-usw2-az12.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with zone and FIPS with dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--usw2-az12--x-s3",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--usw2-az12--x-s3.s3express-fips-usw2-az12.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with zone and dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--usw2-az12--x-s3",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--usw2-az12--x-s3.s3express-usw2-az12.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with 9-char zone and FIPS with dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--usw2-az12--x-s3",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--usw2-az12--x-s3.s3express-fips-usw2-az12.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with 13-char zone and dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test-zone-ab1--x-s3",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test-zone-ab1--x-s3.s3express-test-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with 13-char zone and FIPS with dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test-zone-ab1--x-s3",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test-zone-ab1--x-s3.s3express-fips-test-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with 13-char zone and dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test-zone-ab1--x-s3",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test-zone-ab1--x-s3.s3express-test-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with 13-char zone and FIPS with dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test-zone-ab1--x-s3",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test-zone-ab1--x-s3.s3express-fips-test-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with 14-char zone and dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test1-zone-ab1--x-s3",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test1-zone-ab1--x-s3.s3express-test1-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with 14-char zone and FIPS with dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test1-zone-ab1--x-s3",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test1-zone-ab1--x-s3.s3express-fips-test1-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with 14-char zone and dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test1-zone-ab1--x-s3",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test1-zone-ab1--x-s3.s3express-test1-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with 14-char zone and FIPS with dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test1-zone-ab1--x-s3",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test1-zone-ab1--x-s3.s3express-fips-test1-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with long zone (20 cha) and dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test1-long1-zone-ab1--x-s3",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test1-long1-zone-ab1--x-s3.s3express-test1-long1-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with long zone (20 char) and FIPS with dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test1-long1-zone-ab1--x-s3",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test1-long1-zone-ab1--x-s3.s3express-fips-test1-long1-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with long zone (20 char) and dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test1-long1-zone-ab1--x-s3",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test1-long1-zone-ab1--x-s3.s3express-test1-long1-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with long zone (20 char) and FIPS with dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "mybucket--test1-long1-zone-ab1--x-s3",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://mybucket--test1-long1-zone-ab1--x-s3.s3express-fips-test1-long1-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Control plane and FIPS with dualstack", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "mybucket--test-ab1--x-s3",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3express-control-fips.dualstack.us-east-1.amazonaws.com/mybucket--test-ab1--x-s3", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data plane with zone and dualstack and AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--usw2-az1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--usw2-az1--xa-s3.s3express-usw2-az1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data plane with zone and FIPS with dualstack and AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--usw2-az1--xa-s3",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--usw2-az1--xa-s3.s3express-fips-usw2-az1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with zone and dualstack and AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--usw2-az1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--usw2-az1--xa-s3.s3express-usw2-az1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane AP sigv4 auth with zone and FIPS with dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--usw2-az1--xa-s3",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--usw2-az1--xa-s3.s3express-fips-usw2-az1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with zone (9 char) and AP with dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--usw2-az12--xa-s3",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--usw2-az12--xa-s3.s3express-usw2-az12.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with zone (9 char) and FIPS with AP and dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--usw2-az12--xa-s3",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--usw2-az12--xa-s3.s3express-fips-usw2-az12.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with (9 char) zone and dualstack with AP", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--usw2-az12--xa-s3",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--usw2-az12--xa-s3.s3express-usw2-az12.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Access Point sigv4 auth with (9 char) zone and FIPS with dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--usw2-az12--xa-s3",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--usw2-az12--xa-s3.s3express-fips-usw2-az12.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with zone (13 char) and AP with dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test-zone-ab1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test-zone-ab1--xa-s3.s3express-test-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with zone (13 char) and AP with FIPS and dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test-zone-ab1--xa-s3",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test-zone-ab1--xa-s3.s3express-fips-test-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with (13 char) zone with AP and dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test-zone-ab1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test-zone-ab1--xa-s3.s3express-test-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with (13 char) zone with AP and FIPS and dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test-zone-ab1--xa-s3",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test-zone-ab1--xa-s3.s3express-fips-test-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with (14 char) zone and AP with dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test1-zone-ab1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test1-zone-ab1--xa-s3.s3express-test1-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with (14 char) zone and AP with FIPS and dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test1-zone-ab1--xa-s3",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test1-zone-ab1--xa-s3.s3express-fips-test1-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane sigv4 auth with (14 char) zone and AP with dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test1-zone-ab1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test1-zone-ab1--xa-s3.s3express-test1-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with (14 char) zone and AP with FIPS and dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test1-zone-ab1--xa-s3",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test1-zone-ab1--xa-s3.s3express-fips-test1-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with (20 char) zone and AP with dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test1-long1-zone-ab1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test1-long1-zone-ab1--xa-s3.s3express-test1-long1-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data Plane with (20 char) zone and AP with FIPS and dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test1-long1-zone-ab1--xa-s3",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = false,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test1-long1-zone-ab1--xa-s3.s3express-fips-test1-long1-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4-s3express",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data plane AP with sigv4 and dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test1-long1-zone-ab1--xa-s3",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test1-long1-zone-ab1--xa-s3.s3express-test1-long1-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Data plane AP sigv4 with fips and dualstack", function()
+    local params = {
+        Region = "us-west-2",
+        Bucket = "myaccesspoint--test1-long1-zone-ab1--xa-s3",
+        UseFIPS = true,
+        UseDualStack = true,
+        Accelerate = false,
+        DisableS3ExpressSessionAuth = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://myaccesspoint--test1-long1-zone-ab1--xa-s3.s3express-fips-test1-long1-zone-ab1.dualstack.us-west-2.amazonaws.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-west-2",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Control plane with dualstack and bucket", function()
+    local params = {
+        Region = "us-east-1",
+        Bucket = "mybucket--test-ab1--x-s3",
+        UseFIPS = false,
+        UseDualStack = true,
+        Accelerate = false,
+        UseS3ExpressControlEndpoint = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://s3express-control.dualstack.us-east-1.amazonaws.com/mybucket--test-ab1--x-s3", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        name = "sigv4",
+        signingName = "s3express",
+        signingRegion = "us-east-1",
+        disableDoubleEncoding = true,
+    },
+    },
+        backend = "S3Express",
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+print(string.format("\n%d passed, %d failed", pass_count, fail_count))
+if fail_count > 0 then os.exit(1) end

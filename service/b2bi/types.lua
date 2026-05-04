@@ -611,6 +611,9 @@ M.CreateCapabilityInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "list",
@@ -657,6 +660,7 @@ M.CreateCapabilityOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -831,10 +835,14 @@ M.GetCapabilityOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         modifiedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -882,10 +890,14 @@ M.CapabilitySummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         modifiedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -965,10 +977,14 @@ M.UpdateCapabilityOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         modifiedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1344,6 +1360,9 @@ M.CreatePartnershipInput = {
         capabilityOptions = M.CapabilityOptions,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "list",
@@ -1394,6 +1413,7 @@ M.CreatePartnershipOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1471,10 +1491,14 @@ M.GetPartnershipOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         modifiedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1533,10 +1557,14 @@ M.PartnershipSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         modifiedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1620,10 +1648,14 @@ M.UpdatePartnershipOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         modifiedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1665,6 +1697,9 @@ M.CreateProfileInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "list",
@@ -1719,6 +1754,7 @@ M.CreateProfileOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1800,10 +1836,14 @@ M.GetProfileOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         modifiedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1857,10 +1897,14 @@ M.ProfileSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         modifiedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1952,10 +1996,14 @@ M.UpdateProfileOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         modifiedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1977,6 +2025,9 @@ M.StartTransformerJobInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2293,6 +2344,9 @@ M.CreateTransformerInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "list",
@@ -2351,6 +2405,7 @@ M.CreateTransformerOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         fileFormat = {
@@ -2437,10 +2492,14 @@ M.GetTransformerOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         modifiedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         fileFormat = {
             type = "string",
@@ -2508,10 +2567,14 @@ M.TransformerSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         modifiedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         fileFormat = {
             type = "string",
@@ -2616,12 +2679,14 @@ M.UpdateTransformerOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         modifiedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         fileFormat = {

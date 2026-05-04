@@ -1,0 +1,17 @@
+local record M
+    pages_describe_addresses: function(client: table, input: table): function(): table, table
+    items_describe_addresses: function(client: table, input: table): function(): any
+    pages_list_cluster_jobs: function(client: table, input: table): function(): table, table
+    items_list_cluster_jobs: function(client: table, input: table): function(): any
+    pages_list_clusters: function(client: table, input: table): function(): table, table
+    items_list_clusters: function(client: table, input: table): function(): any
+    pages_list_compatible_images: function(client: table, input: table): function(): table, table
+    items_list_compatible_images: function(client: table, input: table): function(): any
+    pages_list_jobs: function(client: table, input: table): function(): table, table
+    items_list_jobs: function(client: table, input: table): function(): any
+    pages_list_long_term_pricing: function(client: table, input: table): function(): table, table
+    items_list_long_term_pricing: function(client: table, input: table): function(): any
+    pages_list_pickup_locations: function(client: table, input: table): function(): table, table
+end
+
+return M

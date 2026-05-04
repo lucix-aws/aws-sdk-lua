@@ -16,16 +16,29 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSIdentityStore"
-    cfg.signing_name = "identitystore"
     if not cfg.protocol then
-        cfg.protocol = awsjson_protocol.new({ version = "1.1", service_id = cfg.service_id })
+        cfg.protocol = awsjson_protocol.new("1.1")
     end
     if not cfg.endpoint_provider then
         cfg.endpoint_provider = function(params)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "identitystore", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createGroup(input, options)
         output_schema = types.CreateGroupOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createGroupMembership(input, options)
         output_schema = types.CreateGroupMembershipOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createUser(input, options)
         output_schema = types.CreateUserOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:deleteGroup(input, options)
         output_schema = types.DeleteGroupOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteGroupMembership(input, options)
         output_schema = types.DeleteGroupMembershipOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteUser(input, options)
         output_schema = types.DeleteUserOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:describeGroup(input, options)
         output_schema = types.DescribeGroupOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:describeGroupMembership(input, options)
         output_schema = types.DescribeGroupMembershipOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:describeUser(input, options)
         output_schema = types.DescribeUserOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:getGroupId(input, options)
         output_schema = types.GetGroupIdOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getGroupMembershipId(input, options)
         output_schema = types.GetGroupMembershipIdOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getUserId(input, options)
         output_schema = types.GetUserIdOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:isMemberInGroups(input, options)
         output_schema = types.IsMemberInGroupsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:listGroupMemberships(input, options)
         output_schema = types.ListGroupMembershipsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:listGroupMembershipsForMember(input, options)
         output_schema = types.ListGroupMembershipsForMemberOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listGroups(input, options)
         output_schema = types.ListGroupsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listUsers(input, options)
         output_schema = types.ListUsersOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:updateGroup(input, options)
         output_schema = types.UpdateGroupOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:updateUser(input, options)
         output_schema = types.UpdateUserOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonInteractiveVideoServiceChat"
-    cfg.signing_name = "ivschat"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ivschat", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createChatToken(input, options)
         output_schema = types.CreateChatTokenOutput,
         http_method = "POST",
         http_path = "/CreateChatToken",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createLoggingConfiguration(input, options)
         output_schema = types.CreateLoggingConfigurationOutput,
         http_method = "POST",
         http_path = "/CreateLoggingConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createRoom(input, options)
         output_schema = types.CreateRoomOutput,
         http_method = "POST",
         http_path = "/CreateRoom",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:deleteLoggingConfiguration(input, options)
         output_schema = types.DeleteLoggingConfigurationOutput,
         http_method = "POST",
         http_path = "/DeleteLoggingConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteMessage(input, options)
         output_schema = types.DeleteMessageOutput,
         http_method = "POST",
         http_path = "/DeleteMessage",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteRoom(input, options)
         output_schema = types.DeleteRoomOutput,
         http_method = "POST",
         http_path = "/DeleteRoom",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:disconnectUser(input, options)
         output_schema = types.DisconnectUserOutput,
         http_method = "POST",
         http_path = "/DisconnectUser",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:getLoggingConfiguration(input, options)
         output_schema = types.GetLoggingConfigurationOutput,
         http_method = "POST",
         http_path = "/GetLoggingConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getRoom(input, options)
         output_schema = types.GetRoomOutput,
         http_method = "POST",
         http_path = "/GetRoom",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:listLoggingConfigurations(input, options)
         output_schema = types.ListLoggingConfigurationsOutput,
         http_method = "POST",
         http_path = "/ListLoggingConfigurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:listRooms(input, options)
         output_schema = types.ListRoomsOutput,
         http_method = "POST",
         http_path = "/ListRooms",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:sendEvent(input, options)
         output_schema = types.SendEventOutput,
         http_method = "POST",
         http_path = "/SendEvent",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:updateLoggingConfiguration(input, options)
         output_schema = types.UpdateLoggingConfigurationOutput,
         http_method = "POST",
         http_path = "/UpdateLoggingConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:updateRoom(input, options)
         output_schema = types.UpdateRoomOutput,
         http_method = "POST",
         http_path = "/UpdateRoom",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

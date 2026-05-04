@@ -16,16 +16,29 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonMWAAServerless"
-    cfg.signing_name = "airflow-serverless"
     if not cfg.protocol then
-        cfg.protocol = awsjson_protocol.new({ version = "1.0", service_id = cfg.service_id })
+        cfg.protocol = awsjson_protocol.new("1.0")
     end
     if not cfg.endpoint_provider then
         cfg.endpoint_provider = function(params)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "airflow-serverless", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createWorkflow(input, options)
         output_schema = types.CreateWorkflowOutput,
         http_method = "POST",
         http_path = "/workflows",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:deleteWorkflow(input, options)
         output_schema = types.DeleteWorkflowOutput,
         http_method = "DELETE",
         http_path = "/workflows/{WorkflowArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:getTaskInstance(input, options)
         output_schema = types.GetTaskInstanceOutput,
         http_method = "GET",
         http_path = "/workflows/{WorkflowArn}/runs/{RunId}/tasks/{TaskInstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:getWorkflow(input, options)
         output_schema = types.GetWorkflowOutput,
         http_method = "GET",
         http_path = "/workflows/{WorkflowArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:getWorkflowRun(input, options)
         output_schema = types.GetWorkflowRunOutput,
         http_method = "GET",
         http_path = "/workflows/{WorkflowArn}/runs/{RunId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:listTaskInstances(input, options)
         output_schema = types.ListTaskInstancesOutput,
         http_method = "GET",
         http_path = "/workflows/{WorkflowArn}/runs/{RunId}/tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:listWorkflowRuns(input, options)
         output_schema = types.ListWorkflowRunsOutput,
         http_method = "GET",
         http_path = "/workflows/{WorkflowArn}/runs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:listWorkflows(input, options)
         output_schema = types.ListWorkflowsOutput,
         http_method = "GET",
         http_path = "/workflows",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:listWorkflowVersions(input, options)
         output_schema = types.ListWorkflowVersionsOutput,
         http_method = "GET",
         http_path = "/workflows/{WorkflowArn}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:startWorkflowRun(input, options)
         output_schema = types.StartWorkflowRunOutput,
         http_method = "POST",
         http_path = "/workflows/{WorkflowArn}/runs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:stopWorkflowRun(input, options)
         output_schema = types.StopWorkflowRunOutput,
         http_method = "DELETE",
         http_path = "/workflows/{WorkflowArn}/runs/{RunId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:updateWorkflow(input, options)
         output_schema = types.UpdateWorkflowOutput,
         http_method = "PUT",
         http_path = "/workflows/{WorkflowArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

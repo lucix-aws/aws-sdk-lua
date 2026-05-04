@@ -313,6 +313,9 @@ M.CreateApplicationInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -684,6 +687,9 @@ M.CreateStreamGroupInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -765,6 +771,9 @@ M.CreateStreamSessionConnectionInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Identifier = {
             type = "string",
@@ -1205,6 +1214,9 @@ M.StartStreamSessionInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Description = {
             type = "string",

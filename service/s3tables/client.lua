@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "S3TableBuckets"
-    cfg.signing_name = "s3tables"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "s3tables", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createNamespace(input, options)
         output_schema = types.CreateNamespaceOutput,
         http_method = "PUT",
         http_path = "/namespaces/{tableBucketARN}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createTable(input, options)
         output_schema = types.CreateTableOutput,
         http_method = "PUT",
         http_path = "/tables/{tableBucketARN}/{namespace}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createTableBucket(input, options)
         output_schema = types.CreateTableBucketOutput,
         http_method = "PUT",
         http_path = "/buckets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:deleteNamespace(input, options)
         output_schema = types.DeleteNamespaceOutput,
         http_method = "DELETE",
         http_path = "/namespaces/{tableBucketARN}/{namespace}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteTable(input, options)
         output_schema = types.DeleteTableOutput,
         http_method = "DELETE",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteTableBucket(input, options)
         output_schema = types.DeleteTableBucketOutput,
         http_method = "DELETE",
         http_path = "/buckets/{tableBucketARN}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteTableBucketEncryption(input, options)
         output_schema = types.DeleteTableBucketEncryptionOutput,
         http_method = "DELETE",
         http_path = "/buckets/{tableBucketARN}/encryption",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteTableBucketMetricsConfiguration(input, options)
         output_schema = types.DeleteTableBucketMetricsConfigurationOutput,
         http_method = "DELETE",
         http_path = "/buckets/{tableBucketARN}/metrics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteTableBucketPolicy(input, options)
         output_schema = types.DeleteTableBucketPolicyOutput,
         http_method = "DELETE",
         http_path = "/buckets/{tableBucketARN}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteTableBucketReplication(input, options)
         output_schema = types.DeleteTableBucketReplicationOutput,
         http_method = "DELETE",
         http_path = "/table-bucket-replication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteTablePolicy(input, options)
         output_schema = types.DeleteTablePolicyOutput,
         http_method = "DELETE",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteTableReplication(input, options)
         output_schema = types.DeleteTableReplicationOutput,
         http_method = "DELETE",
         http_path = "/table-replication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getNamespace(input, options)
         output_schema = types.GetNamespaceOutput,
         http_method = "GET",
         http_path = "/namespaces/{tableBucketARN}/{namespace}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getTable(input, options)
         output_schema = types.GetTableOutput,
         http_method = "GET",
         http_path = "/get-table",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getTableBucket(input, options)
         output_schema = types.GetTableBucketOutput,
         http_method = "GET",
         http_path = "/buckets/{tableBucketARN}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getTableBucketEncryption(input, options)
         output_schema = types.GetTableBucketEncryptionOutput,
         http_method = "GET",
         http_path = "/buckets/{tableBucketARN}/encryption",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getTableBucketMaintenanceConfiguration(input, options)
         output_schema = types.GetTableBucketMaintenanceConfigurationOutput,
         http_method = "GET",
         http_path = "/buckets/{tableBucketARN}/maintenance",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getTableBucketMetricsConfiguration(input, options)
         output_schema = types.GetTableBucketMetricsConfigurationOutput,
         http_method = "GET",
         http_path = "/buckets/{tableBucketARN}/metrics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getTableBucketPolicy(input, options)
         output_schema = types.GetTableBucketPolicyOutput,
         http_method = "GET",
         http_path = "/buckets/{tableBucketARN}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:getTableBucketReplication(input, options)
         output_schema = types.GetTableBucketReplicationOutput,
         http_method = "GET",
         http_path = "/table-bucket-replication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:getTableBucketStorageClass(input, options)
         output_schema = types.GetTableBucketStorageClassOutput,
         http_method = "GET",
         http_path = "/buckets/{tableBucketARN}/storage-class",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:getTableEncryption(input, options)
         output_schema = types.GetTableEncryptionOutput,
         http_method = "GET",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}/encryption",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:getTableMaintenanceConfiguration(input, options)
         output_schema = types.GetTableMaintenanceConfigurationOutput,
         http_method = "GET",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}/maintenance",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:getTableMaintenanceJobStatus(input, options)
         output_schema = types.GetTableMaintenanceJobStatusOutput,
         http_method = "GET",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}/maintenance-job-status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:getTableMetadataLocation(input, options)
         output_schema = types.GetTableMetadataLocationOutput,
         http_method = "GET",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}/metadata-location",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:getTablePolicy(input, options)
         output_schema = types.GetTablePolicyOutput,
         http_method = "GET",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:getTableRecordExpirationConfiguration(input, options)
         output_schema = types.GetTableRecordExpirationConfigurationOutput,
         http_method = "GET",
         http_path = "/table-record-expiration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:getTableRecordExpirationJobStatus(input, options)
         output_schema = types.GetTableRecordExpirationJobStatusOutput,
         http_method = "GET",
         http_path = "/table-record-expiration-job-status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:getTableReplication(input, options)
         output_schema = types.GetTableReplicationOutput,
         http_method = "GET",
         http_path = "/table-replication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:getTableReplicationStatus(input, options)
         output_schema = types.GetTableReplicationStatusOutput,
         http_method = "GET",
         http_path = "/replication-status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:getTableStorageClass(input, options)
         output_schema = types.GetTableStorageClassOutput,
         http_method = "GET",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}/storage-class",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:listNamespaces(input, options)
         output_schema = types.ListNamespacesOutput,
         http_method = "GET",
         http_path = "/namespaces/{tableBucketARN}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:listTableBuckets(input, options)
         output_schema = types.ListTableBucketsOutput,
         http_method = "GET",
         http_path = "/buckets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:listTables(input, options)
         output_schema = types.ListTablesOutput,
         http_method = "GET",
         http_path = "/tables/{tableBucketARN}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tag/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:putTableBucketEncryption(input, options)
         output_schema = types.PutTableBucketEncryptionOutput,
         http_method = "PUT",
         http_path = "/buckets/{tableBucketARN}/encryption",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:putTableBucketMaintenanceConfiguration(input, options)
         output_schema = types.PutTableBucketMaintenanceConfigurationOutput,
         http_method = "PUT",
         http_path = "/buckets/{tableBucketARN}/maintenance/{type}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:putTableBucketMetricsConfiguration(input, options)
         output_schema = types.PutTableBucketMetricsConfigurationOutput,
         http_method = "PUT",
         http_path = "/buckets/{tableBucketARN}/metrics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:putTableBucketPolicy(input, options)
         output_schema = types.PutTableBucketPolicyOutput,
         http_method = "PUT",
         http_path = "/buckets/{tableBucketARN}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:putTableBucketReplication(input, options)
         output_schema = types.PutTableBucketReplicationOutput,
         http_method = "PUT",
         http_path = "/table-bucket-replication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:putTableBucketStorageClass(input, options)
         output_schema = types.PutTableBucketStorageClassOutput,
         http_method = "PUT",
         http_path = "/buckets/{tableBucketARN}/storage-class",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:putTableMaintenanceConfiguration(input, options)
         output_schema = types.PutTableMaintenanceConfigurationOutput,
         http_method = "PUT",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}/maintenance/{type}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:putTablePolicy(input, options)
         output_schema = types.PutTablePolicyOutput,
         http_method = "PUT",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:putTableRecordExpirationConfiguration(input, options)
         output_schema = types.PutTableRecordExpirationConfigurationOutput,
         http_method = "PUT",
         http_path = "/table-record-expiration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:putTableReplication(input, options)
         output_schema = types.PutTableReplicationOutput,
         http_method = "PUT",
         http_path = "/table-replication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:renameTable(input, options)
         output_schema = types.RenameTableOutput,
         http_method = "PUT",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}/rename",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tag/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tag/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:updateTableMetadataLocation(input, options)
         output_schema = types.UpdateTableMetadataLocationOutput,
         http_method = "PUT",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}/metadata-location",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

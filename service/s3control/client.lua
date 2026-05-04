@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSS3ControlServiceV20180820"
-    cfg.signing_name = "s3"
     if not cfg.protocol then
         cfg.protocol = restxml_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "s3", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateAccessGrantsIdentityCenter(input, options)
         output_schema = types.AssociateAccessGrantsIdentityCenterOutput,
         http_method = "POST",
         http_path = "/v20180820/accessgrantsinstance/identitycenter",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -53,6 +69,9 @@ function Client:createAccessGrant(input, options)
         output_schema = types.CreateAccessGrantOutput,
         http_method = "POST",
         http_path = "/v20180820/accessgrantsinstance/grant",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -66,6 +85,9 @@ function Client:createAccessGrantsInstance(input, options)
         output_schema = types.CreateAccessGrantsInstanceOutput,
         http_method = "POST",
         http_path = "/v20180820/accessgrantsinstance",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -79,6 +101,9 @@ function Client:createAccessGrantsLocation(input, options)
         output_schema = types.CreateAccessGrantsLocationOutput,
         http_method = "POST",
         http_path = "/v20180820/accessgrantsinstance/location",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -92,6 +117,9 @@ function Client:createAccessPoint(input, options)
         output_schema = types.CreateAccessPointOutput,
         http_method = "PUT",
         http_path = "/v20180820/accesspoint/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccessPointName = "Name",
             AccountId = "AccountId",
@@ -107,6 +135,9 @@ function Client:createAccessPointForObjectLambda(input, options)
         output_schema = types.CreateAccessPointForObjectLambdaOutput,
         http_method = "PUT",
         http_path = "/v20180820/accesspointforobjectlambda/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -120,6 +151,9 @@ function Client:createBucket(input, options)
         output_schema = types.CreateBucketOutput,
         http_method = "PUT",
         http_path = "/v20180820/bucket/{Bucket}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             Bucket = "Bucket",
             OutpostId = "OutpostId",
@@ -134,6 +168,9 @@ function Client:createJob(input, options)
         output_schema = types.CreateJobOutput,
         http_method = "POST",
         http_path = "/v20180820/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -147,6 +184,9 @@ function Client:createMultiRegionAccessPoint(input, options)
         output_schema = types.CreateMultiRegionAccessPointOutput,
         http_method = "POST",
         http_path = "/v20180820/async-requests/mrap/create",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -160,6 +200,9 @@ function Client:createStorageLensGroup(input, options)
         output_schema = types.CreateStorageLensGroupOutput,
         http_method = "POST",
         http_path = "/v20180820/storagelensgroup",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -173,6 +216,9 @@ function Client:deleteAccessGrant(input, options)
         output_schema = types.DeleteAccessGrantOutput,
         http_method = "DELETE",
         http_path = "/v20180820/accessgrantsinstance/grant/{AccessGrantId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -186,6 +232,9 @@ function Client:deleteAccessGrantsInstance(input, options)
         output_schema = types.DeleteAccessGrantsInstanceOutput,
         http_method = "DELETE",
         http_path = "/v20180820/accessgrantsinstance",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -199,6 +248,9 @@ function Client:deleteAccessGrantsInstanceResourcePolicy(input, options)
         output_schema = types.DeleteAccessGrantsInstanceResourcePolicyOutput,
         http_method = "DELETE",
         http_path = "/v20180820/accessgrantsinstance/resourcepolicy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -212,6 +264,9 @@ function Client:deleteAccessGrantsLocation(input, options)
         output_schema = types.DeleteAccessGrantsLocationOutput,
         http_method = "DELETE",
         http_path = "/v20180820/accessgrantsinstance/location/{AccessGrantsLocationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -225,6 +280,9 @@ function Client:deleteAccessPoint(input, options)
         output_schema = types.DeleteAccessPointOutput,
         http_method = "DELETE",
         http_path = "/v20180820/accesspoint/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccessPointName = "Name",
             AccountId = "AccountId",
@@ -239,6 +297,9 @@ function Client:deleteAccessPointForObjectLambda(input, options)
         output_schema = types.DeleteAccessPointForObjectLambdaOutput,
         http_method = "DELETE",
         http_path = "/v20180820/accesspointforobjectlambda/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -252,6 +313,9 @@ function Client:deleteAccessPointPolicy(input, options)
         output_schema = types.DeleteAccessPointPolicyOutput,
         http_method = "DELETE",
         http_path = "/v20180820/accesspoint/{Name}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccessPointName = "Name",
             AccountId = "AccountId",
@@ -266,6 +330,9 @@ function Client:deleteAccessPointPolicyForObjectLambda(input, options)
         output_schema = types.DeleteAccessPointPolicyForObjectLambdaOutput,
         http_method = "DELETE",
         http_path = "/v20180820/accesspointforobjectlambda/{Name}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -279,6 +346,9 @@ function Client:deleteAccessPointScope(input, options)
         output_schema = types.DeleteAccessPointScopeOutput,
         http_method = "DELETE",
         http_path = "/v20180820/accesspoint/{Name}/scope",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccessPointName = "Name",
             AccountId = "AccountId",
@@ -293,6 +363,9 @@ function Client:deleteBucket(input, options)
         output_schema = types.DeleteBucketOutput,
         http_method = "DELETE",
         http_path = "/v20180820/bucket/{Bucket}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
             Bucket = "Bucket",
@@ -307,6 +380,9 @@ function Client:deleteBucketLifecycleConfiguration(input, options)
         output_schema = types.DeleteBucketLifecycleConfigurationOutput,
         http_method = "DELETE",
         http_path = "/v20180820/bucket/{Bucket}/lifecycleconfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
             Bucket = "Bucket",
@@ -321,6 +397,9 @@ function Client:deleteBucketPolicy(input, options)
         output_schema = types.DeleteBucketPolicyOutput,
         http_method = "DELETE",
         http_path = "/v20180820/bucket/{Bucket}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
             Bucket = "Bucket",
@@ -335,6 +414,9 @@ function Client:deleteBucketReplication(input, options)
         output_schema = types.DeleteBucketReplicationOutput,
         http_method = "DELETE",
         http_path = "/v20180820/bucket/{Bucket}/replication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
             Bucket = "Bucket",
@@ -349,6 +431,9 @@ function Client:deleteBucketTagging(input, options)
         output_schema = types.DeleteBucketTaggingOutput,
         http_method = "DELETE",
         http_path = "/v20180820/bucket/{Bucket}/tagging",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
             Bucket = "Bucket",
@@ -363,6 +448,9 @@ function Client:deleteJobTagging(input, options)
         output_schema = types.DeleteJobTaggingOutput,
         http_method = "DELETE",
         http_path = "/v20180820/jobs/{JobId}/tagging",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -376,6 +464,9 @@ function Client:deleteMultiRegionAccessPoint(input, options)
         output_schema = types.DeleteMultiRegionAccessPointOutput,
         http_method = "POST",
         http_path = "/v20180820/async-requests/mrap/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -389,6 +480,9 @@ function Client:deletePublicAccessBlock(input, options)
         output_schema = types.DeletePublicAccessBlockOutput,
         http_method = "DELETE",
         http_path = "/v20180820/configuration/publicAccessBlock",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -402,6 +496,9 @@ function Client:deleteStorageLensConfiguration(input, options)
         output_schema = types.DeleteStorageLensConfigurationOutput,
         http_method = "DELETE",
         http_path = "/v20180820/storagelens/{ConfigId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -415,6 +512,9 @@ function Client:deleteStorageLensConfigurationTagging(input, options)
         output_schema = types.DeleteStorageLensConfigurationTaggingOutput,
         http_method = "DELETE",
         http_path = "/v20180820/storagelens/{ConfigId}/tagging",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -428,6 +528,9 @@ function Client:deleteStorageLensGroup(input, options)
         output_schema = types.DeleteStorageLensGroupOutput,
         http_method = "DELETE",
         http_path = "/v20180820/storagelensgroup/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -441,6 +544,9 @@ function Client:describeJob(input, options)
         output_schema = types.DescribeJobOutput,
         http_method = "GET",
         http_path = "/v20180820/jobs/{JobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -454,6 +560,9 @@ function Client:describeMultiRegionAccessPointOperation(input, options)
         output_schema = types.DescribeMultiRegionAccessPointOperationOutput,
         http_method = "GET",
         http_path = "/v20180820/async-requests/mrap/{RequestTokenARN+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -467,6 +576,9 @@ function Client:dissociateAccessGrantsIdentityCenter(input, options)
         output_schema = types.DissociateAccessGrantsIdentityCenterOutput,
         http_method = "DELETE",
         http_path = "/v20180820/accessgrantsinstance/identitycenter",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -480,6 +592,9 @@ function Client:getAccessGrant(input, options)
         output_schema = types.GetAccessGrantOutput,
         http_method = "GET",
         http_path = "/v20180820/accessgrantsinstance/grant/{AccessGrantId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -493,6 +608,9 @@ function Client:getAccessGrantsInstance(input, options)
         output_schema = types.GetAccessGrantsInstanceOutput,
         http_method = "GET",
         http_path = "/v20180820/accessgrantsinstance",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -506,6 +624,9 @@ function Client:getAccessGrantsInstanceForPrefix(input, options)
         output_schema = types.GetAccessGrantsInstanceForPrefixOutput,
         http_method = "GET",
         http_path = "/v20180820/accessgrantsinstance/prefix",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -519,6 +640,9 @@ function Client:getAccessGrantsInstanceResourcePolicy(input, options)
         output_schema = types.GetAccessGrantsInstanceResourcePolicyOutput,
         http_method = "GET",
         http_path = "/v20180820/accessgrantsinstance/resourcepolicy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -532,6 +656,9 @@ function Client:getAccessGrantsLocation(input, options)
         output_schema = types.GetAccessGrantsLocationOutput,
         http_method = "GET",
         http_path = "/v20180820/accessgrantsinstance/location/{AccessGrantsLocationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -545,6 +672,9 @@ function Client:getAccessPoint(input, options)
         output_schema = types.GetAccessPointOutput,
         http_method = "GET",
         http_path = "/v20180820/accesspoint/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccessPointName = "Name",
             AccountId = "AccountId",
@@ -559,6 +689,9 @@ function Client:getAccessPointConfigurationForObjectLambda(input, options)
         output_schema = types.GetAccessPointConfigurationForObjectLambdaOutput,
         http_method = "GET",
         http_path = "/v20180820/accesspointforobjectlambda/{Name}/configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -572,6 +705,9 @@ function Client:getAccessPointForObjectLambda(input, options)
         output_schema = types.GetAccessPointForObjectLambdaOutput,
         http_method = "GET",
         http_path = "/v20180820/accesspointforobjectlambda/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -585,6 +721,9 @@ function Client:getAccessPointPolicy(input, options)
         output_schema = types.GetAccessPointPolicyOutput,
         http_method = "GET",
         http_path = "/v20180820/accesspoint/{Name}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccessPointName = "Name",
             AccountId = "AccountId",
@@ -599,6 +738,9 @@ function Client:getAccessPointPolicyForObjectLambda(input, options)
         output_schema = types.GetAccessPointPolicyForObjectLambdaOutput,
         http_method = "GET",
         http_path = "/v20180820/accesspointforobjectlambda/{Name}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -612,6 +754,9 @@ function Client:getAccessPointPolicyStatus(input, options)
         output_schema = types.GetAccessPointPolicyStatusOutput,
         http_method = "GET",
         http_path = "/v20180820/accesspoint/{Name}/policyStatus",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccessPointName = "Name",
             AccountId = "AccountId",
@@ -626,6 +771,9 @@ function Client:getAccessPointPolicyStatusForObjectLambda(input, options)
         output_schema = types.GetAccessPointPolicyStatusForObjectLambdaOutput,
         http_method = "GET",
         http_path = "/v20180820/accesspointforobjectlambda/{Name}/policyStatus",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -639,6 +787,9 @@ function Client:getAccessPointScope(input, options)
         output_schema = types.GetAccessPointScopeOutput,
         http_method = "GET",
         http_path = "/v20180820/accesspoint/{Name}/scope",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccessPointName = "Name",
             AccountId = "AccountId",
@@ -653,6 +804,9 @@ function Client:getBucket(input, options)
         output_schema = types.GetBucketOutput,
         http_method = "GET",
         http_path = "/v20180820/bucket/{Bucket}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
             Bucket = "Bucket",
@@ -667,6 +821,9 @@ function Client:getBucketLifecycleConfiguration(input, options)
         output_schema = types.GetBucketLifecycleConfigurationOutput,
         http_method = "GET",
         http_path = "/v20180820/bucket/{Bucket}/lifecycleconfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
             Bucket = "Bucket",
@@ -681,6 +838,9 @@ function Client:getBucketPolicy(input, options)
         output_schema = types.GetBucketPolicyOutput,
         http_method = "GET",
         http_path = "/v20180820/bucket/{Bucket}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
             Bucket = "Bucket",
@@ -695,6 +855,9 @@ function Client:getBucketReplication(input, options)
         output_schema = types.GetBucketReplicationOutput,
         http_method = "GET",
         http_path = "/v20180820/bucket/{Bucket}/replication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
             Bucket = "Bucket",
@@ -709,6 +872,9 @@ function Client:getBucketTagging(input, options)
         output_schema = types.GetBucketTaggingOutput,
         http_method = "GET",
         http_path = "/v20180820/bucket/{Bucket}/tagging",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
             Bucket = "Bucket",
@@ -723,6 +889,9 @@ function Client:getBucketVersioning(input, options)
         output_schema = types.GetBucketVersioningOutput,
         http_method = "GET",
         http_path = "/v20180820/bucket/{Bucket}/versioning",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
             Bucket = "Bucket",
@@ -737,6 +906,9 @@ function Client:getDataAccess(input, options)
         output_schema = types.GetDataAccessOutput,
         http_method = "GET",
         http_path = "/v20180820/accessgrantsinstance/dataaccess",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -750,6 +922,9 @@ function Client:getJobTagging(input, options)
         output_schema = types.GetJobTaggingOutput,
         http_method = "GET",
         http_path = "/v20180820/jobs/{JobId}/tagging",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -763,6 +938,9 @@ function Client:getMultiRegionAccessPoint(input, options)
         output_schema = types.GetMultiRegionAccessPointOutput,
         http_method = "GET",
         http_path = "/v20180820/mrap/instances/{Name+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -776,6 +954,9 @@ function Client:getMultiRegionAccessPointPolicy(input, options)
         output_schema = types.GetMultiRegionAccessPointPolicyOutput,
         http_method = "GET",
         http_path = "/v20180820/mrap/instances/{Name+}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -789,6 +970,9 @@ function Client:getMultiRegionAccessPointPolicyStatus(input, options)
         output_schema = types.GetMultiRegionAccessPointPolicyStatusOutput,
         http_method = "GET",
         http_path = "/v20180820/mrap/instances/{Name+}/policystatus",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -802,6 +986,9 @@ function Client:getMultiRegionAccessPointRoutes(input, options)
         output_schema = types.GetMultiRegionAccessPointRoutesOutput,
         http_method = "GET",
         http_path = "/v20180820/mrap/instances/{Mrap+}/routes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -815,6 +1002,9 @@ function Client:getPublicAccessBlock(input, options)
         output_schema = types.GetPublicAccessBlockOutput,
         http_method = "GET",
         http_path = "/v20180820/configuration/publicAccessBlock",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -828,6 +1018,9 @@ function Client:getStorageLensConfiguration(input, options)
         output_schema = types.GetStorageLensConfigurationOutput,
         http_method = "GET",
         http_path = "/v20180820/storagelens/{ConfigId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -841,6 +1034,9 @@ function Client:getStorageLensConfigurationTagging(input, options)
         output_schema = types.GetStorageLensConfigurationTaggingOutput,
         http_method = "GET",
         http_path = "/v20180820/storagelens/{ConfigId}/tagging",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -854,6 +1050,9 @@ function Client:getStorageLensGroup(input, options)
         output_schema = types.GetStorageLensGroupOutput,
         http_method = "GET",
         http_path = "/v20180820/storagelensgroup/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -867,6 +1066,9 @@ function Client:listAccessGrants(input, options)
         output_schema = types.ListAccessGrantsOutput,
         http_method = "GET",
         http_path = "/v20180820/accessgrantsinstance/grants",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -880,6 +1082,9 @@ function Client:listAccessGrantsInstances(input, options)
         output_schema = types.ListAccessGrantsInstancesOutput,
         http_method = "GET",
         http_path = "/v20180820/accessgrantsinstances",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -893,6 +1098,9 @@ function Client:listAccessGrantsLocations(input, options)
         output_schema = types.ListAccessGrantsLocationsOutput,
         http_method = "GET",
         http_path = "/v20180820/accessgrantsinstance/locations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -906,6 +1114,9 @@ function Client:listAccessPoints(input, options)
         output_schema = types.ListAccessPointsOutput,
         http_method = "GET",
         http_path = "/v20180820/accesspoint",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
             Bucket = "Bucket",
@@ -920,6 +1131,9 @@ function Client:listAccessPointsForDirectoryBuckets(input, options)
         output_schema = types.ListAccessPointsForDirectoryBucketsOutput,
         http_method = "GET",
         http_path = "/v20180820/accesspointfordirectory",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -933,6 +1147,9 @@ function Client:listAccessPointsForObjectLambda(input, options)
         output_schema = types.ListAccessPointsForObjectLambdaOutput,
         http_method = "GET",
         http_path = "/v20180820/accesspointforobjectlambda",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -946,6 +1163,9 @@ function Client:listCallerAccessGrants(input, options)
         output_schema = types.ListCallerAccessGrantsOutput,
         http_method = "GET",
         http_path = "/v20180820/accessgrantsinstance/caller/grants",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -959,6 +1179,9 @@ function Client:listJobs(input, options)
         output_schema = types.ListJobsOutput,
         http_method = "GET",
         http_path = "/v20180820/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -972,6 +1195,9 @@ function Client:listMultiRegionAccessPoints(input, options)
         output_schema = types.ListMultiRegionAccessPointsOutput,
         http_method = "GET",
         http_path = "/v20180820/mrap/instances",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -985,6 +1211,9 @@ function Client:listRegionalBuckets(input, options)
         output_schema = types.ListRegionalBucketsOutput,
         http_method = "GET",
         http_path = "/v20180820/bucket",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
             OutpostId = "OutpostId",
@@ -999,6 +1228,9 @@ function Client:listStorageLensConfigurations(input, options)
         output_schema = types.ListStorageLensConfigurationsOutput,
         http_method = "GET",
         http_path = "/v20180820/storagelens",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -1012,6 +1244,9 @@ function Client:listStorageLensGroups(input, options)
         output_schema = types.ListStorageLensGroupsOutput,
         http_method = "GET",
         http_path = "/v20180820/storagelensgroup",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -1025,6 +1260,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/v20180820/tags/{ResourceArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
             ResourceArn = "ResourceArn",
@@ -1039,6 +1277,9 @@ function Client:putAccessGrantsInstanceResourcePolicy(input, options)
         output_schema = types.PutAccessGrantsInstanceResourcePolicyOutput,
         http_method = "PUT",
         http_path = "/v20180820/accessgrantsinstance/resourcepolicy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -1052,6 +1293,9 @@ function Client:putAccessPointConfigurationForObjectLambda(input, options)
         output_schema = types.PutAccessPointConfigurationForObjectLambdaOutput,
         http_method = "PUT",
         http_path = "/v20180820/accesspointforobjectlambda/{Name}/configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -1065,6 +1309,9 @@ function Client:putAccessPointPolicy(input, options)
         output_schema = types.PutAccessPointPolicyOutput,
         http_method = "PUT",
         http_path = "/v20180820/accesspoint/{Name}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccessPointName = "Name",
             AccountId = "AccountId",
@@ -1079,6 +1326,9 @@ function Client:putAccessPointPolicyForObjectLambda(input, options)
         output_schema = types.PutAccessPointPolicyForObjectLambdaOutput,
         http_method = "PUT",
         http_path = "/v20180820/accesspointforobjectlambda/{Name}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -1092,6 +1342,9 @@ function Client:putAccessPointScope(input, options)
         output_schema = types.PutAccessPointScopeOutput,
         http_method = "PUT",
         http_path = "/v20180820/accesspoint/{Name}/scope",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccessPointName = "Name",
             AccountId = "AccountId",
@@ -1106,6 +1359,9 @@ function Client:putBucketLifecycleConfiguration(input, options)
         output_schema = types.PutBucketLifecycleConfigurationOutput,
         http_method = "PUT",
         http_path = "/v20180820/bucket/{Bucket}/lifecycleconfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
             Bucket = "Bucket",
@@ -1120,6 +1376,9 @@ function Client:putBucketPolicy(input, options)
         output_schema = types.PutBucketPolicyOutput,
         http_method = "PUT",
         http_path = "/v20180820/bucket/{Bucket}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
             Bucket = "Bucket",
@@ -1134,6 +1393,9 @@ function Client:putBucketReplication(input, options)
         output_schema = types.PutBucketReplicationOutput,
         http_method = "PUT",
         http_path = "/v20180820/bucket/{Bucket}/replication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
             Bucket = "Bucket",
@@ -1148,6 +1410,9 @@ function Client:putBucketTagging(input, options)
         output_schema = types.PutBucketTaggingOutput,
         http_method = "PUT",
         http_path = "/v20180820/bucket/{Bucket}/tagging",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
             Bucket = "Bucket",
@@ -1162,6 +1427,9 @@ function Client:putBucketVersioning(input, options)
         output_schema = types.PutBucketVersioningOutput,
         http_method = "PUT",
         http_path = "/v20180820/bucket/{Bucket}/versioning",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
             Bucket = "Bucket",
@@ -1176,6 +1444,9 @@ function Client:putJobTagging(input, options)
         output_schema = types.PutJobTaggingOutput,
         http_method = "PUT",
         http_path = "/v20180820/jobs/{JobId}/tagging",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -1189,6 +1460,9 @@ function Client:putMultiRegionAccessPointPolicy(input, options)
         output_schema = types.PutMultiRegionAccessPointPolicyOutput,
         http_method = "POST",
         http_path = "/v20180820/async-requests/mrap/put-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -1202,6 +1476,9 @@ function Client:putPublicAccessBlock(input, options)
         output_schema = types.PutPublicAccessBlockOutput,
         http_method = "PUT",
         http_path = "/v20180820/configuration/publicAccessBlock",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -1215,6 +1492,9 @@ function Client:putStorageLensConfiguration(input, options)
         output_schema = types.PutStorageLensConfigurationOutput,
         http_method = "PUT",
         http_path = "/v20180820/storagelens/{ConfigId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -1228,6 +1508,9 @@ function Client:putStorageLensConfigurationTagging(input, options)
         output_schema = types.PutStorageLensConfigurationTaggingOutput,
         http_method = "PUT",
         http_path = "/v20180820/storagelens/{ConfigId}/tagging",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -1241,6 +1524,9 @@ function Client:submitMultiRegionAccessPointRoutes(input, options)
         output_schema = types.SubmitMultiRegionAccessPointRoutesOutput,
         http_method = "PATCH",
         http_path = "/v20180820/mrap/instances/{Mrap+}/routes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -1254,6 +1540,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/v20180820/tags/{ResourceArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
             ResourceArn = "ResourceArn",
@@ -1268,6 +1557,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/v20180820/tags/{ResourceArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
             ResourceArn = "ResourceArn",
@@ -1282,6 +1574,9 @@ function Client:updateAccessGrantsLocation(input, options)
         output_schema = types.UpdateAccessGrantsLocationOutput,
         http_method = "PUT",
         http_path = "/v20180820/accessgrantsinstance/location/{AccessGrantsLocationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -1295,6 +1590,9 @@ function Client:updateJobPriority(input, options)
         output_schema = types.UpdateJobPriorityOutput,
         http_method = "POST",
         http_path = "/v20180820/jobs/{JobId}/priority",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -1308,6 +1606,9 @@ function Client:updateJobStatus(input, options)
         output_schema = types.UpdateJobStatusOutput,
         http_method = "POST",
         http_path = "/v20180820/jobs/{JobId}/status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },
@@ -1321,6 +1622,9 @@ function Client:updateStorageLensGroup(input, options)
         output_schema = types.UpdateStorageLensGroupOutput,
         http_method = "PUT",
         http_path = "/v20180820/storagelensgroup/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             AccountId = "AccountId",
         },

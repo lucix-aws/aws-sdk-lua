@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonBedrockControlPlaneService"
-    cfg.signing_name = "bedrock"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "bedrock", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,10 @@ function Client:batchDeleteEvaluationJob(input, options)
         output_schema = types.BatchDeleteEvaluationJobOutput,
         http_method = "POST",
         http_path = "/evaluation-jobs/batch-delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -50,6 +67,10 @@ function Client:cancelAutomatedReasoningPolicyBuildWorkflow(input, options)
         output_schema = types.CancelAutomatedReasoningPolicyBuildWorkflowOutput,
         http_method = "POST",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -60,6 +81,10 @@ function Client:createAutomatedReasoningPolicy(input, options)
         output_schema = types.CreateAutomatedReasoningPolicyOutput,
         http_method = "POST",
         http_path = "/automated-reasoning-policies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -70,6 +95,10 @@ function Client:createAutomatedReasoningPolicyTestCase(input, options)
         output_schema = types.CreateAutomatedReasoningPolicyTestCaseOutput,
         http_method = "POST",
         http_path = "/automated-reasoning-policies/{policyArn}/test-cases",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -80,6 +109,10 @@ function Client:createAutomatedReasoningPolicyVersion(input, options)
         output_schema = types.CreateAutomatedReasoningPolicyVersionOutput,
         http_method = "POST",
         http_path = "/automated-reasoning-policies/{policyArn}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -90,6 +123,10 @@ function Client:createCustomModel(input, options)
         output_schema = types.CreateCustomModelOutput,
         http_method = "POST",
         http_path = "/custom-models/create-custom-model",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -100,6 +137,10 @@ function Client:createCustomModelDeployment(input, options)
         output_schema = types.CreateCustomModelDeploymentOutput,
         http_method = "POST",
         http_path = "/model-customization/custom-model-deployments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -110,6 +151,10 @@ function Client:createEvaluationJob(input, options)
         output_schema = types.CreateEvaluationJobOutput,
         http_method = "POST",
         http_path = "/evaluation-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -120,6 +165,10 @@ function Client:createFoundationModelAgreement(input, options)
         output_schema = types.CreateFoundationModelAgreementOutput,
         http_method = "POST",
         http_path = "/create-foundation-model-agreement",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -130,6 +179,10 @@ function Client:createGuardrail(input, options)
         output_schema = types.CreateGuardrailOutput,
         http_method = "POST",
         http_path = "/guardrails",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -140,6 +193,10 @@ function Client:createGuardrailVersion(input, options)
         output_schema = types.CreateGuardrailVersionOutput,
         http_method = "POST",
         http_path = "/guardrails/{guardrailIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -150,6 +207,10 @@ function Client:createInferenceProfile(input, options)
         output_schema = types.CreateInferenceProfileOutput,
         http_method = "POST",
         http_path = "/inference-profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -160,6 +221,10 @@ function Client:createMarketplaceModelEndpoint(input, options)
         output_schema = types.CreateMarketplaceModelEndpointOutput,
         http_method = "POST",
         http_path = "/marketplace-model/endpoints",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -170,6 +235,10 @@ function Client:createModelCopyJob(input, options)
         output_schema = types.CreateModelCopyJobOutput,
         http_method = "POST",
         http_path = "/model-copy-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -180,6 +249,10 @@ function Client:createModelCustomizationJob(input, options)
         output_schema = types.CreateModelCustomizationJobOutput,
         http_method = "POST",
         http_path = "/model-customization-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -190,6 +263,10 @@ function Client:createModelImportJob(input, options)
         output_schema = types.CreateModelImportJobOutput,
         http_method = "POST",
         http_path = "/model-import-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -200,6 +277,10 @@ function Client:createModelInvocationJob(input, options)
         output_schema = types.CreateModelInvocationJobOutput,
         http_method = "POST",
         http_path = "/model-invocation-job",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -210,6 +291,10 @@ function Client:createPromptRouter(input, options)
         output_schema = types.CreatePromptRouterOutput,
         http_method = "POST",
         http_path = "/prompt-routers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -220,6 +305,10 @@ function Client:createProvisionedModelThroughput(input, options)
         output_schema = types.CreateProvisionedModelThroughputOutput,
         http_method = "POST",
         http_path = "/provisioned-model-throughput",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -230,6 +319,10 @@ function Client:deleteAutomatedReasoningPolicy(input, options)
         output_schema = types.DeleteAutomatedReasoningPolicyOutput,
         http_method = "DELETE",
         http_path = "/automated-reasoning-policies/{policyArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -240,6 +333,10 @@ function Client:deleteAutomatedReasoningPolicyBuildWorkflow(input, options)
         output_schema = types.DeleteAutomatedReasoningPolicyBuildWorkflowOutput,
         http_method = "DELETE",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -250,6 +347,10 @@ function Client:deleteAutomatedReasoningPolicyTestCase(input, options)
         output_schema = types.DeleteAutomatedReasoningPolicyTestCaseOutput,
         http_method = "DELETE",
         http_path = "/automated-reasoning-policies/{policyArn}/test-cases/{testCaseId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -260,6 +361,10 @@ function Client:deleteCustomModel(input, options)
         output_schema = types.DeleteCustomModelOutput,
         http_method = "DELETE",
         http_path = "/custom-models/{modelIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -270,6 +375,10 @@ function Client:deleteCustomModelDeployment(input, options)
         output_schema = types.DeleteCustomModelDeploymentOutput,
         http_method = "DELETE",
         http_path = "/model-customization/custom-model-deployments/{customModelDeploymentIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -280,6 +389,10 @@ function Client:deleteEnforcedGuardrailConfiguration(input, options)
         output_schema = types.DeleteEnforcedGuardrailConfigurationOutput,
         http_method = "DELETE",
         http_path = "/enforcedGuardrailsConfiguration/{configId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -290,6 +403,10 @@ function Client:deleteFoundationModelAgreement(input, options)
         output_schema = types.DeleteFoundationModelAgreementOutput,
         http_method = "POST",
         http_path = "/delete-foundation-model-agreement",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -300,6 +417,10 @@ function Client:deleteGuardrail(input, options)
         output_schema = types.DeleteGuardrailOutput,
         http_method = "DELETE",
         http_path = "/guardrails/{guardrailIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -310,6 +431,10 @@ function Client:deleteImportedModel(input, options)
         output_schema = types.DeleteImportedModelOutput,
         http_method = "DELETE",
         http_path = "/imported-models/{modelIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -320,6 +445,10 @@ function Client:deleteInferenceProfile(input, options)
         output_schema = types.DeleteInferenceProfileOutput,
         http_method = "DELETE",
         http_path = "/inference-profiles/{inferenceProfileIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -330,6 +459,10 @@ function Client:deleteMarketplaceModelEndpoint(input, options)
         output_schema = types.DeleteMarketplaceModelEndpointOutput,
         http_method = "DELETE",
         http_path = "/marketplace-model/endpoints/{endpointArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -340,6 +473,10 @@ function Client:deleteModelInvocationLoggingConfiguration(input, options)
         output_schema = types.DeleteModelInvocationLoggingConfigurationOutput,
         http_method = "DELETE",
         http_path = "/logging/modelinvocations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -350,6 +487,10 @@ function Client:deletePromptRouter(input, options)
         output_schema = types.DeletePromptRouterOutput,
         http_method = "DELETE",
         http_path = "/prompt-routers/{promptRouterArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -360,6 +501,10 @@ function Client:deleteProvisionedModelThroughput(input, options)
         output_schema = types.DeleteProvisionedModelThroughputOutput,
         http_method = "DELETE",
         http_path = "/provisioned-model-throughput/{provisionedModelId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -370,6 +515,10 @@ function Client:deleteResourcePolicy(input, options)
         output_schema = types.DeleteResourcePolicyOutput,
         http_method = "DELETE",
         http_path = "/resource-policy/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -380,6 +529,10 @@ function Client:deregisterMarketplaceModelEndpoint(input, options)
         output_schema = types.DeregisterMarketplaceModelEndpointOutput,
         http_method = "DELETE",
         http_path = "/marketplace-model/endpoints/{endpointArn}/registration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -390,6 +543,10 @@ function Client:exportAutomatedReasoningPolicyVersion(input, options)
         output_schema = types.ExportAutomatedReasoningPolicyVersionOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies/{policyArn}/export",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -400,6 +557,10 @@ function Client:getAutomatedReasoningPolicy(input, options)
         output_schema = types.GetAutomatedReasoningPolicyOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies/{policyArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -410,6 +571,10 @@ function Client:getAutomatedReasoningPolicyAnnotations(input, options)
         output_schema = types.GetAutomatedReasoningPolicyAnnotationsOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/annotations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -420,6 +585,10 @@ function Client:getAutomatedReasoningPolicyBuildWorkflow(input, options)
         output_schema = types.GetAutomatedReasoningPolicyBuildWorkflowOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -430,6 +599,10 @@ function Client:getAutomatedReasoningPolicyBuildWorkflowResultAssets(input, opti
         output_schema = types.GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/result-assets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -440,6 +613,10 @@ function Client:getAutomatedReasoningPolicyNextScenario(input, options)
         output_schema = types.GetAutomatedReasoningPolicyNextScenarioOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/scenarios",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -450,6 +627,10 @@ function Client:getAutomatedReasoningPolicyTestCase(input, options)
         output_schema = types.GetAutomatedReasoningPolicyTestCaseOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies/{policyArn}/test-cases/{testCaseId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -460,6 +641,10 @@ function Client:getAutomatedReasoningPolicyTestResult(input, options)
         output_schema = types.GetAutomatedReasoningPolicyTestResultOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/test-cases/{testCaseId}/test-results",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -470,6 +655,10 @@ function Client:getCustomModel(input, options)
         output_schema = types.GetCustomModelOutput,
         http_method = "GET",
         http_path = "/custom-models/{modelIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -480,6 +669,10 @@ function Client:getCustomModelDeployment(input, options)
         output_schema = types.GetCustomModelDeploymentOutput,
         http_method = "GET",
         http_path = "/model-customization/custom-model-deployments/{customModelDeploymentIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -490,6 +683,10 @@ function Client:getEvaluationJob(input, options)
         output_schema = types.GetEvaluationJobOutput,
         http_method = "GET",
         http_path = "/evaluation-jobs/{jobIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -500,6 +697,10 @@ function Client:getFoundationModel(input, options)
         output_schema = types.GetFoundationModelOutput,
         http_method = "GET",
         http_path = "/foundation-models/{modelIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -510,6 +711,10 @@ function Client:getFoundationModelAvailability(input, options)
         output_schema = types.GetFoundationModelAvailabilityOutput,
         http_method = "GET",
         http_path = "/foundation-model-availability/{modelId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -520,6 +725,10 @@ function Client:getGuardrail(input, options)
         output_schema = types.GetGuardrailOutput,
         http_method = "GET",
         http_path = "/guardrails/{guardrailIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -530,6 +739,10 @@ function Client:getImportedModel(input, options)
         output_schema = types.GetImportedModelOutput,
         http_method = "GET",
         http_path = "/imported-models/{modelIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -540,6 +753,10 @@ function Client:getInferenceProfile(input, options)
         output_schema = types.GetInferenceProfileOutput,
         http_method = "GET",
         http_path = "/inference-profiles/{inferenceProfileIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -550,6 +767,10 @@ function Client:getMarketplaceModelEndpoint(input, options)
         output_schema = types.GetMarketplaceModelEndpointOutput,
         http_method = "GET",
         http_path = "/marketplace-model/endpoints/{endpointArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -560,6 +781,10 @@ function Client:getModelCopyJob(input, options)
         output_schema = types.GetModelCopyJobOutput,
         http_method = "GET",
         http_path = "/model-copy-jobs/{jobArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -570,6 +795,10 @@ function Client:getModelCustomizationJob(input, options)
         output_schema = types.GetModelCustomizationJobOutput,
         http_method = "GET",
         http_path = "/model-customization-jobs/{jobIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -580,6 +809,10 @@ function Client:getModelImportJob(input, options)
         output_schema = types.GetModelImportJobOutput,
         http_method = "GET",
         http_path = "/model-import-jobs/{jobIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -590,6 +823,10 @@ function Client:getModelInvocationJob(input, options)
         output_schema = types.GetModelInvocationJobOutput,
         http_method = "GET",
         http_path = "/model-invocation-job/{jobIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -600,6 +837,10 @@ function Client:getModelInvocationLoggingConfiguration(input, options)
         output_schema = types.GetModelInvocationLoggingConfigurationOutput,
         http_method = "GET",
         http_path = "/logging/modelinvocations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -610,6 +851,10 @@ function Client:getPromptRouter(input, options)
         output_schema = types.GetPromptRouterOutput,
         http_method = "GET",
         http_path = "/prompt-routers/{promptRouterArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -620,6 +865,10 @@ function Client:getProvisionedModelThroughput(input, options)
         output_schema = types.GetProvisionedModelThroughputOutput,
         http_method = "GET",
         http_path = "/provisioned-model-throughput/{provisionedModelId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -630,6 +879,10 @@ function Client:getResourcePolicy(input, options)
         output_schema = types.GetResourcePolicyOutput,
         http_method = "GET",
         http_path = "/resource-policy/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -640,6 +893,10 @@ function Client:getUseCaseForModelAccess(input, options)
         output_schema = types.GetUseCaseForModelAccessOutput,
         http_method = "GET",
         http_path = "/use-case-for-model-access",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -650,6 +907,10 @@ function Client:listAutomatedReasoningPolicies(input, options)
         output_schema = types.ListAutomatedReasoningPoliciesOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -660,6 +921,10 @@ function Client:listAutomatedReasoningPolicyBuildWorkflows(input, options)
         output_schema = types.ListAutomatedReasoningPolicyBuildWorkflowsOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -670,6 +935,10 @@ function Client:listAutomatedReasoningPolicyTestCases(input, options)
         output_schema = types.ListAutomatedReasoningPolicyTestCasesOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies/{policyArn}/test-cases",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -680,6 +949,10 @@ function Client:listAutomatedReasoningPolicyTestResults(input, options)
         output_schema = types.ListAutomatedReasoningPolicyTestResultsOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/test-results",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -690,6 +963,10 @@ function Client:listCustomModelDeployments(input, options)
         output_schema = types.ListCustomModelDeploymentsOutput,
         http_method = "GET",
         http_path = "/model-customization/custom-model-deployments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -700,6 +977,10 @@ function Client:listCustomModels(input, options)
         output_schema = types.ListCustomModelsOutput,
         http_method = "GET",
         http_path = "/custom-models",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -710,6 +991,10 @@ function Client:listEnforcedGuardrailsConfiguration(input, options)
         output_schema = types.ListEnforcedGuardrailsConfigurationOutput,
         http_method = "GET",
         http_path = "/enforcedGuardrailsConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -720,6 +1005,10 @@ function Client:listEvaluationJobs(input, options)
         output_schema = types.ListEvaluationJobsOutput,
         http_method = "GET",
         http_path = "/evaluation-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -730,6 +1019,10 @@ function Client:listFoundationModelAgreementOffers(input, options)
         output_schema = types.ListFoundationModelAgreementOffersOutput,
         http_method = "GET",
         http_path = "/list-foundation-model-agreement-offers/{modelId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -740,6 +1033,10 @@ function Client:listFoundationModels(input, options)
         output_schema = types.ListFoundationModelsOutput,
         http_method = "GET",
         http_path = "/foundation-models",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -750,6 +1047,10 @@ function Client:listGuardrails(input, options)
         output_schema = types.ListGuardrailsOutput,
         http_method = "GET",
         http_path = "/guardrails",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -760,6 +1061,10 @@ function Client:listImportedModels(input, options)
         output_schema = types.ListImportedModelsOutput,
         http_method = "GET",
         http_path = "/imported-models",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -770,6 +1075,10 @@ function Client:listInferenceProfiles(input, options)
         output_schema = types.ListInferenceProfilesOutput,
         http_method = "GET",
         http_path = "/inference-profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -780,6 +1089,10 @@ function Client:listMarketplaceModelEndpoints(input, options)
         output_schema = types.ListMarketplaceModelEndpointsOutput,
         http_method = "GET",
         http_path = "/marketplace-model/endpoints",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -790,6 +1103,10 @@ function Client:listModelCopyJobs(input, options)
         output_schema = types.ListModelCopyJobsOutput,
         http_method = "GET",
         http_path = "/model-copy-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -800,6 +1117,10 @@ function Client:listModelCustomizationJobs(input, options)
         output_schema = types.ListModelCustomizationJobsOutput,
         http_method = "GET",
         http_path = "/model-customization-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -810,6 +1131,10 @@ function Client:listModelImportJobs(input, options)
         output_schema = types.ListModelImportJobsOutput,
         http_method = "GET",
         http_path = "/model-import-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -820,6 +1145,10 @@ function Client:listModelInvocationJobs(input, options)
         output_schema = types.ListModelInvocationJobsOutput,
         http_method = "GET",
         http_path = "/model-invocation-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -830,6 +1159,10 @@ function Client:listPromptRouters(input, options)
         output_schema = types.ListPromptRoutersOutput,
         http_method = "GET",
         http_path = "/prompt-routers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -840,6 +1173,10 @@ function Client:listProvisionedModelThroughputs(input, options)
         output_schema = types.ListProvisionedModelThroughputsOutput,
         http_method = "GET",
         http_path = "/provisioned-model-throughputs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -850,6 +1187,10 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/listTagsForResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -860,6 +1201,10 @@ function Client:putEnforcedGuardrailConfiguration(input, options)
         output_schema = types.PutEnforcedGuardrailConfigurationOutput,
         http_method = "PUT",
         http_path = "/enforcedGuardrailsConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -870,6 +1215,10 @@ function Client:putModelInvocationLoggingConfiguration(input, options)
         output_schema = types.PutModelInvocationLoggingConfigurationOutput,
         http_method = "PUT",
         http_path = "/logging/modelinvocations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -880,6 +1229,10 @@ function Client:putResourcePolicy(input, options)
         output_schema = types.PutResourcePolicyOutput,
         http_method = "POST",
         http_path = "/resource-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -890,6 +1243,10 @@ function Client:putUseCaseForModelAccess(input, options)
         output_schema = types.PutUseCaseForModelAccessOutput,
         http_method = "POST",
         http_path = "/use-case-for-model-access",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -900,6 +1257,10 @@ function Client:registerMarketplaceModelEndpoint(input, options)
         output_schema = types.RegisterMarketplaceModelEndpointOutput,
         http_method = "POST",
         http_path = "/marketplace-model/endpoints/{endpointIdentifier}/registration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -910,6 +1271,10 @@ function Client:startAutomatedReasoningPolicyBuildWorkflow(input, options)
         output_schema = types.StartAutomatedReasoningPolicyBuildWorkflowOutput,
         http_method = "POST",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowType}/start",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -920,6 +1285,10 @@ function Client:startAutomatedReasoningPolicyTestWorkflow(input, options)
         output_schema = types.StartAutomatedReasoningPolicyTestWorkflowOutput,
         http_method = "POST",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/test-workflows",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -930,6 +1299,10 @@ function Client:stopEvaluationJob(input, options)
         output_schema = types.StopEvaluationJobOutput,
         http_method = "POST",
         http_path = "/evaluation-job/{jobIdentifier}/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -940,6 +1313,10 @@ function Client:stopModelCustomizationJob(input, options)
         output_schema = types.StopModelCustomizationJobOutput,
         http_method = "POST",
         http_path = "/model-customization-jobs/{jobIdentifier}/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -950,6 +1327,10 @@ function Client:stopModelInvocationJob(input, options)
         output_schema = types.StopModelInvocationJobOutput,
         http_method = "POST",
         http_path = "/model-invocation-job/{jobIdentifier}/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -960,6 +1341,10 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tagResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -970,6 +1355,10 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/untagResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -980,6 +1369,10 @@ function Client:updateAutomatedReasoningPolicy(input, options)
         output_schema = types.UpdateAutomatedReasoningPolicyOutput,
         http_method = "PATCH",
         http_path = "/automated-reasoning-policies/{policyArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -990,6 +1383,10 @@ function Client:updateAutomatedReasoningPolicyAnnotations(input, options)
         output_schema = types.UpdateAutomatedReasoningPolicyAnnotationsOutput,
         http_method = "PATCH",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/annotations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -1000,6 +1397,10 @@ function Client:updateAutomatedReasoningPolicyTestCase(input, options)
         output_schema = types.UpdateAutomatedReasoningPolicyTestCaseOutput,
         http_method = "PATCH",
         http_path = "/automated-reasoning-policies/{policyArn}/test-cases/{testCaseId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -1010,6 +1411,10 @@ function Client:updateCustomModelDeployment(input, options)
         output_schema = types.UpdateCustomModelDeploymentOutput,
         http_method = "PATCH",
         http_path = "/model-customization/custom-model-deployments/{customModelDeploymentIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -1020,6 +1425,10 @@ function Client:updateGuardrail(input, options)
         output_schema = types.UpdateGuardrailOutput,
         http_method = "PUT",
         http_path = "/guardrails/{guardrailIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -1030,6 +1439,10 @@ function Client:updateMarketplaceModelEndpoint(input, options)
         output_schema = types.UpdateMarketplaceModelEndpointOutput,
         http_method = "PATCH",
         http_path = "/marketplace-model/endpoints/{endpointArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -1040,6 +1453,10 @@ function Client:updateProvisionedModelThroughput(input, options)
         output_schema = types.UpdateProvisionedModelThroughputOutput,
         http_method = "PATCH",
         http_path = "/provisioned-model-throughput/{provisionedModelId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 

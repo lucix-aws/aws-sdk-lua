@@ -16,16 +16,29 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "SimpleWorkflowService"
-    cfg.signing_name = "swf"
     if not cfg.protocol then
-        cfg.protocol = awsjson_protocol.new({ version = "1.0", service_id = cfg.service_id })
+        cfg.protocol = awsjson_protocol.new("1.0")
     end
     if not cfg.endpoint_provider then
         cfg.endpoint_provider = function(params)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "swf", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:countClosedWorkflowExecutions(input, options)
         output_schema = types.CountClosedWorkflowExecutionsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:countOpenWorkflowExecutions(input, options)
         output_schema = types.CountOpenWorkflowExecutionsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:countPendingActivityTasks(input, options)
         output_schema = types.CountPendingActivityTasksOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:countPendingDecisionTasks(input, options)
         output_schema = types.CountPendingDecisionTasksOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteActivityType(input, options)
         output_schema = types.DeleteActivityTypeOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteWorkflowType(input, options)
         output_schema = types.DeleteWorkflowTypeOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deprecateActivityType(input, options)
         output_schema = types.DeprecateActivityTypeOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deprecateDomain(input, options)
         output_schema = types.DeprecateDomainOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deprecateWorkflowType(input, options)
         output_schema = types.DeprecateWorkflowTypeOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:describeActivityType(input, options)
         output_schema = types.DescribeActivityTypeOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:describeDomain(input, options)
         output_schema = types.DescribeDomainOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:describeWorkflowExecution(input, options)
         output_schema = types.DescribeWorkflowExecutionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:describeWorkflowType(input, options)
         output_schema = types.DescribeWorkflowTypeOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getWorkflowExecutionHistory(input, options)
         output_schema = types.GetWorkflowExecutionHistoryOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:listActivityTypes(input, options)
         output_schema = types.ListActivityTypesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listClosedWorkflowExecutions(input, options)
         output_schema = types.ListClosedWorkflowExecutionsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listDomains(input, options)
         output_schema = types.ListDomainsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listOpenWorkflowExecutions(input, options)
         output_schema = types.ListOpenWorkflowExecutionsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listWorkflowTypes(input, options)
         output_schema = types.ListWorkflowTypesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:pollForActivityTask(input, options)
         output_schema = types.PollForActivityTaskOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:pollForDecisionTask(input, options)
         output_schema = types.PollForDecisionTaskOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:recordActivityTaskHeartbeat(input, options)
         output_schema = types.RecordActivityTaskHeartbeatOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:registerActivityType(input, options)
         output_schema = types.RegisterActivityTypeOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:registerDomain(input, options)
         output_schema = types.RegisterDomainOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:registerWorkflowType(input, options)
         output_schema = types.RegisterWorkflowTypeOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:requestCancelWorkflowExecution(input, options)
         output_schema = types.RequestCancelWorkflowExecutionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:respondActivityTaskCanceled(input, options)
         output_schema = types.RespondActivityTaskCanceledOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:respondActivityTaskCompleted(input, options)
         output_schema = types.RespondActivityTaskCompletedOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:respondActivityTaskFailed(input, options)
         output_schema = types.RespondActivityTaskFailedOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:respondDecisionTaskCompleted(input, options)
         output_schema = types.RespondDecisionTaskCompletedOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:signalWorkflowExecution(input, options)
         output_schema = types.SignalWorkflowExecutionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:startWorkflowExecution(input, options)
         output_schema = types.StartWorkflowExecutionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:terminateWorkflowExecution(input, options)
         output_schema = types.TerminateWorkflowExecutionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:undeprecateActivityType(input, options)
         output_schema = types.UndeprecateActivityTypeOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:undeprecateDomain(input, options)
         output_schema = types.UndeprecateDomainOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:undeprecateWorkflowType(input, options)
         output_schema = types.UndeprecateWorkflowTypeOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

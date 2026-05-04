@@ -1,0 +1,14 @@
+local record M
+    pages_list_agents: function(client: table, input: table): function(): table, table
+    items_list_agents: function(client: table, input: table): function(): any
+    pages_list_locations: function(client: table, input: table): function(): table, table
+    items_list_locations: function(client: table, input: table): function(): any
+    pages_list_tags_for_resource: function(client: table, input: table): function(): table, table
+    items_list_tags_for_resource: function(client: table, input: table): function(): any
+    pages_list_task_executions: function(client: table, input: table): function(): table, table
+    items_list_task_executions: function(client: table, input: table): function(): any
+    pages_list_tasks: function(client: table, input: table): function(): table, table
+    items_list_tasks: function(client: table, input: table): function(): any
+end
+
+return M

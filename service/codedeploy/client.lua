@@ -16,16 +16,29 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "CodeDeploy_20141006"
-    cfg.signing_name = "codedeploy"
     if not cfg.protocol then
-        cfg.protocol = awsjson_protocol.new({ version = "1.1", service_id = cfg.service_id })
+        cfg.protocol = awsjson_protocol.new("1.1")
     end
     if not cfg.endpoint_provider then
         cfg.endpoint_provider = function(params)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "codedeploy", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:addTagsToOnPremisesInstances(input, options)
         output_schema = types.AddTagsToOnPremisesInstancesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchGetApplicationRevisions(input, options)
         output_schema = types.BatchGetApplicationRevisionsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchGetApplications(input, options)
         output_schema = types.BatchGetApplicationsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:batchGetDeploymentGroups(input, options)
         output_schema = types.BatchGetDeploymentGroupsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:batchGetDeploymentInstances(input, options)
         output_schema = types.BatchGetDeploymentInstancesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:batchGetDeployments(input, options)
         output_schema = types.BatchGetDeploymentsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:batchGetDeploymentTargets(input, options)
         output_schema = types.BatchGetDeploymentTargetsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:batchGetOnPremisesInstances(input, options)
         output_schema = types.BatchGetOnPremisesInstancesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:continueDeployment(input, options)
         output_schema = types.ContinueDeploymentOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createApplication(input, options)
         output_schema = types.CreateApplicationOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createDeployment(input, options)
         output_schema = types.CreateDeploymentOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createDeploymentConfig(input, options)
         output_schema = types.CreateDeploymentConfigOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createDeploymentGroup(input, options)
         output_schema = types.CreateDeploymentGroupOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteApplication(input, options)
         output_schema = types.DeleteApplicationOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteDeploymentConfig(input, options)
         output_schema = types.DeleteDeploymentConfigOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteDeploymentGroup(input, options)
         output_schema = types.DeleteDeploymentGroupOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deleteGitHubAccountToken(input, options)
         output_schema = types.DeleteGitHubAccountTokenOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteResourcesByExternalId(input, options)
         output_schema = types.DeleteResourcesByExternalIdOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deregisterOnPremisesInstance(input, options)
         output_schema = types.DeregisterOnPremisesInstanceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:getApplication(input, options)
         output_schema = types.GetApplicationOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:getApplicationRevision(input, options)
         output_schema = types.GetApplicationRevisionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:getDeployment(input, options)
         output_schema = types.GetDeploymentOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:getDeploymentConfig(input, options)
         output_schema = types.GetDeploymentConfigOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:getDeploymentGroup(input, options)
         output_schema = types.GetDeploymentGroupOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:getDeploymentInstance(input, options)
         output_schema = types.GetDeploymentInstanceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:getDeploymentTarget(input, options)
         output_schema = types.GetDeploymentTargetOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:getOnPremisesInstance(input, options)
         output_schema = types.GetOnPremisesInstanceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:listApplicationRevisions(input, options)
         output_schema = types.ListApplicationRevisionsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listApplications(input, options)
         output_schema = types.ListApplicationsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:listDeploymentConfigs(input, options)
         output_schema = types.ListDeploymentConfigsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:listDeploymentGroups(input, options)
         output_schema = types.ListDeploymentGroupsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:listDeploymentInstances(input, options)
         output_schema = types.ListDeploymentInstancesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:listDeployments(input, options)
         output_schema = types.ListDeploymentsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:listDeploymentTargets(input, options)
         output_schema = types.ListDeploymentTargetsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:listGitHubAccountTokenNames(input, options)
         output_schema = types.ListGitHubAccountTokenNamesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:listOnPremisesInstances(input, options)
         output_schema = types.ListOnPremisesInstancesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:putLifecycleEventHookExecutionStatus(input, options)
         output_schema = types.PutLifecycleEventHookExecutionStatusOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:registerApplicationRevision(input, options)
         output_schema = types.RegisterApplicationRevisionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:registerOnPremisesInstance(input, options)
         output_schema = types.RegisterOnPremisesInstanceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:removeTagsFromOnPremisesInstances(input, options)
         output_schema = types.RemoveTagsFromOnPremisesInstancesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:skipWaitTimeForInstanceTermination(input, options)
         output_schema = types.SkipWaitTimeForInstanceTerminationOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:stopDeployment(input, options)
         output_schema = types.StopDeploymentOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:updateApplication(input, options)
         output_schema = types.UpdateApplicationOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:updateDeploymentGroup(input, options)
         output_schema = types.UpdateDeploymentGroupOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

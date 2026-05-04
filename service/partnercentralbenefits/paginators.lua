@@ -1,0 +1,59 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listBenefitAllocations.
+function M.pages_list_benefit_allocations(client, input)
+    return paginator.pages(client, "listBenefitAllocations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BenefitAllocationSummaries",
+    })
+end
+
+--- Returns an item iterator for listBenefitAllocations.
+function M.items_list_benefit_allocations(client, input)
+    return paginator.items(client, "listBenefitAllocations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BenefitAllocationSummaries",
+    })
+end
+
+--- Returns a page iterator for listBenefitApplications.
+function M.pages_list_benefit_applications(client, input)
+    return paginator.pages(client, "listBenefitApplications", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BenefitApplicationSummaries",
+    })
+end
+
+--- Returns an item iterator for listBenefitApplications.
+function M.items_list_benefit_applications(client, input)
+    return paginator.items(client, "listBenefitApplications", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BenefitApplicationSummaries",
+    })
+end
+
+--- Returns a page iterator for listBenefits.
+function M.pages_list_benefits(client, input)
+    return paginator.pages(client, "listBenefits", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BenefitSummaries",
+    })
+end
+
+--- Returns an item iterator for listBenefits.
+function M.items_list_benefits(client, input)
+    return paginator.items(client, "listBenefits", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BenefitSummaries",
+    })
+end
+
+return M

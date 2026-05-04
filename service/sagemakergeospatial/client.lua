@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "SageMakerGeospatial"
-    cfg.signing_name = "sagemaker-geospatial"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "sagemaker-geospatial", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:deleteEarthObservationJob(input, options)
         output_schema = types.DeleteEarthObservationJobOutput,
         http_method = "DELETE",
         http_path = "/earth-observation-jobs/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:deleteVectorEnrichmentJob(input, options)
         output_schema = types.DeleteVectorEnrichmentJobOutput,
         http_method = "DELETE",
         http_path = "/vector-enrichment-jobs/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:exportEarthObservationJob(input, options)
         output_schema = types.ExportEarthObservationJobOutput,
         http_method = "POST",
         http_path = "/export-earth-observation-job",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:exportVectorEnrichmentJob(input, options)
         output_schema = types.ExportVectorEnrichmentJobOutput,
         http_method = "POST",
         http_path = "/export-vector-enrichment-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:getEarthObservationJob(input, options)
         output_schema = types.GetEarthObservationJobOutput,
         http_method = "GET",
         http_path = "/earth-observation-jobs/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:getRasterDataCollection(input, options)
         output_schema = types.GetRasterDataCollectionOutput,
         http_method = "GET",
         http_path = "/raster-data-collection/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:getTile(input, options)
         output_schema = types.GetTileOutput,
         http_method = "GET",
         http_path = "/tile/{z}/{x}/{y}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:getVectorEnrichmentJob(input, options)
         output_schema = types.GetVectorEnrichmentJobOutput,
         http_method = "GET",
         http_path = "/vector-enrichment-jobs/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:listEarthObservationJobs(input, options)
         output_schema = types.ListEarthObservationJobsOutput,
         http_method = "POST",
         http_path = "/list-earth-observation-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:listRasterDataCollections(input, options)
         output_schema = types.ListRasterDataCollectionsOutput,
         http_method = "GET",
         http_path = "/raster-data-collections",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:listVectorEnrichmentJobs(input, options)
         output_schema = types.ListVectorEnrichmentJobsOutput,
         http_method = "POST",
         http_path = "/list-vector-enrichment-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:searchRasterDataCollection(input, options)
         output_schema = types.SearchRasterDataCollectionOutput,
         http_method = "POST",
         http_path = "/search-raster-data-collection",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:startEarthObservationJob(input, options)
         output_schema = types.StartEarthObservationJobOutput,
         http_method = "POST",
         http_path = "/earth-observation-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:startVectorEnrichmentJob(input, options)
         output_schema = types.StartVectorEnrichmentJobOutput,
         http_method = "POST",
         http_path = "/vector-enrichment-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:stopEarthObservationJob(input, options)
         output_schema = types.StopEarthObservationJobOutput,
         http_method = "POST",
         http_path = "/earth-observation-jobs/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:stopVectorEnrichmentJob(input, options)
         output_schema = types.StopVectorEnrichmentJobOutput,
         http_method = "POST",
         http_path = "/vector-enrichment-jobs/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "PUT",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

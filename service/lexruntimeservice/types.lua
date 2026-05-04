@@ -351,12 +351,14 @@ M.PostContentInput = {
             type = "string",
             traits = {
                 http_header = "x-amz-lex-session-attributes",
+                media_type = "application/json",
             },
         },
         requestAttributes = {
             type = "string",
             traits = {
                 http_header = "x-amz-lex-request-attributes",
+                media_type = "application/json",
             },
         },
         contentType = {
@@ -383,6 +385,7 @@ M.PostContentInput = {
             type = "string",
             traits = {
                 http_header = "x-amz-lex-active-contexts",
+                media_type = "application/json",
             },
         },
     },
@@ -416,24 +419,28 @@ M.PostContentOutput = {
             type = "string",
             traits = {
                 http_header = "x-amz-lex-nlu-intent-confidence",
+                media_type = "application/json",
             },
         },
         alternativeIntents = {
             type = "string",
             traits = {
                 http_header = "x-amz-lex-alternative-intents",
+                media_type = "application/json",
             },
         },
         slots = {
             type = "string",
             traits = {
                 http_header = "x-amz-lex-slots",
+                media_type = "application/json",
             },
         },
         sessionAttributes = {
             type = "string",
             traits = {
                 http_header = "x-amz-lex-session-attributes",
+                media_type = "application/json",
             },
         },
         sentimentResponse = {
@@ -507,6 +514,7 @@ M.PostContentOutput = {
             type = "string",
             traits = {
                 http_header = "x-amz-lex-active-contexts",
+                media_type = "application/json",
             },
         },
     },
@@ -792,12 +800,14 @@ M.PutSessionOutput = {
             type = "string",
             traits = {
                 http_header = "x-amz-lex-slots",
+                media_type = "application/json",
             },
         },
         sessionAttributes = {
             type = "string",
             traits = {
                 http_header = "x-amz-lex-session-attributes",
+                media_type = "application/json",
             },
         },
         message = {
@@ -847,6 +857,7 @@ M.PutSessionOutput = {
             type = "string",
             traits = {
                 http_header = "x-amz-lex-active-contexts",
+                media_type = "application/json",
             },
         },
     },

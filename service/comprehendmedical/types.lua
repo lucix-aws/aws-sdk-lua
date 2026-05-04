@@ -1259,6 +1259,9 @@ M.StartEntitiesDetectionV2JobInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         KMSKey = {
             type = "string",
@@ -1301,6 +1304,9 @@ M.StartICD10CMInferenceJobInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         KMSKey = {
             type = "string",
@@ -1343,6 +1349,9 @@ M.StartPHIDetectionJobInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         KMSKey = {
             type = "string",
@@ -1385,6 +1394,9 @@ M.StartRxNormInferenceJobInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         KMSKey = {
             type = "string",
@@ -1427,6 +1439,9 @@ M.StartSNOMEDCTInferenceJobInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         KMSKey = {
             type = "string",

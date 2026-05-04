@@ -562,6 +562,9 @@ M.CreateAIAgentInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         assistantId = {
             type = "string",
@@ -733,6 +736,9 @@ M.CreateAIAgentVersionInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1014,6 +1020,9 @@ M.UpdateAIAgentInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         assistantId = {
             type = "string",
@@ -1341,6 +1350,9 @@ M.CreateAIGuardrailInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         assistantId = {
             type = "string",
@@ -1491,6 +1503,9 @@ M.CreateAIGuardrailVersionInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1750,6 +1765,9 @@ M.UpdateAIGuardrailInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         assistantId = {
             type = "string",
@@ -1881,6 +1899,9 @@ M.CreateAIPromptInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         assistantId = {
             type = "string",
@@ -2056,6 +2077,9 @@ M.CreateAIPromptVersionInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2354,6 +2378,9 @@ M.UpdateAIPromptInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         assistantId = {
             type = "string",
@@ -2472,6 +2499,9 @@ M.CreateAssistantAssociationInput = {
         } }, { __index = M.AssistantAssociationInputData }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -2706,6 +2736,9 @@ M.CreateAssistantInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         name = {
             type = "string",
@@ -3913,6 +3946,9 @@ M.CreateSessionInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         assistantId = {
             type = "string",
@@ -4544,6 +4580,9 @@ M.SendMessageInput = {
         configuration = M.MessageConfiguration,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         orchestratorUseCase = {
             type = "string",
@@ -4880,6 +4919,9 @@ M.CreateContentAssociationInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         knowledgeBaseId = {
             type = "string",
@@ -5179,6 +5221,9 @@ M.CreateContentInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -5663,6 +5708,9 @@ M.CreateKnowledgeBaseInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         name = {
             type = "string",
@@ -6266,6 +6314,9 @@ M.CreateMessageTemplateInput = {
         groupingConfiguration = M.GroupingConfiguration,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -6698,6 +6749,9 @@ M.CreateQuickResponseInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -8527,6 +8581,9 @@ M.StartImportJobInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         metadata = {
             type = "map",

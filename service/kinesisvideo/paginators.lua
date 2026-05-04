@@ -1,0 +1,77 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for describeMappedResourceConfiguration.
+function M.pages_describe_mapped_resource_configuration(client, input)
+    return paginator.pages(client, "describeMappedResourceConfiguration", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MappedResourceConfigurationList",
+    })
+end
+
+--- Returns an item iterator for describeMappedResourceConfiguration.
+function M.items_describe_mapped_resource_configuration(client, input)
+    return paginator.items(client, "describeMappedResourceConfiguration", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MappedResourceConfigurationList",
+    })
+end
+
+--- Returns a page iterator for listEdgeAgentConfigurations.
+function M.pages_list_edge_agent_configurations(client, input)
+    return paginator.pages(client, "listEdgeAgentConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "EdgeConfigs",
+    })
+end
+
+--- Returns an item iterator for listEdgeAgentConfigurations.
+function M.items_list_edge_agent_configurations(client, input)
+    return paginator.items(client, "listEdgeAgentConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "EdgeConfigs",
+    })
+end
+
+--- Returns a page iterator for listSignalingChannels.
+function M.pages_list_signaling_channels(client, input)
+    return paginator.pages(client, "listSignalingChannels", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ChannelInfoList",
+    })
+end
+
+--- Returns an item iterator for listSignalingChannels.
+function M.items_list_signaling_channels(client, input)
+    return paginator.items(client, "listSignalingChannels", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ChannelInfoList",
+    })
+end
+
+--- Returns a page iterator for listStreams.
+function M.pages_list_streams(client, input)
+    return paginator.pages(client, "listStreams", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "StreamInfoList",
+    })
+end
+
+--- Returns an item iterator for listStreams.
+function M.items_list_streams(client, input)
+    return paginator.items(client, "listStreams", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "StreamInfoList",
+    })
+end
+
+return M

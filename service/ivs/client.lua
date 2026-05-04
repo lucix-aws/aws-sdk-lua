@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonInteractiveVideoService"
-    cfg.signing_name = "ivs"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ivs", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:batchGetChannel(input, options)
         output_schema = types.BatchGetChannelOutput,
         http_method = "POST",
         http_path = "/BatchGetChannel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchGetStreamKey(input, options)
         output_schema = types.BatchGetStreamKeyOutput,
         http_method = "POST",
         http_path = "/BatchGetStreamKey",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchStartViewerSessionRevocation(input, options)
         output_schema = types.BatchStartViewerSessionRevocationOutput,
         http_method = "POST",
         http_path = "/BatchStartViewerSessionRevocation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createAdConfiguration(input, options)
         output_schema = types.CreateAdConfigurationOutput,
         http_method = "POST",
         http_path = "/CreateAdConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createChannel(input, options)
         output_schema = types.CreateChannelOutput,
         http_method = "POST",
         http_path = "/CreateChannel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createPlaybackRestrictionPolicy(input, options)
         output_schema = types.CreatePlaybackRestrictionPolicyOutput,
         http_method = "POST",
         http_path = "/CreatePlaybackRestrictionPolicy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createRecordingConfiguration(input, options)
         output_schema = types.CreateRecordingConfigurationOutput,
         http_method = "POST",
         http_path = "/CreateRecordingConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createStreamKey(input, options)
         output_schema = types.CreateStreamKeyOutput,
         http_method = "POST",
         http_path = "/CreateStreamKey",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteAdConfiguration(input, options)
         output_schema = types.DeleteAdConfigurationOutput,
         http_method = "POST",
         http_path = "/DeleteAdConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteChannel(input, options)
         output_schema = types.DeleteChannelOutput,
         http_method = "POST",
         http_path = "/DeleteChannel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deletePlaybackKeyPair(input, options)
         output_schema = types.DeletePlaybackKeyPairOutput,
         http_method = "POST",
         http_path = "/DeletePlaybackKeyPair",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deletePlaybackRestrictionPolicy(input, options)
         output_schema = types.DeletePlaybackRestrictionPolicyOutput,
         http_method = "POST",
         http_path = "/DeletePlaybackRestrictionPolicy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteRecordingConfiguration(input, options)
         output_schema = types.DeleteRecordingConfigurationOutput,
         http_method = "POST",
         http_path = "/DeleteRecordingConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteStreamKey(input, options)
         output_schema = types.DeleteStreamKeyOutput,
         http_method = "POST",
         http_path = "/DeleteStreamKey",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getAdConfiguration(input, options)
         output_schema = types.GetAdConfigurationOutput,
         http_method = "POST",
         http_path = "/GetAdConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getChannel(input, options)
         output_schema = types.GetChannelOutput,
         http_method = "POST",
         http_path = "/GetChannel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getPlaybackKeyPair(input, options)
         output_schema = types.GetPlaybackKeyPairOutput,
         http_method = "POST",
         http_path = "/GetPlaybackKeyPair",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getPlaybackRestrictionPolicy(input, options)
         output_schema = types.GetPlaybackRestrictionPolicyOutput,
         http_method = "POST",
         http_path = "/GetPlaybackRestrictionPolicy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getRecordingConfiguration(input, options)
         output_schema = types.GetRecordingConfigurationOutput,
         http_method = "POST",
         http_path = "/GetRecordingConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:getStream(input, options)
         output_schema = types.GetStreamOutput,
         http_method = "POST",
         http_path = "/GetStream",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:getStreamKey(input, options)
         output_schema = types.GetStreamKeyOutput,
         http_method = "POST",
         http_path = "/GetStreamKey",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:getStreamSession(input, options)
         output_schema = types.GetStreamSessionOutput,
         http_method = "POST",
         http_path = "/GetStreamSession",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:importPlaybackKeyPair(input, options)
         output_schema = types.ImportPlaybackKeyPairOutput,
         http_method = "POST",
         http_path = "/ImportPlaybackKeyPair",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:insertAdBreak(input, options)
         output_schema = types.InsertAdBreakOutput,
         http_method = "POST",
         http_path = "/InsertAdBreak",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listAdConfigurations(input, options)
         output_schema = types.ListAdConfigurationsOutput,
         http_method = "POST",
         http_path = "/ListAdConfigurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listChannels(input, options)
         output_schema = types.ListChannelsOutput,
         http_method = "POST",
         http_path = "/ListChannels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:listPlaybackKeyPairs(input, options)
         output_schema = types.ListPlaybackKeyPairsOutput,
         http_method = "POST",
         http_path = "/ListPlaybackKeyPairs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:listPlaybackRestrictionPolicies(input, options)
         output_schema = types.ListPlaybackRestrictionPoliciesOutput,
         http_method = "POST",
         http_path = "/ListPlaybackRestrictionPolicies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listRecordingConfigurations(input, options)
         output_schema = types.ListRecordingConfigurationsOutput,
         http_method = "POST",
         http_path = "/ListRecordingConfigurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:listStreamKeys(input, options)
         output_schema = types.ListStreamKeysOutput,
         http_method = "POST",
         http_path = "/ListStreamKeys",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:listStreams(input, options)
         output_schema = types.ListStreamsOutput,
         http_method = "POST",
         http_path = "/ListStreams",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:listStreamSessions(input, options)
         output_schema = types.ListStreamSessionsOutput,
         http_method = "POST",
         http_path = "/ListStreamSessions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:putMetadata(input, options)
         output_schema = types.PutMetadataOutput,
         http_method = "POST",
         http_path = "/PutMetadata",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:startViewerSessionRevocation(input, options)
         output_schema = types.StartViewerSessionRevocationOutput,
         http_method = "POST",
         http_path = "/StartViewerSessionRevocation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:stopStream(input, options)
         output_schema = types.StopStreamOutput,
         http_method = "POST",
         http_path = "/StopStream",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:updateChannel(input, options)
         output_schema = types.UpdateChannelOutput,
         http_method = "POST",
         http_path = "/UpdateChannel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:updatePlaybackRestrictionPolicy(input, options)
         output_schema = types.UpdatePlaybackRestrictionPolicyOutput,
         http_method = "POST",
         http_path = "/UpdatePlaybackRestrictionPolicy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

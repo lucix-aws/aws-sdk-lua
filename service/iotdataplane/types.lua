@@ -375,6 +375,7 @@ M.PublishInput = {
             type = "string",
             traits = {
                 http_header = "x-amz-mqtt5-user-properties",
+                media_type = "application/json",
             },
         },
         payloadFormatIndicator = {

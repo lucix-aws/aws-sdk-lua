@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "ChimeMessagingService"
-    cfg.signing_name = "chime"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "chime", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateChannelFlow(input, options)
         output_schema = types.AssociateChannelFlowOutput,
         http_method = "PUT",
         http_path = "/channels/{ChannelArn}/channel-flow",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchCreateChannelMembership(input, options)
         output_schema = types.BatchCreateChannelMembershipOutput,
         http_method = "POST",
         http_path = "/channels/{ChannelArn}/memberships?operation=batch-create",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:channelFlowCallback(input, options)
         output_schema = types.ChannelFlowCallbackOutput,
         http_method = "POST",
         http_path = "/channels/{ChannelArn}?operation=channel-flow-callback",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createChannel(input, options)
         output_schema = types.CreateChannelOutput,
         http_method = "POST",
         http_path = "/channels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createChannelBan(input, options)
         output_schema = types.CreateChannelBanOutput,
         http_method = "POST",
         http_path = "/channels/{ChannelArn}/bans",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createChannelFlow(input, options)
         output_schema = types.CreateChannelFlowOutput,
         http_method = "POST",
         http_path = "/channel-flows",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createChannelMembership(input, options)
         output_schema = types.CreateChannelMembershipOutput,
         http_method = "POST",
         http_path = "/channels/{ChannelArn}/memberships",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createChannelModerator(input, options)
         output_schema = types.CreateChannelModeratorOutput,
         http_method = "POST",
         http_path = "/channels/{ChannelArn}/moderators",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteChannel(input, options)
         output_schema = types.DeleteChannelOutput,
         http_method = "DELETE",
         http_path = "/channels/{ChannelArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteChannelBan(input, options)
         output_schema = types.DeleteChannelBanOutput,
         http_method = "DELETE",
         http_path = "/channels/{ChannelArn}/bans/{MemberArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteChannelFlow(input, options)
         output_schema = types.DeleteChannelFlowOutput,
         http_method = "DELETE",
         http_path = "/channel-flows/{ChannelFlowArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteChannelMembership(input, options)
         output_schema = types.DeleteChannelMembershipOutput,
         http_method = "DELETE",
         http_path = "/channels/{ChannelArn}/memberships/{MemberArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteChannelMessage(input, options)
         output_schema = types.DeleteChannelMessageOutput,
         http_method = "DELETE",
         http_path = "/channels/{ChannelArn}/messages/{MessageId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteChannelModerator(input, options)
         output_schema = types.DeleteChannelModeratorOutput,
         http_method = "DELETE",
         http_path = "/channels/{ChannelArn}/moderators/{ChannelModeratorArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteMessagingStreamingConfigurations(input, options)
         output_schema = types.DeleteMessagingStreamingConfigurationsOutput,
         http_method = "DELETE",
         http_path = "/app-instances/{AppInstanceArn}/streaming-configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:describeChannel(input, options)
         output_schema = types.DescribeChannelOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:describeChannelBan(input, options)
         output_schema = types.DescribeChannelBanOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}/bans/{MemberArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:describeChannelFlow(input, options)
         output_schema = types.DescribeChannelFlowOutput,
         http_method = "GET",
         http_path = "/channel-flows/{ChannelFlowArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:describeChannelMembership(input, options)
         output_schema = types.DescribeChannelMembershipOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}/memberships/{MemberArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:describeChannelMembershipForAppInstanceUser(input, options)
         output_schema = types.DescribeChannelMembershipForAppInstanceUserOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}?scope=app-instance-user-membership",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:describeChannelModeratedByAppInstanceUser(input, options)
         output_schema = types.DescribeChannelModeratedByAppInstanceUserOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}?scope=app-instance-user-moderated-channel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:describeChannelModerator(input, options)
         output_schema = types.DescribeChannelModeratorOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}/moderators/{ChannelModeratorArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:disassociateChannelFlow(input, options)
         output_schema = types.DisassociateChannelFlowOutput,
         http_method = "DELETE",
         http_path = "/channels/{ChannelArn}/channel-flow/{ChannelFlowArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:getChannelMembershipPreferences(input, options)
         output_schema = types.GetChannelMembershipPreferencesOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}/memberships/{MemberArn}/preferences",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:getChannelMessage(input, options)
         output_schema = types.GetChannelMessageOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}/messages/{MessageId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:getChannelMessageStatus(input, options)
         output_schema = types.GetChannelMessageStatusOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}/messages/{MessageId}?scope=message-status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:getMessagingSessionEndpoint(input, options)
         output_schema = types.GetMessagingSessionEndpointOutput,
         http_method = "GET",
         http_path = "/endpoints/messaging-session",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:getMessagingStreamingConfigurations(input, options)
         output_schema = types.GetMessagingStreamingConfigurationsOutput,
         http_method = "GET",
         http_path = "/app-instances/{AppInstanceArn}/streaming-configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listChannelBans(input, options)
         output_schema = types.ListChannelBansOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}/bans",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:listChannelFlows(input, options)
         output_schema = types.ListChannelFlowsOutput,
         http_method = "GET",
         http_path = "/channel-flows",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:listChannelMemberships(input, options)
         output_schema = types.ListChannelMembershipsOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}/memberships",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:listChannelMembershipsForAppInstanceUser(input, options)
         output_schema = types.ListChannelMembershipsForAppInstanceUserOutput,
         http_method = "GET",
         http_path = "/channels?scope=app-instance-user-memberships",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:listChannelMessages(input, options)
         output_schema = types.ListChannelMessagesOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}/messages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:listChannelModerators(input, options)
         output_schema = types.ListChannelModeratorsOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}/moderators",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:listChannels(input, options)
         output_schema = types.ListChannelsOutput,
         http_method = "GET",
         http_path = "/channels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:listChannelsAssociatedWithChannelFlow(input, options)
         output_schema = types.ListChannelsAssociatedWithChannelFlowOutput,
         http_method = "GET",
         http_path = "/channels?scope=channel-flow-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:listChannelsModeratedByAppInstanceUser(input, options)
         output_schema = types.ListChannelsModeratedByAppInstanceUserOutput,
         http_method = "GET",
         http_path = "/channels?scope=app-instance-user-moderated-channels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:listSubChannels(input, options)
         output_schema = types.ListSubChannelsOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}/subchannels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:putChannelExpirationSettings(input, options)
         output_schema = types.PutChannelExpirationSettingsOutput,
         http_method = "PUT",
         http_path = "/channels/{ChannelArn}/expiration-settings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:putChannelMembershipPreferences(input, options)
         output_schema = types.PutChannelMembershipPreferencesOutput,
         http_method = "PUT",
         http_path = "/channels/{ChannelArn}/memberships/{MemberArn}/preferences",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:putMessagingStreamingConfigurations(input, options)
         output_schema = types.PutMessagingStreamingConfigurationsOutput,
         http_method = "PUT",
         http_path = "/app-instances/{AppInstanceArn}/streaming-configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:redactChannelMessage(input, options)
         output_schema = types.RedactChannelMessageOutput,
         http_method = "POST",
         http_path = "/channels/{ChannelArn}/messages/{MessageId}?operation=redact",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:searchChannels(input, options)
         output_schema = types.SearchChannelsOutput,
         http_method = "POST",
         http_path = "/channels?operation=search",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:sendChannelMessage(input, options)
         output_schema = types.SendChannelMessageOutput,
         http_method = "POST",
         http_path = "/channels/{ChannelArn}/messages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags?operation=tag-resource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/tags?operation=untag-resource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:updateChannel(input, options)
         output_schema = types.UpdateChannelOutput,
         http_method = "PUT",
         http_path = "/channels/{ChannelArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:updateChannelFlow(input, options)
         output_schema = types.UpdateChannelFlowOutput,
         http_method = "PUT",
         http_path = "/channel-flows/{ChannelFlowArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:updateChannelMessage(input, options)
         output_schema = types.UpdateChannelMessageOutput,
         http_method = "PUT",
         http_path = "/channels/{ChannelArn}/messages/{MessageId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:updateChannelReadMarker(input, options)
         output_schema = types.UpdateChannelReadMarkerOutput,
         http_method = "PUT",
         http_path = "/channels/{ChannelArn}/readMarker",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

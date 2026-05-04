@@ -16,16 +16,29 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "ResourceGroupsTaggingAPI_20170126"
-    cfg.signing_name = "tagging"
     if not cfg.protocol then
-        cfg.protocol = awsjson_protocol.new({ version = "1.1", service_id = cfg.service_id })
+        cfg.protocol = awsjson_protocol.new("1.1")
     end
     if not cfg.endpoint_provider then
         cfg.endpoint_provider = function(params)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "tagging", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:describeReportCreation(input, options)
         output_schema = types.DescribeReportCreationOutput,
         http_method = "POST",
         http_path = "/DescribeReportCreation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:getComplianceSummary(input, options)
         output_schema = types.GetComplianceSummaryOutput,
         http_method = "POST",
         http_path = "/GetComplianceSummary",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:getResources(input, options)
         output_schema = types.GetResourcesOutput,
         http_method = "POST",
         http_path = "/GetResources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:getTagKeys(input, options)
         output_schema = types.GetTagKeysOutput,
         http_method = "POST",
         http_path = "/GetTagKeys",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:getTagValues(input, options)
         output_schema = types.GetTagValuesOutput,
         http_method = "POST",
         http_path = "/GetTagValues",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:listRequiredTags(input, options)
         output_schema = types.ListRequiredTagsOutput,
         http_method = "POST",
         http_path = "/ListRequiredTags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:startReportCreation(input, options)
         output_schema = types.StartReportCreationOutput,
         http_method = "POST",
         http_path = "/StartReportCreation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:tagResources(input, options)
         output_schema = types.TagResourcesOutput,
         http_method = "POST",
         http_path = "/TagResources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:untagResources(input, options)
         output_schema = types.UntagResourcesOutput,
         http_method = "POST",
         http_path = "/UntagResources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

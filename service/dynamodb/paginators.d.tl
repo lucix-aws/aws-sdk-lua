@@ -1,0 +1,13 @@
+local record M
+    pages_list_contributor_insights: function(client: table, input: table): function(): table, table
+    pages_list_exports: function(client: table, input: table): function(): table, table
+    pages_list_imports: function(client: table, input: table): function(): table, table
+    pages_list_tables: function(client: table, input: table): function(): table, table
+    items_list_tables: function(client: table, input: table): function(): any
+    pages_query: function(client: table, input: table): function(): table, table
+    items_query: function(client: table, input: table): function(): any
+    pages_scan: function(client: table, input: table): function(): table, table
+    items_scan: function(client: table, input: table): function(): any
+end
+
+return M

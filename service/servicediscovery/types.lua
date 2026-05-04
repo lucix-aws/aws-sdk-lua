@@ -29,6 +29,9 @@ M.CreateHttpNamespaceInput = {
         },
         CreatorRequestId = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Description = {
             type = "string",
@@ -152,6 +155,9 @@ M.CreatePrivateDnsNamespaceInput = {
         },
         CreatorRequestId = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Description = {
             type = "string",
@@ -208,6 +214,9 @@ M.CreatePublicDnsNamespaceInput = {
         },
         CreatorRequestId = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Description = {
             type = "string",
@@ -329,6 +338,9 @@ M.CreateServiceInput = {
         },
         CreatorRequestId = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Description = {
             type = "string",
@@ -1457,6 +1469,9 @@ M.RegisterInstanceInput = {
         },
         CreatorRequestId = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Attributes = {
             type = "map",
@@ -1535,6 +1550,9 @@ M.UpdateHttpNamespaceInput = {
         },
         UpdaterRequestId = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Namespace = setmetatable({ traits = {
             required = true,
@@ -1590,6 +1608,9 @@ M.UpdatePrivateDnsNamespaceInput = {
         },
         UpdaterRequestId = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Namespace = setmetatable({ traits = {
             required = true,
@@ -1617,6 +1638,9 @@ M.UpdatePublicDnsNamespaceInput = {
         },
         UpdaterRequestId = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Namespace = setmetatable({ traits = {
             required = true,

@@ -1,0 +1,11 @@
+local record M
+    pages_list_access_policies: function(client: table, input: table): function(): table, table
+    pages_list_collection_groups: function(client: table, input: table): function(): table, table
+    pages_list_collections: function(client: table, input: table): function(): table, table
+    pages_list_lifecycle_policies: function(client: table, input: table): function(): table, table
+    pages_list_security_configs: function(client: table, input: table): function(): table, table
+    pages_list_security_policies: function(client: table, input: table): function(): table, table
+    pages_list_vpc_endpoints: function(client: table, input: table): function(): table, table
+end
+
+return M

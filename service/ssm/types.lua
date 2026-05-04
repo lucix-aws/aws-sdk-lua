@@ -1437,6 +1437,9 @@ M.CreateMaintenanceWindowInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",
@@ -1896,6 +1899,9 @@ M.CreatePatchBaselineInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",
@@ -2198,6 +2204,9 @@ M.DeleteInventoryInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -10558,6 +10567,9 @@ M.RegisterTargetWithMaintenanceWindowInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -10636,6 +10648,9 @@ M.RegisterTaskWithMaintenanceWindowInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         CutoffBehavior = {
             type = "string",

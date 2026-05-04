@@ -1,0 +1,8 @@
+local record M
+    pages_list_account_roles: function(client: table, input: table): function(): table, table
+    items_list_account_roles: function(client: table, input: table): function(): any
+    pages_list_accounts: function(client: table, input: table): function(): table, table
+    items_list_accounts: function(client: table, input: table): function(): any
+end
+
+return M

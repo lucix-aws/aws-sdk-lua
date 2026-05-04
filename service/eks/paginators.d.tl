@@ -1,0 +1,34 @@
+local record M
+    pages_describe_addon_versions: function(client: table, input: table): function(): table, table
+    items_describe_addon_versions: function(client: table, input: table): function(): any
+    pages_describe_cluster_versions: function(client: table, input: table): function(): table, table
+    items_describe_cluster_versions: function(client: table, input: table): function(): any
+    pages_list_access_entries: function(client: table, input: table): function(): table, table
+    items_list_access_entries: function(client: table, input: table): function(): any
+    pages_list_access_policies: function(client: table, input: table): function(): table, table
+    items_list_access_policies: function(client: table, input: table): function(): any
+    pages_list_addons: function(client: table, input: table): function(): table, table
+    items_list_addons: function(client: table, input: table): function(): any
+    pages_list_associated_access_policies: function(client: table, input: table): function(): table, table
+    items_list_associated_access_policies: function(client: table, input: table): function(): any
+    pages_list_capabilities: function(client: table, input: table): function(): table, table
+    items_list_capabilities: function(client: table, input: table): function(): any
+    pages_list_clusters: function(client: table, input: table): function(): table, table
+    items_list_clusters: function(client: table, input: table): function(): any
+    pages_list_eks_anywhere_subscriptions: function(client: table, input: table): function(): table, table
+    items_list_eks_anywhere_subscriptions: function(client: table, input: table): function(): any
+    pages_list_fargate_profiles: function(client: table, input: table): function(): table, table
+    items_list_fargate_profiles: function(client: table, input: table): function(): any
+    pages_list_identity_provider_configs: function(client: table, input: table): function(): table, table
+    items_list_identity_provider_configs: function(client: table, input: table): function(): any
+    pages_list_insights: function(client: table, input: table): function(): table, table
+    items_list_insights: function(client: table, input: table): function(): any
+    pages_list_nodegroups: function(client: table, input: table): function(): table, table
+    items_list_nodegroups: function(client: table, input: table): function(): any
+    pages_list_pod_identity_associations: function(client: table, input: table): function(): table, table
+    items_list_pod_identity_associations: function(client: table, input: table): function(): any
+    pages_list_updates: function(client: table, input: table): function(): table, table
+    items_list_updates: function(client: table, input: table): function(): any
+end
+
+return M

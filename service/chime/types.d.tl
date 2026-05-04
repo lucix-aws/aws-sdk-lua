@@ -2788,17 +2788,17 @@ end
 
 local type PhoneNumberProductType = "BusinessCalling" | "VoiceConnector" | "SipMediaApplicationDialIn"
 
-local type License = "Basic" | "Plus" | "Pro" | "ProTrial"
-
-local type PhoneNumberAssociationName = "AccountId" | "UserId" | "VoiceConnectorId" | "VoiceConnectorGroupId" | "SipRuleId"
-
 local type PhoneNumberStatus = "AcquireInProgress" | "AcquireFailed" | "Unassigned" | "Assigned" | "ReleaseInProgress" | "DeleteInProgress" | "ReleaseFailed" | "DeleteFailed"
 
-local type PhoneNumberType = "Local" | "TollFree"
+local type PhoneNumberAssociationName = "AccountId" | "UserId" | "VoiceConnectorId" | "VoiceConnectorGroupId" | "SipRuleId"
 
 local type UserType = "PrivateUser" | "SharedDevice"
 
 local type RoomMembershipRole = "Administrator" | "Member"
+
+local type PhoneNumberType = "Local" | "TollFree"
+
+local type License = "Basic" | "Plus" | "Pro" | "ProTrial"
 
 local record M
     AssociatePhoneNumberWithUserInput: AssociatePhoneNumberWithUserInput

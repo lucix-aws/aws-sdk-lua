@@ -580,6 +580,7 @@ M.CreateAcceleratorInput = {
         IdempotencyToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -617,6 +618,7 @@ M.CreateCrossAccountAttachmentInput = {
         IdempotencyToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -656,6 +658,7 @@ M.CreateCustomRoutingAcceleratorInput = {
         IdempotencyToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -767,6 +770,7 @@ M.CreateCustomRoutingEndpointGroupInput = {
         IdempotencyToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -882,6 +886,7 @@ M.CreateCustomRoutingListenerInput = {
         IdempotencyToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -966,6 +971,7 @@ M.CreateEndpointGroupInput = {
         IdempotencyToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1049,6 +1055,7 @@ M.CreateListenerInput = {
         IdempotencyToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },

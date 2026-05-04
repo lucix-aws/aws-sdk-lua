@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "mq"
-    cfg.signing_name = "mq"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "mq", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createBroker(input, options)
         output_schema = types.CreateBrokerOutput,
         http_method = "POST",
         http_path = "/v1/brokers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createConfiguration(input, options)
         output_schema = types.CreateConfigurationOutput,
         http_method = "POST",
         http_path = "/v1/configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createTags(input, options)
         output_schema = types.CreateTagsOutput,
         http_method = "POST",
         http_path = "/v1/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createUser(input, options)
         output_schema = types.CreateUserOutput,
         http_method = "POST",
         http_path = "/v1/brokers/{BrokerId}/users/{Username}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteBroker(input, options)
         output_schema = types.DeleteBrokerOutput,
         http_method = "DELETE",
         http_path = "/v1/brokers/{BrokerId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteConfiguration(input, options)
         output_schema = types.DeleteConfigurationOutput,
         http_method = "DELETE",
         http_path = "/v1/configurations/{ConfigurationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteTags(input, options)
         output_schema = types.DeleteTagsOutput,
         http_method = "DELETE",
         http_path = "/v1/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteUser(input, options)
         output_schema = types.DeleteUserOutput,
         http_method = "DELETE",
         http_path = "/v1/brokers/{BrokerId}/users/{Username}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:describeBroker(input, options)
         output_schema = types.DescribeBrokerOutput,
         http_method = "GET",
         http_path = "/v1/brokers/{BrokerId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:describeBrokerEngineTypes(input, options)
         output_schema = types.DescribeBrokerEngineTypesOutput,
         http_method = "GET",
         http_path = "/v1/broker-engine-types",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:describeBrokerInstanceOptions(input, options)
         output_schema = types.DescribeBrokerInstanceOptionsOutput,
         http_method = "GET",
         http_path = "/v1/broker-instance-options",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:describeConfiguration(input, options)
         output_schema = types.DescribeConfigurationOutput,
         http_method = "GET",
         http_path = "/v1/configurations/{ConfigurationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:describeConfigurationRevision(input, options)
         output_schema = types.DescribeConfigurationRevisionOutput,
         http_method = "GET",
         http_path = "/v1/configurations/{ConfigurationId}/revisions/{ConfigurationRevision}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:describeUser(input, options)
         output_schema = types.DescribeUserOutput,
         http_method = "GET",
         http_path = "/v1/brokers/{BrokerId}/users/{Username}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:listBrokers(input, options)
         output_schema = types.ListBrokersOutput,
         http_method = "GET",
         http_path = "/v1/brokers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listConfigurationRevisions(input, options)
         output_schema = types.ListConfigurationRevisionsOutput,
         http_method = "GET",
         http_path = "/v1/configurations/{ConfigurationId}/revisions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listConfigurations(input, options)
         output_schema = types.ListConfigurationsOutput,
         http_method = "GET",
         http_path = "/v1/configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listTags(input, options)
         output_schema = types.ListTagsOutput,
         http_method = "GET",
         http_path = "/v1/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listUsers(input, options)
         output_schema = types.ListUsersOutput,
         http_method = "GET",
         http_path = "/v1/brokers/{BrokerId}/users",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:promote(input, options)
         output_schema = types.PromoteOutput,
         http_method = "POST",
         http_path = "/v1/brokers/{BrokerId}/promote",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:rebootBroker(input, options)
         output_schema = types.RebootBrokerOutput,
         http_method = "POST",
         http_path = "/v1/brokers/{BrokerId}/reboot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:updateBroker(input, options)
         output_schema = types.UpdateBrokerOutput,
         http_method = "PUT",
         http_path = "/v1/brokers/{BrokerId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:updateConfiguration(input, options)
         output_schema = types.UpdateConfigurationOutput,
         http_method = "PUT",
         http_path = "/v1/configurations/{ConfigurationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:updateUser(input, options)
         output_schema = types.UpdateUserOutput,
         http_method = "PUT",
         http_path = "/v1/brokers/{BrokerId}/users/{Username}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

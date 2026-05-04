@@ -1,0 +1,14 @@
+local record M
+    pages_get_compliance_summary: function(client: table, input: table): function(): table, table
+    items_get_compliance_summary: function(client: table, input: table): function(): any
+    pages_get_resources: function(client: table, input: table): function(): table, table
+    items_get_resources: function(client: table, input: table): function(): any
+    pages_get_tag_keys: function(client: table, input: table): function(): table, table
+    items_get_tag_keys: function(client: table, input: table): function(): any
+    pages_get_tag_values: function(client: table, input: table): function(): table, table
+    items_get_tag_values: function(client: table, input: table): function(): any
+    pages_list_required_tags: function(client: table, input: table): function(): table, table
+    items_list_required_tags: function(client: table, input: table): function(): any
+end
+
+return M

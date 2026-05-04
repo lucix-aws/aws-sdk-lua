@@ -1,0 +1,9 @@
+local record M
+    pages_describe_connector_profiles: function(client: table, input: table): function(): table, table
+    pages_describe_connectors: function(client: table, input: table): function(): table, table
+    pages_describe_flow_execution_records: function(client: table, input: table): function(): table, table
+    pages_list_connectors: function(client: table, input: table): function(): table, table
+    pages_list_flows: function(client: table, input: table): function(): table, table
+end
+
+return M

@@ -1,0 +1,77 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listKeyspaces.
+function M.pages_list_keyspaces(client, input)
+    return paginator.pages(client, "listKeyspaces", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "keyspaces",
+    })
+end
+
+--- Returns an item iterator for listKeyspaces.
+function M.items_list_keyspaces(client, input)
+    return paginator.items(client, "listKeyspaces", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "keyspaces",
+    })
+end
+
+--- Returns a page iterator for listTables.
+function M.pages_list_tables(client, input)
+    return paginator.pages(client, "listTables", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "tables",
+    })
+end
+
+--- Returns an item iterator for listTables.
+function M.items_list_tables(client, input)
+    return paginator.items(client, "listTables", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "tables",
+    })
+end
+
+--- Returns a page iterator for listTagsForResource.
+function M.pages_list_tags_for_resource(client, input)
+    return paginator.pages(client, "listTagsForResource", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "tags",
+    })
+end
+
+--- Returns an item iterator for listTagsForResource.
+function M.items_list_tags_for_resource(client, input)
+    return paginator.items(client, "listTagsForResource", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "tags",
+    })
+end
+
+--- Returns a page iterator for listTypes.
+function M.pages_list_types(client, input)
+    return paginator.pages(client, "listTypes", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "types",
+    })
+end
+
+--- Returns an item iterator for listTypes.
+function M.items_list_types(client, input)
+    return paginator.items(client, "listTypes", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "types",
+    })
+end
+
+return M

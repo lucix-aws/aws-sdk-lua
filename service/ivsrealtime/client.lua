@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonInteractiveVideoServiceRealTime"
-    cfg.signing_name = "ivs"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ivs", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createEncoderConfiguration(input, options)
         output_schema = types.CreateEncoderConfigurationOutput,
         http_method = "POST",
         http_path = "/CreateEncoderConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createIngestConfiguration(input, options)
         output_schema = types.CreateIngestConfigurationOutput,
         http_method = "POST",
         http_path = "/CreateIngestConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createParticipantToken(input, options)
         output_schema = types.CreateParticipantTokenOutput,
         http_method = "POST",
         http_path = "/CreateParticipantToken",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createStage(input, options)
         output_schema = types.CreateStageOutput,
         http_method = "POST",
         http_path = "/CreateStage",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createStorageConfiguration(input, options)
         output_schema = types.CreateStorageConfigurationOutput,
         http_method = "POST",
         http_path = "/CreateStorageConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteEncoderConfiguration(input, options)
         output_schema = types.DeleteEncoderConfigurationOutput,
         http_method = "POST",
         http_path = "/DeleteEncoderConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteIngestConfiguration(input, options)
         output_schema = types.DeleteIngestConfigurationOutput,
         http_method = "POST",
         http_path = "/DeleteIngestConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deletePublicKey(input, options)
         output_schema = types.DeletePublicKeyOutput,
         http_method = "POST",
         http_path = "/DeletePublicKey",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteStage(input, options)
         output_schema = types.DeleteStageOutput,
         http_method = "POST",
         http_path = "/DeleteStage",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteStorageConfiguration(input, options)
         output_schema = types.DeleteStorageConfigurationOutput,
         http_method = "POST",
         http_path = "/DeleteStorageConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:disconnectParticipant(input, options)
         output_schema = types.DisconnectParticipantOutput,
         http_method = "POST",
         http_path = "/DisconnectParticipant",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getComposition(input, options)
         output_schema = types.GetCompositionOutput,
         http_method = "POST",
         http_path = "/GetComposition",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getEncoderConfiguration(input, options)
         output_schema = types.GetEncoderConfigurationOutput,
         http_method = "POST",
         http_path = "/GetEncoderConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getIngestConfiguration(input, options)
         output_schema = types.GetIngestConfigurationOutput,
         http_method = "POST",
         http_path = "/GetIngestConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getParticipant(input, options)
         output_schema = types.GetParticipantOutput,
         http_method = "POST",
         http_path = "/GetParticipant",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getPublicKey(input, options)
         output_schema = types.GetPublicKeyOutput,
         http_method = "POST",
         http_path = "/GetPublicKey",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getStage(input, options)
         output_schema = types.GetStageOutput,
         http_method = "POST",
         http_path = "/GetStage",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getStageSession(input, options)
         output_schema = types.GetStageSessionOutput,
         http_method = "POST",
         http_path = "/GetStageSession",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getStorageConfiguration(input, options)
         output_schema = types.GetStorageConfigurationOutput,
         http_method = "POST",
         http_path = "/GetStorageConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:importPublicKey(input, options)
         output_schema = types.ImportPublicKeyOutput,
         http_method = "POST",
         http_path = "/ImportPublicKey",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listCompositions(input, options)
         output_schema = types.ListCompositionsOutput,
         http_method = "POST",
         http_path = "/ListCompositions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listEncoderConfigurations(input, options)
         output_schema = types.ListEncoderConfigurationsOutput,
         http_method = "POST",
         http_path = "/ListEncoderConfigurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listIngestConfigurations(input, options)
         output_schema = types.ListIngestConfigurationsOutput,
         http_method = "POST",
         http_path = "/ListIngestConfigurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listParticipantEvents(input, options)
         output_schema = types.ListParticipantEventsOutput,
         http_method = "POST",
         http_path = "/ListParticipantEvents",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listParticipantReplicas(input, options)
         output_schema = types.ListParticipantReplicasOutput,
         http_method = "POST",
         http_path = "/ListParticipantReplicas",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listParticipants(input, options)
         output_schema = types.ListParticipantsOutput,
         http_method = "POST",
         http_path = "/ListParticipants",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:listPublicKeys(input, options)
         output_schema = types.ListPublicKeysOutput,
         http_method = "POST",
         http_path = "/ListPublicKeys",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:listStages(input, options)
         output_schema = types.ListStagesOutput,
         http_method = "POST",
         http_path = "/ListStages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listStageSessions(input, options)
         output_schema = types.ListStageSessionsOutput,
         http_method = "POST",
         http_path = "/ListStageSessions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:listStorageConfigurations(input, options)
         output_schema = types.ListStorageConfigurationsOutput,
         http_method = "POST",
         http_path = "/ListStorageConfigurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:startComposition(input, options)
         output_schema = types.StartCompositionOutput,
         http_method = "POST",
         http_path = "/StartComposition",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:startParticipantReplication(input, options)
         output_schema = types.StartParticipantReplicationOutput,
         http_method = "POST",
         http_path = "/StartParticipantReplication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:stopComposition(input, options)
         output_schema = types.StopCompositionOutput,
         http_method = "POST",
         http_path = "/StopComposition",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:stopParticipantReplication(input, options)
         output_schema = types.StopParticipantReplicationOutput,
         http_method = "POST",
         http_path = "/StopParticipantReplication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:updateIngestConfiguration(input, options)
         output_schema = types.UpdateIngestConfigurationOutput,
         http_method = "POST",
         http_path = "/UpdateIngestConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:updateStage(input, options)
         output_schema = types.UpdateStageOutput,
         http_method = "POST",
         http_path = "/UpdateStage",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

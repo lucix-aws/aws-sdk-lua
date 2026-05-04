@@ -1,0 +1,7 @@
+local record M
+    pages_list_f_h_i_r_datastores: function(client: table, input: table): function(): table, table
+    pages_list_f_h_i_r_export_jobs: function(client: table, input: table): function(): table, table
+    pages_list_f_h_i_r_import_jobs: function(client: table, input: table): function(): table, table
+end
+
+return M

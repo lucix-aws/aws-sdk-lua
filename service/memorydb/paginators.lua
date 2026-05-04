@@ -1,0 +1,239 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for describeACLs.
+function M.pages_describe_a_c_ls(client, input)
+    return paginator.pages(client, "describeACLs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ACLs",
+    })
+end
+
+--- Returns an item iterator for describeACLs.
+function M.items_describe_a_c_ls(client, input)
+    return paginator.items(client, "describeACLs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ACLs",
+    })
+end
+
+--- Returns a page iterator for describeClusters.
+function M.pages_describe_clusters(client, input)
+    return paginator.pages(client, "describeClusters", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Clusters",
+    })
+end
+
+--- Returns an item iterator for describeClusters.
+function M.items_describe_clusters(client, input)
+    return paginator.items(client, "describeClusters", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Clusters",
+    })
+end
+
+--- Returns a page iterator for describeEngineVersions.
+function M.pages_describe_engine_versions(client, input)
+    return paginator.pages(client, "describeEngineVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "EngineVersions",
+    })
+end
+
+--- Returns an item iterator for describeEngineVersions.
+function M.items_describe_engine_versions(client, input)
+    return paginator.items(client, "describeEngineVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "EngineVersions",
+    })
+end
+
+--- Returns a page iterator for describeEvents.
+function M.pages_describe_events(client, input)
+    return paginator.pages(client, "describeEvents", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Events",
+    })
+end
+
+--- Returns an item iterator for describeEvents.
+function M.items_describe_events(client, input)
+    return paginator.items(client, "describeEvents", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Events",
+    })
+end
+
+--- Returns a page iterator for describeMultiRegionClusters.
+function M.pages_describe_multi_region_clusters(client, input)
+    return paginator.pages(client, "describeMultiRegionClusters", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MultiRegionClusters",
+    })
+end
+
+--- Returns an item iterator for describeMultiRegionClusters.
+function M.items_describe_multi_region_clusters(client, input)
+    return paginator.items(client, "describeMultiRegionClusters", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MultiRegionClusters",
+    })
+end
+
+--- Returns a page iterator for describeParameterGroups.
+function M.pages_describe_parameter_groups(client, input)
+    return paginator.pages(client, "describeParameterGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ParameterGroups",
+    })
+end
+
+--- Returns an item iterator for describeParameterGroups.
+function M.items_describe_parameter_groups(client, input)
+    return paginator.items(client, "describeParameterGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ParameterGroups",
+    })
+end
+
+--- Returns a page iterator for describeParameters.
+function M.pages_describe_parameters(client, input)
+    return paginator.pages(client, "describeParameters", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Parameters",
+    })
+end
+
+--- Returns an item iterator for describeParameters.
+function M.items_describe_parameters(client, input)
+    return paginator.items(client, "describeParameters", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Parameters",
+    })
+end
+
+--- Returns a page iterator for describeReservedNodes.
+function M.pages_describe_reserved_nodes(client, input)
+    return paginator.pages(client, "describeReservedNodes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ReservedNodes",
+    })
+end
+
+--- Returns an item iterator for describeReservedNodes.
+function M.items_describe_reserved_nodes(client, input)
+    return paginator.items(client, "describeReservedNodes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ReservedNodes",
+    })
+end
+
+--- Returns a page iterator for describeReservedNodesOfferings.
+function M.pages_describe_reserved_nodes_offerings(client, input)
+    return paginator.pages(client, "describeReservedNodesOfferings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ReservedNodesOfferings",
+    })
+end
+
+--- Returns an item iterator for describeReservedNodesOfferings.
+function M.items_describe_reserved_nodes_offerings(client, input)
+    return paginator.items(client, "describeReservedNodesOfferings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ReservedNodesOfferings",
+    })
+end
+
+--- Returns a page iterator for describeServiceUpdates.
+function M.pages_describe_service_updates(client, input)
+    return paginator.pages(client, "describeServiceUpdates", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ServiceUpdates",
+    })
+end
+
+--- Returns an item iterator for describeServiceUpdates.
+function M.items_describe_service_updates(client, input)
+    return paginator.items(client, "describeServiceUpdates", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ServiceUpdates",
+    })
+end
+
+--- Returns a page iterator for describeSnapshots.
+function M.pages_describe_snapshots(client, input)
+    return paginator.pages(client, "describeSnapshots", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Snapshots",
+    })
+end
+
+--- Returns an item iterator for describeSnapshots.
+function M.items_describe_snapshots(client, input)
+    return paginator.items(client, "describeSnapshots", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Snapshots",
+    })
+end
+
+--- Returns a page iterator for describeSubnetGroups.
+function M.pages_describe_subnet_groups(client, input)
+    return paginator.pages(client, "describeSubnetGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SubnetGroups",
+    })
+end
+
+--- Returns an item iterator for describeSubnetGroups.
+function M.items_describe_subnet_groups(client, input)
+    return paginator.items(client, "describeSubnetGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SubnetGroups",
+    })
+end
+
+--- Returns a page iterator for describeUsers.
+function M.pages_describe_users(client, input)
+    return paginator.pages(client, "describeUsers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Users",
+    })
+end
+
+--- Returns an item iterator for describeUsers.
+function M.items_describe_users(client, input)
+    return paginator.items(client, "describeUsers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Users",
+    })
+end
+
+return M

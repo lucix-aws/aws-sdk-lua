@@ -1,0 +1,23 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listServices.
+function M.pages_list_services(client, input)
+    return paginator.pages(client, "listServices", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "services",
+    })
+end
+
+--- Returns an item iterator for listServices.
+function M.items_list_services(client, input)
+    return paginator.items(client, "listServices", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "services",
+    })
+end
+
+return M

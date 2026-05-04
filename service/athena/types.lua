@@ -686,6 +686,9 @@ M.CreateNamedQueryInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         WorkGroup = {
             type = "string",
@@ -1070,6 +1073,7 @@ M.DeleteNamedQueryInput = {
         NamedQueryId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -2914,6 +2918,9 @@ M.StartQueryExecutionInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         QueryExecutionContext = M.QueryExecutionContext,
         ResultConfiguration = M.ResultConfiguration,
@@ -3025,6 +3032,7 @@ M.StopQueryExecutionInput = {
         QueryExecutionId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },

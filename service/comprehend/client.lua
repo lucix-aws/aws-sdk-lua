@@ -16,16 +16,29 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "Comprehend_20171127"
-    cfg.signing_name = "comprehend"
     if not cfg.protocol then
-        cfg.protocol = awsjson_protocol.new({ version = "1.1", service_id = cfg.service_id })
+        cfg.protocol = awsjson_protocol.new("1.1")
     end
     if not cfg.endpoint_provider then
         cfg.endpoint_provider = function(params)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "comprehend", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:batchDetectDominantLanguage(input, options)
         output_schema = types.BatchDetectDominantLanguageOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchDetectEntities(input, options)
         output_schema = types.BatchDetectEntitiesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchDetectKeyPhrases(input, options)
         output_schema = types.BatchDetectKeyPhrasesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:batchDetectSentiment(input, options)
         output_schema = types.BatchDetectSentimentOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:batchDetectSyntax(input, options)
         output_schema = types.BatchDetectSyntaxOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:batchDetectTargetedSentiment(input, options)
         output_schema = types.BatchDetectTargetedSentimentOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:classifyDocument(input, options)
         output_schema = types.ClassifyDocumentOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:containsPiiEntities(input, options)
         output_schema = types.ContainsPiiEntitiesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createDataset(input, options)
         output_schema = types.CreateDatasetOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createDocumentClassifier(input, options)
         output_schema = types.CreateDocumentClassifierOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createEndpoint(input, options)
         output_schema = types.CreateEndpointOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createEntityRecognizer(input, options)
         output_schema = types.CreateEntityRecognizerOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createFlywheel(input, options)
         output_schema = types.CreateFlywheelOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteDocumentClassifier(input, options)
         output_schema = types.DeleteDocumentClassifierOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteEndpoint(input, options)
         output_schema = types.DeleteEndpointOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteEntityRecognizer(input, options)
         output_schema = types.DeleteEntityRecognizerOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deleteFlywheel(input, options)
         output_schema = types.DeleteFlywheelOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteResourcePolicy(input, options)
         output_schema = types.DeleteResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:describeDataset(input, options)
         output_schema = types.DescribeDatasetOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:describeDocumentClassificationJob(input, options)
         output_schema = types.DescribeDocumentClassificationJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:describeDocumentClassifier(input, options)
         output_schema = types.DescribeDocumentClassifierOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:describeDominantLanguageDetectionJob(input, options)
         output_schema = types.DescribeDominantLanguageDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:describeEndpoint(input, options)
         output_schema = types.DescribeEndpointOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:describeEntitiesDetectionJob(input, options)
         output_schema = types.DescribeEntitiesDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:describeEntityRecognizer(input, options)
         output_schema = types.DescribeEntityRecognizerOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:describeEventsDetectionJob(input, options)
         output_schema = types.DescribeEventsDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:describeFlywheel(input, options)
         output_schema = types.DescribeFlywheelOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:describeFlywheelIteration(input, options)
         output_schema = types.DescribeFlywheelIterationOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:describeKeyPhrasesDetectionJob(input, options)
         output_schema = types.DescribeKeyPhrasesDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:describePiiEntitiesDetectionJob(input, options)
         output_schema = types.DescribePiiEntitiesDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:describeResourcePolicy(input, options)
         output_schema = types.DescribeResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:describeSentimentDetectionJob(input, options)
         output_schema = types.DescribeSentimentDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:describeTargetedSentimentDetectionJob(input, options)
         output_schema = types.DescribeTargetedSentimentDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:describeTopicsDetectionJob(input, options)
         output_schema = types.DescribeTopicsDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:detectDominantLanguage(input, options)
         output_schema = types.DetectDominantLanguageOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:detectEntities(input, options)
         output_schema = types.DetectEntitiesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:detectKeyPhrases(input, options)
         output_schema = types.DetectKeyPhrasesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:detectPiiEntities(input, options)
         output_schema = types.DetectPiiEntitiesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:detectSentiment(input, options)
         output_schema = types.DetectSentimentOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:detectSyntax(input, options)
         output_schema = types.DetectSyntaxOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:detectTargetedSentiment(input, options)
         output_schema = types.DetectTargetedSentimentOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:detectToxicContent(input, options)
         output_schema = types.DetectToxicContentOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:importModel(input, options)
         output_schema = types.ImportModelOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:listDatasets(input, options)
         output_schema = types.ListDatasetsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:listDocumentClassificationJobs(input, options)
         output_schema = types.ListDocumentClassificationJobsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:listDocumentClassifiers(input, options)
         output_schema = types.ListDocumentClassifiersOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:listDocumentClassifierSummaries(input, options)
         output_schema = types.ListDocumentClassifierSummariesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:listDominantLanguageDetectionJobs(input, options)
         output_schema = types.ListDominantLanguageDetectionJobsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:listEndpoints(input, options)
         output_schema = types.ListEndpointsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:listEntitiesDetectionJobs(input, options)
         output_schema = types.ListEntitiesDetectionJobsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:listEntityRecognizers(input, options)
         output_schema = types.ListEntityRecognizersOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:listEntityRecognizerSummaries(input, options)
         output_schema = types.ListEntityRecognizerSummariesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:listEventsDetectionJobs(input, options)
         output_schema = types.ListEventsDetectionJobsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:listFlywheelIterationHistory(input, options)
         output_schema = types.ListFlywheelIterationHistoryOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:listFlywheels(input, options)
         output_schema = types.ListFlywheelsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:listKeyPhrasesDetectionJobs(input, options)
         output_schema = types.ListKeyPhrasesDetectionJobsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:listPiiEntitiesDetectionJobs(input, options)
         output_schema = types.ListPiiEntitiesDetectionJobsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:listSentimentDetectionJobs(input, options)
         output_schema = types.ListSentimentDetectionJobsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:listTargetedSentimentDetectionJobs(input, options)
         output_schema = types.ListTargetedSentimentDetectionJobsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:listTopicsDetectionJobs(input, options)
         output_schema = types.ListTopicsDetectionJobsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:putResourcePolicy(input, options)
         output_schema = types.PutResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:startDocumentClassificationJob(input, options)
         output_schema = types.StartDocumentClassificationJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:startDominantLanguageDetectionJob(input, options)
         output_schema = types.StartDominantLanguageDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:startEntitiesDetectionJob(input, options)
         output_schema = types.StartEntitiesDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:startEventsDetectionJob(input, options)
         output_schema = types.StartEventsDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:startFlywheelIteration(input, options)
         output_schema = types.StartFlywheelIterationOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:startKeyPhrasesDetectionJob(input, options)
         output_schema = types.StartKeyPhrasesDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:startPiiEntitiesDetectionJob(input, options)
         output_schema = types.StartPiiEntitiesDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:startSentimentDetectionJob(input, options)
         output_schema = types.StartSentimentDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:startTargetedSentimentDetectionJob(input, options)
         output_schema = types.StartTargetedSentimentDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:startTopicsDetectionJob(input, options)
         output_schema = types.StartTopicsDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:stopDominantLanguageDetectionJob(input, options)
         output_schema = types.StopDominantLanguageDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:stopEntitiesDetectionJob(input, options)
         output_schema = types.StopEntitiesDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:stopEventsDetectionJob(input, options)
         output_schema = types.StopEventsDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:stopKeyPhrasesDetectionJob(input, options)
         output_schema = types.StopKeyPhrasesDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:stopPiiEntitiesDetectionJob(input, options)
         output_schema = types.StopPiiEntitiesDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:stopSentimentDetectionJob(input, options)
         output_schema = types.StopSentimentDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:stopTargetedSentimentDetectionJob(input, options)
         output_schema = types.StopTargetedSentimentDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:stopTrainingDocumentClassifier(input, options)
         output_schema = types.StopTrainingDocumentClassifierOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:stopTrainingEntityRecognizer(input, options)
         output_schema = types.StopTrainingEntityRecognizerOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:updateEndpoint(input, options)
         output_schema = types.UpdateEndpointOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:updateFlywheel(input, options)
         output_schema = types.UpdateFlywheelOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

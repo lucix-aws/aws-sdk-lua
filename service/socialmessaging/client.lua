@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "SocialMessaging"
-    cfg.signing_name = "social-messaging"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "social-messaging", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateWhatsAppBusinessAccount(input, options)
         output_schema = types.AssociateWhatsAppBusinessAccountOutput,
         http_method = "POST",
         http_path = "/v1/whatsapp/signup",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createWhatsAppMessageTemplate(input, options)
         output_schema = types.CreateWhatsAppMessageTemplateOutput,
         http_method = "POST",
         http_path = "/v1/whatsapp/template/put",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createWhatsAppMessageTemplateFromLibrary(input, options)
         output_schema = types.CreateWhatsAppMessageTemplateFromLibraryOutput,
         http_method = "POST",
         http_path = "/v1/whatsapp/template/create",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createWhatsAppMessageTemplateMedia(input, options)
         output_schema = types.CreateWhatsAppMessageTemplateMediaOutput,
         http_method = "POST",
         http_path = "/v1/whatsapp/template/media",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteWhatsAppMessageMedia(input, options)
         output_schema = types.DeleteWhatsAppMessageMediaOutput,
         http_method = "DELETE",
         http_path = "/v1/whatsapp/media",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteWhatsAppMessageTemplate(input, options)
         output_schema = types.DeleteWhatsAppMessageTemplateOutput,
         http_method = "DELETE",
         http_path = "/v1/whatsapp/template",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:disassociateWhatsAppBusinessAccount(input, options)
         output_schema = types.DisassociateWhatsAppBusinessAccountOutput,
         http_method = "DELETE",
         http_path = "/v1/whatsapp/waba/disassociate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:getLinkedWhatsAppBusinessAccount(input, options)
         output_schema = types.GetLinkedWhatsAppBusinessAccountOutput,
         http_method = "GET",
         http_path = "/v1/whatsapp/waba/details",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getLinkedWhatsAppBusinessAccountPhoneNumber(input, options)
         output_schema = types.GetLinkedWhatsAppBusinessAccountPhoneNumberOutput,
         http_method = "GET",
         http_path = "/v1/whatsapp/waba/phone/details",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:getWhatsAppMessageMedia(input, options)
         output_schema = types.GetWhatsAppMessageMediaOutput,
         http_method = "POST",
         http_path = "/v1/whatsapp/media/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getWhatsAppMessageTemplate(input, options)
         output_schema = types.GetWhatsAppMessageTemplateOutput,
         http_method = "GET",
         http_path = "/v1/whatsapp/template",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:listLinkedWhatsAppBusinessAccounts(input, options)
         output_schema = types.ListLinkedWhatsAppBusinessAccountsOutput,
         http_method = "GET",
         http_path = "/v1/whatsapp/waba/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/v1/tags/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:listWhatsAppMessageTemplates(input, options)
         output_schema = types.ListWhatsAppMessageTemplatesOutput,
         http_method = "GET",
         http_path = "/v1/whatsapp/template/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:listWhatsAppTemplateLibrary(input, options)
         output_schema = types.ListWhatsAppTemplateLibraryOutput,
         http_method = "POST",
         http_path = "/v1/whatsapp/template/library",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:postWhatsAppMessageMedia(input, options)
         output_schema = types.PostWhatsAppMessageMediaOutput,
         http_method = "POST",
         http_path = "/v1/whatsapp/media",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:putWhatsAppBusinessAccountEventDestinations(input, options)
         output_schema = types.PutWhatsAppBusinessAccountEventDestinationsOutput,
         http_method = "PUT",
         http_path = "/v1/whatsapp/waba/eventdestinations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:sendWhatsAppMessage(input, options)
         output_schema = types.SendWhatsAppMessageOutput,
         http_method = "POST",
         http_path = "/v1/whatsapp/send",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/v1/tags/tag-resource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/v1/tags/untag-resource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:updateWhatsAppMessageTemplate(input, options)
         output_schema = types.UpdateWhatsAppMessageTemplateOutput,
         http_method = "POST",
         http_path = "/v1/whatsapp/template",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

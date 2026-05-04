@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "GroundStation"
-    cfg.signing_name = "groundstation"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "groundstation", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:cancelContact(input, options)
         output_schema = types.CancelContactOutput,
         http_method = "DELETE",
         http_path = "/contact/{contactId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createConfig(input, options)
         output_schema = types.CreateConfigOutput,
         http_method = "POST",
         http_path = "/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createDataflowEndpointGroup(input, options)
         output_schema = types.CreateDataflowEndpointGroupOutput,
         http_method = "POST",
         http_path = "/dataflowEndpointGroup",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createDataflowEndpointGroupV2(input, options)
         output_schema = types.CreateDataflowEndpointGroupV2Output,
         http_method = "POST",
         http_path = "/dataflowEndpointGroupV2",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createEphemeris(input, options)
         output_schema = types.CreateEphemerisOutput,
         http_method = "POST",
         http_path = "/ephemeris",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createMissionProfile(input, options)
         output_schema = types.CreateMissionProfileOutput,
         http_method = "POST",
         http_path = "/missionprofile",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteConfig(input, options)
         output_schema = types.DeleteConfigOutput,
         http_method = "DELETE",
         http_path = "/config/{configType}/{configId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteDataflowEndpointGroup(input, options)
         output_schema = types.DeleteDataflowEndpointGroupOutput,
         http_method = "DELETE",
         http_path = "/dataflowEndpointGroup/{dataflowEndpointGroupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteEphemeris(input, options)
         output_schema = types.DeleteEphemerisOutput,
         http_method = "DELETE",
         http_path = "/ephemeris/{ephemerisId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteMissionProfile(input, options)
         output_schema = types.DeleteMissionProfileOutput,
         http_method = "DELETE",
         http_path = "/missionprofile/{missionProfileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:describeContact(input, options)
         output_schema = types.DescribeContactOutput,
         http_method = "GET",
         http_path = "/contact/{contactId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:describeContactVersion(input, options)
         output_schema = types.DescribeContactVersionOutput,
         http_method = "GET",
         http_path = "/contact/{contactId}/versions/{versionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:describeEphemeris(input, options)
         output_schema = types.DescribeEphemerisOutput,
         http_method = "GET",
         http_path = "/ephemeris/{ephemerisId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getAgentConfiguration(input, options)
         output_schema = types.GetAgentConfigurationOutput,
         http_method = "GET",
         http_path = "/agent/{agentId}/configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getAgentTaskResponseUrl(input, options)
         output_schema = types.GetAgentTaskResponseUrlOutput,
         http_method = "GET",
         http_path = "/agentResponseUrl/{agentId}/{taskId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getConfig(input, options)
         output_schema = types.GetConfigOutput,
         http_method = "GET",
         http_path = "/config/{configType}/{configId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getDataflowEndpointGroup(input, options)
         output_schema = types.GetDataflowEndpointGroupOutput,
         http_method = "GET",
         http_path = "/dataflowEndpointGroup/{dataflowEndpointGroupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getMinuteUsage(input, options)
         output_schema = types.GetMinuteUsageOutput,
         http_method = "POST",
         http_path = "/minute-usage",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getMissionProfile(input, options)
         output_schema = types.GetMissionProfileOutput,
         http_method = "GET",
         http_path = "/missionprofile/{missionProfileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:getSatellite(input, options)
         output_schema = types.GetSatelliteOutput,
         http_method = "GET",
         http_path = "/satellite/{satelliteId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listAntennas(input, options)
         output_schema = types.ListAntennasOutput,
         http_method = "GET",
         http_path = "/groundstation/{groundStationId}/antenna",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listConfigs(input, options)
         output_schema = types.ListConfigsOutput,
         http_method = "GET",
         http_path = "/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listContacts(input, options)
         output_schema = types.ListContactsOutput,
         http_method = "POST",
         http_path = "/contacts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listContactVersions(input, options)
         output_schema = types.ListContactVersionsOutput,
         http_method = "GET",
         http_path = "/contact/{contactId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listDataflowEndpointGroups(input, options)
         output_schema = types.ListDataflowEndpointGroupsOutput,
         http_method = "GET",
         http_path = "/dataflowEndpointGroup",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listEphemerides(input, options)
         output_schema = types.ListEphemeridesOutput,
         http_method = "POST",
         http_path = "/ephemerides",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:listGroundStationReservations(input, options)
         output_schema = types.ListGroundStationReservationsOutput,
         http_method = "GET",
         http_path = "/groundstation/{groundStationId}/reservation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:listGroundStations(input, options)
         output_schema = types.ListGroundStationsOutput,
         http_method = "GET",
         http_path = "/groundstation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listMissionProfiles(input, options)
         output_schema = types.ListMissionProfilesOutput,
         http_method = "GET",
         http_path = "/missionprofile",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:listSatellites(input, options)
         output_schema = types.ListSatellitesOutput,
         http_method = "GET",
         http_path = "/satellite",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:registerAgent(input, options)
         output_schema = types.RegisterAgentOutput,
         http_method = "POST",
         http_path = "/agent",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:reserveContact(input, options)
         output_schema = types.ReserveContactOutput,
         http_method = "POST",
         http_path = "/contact",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:updateAgentStatus(input, options)
         output_schema = types.UpdateAgentStatusOutput,
         http_method = "PUT",
         http_path = "/agent/{agentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:updateConfig(input, options)
         output_schema = types.UpdateConfigOutput,
         http_method = "PUT",
         http_path = "/config/{configType}/{configId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:updateContact(input, options)
         output_schema = types.UpdateContactOutput,
         http_method = "POST",
         http_path = "/contact/{contactId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:updateEphemeris(input, options)
         output_schema = types.UpdateEphemerisOutput,
         http_method = "PUT",
         http_path = "/ephemeris/{ephemerisId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:updateMissionProfile(input, options)
         output_schema = types.UpdateMissionProfileOutput,
         http_method = "PUT",
         http_path = "/missionprofile/{missionProfileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

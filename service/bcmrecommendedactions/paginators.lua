@@ -1,0 +1,23 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listRecommendedActions.
+function M.pages_list_recommended_actions(client, input)
+    return paginator.pages(client, "listRecommendedActions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "recommendedActions",
+    })
+end
+
+--- Returns an item iterator for listRecommendedActions.
+function M.items_list_recommended_actions(client, input)
+    return paginator.items(client, "listRecommendedActions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "recommendedActions",
+    })
+end
+
+return M

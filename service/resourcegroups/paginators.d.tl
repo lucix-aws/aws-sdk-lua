@@ -1,0 +1,14 @@
+local record M
+    pages_list_group_resources: function(client: table, input: table): function(): table, table
+    items_list_group_resources: function(client: table, input: table): function(): any
+    pages_list_grouping_statuses: function(client: table, input: table): function(): table, table
+    items_list_grouping_statuses: function(client: table, input: table): function(): any
+    pages_list_groups: function(client: table, input: table): function(): table, table
+    items_list_groups: function(client: table, input: table): function(): any
+    pages_list_tag_sync_tasks: function(client: table, input: table): function(): table, table
+    items_list_tag_sync_tasks: function(client: table, input: table): function(): any
+    pages_search_resources: function(client: table, input: table): function(): table, table
+    items_search_resources: function(client: table, input: table): function(): any
+end
+
+return M

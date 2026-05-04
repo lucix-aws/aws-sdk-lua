@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "TaxSettings"
-    cfg.signing_name = "tax"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "tax", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:batchDeleteTaxRegistration(input, options)
         output_schema = types.BatchDeleteTaxRegistrationOutput,
         http_method = "POST",
         http_path = "/BatchDeleteTaxRegistration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchGetTaxExemptions(input, options)
         output_schema = types.BatchGetTaxExemptionsOutput,
         http_method = "POST",
         http_path = "/BatchGetTaxExemptions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchPutTaxRegistration(input, options)
         output_schema = types.BatchPutTaxRegistrationOutput,
         http_method = "POST",
         http_path = "/BatchPutTaxRegistration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:deleteSupplementalTaxRegistration(input, options)
         output_schema = types.DeleteSupplementalTaxRegistrationOutput,
         http_method = "POST",
         http_path = "/DeleteSupplementalTaxRegistration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteTaxRegistration(input, options)
         output_schema = types.DeleteTaxRegistrationOutput,
         http_method = "POST",
         http_path = "/DeleteTaxRegistration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:getTaxExemptionTypes(input, options)
         output_schema = types.GetTaxExemptionTypesOutput,
         http_method = "POST",
         http_path = "/GetTaxExemptionTypes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:getTaxInheritance(input, options)
         output_schema = types.GetTaxInheritanceOutput,
         http_method = "POST",
         http_path = "/GetTaxInheritance",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:getTaxRegistration(input, options)
         output_schema = types.GetTaxRegistrationOutput,
         http_method = "POST",
         http_path = "/GetTaxRegistration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getTaxRegistrationDocument(input, options)
         output_schema = types.GetTaxRegistrationDocumentOutput,
         http_method = "POST",
         http_path = "/GetTaxRegistrationDocument",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:listSupplementalTaxRegistrations(input, options)
         output_schema = types.ListSupplementalTaxRegistrationsOutput,
         http_method = "POST",
         http_path = "/ListSupplementalTaxRegistrations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:listTaxExemptions(input, options)
         output_schema = types.ListTaxExemptionsOutput,
         http_method = "POST",
         http_path = "/ListTaxExemptions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:listTaxRegistrations(input, options)
         output_schema = types.ListTaxRegistrationsOutput,
         http_method = "POST",
         http_path = "/ListTaxRegistrations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:putSupplementalTaxRegistration(input, options)
         output_schema = types.PutSupplementalTaxRegistrationOutput,
         http_method = "POST",
         http_path = "/PutSupplementalTaxRegistration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:putTaxExemption(input, options)
         output_schema = types.PutTaxExemptionOutput,
         http_method = "POST",
         http_path = "/PutTaxExemption",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:putTaxInheritance(input, options)
         output_schema = types.PutTaxInheritanceOutput,
         http_method = "POST",
         http_path = "/PutTaxInheritance",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:putTaxRegistration(input, options)
         output_schema = types.PutTaxRegistrationOutput,
         http_method = "POST",
         http_path = "/PutTaxRegistration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

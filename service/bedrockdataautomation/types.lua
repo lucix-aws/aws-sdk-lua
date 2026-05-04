@@ -295,6 +295,9 @@ M.CreateBlueprintInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         encryptionConfiguration = M.EncryptionConfiguration,
         tags = {
@@ -329,12 +332,14 @@ M.Blueprint = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastModifiedTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         blueprintName = {
@@ -363,6 +368,9 @@ M.Blueprint = {
         },
         optimizationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -502,10 +510,14 @@ M.BlueprintSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -582,6 +594,9 @@ M.CopyBlueprintStageInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -602,6 +617,9 @@ M.CreateBlueprintVersionInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -676,6 +694,7 @@ M.DataAutomationLibraryIngestionJob = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         entityType = {
@@ -701,6 +720,9 @@ M.DataAutomationLibraryIngestionJob = {
         } }, { __index = M.OutputConfiguration }),
         completionTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         errorMessage = {
             type = "string",
@@ -844,6 +866,9 @@ M.InvokeDataAutomationLibraryIngestionJobInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         inputConfiguration = setmetatable({ traits = {
             required = true,
@@ -930,10 +955,14 @@ M.DataAutomationLibraryIngestionJobSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         completionTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -965,6 +994,9 @@ M.CreateDataAutomationLibraryInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         encryptionConfiguration = M.EncryptionConfiguration,
         tags = {
@@ -1057,6 +1089,7 @@ M.DataAutomationLibrary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         libraryName = {
@@ -1125,6 +1158,7 @@ M.DataAutomationLibrarySummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1158,6 +1192,9 @@ M.UpdateDataAutomationLibraryInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1819,6 +1856,9 @@ M.CreateDataAutomationProjectInput = {
         dataAutomationLibraryConfiguration = M.DataAutomationLibraryConfiguration,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         encryptionConfiguration = M.EncryptionConfiguration,
         tags = {
@@ -1909,12 +1949,14 @@ M.DataAutomationProject = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastModifiedTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         projectName = {
@@ -2040,6 +2082,7 @@ M.DataAutomationProjectSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2150,6 +2193,9 @@ M.VocabularyEntity = {
         },
         lastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2211,6 +2257,9 @@ M.VocabularyEntitySummary = {
         },
         lastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }

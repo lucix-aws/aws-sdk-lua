@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "Pinpoint"
-    cfg.signing_name = "mobiletargeting"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "mobiletargeting", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createApp(input, options)
         output_schema = types.CreateAppOutput,
         http_method = "POST",
         http_path = "/v1/apps",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createCampaign(input, options)
         output_schema = types.CreateCampaignOutput,
         http_method = "POST",
         http_path = "/v1/apps/{ApplicationId}/campaigns",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createEmailTemplate(input, options)
         output_schema = types.CreateEmailTemplateOutput,
         http_method = "POST",
         http_path = "/v1/templates/{TemplateName}/email",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createExportJob(input, options)
         output_schema = types.CreateExportJobOutput,
         http_method = "POST",
         http_path = "/v1/apps/{ApplicationId}/jobs/export",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createImportJob(input, options)
         output_schema = types.CreateImportJobOutput,
         http_method = "POST",
         http_path = "/v1/apps/{ApplicationId}/jobs/import",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createInAppTemplate(input, options)
         output_schema = types.CreateInAppTemplateOutput,
         http_method = "POST",
         http_path = "/v1/templates/{TemplateName}/inapp",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createJourney(input, options)
         output_schema = types.CreateJourneyOutput,
         http_method = "POST",
         http_path = "/v1/apps/{ApplicationId}/journeys",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createPushTemplate(input, options)
         output_schema = types.CreatePushTemplateOutput,
         http_method = "POST",
         http_path = "/v1/templates/{TemplateName}/push",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createRecommenderConfiguration(input, options)
         output_schema = types.CreateRecommenderConfigurationOutput,
         http_method = "POST",
         http_path = "/v1/recommenders",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createSegment(input, options)
         output_schema = types.CreateSegmentOutput,
         http_method = "POST",
         http_path = "/v1/apps/{ApplicationId}/segments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createSmsTemplate(input, options)
         output_schema = types.CreateSmsTemplateOutput,
         http_method = "POST",
         http_path = "/v1/templates/{TemplateName}/sms",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createVoiceTemplate(input, options)
         output_schema = types.CreateVoiceTemplateOutput,
         http_method = "POST",
         http_path = "/v1/templates/{TemplateName}/voice",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteAdmChannel(input, options)
         output_schema = types.DeleteAdmChannelOutput,
         http_method = "DELETE",
         http_path = "/v1/apps/{ApplicationId}/channels/adm",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteApnsChannel(input, options)
         output_schema = types.DeleteApnsChannelOutput,
         http_method = "DELETE",
         http_path = "/v1/apps/{ApplicationId}/channels/apns",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteApnsSandboxChannel(input, options)
         output_schema = types.DeleteApnsSandboxChannelOutput,
         http_method = "DELETE",
         http_path = "/v1/apps/{ApplicationId}/channels/apns_sandbox",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteApnsVoipChannel(input, options)
         output_schema = types.DeleteApnsVoipChannelOutput,
         http_method = "DELETE",
         http_path = "/v1/apps/{ApplicationId}/channels/apns_voip",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deleteApnsVoipSandboxChannel(input, options)
         output_schema = types.DeleteApnsVoipSandboxChannelOutput,
         http_method = "DELETE",
         http_path = "/v1/apps/{ApplicationId}/channels/apns_voip_sandbox",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteApp(input, options)
         output_schema = types.DeleteAppOutput,
         http_method = "DELETE",
         http_path = "/v1/apps/{ApplicationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteBaiduChannel(input, options)
         output_schema = types.DeleteBaiduChannelOutput,
         http_method = "DELETE",
         http_path = "/v1/apps/{ApplicationId}/channels/baidu",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deleteCampaign(input, options)
         output_schema = types.DeleteCampaignOutput,
         http_method = "DELETE",
         http_path = "/v1/apps/{ApplicationId}/campaigns/{CampaignId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deleteEmailChannel(input, options)
         output_schema = types.DeleteEmailChannelOutput,
         http_method = "DELETE",
         http_path = "/v1/apps/{ApplicationId}/channels/email",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:deleteEmailTemplate(input, options)
         output_schema = types.DeleteEmailTemplateOutput,
         http_method = "DELETE",
         http_path = "/v1/templates/{TemplateName}/email",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:deleteEndpoint(input, options)
         output_schema = types.DeleteEndpointOutput,
         http_method = "DELETE",
         http_path = "/v1/apps/{ApplicationId}/endpoints/{EndpointId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:deleteEventStream(input, options)
         output_schema = types.DeleteEventStreamOutput,
         http_method = "DELETE",
         http_path = "/v1/apps/{ApplicationId}/eventstream",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:deleteGcmChannel(input, options)
         output_schema = types.DeleteGcmChannelOutput,
         http_method = "DELETE",
         http_path = "/v1/apps/{ApplicationId}/channels/gcm",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:deleteInAppTemplate(input, options)
         output_schema = types.DeleteInAppTemplateOutput,
         http_method = "DELETE",
         http_path = "/v1/templates/{TemplateName}/inapp",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:deleteJourney(input, options)
         output_schema = types.DeleteJourneyOutput,
         http_method = "DELETE",
         http_path = "/v1/apps/{ApplicationId}/journeys/{JourneyId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:deletePushTemplate(input, options)
         output_schema = types.DeletePushTemplateOutput,
         http_method = "DELETE",
         http_path = "/v1/templates/{TemplateName}/push",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:deleteRecommenderConfiguration(input, options)
         output_schema = types.DeleteRecommenderConfigurationOutput,
         http_method = "DELETE",
         http_path = "/v1/recommenders/{RecommenderId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:deleteSegment(input, options)
         output_schema = types.DeleteSegmentOutput,
         http_method = "DELETE",
         http_path = "/v1/apps/{ApplicationId}/segments/{SegmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:deleteSmsChannel(input, options)
         output_schema = types.DeleteSmsChannelOutput,
         http_method = "DELETE",
         http_path = "/v1/apps/{ApplicationId}/channels/sms",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:deleteSmsTemplate(input, options)
         output_schema = types.DeleteSmsTemplateOutput,
         http_method = "DELETE",
         http_path = "/v1/templates/{TemplateName}/sms",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:deleteUserEndpoints(input, options)
         output_schema = types.DeleteUserEndpointsOutput,
         http_method = "DELETE",
         http_path = "/v1/apps/{ApplicationId}/users/{UserId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:deleteVoiceChannel(input, options)
         output_schema = types.DeleteVoiceChannelOutput,
         http_method = "DELETE",
         http_path = "/v1/apps/{ApplicationId}/channels/voice",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:deleteVoiceTemplate(input, options)
         output_schema = types.DeleteVoiceTemplateOutput,
         http_method = "DELETE",
         http_path = "/v1/templates/{TemplateName}/voice",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:getAdmChannel(input, options)
         output_schema = types.GetAdmChannelOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/channels/adm",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:getApnsChannel(input, options)
         output_schema = types.GetApnsChannelOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/channels/apns",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:getApnsSandboxChannel(input, options)
         output_schema = types.GetApnsSandboxChannelOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/channels/apns_sandbox",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:getApnsVoipChannel(input, options)
         output_schema = types.GetApnsVoipChannelOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/channels/apns_voip",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:getApnsVoipSandboxChannel(input, options)
         output_schema = types.GetApnsVoipSandboxChannelOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/channels/apns_voip_sandbox",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:getApp(input, options)
         output_schema = types.GetAppOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:getApplicationDateRangeKpi(input, options)
         output_schema = types.GetApplicationDateRangeKpiOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/kpis/daterange/{KpiName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:getApplicationSettings(input, options)
         output_schema = types.GetApplicationSettingsOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/settings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:getApps(input, options)
         output_schema = types.GetAppsOutput,
         http_method = "GET",
         http_path = "/v1/apps",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:getBaiduChannel(input, options)
         output_schema = types.GetBaiduChannelOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/channels/baidu",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:getCampaign(input, options)
         output_schema = types.GetCampaignOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/campaigns/{CampaignId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:getCampaignActivities(input, options)
         output_schema = types.GetCampaignActivitiesOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/campaigns/{CampaignId}/activities",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:getCampaignDateRangeKpi(input, options)
         output_schema = types.GetCampaignDateRangeKpiOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/campaigns/{CampaignId}/kpis/daterange/{KpiName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:getCampaigns(input, options)
         output_schema = types.GetCampaignsOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/campaigns",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:getCampaignVersion(input, options)
         output_schema = types.GetCampaignVersionOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/campaigns/{CampaignId}/versions/{Version}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:getCampaignVersions(input, options)
         output_schema = types.GetCampaignVersionsOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/campaigns/{CampaignId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:getChannels(input, options)
         output_schema = types.GetChannelsOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/channels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:getEmailChannel(input, options)
         output_schema = types.GetEmailChannelOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/channels/email",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:getEmailTemplate(input, options)
         output_schema = types.GetEmailTemplateOutput,
         http_method = "GET",
         http_path = "/v1/templates/{TemplateName}/email",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:getEndpoint(input, options)
         output_schema = types.GetEndpointOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/endpoints/{EndpointId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:getEventStream(input, options)
         output_schema = types.GetEventStreamOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/eventstream",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:getExportJob(input, options)
         output_schema = types.GetExportJobOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/jobs/export/{JobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:getExportJobs(input, options)
         output_schema = types.GetExportJobsOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/jobs/export",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:getGcmChannel(input, options)
         output_schema = types.GetGcmChannelOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/channels/gcm",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:getImportJob(input, options)
         output_schema = types.GetImportJobOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/jobs/import/{JobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:getImportJobs(input, options)
         output_schema = types.GetImportJobsOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/jobs/import",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:getInAppMessages(input, options)
         output_schema = types.GetInAppMessagesOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/endpoints/{EndpointId}/inappmessages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:getInAppTemplate(input, options)
         output_schema = types.GetInAppTemplateOutput,
         http_method = "GET",
         http_path = "/v1/templates/{TemplateName}/inapp",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:getJourney(input, options)
         output_schema = types.GetJourneyOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/journeys/{JourneyId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:getJourneyDateRangeKpi(input, options)
         output_schema = types.GetJourneyDateRangeKpiOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/journeys/{JourneyId}/kpis/daterange/{KpiName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:getJourneyExecutionActivityMetrics(input, options)
         output_schema = types.GetJourneyExecutionActivityMetricsOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/journeys/{JourneyId}/activities/{JourneyActivityId}/execution-metrics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:getJourneyExecutionMetrics(input, options)
         output_schema = types.GetJourneyExecutionMetricsOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/journeys/{JourneyId}/execution-metrics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:getJourneyRunExecutionActivityMetrics(input, options)
         output_schema = types.GetJourneyRunExecutionActivityMetricsOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/journeys/{JourneyId}/runs/{RunId}/activities/{JourneyActivityId}/execution-metrics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:getJourneyRunExecutionMetrics(input, options)
         output_schema = types.GetJourneyRunExecutionMetricsOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/journeys/{JourneyId}/runs/{RunId}/execution-metrics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:getJourneyRuns(input, options)
         output_schema = types.GetJourneyRunsOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/journeys/{JourneyId}/runs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:getPushTemplate(input, options)
         output_schema = types.GetPushTemplateOutput,
         http_method = "GET",
         http_path = "/v1/templates/{TemplateName}/push",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:getRecommenderConfiguration(input, options)
         output_schema = types.GetRecommenderConfigurationOutput,
         http_method = "GET",
         http_path = "/v1/recommenders/{RecommenderId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:getRecommenderConfigurations(input, options)
         output_schema = types.GetRecommenderConfigurationsOutput,
         http_method = "GET",
         http_path = "/v1/recommenders",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:getSegment(input, options)
         output_schema = types.GetSegmentOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/segments/{SegmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:getSegmentExportJobs(input, options)
         output_schema = types.GetSegmentExportJobsOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/segments/{SegmentId}/jobs/export",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:getSegmentImportJobs(input, options)
         output_schema = types.GetSegmentImportJobsOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/segments/{SegmentId}/jobs/import",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:getSegments(input, options)
         output_schema = types.GetSegmentsOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/segments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:getSegmentVersion(input, options)
         output_schema = types.GetSegmentVersionOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/segments/{SegmentId}/versions/{Version}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:getSegmentVersions(input, options)
         output_schema = types.GetSegmentVersionsOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/segments/{SegmentId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:getSmsChannel(input, options)
         output_schema = types.GetSmsChannelOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/channels/sms",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:getSmsTemplate(input, options)
         output_schema = types.GetSmsTemplateOutput,
         http_method = "GET",
         http_path = "/v1/templates/{TemplateName}/sms",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:getUserEndpoints(input, options)
         output_schema = types.GetUserEndpointsOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/users/{UserId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:getVoiceChannel(input, options)
         output_schema = types.GetVoiceChannelOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/channels/voice",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:getVoiceTemplate(input, options)
         output_schema = types.GetVoiceTemplateOutput,
         http_method = "GET",
         http_path = "/v1/templates/{TemplateName}/voice",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:listJourneys(input, options)
         output_schema = types.ListJourneysOutput,
         http_method = "GET",
         http_path = "/v1/apps/{ApplicationId}/journeys",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -890,6 +1158,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/v1/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -900,6 +1171,9 @@ function Client:listTemplates(input, options)
         output_schema = types.ListTemplatesOutput,
         http_method = "GET",
         http_path = "/v1/templates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -910,6 +1184,9 @@ function Client:listTemplateVersions(input, options)
         output_schema = types.ListTemplateVersionsOutput,
         http_method = "GET",
         http_path = "/v1/templates/{TemplateName}/{TemplateType}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -920,6 +1197,9 @@ function Client:phoneNumberValidate(input, options)
         output_schema = types.PhoneNumberValidateOutput,
         http_method = "POST",
         http_path = "/v1/phone/number/validate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -930,6 +1210,9 @@ function Client:putEvents(input, options)
         output_schema = types.PutEventsOutput,
         http_method = "POST",
         http_path = "/v1/apps/{ApplicationId}/events",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -940,6 +1223,9 @@ function Client:putEventStream(input, options)
         output_schema = types.PutEventStreamOutput,
         http_method = "POST",
         http_path = "/v1/apps/{ApplicationId}/eventstream",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -950,6 +1236,9 @@ function Client:removeAttributes(input, options)
         output_schema = types.RemoveAttributesOutput,
         http_method = "PUT",
         http_path = "/v1/apps/{ApplicationId}/attributes/{AttributeType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -960,6 +1249,9 @@ function Client:sendMessages(input, options)
         output_schema = types.SendMessagesOutput,
         http_method = "POST",
         http_path = "/v1/apps/{ApplicationId}/messages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -970,6 +1262,9 @@ function Client:sendOTPMessage(input, options)
         output_schema = types.SendOTPMessageOutput,
         http_method = "POST",
         http_path = "/v1/apps/{ApplicationId}/otp",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -980,6 +1275,9 @@ function Client:sendUsersMessages(input, options)
         output_schema = types.SendUsersMessagesOutput,
         http_method = "POST",
         http_path = "/v1/apps/{ApplicationId}/users-messages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -990,6 +1288,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/v1/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1000,6 +1301,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/v1/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1010,6 +1314,9 @@ function Client:updateAdmChannel(input, options)
         output_schema = types.UpdateAdmChannelOutput,
         http_method = "PUT",
         http_path = "/v1/apps/{ApplicationId}/channels/adm",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1020,6 +1327,9 @@ function Client:updateApnsChannel(input, options)
         output_schema = types.UpdateApnsChannelOutput,
         http_method = "PUT",
         http_path = "/v1/apps/{ApplicationId}/channels/apns",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1030,6 +1340,9 @@ function Client:updateApnsSandboxChannel(input, options)
         output_schema = types.UpdateApnsSandboxChannelOutput,
         http_method = "PUT",
         http_path = "/v1/apps/{ApplicationId}/channels/apns_sandbox",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1040,6 +1353,9 @@ function Client:updateApnsVoipChannel(input, options)
         output_schema = types.UpdateApnsVoipChannelOutput,
         http_method = "PUT",
         http_path = "/v1/apps/{ApplicationId}/channels/apns_voip",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1050,6 +1366,9 @@ function Client:updateApnsVoipSandboxChannel(input, options)
         output_schema = types.UpdateApnsVoipSandboxChannelOutput,
         http_method = "PUT",
         http_path = "/v1/apps/{ApplicationId}/channels/apns_voip_sandbox",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1060,6 +1379,9 @@ function Client:updateApplicationSettings(input, options)
         output_schema = types.UpdateApplicationSettingsOutput,
         http_method = "PUT",
         http_path = "/v1/apps/{ApplicationId}/settings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1070,6 +1392,9 @@ function Client:updateBaiduChannel(input, options)
         output_schema = types.UpdateBaiduChannelOutput,
         http_method = "PUT",
         http_path = "/v1/apps/{ApplicationId}/channels/baidu",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1080,6 +1405,9 @@ function Client:updateCampaign(input, options)
         output_schema = types.UpdateCampaignOutput,
         http_method = "PUT",
         http_path = "/v1/apps/{ApplicationId}/campaigns/{CampaignId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1090,6 +1418,9 @@ function Client:updateEmailChannel(input, options)
         output_schema = types.UpdateEmailChannelOutput,
         http_method = "PUT",
         http_path = "/v1/apps/{ApplicationId}/channels/email",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1100,6 +1431,9 @@ function Client:updateEmailTemplate(input, options)
         output_schema = types.UpdateEmailTemplateOutput,
         http_method = "PUT",
         http_path = "/v1/templates/{TemplateName}/email",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1110,6 +1444,9 @@ function Client:updateEndpoint(input, options)
         output_schema = types.UpdateEndpointOutput,
         http_method = "PUT",
         http_path = "/v1/apps/{ApplicationId}/endpoints/{EndpointId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1120,6 +1457,9 @@ function Client:updateEndpointsBatch(input, options)
         output_schema = types.UpdateEndpointsBatchOutput,
         http_method = "PUT",
         http_path = "/v1/apps/{ApplicationId}/endpoints",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1130,6 +1470,9 @@ function Client:updateGcmChannel(input, options)
         output_schema = types.UpdateGcmChannelOutput,
         http_method = "PUT",
         http_path = "/v1/apps/{ApplicationId}/channels/gcm",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1140,6 +1483,9 @@ function Client:updateInAppTemplate(input, options)
         output_schema = types.UpdateInAppTemplateOutput,
         http_method = "PUT",
         http_path = "/v1/templates/{TemplateName}/inapp",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1150,6 +1496,9 @@ function Client:updateJourney(input, options)
         output_schema = types.UpdateJourneyOutput,
         http_method = "PUT",
         http_path = "/v1/apps/{ApplicationId}/journeys/{JourneyId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1160,6 +1509,9 @@ function Client:updateJourneyState(input, options)
         output_schema = types.UpdateJourneyStateOutput,
         http_method = "PUT",
         http_path = "/v1/apps/{ApplicationId}/journeys/{JourneyId}/state",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1170,6 +1522,9 @@ function Client:updatePushTemplate(input, options)
         output_schema = types.UpdatePushTemplateOutput,
         http_method = "PUT",
         http_path = "/v1/templates/{TemplateName}/push",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1180,6 +1535,9 @@ function Client:updateRecommenderConfiguration(input, options)
         output_schema = types.UpdateRecommenderConfigurationOutput,
         http_method = "PUT",
         http_path = "/v1/recommenders/{RecommenderId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1190,6 +1548,9 @@ function Client:updateSegment(input, options)
         output_schema = types.UpdateSegmentOutput,
         http_method = "PUT",
         http_path = "/v1/apps/{ApplicationId}/segments/{SegmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1200,6 +1561,9 @@ function Client:updateSmsChannel(input, options)
         output_schema = types.UpdateSmsChannelOutput,
         http_method = "PUT",
         http_path = "/v1/apps/{ApplicationId}/channels/sms",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1210,6 +1574,9 @@ function Client:updateSmsTemplate(input, options)
         output_schema = types.UpdateSmsTemplateOutput,
         http_method = "PUT",
         http_path = "/v1/templates/{TemplateName}/sms",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1220,6 +1587,9 @@ function Client:updateTemplateActiveVersion(input, options)
         output_schema = types.UpdateTemplateActiveVersionOutput,
         http_method = "PUT",
         http_path = "/v1/templates/{TemplateName}/{TemplateType}/active-version",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1230,6 +1600,9 @@ function Client:updateVoiceChannel(input, options)
         output_schema = types.UpdateVoiceChannelOutput,
         http_method = "PUT",
         http_path = "/v1/apps/{ApplicationId}/channels/voice",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1240,6 +1613,9 @@ function Client:updateVoiceTemplate(input, options)
         output_schema = types.UpdateVoiceTemplateOutput,
         http_method = "PUT",
         http_path = "/v1/templates/{TemplateName}/voice",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1250,6 +1626,9 @@ function Client:verifyOTPMessage(input, options)
         output_schema = types.VerifyOTPMessageOutput,
         http_method = "POST",
         http_path = "/v1/apps/{ApplicationId}/verify-otp",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

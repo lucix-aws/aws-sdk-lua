@@ -2566,6 +2566,9 @@ M.ExportTableToPointInTimeInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         S3Bucket = {
             type = "string",
@@ -2661,6 +2664,9 @@ M.ImportTableInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         S3BucketSource = setmetatable({ traits = {
             required = true,
@@ -4038,6 +4044,9 @@ M.ExecuteTransactionInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ReturnConsumedCapacity = {
             type = "string",
@@ -4848,6 +4857,9 @@ M.TransactWriteItemsInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

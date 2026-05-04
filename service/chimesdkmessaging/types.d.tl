@@ -2280,19 +2280,19 @@ local record UnauthorizedClientException
     Message: string
 end
 
+local type SortOrder = "ASCENDING" | "DESCENDING"
+
 local type ChannelMessagePersistenceType = "PERSISTENT" | "NON_PERSISTENT"
 
 local type ChannelMode = "UNRESTRICTED" | "RESTRICTED"
 
-local type SortOrder = "ASCENDING" | "DESCENDING"
+local type ChannelMessageType = "STANDARD" | "CONTROL"
+
+local type ChannelMembershipType = "DEFAULT" | "HIDDEN"
 
 local type NetworkType = "IPV4_ONLY" | "DUAL_STACK"
 
-local type ChannelMessageType = "STANDARD" | "CONTROL"
-
 local type ChannelPrivacy = "PUBLIC" | "PRIVATE"
-
-local type ChannelMembershipType = "DEFAULT" | "HIDDEN"
 
 local record M
     AssociateChannelFlowInput: AssociateChannelFlowInput

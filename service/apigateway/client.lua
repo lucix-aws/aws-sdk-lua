@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "BackplaneControlService"
-    cfg.signing_name = "apigateway"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "apigateway", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createApiKey(input, options)
         output_schema = types.CreateApiKeyOutput,
         http_method = "POST",
         http_path = "/apikeys",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createAuthorizer(input, options)
         output_schema = types.CreateAuthorizerOutput,
         http_method = "POST",
         http_path = "/restapis/{restApiId}/authorizers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createBasePathMapping(input, options)
         output_schema = types.CreateBasePathMappingOutput,
         http_method = "POST",
         http_path = "/domainnames/{domainName}/basepathmappings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createDeployment(input, options)
         output_schema = types.CreateDeploymentOutput,
         http_method = "POST",
         http_path = "/restapis/{restApiId}/deployments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createDocumentationPart(input, options)
         output_schema = types.CreateDocumentationPartOutput,
         http_method = "POST",
         http_path = "/restapis/{restApiId}/documentation/parts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createDocumentationVersion(input, options)
         output_schema = types.CreateDocumentationVersionOutput,
         http_method = "POST",
         http_path = "/restapis/{restApiId}/documentation/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createDomainName(input, options)
         output_schema = types.CreateDomainNameOutput,
         http_method = "POST",
         http_path = "/domainnames",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createDomainNameAccessAssociation(input, options)
         output_schema = types.CreateDomainNameAccessAssociationOutput,
         http_method = "POST",
         http_path = "/domainnameaccessassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createModel(input, options)
         output_schema = types.CreateModelOutput,
         http_method = "POST",
         http_path = "/restapis/{restApiId}/models",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createRequestValidator(input, options)
         output_schema = types.CreateRequestValidatorOutput,
         http_method = "POST",
         http_path = "/restapis/{restApiId}/requestvalidators",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createResource(input, options)
         output_schema = types.CreateResourceOutput,
         http_method = "POST",
         http_path = "/restapis/{restApiId}/resources/{parentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createRestApi(input, options)
         output_schema = types.CreateRestApiOutput,
         http_method = "POST",
         http_path = "/restapis",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createStage(input, options)
         output_schema = types.CreateStageOutput,
         http_method = "POST",
         http_path = "/restapis/{restApiId}/stages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:createUsagePlan(input, options)
         output_schema = types.CreateUsagePlanOutput,
         http_method = "POST",
         http_path = "/usageplans",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:createUsagePlanKey(input, options)
         output_schema = types.CreateUsagePlanKeyOutput,
         http_method = "POST",
         http_path = "/usageplans/{usagePlanId}/keys",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:createVpcLink(input, options)
         output_schema = types.CreateVpcLinkOutput,
         http_method = "POST",
         http_path = "/vpclinks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deleteApiKey(input, options)
         output_schema = types.DeleteApiKeyOutput,
         http_method = "DELETE",
         http_path = "/apikeys/{apiKey}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteAuthorizer(input, options)
         output_schema = types.DeleteAuthorizerOutput,
         http_method = "DELETE",
         http_path = "/restapis/{restApiId}/authorizers/{authorizerId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteBasePathMapping(input, options)
         output_schema = types.DeleteBasePathMappingOutput,
         http_method = "DELETE",
         http_path = "/domainnames/{domainName}/basepathmappings/{basePath}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deleteClientCertificate(input, options)
         output_schema = types.DeleteClientCertificateOutput,
         http_method = "DELETE",
         http_path = "/clientcertificates/{clientCertificateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deleteDeployment(input, options)
         output_schema = types.DeleteDeploymentOutput,
         http_method = "DELETE",
         http_path = "/restapis/{restApiId}/deployments/{deploymentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:deleteDocumentationPart(input, options)
         output_schema = types.DeleteDocumentationPartOutput,
         http_method = "DELETE",
         http_path = "/restapis/{restApiId}/documentation/parts/{documentationPartId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:deleteDocumentationVersion(input, options)
         output_schema = types.DeleteDocumentationVersionOutput,
         http_method = "DELETE",
         http_path = "/restapis/{restApiId}/documentation/versions/{documentationVersion}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:deleteDomainName(input, options)
         output_schema = types.DeleteDomainNameOutput,
         http_method = "DELETE",
         http_path = "/domainnames/{domainName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:deleteDomainNameAccessAssociation(input, options)
         output_schema = types.DeleteDomainNameAccessAssociationOutput,
         http_method = "DELETE",
         http_path = "/domainnameaccessassociations/{domainNameAccessAssociationArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:deleteGatewayResponse(input, options)
         output_schema = types.DeleteGatewayResponseOutput,
         http_method = "DELETE",
         http_path = "/restapis/{restApiId}/gatewayresponses/{responseType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:deleteIntegration(input, options)
         output_schema = types.DeleteIntegrationOutput,
         http_method = "DELETE",
         http_path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:deleteIntegrationResponse(input, options)
         output_schema = types.DeleteIntegrationResponseOutput,
         http_method = "DELETE",
         http_path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration/responses/{statusCode}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:deleteMethod(input, options)
         output_schema = types.DeleteMethodOutput,
         http_method = "DELETE",
         http_path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:deleteMethodResponse(input, options)
         output_schema = types.DeleteMethodResponseOutput,
         http_method = "DELETE",
         http_path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/responses/{statusCode}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:deleteModel(input, options)
         output_schema = types.DeleteModelOutput,
         http_method = "DELETE",
         http_path = "/restapis/{restApiId}/models/{modelName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:deleteRequestValidator(input, options)
         output_schema = types.DeleteRequestValidatorOutput,
         http_method = "DELETE",
         http_path = "/restapis/{restApiId}/requestvalidators/{requestValidatorId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:deleteResource(input, options)
         output_schema = types.DeleteResourceOutput,
         http_method = "DELETE",
         http_path = "/restapis/{restApiId}/resources/{resourceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:deleteRestApi(input, options)
         output_schema = types.DeleteRestApiOutput,
         http_method = "DELETE",
         http_path = "/restapis/{restApiId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:deleteStage(input, options)
         output_schema = types.DeleteStageOutput,
         http_method = "DELETE",
         http_path = "/restapis/{restApiId}/stages/{stageName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:deleteUsagePlan(input, options)
         output_schema = types.DeleteUsagePlanOutput,
         http_method = "DELETE",
         http_path = "/usageplans/{usagePlanId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:deleteUsagePlanKey(input, options)
         output_schema = types.DeleteUsagePlanKeyOutput,
         http_method = "DELETE",
         http_path = "/usageplans/{usagePlanId}/keys/{keyId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:deleteVpcLink(input, options)
         output_schema = types.DeleteVpcLinkOutput,
         http_method = "DELETE",
         http_path = "/vpclinks/{vpcLinkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:flushStageAuthorizersCache(input, options)
         output_schema = types.FlushStageAuthorizersCacheOutput,
         http_method = "DELETE",
         http_path = "/restapis/{restApiId}/stages/{stageName}/cache/authorizers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:flushStageCache(input, options)
         output_schema = types.FlushStageCacheOutput,
         http_method = "DELETE",
         http_path = "/restapis/{restApiId}/stages/{stageName}/cache/data",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:generateClientCertificate(input, options)
         output_schema = types.GenerateClientCertificateOutput,
         http_method = "POST",
         http_path = "/clientcertificates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:getAccount(input, options)
         output_schema = types.GetAccountOutput,
         http_method = "GET",
         http_path = "/account",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:getApiKey(input, options)
         output_schema = types.GetApiKeyOutput,
         http_method = "GET",
         http_path = "/apikeys/{apiKey}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:getApiKeys(input, options)
         output_schema = types.GetApiKeysOutput,
         http_method = "GET",
         http_path = "/apikeys",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:getAuthorizer(input, options)
         output_schema = types.GetAuthorizerOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/authorizers/{authorizerId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:getAuthorizers(input, options)
         output_schema = types.GetAuthorizersOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/authorizers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:getBasePathMapping(input, options)
         output_schema = types.GetBasePathMappingOutput,
         http_method = "GET",
         http_path = "/domainnames/{domainName}/basepathmappings/{basePath}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:getBasePathMappings(input, options)
         output_schema = types.GetBasePathMappingsOutput,
         http_method = "GET",
         http_path = "/domainnames/{domainName}/basepathmappings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:getClientCertificate(input, options)
         output_schema = types.GetClientCertificateOutput,
         http_method = "GET",
         http_path = "/clientcertificates/{clientCertificateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:getClientCertificates(input, options)
         output_schema = types.GetClientCertificatesOutput,
         http_method = "GET",
         http_path = "/clientcertificates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:getDeployment(input, options)
         output_schema = types.GetDeploymentOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/deployments/{deploymentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:getDeployments(input, options)
         output_schema = types.GetDeploymentsOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/deployments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:getDocumentationPart(input, options)
         output_schema = types.GetDocumentationPartOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/documentation/parts/{documentationPartId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:getDocumentationParts(input, options)
         output_schema = types.GetDocumentationPartsOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/documentation/parts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:getDocumentationVersion(input, options)
         output_schema = types.GetDocumentationVersionOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/documentation/versions/{documentationVersion}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:getDocumentationVersions(input, options)
         output_schema = types.GetDocumentationVersionsOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/documentation/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:getDomainName(input, options)
         output_schema = types.GetDomainNameOutput,
         http_method = "GET",
         http_path = "/domainnames/{domainName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:getDomainNameAccessAssociations(input, options)
         output_schema = types.GetDomainNameAccessAssociationsOutput,
         http_method = "GET",
         http_path = "/domainnameaccessassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:getDomainNames(input, options)
         output_schema = types.GetDomainNamesOutput,
         http_method = "GET",
         http_path = "/domainnames",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:getExport(input, options)
         output_schema = types.GetExportOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/stages/{stageName}/exports/{exportType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:getGatewayResponse(input, options)
         output_schema = types.GetGatewayResponseOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/gatewayresponses/{responseType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:getGatewayResponses(input, options)
         output_schema = types.GetGatewayResponsesOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/gatewayresponses",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:getIntegration(input, options)
         output_schema = types.GetIntegrationOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:getIntegrationResponse(input, options)
         output_schema = types.GetIntegrationResponseOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration/responses/{statusCode}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:getMethod(input, options)
         output_schema = types.GetMethodOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:getMethodResponse(input, options)
         output_schema = types.GetMethodResponseOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/responses/{statusCode}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:getModel(input, options)
         output_schema = types.GetModelOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/models/{modelName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:getModels(input, options)
         output_schema = types.GetModelsOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/models",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:getModelTemplate(input, options)
         output_schema = types.GetModelTemplateOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/models/{modelName}/default_template",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:getRequestValidator(input, options)
         output_schema = types.GetRequestValidatorOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/requestvalidators/{requestValidatorId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:getRequestValidators(input, options)
         output_schema = types.GetRequestValidatorsOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/requestvalidators",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:getResource(input, options)
         output_schema = types.GetResourceOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/resources/{resourceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:getResources(input, options)
         output_schema = types.GetResourcesOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/resources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:getRestApi(input, options)
         output_schema = types.GetRestApiOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:getRestApis(input, options)
         output_schema = types.GetRestApisOutput,
         http_method = "GET",
         http_path = "/restapis",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:getSdk(input, options)
         output_schema = types.GetSdkOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/stages/{stageName}/sdks/{sdkType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:getSdkType(input, options)
         output_schema = types.GetSdkTypeOutput,
         http_method = "GET",
         http_path = "/sdktypes/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:getSdkTypes(input, options)
         output_schema = types.GetSdkTypesOutput,
         http_method = "GET",
         http_path = "/sdktypes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:getStage(input, options)
         output_schema = types.GetStageOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/stages/{stageName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:getStages(input, options)
         output_schema = types.GetStagesOutput,
         http_method = "GET",
         http_path = "/restapis/{restApiId}/stages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:getTags(input, options)
         output_schema = types.GetTagsOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:getUsage(input, options)
         output_schema = types.GetUsageOutput,
         http_method = "GET",
         http_path = "/usageplans/{usagePlanId}/usage",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:getUsagePlan(input, options)
         output_schema = types.GetUsagePlanOutput,
         http_method = "GET",
         http_path = "/usageplans/{usagePlanId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:getUsagePlanKey(input, options)
         output_schema = types.GetUsagePlanKeyOutput,
         http_method = "GET",
         http_path = "/usageplans/{usagePlanId}/keys/{keyId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:getUsagePlanKeys(input, options)
         output_schema = types.GetUsagePlanKeysOutput,
         http_method = "GET",
         http_path = "/usageplans/{usagePlanId}/keys",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -890,6 +1158,9 @@ function Client:getUsagePlans(input, options)
         output_schema = types.GetUsagePlansOutput,
         http_method = "GET",
         http_path = "/usageplans",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -900,6 +1171,9 @@ function Client:getVpcLink(input, options)
         output_schema = types.GetVpcLinkOutput,
         http_method = "GET",
         http_path = "/vpclinks/{vpcLinkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -910,6 +1184,9 @@ function Client:getVpcLinks(input, options)
         output_schema = types.GetVpcLinksOutput,
         http_method = "GET",
         http_path = "/vpclinks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -920,6 +1197,9 @@ function Client:importApiKeys(input, options)
         output_schema = types.ImportApiKeysOutput,
         http_method = "POST",
         http_path = "/apikeys?mode=import",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -930,6 +1210,9 @@ function Client:importDocumentationParts(input, options)
         output_schema = types.ImportDocumentationPartsOutput,
         http_method = "PUT",
         http_path = "/restapis/{restApiId}/documentation/parts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -940,6 +1223,9 @@ function Client:importRestApi(input, options)
         output_schema = types.ImportRestApiOutput,
         http_method = "POST",
         http_path = "/restapis?mode=import",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -950,6 +1236,9 @@ function Client:putGatewayResponse(input, options)
         output_schema = types.PutGatewayResponseOutput,
         http_method = "PUT",
         http_path = "/restapis/{restApiId}/gatewayresponses/{responseType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -960,6 +1249,9 @@ function Client:putIntegration(input, options)
         output_schema = types.PutIntegrationOutput,
         http_method = "PUT",
         http_path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -970,6 +1262,9 @@ function Client:putIntegrationResponse(input, options)
         output_schema = types.PutIntegrationResponseOutput,
         http_method = "PUT",
         http_path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration/responses/{statusCode}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -980,6 +1275,9 @@ function Client:putMethod(input, options)
         output_schema = types.PutMethodOutput,
         http_method = "PUT",
         http_path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -990,6 +1288,9 @@ function Client:putMethodResponse(input, options)
         output_schema = types.PutMethodResponseOutput,
         http_method = "PUT",
         http_path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/responses/{statusCode}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1000,6 +1301,9 @@ function Client:putRestApi(input, options)
         output_schema = types.PutRestApiOutput,
         http_method = "PUT",
         http_path = "/restapis/{restApiId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1010,6 +1314,9 @@ function Client:rejectDomainNameAccessAssociation(input, options)
         output_schema = types.RejectDomainNameAccessAssociationOutput,
         http_method = "POST",
         http_path = "/rejectdomainnameaccessassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1020,6 +1327,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "PUT",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1030,6 +1340,9 @@ function Client:testInvokeAuthorizer(input, options)
         output_schema = types.TestInvokeAuthorizerOutput,
         http_method = "POST",
         http_path = "/restapis/{restApiId}/authorizers/{authorizerId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1040,6 +1353,9 @@ function Client:testInvokeMethod(input, options)
         output_schema = types.TestInvokeMethodOutput,
         http_method = "POST",
         http_path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1050,6 +1366,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1060,6 +1379,9 @@ function Client:updateAccount(input, options)
         output_schema = types.UpdateAccountOutput,
         http_method = "PATCH",
         http_path = "/account",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1070,6 +1392,9 @@ function Client:updateApiKey(input, options)
         output_schema = types.UpdateApiKeyOutput,
         http_method = "PATCH",
         http_path = "/apikeys/{apiKey}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1080,6 +1405,9 @@ function Client:updateAuthorizer(input, options)
         output_schema = types.UpdateAuthorizerOutput,
         http_method = "PATCH",
         http_path = "/restapis/{restApiId}/authorizers/{authorizerId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1090,6 +1418,9 @@ function Client:updateBasePathMapping(input, options)
         output_schema = types.UpdateBasePathMappingOutput,
         http_method = "PATCH",
         http_path = "/domainnames/{domainName}/basepathmappings/{basePath}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1100,6 +1431,9 @@ function Client:updateClientCertificate(input, options)
         output_schema = types.UpdateClientCertificateOutput,
         http_method = "PATCH",
         http_path = "/clientcertificates/{clientCertificateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1110,6 +1444,9 @@ function Client:updateDeployment(input, options)
         output_schema = types.UpdateDeploymentOutput,
         http_method = "PATCH",
         http_path = "/restapis/{restApiId}/deployments/{deploymentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1120,6 +1457,9 @@ function Client:updateDocumentationPart(input, options)
         output_schema = types.UpdateDocumentationPartOutput,
         http_method = "PATCH",
         http_path = "/restapis/{restApiId}/documentation/parts/{documentationPartId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1130,6 +1470,9 @@ function Client:updateDocumentationVersion(input, options)
         output_schema = types.UpdateDocumentationVersionOutput,
         http_method = "PATCH",
         http_path = "/restapis/{restApiId}/documentation/versions/{documentationVersion}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1140,6 +1483,9 @@ function Client:updateDomainName(input, options)
         output_schema = types.UpdateDomainNameOutput,
         http_method = "PATCH",
         http_path = "/domainnames/{domainName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1150,6 +1496,9 @@ function Client:updateGatewayResponse(input, options)
         output_schema = types.UpdateGatewayResponseOutput,
         http_method = "PATCH",
         http_path = "/restapis/{restApiId}/gatewayresponses/{responseType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1160,6 +1509,9 @@ function Client:updateIntegration(input, options)
         output_schema = types.UpdateIntegrationOutput,
         http_method = "PATCH",
         http_path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1170,6 +1522,9 @@ function Client:updateIntegrationResponse(input, options)
         output_schema = types.UpdateIntegrationResponseOutput,
         http_method = "PATCH",
         http_path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration/responses/{statusCode}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1180,6 +1535,9 @@ function Client:updateMethod(input, options)
         output_schema = types.UpdateMethodOutput,
         http_method = "PATCH",
         http_path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1190,6 +1548,9 @@ function Client:updateMethodResponse(input, options)
         output_schema = types.UpdateMethodResponseOutput,
         http_method = "PATCH",
         http_path = "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/responses/{statusCode}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1200,6 +1561,9 @@ function Client:updateModel(input, options)
         output_schema = types.UpdateModelOutput,
         http_method = "PATCH",
         http_path = "/restapis/{restApiId}/models/{modelName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1210,6 +1574,9 @@ function Client:updateRequestValidator(input, options)
         output_schema = types.UpdateRequestValidatorOutput,
         http_method = "PATCH",
         http_path = "/restapis/{restApiId}/requestvalidators/{requestValidatorId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1220,6 +1587,9 @@ function Client:updateResource(input, options)
         output_schema = types.UpdateResourceOutput,
         http_method = "PATCH",
         http_path = "/restapis/{restApiId}/resources/{resourceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1230,6 +1600,9 @@ function Client:updateRestApi(input, options)
         output_schema = types.UpdateRestApiOutput,
         http_method = "PATCH",
         http_path = "/restapis/{restApiId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1240,6 +1613,9 @@ function Client:updateStage(input, options)
         output_schema = types.UpdateStageOutput,
         http_method = "PATCH",
         http_path = "/restapis/{restApiId}/stages/{stageName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1250,6 +1626,9 @@ function Client:updateUsage(input, options)
         output_schema = types.UpdateUsageOutput,
         http_method = "PATCH",
         http_path = "/usageplans/{usagePlanId}/keys/{keyId}/usage",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1260,6 +1639,9 @@ function Client:updateUsagePlan(input, options)
         output_schema = types.UpdateUsagePlanOutput,
         http_method = "PATCH",
         http_path = "/usageplans/{usagePlanId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1270,6 +1652,9 @@ function Client:updateVpcLink(input, options)
         output_schema = types.UpdateVpcLinkOutput,
         http_method = "PATCH",
         http_path = "/vpclinks/{vpcLinkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

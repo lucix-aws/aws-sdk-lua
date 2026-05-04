@@ -1,0 +1,12 @@
+local record M
+    pages_list_domains: function(client: table, input: table): function(): table, table
+    items_list_domains: function(client: table, input: table): function(): any
+    pages_list_operations: function(client: table, input: table): function(): table, table
+    items_list_operations: function(client: table, input: table): function(): any
+    pages_list_prices: function(client: table, input: table): function(): table, table
+    items_list_prices: function(client: table, input: table): function(): any
+    pages_view_billing: function(client: table, input: table): function(): table, table
+    items_view_billing: function(client: table, input: table): function(): any
+end
+
+return M

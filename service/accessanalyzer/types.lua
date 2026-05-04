@@ -105,6 +105,9 @@ M.CreateArchiveRuleInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -271,6 +274,7 @@ M.DeleteArchiveRuleInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -321,12 +325,14 @@ M.ArchiveRuleSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -409,6 +415,9 @@ M.UpdateArchiveRuleInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -569,6 +578,9 @@ M.CreateAnalyzerInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         configuration = M.AnalyzerConfiguration,
     },
@@ -597,6 +609,7 @@ M.DeleteAnalyzerInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -670,6 +683,7 @@ M.AnalyzerSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastResourceAnalyzed = {
@@ -677,6 +691,9 @@ M.AnalyzerSummary = {
         },
         lastResourceAnalyzedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         tags = {
             type = "map",
@@ -781,6 +798,9 @@ M.ApplyArchiveRuleInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1398,6 +1418,9 @@ M.CreateAccessPreviewInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1508,6 +1531,7 @@ M.AccessPreview = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -1574,18 +1598,21 @@ M.AnalyzedResource = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         analyzedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         isPublic = {
@@ -1725,18 +1752,21 @@ M.Finding = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         analyzedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -1835,6 +1865,9 @@ M.UnusedPermissionsRecommendedStep = {
     members = {
         policyUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         recommendedAction = {
             type = "string",
@@ -1871,10 +1904,14 @@ M.GetFindingRecommendationOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         completedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         nextToken = {
             type = "string",
@@ -2057,6 +2094,9 @@ M.GetFindingsStatisticsOutput = {
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2187,6 +2227,9 @@ M.UnusedIamRoleDetails = {
     members = {
         lastAccessed = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2202,6 +2245,9 @@ M.UnusedIamUserAccessKeyDetails = {
         },
         lastAccessed = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2211,6 +2257,9 @@ M.UnusedIamUserPasswordDetails = {
     members = {
         lastAccessed = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2226,6 +2275,9 @@ M.UnusedAction = {
         },
         lastAccessed = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2245,6 +2297,9 @@ M.UnusedPermissionDetails = {
         },
         lastAccessed = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2277,12 +2332,14 @@ M.GetFindingV2Output = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         error = {
@@ -2322,6 +2379,7 @@ M.GetFindingV2Output = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         findingDetails = {
@@ -2407,12 +2465,14 @@ M.CloudTrailProperties = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         endTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2498,10 +2558,14 @@ M.JobDetails = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         completedOn = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         jobError = M.JobError,
     },
@@ -2600,6 +2664,7 @@ M.AccessPreviewFinding = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         changeType = {
@@ -2693,6 +2758,7 @@ M.AccessPreviewSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -2865,18 +2931,21 @@ M.FindingSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         analyzedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -2951,12 +3020,14 @@ M.FindingSummaryV2 = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         error = {
@@ -2993,6 +3064,7 @@ M.FindingSummaryV2 = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         findingType = {
@@ -3066,10 +3138,14 @@ M.PolicyGeneration = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         completedOn = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -3153,10 +3229,14 @@ M.CloudTrailDetails = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         endTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -3182,6 +3262,9 @@ M.StartPolicyGenerationInput = {
         cloudTrailDetails = M.CloudTrailDetails,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3302,6 +3385,9 @@ M.UpdateFindingsInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

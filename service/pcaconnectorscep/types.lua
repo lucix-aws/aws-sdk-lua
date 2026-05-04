@@ -119,6 +119,9 @@ M.CreateChallengeInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "map",
@@ -480,6 +483,9 @@ M.CreateConnectorInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "map",

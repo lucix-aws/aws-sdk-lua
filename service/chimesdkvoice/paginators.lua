@@ -1,0 +1,105 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listPhoneNumberOrders.
+function M.pages_list_phone_number_orders(client, input)
+    return paginator.pages(client, "listPhoneNumberOrders", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listPhoneNumbers.
+function M.pages_list_phone_numbers(client, input)
+    return paginator.pages(client, "listPhoneNumbers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listProxySessions.
+function M.pages_list_proxy_sessions(client, input)
+    return paginator.pages(client, "listProxySessions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listSipMediaApplications.
+function M.pages_list_sip_media_applications(client, input)
+    return paginator.pages(client, "listSipMediaApplications", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SipMediaApplications",
+    })
+end
+
+--- Returns an item iterator for listSipMediaApplications.
+function M.items_list_sip_media_applications(client, input)
+    return paginator.items(client, "listSipMediaApplications", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SipMediaApplications",
+    })
+end
+
+--- Returns a page iterator for listSipRules.
+function M.pages_list_sip_rules(client, input)
+    return paginator.pages(client, "listSipRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SipRules",
+    })
+end
+
+--- Returns an item iterator for listSipRules.
+function M.items_list_sip_rules(client, input)
+    return paginator.items(client, "listSipRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SipRules",
+    })
+end
+
+--- Returns a page iterator for listVoiceConnectorGroups.
+function M.pages_list_voice_connector_groups(client, input)
+    return paginator.pages(client, "listVoiceConnectorGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listVoiceConnectors.
+function M.pages_list_voice_connectors(client, input)
+    return paginator.pages(client, "listVoiceConnectors", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listVoiceProfileDomains.
+function M.pages_list_voice_profile_domains(client, input)
+    return paginator.pages(client, "listVoiceProfileDomains", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listVoiceProfiles.
+function M.pages_list_voice_profiles(client, input)
+    return paginator.pages(client, "listVoiceProfiles", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for searchAvailablePhoneNumbers.
+function M.pages_search_available_phone_numbers(client, input)
+    return paginator.pages(client, "searchAvailablePhoneNumbers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+return M

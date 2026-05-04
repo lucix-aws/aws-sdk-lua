@@ -46,6 +46,9 @@ M.AddGroupMemberInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -215,6 +218,9 @@ M.CreateGroupInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -266,6 +272,9 @@ M.CreateUserInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -303,6 +312,9 @@ M.DeleteGroupInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -329,6 +341,9 @@ M.DeleteUserInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -480,6 +495,9 @@ M.DisableUserInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -793,6 +811,9 @@ M.RemoveGroupMemberInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1014,6 +1035,9 @@ M.UpdateGroupInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1057,6 +1081,9 @@ M.UpdateUserInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

@@ -448,6 +448,7 @@ M.CreateMeetingInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -558,6 +559,7 @@ M.CreateMeetingWithAttendeesInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },

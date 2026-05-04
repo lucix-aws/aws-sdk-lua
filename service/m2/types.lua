@@ -245,6 +245,9 @@ M.CreateApplicationInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         kmsKeyId = {
             type = "string",
@@ -356,6 +359,9 @@ M.CreateDataSetExportTaskInput = {
         } }, { __index = M.DataSetExportConfig }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         kmsKeyId = {
             type = "string",
@@ -570,6 +576,9 @@ M.CreateDataSetImportTaskInput = {
         } }, { __index = M.DataSetImportConfig }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -610,6 +619,9 @@ M.CreateDeploymentInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2526,6 +2538,9 @@ M.CreateEnvironmentInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         kmsKeyId = {
             type = "string",

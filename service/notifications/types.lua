@@ -811,6 +811,7 @@ M.GetEventRuleOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         source = {
@@ -900,6 +901,7 @@ M.EventRuleStructure = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         source = {
@@ -1193,6 +1195,7 @@ M.GetManagedNotificationChildEventOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         content = setmetatable({ traits = {
@@ -1351,6 +1354,7 @@ M.GetManagedNotificationEventOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         content = setmetatable({ traits = {
@@ -1408,6 +1412,7 @@ M.GetNotificationConfigurationOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         aggregationDuration = {
@@ -1639,6 +1644,7 @@ M.GetNotificationEventOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         content = setmetatable({ traits = {
@@ -1882,6 +1888,7 @@ M.ManagedNotificationChildEventOverview = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         childEvent = setmetatable({ traits = {
@@ -2090,6 +2097,7 @@ M.ManagedNotificationEventOverview = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         notificationEvent = setmetatable({ traits = {
@@ -2298,6 +2306,7 @@ M.NotificationConfigurationStructure = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         aggregationDuration = {
@@ -2463,6 +2472,7 @@ M.NotificationEventOverview = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         notificationEvent = setmetatable({ traits = {
@@ -2531,10 +2541,14 @@ M.NotificationHubOverview = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastActivationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2682,10 +2696,14 @@ M.RegisterNotificationHubOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastActivationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }

@@ -1,0 +1,59 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listClusters.
+function M.pages_list_clusters(client, input)
+    return paginator.pages(client, "listClusters", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "clusters",
+    })
+end
+
+--- Returns an item iterator for listClusters.
+function M.items_list_clusters(client, input)
+    return paginator.items(client, "listClusters", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "clusters",
+    })
+end
+
+--- Returns a page iterator for listComputeNodeGroups.
+function M.pages_list_compute_node_groups(client, input)
+    return paginator.pages(client, "listComputeNodeGroups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "computeNodeGroups",
+    })
+end
+
+--- Returns an item iterator for listComputeNodeGroups.
+function M.items_list_compute_node_groups(client, input)
+    return paginator.items(client, "listComputeNodeGroups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "computeNodeGroups",
+    })
+end
+
+--- Returns a page iterator for listQueues.
+function M.pages_list_queues(client, input)
+    return paginator.pages(client, "listQueues", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "queues",
+    })
+end
+
+--- Returns an item iterator for listQueues.
+function M.items_list_queues(client, input)
+    return paginator.items(client, "listQueues", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "queues",
+    })
+end
+
+return M

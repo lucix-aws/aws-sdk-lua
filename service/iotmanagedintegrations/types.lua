@@ -104,6 +104,9 @@ M.CreateAccountAssociationInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ConnectorDestinationId = {
             type = "string",
@@ -718,6 +721,9 @@ M.CreateCloudConnectorInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1009,6 +1015,9 @@ M.CreateConnectorDestinationInput = {
         SecretsManager = M.SecretsManager,
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1158,6 +1167,9 @@ M.CreateCredentialLockerInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "map",
@@ -1225,6 +1237,9 @@ M.CreateDestinationInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Description = {
             type = "string",
@@ -1273,6 +1288,9 @@ M.CreateEventLogConfigurationInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1356,6 +1374,9 @@ M.CreateManagedThingInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Classification = {
             type = "string",
@@ -1419,6 +1440,9 @@ M.CreateNotificationConfigurationInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "map",
@@ -1551,6 +1575,9 @@ M.CreateOtaTaskInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         OtaSchedulingConfig = M.OtaTaskSchedulingConfig,
         OtaTaskExecutionRetryConfig = M.OtaTaskExecutionRetryConfig,
@@ -1652,6 +1679,9 @@ M.CreateOtaTaskConfigurationInput = {
         PushConfig = M.PushConfig,
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1690,6 +1720,9 @@ M.CreateProvisioningProfileInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "map",

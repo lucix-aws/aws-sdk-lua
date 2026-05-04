@@ -1,0 +1,199 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for describeAutoScalingGroups.
+function M.pages_describe_auto_scaling_groups(client, input)
+    return paginator.pages(client, "describeAutoScalingGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AutoScalingGroups",
+    })
+end
+
+--- Returns an item iterator for describeAutoScalingGroups.
+function M.items_describe_auto_scaling_groups(client, input)
+    return paginator.items(client, "describeAutoScalingGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AutoScalingGroups",
+    })
+end
+
+--- Returns a page iterator for describeAutoScalingInstances.
+function M.pages_describe_auto_scaling_instances(client, input)
+    return paginator.pages(client, "describeAutoScalingInstances", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AutoScalingInstances",
+    })
+end
+
+--- Returns an item iterator for describeAutoScalingInstances.
+function M.items_describe_auto_scaling_instances(client, input)
+    return paginator.items(client, "describeAutoScalingInstances", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AutoScalingInstances",
+    })
+end
+
+--- Returns a page iterator for describeInstanceRefreshes.
+function M.pages_describe_instance_refreshes(client, input)
+    return paginator.pages(client, "describeInstanceRefreshes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for describeLaunchConfigurations.
+function M.pages_describe_launch_configurations(client, input)
+    return paginator.pages(client, "describeLaunchConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LaunchConfigurations",
+    })
+end
+
+--- Returns an item iterator for describeLaunchConfigurations.
+function M.items_describe_launch_configurations(client, input)
+    return paginator.items(client, "describeLaunchConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LaunchConfigurations",
+    })
+end
+
+--- Returns a page iterator for describeLoadBalancerTargetGroups.
+function M.pages_describe_load_balancer_target_groups(client, input)
+    return paginator.pages(client, "describeLoadBalancerTargetGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for describeLoadBalancers.
+function M.pages_describe_load_balancers(client, input)
+    return paginator.pages(client, "describeLoadBalancers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for describeNotificationConfigurations.
+function M.pages_describe_notification_configurations(client, input)
+    return paginator.pages(client, "describeNotificationConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NotificationConfigurations",
+    })
+end
+
+--- Returns an item iterator for describeNotificationConfigurations.
+function M.items_describe_notification_configurations(client, input)
+    return paginator.items(client, "describeNotificationConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NotificationConfigurations",
+    })
+end
+
+--- Returns a page iterator for describePolicies.
+function M.pages_describe_policies(client, input)
+    return paginator.pages(client, "describePolicies", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ScalingPolicies",
+    })
+end
+
+--- Returns an item iterator for describePolicies.
+function M.items_describe_policies(client, input)
+    return paginator.items(client, "describePolicies", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ScalingPolicies",
+    })
+end
+
+--- Returns a page iterator for describeScalingActivities.
+function M.pages_describe_scaling_activities(client, input)
+    return paginator.pages(client, "describeScalingActivities", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Activities",
+    })
+end
+
+--- Returns an item iterator for describeScalingActivities.
+function M.items_describe_scaling_activities(client, input)
+    return paginator.items(client, "describeScalingActivities", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Activities",
+    })
+end
+
+--- Returns a page iterator for describeScheduledActions.
+function M.pages_describe_scheduled_actions(client, input)
+    return paginator.pages(client, "describeScheduledActions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ScheduledUpdateGroupActions",
+    })
+end
+
+--- Returns an item iterator for describeScheduledActions.
+function M.items_describe_scheduled_actions(client, input)
+    return paginator.items(client, "describeScheduledActions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ScheduledUpdateGroupActions",
+    })
+end
+
+--- Returns a page iterator for describeTags.
+function M.pages_describe_tags(client, input)
+    return paginator.pages(client, "describeTags", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Tags",
+    })
+end
+
+--- Returns an item iterator for describeTags.
+function M.items_describe_tags(client, input)
+    return paginator.items(client, "describeTags", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Tags",
+    })
+end
+
+--- Returns a page iterator for describeTrafficSources.
+function M.pages_describe_traffic_sources(client, input)
+    return paginator.pages(client, "describeTrafficSources", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for describeWarmPool.
+function M.pages_describe_warm_pool(client, input)
+    return paginator.pages(client, "describeWarmPool", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Instances",
+    })
+end
+
+--- Returns an item iterator for describeWarmPool.
+function M.items_describe_warm_pool(client, input)
+    return paginator.items(client, "describeWarmPool", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Instances",
+    })
+end
+
+return M

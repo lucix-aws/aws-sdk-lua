@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonConnectCampaignServiceV2"
-    cfg.signing_name = "connect-campaigns"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "connect-campaigns", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createCampaign(input, options)
         output_schema = types.CreateCampaignOutput,
         http_method = "PUT",
         http_path = "/v2/campaigns",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:deleteCampaign(input, options)
         output_schema = types.DeleteCampaignOutput,
         http_method = "DELETE",
         http_path = "/v2/campaigns/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:deleteCampaignChannelSubtypeConfig(input, options)
         output_schema = types.DeleteCampaignChannelSubtypeConfigOutput,
         http_method = "DELETE",
         http_path = "/v2/campaigns/{id}/channel-subtype-config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:deleteCampaignCommunicationLimits(input, options)
         output_schema = types.DeleteCampaignCommunicationLimitsOutput,
         http_method = "DELETE",
         http_path = "/v2/campaigns/{id}/communication-limits",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteCampaignCommunicationTime(input, options)
         output_schema = types.DeleteCampaignCommunicationTimeOutput,
         http_method = "DELETE",
         http_path = "/v2/campaigns/{id}/communication-time",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteCampaignEntryLimits(input, options)
         output_schema = types.DeleteCampaignEntryLimitsOutput,
         http_method = "DELETE",
         http_path = "/v2/campaigns/{id}/entry-limits",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteConnectInstanceConfig(input, options)
         output_schema = types.DeleteConnectInstanceConfigOutput,
         http_method = "DELETE",
         http_path = "/v2/connect-instance/{connectInstanceId}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteConnectInstanceIntegration(input, options)
         output_schema = types.DeleteConnectInstanceIntegrationOutput,
         http_method = "POST",
         http_path = "/v2/connect-instance/{connectInstanceId}/integrations/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteInstanceOnboardingJob(input, options)
         output_schema = types.DeleteInstanceOnboardingJobOutput,
         http_method = "DELETE",
         http_path = "/v2/connect-instance/{connectInstanceId}/onboarding",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:describeCampaign(input, options)
         output_schema = types.DescribeCampaignOutput,
         http_method = "GET",
         http_path = "/v2/campaigns/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getCampaignState(input, options)
         output_schema = types.GetCampaignStateOutput,
         http_method = "GET",
         http_path = "/v2/campaigns/{id}/state",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getCampaignStateBatch(input, options)
         output_schema = types.GetCampaignStateBatchOutput,
         http_method = "POST",
         http_path = "/v2/campaigns-state",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getConnectInstanceConfig(input, options)
         output_schema = types.GetConnectInstanceConfigOutput,
         http_method = "GET",
         http_path = "/v2/connect-instance/{connectInstanceId}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getInstanceCommunicationLimits(input, options)
         output_schema = types.GetInstanceCommunicationLimitsOutput,
         http_method = "GET",
         http_path = "/v2/connect-instance/{connectInstanceId}/communication-limits",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getInstanceOnboardingJobStatus(input, options)
         output_schema = types.GetInstanceOnboardingJobStatusOutput,
         http_method = "GET",
         http_path = "/v2/connect-instance/{connectInstanceId}/onboarding",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listCampaigns(input, options)
         output_schema = types.ListCampaignsOutput,
         http_method = "POST",
         http_path = "/v2/campaigns-summary",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listConnectInstanceIntegrations(input, options)
         output_schema = types.ListConnectInstanceIntegrationsOutput,
         http_method = "GET",
         http_path = "/v2/connect-instance/{connectInstanceId}/integrations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/v2/tags/{arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:pauseCampaign(input, options)
         output_schema = types.PauseCampaignOutput,
         http_method = "POST",
         http_path = "/v2/campaigns/{id}/pause",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:putConnectInstanceIntegration(input, options)
         output_schema = types.PutConnectInstanceIntegrationOutput,
         http_method = "PUT",
         http_path = "/v2/connect-instance/{connectInstanceId}/integrations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:putInstanceCommunicationLimits(input, options)
         output_schema = types.PutInstanceCommunicationLimitsOutput,
         http_method = "PUT",
         http_path = "/v2/connect-instance/{connectInstanceId}/communication-limits",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:putOutboundRequestBatch(input, options)
         output_schema = types.PutOutboundRequestBatchOutput,
         http_method = "PUT",
         http_path = "/v2/campaigns/{id}/outbound-requests",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:putProfileOutboundRequestBatch(input, options)
         output_schema = types.PutProfileOutboundRequestBatchOutput,
         http_method = "PUT",
         http_path = "/v2/campaigns/{id}/profile-outbound-requests",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:resumeCampaign(input, options)
         output_schema = types.ResumeCampaignOutput,
         http_method = "POST",
         http_path = "/v2/campaigns/{id}/resume",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:startCampaign(input, options)
         output_schema = types.StartCampaignOutput,
         http_method = "POST",
         http_path = "/v2/campaigns/{id}/start",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:startInstanceOnboardingJob(input, options)
         output_schema = types.StartInstanceOnboardingJobOutput,
         http_method = "PUT",
         http_path = "/v2/connect-instance/{connectInstanceId}/onboarding",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:stopCampaign(input, options)
         output_schema = types.StopCampaignOutput,
         http_method = "POST",
         http_path = "/v2/campaigns/{id}/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/v2/tags/{arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/v2/tags/{arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:updateCampaignChannelSubtypeConfig(input, options)
         output_schema = types.UpdateCampaignChannelSubtypeConfigOutput,
         http_method = "POST",
         http_path = "/v2/campaigns/{id}/channel-subtype-config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:updateCampaignCommunicationLimits(input, options)
         output_schema = types.UpdateCampaignCommunicationLimitsOutput,
         http_method = "POST",
         http_path = "/v2/campaigns/{id}/communication-limits",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:updateCampaignCommunicationTime(input, options)
         output_schema = types.UpdateCampaignCommunicationTimeOutput,
         http_method = "POST",
         http_path = "/v2/campaigns/{id}/communication-time",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:updateCampaignEntryLimits(input, options)
         output_schema = types.UpdateCampaignEntryLimitsOutput,
         http_method = "POST",
         http_path = "/v2/campaigns/{id}/entry-limits",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:updateCampaignFlowAssociation(input, options)
         output_schema = types.UpdateCampaignFlowAssociationOutput,
         http_method = "POST",
         http_path = "/v2/campaigns/{id}/flow",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:updateCampaignName(input, options)
         output_schema = types.UpdateCampaignNameOutput,
         http_method = "POST",
         http_path = "/v2/campaigns/{id}/name",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:updateCampaignSchedule(input, options)
         output_schema = types.UpdateCampaignScheduleOutput,
         http_method = "POST",
         http_path = "/v2/campaigns/{id}/schedule",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:updateCampaignSource(input, options)
         output_schema = types.UpdateCampaignSourceOutput,
         http_method = "POST",
         http_path = "/v2/campaigns/{id}/source",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

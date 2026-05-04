@@ -501,6 +501,9 @@ M.StartSnapshotInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Encrypted = {
             type = "boolean",

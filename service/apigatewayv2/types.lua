@@ -90,6 +90,7 @@ M.Api = {
             type = "timestamp",
             traits = {
                 json_name = "createdDate",
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -314,6 +315,7 @@ M.Deployment = {
             type = "timestamp",
             traits = {
                 json_name = "createdDate",
+                timestamp_format = "date-time",
             },
         },
         DeploymentId = {
@@ -385,6 +387,7 @@ M.DomainNameConfiguration = {
             type = "timestamp",
             traits = {
                 json_name = "certificateUploadDate",
+                timestamp_format = "date-time",
             },
         },
         DomainNameStatus = {
@@ -783,6 +786,7 @@ M.PortalProductSummary = {
             traits = {
                 json_name = "lastModified",
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         PortalProductArn = {
@@ -944,6 +948,7 @@ M.PortalTheme = {
             type = "timestamp",
             traits = {
                 json_name = "logoLastUploaded",
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1051,12 +1056,14 @@ M.PortalSummary = {
             traits = {
                 json_name = "lastModified",
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         LastPublished = {
             type = "timestamp",
             traits = {
                 json_name = "lastPublished",
+                timestamp_format = "date-time",
             },
         },
         LastPublishedDescription = {
@@ -1120,6 +1127,7 @@ M.ProductPageSummaryNoBody = {
             traits = {
                 json_name = "lastModified",
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         PageTitle = {
@@ -1215,6 +1223,7 @@ M.ProductRestEndpointPageSummaryNoBody = {
             traits = {
                 json_name = "lastModified",
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         OperationName = {
@@ -1654,6 +1663,7 @@ M.Stage = {
             type = "timestamp",
             traits = {
                 json_name = "createdDate",
+                timestamp_format = "date-time",
             },
         },
         DefaultRouteSettings = setmetatable({ traits = {
@@ -1681,6 +1691,7 @@ M.Stage = {
             type = "timestamp",
             traits = {
                 json_name = "lastUpdatedDate",
+                timestamp_format = "date-time",
             },
         },
         RouteSettings = {
@@ -1736,6 +1747,7 @@ M.VpcLink = {
             type = "timestamp",
             traits = {
                 json_name = "createdDate",
+                timestamp_format = "date-time",
             },
         },
         Name = {
@@ -1981,6 +1993,7 @@ M.CreateApiOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdDate",
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -2339,6 +2352,7 @@ M.CreateDeploymentOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdDate",
+                timestamp_format = "date-time",
             },
         },
         DeploymentId = {
@@ -2984,12 +2998,14 @@ M.CreatePortalOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastModified",
+                timestamp_format = "date-time",
             },
         },
         LastPublished = {
             type = "timestamp",
             traits = {
                 json_name = "lastPublished",
+                timestamp_format = "date-time",
             },
         },
         LastPublishedDescription = {
@@ -3114,6 +3130,7 @@ M.CreatePortalProductOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastModified",
+                timestamp_format = "date-time",
             },
         },
         PortalProductArn = {
@@ -3186,6 +3203,7 @@ M.CreateProductPageOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastModified",
+                timestamp_format = "date-time",
             },
         },
         ProductPageArn = {
@@ -3300,6 +3318,7 @@ M.CreateProductRestEndpointPageOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastModified",
+                timestamp_format = "date-time",
             },
         },
         ProductRestEndpointPageArn = {
@@ -3780,6 +3799,7 @@ M.CreateStageOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdDate",
+                timestamp_format = "date-time",
             },
         },
         DefaultRouteSettings = setmetatable({ traits = {
@@ -3807,6 +3827,7 @@ M.CreateStageOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastUpdatedDate",
+                timestamp_format = "date-time",
             },
         },
         RouteSettings = {
@@ -3885,6 +3906,7 @@ M.CreateVpcLinkOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdDate",
+                timestamp_format = "date-time",
             },
         },
         Name = {
@@ -4576,6 +4598,7 @@ M.GetApiOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdDate",
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -4949,6 +4972,7 @@ M.GetDeploymentOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdDate",
+                timestamp_format = "date-time",
             },
         },
         DeploymentId = {
@@ -5602,12 +5626,14 @@ M.GetPortalOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastModified",
+                timestamp_format = "date-time",
             },
         },
         LastPublished = {
             type = "timestamp",
             traits = {
                 json_name = "lastPublished",
+                timestamp_format = "date-time",
             },
         },
         LastPublishedDescription = {
@@ -5701,6 +5727,7 @@ M.GetPortalProductOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastModified",
+                timestamp_format = "date-time",
             },
         },
         PortalProductArn = {
@@ -5793,6 +5820,7 @@ M.GetProductPageOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastModified",
+                timestamp_format = "date-time",
             },
         },
         ProductPageArn = {
@@ -5852,6 +5880,7 @@ M.GetProductRestEndpointPageOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastModified",
+                timestamp_format = "date-time",
             },
         },
         ProductRestEndpointPageArn = {
@@ -6276,6 +6305,7 @@ M.GetStageOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdDate",
+                timestamp_format = "date-time",
             },
         },
         DefaultRouteSettings = setmetatable({ traits = {
@@ -6303,6 +6333,7 @@ M.GetStageOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastUpdatedDate",
+                timestamp_format = "date-time",
             },
         },
         RouteSettings = {
@@ -6429,6 +6460,7 @@ M.GetVpcLinkOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdDate",
+                timestamp_format = "date-time",
             },
         },
         Name = {
@@ -6582,6 +6614,7 @@ M.ImportApiOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdDate",
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -7104,6 +7137,7 @@ M.ReimportApiOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdDate",
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -7369,6 +7403,7 @@ M.UpdateApiOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdDate",
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -7700,6 +7735,7 @@ M.UpdateDeploymentOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdDate",
+                timestamp_format = "date-time",
             },
         },
         DeploymentId = {
@@ -8308,12 +8344,14 @@ M.UpdatePortalOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastModified",
+                timestamp_format = "date-time",
             },
         },
         LastPublished = {
             type = "timestamp",
             traits = {
                 json_name = "lastPublished",
+                timestamp_format = "date-time",
             },
         },
         LastPublishedDescription = {
@@ -8416,6 +8454,7 @@ M.UpdatePortalProductOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastModified",
+                timestamp_format = "date-time",
             },
         },
         PortalProductArn = {
@@ -8474,6 +8513,7 @@ M.UpdateProductPageOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastModified",
+                timestamp_format = "date-time",
             },
         },
         ProductPageArn = {
@@ -8530,6 +8570,7 @@ M.UpdateProductRestEndpointPageOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastModified",
+                timestamp_format = "date-time",
             },
         },
         ProductRestEndpointPageArn = {
@@ -8934,6 +8975,7 @@ M.UpdateStageOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdDate",
+                timestamp_format = "date-time",
             },
         },
         DefaultRouteSettings = setmetatable({ traits = {
@@ -8961,6 +9003,7 @@ M.UpdateStageOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastUpdatedDate",
+                timestamp_format = "date-time",
             },
         },
         RouteSettings = {
@@ -9022,6 +9065,7 @@ M.UpdateVpcLinkOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdDate",
+                timestamp_format = "date-time",
             },
         },
         Name = {

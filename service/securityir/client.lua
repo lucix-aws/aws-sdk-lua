@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "SecurityIncidentResponse"
-    cfg.signing_name = "security-ir"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "security-ir", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:batchGetMemberAccountDetails(input, options)
         output_schema = types.BatchGetMemberAccountDetailsOutput,
         http_method = "POST",
         http_path = "/v1/membership/{membershipId}/batch-member-details",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:cancelMembership(input, options)
         output_schema = types.CancelMembershipOutput,
         http_method = "PUT",
         http_path = "/v1/membership/{membershipId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:closeCase(input, options)
         output_schema = types.CloseCaseOutput,
         http_method = "POST",
         http_path = "/v1/cases/{caseId}/close-case",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createCase(input, options)
         output_schema = types.CreateCaseOutput,
         http_method = "POST",
         http_path = "/v1/create-case",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createCaseComment(input, options)
         output_schema = types.CreateCaseCommentOutput,
         http_method = "POST",
         http_path = "/v1/cases/{caseId}/create-comment",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createMembership(input, options)
         output_schema = types.CreateMembershipOutput,
         http_method = "POST",
         http_path = "/v1/membership",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:getCase(input, options)
         output_schema = types.GetCaseOutput,
         http_method = "GET",
         http_path = "/v1/cases/{caseId}/get-case",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:getCaseAttachmentDownloadUrl(input, options)
         output_schema = types.GetCaseAttachmentDownloadUrlOutput,
         http_method = "GET",
         http_path = "/v1/cases/{caseId}/get-presigned-url/{attachmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getCaseAttachmentUploadUrl(input, options)
         output_schema = types.GetCaseAttachmentUploadUrlOutput,
         http_method = "POST",
         http_path = "/v1/cases/{caseId}/get-presigned-url",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:getMembership(input, options)
         output_schema = types.GetMembershipOutput,
         http_method = "GET",
         http_path = "/v1/membership/{membershipId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:listCaseEdits(input, options)
         output_schema = types.ListCaseEditsOutput,
         http_method = "POST",
         http_path = "/v1/cases/{caseId}/list-case-edits",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:listCases(input, options)
         output_schema = types.ListCasesOutput,
         http_method = "POST",
         http_path = "/v1/list-cases",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:listComments(input, options)
         output_schema = types.ListCommentsOutput,
         http_method = "POST",
         http_path = "/v1/cases/{caseId}/list-comments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:listInvestigations(input, options)
         output_schema = types.ListInvestigationsOutput,
         http_method = "GET",
         http_path = "/v1/cases/{caseId}/list-investigations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:listMemberships(input, options)
         output_schema = types.ListMembershipsOutput,
         http_method = "POST",
         http_path = "/v1/memberships",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/v1/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:sendFeedback(input, options)
         output_schema = types.SendFeedbackOutput,
         http_method = "POST",
         http_path = "/v1/cases/{caseId}/feedback/{resultId}/send-feedback",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/v1/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/v1/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:updateCase(input, options)
         output_schema = types.UpdateCaseOutput,
         http_method = "POST",
         http_path = "/v1/cases/{caseId}/update-case",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:updateCaseComment(input, options)
         output_schema = types.UpdateCaseCommentOutput,
         http_method = "PUT",
         http_path = "/v1/cases/{caseId}/update-case-comment/{commentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:updateCaseStatus(input, options)
         output_schema = types.UpdateCaseStatusOutput,
         http_method = "POST",
         http_path = "/v1/cases/{caseId}/update-case-status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:updateMembership(input, options)
         output_schema = types.UpdateMembershipOutput,
         http_method = "PUT",
         http_path = "/v1/membership/{membershipId}/update-membership",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:updateResolverType(input, options)
         output_schema = types.UpdateResolverTypeOutput,
         http_method = "POST",
         http_path = "/v1/cases/{caseId}/update-resolver-type",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

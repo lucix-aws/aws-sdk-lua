@@ -638,9 +638,9 @@ local type SoftwareSetValidationStatus = "VALIDATED" | "NOT_VALIDATED"
 
 local type SoftwareSetUpdateMode = "USE_LATEST" | "USE_DESIRED"
 
-local type TargetDeviceStatus = "DEREGISTERED" | "ARCHIVED"
-
 local type SoftwareSetUpdateSchedule = "USE_MAINTENANCE_WINDOW" | "APPLY_IMMEDIATELY"
+
+local type TargetDeviceStatus = "DEREGISTERED" | "ARCHIVED"
 
 local record M
     CreateEnvironmentInput: CreateEnvironmentInput

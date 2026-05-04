@@ -1,0 +1,131 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for exportComponents.
+function M.pages_export_components(client, input)
+    return paginator.pages(client, "exportComponents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "entities",
+    })
+end
+
+--- Returns an item iterator for exportComponents.
+function M.items_export_components(client, input)
+    return paginator.items(client, "exportComponents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "entities",
+    })
+end
+
+--- Returns a page iterator for exportForms.
+function M.pages_export_forms(client, input)
+    return paginator.pages(client, "exportForms", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "entities",
+    })
+end
+
+--- Returns an item iterator for exportForms.
+function M.items_export_forms(client, input)
+    return paginator.items(client, "exportForms", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "entities",
+    })
+end
+
+--- Returns a page iterator for exportThemes.
+function M.pages_export_themes(client, input)
+    return paginator.pages(client, "exportThemes", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "entities",
+    })
+end
+
+--- Returns an item iterator for exportThemes.
+function M.items_export_themes(client, input)
+    return paginator.items(client, "exportThemes", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "entities",
+    })
+end
+
+--- Returns a page iterator for listCodegenJobs.
+function M.pages_list_codegen_jobs(client, input)
+    return paginator.pages(client, "listCodegenJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "entities",
+    })
+end
+
+--- Returns an item iterator for listCodegenJobs.
+function M.items_list_codegen_jobs(client, input)
+    return paginator.items(client, "listCodegenJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "entities",
+    })
+end
+
+--- Returns a page iterator for listComponents.
+function M.pages_list_components(client, input)
+    return paginator.pages(client, "listComponents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "entities",
+    })
+end
+
+--- Returns an item iterator for listComponents.
+function M.items_list_components(client, input)
+    return paginator.items(client, "listComponents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "entities",
+    })
+end
+
+--- Returns a page iterator for listForms.
+function M.pages_list_forms(client, input)
+    return paginator.pages(client, "listForms", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "entities",
+    })
+end
+
+--- Returns an item iterator for listForms.
+function M.items_list_forms(client, input)
+    return paginator.items(client, "listForms", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "entities",
+    })
+end
+
+--- Returns a page iterator for listThemes.
+function M.pages_list_themes(client, input)
+    return paginator.pages(client, "listThemes", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "entities",
+    })
+end
+
+--- Returns an item iterator for listThemes.
+function M.items_list_themes(client, input)
+    return paginator.items(client, "listThemes", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "entities",
+    })
+end
+
+return M

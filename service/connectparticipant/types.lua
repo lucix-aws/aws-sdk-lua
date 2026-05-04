@@ -88,6 +88,7 @@ M.CompleteAttachmentUploadInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -354,6 +355,9 @@ M.DisconnectParticipantInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ConnectionToken = {
             type = "string",
@@ -659,6 +663,9 @@ M.SendEventInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ConnectionToken = {
             type = "string",
@@ -699,6 +706,9 @@ M.SendMessageInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ConnectionToken = {
             type = "string",
@@ -757,6 +767,7 @@ M.StartAttachmentUploadInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },

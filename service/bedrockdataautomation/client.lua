@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonBedrockKeystoneBuildTimeService"
-    cfg.signing_name = "bedrock"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "bedrock", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:copyBlueprintStage(input, options)
         output_schema = types.CopyBlueprintStageOutput,
         http_method = "PUT",
         http_path = "/blueprints/{blueprintArn}/copy-stage",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createBlueprint(input, options)
         output_schema = types.CreateBlueprintOutput,
         http_method = "PUT",
         http_path = "/blueprints/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createBlueprintVersion(input, options)
         output_schema = types.CreateBlueprintVersionOutput,
         http_method = "POST",
         http_path = "/blueprints/{blueprintArn}/versions/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createDataAutomationLibrary(input, options)
         output_schema = types.CreateDataAutomationLibraryOutput,
         http_method = "PUT",
         http_path = "/data-automation-libraries/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createDataAutomationProject(input, options)
         output_schema = types.CreateDataAutomationProjectOutput,
         http_method = "PUT",
         http_path = "/data-automation-projects/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteBlueprint(input, options)
         output_schema = types.DeleteBlueprintOutput,
         http_method = "DELETE",
         http_path = "/blueprints/{blueprintArn}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteDataAutomationLibrary(input, options)
         output_schema = types.DeleteDataAutomationLibraryOutput,
         http_method = "DELETE",
         http_path = "/data-automation-libraries/{libraryArn}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteDataAutomationProject(input, options)
         output_schema = types.DeleteDataAutomationProjectOutput,
         http_method = "DELETE",
         http_path = "/data-automation-projects/{projectArn}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getBlueprint(input, options)
         output_schema = types.GetBlueprintOutput,
         http_method = "POST",
         http_path = "/blueprints/{blueprintArn}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:getBlueprintOptimizationStatus(input, options)
         output_schema = types.GetBlueprintOptimizationStatusOutput,
         http_method = "POST",
         http_path = "/getBlueprintOptimizationStatus/{invocationArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getDataAutomationLibrary(input, options)
         output_schema = types.GetDataAutomationLibraryOutput,
         http_method = "POST",
         http_path = "/data-automation-libraries/{libraryArn}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getDataAutomationLibraryEntity(input, options)
         output_schema = types.GetDataAutomationLibraryEntityOutput,
         http_method = "POST",
         http_path = "/data-automation-libraries/{libraryArn}/entityType/{entityType}/entities/{entityId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getDataAutomationLibraryIngestionJob(input, options)
         output_schema = types.GetDataAutomationLibraryIngestionJobOutput,
         http_method = "POST",
         http_path = "/data-automation-libraries/{libraryArn}/library-ingestion-jobs/{jobArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getDataAutomationProject(input, options)
         output_schema = types.GetDataAutomationProjectOutput,
         http_method = "POST",
         http_path = "/data-automation-projects/{projectArn}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:invokeBlueprintOptimizationAsync(input, options)
         output_schema = types.InvokeBlueprintOptimizationAsyncOutput,
         http_method = "POST",
         http_path = "/invokeBlueprintOptimizationAsync",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:invokeDataAutomationLibraryIngestionJob(input, options)
         output_schema = types.InvokeDataAutomationLibraryIngestionJobOutput,
         http_method = "PUT",
         http_path = "/data-automation-libraries/{libraryArn}/library-ingestion-jobs/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listBlueprints(input, options)
         output_schema = types.ListBlueprintsOutput,
         http_method = "POST",
         http_path = "/blueprints/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listDataAutomationLibraries(input, options)
         output_schema = types.ListDataAutomationLibrariesOutput,
         http_method = "POST",
         http_path = "/data-automation-libraries/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listDataAutomationLibraryEntities(input, options)
         output_schema = types.ListDataAutomationLibraryEntitiesOutput,
         http_method = "POST",
         http_path = "/data-automation-libraries/{libraryArn}/entityType/{entityType}/entities/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listDataAutomationLibraryIngestionJobs(input, options)
         output_schema = types.ListDataAutomationLibraryIngestionJobsOutput,
         http_method = "POST",
         http_path = "/data-automation-libraries/{libraryArn}/library-ingestion-jobs/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listDataAutomationProjects(input, options)
         output_schema = types.ListDataAutomationProjectsOutput,
         http_method = "POST",
         http_path = "/data-automation-projects/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/listTagsForResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tagResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/untagResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:updateBlueprint(input, options)
         output_schema = types.UpdateBlueprintOutput,
         http_method = "PUT",
         http_path = "/blueprints/{blueprintArn}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:updateDataAutomationLibrary(input, options)
         output_schema = types.UpdateDataAutomationLibraryOutput,
         http_method = "PUT",
         http_path = "/data-automation-libraries/{libraryArn}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:updateDataAutomationProject(input, options)
         output_schema = types.UpdateDataAutomationProjectOutput,
         http_method = "PUT",
         http_path = "/data-automation-projects/{projectArn}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "IotManagedIntegrations"
-    cfg.signing_name = "iotmanagedintegrations"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "iotmanagedintegrations", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createAccountAssociation(input, options)
         output_schema = types.CreateAccountAssociationOutput,
         http_method = "POST",
         http_path = "/account-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createCloudConnector(input, options)
         output_schema = types.CreateCloudConnectorOutput,
         http_method = "POST",
         http_path = "/cloud-connectors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createConnectorDestination(input, options)
         output_schema = types.CreateConnectorDestinationOutput,
         http_method = "POST",
         http_path = "/connector-destinations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createCredentialLocker(input, options)
         output_schema = types.CreateCredentialLockerOutput,
         http_method = "POST",
         http_path = "/credential-lockers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createDestination(input, options)
         output_schema = types.CreateDestinationOutput,
         http_method = "POST",
         http_path = "/destinations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createEventLogConfiguration(input, options)
         output_schema = types.CreateEventLogConfigurationOutput,
         http_method = "POST",
         http_path = "/event-log-configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createManagedThing(input, options)
         output_schema = types.CreateManagedThingOutput,
         http_method = "POST",
         http_path = "/managed-things",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createNotificationConfiguration(input, options)
         output_schema = types.CreateNotificationConfigurationOutput,
         http_method = "POST",
         http_path = "/notification-configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createOtaTask(input, options)
         output_schema = types.CreateOtaTaskOutput,
         http_method = "POST",
         http_path = "/ota-tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createOtaTaskConfiguration(input, options)
         output_schema = types.CreateOtaTaskConfigurationOutput,
         http_method = "POST",
         http_path = "/ota-task-configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createProvisioningProfile(input, options)
         output_schema = types.CreateProvisioningProfileOutput,
         http_method = "POST",
         http_path = "/provisioning-profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteAccountAssociation(input, options)
         output_schema = types.DeleteAccountAssociationOutput,
         http_method = "DELETE",
         http_path = "/account-associations/{AccountAssociationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteCloudConnector(input, options)
         output_schema = types.DeleteCloudConnectorOutput,
         http_method = "DELETE",
         http_path = "/cloud-connectors/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteConnectorDestination(input, options)
         output_schema = types.DeleteConnectorDestinationOutput,
         http_method = "DELETE",
         http_path = "/connector-destinations/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteCredentialLocker(input, options)
         output_schema = types.DeleteCredentialLockerOutput,
         http_method = "DELETE",
         http_path = "/credential-lockers/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteDestination(input, options)
         output_schema = types.DeleteDestinationOutput,
         http_method = "DELETE",
         http_path = "/destinations/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deleteEventLogConfiguration(input, options)
         output_schema = types.DeleteEventLogConfigurationOutput,
         http_method = "DELETE",
         http_path = "/event-log-configurations/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteManagedThing(input, options)
         output_schema = types.DeleteManagedThingOutput,
         http_method = "DELETE",
         http_path = "/managed-things/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteNotificationConfiguration(input, options)
         output_schema = types.DeleteNotificationConfigurationOutput,
         http_method = "DELETE",
         http_path = "/notification-configurations/{EventType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deleteOtaTask(input, options)
         output_schema = types.DeleteOtaTaskOutput,
         http_method = "DELETE",
         http_path = "/ota-tasks/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deleteOtaTaskConfiguration(input, options)
         output_schema = types.DeleteOtaTaskConfigurationOutput,
         http_method = "DELETE",
         http_path = "/ota-task-configurations/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:deleteProvisioningProfile(input, options)
         output_schema = types.DeleteProvisioningProfileOutput,
         http_method = "DELETE",
         http_path = "/provisioning-profiles/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:deregisterAccountAssociation(input, options)
         output_schema = types.DeregisterAccountAssociationOutput,
         http_method = "PUT",
         http_path = "/managed-thing-associations/deregister",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:getAccountAssociation(input, options)
         output_schema = types.GetAccountAssociationOutput,
         http_method = "GET",
         http_path = "/account-associations/{AccountAssociationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:getCloudConnector(input, options)
         output_schema = types.GetCloudConnectorOutput,
         http_method = "GET",
         http_path = "/cloud-connectors/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:getConnectorDestination(input, options)
         output_schema = types.GetConnectorDestinationOutput,
         http_method = "GET",
         http_path = "/connector-destinations/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:getCredentialLocker(input, options)
         output_schema = types.GetCredentialLockerOutput,
         http_method = "GET",
         http_path = "/credential-lockers/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:getCustomEndpoint(input, options)
         output_schema = types.GetCustomEndpointOutput,
         http_method = "GET",
         http_path = "/custom-endpoint",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:getDefaultEncryptionConfiguration(input, options)
         output_schema = types.GetDefaultEncryptionConfigurationOutput,
         http_method = "GET",
         http_path = "/configuration/account/encryption",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:getDestination(input, options)
         output_schema = types.GetDestinationOutput,
         http_method = "GET",
         http_path = "/destinations/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:getDeviceDiscovery(input, options)
         output_schema = types.GetDeviceDiscoveryOutput,
         http_method = "GET",
         http_path = "/device-discoveries/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:getEventLogConfiguration(input, options)
         output_schema = types.GetEventLogConfigurationOutput,
         http_method = "GET",
         http_path = "/event-log-configurations/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:getHubConfiguration(input, options)
         output_schema = types.GetHubConfigurationOutput,
         http_method = "GET",
         http_path = "/hub-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:getManagedThing(input, options)
         output_schema = types.GetManagedThingOutput,
         http_method = "GET",
         http_path = "/managed-things/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:getManagedThingCapabilities(input, options)
         output_schema = types.GetManagedThingCapabilitiesOutput,
         http_method = "GET",
         http_path = "/managed-things-capabilities/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:getManagedThingCertificate(input, options)
         output_schema = types.GetManagedThingCertificateOutput,
         http_method = "GET",
         http_path = "/managed-things-certificate/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:getManagedThingConnectivityData(input, options)
         output_schema = types.GetManagedThingConnectivityDataOutput,
         http_method = "POST",
         http_path = "/managed-things-connectivity-data/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:getManagedThingMetaData(input, options)
         output_schema = types.GetManagedThingMetaDataOutput,
         http_method = "GET",
         http_path = "/managed-things-metadata/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:getManagedThingState(input, options)
         output_schema = types.GetManagedThingStateOutput,
         http_method = "GET",
         http_path = "/managed-thing-states/{ManagedThingId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:getNotificationConfiguration(input, options)
         output_schema = types.GetNotificationConfigurationOutput,
         http_method = "GET",
         http_path = "/notification-configurations/{EventType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:getOtaTask(input, options)
         output_schema = types.GetOtaTaskOutput,
         http_method = "GET",
         http_path = "/ota-tasks/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:getOtaTaskConfiguration(input, options)
         output_schema = types.GetOtaTaskConfigurationOutput,
         http_method = "GET",
         http_path = "/ota-task-configurations/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:getProvisioningProfile(input, options)
         output_schema = types.GetProvisioningProfileOutput,
         http_method = "GET",
         http_path = "/provisioning-profiles/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:getRuntimeLogConfiguration(input, options)
         output_schema = types.GetRuntimeLogConfigurationOutput,
         http_method = "GET",
         http_path = "/runtime-log-configurations/{ManagedThingId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:getSchemaVersion(input, options)
         output_schema = types.GetSchemaVersionOutput,
         http_method = "GET",
         http_path = "/schema-versions/{Type}/{SchemaVersionedId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:listAccountAssociations(input, options)
         output_schema = types.ListAccountAssociationsOutput,
         http_method = "GET",
         http_path = "/account-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:listCloudConnectors(input, options)
         output_schema = types.ListCloudConnectorsOutput,
         http_method = "GET",
         http_path = "/cloud-connectors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:listConnectorDestinations(input, options)
         output_schema = types.ListConnectorDestinationsOutput,
         http_method = "GET",
         http_path = "/connector-destinations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:listCredentialLockers(input, options)
         output_schema = types.ListCredentialLockersOutput,
         http_method = "GET",
         http_path = "/credential-lockers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:listDestinations(input, options)
         output_schema = types.ListDestinationsOutput,
         http_method = "GET",
         http_path = "/destinations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:listDeviceDiscoveries(input, options)
         output_schema = types.ListDeviceDiscoveriesOutput,
         http_method = "GET",
         http_path = "/device-discoveries",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:listDiscoveredDevices(input, options)
         output_schema = types.ListDiscoveredDevicesOutput,
         http_method = "GET",
         http_path = "/device-discoveries/{Identifier}/devices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:listEventLogConfigurations(input, options)
         output_schema = types.ListEventLogConfigurationsOutput,
         http_method = "GET",
         http_path = "/event-log-configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:listManagedThingAccountAssociations(input, options)
         output_schema = types.ListManagedThingAccountAssociationsOutput,
         http_method = "GET",
         http_path = "/managed-thing-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:listManagedThings(input, options)
         output_schema = types.ListManagedThingsOutput,
         http_method = "GET",
         http_path = "/managed-things",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:listManagedThingSchemas(input, options)
         output_schema = types.ListManagedThingSchemasOutput,
         http_method = "GET",
         http_path = "/managed-thing-schemas/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:listNotificationConfigurations(input, options)
         output_schema = types.ListNotificationConfigurationsOutput,
         http_method = "GET",
         http_path = "/notification-configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:listOtaTaskConfigurations(input, options)
         output_schema = types.ListOtaTaskConfigurationsOutput,
         http_method = "GET",
         http_path = "/ota-task-configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:listOtaTaskExecutions(input, options)
         output_schema = types.ListOtaTaskExecutionsOutput,
         http_method = "GET",
         http_path = "/ota-tasks/{Identifier}/devices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:listOtaTasks(input, options)
         output_schema = types.ListOtaTasksOutput,
         http_method = "GET",
         http_path = "/ota-tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:listProvisioningProfiles(input, options)
         output_schema = types.ListProvisioningProfilesOutput,
         http_method = "GET",
         http_path = "/provisioning-profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:listSchemaVersions(input, options)
         output_schema = types.ListSchemaVersionsOutput,
         http_method = "GET",
         http_path = "/schema-versions/{Type}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:putDefaultEncryptionConfiguration(input, options)
         output_schema = types.PutDefaultEncryptionConfigurationOutput,
         http_method = "POST",
         http_path = "/configuration/account/encryption",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:putHubConfiguration(input, options)
         output_schema = types.PutHubConfigurationOutput,
         http_method = "PUT",
         http_path = "/hub-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:putRuntimeLogConfiguration(input, options)
         output_schema = types.PutRuntimeLogConfigurationOutput,
         http_method = "PUT",
         http_path = "/runtime-log-configurations/{ManagedThingId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:registerAccountAssociation(input, options)
         output_schema = types.RegisterAccountAssociationOutput,
         http_method = "PUT",
         http_path = "/managed-thing-associations/register",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:registerCustomEndpoint(input, options)
         output_schema = types.RegisterCustomEndpointOutput,
         http_method = "POST",
         http_path = "/custom-endpoint",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:resetRuntimeLogConfiguration(input, options)
         output_schema = types.ResetRuntimeLogConfigurationOutput,
         http_method = "DELETE",
         http_path = "/runtime-log-configurations/{ManagedThingId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:sendConnectorEvent(input, options)
         output_schema = types.SendConnectorEventOutput,
         http_method = "POST",
         http_path = "/connector-event/{ConnectorId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:sendManagedThingCommand(input, options)
         output_schema = types.SendManagedThingCommandOutput,
         http_method = "POST",
         http_path = "/managed-things-command/{ManagedThingId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:startAccountAssociationRefresh(input, options)
         output_schema = types.StartAccountAssociationRefreshOutput,
         http_method = "POST",
         http_path = "/account-associations/{AccountAssociationId}/refresh",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:startDeviceDiscovery(input, options)
         output_schema = types.StartDeviceDiscoveryOutput,
         http_method = "POST",
         http_path = "/device-discoveries",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:updateAccountAssociation(input, options)
         output_schema = types.UpdateAccountAssociationOutput,
         http_method = "PUT",
         http_path = "/account-associations/{AccountAssociationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:updateCloudConnector(input, options)
         output_schema = types.UpdateCloudConnectorOutput,
         http_method = "PUT",
         http_path = "/cloud-connectors/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:updateConnectorDestination(input, options)
         output_schema = types.UpdateConnectorDestinationOutput,
         http_method = "PUT",
         http_path = "/connector-destinations/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:updateDestination(input, options)
         output_schema = types.UpdateDestinationOutput,
         http_method = "PUT",
         http_path = "/destinations/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:updateEventLogConfiguration(input, options)
         output_schema = types.UpdateEventLogConfigurationOutput,
         http_method = "PATCH",
         http_path = "/event-log-configurations/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:updateManagedThing(input, options)
         output_schema = types.UpdateManagedThingOutput,
         http_method = "PUT",
         http_path = "/managed-things/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:updateNotificationConfiguration(input, options)
         output_schema = types.UpdateNotificationConfigurationOutput,
         http_method = "PUT",
         http_path = "/notification-configurations/{EventType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:updateOtaTask(input, options)
         output_schema = types.UpdateOtaTaskOutput,
         http_method = "PUT",
         http_path = "/ota-tasks/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "WisdomService"
-    cfg.signing_name = "wisdom"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "wisdom", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:activateMessageTemplate(input, options)
         output_schema = types.ActivateMessageTemplateOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates/{messageTemplateId}/activate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createAIAgent(input, options)
         output_schema = types.CreateAIAgentOutput,
         http_method = "POST",
         http_path = "/assistants/{assistantId}/aiagents",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createAIAgentVersion(input, options)
         output_schema = types.CreateAIAgentVersionOutput,
         http_method = "POST",
         http_path = "/assistants/{assistantId}/aiagents/{aiAgentId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createAIGuardrail(input, options)
         output_schema = types.CreateAIGuardrailOutput,
         http_method = "POST",
         http_path = "/assistants/{assistantId}/aiguardrails",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createAIGuardrailVersion(input, options)
         output_schema = types.CreateAIGuardrailVersionOutput,
         http_method = "POST",
         http_path = "/assistants/{assistantId}/aiguardrails/{aiGuardrailId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createAIPrompt(input, options)
         output_schema = types.CreateAIPromptOutput,
         http_method = "POST",
         http_path = "/assistants/{assistantId}/aiprompts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createAIPromptVersion(input, options)
         output_schema = types.CreateAIPromptVersionOutput,
         http_method = "POST",
         http_path = "/assistants/{assistantId}/aiprompts/{aiPromptId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createAssistant(input, options)
         output_schema = types.CreateAssistantOutput,
         http_method = "POST",
         http_path = "/assistants",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createAssistantAssociation(input, options)
         output_schema = types.CreateAssistantAssociationOutput,
         http_method = "POST",
         http_path = "/assistants/{assistantId}/associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createContent(input, options)
         output_schema = types.CreateContentOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/contents",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createContentAssociation(input, options)
         output_schema = types.CreateContentAssociationOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}/associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createKnowledgeBase(input, options)
         output_schema = types.CreateKnowledgeBaseOutput,
         http_method = "POST",
         http_path = "/knowledgeBases",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createMessageTemplate(input, options)
         output_schema = types.CreateMessageTemplateOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:createMessageTemplateAttachment(input, options)
         output_schema = types.CreateMessageTemplateAttachmentOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates/{messageTemplateId}/attachments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:createMessageTemplateVersion(input, options)
         output_schema = types.CreateMessageTemplateVersionOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates/{messageTemplateId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:createQuickResponse(input, options)
         output_schema = types.CreateQuickResponseOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/quickResponses",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:createSession(input, options)
         output_schema = types.CreateSessionOutput,
         http_method = "POST",
         http_path = "/assistants/{assistantId}/sessions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deactivateMessageTemplate(input, options)
         output_schema = types.DeactivateMessageTemplateOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates/{messageTemplateId}/deactivate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteAIAgent(input, options)
         output_schema = types.DeleteAIAgentOutput,
         http_method = "DELETE",
         http_path = "/assistants/{assistantId}/aiagents/{aiAgentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deleteAIAgentVersion(input, options)
         output_schema = types.DeleteAIAgentVersionOutput,
         http_method = "DELETE",
         http_path = "/assistants/{assistantId}/aiagents/{aiAgentId}/versions/{versionNumber}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deleteAIGuardrail(input, options)
         output_schema = types.DeleteAIGuardrailOutput,
         http_method = "DELETE",
         http_path = "/assistants/{assistantId}/aiguardrails/{aiGuardrailId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:deleteAIGuardrailVersion(input, options)
         output_schema = types.DeleteAIGuardrailVersionOutput,
         http_method = "DELETE",
         http_path = "/assistants/{assistantId}/aiguardrails/{aiGuardrailId}/versions/{versionNumber}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:deleteAIPrompt(input, options)
         output_schema = types.DeleteAIPromptOutput,
         http_method = "DELETE",
         http_path = "/assistants/{assistantId}/aiprompts/{aiPromptId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:deleteAIPromptVersion(input, options)
         output_schema = types.DeleteAIPromptVersionOutput,
         http_method = "DELETE",
         http_path = "/assistants/{assistantId}/aiprompts/{aiPromptId}/versions/{versionNumber}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:deleteAssistant(input, options)
         output_schema = types.DeleteAssistantOutput,
         http_method = "DELETE",
         http_path = "/assistants/{assistantId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:deleteAssistantAssociation(input, options)
         output_schema = types.DeleteAssistantAssociationOutput,
         http_method = "DELETE",
         http_path = "/assistants/{assistantId}/associations/{assistantAssociationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:deleteContent(input, options)
         output_schema = types.DeleteContentOutput,
         http_method = "DELETE",
         http_path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:deleteContentAssociation(input, options)
         output_schema = types.DeleteContentAssociationOutput,
         http_method = "DELETE",
         http_path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}/associations/{contentAssociationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:deleteImportJob(input, options)
         output_schema = types.DeleteImportJobOutput,
         http_method = "DELETE",
         http_path = "/knowledgeBases/{knowledgeBaseId}/importJobs/{importJobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:deleteKnowledgeBase(input, options)
         output_schema = types.DeleteKnowledgeBaseOutput,
         http_method = "DELETE",
         http_path = "/knowledgeBases/{knowledgeBaseId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:deleteMessageTemplate(input, options)
         output_schema = types.DeleteMessageTemplateOutput,
         http_method = "DELETE",
         http_path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates/{messageTemplateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:deleteMessageTemplateAttachment(input, options)
         output_schema = types.DeleteMessageTemplateAttachmentOutput,
         http_method = "DELETE",
         http_path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates/{messageTemplateId}/attachments/{attachmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:deleteQuickResponse(input, options)
         output_schema = types.DeleteQuickResponseOutput,
         http_method = "DELETE",
         http_path = "/knowledgeBases/{knowledgeBaseId}/quickResponses/{quickResponseId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:getAIAgent(input, options)
         output_schema = types.GetAIAgentOutput,
         http_method = "GET",
         http_path = "/assistants/{assistantId}/aiagents/{aiAgentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:getAIGuardrail(input, options)
         output_schema = types.GetAIGuardrailOutput,
         http_method = "GET",
         http_path = "/assistants/{assistantId}/aiguardrails/{aiGuardrailId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:getAIPrompt(input, options)
         output_schema = types.GetAIPromptOutput,
         http_method = "GET",
         http_path = "/assistants/{assistantId}/aiprompts/{aiPromptId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:getAssistant(input, options)
         output_schema = types.GetAssistantOutput,
         http_method = "GET",
         http_path = "/assistants/{assistantId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:getAssistantAssociation(input, options)
         output_schema = types.GetAssistantAssociationOutput,
         http_method = "GET",
         http_path = "/assistants/{assistantId}/associations/{assistantAssociationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:getContent(input, options)
         output_schema = types.GetContentOutput,
         http_method = "GET",
         http_path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:getContentAssociation(input, options)
         output_schema = types.GetContentAssociationOutput,
         http_method = "GET",
         http_path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}/associations/{contentAssociationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:getContentSummary(input, options)
         output_schema = types.GetContentSummaryOutput,
         http_method = "GET",
         http_path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}/summary",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:getImportJob(input, options)
         output_schema = types.GetImportJobOutput,
         http_method = "GET",
         http_path = "/knowledgeBases/{knowledgeBaseId}/importJobs/{importJobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:getKnowledgeBase(input, options)
         output_schema = types.GetKnowledgeBaseOutput,
         http_method = "GET",
         http_path = "/knowledgeBases/{knowledgeBaseId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:getMessageTemplate(input, options)
         output_schema = types.GetMessageTemplateOutput,
         http_method = "GET",
         http_path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates/{messageTemplateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:getNextMessage(input, options)
         output_schema = types.GetNextMessageOutput,
         http_method = "GET",
         http_path = "/assistants/{assistantId}/sessions/{sessionId}/messages/next",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:getQuickResponse(input, options)
         output_schema = types.GetQuickResponseOutput,
         http_method = "GET",
         http_path = "/knowledgeBases/{knowledgeBaseId}/quickResponses/{quickResponseId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:getRecommendations(input, options)
         output_schema = types.GetRecommendationsOutput,
         http_method = "GET",
         http_path = "/assistants/{assistantId}/sessions/{sessionId}/recommendations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:getSession(input, options)
         output_schema = types.GetSessionOutput,
         http_method = "GET",
         http_path = "/assistants/{assistantId}/sessions/{sessionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:listAIAgents(input, options)
         output_schema = types.ListAIAgentsOutput,
         http_method = "GET",
         http_path = "/assistants/{assistantId}/aiagents",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:listAIAgentVersions(input, options)
         output_schema = types.ListAIAgentVersionsOutput,
         http_method = "GET",
         http_path = "/assistants/{assistantId}/aiagents/{aiAgentId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:listAIGuardrails(input, options)
         output_schema = types.ListAIGuardrailsOutput,
         http_method = "GET",
         http_path = "/assistants/{assistantId}/aiguardrails",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:listAIGuardrailVersions(input, options)
         output_schema = types.ListAIGuardrailVersionsOutput,
         http_method = "GET",
         http_path = "/assistants/{assistantId}/aiguardrails/{aiGuardrailId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:listAIPrompts(input, options)
         output_schema = types.ListAIPromptsOutput,
         http_method = "GET",
         http_path = "/assistants/{assistantId}/aiprompts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:listAIPromptVersions(input, options)
         output_schema = types.ListAIPromptVersionsOutput,
         http_method = "GET",
         http_path = "/assistants/{assistantId}/aiprompts/{aiPromptId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:listAssistantAssociations(input, options)
         output_schema = types.ListAssistantAssociationsOutput,
         http_method = "GET",
         http_path = "/assistants/{assistantId}/associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:listAssistants(input, options)
         output_schema = types.ListAssistantsOutput,
         http_method = "GET",
         http_path = "/assistants",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:listContentAssociations(input, options)
         output_schema = types.ListContentAssociationsOutput,
         http_method = "GET",
         http_path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}/associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:listContents(input, options)
         output_schema = types.ListContentsOutput,
         http_method = "GET",
         http_path = "/knowledgeBases/{knowledgeBaseId}/contents",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:listImportJobs(input, options)
         output_schema = types.ListImportJobsOutput,
         http_method = "GET",
         http_path = "/knowledgeBases/{knowledgeBaseId}/importJobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:listKnowledgeBases(input, options)
         output_schema = types.ListKnowledgeBasesOutput,
         http_method = "GET",
         http_path = "/knowledgeBases",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:listMessages(input, options)
         output_schema = types.ListMessagesOutput,
         http_method = "GET",
         http_path = "/assistants/{assistantId}/sessions/{sessionId}/messages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:listMessageTemplates(input, options)
         output_schema = types.ListMessageTemplatesOutput,
         http_method = "GET",
         http_path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:listMessageTemplateVersions(input, options)
         output_schema = types.ListMessageTemplateVersionsOutput,
         http_method = "GET",
         http_path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates/{messageTemplateId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:listQuickResponses(input, options)
         output_schema = types.ListQuickResponsesOutput,
         http_method = "GET",
         http_path = "/knowledgeBases/{knowledgeBaseId}/quickResponses",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:listSpans(input, options)
         output_schema = types.ListSpansOutput,
         http_method = "GET",
         http_path = "/assistants/{assistantId}/sessions/{sessionId}/spans",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:notifyRecommendationsReceived(input, options)
         output_schema = types.NotifyRecommendationsReceivedOutput,
         http_method = "POST",
         http_path = "/assistants/{assistantId}/sessions/{sessionId}/recommendations/notify",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:putFeedback(input, options)
         output_schema = types.PutFeedbackOutput,
         http_method = "PUT",
         http_path = "/assistants/{assistantId}/feedback",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:queryAssistant(input, options)
         output_schema = types.QueryAssistantOutput,
         http_method = "POST",
         http_path = "/assistants/{assistantId}/query",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:removeAssistantAIAgent(input, options)
         output_schema = types.RemoveAssistantAIAgentOutput,
         http_method = "DELETE",
         http_path = "/assistants/{assistantId}/aiagentConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:removeKnowledgeBaseTemplateUri(input, options)
         output_schema = types.RemoveKnowledgeBaseTemplateUriOutput,
         http_method = "DELETE",
         http_path = "/knowledgeBases/{knowledgeBaseId}/templateUri",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:renderMessageTemplate(input, options)
         output_schema = types.RenderMessageTemplateOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates/{messageTemplateId}/render",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:retrieve(input, options)
         output_schema = types.RetrieveOutput,
         http_method = "POST",
         http_path = "/assistants/{assistantId}/retrieve",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:searchContent(input, options)
         output_schema = types.SearchContentOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/search",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:searchMessageTemplates(input, options)
         output_schema = types.SearchMessageTemplatesOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/search/messageTemplates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:searchQuickResponses(input, options)
         output_schema = types.SearchQuickResponsesOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/search/quickResponses",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:searchSessions(input, options)
         output_schema = types.SearchSessionsOutput,
         http_method = "POST",
         http_path = "/assistants/{assistantId}/searchSessions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:sendMessage(input, options)
         output_schema = types.SendMessageOutput,
         http_method = "POST",
         http_path = "/assistants/{assistantId}/sessions/{sessionId}/message",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:startContentUpload(input, options)
         output_schema = types.StartContentUploadOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/upload",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:startImportJob(input, options)
         output_schema = types.StartImportJobOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/importJobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:updateAIAgent(input, options)
         output_schema = types.UpdateAIAgentOutput,
         http_method = "POST",
         http_path = "/assistants/{assistantId}/aiagents/{aiAgentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:updateAIGuardrail(input, options)
         output_schema = types.UpdateAIGuardrailOutput,
         http_method = "POST",
         http_path = "/assistants/{assistantId}/aiguardrails/{aiGuardrailId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:updateAIPrompt(input, options)
         output_schema = types.UpdateAIPromptOutput,
         http_method = "POST",
         http_path = "/assistants/{assistantId}/aiprompts/{aiPromptId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -890,6 +1158,9 @@ function Client:updateAssistantAIAgent(input, options)
         output_schema = types.UpdateAssistantAIAgentOutput,
         http_method = "POST",
         http_path = "/assistants/{assistantId}/aiagentConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -900,6 +1171,9 @@ function Client:updateContent(input, options)
         output_schema = types.UpdateContentOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -910,6 +1184,9 @@ function Client:updateKnowledgeBaseTemplateUri(input, options)
         output_schema = types.UpdateKnowledgeBaseTemplateUriOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/templateUri",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -920,6 +1197,9 @@ function Client:updateMessageTemplate(input, options)
         output_schema = types.UpdateMessageTemplateOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates/{messageTemplateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -930,6 +1210,9 @@ function Client:updateMessageTemplateMetadata(input, options)
         output_schema = types.UpdateMessageTemplateMetadataOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates/{messageTemplateId}/metadata",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -940,6 +1223,9 @@ function Client:updateQuickResponse(input, options)
         output_schema = types.UpdateQuickResponseOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/quickResponses/{quickResponseId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -950,6 +1236,9 @@ function Client:updateSession(input, options)
         output_schema = types.UpdateSessionOutput,
         http_method = "POST",
         http_path = "/assistants/{assistantId}/sessions/{sessionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -960,6 +1249,9 @@ function Client:updateSessionData(input, options)
         output_schema = types.UpdateSessionDataOutput,
         http_method = "PATCH",
         http_path = "/assistants/{assistantId}/sessions/{sessionId}/data",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

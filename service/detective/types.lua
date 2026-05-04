@@ -119,6 +119,9 @@ M.Administrator = {
         },
         DelegationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -159,6 +162,9 @@ M.TimestampForCollection = {
     members = {
         Timestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -333,6 +339,9 @@ M.DatasourcePackageUsageInfo = {
         },
         VolumeUsageUpdateTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -363,21 +372,33 @@ M.MemberDetail = {
         },
         InvitedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         VolumeUsageInBytes = {
             type = "long",
         },
         VolumeUsageUpdatedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         PercentOfGraphUtilization = {
             type = "double",
         },
         PercentOfGraphUtilizationUpdatedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         InvitationType = {
             type = "string",
@@ -591,12 +612,21 @@ M.GetInvestigationOutput = {
         },
         CreatedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ScopeStartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ScopeEndTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Status = {
             type = "string",
@@ -709,6 +739,9 @@ M.Graph = {
         },
         CreatedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -956,12 +989,14 @@ M.DateFilter = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         EndInclusive = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1050,6 +1085,9 @@ M.InvestigationDetail = {
         },
         CreatedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         EntityArn = {
             type = "string",
@@ -1213,12 +1251,14 @@ M.StartInvestigationInput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         ScopeEndTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },

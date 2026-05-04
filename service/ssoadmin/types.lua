@@ -1066,6 +1066,9 @@ M.CreateApplicationInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1121,6 +1124,9 @@ M.CreateInstanceInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",
@@ -1303,6 +1309,9 @@ M.CreateTrustedTokenIssuerInput = {
         } }, { __index = M.TrustedTokenIssuerConfiguration }),
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",

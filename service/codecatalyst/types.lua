@@ -1859,12 +1859,14 @@ M.GetSourceRepositoryOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1957,12 +1959,14 @@ M.ListSourceRepositoriesItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2633,6 +2637,9 @@ M.StartWorkflowRunInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

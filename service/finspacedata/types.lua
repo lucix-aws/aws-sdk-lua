@@ -44,6 +44,9 @@ M.AssociateUserToPermissionGroupInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -147,6 +150,9 @@ M.CreateChangesetInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         datasetId = {
             type = "string",
@@ -300,6 +306,9 @@ M.CreateDatasetInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         datasetTitle = {
             type = "string",
@@ -366,6 +375,9 @@ M.CreateDataViewInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         datasetId = {
             type = "string",
@@ -433,6 +445,9 @@ M.CreatePermissionGroupInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -480,6 +495,9 @@ M.CreateUserInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -500,6 +518,7 @@ M.DeleteDatasetInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
         datasetId = {
@@ -535,6 +554,7 @@ M.DeletePermissionGroupInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -561,6 +581,9 @@ M.DisableUserInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -595,6 +618,7 @@ M.DisassociateUserFromPermissionGroupInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -625,6 +649,9 @@ M.EnableUserInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1673,6 +1700,9 @@ M.ResetUserPasswordInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1694,6 +1724,9 @@ M.UpdateChangesetInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         datasetId = {
             type = "string",
@@ -1745,6 +1778,9 @@ M.UpdateDatasetInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         datasetId = {
             type = "string",
@@ -1806,6 +1842,9 @@ M.UpdatePermissionGroupInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1846,6 +1885,9 @@ M.UpdateUserInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

@@ -1,0 +1,149 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listAdminAccountsForOrganization.
+function M.pages_list_admin_accounts_for_organization(client, input)
+    return paginator.pages(client, "listAdminAccountsForOrganization", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AdminAccounts",
+    })
+end
+
+--- Returns an item iterator for listAdminAccountsForOrganization.
+function M.items_list_admin_accounts_for_organization(client, input)
+    return paginator.items(client, "listAdminAccountsForOrganization", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AdminAccounts",
+    })
+end
+
+--- Returns a page iterator for listAdminsManagingAccount.
+function M.pages_list_admins_managing_account(client, input)
+    return paginator.pages(client, "listAdminsManagingAccount", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AdminAccounts",
+    })
+end
+
+--- Returns an item iterator for listAdminsManagingAccount.
+function M.items_list_admins_managing_account(client, input)
+    return paginator.items(client, "listAdminsManagingAccount", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AdminAccounts",
+    })
+end
+
+--- Returns a page iterator for listAppsLists.
+function M.pages_list_apps_lists(client, input)
+    return paginator.pages(client, "listAppsLists", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AppsLists",
+    })
+end
+
+--- Returns an item iterator for listAppsLists.
+function M.items_list_apps_lists(client, input)
+    return paginator.items(client, "listAppsLists", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AppsLists",
+    })
+end
+
+--- Returns a page iterator for listComplianceStatus.
+function M.pages_list_compliance_status(client, input)
+    return paginator.pages(client, "listComplianceStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "PolicyComplianceStatusList",
+    })
+end
+
+--- Returns an item iterator for listComplianceStatus.
+function M.items_list_compliance_status(client, input)
+    return paginator.items(client, "listComplianceStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "PolicyComplianceStatusList",
+    })
+end
+
+--- Returns a page iterator for listMemberAccounts.
+function M.pages_list_member_accounts(client, input)
+    return paginator.pages(client, "listMemberAccounts", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MemberAccounts",
+    })
+end
+
+--- Returns an item iterator for listMemberAccounts.
+function M.items_list_member_accounts(client, input)
+    return paginator.items(client, "listMemberAccounts", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MemberAccounts",
+    })
+end
+
+--- Returns a page iterator for listPolicies.
+function M.pages_list_policies(client, input)
+    return paginator.pages(client, "listPolicies", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "PolicyList",
+    })
+end
+
+--- Returns an item iterator for listPolicies.
+function M.items_list_policies(client, input)
+    return paginator.items(client, "listPolicies", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "PolicyList",
+    })
+end
+
+--- Returns a page iterator for listProtocolsLists.
+function M.pages_list_protocols_lists(client, input)
+    return paginator.pages(client, "listProtocolsLists", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ProtocolsLists",
+    })
+end
+
+--- Returns an item iterator for listProtocolsLists.
+function M.items_list_protocols_lists(client, input)
+    return paginator.items(client, "listProtocolsLists", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ProtocolsLists",
+    })
+end
+
+--- Returns a page iterator for listThirdPartyFirewallFirewallPolicies.
+function M.pages_list_third_party_firewall_firewall_policies(client, input)
+    return paginator.pages(client, "listThirdPartyFirewallFirewallPolicies", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ThirdPartyFirewallFirewallPolicies",
+    })
+end
+
+--- Returns an item iterator for listThirdPartyFirewallFirewallPolicies.
+function M.items_list_third_party_firewall_firewall_policies(client, input)
+    return paginator.items(client, "listThirdPartyFirewallFirewallPolicies", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ThirdPartyFirewallFirewallPolicies",
+    })
+end
+
+return M

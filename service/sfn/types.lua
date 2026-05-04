@@ -2449,6 +2449,9 @@ M.RedriveExecutionInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSDeepdishControlPlaneService"
-    cfg.signing_name = "appsync"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "appsync", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateApi(input, options)
         output_schema = types.AssociateApiOutput,
         http_method = "POST",
         http_path = "/v1/domainnames/{domainName}/apiassociation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:associateMergedGraphqlApi(input, options)
         output_schema = types.AssociateMergedGraphqlApiOutput,
         http_method = "POST",
         http_path = "/v1/sourceApis/{sourceApiIdentifier}/mergedApiAssociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:associateSourceGraphqlApi(input, options)
         output_schema = types.AssociateSourceGraphqlApiOutput,
         http_method = "POST",
         http_path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createApi(input, options)
         output_schema = types.CreateApiOutput,
         http_method = "POST",
         http_path = "/v2/apis",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createApiCache(input, options)
         output_schema = types.CreateApiCacheOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/ApiCaches",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createApiKey(input, options)
         output_schema = types.CreateApiKeyOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/apikeys",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createChannelNamespace(input, options)
         output_schema = types.CreateChannelNamespaceOutput,
         http_method = "POST",
         http_path = "/v2/apis/{apiId}/channelNamespaces",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createDataSource(input, options)
         output_schema = types.CreateDataSourceOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/datasources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createDomainName(input, options)
         output_schema = types.CreateDomainNameOutput,
         http_method = "POST",
         http_path = "/v1/domainnames",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createFunction(input, options)
         output_schema = types.CreateFunctionOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/functions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createGraphqlApi(input, options)
         output_schema = types.CreateGraphqlApiOutput,
         http_method = "POST",
         http_path = "/v1/apis",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createResolver(input, options)
         output_schema = types.CreateResolverOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/types/{typeName}/resolvers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createType(input, options)
         output_schema = types.CreateTypeOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/types",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteApi(input, options)
         output_schema = types.DeleteApiOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{apiId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteApiCache(input, options)
         output_schema = types.DeleteApiCacheOutput,
         http_method = "DELETE",
         http_path = "/v1/apis/{apiId}/ApiCaches",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteApiKey(input, options)
         output_schema = types.DeleteApiKeyOutput,
         http_method = "DELETE",
         http_path = "/v1/apis/{apiId}/apikeys/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deleteChannelNamespace(input, options)
         output_schema = types.DeleteChannelNamespaceOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{apiId}/channelNamespaces/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteDataSource(input, options)
         output_schema = types.DeleteDataSourceOutput,
         http_method = "DELETE",
         http_path = "/v1/apis/{apiId}/datasources/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteDomainName(input, options)
         output_schema = types.DeleteDomainNameOutput,
         http_method = "DELETE",
         http_path = "/v1/domainnames/{domainName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deleteFunction(input, options)
         output_schema = types.DeleteFunctionOutput,
         http_method = "DELETE",
         http_path = "/v1/apis/{apiId}/functions/{functionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deleteGraphqlApi(input, options)
         output_schema = types.DeleteGraphqlApiOutput,
         http_method = "DELETE",
         http_path = "/v1/apis/{apiId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:deleteResolver(input, options)
         output_schema = types.DeleteResolverOutput,
         http_method = "DELETE",
         http_path = "/v1/apis/{apiId}/types/{typeName}/resolvers/{fieldName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:deleteType(input, options)
         output_schema = types.DeleteTypeOutput,
         http_method = "DELETE",
         http_path = "/v1/apis/{apiId}/types/{typeName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:disassociateApi(input, options)
         output_schema = types.DisassociateApiOutput,
         http_method = "DELETE",
         http_path = "/v1/domainnames/{domainName}/apiassociation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:disassociateMergedGraphqlApi(input, options)
         output_schema = types.DisassociateMergedGraphqlApiOutput,
         http_method = "DELETE",
         http_path = "/v1/sourceApis/{sourceApiIdentifier}/mergedApiAssociations/{associationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:disassociateSourceGraphqlApi(input, options)
         output_schema = types.DisassociateSourceGraphqlApiOutput,
         http_method = "DELETE",
         http_path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:evaluateCode(input, options)
         output_schema = types.EvaluateCodeOutput,
         http_method = "POST",
         http_path = "/v1/dataplane-evaluatecode",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:evaluateMappingTemplate(input, options)
         output_schema = types.EvaluateMappingTemplateOutput,
         http_method = "POST",
         http_path = "/v1/dataplane-evaluatetemplate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:flushApiCache(input, options)
         output_schema = types.FlushApiCacheOutput,
         http_method = "DELETE",
         http_path = "/v1/apis/{apiId}/FlushCache",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:getApi(input, options)
         output_schema = types.GetApiOutput,
         http_method = "GET",
         http_path = "/v2/apis/{apiId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:getApiAssociation(input, options)
         output_schema = types.GetApiAssociationOutput,
         http_method = "GET",
         http_path = "/v1/domainnames/{domainName}/apiassociation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:getApiCache(input, options)
         output_schema = types.GetApiCacheOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/ApiCaches",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:getChannelNamespace(input, options)
         output_schema = types.GetChannelNamespaceOutput,
         http_method = "GET",
         http_path = "/v2/apis/{apiId}/channelNamespaces/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:getDataSource(input, options)
         output_schema = types.GetDataSourceOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/datasources/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:getDataSourceIntrospection(input, options)
         output_schema = types.GetDataSourceIntrospectionOutput,
         http_method = "GET",
         http_path = "/v1/datasources/introspections/{introspectionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:getDomainName(input, options)
         output_schema = types.GetDomainNameOutput,
         http_method = "GET",
         http_path = "/v1/domainnames/{domainName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:getFunction(input, options)
         output_schema = types.GetFunctionOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/functions/{functionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:getGraphqlApi(input, options)
         output_schema = types.GetGraphqlApiOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:getGraphqlApiEnvironmentVariables(input, options)
         output_schema = types.GetGraphqlApiEnvironmentVariablesOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/environmentVariables",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:getIntrospectionSchema(input, options)
         output_schema = types.GetIntrospectionSchemaOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/schema",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:getResolver(input, options)
         output_schema = types.GetResolverOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/types/{typeName}/resolvers/{fieldName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:getSchemaCreationStatus(input, options)
         output_schema = types.GetSchemaCreationStatusOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/schemacreation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:getSourceApiAssociation(input, options)
         output_schema = types.GetSourceApiAssociationOutput,
         http_method = "GET",
         http_path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:getType(input, options)
         output_schema = types.GetTypeOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/types/{typeName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:listApiKeys(input, options)
         output_schema = types.ListApiKeysOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/apikeys",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:listApis(input, options)
         output_schema = types.ListApisOutput,
         http_method = "GET",
         http_path = "/v2/apis",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:listChannelNamespaces(input, options)
         output_schema = types.ListChannelNamespacesOutput,
         http_method = "GET",
         http_path = "/v2/apis/{apiId}/channelNamespaces",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:listDataSources(input, options)
         output_schema = types.ListDataSourcesOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/datasources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:listDomainNames(input, options)
         output_schema = types.ListDomainNamesOutput,
         http_method = "GET",
         http_path = "/v1/domainnames",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:listFunctions(input, options)
         output_schema = types.ListFunctionsOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/functions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:listGraphqlApis(input, options)
         output_schema = types.ListGraphqlApisOutput,
         http_method = "GET",
         http_path = "/v1/apis",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:listResolvers(input, options)
         output_schema = types.ListResolversOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/types/{typeName}/resolvers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:listResolversByFunction(input, options)
         output_schema = types.ListResolversByFunctionOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/functions/{functionId}/resolvers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:listSourceApiAssociations(input, options)
         output_schema = types.ListSourceApiAssociationsOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/sourceApiAssociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/v1/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:listTypes(input, options)
         output_schema = types.ListTypesOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/types",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:listTypesByAssociation(input, options)
         output_schema = types.ListTypesByAssociationOutput,
         http_method = "GET",
         http_path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}/types",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:putGraphqlApiEnvironmentVariables(input, options)
         output_schema = types.PutGraphqlApiEnvironmentVariablesOutput,
         http_method = "PUT",
         http_path = "/v1/apis/{apiId}/environmentVariables",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:startDataSourceIntrospection(input, options)
         output_schema = types.StartDataSourceIntrospectionOutput,
         http_method = "POST",
         http_path = "/v1/datasources/introspections",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:startSchemaCreation(input, options)
         output_schema = types.StartSchemaCreationOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/schemacreation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:startSchemaMerge(input, options)
         output_schema = types.StartSchemaMergeOutput,
         http_method = "POST",
         http_path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}/merge",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/v1/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/v1/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:updateApi(input, options)
         output_schema = types.UpdateApiOutput,
         http_method = "POST",
         http_path = "/v2/apis/{apiId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:updateApiCache(input, options)
         output_schema = types.UpdateApiCacheOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/ApiCaches/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:updateApiKey(input, options)
         output_schema = types.UpdateApiKeyOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/apikeys/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:updateChannelNamespace(input, options)
         output_schema = types.UpdateChannelNamespaceOutput,
         http_method = "POST",
         http_path = "/v2/apis/{apiId}/channelNamespaces/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:updateDataSource(input, options)
         output_schema = types.UpdateDataSourceOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/datasources/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:updateDomainName(input, options)
         output_schema = types.UpdateDomainNameOutput,
         http_method = "POST",
         http_path = "/v1/domainnames/{domainName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:updateFunction(input, options)
         output_schema = types.UpdateFunctionOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/functions/{functionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:updateGraphqlApi(input, options)
         output_schema = types.UpdateGraphqlApiOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:updateResolver(input, options)
         output_schema = types.UpdateResolverOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/types/{typeName}/resolvers/{fieldName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:updateSourceApiAssociation(input, options)
         output_schema = types.UpdateSourceApiAssociationOutput,
         http_method = "POST",
         http_path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:updateType(input, options)
         output_schema = types.UpdateTypeOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/types/{typeName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

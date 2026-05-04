@@ -220,6 +220,9 @@ M.CreateComputeNodeGroupInput = {
         slurmConfiguration = M.ComputeNodeGroupSlurmConfigurationRequest,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -530,6 +533,9 @@ M.DeleteComputeNodeGroupInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -694,6 +700,9 @@ M.UpdateComputeNodeGroupInput = {
         slurmConfiguration = M.UpdateComputeNodeGroupSlurmConfigurationRequest,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -855,6 +864,9 @@ M.CreateClusterInput = {
         slurmConfiguration = M.ClusterSlurmConfigurationRequest,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -1111,6 +1123,9 @@ M.DeleteClusterInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1258,6 +1273,9 @@ M.CreateQueueInput = {
         slurmConfiguration = M.QueueSlurmConfigurationRequest,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -1376,6 +1394,9 @@ M.DeleteQueueInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1528,6 +1549,9 @@ M.UpdateQueueInput = {
         slurmConfiguration = M.UpdateQueueSlurmConfigurationRequest,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1637,6 +1661,9 @@ M.UpdateClusterInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         slurmConfiguration = M.UpdateClusterSlurmConfigurationRequest,
     },

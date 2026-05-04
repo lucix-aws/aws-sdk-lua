@@ -1,0 +1,71 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listAccessors.
+function M.pages_list_accessors(client, input)
+    return paginator.pages(client, "listAccessors", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Accessors",
+    })
+end
+
+--- Returns an item iterator for listAccessors.
+function M.items_list_accessors(client, input)
+    return paginator.items(client, "listAccessors", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Accessors",
+    })
+end
+
+--- Returns a page iterator for listInvitations.
+function M.pages_list_invitations(client, input)
+    return paginator.pages(client, "listInvitations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listMembers.
+function M.pages_list_members(client, input)
+    return paginator.pages(client, "listMembers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listNetworks.
+function M.pages_list_networks(client, input)
+    return paginator.pages(client, "listNetworks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listNodes.
+function M.pages_list_nodes(client, input)
+    return paginator.pages(client, "listNodes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listProposalVotes.
+function M.pages_list_proposal_votes(client, input)
+    return paginator.pages(client, "listProposalVotes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listProposals.
+function M.pages_list_proposals(client, input)
+    return paginator.pages(client, "listProposals", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+return M

@@ -1,0 +1,41 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listLibraryItems.
+function M.pages_list_library_items(client, input)
+    return paginator.pages(client, "listLibraryItems", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "libraryItems",
+    })
+end
+
+--- Returns an item iterator for listLibraryItems.
+function M.items_list_library_items(client, input)
+    return paginator.items(client, "listLibraryItems", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "libraryItems",
+    })
+end
+
+--- Returns a page iterator for listQApps.
+function M.pages_list_q_apps(client, input)
+    return paginator.pages(client, "listQApps", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "apps",
+    })
+end
+
+--- Returns an item iterator for listQApps.
+function M.items_list_q_apps(client, input)
+    return paginator.items(client, "listQApps", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "apps",
+    })
+end
+
+return M

@@ -771,6 +771,7 @@ M.DialRequest = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         attributes = {

@@ -3844,6 +3844,9 @@ M.StartPipelineExecutionInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         sourceRevisions = {
             type = "list",

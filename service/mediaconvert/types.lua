@@ -4312,6 +4312,7 @@ M.QueueTransition = {
             type = "timestamp",
             traits = {
                 json_name = "timestamp",
+                timestamp_format = "epoch-seconds",
             },
         },
     },
@@ -10951,18 +10952,21 @@ M.Timing = {
             type = "timestamp",
             traits = {
                 json_name = "finishTime",
+                timestamp_format = "epoch-seconds",
             },
         },
         StartTime = {
             type = "timestamp",
             traits = {
                 json_name = "startTime",
+                timestamp_format = "epoch-seconds",
             },
         },
         SubmitTime = {
             type = "timestamp",
             traits = {
                 json_name = "submitTime",
+                timestamp_format = "epoch-seconds",
             },
         },
     },
@@ -11022,6 +11026,7 @@ M.Job = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "epoch-seconds",
             },
         },
         CurrentPhase = {
@@ -11186,6 +11191,7 @@ M.JobEngineVersion = {
             type = "timestamp",
             traits = {
                 json_name = "expirationDate",
+                timestamp_format = "epoch-seconds",
             },
         },
         Version = {
@@ -11319,6 +11325,7 @@ M.JobTemplate = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "epoch-seconds",
             },
         },
         Description = {
@@ -11338,6 +11345,7 @@ M.JobTemplate = {
             type = "timestamp",
             traits = {
                 json_name = "lastUpdated",
+                timestamp_format = "epoch-seconds",
             },
         },
         Name = {
@@ -11423,6 +11431,7 @@ M.Preset = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "epoch-seconds",
             },
         },
         Description = {
@@ -11435,6 +11444,7 @@ M.Preset = {
             type = "timestamp",
             traits = {
                 json_name = "lastUpdated",
+                timestamp_format = "epoch-seconds",
             },
         },
         Name = {
@@ -11859,6 +11869,7 @@ M.Metadata = {
             type = "timestamp",
             traits = {
                 json_name = "lastModified",
+                timestamp_format = "epoch-seconds",
             },
         },
         MimeType = {
@@ -11948,12 +11959,14 @@ M.ReservationPlan = {
             type = "timestamp",
             traits = {
                 json_name = "expiresAt",
+                timestamp_format = "epoch-seconds",
             },
         },
         PurchasedAt = {
             type = "timestamp",
             traits = {
                 json_name = "purchasedAt",
+                timestamp_format = "epoch-seconds",
             },
         },
         RenewalType = {
@@ -12031,6 +12044,7 @@ M.Queue = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "epoch-seconds",
             },
         },
         Description = {
@@ -12043,6 +12057,7 @@ M.Queue = {
             type = "timestamp",
             traits = {
                 json_name = "lastUpdated",
+                timestamp_format = "epoch-seconds",
             },
         },
         MaximumConcurrentFeeds = {
@@ -12241,6 +12256,7 @@ M.CreateJobInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "clientRequestToken",
             },
         },

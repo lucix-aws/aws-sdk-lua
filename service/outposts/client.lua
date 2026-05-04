@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "OutpostsOlafService"
-    cfg.signing_name = "outposts"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "outposts", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:cancelCapacityTask(input, options)
         output_schema = types.CancelCapacityTaskOutput,
         http_method = "POST",
         http_path = "/outposts/{OutpostIdentifier}/capacity/{CapacityTaskId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:cancelOrder(input, options)
         output_schema = types.CancelOrderOutput,
         http_method = "POST",
         http_path = "/orders/{OrderId}/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createOrder(input, options)
         output_schema = types.CreateOrderOutput,
         http_method = "POST",
         http_path = "/orders",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createOutpost(input, options)
         output_schema = types.CreateOutpostOutput,
         http_method = "POST",
         http_path = "/outposts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createRenewal(input, options)
         output_schema = types.CreateRenewalOutput,
         http_method = "POST",
         http_path = "/renewals",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createSite(input, options)
         output_schema = types.CreateSiteOutput,
         http_method = "POST",
         http_path = "/sites",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteOutpost(input, options)
         output_schema = types.DeleteOutpostOutput,
         http_method = "DELETE",
         http_path = "/outposts/{OutpostId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteSite(input, options)
         output_schema = types.DeleteSiteOutput,
         http_method = "DELETE",
         http_path = "/sites/{SiteId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getCapacityTask(input, options)
         output_schema = types.GetCapacityTaskOutput,
         http_method = "GET",
         http_path = "/outposts/{OutpostIdentifier}/capacity/{CapacityTaskId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:getCatalogItem(input, options)
         output_schema = types.GetCatalogItemOutput,
         http_method = "GET",
         http_path = "/catalog/item/{CatalogItemId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getConnection(input, options)
         output_schema = types.GetConnectionOutput,
         http_method = "GET",
         http_path = "/connections/{ConnectionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getOrder(input, options)
         output_schema = types.GetOrderOutput,
         http_method = "GET",
         http_path = "/orders/{OrderId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getOutpost(input, options)
         output_schema = types.GetOutpostOutput,
         http_method = "GET",
         http_path = "/outposts/{OutpostId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getOutpostBillingInformation(input, options)
         output_schema = types.GetOutpostBillingInformationOutput,
         http_method = "GET",
         http_path = "/outpost/{OutpostIdentifier}/billing-information",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getOutpostInstanceTypes(input, options)
         output_schema = types.GetOutpostInstanceTypesOutput,
         http_method = "GET",
         http_path = "/outposts/{OutpostId}/instanceTypes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getOutpostSupportedInstanceTypes(input, options)
         output_schema = types.GetOutpostSupportedInstanceTypesOutput,
         http_method = "GET",
         http_path = "/outposts/{OutpostIdentifier}/supportedInstanceTypes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getRenewalPricing(input, options)
         output_schema = types.GetRenewalPricingOutput,
         http_method = "GET",
         http_path = "/outpost/{OutpostIdentifier}/renewal-pricing",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getSite(input, options)
         output_schema = types.GetSiteOutput,
         http_method = "GET",
         http_path = "/sites/{SiteId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getSiteAddress(input, options)
         output_schema = types.GetSiteAddressOutput,
         http_method = "GET",
         http_path = "/sites/{SiteId}/address",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listAssetInstances(input, options)
         output_schema = types.ListAssetInstancesOutput,
         http_method = "GET",
         http_path = "/outposts/{OutpostIdentifier}/assetInstances",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listAssets(input, options)
         output_schema = types.ListAssetsOutput,
         http_method = "GET",
         http_path = "/outposts/{OutpostIdentifier}/assets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listBlockingInstancesForCapacityTask(input, options)
         output_schema = types.ListBlockingInstancesForCapacityTaskOutput,
         http_method = "GET",
         http_path = "/outposts/{OutpostIdentifier}/capacity/{CapacityTaskId}/blockingInstances",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listCapacityTasks(input, options)
         output_schema = types.ListCapacityTasksOutput,
         http_method = "GET",
         http_path = "/capacity/tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listCatalogItems(input, options)
         output_schema = types.ListCatalogItemsOutput,
         http_method = "GET",
         http_path = "/catalog/items",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listOrders(input, options)
         output_schema = types.ListOrdersOutput,
         http_method = "GET",
         http_path = "/list-orders",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listOutposts(input, options)
         output_schema = types.ListOutpostsOutput,
         http_method = "GET",
         http_path = "/outposts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:listSites(input, options)
         output_schema = types.ListSitesOutput,
         http_method = "GET",
         http_path = "/sites",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:startCapacityTask(input, options)
         output_schema = types.StartCapacityTaskOutput,
         http_method = "POST",
         http_path = "/outposts/{OutpostIdentifier}/capacity",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:startConnection(input, options)
         output_schema = types.StartConnectionOutput,
         http_method = "POST",
         http_path = "/connections",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:startOutpostDecommission(input, options)
         output_schema = types.StartOutpostDecommissionOutput,
         http_method = "POST",
         http_path = "/outposts/{OutpostIdentifier}/decommission",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:updateOutpost(input, options)
         output_schema = types.UpdateOutpostOutput,
         http_method = "PATCH",
         http_path = "/outposts/{OutpostId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:updateSite(input, options)
         output_schema = types.UpdateSiteOutput,
         http_method = "PATCH",
         http_path = "/sites/{SiteId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:updateSiteAddress(input, options)
         output_schema = types.UpdateSiteAddressOutput,
         http_method = "PUT",
         http_path = "/sites/{SiteId}/address",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:updateSiteRackPhysicalProperties(input, options)
         output_schema = types.UpdateSiteRackPhysicalPropertiesOutput,
         http_method = "PATCH",
         http_path = "/sites/{SiteId}/rackPhysicalProperties",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

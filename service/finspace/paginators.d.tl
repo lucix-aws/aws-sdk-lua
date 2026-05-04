@@ -1,0 +1,11 @@
+local record M
+    pages_list_kx_changesets: function(client: table, input: table): function(): table, table
+    pages_list_kx_cluster_nodes: function(client: table, input: table): function(): table, table
+    pages_list_kx_databases: function(client: table, input: table): function(): table, table
+    pages_list_kx_dataviews: function(client: table, input: table): function(): table, table
+    pages_list_kx_environments: function(client: table, input: table): function(): table, table
+    items_list_kx_environments: function(client: table, input: table): function(): any
+    pages_list_kx_scaling_groups: function(client: table, input: table): function(): table, table
+end
+
+return M

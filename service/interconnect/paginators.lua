@@ -1,0 +1,59 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listAttachPoints.
+function M.pages_list_attach_points(client, input)
+    return paginator.pages(client, "listAttachPoints", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "attachPoints",
+    })
+end
+
+--- Returns an item iterator for listAttachPoints.
+function M.items_list_attach_points(client, input)
+    return paginator.items(client, "listAttachPoints", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "attachPoints",
+    })
+end
+
+--- Returns a page iterator for listConnections.
+function M.pages_list_connections(client, input)
+    return paginator.pages(client, "listConnections", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "connections",
+    })
+end
+
+--- Returns an item iterator for listConnections.
+function M.items_list_connections(client, input)
+    return paginator.items(client, "listConnections", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "connections",
+    })
+end
+
+--- Returns a page iterator for listEnvironments.
+function M.pages_list_environments(client, input)
+    return paginator.pages(client, "listEnvironments", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "environments",
+    })
+end
+
+--- Returns an item iterator for listEnvironments.
+function M.items_list_environments(client, input)
+    return paginator.items(client, "listEnvironments", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "environments",
+    })
+end
+
+return M

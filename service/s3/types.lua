@@ -67,6 +67,7 @@ M.AbortMultipartUploadInput = {
             type = "timestamp",
             traits = {
                 http_header = "x-amz-if-match-initiated-time",
+                timestamp_format = "http-date",
             },
         },
     },
@@ -807,6 +808,7 @@ M.CopyObjectInput = {
             type = "timestamp",
             traits = {
                 http_header = "x-amz-object-lock-retain-until-date",
+                timestamp_format = "date-time",
             },
         },
         ObjectLockLegalHoldStatus = {
@@ -1530,6 +1532,7 @@ M.CreateMultipartUploadInput = {
             type = "timestamp",
             traits = {
                 http_header = "x-amz-object-lock-retain-until-date",
+                timestamp_format = "date-time",
             },
         },
         ObjectLockLegalHoldStatus = {
@@ -2194,6 +2197,7 @@ M.DeleteObjectInput = {
             type = "timestamp",
             traits = {
                 http_header = "x-amz-if-match-last-modified-time",
+                timestamp_format = "http-date",
             },
         },
         IfMatchSize = {
@@ -2246,6 +2250,9 @@ M.ObjectIdentifier = {
         },
         LastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "http-date",
+            },
         },
         Size = {
             type = "long",
@@ -3175,6 +3182,9 @@ M.LifecycleExpiration = {
     members = {
         Date = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Days = {
             type = "integer",
@@ -3270,6 +3280,9 @@ M.Transition = {
     members = {
         Date = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Days = {
             type = "integer",
@@ -4646,6 +4659,7 @@ M.GetObjectInput = {
             type = "timestamp",
             traits = {
                 http_query = "response-expires",
+                timestamp_format = "http-date",
             },
         },
         VersionId = {
@@ -4963,6 +4977,7 @@ M.GetObjectOutput = {
             type = "timestamp",
             traits = {
                 http_header = "x-amz-object-lock-retain-until-date",
+                timestamp_format = "date-time",
             },
         },
         ObjectLockLegalHoldStatus = {
@@ -5459,6 +5474,9 @@ M.ObjectLockRetention = {
         },
         RetainUntilDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -5780,6 +5798,7 @@ M.HeadObjectInput = {
             type = "timestamp",
             traits = {
                 http_query = "response-expires",
+                timestamp_format = "http-date",
             },
         },
         VersionId = {
@@ -6093,6 +6112,7 @@ M.HeadObjectOutput = {
             type = "timestamp",
             traits = {
                 http_header = "x-amz-object-lock-retain-until-date",
+                timestamp_format = "date-time",
             },
         },
         ObjectLockLegalHoldStatus = {
@@ -8408,6 +8428,7 @@ M.PutObjectInput = {
             type = "timestamp",
             traits = {
                 http_header = "x-amz-object-lock-retain-until-date",
+                timestamp_format = "date-time",
             },
         },
         ObjectLockLegalHoldStatus = {
@@ -9043,18 +9064,21 @@ M.RenameObjectInput = {
             type = "timestamp",
             traits = {
                 http_header = "x-amz-rename-source-if-modified-since",
+                timestamp_format = "http-date",
             },
         },
         SourceIfUnmodifiedSince = {
             type = "timestamp",
             traits = {
                 http_header = "x-amz-rename-source-if-unmodified-since",
+                timestamp_format = "http-date",
             },
         },
         ClientToken = {
             type = "string",
             traits = {
                 http_header = "x-amz-client-token",
+                idempotency_token = true,
             },
         },
     },
@@ -10432,6 +10456,7 @@ M.WriteGetObjectResponseInput = {
             type = "timestamp",
             traits = {
                 http_header = "x-amz-fwd-header-x-amz-object-lock-retain-until-date",
+                timestamp_format = "date-time",
             },
         },
         PartsCount = {

@@ -52,9 +52,15 @@ M.BaselineOperation = {
         },
         startTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         statusMessage = {
             type = "string",
@@ -1168,9 +1174,15 @@ M.LandingZoneOperationDetail = {
         },
         startTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         statusMessage = {
             type = "string",

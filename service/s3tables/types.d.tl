@@ -1714,13 +1714,13 @@ end
 
 local type OpenTableFormat = "ICEBERG"
 
-local type TableRecordExpirationJobStatus = "NotYetRun" | "Successful" | "Failed" | "Disabled"
-
 local type TableMaintenanceType = "icebergCompaction" | "icebergSnapshotManagement"
+
+local type TableBucketMaintenanceType = "icebergUnreferencedFileRemoval"
 
 local type TableBucketType = "customer" | "aws"
 
-local type TableBucketMaintenanceType = "icebergUnreferencedFileRemoval"
+local type TableRecordExpirationJobStatus = "NotYetRun" | "Successful" | "Failed" | "Disabled"
 
 local type TableType = "customer" | "aws"
 

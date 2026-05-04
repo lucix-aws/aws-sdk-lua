@@ -57,9 +57,15 @@ M.AcceptDataGrantOutput = {
         },
         AcceptedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         EndsAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         GrantDistributionScope = {
             type = "string",
@@ -89,12 +95,14 @@ M.AcceptDataGrantOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -286,6 +294,9 @@ M.ApiGatewayApiAsset = {
         },
         ApiSpecificationDownloadUrlExpiresAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ProtocolType = {
             type = "string",
@@ -573,6 +584,7 @@ M.AssetEntry = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         DataSetId = {
@@ -606,6 +618,7 @@ M.AssetEntry = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -685,6 +698,9 @@ M.CreateDataGrantInput = {
         },
         EndsAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Description = {
             type = "string",
@@ -729,9 +745,15 @@ M.CreateDataGrantOutput = {
         },
         AcceptedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         EndsAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         GrantDistributionScope = {
             type = "string",
@@ -767,12 +789,14 @@ M.CreateDataGrantOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Tags = {
@@ -895,6 +919,9 @@ M.CreateDataSetOutput = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Description = {
             type = "string",
@@ -919,6 +946,9 @@ M.CreateDataSetOutput = {
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -968,6 +998,9 @@ M.CreateEventActionOutput = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Event = M.Event,
         Id = {
@@ -980,6 +1013,9 @@ M.CreateEventActionOutput = {
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1463,6 +1499,9 @@ M.ExportAssetToSignedUrlResponseDetails = {
         },
         SignedUrlExpiresAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1527,6 +1566,7 @@ M.ImportAssetFromApiGatewayApiResponseDetails = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         DataSetId = {
@@ -1585,6 +1625,9 @@ M.ImportAssetFromSignedUrlResponseDetails = {
         },
         SignedUrlExpiresAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1775,6 +1818,9 @@ M.CreateJobOutput = {
         AssetConfiguration = M.AssetConfiguration,
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Details = M.ResponseDetails,
         Errors = {
@@ -1792,6 +1838,9 @@ M.CreateJobOutput = {
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1828,6 +1877,9 @@ M.CreateRevisionOutput = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         DataSetId = {
             type = "string",
@@ -1851,6 +1903,9 @@ M.CreateRevisionOutput = {
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         RevocationComment = {
             type = "string",
@@ -1863,6 +1918,9 @@ M.CreateRevisionOutput = {
         },
         RevokedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2012,6 +2070,9 @@ M.GetAssetOutput = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         DataSetId = {
             type = "string",
@@ -2035,6 +2096,9 @@ M.GetAssetOutput = {
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2084,9 +2148,15 @@ M.GetDataGrantOutput = {
         },
         AcceptedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         EndsAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         GrantDistributionScope = {
             type = "string",
@@ -2122,12 +2192,14 @@ M.GetDataGrantOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Tags = {
@@ -2162,6 +2234,9 @@ M.GetDataSetOutput = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Description = {
             type = "string",
@@ -2186,6 +2261,9 @@ M.GetDataSetOutput = {
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2212,6 +2290,9 @@ M.GetEventActionOutput = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Event = M.Event,
         Id = {
@@ -2224,6 +2305,9 @@ M.GetEventActionOutput = {
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2250,6 +2334,9 @@ M.GetJobOutput = {
         AssetConfiguration = M.AssetConfiguration,
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Details = M.ResponseDetails,
         Errors = {
@@ -2267,6 +2354,9 @@ M.GetJobOutput = {
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2313,9 +2403,15 @@ M.GetReceivedDataGrantOutput = {
         },
         AcceptedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         EndsAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         GrantDistributionScope = {
             type = "string",
@@ -2345,12 +2441,14 @@ M.GetReceivedDataGrantOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2387,6 +2485,9 @@ M.GetRevisionOutput = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         DataSetId = {
             type = "string",
@@ -2410,6 +2511,9 @@ M.GetRevisionOutput = {
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         RevocationComment = {
             type = "string",
@@ -2422,6 +2526,9 @@ M.GetRevisionOutput = {
         },
         RevokedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2474,9 +2581,15 @@ M.DataGrantSummaryEntry = {
         },
         AcceptedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         EndsAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         DataSetId = {
             type = "string",
@@ -2506,12 +2619,14 @@ M.DataGrantSummaryEntry = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2572,6 +2687,7 @@ M.RevisionEntry = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         DataSetId = {
@@ -2599,6 +2715,7 @@ M.RevisionEntry = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         RevocationComment = {
@@ -2612,6 +2729,9 @@ M.RevisionEntry = {
         },
         RevokedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2673,6 +2793,7 @@ M.DataSetEntry = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -2707,6 +2828,7 @@ M.DataSetEntry = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2766,6 +2888,7 @@ M.EventActionEntry = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Event = setmetatable({ traits = {
@@ -2781,6 +2904,7 @@ M.EventActionEntry = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2844,6 +2968,7 @@ M.JobEntry = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Details = setmetatable({ traits = {
@@ -2875,6 +3000,7 @@ M.JobEntry = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2948,9 +3074,15 @@ M.ReceivedDataGrantSummariesEntry = {
         },
         AcceptedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         EndsAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         DataSetId = {
             type = "string",
@@ -2974,12 +3106,14 @@ M.ReceivedDataGrantSummariesEntry = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -3108,6 +3242,9 @@ M.RevokeRevisionOutput = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         DataSetId = {
             type = "string",
@@ -3126,6 +3263,9 @@ M.RevokeRevisionOutput = {
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         RevocationComment = {
             type = "string",
@@ -3138,6 +3278,9 @@ M.RevokeRevisionOutput = {
         },
         RevokedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -3228,6 +3371,9 @@ M.DataUpdateRequestDetails = {
     members = {
         DataUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -3239,6 +3385,7 @@ M.DeprecationRequestDetails = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -3282,6 +3429,7 @@ M.SchemaChangeRequestDetails = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -3383,6 +3531,9 @@ M.SendDataSetNotificationInput = {
         Scope = M.ScopeDetails,
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Comment = {
             type = "string",
@@ -3521,6 +3672,9 @@ M.UpdateAssetOutput = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         DataSetId = {
             type = "string",
@@ -3539,6 +3693,9 @@ M.UpdateAssetOutput = {
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -3573,6 +3730,9 @@ M.UpdateDataSetOutput = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Description = {
             type = "string",
@@ -3592,6 +3752,9 @@ M.UpdateDataSetOutput = {
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -3619,6 +3782,9 @@ M.UpdateEventActionOutput = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Event = M.Event,
         Id = {
@@ -3626,6 +3792,9 @@ M.UpdateEventActionOutput = {
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -3670,6 +3839,9 @@ M.UpdateRevisionOutput = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         DataSetId = {
             type = "string",
@@ -3688,6 +3860,9 @@ M.UpdateRevisionOutput = {
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         RevocationComment = {
             type = "string",
@@ -3700,6 +3875,9 @@ M.UpdateRevisionOutput = {
         },
         RevokedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }

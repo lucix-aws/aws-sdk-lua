@@ -7795,6 +7795,9 @@ M.RunTaskInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         volumeConfigurations = {
             type = "list",

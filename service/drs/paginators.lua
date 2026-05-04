@@ -1,0 +1,203 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for describeJobLogItems.
+function M.pages_describe_job_log_items(client, input)
+    return paginator.pages(client, "describeJobLogItems", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for describeJobLogItems.
+function M.items_describe_job_log_items(client, input)
+    return paginator.items(client, "describeJobLogItems", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for describeJobs.
+function M.pages_describe_jobs(client, input)
+    return paginator.pages(client, "describeJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for describeJobs.
+function M.items_describe_jobs(client, input)
+    return paginator.items(client, "describeJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for describeLaunchConfigurationTemplates.
+function M.pages_describe_launch_configuration_templates(client, input)
+    return paginator.pages(client, "describeLaunchConfigurationTemplates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for describeLaunchConfigurationTemplates.
+function M.items_describe_launch_configuration_templates(client, input)
+    return paginator.items(client, "describeLaunchConfigurationTemplates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for describeRecoveryInstances.
+function M.pages_describe_recovery_instances(client, input)
+    return paginator.pages(client, "describeRecoveryInstances", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for describeRecoveryInstances.
+function M.items_describe_recovery_instances(client, input)
+    return paginator.items(client, "describeRecoveryInstances", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for describeRecoverySnapshots.
+function M.pages_describe_recovery_snapshots(client, input)
+    return paginator.pages(client, "describeRecoverySnapshots", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for describeRecoverySnapshots.
+function M.items_describe_recovery_snapshots(client, input)
+    return paginator.items(client, "describeRecoverySnapshots", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for describeReplicationConfigurationTemplates.
+function M.pages_describe_replication_configuration_templates(client, input)
+    return paginator.pages(client, "describeReplicationConfigurationTemplates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for describeReplicationConfigurationTemplates.
+function M.items_describe_replication_configuration_templates(client, input)
+    return paginator.items(client, "describeReplicationConfigurationTemplates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for describeSourceNetworks.
+function M.pages_describe_source_networks(client, input)
+    return paginator.pages(client, "describeSourceNetworks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for describeSourceNetworks.
+function M.items_describe_source_networks(client, input)
+    return paginator.items(client, "describeSourceNetworks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for describeSourceServers.
+function M.pages_describe_source_servers(client, input)
+    return paginator.pages(client, "describeSourceServers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for describeSourceServers.
+function M.items_describe_source_servers(client, input)
+    return paginator.items(client, "describeSourceServers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for listExtensibleSourceServers.
+function M.pages_list_extensible_source_servers(client, input)
+    return paginator.pages(client, "listExtensibleSourceServers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listExtensibleSourceServers.
+function M.items_list_extensible_source_servers(client, input)
+    return paginator.items(client, "listExtensibleSourceServers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for listLaunchActions.
+function M.pages_list_launch_actions(client, input)
+    return paginator.pages(client, "listLaunchActions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listLaunchActions.
+function M.items_list_launch_actions(client, input)
+    return paginator.items(client, "listLaunchActions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for listStagingAccounts.
+function M.pages_list_staging_accounts(client, input)
+    return paginator.pages(client, "listStagingAccounts", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "accounts",
+    })
+end
+
+--- Returns an item iterator for listStagingAccounts.
+function M.items_list_staging_accounts(client, input)
+    return paginator.items(client, "listStagingAccounts", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "accounts",
+    })
+end
+
+return M

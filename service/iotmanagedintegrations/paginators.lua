@@ -1,0 +1,311 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listAccountAssociations.
+function M.pages_list_account_associations(client, input)
+    return paginator.pages(client, "listAccountAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listAccountAssociations.
+function M.items_list_account_associations(client, input)
+    return paginator.items(client, "listAccountAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listCloudConnectors.
+function M.pages_list_cloud_connectors(client, input)
+    return paginator.pages(client, "listCloudConnectors", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listCloudConnectors.
+function M.items_list_cloud_connectors(client, input)
+    return paginator.items(client, "listCloudConnectors", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listConnectorDestinations.
+function M.pages_list_connector_destinations(client, input)
+    return paginator.pages(client, "listConnectorDestinations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConnectorDestinationList",
+    })
+end
+
+--- Returns an item iterator for listConnectorDestinations.
+function M.items_list_connector_destinations(client, input)
+    return paginator.items(client, "listConnectorDestinations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConnectorDestinationList",
+    })
+end
+
+--- Returns a page iterator for listCredentialLockers.
+function M.pages_list_credential_lockers(client, input)
+    return paginator.pages(client, "listCredentialLockers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listCredentialLockers.
+function M.items_list_credential_lockers(client, input)
+    return paginator.items(client, "listCredentialLockers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listDestinations.
+function M.pages_list_destinations(client, input)
+    return paginator.pages(client, "listDestinations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DestinationList",
+    })
+end
+
+--- Returns an item iterator for listDestinations.
+function M.items_list_destinations(client, input)
+    return paginator.items(client, "listDestinations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DestinationList",
+    })
+end
+
+--- Returns a page iterator for listDeviceDiscoveries.
+function M.pages_list_device_discoveries(client, input)
+    return paginator.pages(client, "listDeviceDiscoveries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listDeviceDiscoveries.
+function M.items_list_device_discoveries(client, input)
+    return paginator.items(client, "listDeviceDiscoveries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listDiscoveredDevices.
+function M.pages_list_discovered_devices(client, input)
+    return paginator.pages(client, "listDiscoveredDevices", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listDiscoveredDevices.
+function M.items_list_discovered_devices(client, input)
+    return paginator.items(client, "listDiscoveredDevices", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listEventLogConfigurations.
+function M.pages_list_event_log_configurations(client, input)
+    return paginator.pages(client, "listEventLogConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "EventLogConfigurationList",
+    })
+end
+
+--- Returns an item iterator for listEventLogConfigurations.
+function M.items_list_event_log_configurations(client, input)
+    return paginator.items(client, "listEventLogConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "EventLogConfigurationList",
+    })
+end
+
+--- Returns a page iterator for listManagedThingAccountAssociations.
+function M.pages_list_managed_thing_account_associations(client, input)
+    return paginator.pages(client, "listManagedThingAccountAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listManagedThingAccountAssociations.
+function M.items_list_managed_thing_account_associations(client, input)
+    return paginator.items(client, "listManagedThingAccountAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listManagedThingSchemas.
+function M.pages_list_managed_thing_schemas(client, input)
+    return paginator.pages(client, "listManagedThingSchemas", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listManagedThingSchemas.
+function M.items_list_managed_thing_schemas(client, input)
+    return paginator.items(client, "listManagedThingSchemas", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listManagedThings.
+function M.pages_list_managed_things(client, input)
+    return paginator.pages(client, "listManagedThings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listManagedThings.
+function M.items_list_managed_things(client, input)
+    return paginator.items(client, "listManagedThings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listNotificationConfigurations.
+function M.pages_list_notification_configurations(client, input)
+    return paginator.pages(client, "listNotificationConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NotificationConfigurationList",
+    })
+end
+
+--- Returns an item iterator for listNotificationConfigurations.
+function M.items_list_notification_configurations(client, input)
+    return paginator.items(client, "listNotificationConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NotificationConfigurationList",
+    })
+end
+
+--- Returns a page iterator for listOtaTaskConfigurations.
+function M.pages_list_ota_task_configurations(client, input)
+    return paginator.pages(client, "listOtaTaskConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listOtaTaskConfigurations.
+function M.items_list_ota_task_configurations(client, input)
+    return paginator.items(client, "listOtaTaskConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listOtaTaskExecutions.
+function M.pages_list_ota_task_executions(client, input)
+    return paginator.pages(client, "listOtaTaskExecutions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ExecutionSummaries",
+    })
+end
+
+--- Returns an item iterator for listOtaTaskExecutions.
+function M.items_list_ota_task_executions(client, input)
+    return paginator.items(client, "listOtaTaskExecutions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ExecutionSummaries",
+    })
+end
+
+--- Returns a page iterator for listOtaTasks.
+function M.pages_list_ota_tasks(client, input)
+    return paginator.pages(client, "listOtaTasks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Tasks",
+    })
+end
+
+--- Returns an item iterator for listOtaTasks.
+function M.items_list_ota_tasks(client, input)
+    return paginator.items(client, "listOtaTasks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Tasks",
+    })
+end
+
+--- Returns a page iterator for listProvisioningProfiles.
+function M.pages_list_provisioning_profiles(client, input)
+    return paginator.pages(client, "listProvisioningProfiles", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listProvisioningProfiles.
+function M.items_list_provisioning_profiles(client, input)
+    return paginator.items(client, "listProvisioningProfiles", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listSchemaVersions.
+function M.pages_list_schema_versions(client, input)
+    return paginator.pages(client, "listSchemaVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listSchemaVersions.
+function M.items_list_schema_versions(client, input)
+    return paginator.items(client, "listSchemaVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+return M

@@ -83,6 +83,9 @@ M.CreateMonitorInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -222,6 +225,9 @@ M.CreateProbeInput = {
         } }, { __index = M.ProbeInput }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",

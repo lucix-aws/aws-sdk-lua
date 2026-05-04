@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "Ebs"
-    cfg.signing_name = "ebs"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ebs", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:completeSnapshot(input, options)
         output_schema = types.CompleteSnapshotOutput,
         http_method = "POST",
         http_path = "/snapshots/completion/{SnapshotId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:getSnapshotBlock(input, options)
         output_schema = types.GetSnapshotBlockOutput,
         http_method = "GET",
         http_path = "/snapshots/{SnapshotId}/blocks/{BlockIndex}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:listChangedBlocks(input, options)
         output_schema = types.ListChangedBlocksOutput,
         http_method = "GET",
         http_path = "/snapshots/{SecondSnapshotId}/changedblocks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:listSnapshotBlocks(input, options)
         output_schema = types.ListSnapshotBlocksOutput,
         http_method = "GET",
         http_path = "/snapshots/{SnapshotId}/blocks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:putSnapshotBlock(input, options)
         output_schema = types.PutSnapshotBlockOutput,
         http_method = "PUT",
         http_path = "/snapshots/{SnapshotId}/blocks/{BlockIndex}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:startSnapshot(input, options)
         output_schema = types.StartSnapshotOutput,
         http_method = "POST",
         http_path = "/snapshots",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

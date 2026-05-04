@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "Omics"
-    cfg.signing_name = "omics"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "omics", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:abortMultipartReadSetUpload(input, options)
         output_schema = types.AbortMultipartReadSetUploadOutput,
         http_method = "DELETE",
         http_path = "/sequencestore/{sequenceStoreId}/upload/{uploadId}/abort",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:acceptShare(input, options)
         output_schema = types.AcceptShareOutput,
         http_method = "POST",
         http_path = "/share/{shareId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchDeleteReadSet(input, options)
         output_schema = types.BatchDeleteReadSetOutput,
         http_method = "POST",
         http_path = "/sequencestore/{sequenceStoreId}/readset/batch/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:cancelAnnotationImportJob(input, options)
         output_schema = types.CancelAnnotationImportJobOutput,
         http_method = "DELETE",
         http_path = "/import/annotation/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:cancelRun(input, options)
         output_schema = types.CancelRunOutput,
         http_method = "POST",
         http_path = "/run/{id}/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:cancelRunBatch(input, options)
         output_schema = types.CancelRunBatchOutput,
         http_method = "POST",
         http_path = "/runBatch/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:cancelVariantImportJob(input, options)
         output_schema = types.CancelVariantImportJobOutput,
         http_method = "DELETE",
         http_path = "/import/variant/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:completeMultipartReadSetUpload(input, options)
         output_schema = types.CompleteMultipartReadSetUploadOutput,
         http_method = "POST",
         http_path = "/sequencestore/{sequenceStoreId}/upload/{uploadId}/complete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createAnnotationStore(input, options)
         output_schema = types.CreateAnnotationStoreOutput,
         http_method = "POST",
         http_path = "/annotationStore",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createAnnotationStoreVersion(input, options)
         output_schema = types.CreateAnnotationStoreVersionOutput,
         http_method = "POST",
         http_path = "/annotationStore/{name}/version",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createConfiguration(input, options)
         output_schema = types.CreateConfigurationOutput,
         http_method = "POST",
         http_path = "/configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createMultipartReadSetUpload(input, options)
         output_schema = types.CreateMultipartReadSetUploadOutput,
         http_method = "POST",
         http_path = "/sequencestore/{sequenceStoreId}/upload",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createReferenceStore(input, options)
         output_schema = types.CreateReferenceStoreOutput,
         http_method = "POST",
         http_path = "/referencestore",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:createRunCache(input, options)
         output_schema = types.CreateRunCacheOutput,
         http_method = "POST",
         http_path = "/runCache",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:createRunGroup(input, options)
         output_schema = types.CreateRunGroupOutput,
         http_method = "POST",
         http_path = "/runGroup",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:createSequenceStore(input, options)
         output_schema = types.CreateSequenceStoreOutput,
         http_method = "POST",
         http_path = "/sequencestore",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:createShare(input, options)
         output_schema = types.CreateShareOutput,
         http_method = "POST",
         http_path = "/share",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:createVariantStore(input, options)
         output_schema = types.CreateVariantStoreOutput,
         http_method = "POST",
         http_path = "/variantStore",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:createWorkflow(input, options)
         output_schema = types.CreateWorkflowOutput,
         http_method = "POST",
         http_path = "/workflow",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:createWorkflowVersion(input, options)
         output_schema = types.CreateWorkflowVersionOutput,
         http_method = "POST",
         http_path = "/workflow/{workflowId}/version",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deleteAnnotationStore(input, options)
         output_schema = types.DeleteAnnotationStoreOutput,
         http_method = "DELETE",
         http_path = "/annotationStore/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:deleteAnnotationStoreVersions(input, options)
         output_schema = types.DeleteAnnotationStoreVersionsOutput,
         http_method = "POST",
         http_path = "/annotationStore/{name}/versions/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:deleteBatch(input, options)
         output_schema = types.DeleteBatchOutput,
         http_method = "DELETE",
         http_path = "/runBatch/{batchId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:deleteConfiguration(input, options)
         output_schema = types.DeleteConfigurationOutput,
         http_method = "DELETE",
         http_path = "/configuration/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:deleteReference(input, options)
         output_schema = types.DeleteReferenceOutput,
         http_method = "DELETE",
         http_path = "/referencestore/{referenceStoreId}/reference/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:deleteReferenceStore(input, options)
         output_schema = types.DeleteReferenceStoreOutput,
         http_method = "DELETE",
         http_path = "/referencestore/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:deleteRun(input, options)
         output_schema = types.DeleteRunOutput,
         http_method = "DELETE",
         http_path = "/run/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:deleteRunBatch(input, options)
         output_schema = types.DeleteRunBatchOutput,
         http_method = "POST",
         http_path = "/runBatch/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:deleteRunCache(input, options)
         output_schema = types.DeleteRunCacheOutput,
         http_method = "DELETE",
         http_path = "/runCache/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:deleteRunGroup(input, options)
         output_schema = types.DeleteRunGroupOutput,
         http_method = "DELETE",
         http_path = "/runGroup/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:deleteS3AccessPolicy(input, options)
         output_schema = types.DeleteS3AccessPolicyOutput,
         http_method = "DELETE",
         http_path = "/s3accesspolicy/{s3AccessPointArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:deleteSequenceStore(input, options)
         output_schema = types.DeleteSequenceStoreOutput,
         http_method = "DELETE",
         http_path = "/sequencestore/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:deleteShare(input, options)
         output_schema = types.DeleteShareOutput,
         http_method = "DELETE",
         http_path = "/share/{shareId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:deleteVariantStore(input, options)
         output_schema = types.DeleteVariantStoreOutput,
         http_method = "DELETE",
         http_path = "/variantStore/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:deleteWorkflow(input, options)
         output_schema = types.DeleteWorkflowOutput,
         http_method = "DELETE",
         http_path = "/workflow/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:deleteWorkflowVersion(input, options)
         output_schema = types.DeleteWorkflowVersionOutput,
         http_method = "DELETE",
         http_path = "/workflow/{workflowId}/version/{versionName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:getAnnotationImportJob(input, options)
         output_schema = types.GetAnnotationImportJobOutput,
         http_method = "GET",
         http_path = "/import/annotation/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:getAnnotationStore(input, options)
         output_schema = types.GetAnnotationStoreOutput,
         http_method = "GET",
         http_path = "/annotationStore/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:getAnnotationStoreVersion(input, options)
         output_schema = types.GetAnnotationStoreVersionOutput,
         http_method = "GET",
         http_path = "/annotationStore/{name}/version/{versionName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:getBatch(input, options)
         output_schema = types.GetBatchOutput,
         http_method = "GET",
         http_path = "/runBatch/{batchId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:getConfiguration(input, options)
         output_schema = types.GetConfigurationOutput,
         http_method = "GET",
         http_path = "/configuration/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:getReadSet(input, options)
         output_schema = types.GetReadSetOutput,
         http_method = "GET",
         http_path = "/sequencestore/{sequenceStoreId}/readset/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:getReadSetActivationJob(input, options)
         output_schema = types.GetReadSetActivationJobOutput,
         http_method = "GET",
         http_path = "/sequencestore/{sequenceStoreId}/activationjob/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:getReadSetExportJob(input, options)
         output_schema = types.GetReadSetExportJobOutput,
         http_method = "GET",
         http_path = "/sequencestore/{sequenceStoreId}/exportjob/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:getReadSetImportJob(input, options)
         output_schema = types.GetReadSetImportJobOutput,
         http_method = "GET",
         http_path = "/sequencestore/{sequenceStoreId}/importjob/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:getReadSetMetadata(input, options)
         output_schema = types.GetReadSetMetadataOutput,
         http_method = "GET",
         http_path = "/sequencestore/{sequenceStoreId}/readset/{id}/metadata",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:getReference(input, options)
         output_schema = types.GetReferenceOutput,
         http_method = "GET",
         http_path = "/referencestore/{referenceStoreId}/reference/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:getReferenceImportJob(input, options)
         output_schema = types.GetReferenceImportJobOutput,
         http_method = "GET",
         http_path = "/referencestore/{referenceStoreId}/importjob/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:getReferenceMetadata(input, options)
         output_schema = types.GetReferenceMetadataOutput,
         http_method = "GET",
         http_path = "/referencestore/{referenceStoreId}/reference/{id}/metadata",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:getReferenceStore(input, options)
         output_schema = types.GetReferenceStoreOutput,
         http_method = "GET",
         http_path = "/referencestore/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:getRun(input, options)
         output_schema = types.GetRunOutput,
         http_method = "GET",
         http_path = "/run/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:getRunCache(input, options)
         output_schema = types.GetRunCacheOutput,
         http_method = "GET",
         http_path = "/runCache/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:getRunGroup(input, options)
         output_schema = types.GetRunGroupOutput,
         http_method = "GET",
         http_path = "/runGroup/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:getRunTask(input, options)
         output_schema = types.GetRunTaskOutput,
         http_method = "GET",
         http_path = "/run/{id}/task/{taskId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:getS3AccessPolicy(input, options)
         output_schema = types.GetS3AccessPolicyOutput,
         http_method = "GET",
         http_path = "/s3accesspolicy/{s3AccessPointArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:getSequenceStore(input, options)
         output_schema = types.GetSequenceStoreOutput,
         http_method = "GET",
         http_path = "/sequencestore/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:getShare(input, options)
         output_schema = types.GetShareOutput,
         http_method = "GET",
         http_path = "/share/{shareId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:getVariantImportJob(input, options)
         output_schema = types.GetVariantImportJobOutput,
         http_method = "GET",
         http_path = "/import/variant/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:getVariantStore(input, options)
         output_schema = types.GetVariantStoreOutput,
         http_method = "GET",
         http_path = "/variantStore/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:getWorkflow(input, options)
         output_schema = types.GetWorkflowOutput,
         http_method = "GET",
         http_path = "/workflow/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:getWorkflowVersion(input, options)
         output_schema = types.GetWorkflowVersionOutput,
         http_method = "GET",
         http_path = "/workflow/{workflowId}/version/{versionName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:listAnnotationImportJobs(input, options)
         output_schema = types.ListAnnotationImportJobsOutput,
         http_method = "POST",
         http_path = "/import/annotations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:listAnnotationStores(input, options)
         output_schema = types.ListAnnotationStoresOutput,
         http_method = "POST",
         http_path = "/annotationStores",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:listAnnotationStoreVersions(input, options)
         output_schema = types.ListAnnotationStoreVersionsOutput,
         http_method = "POST",
         http_path = "/annotationStore/{name}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:listBatch(input, options)
         output_schema = types.ListBatchOutput,
         http_method = "GET",
         http_path = "/runBatch",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:listConfigurations(input, options)
         output_schema = types.ListConfigurationsOutput,
         http_method = "GET",
         http_path = "/configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:listMultipartReadSetUploads(input, options)
         output_schema = types.ListMultipartReadSetUploadsOutput,
         http_method = "POST",
         http_path = "/sequencestore/{sequenceStoreId}/uploads",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:listReadSetActivationJobs(input, options)
         output_schema = types.ListReadSetActivationJobsOutput,
         http_method = "POST",
         http_path = "/sequencestore/{sequenceStoreId}/activationjobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:listReadSetExportJobs(input, options)
         output_schema = types.ListReadSetExportJobsOutput,
         http_method = "POST",
         http_path = "/sequencestore/{sequenceStoreId}/exportjobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:listReadSetImportJobs(input, options)
         output_schema = types.ListReadSetImportJobsOutput,
         http_method = "POST",
         http_path = "/sequencestore/{sequenceStoreId}/importjobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:listReadSets(input, options)
         output_schema = types.ListReadSetsOutput,
         http_method = "POST",
         http_path = "/sequencestore/{sequenceStoreId}/readsets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:listReadSetUploadParts(input, options)
         output_schema = types.ListReadSetUploadPartsOutput,
         http_method = "POST",
         http_path = "/sequencestore/{sequenceStoreId}/upload/{uploadId}/parts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:listReferenceImportJobs(input, options)
         output_schema = types.ListReferenceImportJobsOutput,
         http_method = "POST",
         http_path = "/referencestore/{referenceStoreId}/importjobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:listReferences(input, options)
         output_schema = types.ListReferencesOutput,
         http_method = "POST",
         http_path = "/referencestore/{referenceStoreId}/references",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:listReferenceStores(input, options)
         output_schema = types.ListReferenceStoresOutput,
         http_method = "POST",
         http_path = "/referencestores",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:listRunCaches(input, options)
         output_schema = types.ListRunCachesOutput,
         http_method = "GET",
         http_path = "/runCache",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:listRunGroups(input, options)
         output_schema = types.ListRunGroupsOutput,
         http_method = "GET",
         http_path = "/runGroup",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:listRuns(input, options)
         output_schema = types.ListRunsOutput,
         http_method = "GET",
         http_path = "/run",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:listRunsInBatch(input, options)
         output_schema = types.ListRunsInBatchOutput,
         http_method = "GET",
         http_path = "/runBatch/{batchId}/run",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:listRunTasks(input, options)
         output_schema = types.ListRunTasksOutput,
         http_method = "GET",
         http_path = "/run/{id}/task",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:listSequenceStores(input, options)
         output_schema = types.ListSequenceStoresOutput,
         http_method = "POST",
         http_path = "/sequencestores",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:listShares(input, options)
         output_schema = types.ListSharesOutput,
         http_method = "POST",
         http_path = "/shares",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:listVariantImportJobs(input, options)
         output_schema = types.ListVariantImportJobsOutput,
         http_method = "POST",
         http_path = "/import/variants",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:listVariantStores(input, options)
         output_schema = types.ListVariantStoresOutput,
         http_method = "POST",
         http_path = "/variantStores",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -890,6 +1158,9 @@ function Client:listWorkflows(input, options)
         output_schema = types.ListWorkflowsOutput,
         http_method = "GET",
         http_path = "/workflow",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -900,6 +1171,9 @@ function Client:listWorkflowVersions(input, options)
         output_schema = types.ListWorkflowVersionsOutput,
         http_method = "GET",
         http_path = "/workflow/{workflowId}/version",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -910,6 +1184,9 @@ function Client:putS3AccessPolicy(input, options)
         output_schema = types.PutS3AccessPolicyOutput,
         http_method = "PUT",
         http_path = "/s3accesspolicy/{s3AccessPointArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -920,6 +1197,9 @@ function Client:startAnnotationImportJob(input, options)
         output_schema = types.StartAnnotationImportJobOutput,
         http_method = "POST",
         http_path = "/import/annotation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -930,6 +1210,9 @@ function Client:startReadSetActivationJob(input, options)
         output_schema = types.StartReadSetActivationJobOutput,
         http_method = "POST",
         http_path = "/sequencestore/{sequenceStoreId}/activationjob",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -940,6 +1223,9 @@ function Client:startReadSetExportJob(input, options)
         output_schema = types.StartReadSetExportJobOutput,
         http_method = "POST",
         http_path = "/sequencestore/{sequenceStoreId}/exportjob",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -950,6 +1236,9 @@ function Client:startReadSetImportJob(input, options)
         output_schema = types.StartReadSetImportJobOutput,
         http_method = "POST",
         http_path = "/sequencestore/{sequenceStoreId}/importjob",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -960,6 +1249,9 @@ function Client:startReferenceImportJob(input, options)
         output_schema = types.StartReferenceImportJobOutput,
         http_method = "POST",
         http_path = "/referencestore/{referenceStoreId}/importjob",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -970,6 +1262,9 @@ function Client:startRun(input, options)
         output_schema = types.StartRunOutput,
         http_method = "POST",
         http_path = "/run",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -980,6 +1275,9 @@ function Client:startRunBatch(input, options)
         output_schema = types.StartRunBatchOutput,
         http_method = "POST",
         http_path = "/runBatch",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -990,6 +1288,9 @@ function Client:startVariantImportJob(input, options)
         output_schema = types.StartVariantImportJobOutput,
         http_method = "POST",
         http_path = "/import/variant",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1000,6 +1301,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1010,6 +1314,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1020,6 +1327,9 @@ function Client:updateAnnotationStore(input, options)
         output_schema = types.UpdateAnnotationStoreOutput,
         http_method = "POST",
         http_path = "/annotationStore/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1030,6 +1340,9 @@ function Client:updateAnnotationStoreVersion(input, options)
         output_schema = types.UpdateAnnotationStoreVersionOutput,
         http_method = "POST",
         http_path = "/annotationStore/{name}/version/{versionName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1040,6 +1353,9 @@ function Client:updateRunCache(input, options)
         output_schema = types.UpdateRunCacheOutput,
         http_method = "POST",
         http_path = "/runCache/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1050,6 +1366,9 @@ function Client:updateRunGroup(input, options)
         output_schema = types.UpdateRunGroupOutput,
         http_method = "POST",
         http_path = "/runGroup/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1060,6 +1379,9 @@ function Client:updateSequenceStore(input, options)
         output_schema = types.UpdateSequenceStoreOutput,
         http_method = "PATCH",
         http_path = "/sequencestore/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1070,6 +1392,9 @@ function Client:updateVariantStore(input, options)
         output_schema = types.UpdateVariantStoreOutput,
         http_method = "POST",
         http_path = "/variantStore/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1080,6 +1405,9 @@ function Client:updateWorkflow(input, options)
         output_schema = types.UpdateWorkflowOutput,
         http_method = "POST",
         http_path = "/workflow/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1090,6 +1418,9 @@ function Client:updateWorkflowVersion(input, options)
         output_schema = types.UpdateWorkflowVersionOutput,
         http_method = "POST",
         http_path = "/workflow/{workflowId}/version/{versionName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1100,6 +1431,9 @@ function Client:uploadReadSetPart(input, options)
         output_schema = types.UploadReadSetPartOutput,
         http_method = "PUT",
         http_path = "/sequencestore/{sequenceStoreId}/upload/{uploadId}/part",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

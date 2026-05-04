@@ -1,0 +1,38 @@
+local record M
+    pages_list_cloud_front_origin_access_identities: function(client: table, input: table): function(): table, table
+    items_list_cloud_front_origin_access_identities: function(client: table, input: table): function(): any
+    pages_list_connection_functions: function(client: table, input: table): function(): table, table
+    items_list_connection_functions: function(client: table, input: table): function(): any
+    pages_list_connection_groups: function(client: table, input: table): function(): table, table
+    items_list_connection_groups: function(client: table, input: table): function(): any
+    pages_list_distribution_tenants: function(client: table, input: table): function(): table, table
+    items_list_distribution_tenants: function(client: table, input: table): function(): any
+    pages_list_distribution_tenants_by_customization: function(client: table, input: table): function(): table, table
+    items_list_distribution_tenants_by_customization: function(client: table, input: table): function(): any
+    pages_list_distributions: function(client: table, input: table): function(): table, table
+    items_list_distributions: function(client: table, input: table): function(): any
+    pages_list_distributions_by_connection_function: function(client: table, input: table): function(): table, table
+    items_list_distributions_by_connection_function: function(client: table, input: table): function(): any
+    pages_list_distributions_by_connection_mode: function(client: table, input: table): function(): table, table
+    items_list_distributions_by_connection_mode: function(client: table, input: table): function(): any
+    pages_list_distributions_by_trust_store: function(client: table, input: table): function(): table, table
+    items_list_distributions_by_trust_store: function(client: table, input: table): function(): any
+    pages_list_domain_conflicts: function(client: table, input: table): function(): table, table
+    items_list_domain_conflicts: function(client: table, input: table): function(): any
+    pages_list_invalidations: function(client: table, input: table): function(): table, table
+    items_list_invalidations: function(client: table, input: table): function(): any
+    pages_list_invalidations_for_distribution_tenant: function(client: table, input: table): function(): table, table
+    items_list_invalidations_for_distribution_tenant: function(client: table, input: table): function(): any
+    pages_list_key_value_stores: function(client: table, input: table): function(): table, table
+    items_list_key_value_stores: function(client: table, input: table): function(): any
+    pages_list_origin_access_controls: function(client: table, input: table): function(): table, table
+    items_list_origin_access_controls: function(client: table, input: table): function(): any
+    pages_list_public_keys: function(client: table, input: table): function(): table, table
+    items_list_public_keys: function(client: table, input: table): function(): any
+    pages_list_streaming_distributions: function(client: table, input: table): function(): table, table
+    items_list_streaming_distributions: function(client: table, input: table): function(): any
+    pages_list_trust_stores: function(client: table, input: table): function(): table, table
+    items_list_trust_stores: function(client: table, input: table): function(): any
+end
+
+return M

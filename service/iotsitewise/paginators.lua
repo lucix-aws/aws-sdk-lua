@@ -1,0 +1,497 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for batchGetAssetPropertyAggregates.
+function M.pages_batch_get_asset_property_aggregates(client, input)
+    return paginator.pages(client, "batchGetAssetPropertyAggregates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for batchGetAssetPropertyValue.
+function M.pages_batch_get_asset_property_value(client, input)
+    return paginator.pages(client, "batchGetAssetPropertyValue", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for batchGetAssetPropertyValueHistory.
+function M.pages_batch_get_asset_property_value_history(client, input)
+    return paginator.pages(client, "batchGetAssetPropertyValueHistory", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for executeQuery.
+function M.pages_execute_query(client, input)
+    return paginator.pages(client, "executeQuery", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "rows",
+    })
+end
+
+--- Returns an item iterator for executeQuery.
+function M.items_execute_query(client, input)
+    return paginator.items(client, "executeQuery", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "rows",
+    })
+end
+
+--- Returns a page iterator for getAssetPropertyAggregates.
+function M.pages_get_asset_property_aggregates(client, input)
+    return paginator.pages(client, "getAssetPropertyAggregates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "aggregatedValues",
+    })
+end
+
+--- Returns an item iterator for getAssetPropertyAggregates.
+function M.items_get_asset_property_aggregates(client, input)
+    return paginator.items(client, "getAssetPropertyAggregates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "aggregatedValues",
+    })
+end
+
+--- Returns a page iterator for getAssetPropertyValueHistory.
+function M.pages_get_asset_property_value_history(client, input)
+    return paginator.pages(client, "getAssetPropertyValueHistory", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "assetPropertyValueHistory",
+    })
+end
+
+--- Returns an item iterator for getAssetPropertyValueHistory.
+function M.items_get_asset_property_value_history(client, input)
+    return paginator.items(client, "getAssetPropertyValueHistory", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "assetPropertyValueHistory",
+    })
+end
+
+--- Returns a page iterator for getInterpolatedAssetPropertyValues.
+function M.pages_get_interpolated_asset_property_values(client, input)
+    return paginator.pages(client, "getInterpolatedAssetPropertyValues", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "interpolatedAssetPropertyValues",
+    })
+end
+
+--- Returns an item iterator for getInterpolatedAssetPropertyValues.
+function M.items_get_interpolated_asset_property_values(client, input)
+    return paginator.items(client, "getInterpolatedAssetPropertyValues", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "interpolatedAssetPropertyValues",
+    })
+end
+
+--- Returns a page iterator for listAccessPolicies.
+function M.pages_list_access_policies(client, input)
+    return paginator.pages(client, "listAccessPolicies", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "accessPolicySummaries",
+    })
+end
+
+--- Returns an item iterator for listAccessPolicies.
+function M.items_list_access_policies(client, input)
+    return paginator.items(client, "listAccessPolicies", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "accessPolicySummaries",
+    })
+end
+
+--- Returns a page iterator for listAssetModelCompositeModels.
+function M.pages_list_asset_model_composite_models(client, input)
+    return paginator.pages(client, "listAssetModelCompositeModels", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "assetModelCompositeModelSummaries",
+    })
+end
+
+--- Returns an item iterator for listAssetModelCompositeModels.
+function M.items_list_asset_model_composite_models(client, input)
+    return paginator.items(client, "listAssetModelCompositeModels", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "assetModelCompositeModelSummaries",
+    })
+end
+
+--- Returns a page iterator for listAssetModelProperties.
+function M.pages_list_asset_model_properties(client, input)
+    return paginator.pages(client, "listAssetModelProperties", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "assetModelPropertySummaries",
+    })
+end
+
+--- Returns an item iterator for listAssetModelProperties.
+function M.items_list_asset_model_properties(client, input)
+    return paginator.items(client, "listAssetModelProperties", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "assetModelPropertySummaries",
+    })
+end
+
+--- Returns a page iterator for listAssetModels.
+function M.pages_list_asset_models(client, input)
+    return paginator.pages(client, "listAssetModels", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "assetModelSummaries",
+    })
+end
+
+--- Returns an item iterator for listAssetModels.
+function M.items_list_asset_models(client, input)
+    return paginator.items(client, "listAssetModels", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "assetModelSummaries",
+    })
+end
+
+--- Returns a page iterator for listAssetProperties.
+function M.pages_list_asset_properties(client, input)
+    return paginator.pages(client, "listAssetProperties", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "assetPropertySummaries",
+    })
+end
+
+--- Returns an item iterator for listAssetProperties.
+function M.items_list_asset_properties(client, input)
+    return paginator.items(client, "listAssetProperties", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "assetPropertySummaries",
+    })
+end
+
+--- Returns a page iterator for listAssetRelationships.
+function M.pages_list_asset_relationships(client, input)
+    return paginator.pages(client, "listAssetRelationships", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "assetRelationshipSummaries",
+    })
+end
+
+--- Returns an item iterator for listAssetRelationships.
+function M.items_list_asset_relationships(client, input)
+    return paginator.items(client, "listAssetRelationships", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "assetRelationshipSummaries",
+    })
+end
+
+--- Returns a page iterator for listAssets.
+function M.pages_list_assets(client, input)
+    return paginator.pages(client, "listAssets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "assetSummaries",
+    })
+end
+
+--- Returns an item iterator for listAssets.
+function M.items_list_assets(client, input)
+    return paginator.items(client, "listAssets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "assetSummaries",
+    })
+end
+
+--- Returns a page iterator for listAssociatedAssets.
+function M.pages_list_associated_assets(client, input)
+    return paginator.pages(client, "listAssociatedAssets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "assetSummaries",
+    })
+end
+
+--- Returns an item iterator for listAssociatedAssets.
+function M.items_list_associated_assets(client, input)
+    return paginator.items(client, "listAssociatedAssets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "assetSummaries",
+    })
+end
+
+--- Returns a page iterator for listBulkImportJobs.
+function M.pages_list_bulk_import_jobs(client, input)
+    return paginator.pages(client, "listBulkImportJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "jobSummaries",
+    })
+end
+
+--- Returns an item iterator for listBulkImportJobs.
+function M.items_list_bulk_import_jobs(client, input)
+    return paginator.items(client, "listBulkImportJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "jobSummaries",
+    })
+end
+
+--- Returns a page iterator for listCompositionRelationships.
+function M.pages_list_composition_relationships(client, input)
+    return paginator.pages(client, "listCompositionRelationships", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "compositionRelationshipSummaries",
+    })
+end
+
+--- Returns an item iterator for listCompositionRelationships.
+function M.items_list_composition_relationships(client, input)
+    return paginator.items(client, "listCompositionRelationships", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "compositionRelationshipSummaries",
+    })
+end
+
+--- Returns a page iterator for listComputationModelDataBindingUsages.
+function M.pages_list_computation_model_data_binding_usages(client, input)
+    return paginator.pages(client, "listComputationModelDataBindingUsages", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "dataBindingUsageSummaries",
+    })
+end
+
+--- Returns an item iterator for listComputationModelDataBindingUsages.
+function M.items_list_computation_model_data_binding_usages(client, input)
+    return paginator.items(client, "listComputationModelDataBindingUsages", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "dataBindingUsageSummaries",
+    })
+end
+
+--- Returns a page iterator for listComputationModelResolveToResources.
+function M.pages_list_computation_model_resolve_to_resources(client, input)
+    return paginator.pages(client, "listComputationModelResolveToResources", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "computationModelResolveToResourceSummaries",
+    })
+end
+
+--- Returns an item iterator for listComputationModelResolveToResources.
+function M.items_list_computation_model_resolve_to_resources(client, input)
+    return paginator.items(client, "listComputationModelResolveToResources", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "computationModelResolveToResourceSummaries",
+    })
+end
+
+--- Returns a page iterator for listComputationModels.
+function M.pages_list_computation_models(client, input)
+    return paginator.pages(client, "listComputationModels", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "computationModelSummaries",
+    })
+end
+
+--- Returns an item iterator for listComputationModels.
+function M.items_list_computation_models(client, input)
+    return paginator.items(client, "listComputationModels", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "computationModelSummaries",
+    })
+end
+
+--- Returns a page iterator for listDashboards.
+function M.pages_list_dashboards(client, input)
+    return paginator.pages(client, "listDashboards", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "dashboardSummaries",
+    })
+end
+
+--- Returns an item iterator for listDashboards.
+function M.items_list_dashboards(client, input)
+    return paginator.items(client, "listDashboards", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "dashboardSummaries",
+    })
+end
+
+--- Returns a page iterator for listDatasets.
+function M.pages_list_datasets(client, input)
+    return paginator.pages(client, "listDatasets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "datasetSummaries",
+    })
+end
+
+--- Returns an item iterator for listDatasets.
+function M.items_list_datasets(client, input)
+    return paginator.items(client, "listDatasets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "datasetSummaries",
+    })
+end
+
+--- Returns a page iterator for listExecutions.
+function M.pages_list_executions(client, input)
+    return paginator.pages(client, "listExecutions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "executionSummaries",
+    })
+end
+
+--- Returns an item iterator for listExecutions.
+function M.items_list_executions(client, input)
+    return paginator.items(client, "listExecutions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "executionSummaries",
+    })
+end
+
+--- Returns a page iterator for listGateways.
+function M.pages_list_gateways(client, input)
+    return paginator.pages(client, "listGateways", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "gatewaySummaries",
+    })
+end
+
+--- Returns an item iterator for listGateways.
+function M.items_list_gateways(client, input)
+    return paginator.items(client, "listGateways", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "gatewaySummaries",
+    })
+end
+
+--- Returns a page iterator for listInterfaceRelationships.
+function M.pages_list_interface_relationships(client, input)
+    return paginator.pages(client, "listInterfaceRelationships", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "interfaceRelationshipSummaries",
+    })
+end
+
+--- Returns an item iterator for listInterfaceRelationships.
+function M.items_list_interface_relationships(client, input)
+    return paginator.items(client, "listInterfaceRelationships", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "interfaceRelationshipSummaries",
+    })
+end
+
+--- Returns a page iterator for listPortals.
+function M.pages_list_portals(client, input)
+    return paginator.pages(client, "listPortals", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "portalSummaries",
+    })
+end
+
+--- Returns an item iterator for listPortals.
+function M.items_list_portals(client, input)
+    return paginator.items(client, "listPortals", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "portalSummaries",
+    })
+end
+
+--- Returns a page iterator for listProjectAssets.
+function M.pages_list_project_assets(client, input)
+    return paginator.pages(client, "listProjectAssets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "assetIds",
+    })
+end
+
+--- Returns an item iterator for listProjectAssets.
+function M.items_list_project_assets(client, input)
+    return paginator.items(client, "listProjectAssets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "assetIds",
+    })
+end
+
+--- Returns a page iterator for listProjects.
+function M.pages_list_projects(client, input)
+    return paginator.pages(client, "listProjects", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "projectSummaries",
+    })
+end
+
+--- Returns an item iterator for listProjects.
+function M.items_list_projects(client, input)
+    return paginator.items(client, "listProjects", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "projectSummaries",
+    })
+end
+
+--- Returns a page iterator for listTimeSeries.
+function M.pages_list_time_series(client, input)
+    return paginator.pages(client, "listTimeSeries", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "TimeSeriesSummaries",
+    })
+end
+
+--- Returns an item iterator for listTimeSeries.
+function M.items_list_time_series(client, input)
+    return paginator.items(client, "listTimeSeries", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "TimeSeriesSummaries",
+    })
+end
+
+return M

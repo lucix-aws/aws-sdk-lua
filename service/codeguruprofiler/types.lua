@@ -199,6 +199,9 @@ M.AggregatedProfileTime = {
     members = {
         start = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         period = {
             type = "string",
@@ -236,10 +239,14 @@ M.AnomalyInstance = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         endTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         userFeedback = M.UserFeedback,
     },
@@ -335,12 +342,14 @@ M.BatchGetFrameMetricDataInput = {
             type = "timestamp",
             traits = {
                 http_query = "startTime",
+                timestamp_format = "date-time",
             },
         },
         endTime = {
             type = "timestamp",
             traits = {
                 http_query = "endTime",
+                timestamp_format = "date-time",
             },
         },
         period = {
@@ -369,6 +378,7 @@ M.TimestampStructure = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -397,12 +407,14 @@ M.BatchGetFrameMetricDataOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         endTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         resolution = {
@@ -471,9 +483,15 @@ M.FindingsReportSummary = {
         },
         profileStartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         profileEndTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         totalNumberOfFindings = {
             type = "integer",
@@ -585,6 +603,7 @@ M.CreateProfilingGroupInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -602,10 +621,16 @@ M.ProfilingStatus = {
     members = {
         latestAgentProfileReportedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         latestAggregatedProfile = M.AggregatedProfileTime,
         latestAgentOrchestratedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -622,9 +647,15 @@ M.ProfilingGroupDescription = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         profilingStatus = M.ProfilingStatus,
         computePlatform = {
@@ -755,6 +786,7 @@ M.GetProfileInput = {
             type = "timestamp",
             traits = {
                 http_query = "startTime",
+                timestamp_format = "date-time",
             },
         },
         period = {
@@ -767,6 +799,7 @@ M.GetProfileInput = {
             type = "timestamp",
             traits = {
                 http_query = "endTime",
+                timestamp_format = "date-time",
             },
         },
         maxDepth = {
@@ -825,6 +858,7 @@ M.GetRecommendationsInput = {
             traits = {
                 http_query = "startTime",
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         endTime = {
@@ -832,6 +866,7 @@ M.GetRecommendationsInput = {
             traits = {
                 http_query = "endTime",
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         locale = {
@@ -919,12 +954,14 @@ M.Recommendation = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         endTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -943,12 +980,14 @@ M.GetRecommendationsOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         profileEndTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         recommendations = {
@@ -983,6 +1022,7 @@ M.ListFindingsReportsInput = {
             traits = {
                 http_query = "startTime",
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         endTime = {
@@ -990,6 +1030,7 @@ M.ListFindingsReportsInput = {
             traits = {
                 http_query = "endTime",
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         nextToken = {
@@ -1049,6 +1090,7 @@ M.ListProfileTimesInput = {
             traits = {
                 http_query = "startTime",
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         endTime = {
@@ -1056,6 +1098,7 @@ M.ListProfileTimesInput = {
             traits = {
                 http_query = "endTime",
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         period = {
@@ -1091,6 +1134,9 @@ M.ProfileTime = {
     members = {
         start = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1176,6 +1222,7 @@ M.PostAgentProfileInput = {
             type = "string",
             traits = {
                 http_query = "profileToken",
+                idempotency_token = true,
             },
         },
         contentType = {

@@ -358,6 +358,7 @@ M.CreateBillingViewInput = {
             type = "string",
             traits = {
                 http_header = "X-Amzn-Client-Token",
+                idempotency_token = true,
             },
         },
         resourceTags = {

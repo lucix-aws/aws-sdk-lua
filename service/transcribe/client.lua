@@ -16,16 +16,29 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "Transcribe"
-    cfg.signing_name = "transcribe"
     if not cfg.protocol then
-        cfg.protocol = awsjson_protocol.new({ version = "1.1", service_id = cfg.service_id })
+        cfg.protocol = awsjson_protocol.new("1.1")
     end
     if not cfg.endpoint_provider then
         cfg.endpoint_provider = function(params)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "transcribe", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createCallAnalyticsCategory(input, options)
         output_schema = types.CreateCallAnalyticsCategoryOutput,
         http_method = "PUT",
         http_path = "/callanalyticscategories/{CategoryName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createLanguageModel(input, options)
         output_schema = types.CreateLanguageModelOutput,
         http_method = "PUT",
         http_path = "/languagemodels/{ModelName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createMedicalVocabulary(input, options)
         output_schema = types.CreateMedicalVocabularyOutput,
         http_method = "PUT",
         http_path = "/medicalvocabularies/{VocabularyName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createVocabulary(input, options)
         output_schema = types.CreateVocabularyOutput,
         http_method = "PUT",
         http_path = "/vocabularies/{VocabularyName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createVocabularyFilter(input, options)
         output_schema = types.CreateVocabularyFilterOutput,
         http_method = "POST",
         http_path = "/vocabularyFilters/{VocabularyFilterName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteCallAnalyticsCategory(input, options)
         output_schema = types.DeleteCallAnalyticsCategoryOutput,
         http_method = "DELETE",
         http_path = "/callanalyticscategories/{CategoryName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteCallAnalyticsJob(input, options)
         output_schema = types.DeleteCallAnalyticsJobOutput,
         http_method = "DELETE",
         http_path = "/callanalyticsjobs/{CallAnalyticsJobName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteLanguageModel(input, options)
         output_schema = types.DeleteLanguageModelOutput,
         http_method = "DELETE",
         http_path = "/languagemodels/{ModelName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteMedicalScribeJob(input, options)
         output_schema = types.DeleteMedicalScribeJobOutput,
         http_method = "DELETE",
         http_path = "/medicalscribejobs/{MedicalScribeJobName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteMedicalTranscriptionJob(input, options)
         output_schema = types.DeleteMedicalTranscriptionJobOutput,
         http_method = "DELETE",
         http_path = "/medicaltranscriptionjobs/{MedicalTranscriptionJobName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteMedicalVocabulary(input, options)
         output_schema = types.DeleteMedicalVocabularyOutput,
         http_method = "DELETE",
         http_path = "/medicalvocabularies/{VocabularyName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteTranscriptionJob(input, options)
         output_schema = types.DeleteTranscriptionJobOutput,
         http_method = "DELETE",
         http_path = "/transcriptionjobs/{TranscriptionJobName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteVocabulary(input, options)
         output_schema = types.DeleteVocabularyOutput,
         http_method = "DELETE",
         http_path = "/vocabularies/{VocabularyName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteVocabularyFilter(input, options)
         output_schema = types.DeleteVocabularyFilterOutput,
         http_method = "DELETE",
         http_path = "/vocabularyFilters/{VocabularyFilterName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:describeLanguageModel(input, options)
         output_schema = types.DescribeLanguageModelOutput,
         http_method = "GET",
         http_path = "/languagemodels/{ModelName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getCallAnalyticsCategory(input, options)
         output_schema = types.GetCallAnalyticsCategoryOutput,
         http_method = "GET",
         http_path = "/callanalyticscategories/{CategoryName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getCallAnalyticsJob(input, options)
         output_schema = types.GetCallAnalyticsJobOutput,
         http_method = "GET",
         http_path = "/callanalyticsjobs/{CallAnalyticsJobName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getMedicalScribeJob(input, options)
         output_schema = types.GetMedicalScribeJobOutput,
         http_method = "GET",
         http_path = "/medicalscribejobs/{MedicalScribeJobName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getMedicalTranscriptionJob(input, options)
         output_schema = types.GetMedicalTranscriptionJobOutput,
         http_method = "GET",
         http_path = "/medicaltranscriptionjobs/{MedicalTranscriptionJobName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:getMedicalVocabulary(input, options)
         output_schema = types.GetMedicalVocabularyOutput,
         http_method = "GET",
         http_path = "/medicalvocabularies/{VocabularyName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:getTranscriptionJob(input, options)
         output_schema = types.GetTranscriptionJobOutput,
         http_method = "GET",
         http_path = "/transcriptionjobs/{TranscriptionJobName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:getVocabulary(input, options)
         output_schema = types.GetVocabularyOutput,
         http_method = "GET",
         http_path = "/vocabularies/{VocabularyName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:getVocabularyFilter(input, options)
         output_schema = types.GetVocabularyFilterOutput,
         http_method = "GET",
         http_path = "/vocabularyFilters/{VocabularyFilterName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listCallAnalyticsCategories(input, options)
         output_schema = types.ListCallAnalyticsCategoriesOutput,
         http_method = "GET",
         http_path = "/callanalyticscategories",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listCallAnalyticsJobs(input, options)
         output_schema = types.ListCallAnalyticsJobsOutput,
         http_method = "GET",
         http_path = "/callanalyticsjobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listLanguageModels(input, options)
         output_schema = types.ListLanguageModelsOutput,
         http_method = "GET",
         http_path = "/languagemodels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:listMedicalScribeJobs(input, options)
         output_schema = types.ListMedicalScribeJobsOutput,
         http_method = "GET",
         http_path = "/medicalscribejobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:listMedicalTranscriptionJobs(input, options)
         output_schema = types.ListMedicalTranscriptionJobsOutput,
         http_method = "GET",
         http_path = "/medicaltranscriptionjobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listMedicalVocabularies(input, options)
         output_schema = types.ListMedicalVocabulariesOutput,
         http_method = "GET",
         http_path = "/medicalvocabularies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:listTranscriptionJobs(input, options)
         output_schema = types.ListTranscriptionJobsOutput,
         http_method = "GET",
         http_path = "/transcriptionjobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:listVocabularies(input, options)
         output_schema = types.ListVocabulariesOutput,
         http_method = "GET",
         http_path = "/vocabularies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:listVocabularyFilters(input, options)
         output_schema = types.ListVocabularyFiltersOutput,
         http_method = "GET",
         http_path = "/vocabularyFilters",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:startCallAnalyticsJob(input, options)
         output_schema = types.StartCallAnalyticsJobOutput,
         http_method = "PUT",
         http_path = "/callanalyticsjobs/{CallAnalyticsJobName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:startMedicalScribeJob(input, options)
         output_schema = types.StartMedicalScribeJobOutput,
         http_method = "PUT",
         http_path = "/medicalscribejobs/{MedicalScribeJobName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:startMedicalTranscriptionJob(input, options)
         output_schema = types.StartMedicalTranscriptionJobOutput,
         http_method = "PUT",
         http_path = "/medicaltranscriptionjobs/{MedicalTranscriptionJobName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:startTranscriptionJob(input, options)
         output_schema = types.StartTranscriptionJobOutput,
         http_method = "PUT",
         http_path = "/transcriptionjobs/{TranscriptionJobName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "PUT",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:updateCallAnalyticsCategory(input, options)
         output_schema = types.UpdateCallAnalyticsCategoryOutput,
         http_method = "PATCH",
         http_path = "/callanalyticscategories/{CategoryName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:updateMedicalVocabulary(input, options)
         output_schema = types.UpdateMedicalVocabularyOutput,
         http_method = "PATCH",
         http_path = "/medicalvocabularies/{VocabularyName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:updateVocabulary(input, options)
         output_schema = types.UpdateVocabularyOutput,
         http_method = "PATCH",
         http_path = "/vocabularies/{VocabularyName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:updateVocabularyFilter(input, options)
         output_schema = types.UpdateVocabularyFilterOutput,
         http_method = "PUT",
         http_path = "/vocabularyFilters/{VocabularyFilterName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

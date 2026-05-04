@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "GameLiftStreams"
-    cfg.signing_name = "gameliftstreams"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "gameliftstreams", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:addStreamGroupLocations(input, options)
         output_schema = types.AddStreamGroupLocationsOutput,
         http_method = "POST",
         http_path = "/streamgroups/{Identifier}/locations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:associateApplications(input, options)
         output_schema = types.AssociateApplicationsOutput,
         http_method = "POST",
         http_path = "/streamgroups/{Identifier}/associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createApplication(input, options)
         output_schema = types.CreateApplicationOutput,
         http_method = "POST",
         http_path = "/applications",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createStreamGroup(input, options)
         output_schema = types.CreateStreamGroupOutput,
         http_method = "POST",
         http_path = "/streamgroups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createStreamSessionConnection(input, options)
         output_schema = types.CreateStreamSessionConnectionOutput,
         http_method = "POST",
         http_path = "/streamgroups/{Identifier}/streamsessions/{StreamSessionIdentifier}/connections",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteApplication(input, options)
         output_schema = types.DeleteApplicationOutput,
         http_method = "DELETE",
         http_path = "/applications/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteStreamGroup(input, options)
         output_schema = types.DeleteStreamGroupOutput,
         http_method = "DELETE",
         http_path = "/streamgroups/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:disassociateApplications(input, options)
         output_schema = types.DisassociateApplicationsOutput,
         http_method = "POST",
         http_path = "/streamgroups/{Identifier}/disassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:exportStreamSessionFiles(input, options)
         output_schema = types.ExportStreamSessionFilesOutput,
         http_method = "PUT",
         http_path = "/streamgroups/{Identifier}/streamsessions/{StreamSessionIdentifier}/exportfiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:getApplication(input, options)
         output_schema = types.GetApplicationOutput,
         http_method = "GET",
         http_path = "/applications/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getStreamGroup(input, options)
         output_schema = types.GetStreamGroupOutput,
         http_method = "GET",
         http_path = "/streamgroups/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getStreamSession(input, options)
         output_schema = types.GetStreamSessionOutput,
         http_method = "GET",
         http_path = "/streamgroups/{Identifier}/streamsessions/{StreamSessionIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:listApplications(input, options)
         output_schema = types.ListApplicationsOutput,
         http_method = "GET",
         http_path = "/applications",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:listStreamGroups(input, options)
         output_schema = types.ListStreamGroupsOutput,
         http_method = "GET",
         http_path = "/streamgroups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:listStreamSessions(input, options)
         output_schema = types.ListStreamSessionsOutput,
         http_method = "GET",
         http_path = "/streamgroups/{Identifier}/streamsessions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listStreamSessionsByAccount(input, options)
         output_schema = types.ListStreamSessionsByAccountOutput,
         http_method = "GET",
         http_path = "/streamsessions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:removeStreamGroupLocations(input, options)
         output_schema = types.RemoveStreamGroupLocationsOutput,
         http_method = "DELETE",
         http_path = "/streamgroups/{Identifier}/locations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:startStreamSession(input, options)
         output_schema = types.StartStreamSessionOutput,
         http_method = "POST",
         http_path = "/streamgroups/{Identifier}/streamsessions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:terminateStreamSession(input, options)
         output_schema = types.TerminateStreamSessionOutput,
         http_method = "DELETE",
         http_path = "/streamgroups/{Identifier}/streamsessions/{StreamSessionIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:updateApplication(input, options)
         output_schema = types.UpdateApplicationOutput,
         http_method = "PATCH",
         http_path = "/applications/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:updateStreamGroup(input, options)
         output_schema = types.UpdateStreamGroupOutput,
         http_method = "PATCH",
         http_path = "/streamgroups/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

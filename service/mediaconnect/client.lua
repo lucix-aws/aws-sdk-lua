@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "MediaConnect"
-    cfg.signing_name = "mediaconnect"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "mediaconnect", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:addBridgeOutputs(input, options)
         output_schema = types.AddBridgeOutputsOutput,
         http_method = "POST",
         http_path = "/v1/bridges/{BridgeArn}/outputs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:addBridgeSources(input, options)
         output_schema = types.AddBridgeSourcesOutput,
         http_method = "POST",
         http_path = "/v1/bridges/{BridgeArn}/sources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:addFlowMediaStreams(input, options)
         output_schema = types.AddFlowMediaStreamsOutput,
         http_method = "POST",
         http_path = "/v1/flows/{FlowArn}/mediaStreams",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:addFlowOutputs(input, options)
         output_schema = types.AddFlowOutputsOutput,
         http_method = "POST",
         http_path = "/v1/flows/{FlowArn}/outputs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:addFlowSources(input, options)
         output_schema = types.AddFlowSourcesOutput,
         http_method = "POST",
         http_path = "/v1/flows/{FlowArn}/source",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:addFlowVpcInterfaces(input, options)
         output_schema = types.AddFlowVpcInterfacesOutput,
         http_method = "POST",
         http_path = "/v1/flows/{FlowArn}/vpcInterfaces",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:batchGetRouterInput(input, options)
         output_schema = types.BatchGetRouterInputOutput,
         http_method = "GET",
         http_path = "/v1/routerInputs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:batchGetRouterNetworkInterface(input, options)
         output_schema = types.BatchGetRouterNetworkInterfaceOutput,
         http_method = "GET",
         http_path = "/v1/routerNetworkInterfaces",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:batchGetRouterOutput(input, options)
         output_schema = types.BatchGetRouterOutputOutput,
         http_method = "GET",
         http_path = "/v1/routerOutputs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createBridge(input, options)
         output_schema = types.CreateBridgeOutput,
         http_method = "POST",
         http_path = "/v1/bridges",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createFlow(input, options)
         output_schema = types.CreateFlowOutput,
         http_method = "POST",
         http_path = "/v1/flows",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createGateway(input, options)
         output_schema = types.CreateGatewayOutput,
         http_method = "POST",
         http_path = "/v1/gateways",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createRouterInput(input, options)
         output_schema = types.CreateRouterInputOutput,
         http_method = "POST",
         http_path = "/v1/routerInput",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:createRouterNetworkInterface(input, options)
         output_schema = types.CreateRouterNetworkInterfaceOutput,
         http_method = "POST",
         http_path = "/v1/routerNetworkInterface",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:createRouterOutput(input, options)
         output_schema = types.CreateRouterOutputOutput,
         http_method = "POST",
         http_path = "/v1/routerOutput",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteBridge(input, options)
         output_schema = types.DeleteBridgeOutput,
         http_method = "DELETE",
         http_path = "/v1/bridges/{BridgeArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deleteFlow(input, options)
         output_schema = types.DeleteFlowOutput,
         http_method = "DELETE",
         http_path = "/v1/flows/{FlowArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteGateway(input, options)
         output_schema = types.DeleteGatewayOutput,
         http_method = "DELETE",
         http_path = "/v1/gateways/{GatewayArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteRouterInput(input, options)
         output_schema = types.DeleteRouterInputOutput,
         http_method = "DELETE",
         http_path = "/v1/routerInput/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deleteRouterNetworkInterface(input, options)
         output_schema = types.DeleteRouterNetworkInterfaceOutput,
         http_method = "DELETE",
         http_path = "/v1/routerNetworkInterface/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deleteRouterOutput(input, options)
         output_schema = types.DeleteRouterOutputOutput,
         http_method = "DELETE",
         http_path = "/v1/routerOutput/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:deregisterGatewayInstance(input, options)
         output_schema = types.DeregisterGatewayInstanceOutput,
         http_method = "DELETE",
         http_path = "/v1/gateway-instances/{GatewayInstanceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:describeBridge(input, options)
         output_schema = types.DescribeBridgeOutput,
         http_method = "GET",
         http_path = "/v1/bridges/{BridgeArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:describeFlow(input, options)
         output_schema = types.DescribeFlowOutput,
         http_method = "GET",
         http_path = "/v1/flows/{FlowArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:describeFlowSourceMetadata(input, options)
         output_schema = types.DescribeFlowSourceMetadataOutput,
         http_method = "GET",
         http_path = "/v1/flows/{FlowArn}/source-metadata",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:describeFlowSourceThumbnail(input, options)
         output_schema = types.DescribeFlowSourceThumbnailOutput,
         http_method = "GET",
         http_path = "/v1/flows/{FlowArn}/source-thumbnail",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:describeGateway(input, options)
         output_schema = types.DescribeGatewayOutput,
         http_method = "GET",
         http_path = "/v1/gateways/{GatewayArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:describeGatewayInstance(input, options)
         output_schema = types.DescribeGatewayInstanceOutput,
         http_method = "GET",
         http_path = "/v1/gateway-instances/{GatewayInstanceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:describeOffering(input, options)
         output_schema = types.DescribeOfferingOutput,
         http_method = "GET",
         http_path = "/v1/offerings/{OfferingArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:describeReservation(input, options)
         output_schema = types.DescribeReservationOutput,
         http_method = "GET",
         http_path = "/v1/reservations/{ReservationArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:getRouterInput(input, options)
         output_schema = types.GetRouterInputOutput,
         http_method = "GET",
         http_path = "/v1/routerInput/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:getRouterInputSourceMetadata(input, options)
         output_schema = types.GetRouterInputSourceMetadataOutput,
         http_method = "GET",
         http_path = "/v1/routerInput/{Arn}/source-metadata",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:getRouterInputThumbnail(input, options)
         output_schema = types.GetRouterInputThumbnailOutput,
         http_method = "GET",
         http_path = "/v1/routerInput/{Arn}/thumbnail",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:getRouterNetworkInterface(input, options)
         output_schema = types.GetRouterNetworkInterfaceOutput,
         http_method = "GET",
         http_path = "/v1/routerNetworkInterface/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:getRouterOutput(input, options)
         output_schema = types.GetRouterOutputOutput,
         http_method = "GET",
         http_path = "/v1/routerOutput/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:grantFlowEntitlements(input, options)
         output_schema = types.GrantFlowEntitlementsOutput,
         http_method = "POST",
         http_path = "/v1/flows/{FlowArn}/entitlements",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:listBridges(input, options)
         output_schema = types.ListBridgesOutput,
         http_method = "GET",
         http_path = "/v1/bridges",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:listEntitlements(input, options)
         output_schema = types.ListEntitlementsOutput,
         http_method = "GET",
         http_path = "/v1/entitlements",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:listFlows(input, options)
         output_schema = types.ListFlowsOutput,
         http_method = "GET",
         http_path = "/v1/flows",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:listGatewayInstances(input, options)
         output_schema = types.ListGatewayInstancesOutput,
         http_method = "GET",
         http_path = "/v1/gateway-instances",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:listGateways(input, options)
         output_schema = types.ListGatewaysOutput,
         http_method = "GET",
         http_path = "/v1/gateways",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:listOfferings(input, options)
         output_schema = types.ListOfferingsOutput,
         http_method = "GET",
         http_path = "/v1/offerings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:listReservations(input, options)
         output_schema = types.ListReservationsOutput,
         http_method = "GET",
         http_path = "/v1/reservations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:listRouterInputs(input, options)
         output_schema = types.ListRouterInputsOutput,
         http_method = "POST",
         http_path = "/v1/routerInputs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:listRouterNetworkInterfaces(input, options)
         output_schema = types.ListRouterNetworkInterfacesOutput,
         http_method = "POST",
         http_path = "/v1/routerNetworkInterfaces",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:listRouterOutputs(input, options)
         output_schema = types.ListRouterOutputsOutput,
         http_method = "POST",
         http_path = "/v1/routerOutputs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:listTagsForGlobalResource(input, options)
         output_schema = types.ListTagsForGlobalResourceOutput,
         http_method = "GET",
         http_path = "/tags/global/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:purchaseOffering(input, options)
         output_schema = types.PurchaseOfferingOutput,
         http_method = "POST",
         http_path = "/v1/offerings/{OfferingArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:removeBridgeOutput(input, options)
         output_schema = types.RemoveBridgeOutputOutput,
         http_method = "DELETE",
         http_path = "/v1/bridges/{BridgeArn}/outputs/{OutputName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:removeBridgeSource(input, options)
         output_schema = types.RemoveBridgeSourceOutput,
         http_method = "DELETE",
         http_path = "/v1/bridges/{BridgeArn}/sources/{SourceName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:removeFlowMediaStream(input, options)
         output_schema = types.RemoveFlowMediaStreamOutput,
         http_method = "DELETE",
         http_path = "/v1/flows/{FlowArn}/mediaStreams/{MediaStreamName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:removeFlowOutput(input, options)
         output_schema = types.RemoveFlowOutputOutput,
         http_method = "DELETE",
         http_path = "/v1/flows/{FlowArn}/outputs/{OutputArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:removeFlowSource(input, options)
         output_schema = types.RemoveFlowSourceOutput,
         http_method = "DELETE",
         http_path = "/v1/flows/{FlowArn}/source/{SourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:removeFlowVpcInterface(input, options)
         output_schema = types.RemoveFlowVpcInterfaceOutput,
         http_method = "DELETE",
         http_path = "/v1/flows/{FlowArn}/vpcInterfaces/{VpcInterfaceName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:restartRouterInput(input, options)
         output_schema = types.RestartRouterInputOutput,
         http_method = "POST",
         http_path = "/v1/routerInput/restart/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:restartRouterOutput(input, options)
         output_schema = types.RestartRouterOutputOutput,
         http_method = "POST",
         http_path = "/v1/routerOutput/restart/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:revokeFlowEntitlement(input, options)
         output_schema = types.RevokeFlowEntitlementOutput,
         http_method = "DELETE",
         http_path = "/v1/flows/{FlowArn}/entitlements/{EntitlementArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:startFlow(input, options)
         output_schema = types.StartFlowOutput,
         http_method = "POST",
         http_path = "/v1/flows/start/{FlowArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:startRouterInput(input, options)
         output_schema = types.StartRouterInputOutput,
         http_method = "POST",
         http_path = "/v1/routerInput/start/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:startRouterOutput(input, options)
         output_schema = types.StartRouterOutputOutput,
         http_method = "POST",
         http_path = "/v1/routerOutput/start/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:stopFlow(input, options)
         output_schema = types.StopFlowOutput,
         http_method = "POST",
         http_path = "/v1/flows/stop/{FlowArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:stopRouterInput(input, options)
         output_schema = types.StopRouterInputOutput,
         http_method = "POST",
         http_path = "/v1/routerInput/stop/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:stopRouterOutput(input, options)
         output_schema = types.StopRouterOutputOutput,
         http_method = "POST",
         http_path = "/v1/routerOutput/stop/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:tagGlobalResource(input, options)
         output_schema = types.TagGlobalResourceOutput,
         http_method = "POST",
         http_path = "/tags/global/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:takeRouterInput(input, options)
         output_schema = types.TakeRouterInputOutput,
         http_method = "PUT",
         http_path = "/v1/routerOutput/takeRouterInput/{RouterOutputArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:untagGlobalResource(input, options)
         output_schema = types.UntagGlobalResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/global/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:updateBridge(input, options)
         output_schema = types.UpdateBridgeOperationOutput,
         http_method = "PUT",
         http_path = "/v1/bridges/{BridgeArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:updateBridgeOutput(input, options)
         output_schema = types.UpdateBridgeOutputOutput,
         http_method = "PUT",
         http_path = "/v1/bridges/{BridgeArn}/outputs/{OutputName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:updateBridgeSource(input, options)
         output_schema = types.UpdateBridgeSourceOutput,
         http_method = "PUT",
         http_path = "/v1/bridges/{BridgeArn}/sources/{SourceName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:updateBridgeState(input, options)
         output_schema = types.UpdateBridgeStateOutput,
         http_method = "PUT",
         http_path = "/v1/bridges/{BridgeArn}/state",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:updateFlow(input, options)
         output_schema = types.UpdateFlowOperationOutput,
         http_method = "PUT",
         http_path = "/v1/flows/{FlowArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:updateFlowEntitlement(input, options)
         output_schema = types.UpdateFlowEntitlementOutput,
         http_method = "PUT",
         http_path = "/v1/flows/{FlowArn}/entitlements/{EntitlementArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:updateFlowMediaStream(input, options)
         output_schema = types.UpdateFlowMediaStreamOutput,
         http_method = "PUT",
         http_path = "/v1/flows/{FlowArn}/mediaStreams/{MediaStreamName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:updateFlowOutput(input, options)
         output_schema = types.UpdateFlowOutputOutput,
         http_method = "PUT",
         http_path = "/v1/flows/{FlowArn}/outputs/{OutputArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:updateFlowSource(input, options)
         output_schema = types.UpdateFlowSourceOutput,
         http_method = "PUT",
         http_path = "/v1/flows/{FlowArn}/source/{SourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:updateGatewayInstance(input, options)
         output_schema = types.UpdateGatewayInstanceOutput,
         http_method = "PUT",
         http_path = "/v1/gateway-instances/{GatewayInstanceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:updateRouterInput(input, options)
         output_schema = types.UpdateRouterInputOutput,
         http_method = "PUT",
         http_path = "/v1/routerInput/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:updateRouterNetworkInterface(input, options)
         output_schema = types.UpdateRouterNetworkInterfaceOutput,
         http_method = "PUT",
         http_path = "/v1/routerNetworkInterface/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:updateRouterOutput(input, options)
         output_schema = types.UpdateRouterOutputOutput,
         http_method = "PUT",
         http_path = "/v1/routerOutput/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

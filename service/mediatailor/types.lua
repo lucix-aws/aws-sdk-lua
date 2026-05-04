@@ -190,6 +190,7 @@ M.Alert = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "epoch-seconds",
             },
         },
         RelatedResourceArns = {
@@ -386,10 +387,16 @@ M.Channel = {
         },
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         FillerSlate = M.SlateSource,
         LastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         Outputs = {
             type = "list",
@@ -468,6 +475,9 @@ M.LiveSource = {
         },
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         HttpPackageConfigurations = {
             type = "list",
@@ -478,6 +488,9 @@ M.LiveSource = {
         },
         LastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         LiveSourceName = {
             type = "string",
@@ -830,10 +843,14 @@ M.PrefetchConsumption = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "epoch-seconds",
             },
         },
         StartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
     },
 }
@@ -901,11 +918,15 @@ M.RecurringPrefetchConfiguration = {
     members = {
         StartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         EndTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "epoch-seconds",
             },
         },
         RecurringConsumption = setmetatable({ traits = {
@@ -929,10 +950,14 @@ M.PrefetchRetrieval = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "epoch-seconds",
             },
         },
         StartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         TrafficShapingType = {
             type = "string",
@@ -996,6 +1021,9 @@ M.ScheduleAdBreak = {
         },
         ApproximateStartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         SourceLocationName = {
             type = "string",
@@ -1020,6 +1048,9 @@ M.ScheduleEntry = {
         },
         ApproximateStartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         Arn = {
             type = "string",
@@ -1141,6 +1172,9 @@ M.SourceLocation = {
         },
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         DefaultSegmentDeliveryConfiguration = M.DefaultSegmentDeliveryConfiguration,
         HttpConfiguration = setmetatable({ traits = {
@@ -1148,6 +1182,9 @@ M.SourceLocation = {
         } }, { __index = M.HttpConfiguration }),
         LastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         SegmentDeliveryConfigurations = {
             type = "list",
@@ -1181,6 +1218,9 @@ M.VodSource = {
         },
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         HttpPackageConfigurations = {
             type = "list",
@@ -1191,6 +1231,9 @@ M.VodSource = {
         },
         LastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         SourceLocationName = {
             type = "string",
@@ -1436,10 +1479,16 @@ M.CreateChannelOutput = {
         },
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         FillerSlate = M.SlateSource,
         LastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         Outputs = {
             type = "list",
@@ -1511,10 +1560,16 @@ M.DescribeChannelOutput = {
         },
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         FillerSlate = M.SlateSource,
         LastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         Outputs = {
             type = "list",
@@ -1734,6 +1789,9 @@ M.CreateProgramOutput = {
         },
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         LiveSourceName = {
             type = "string",
@@ -1743,6 +1801,9 @@ M.CreateProgramOutput = {
         },
         ScheduledStartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         SourceLocationName = {
             type = "string",
@@ -1828,6 +1889,9 @@ M.DescribeProgramOutput = {
         },
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         LiveSourceName = {
             type = "string",
@@ -1837,6 +1901,9 @@ M.DescribeProgramOutput = {
         },
         ScheduledStartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         SourceLocationName = {
             type = "string",
@@ -1929,6 +1996,9 @@ M.UpdateProgramOutput = {
         },
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         ProgramName = {
             type = "string",
@@ -1948,6 +2018,9 @@ M.UpdateProgramOutput = {
         },
         ScheduledStartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         AudienceMedia = {
             type = "list",
@@ -2038,10 +2111,16 @@ M.UpdateChannelOutput = {
         },
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         FillerSlate = M.SlateSource,
         LastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         Outputs = {
             type = "list",
@@ -2159,6 +2238,9 @@ M.CreateLiveSourceOutput = {
         },
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         HttpPackageConfigurations = {
             type = "list",
@@ -2166,6 +2248,9 @@ M.CreateLiveSourceOutput = {
         },
         LastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         LiveSourceName = {
             type = "string",
@@ -2292,11 +2377,17 @@ M.CreateSourceLocationOutput = {
         },
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         DefaultSegmentDeliveryConfiguration = M.DefaultSegmentDeliveryConfiguration,
         HttpConfiguration = M.HttpConfiguration,
         LastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         SegmentDeliveryConfigurations = {
             type = "list",
@@ -2359,6 +2450,9 @@ M.CreateVodSourceOutput = {
         },
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         HttpPackageConfigurations = {
             type = "list",
@@ -2366,6 +2460,9 @@ M.CreateVodSourceOutput = {
         },
         LastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         SourceLocationName = {
             type = "string",
@@ -2530,6 +2627,9 @@ M.DescribeLiveSourceOutput = {
         },
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         HttpPackageConfigurations = {
             type = "list",
@@ -2537,6 +2637,9 @@ M.DescribeLiveSourceOutput = {
         },
         LastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         LiveSourceName = {
             type = "string",
@@ -2577,11 +2680,17 @@ M.DescribeSourceLocationOutput = {
         },
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         DefaultSegmentDeliveryConfiguration = M.DefaultSegmentDeliveryConfiguration,
         HttpConfiguration = M.HttpConfiguration,
         LastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         SegmentDeliveryConfigurations = {
             type = "list",
@@ -2633,6 +2742,9 @@ M.DescribeVodSourceOutput = {
         },
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         HttpPackageConfigurations = {
             type = "list",
@@ -2640,6 +2752,9 @@ M.DescribeVodSourceOutput = {
         },
         LastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         SourceLocationName = {
             type = "string",
@@ -3067,6 +3182,9 @@ M.UpdateLiveSourceOutput = {
         },
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         HttpPackageConfigurations = {
             type = "list",
@@ -3074,6 +3192,9 @@ M.UpdateLiveSourceOutput = {
         },
         LastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         LiveSourceName = {
             type = "string",
@@ -3239,11 +3360,17 @@ M.UpdateSourceLocationOutput = {
         },
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         DefaultSegmentDeliveryConfiguration = M.DefaultSegmentDeliveryConfiguration,
         HttpConfiguration = M.HttpConfiguration,
         LastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         SegmentDeliveryConfigurations = {
             type = "list",
@@ -3349,6 +3476,9 @@ M.UpdateVodSourceOutput = {
         },
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         HttpPackageConfigurations = {
             type = "list",
@@ -3356,6 +3486,9 @@ M.UpdateVodSourceOutput = {
         },
         LastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "epoch-seconds",
+            },
         },
         SourceLocationName = {
             type = "string",

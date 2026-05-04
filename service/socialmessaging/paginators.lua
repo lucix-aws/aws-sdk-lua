@@ -1,0 +1,59 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listLinkedWhatsAppBusinessAccounts.
+function M.pages_list_linked_whats_app_business_accounts(client, input)
+    return paginator.pages(client, "listLinkedWhatsAppBusinessAccounts", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "linkedAccounts",
+    })
+end
+
+--- Returns an item iterator for listLinkedWhatsAppBusinessAccounts.
+function M.items_list_linked_whats_app_business_accounts(client, input)
+    return paginator.items(client, "listLinkedWhatsAppBusinessAccounts", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "linkedAccounts",
+    })
+end
+
+--- Returns a page iterator for listWhatsAppMessageTemplates.
+function M.pages_list_whats_app_message_templates(client, input)
+    return paginator.pages(client, "listWhatsAppMessageTemplates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "templates",
+    })
+end
+
+--- Returns an item iterator for listWhatsAppMessageTemplates.
+function M.items_list_whats_app_message_templates(client, input)
+    return paginator.items(client, "listWhatsAppMessageTemplates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "templates",
+    })
+end
+
+--- Returns a page iterator for listWhatsAppTemplateLibrary.
+function M.pages_list_whats_app_template_library(client, input)
+    return paginator.pages(client, "listWhatsAppTemplateLibrary", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "metaLibraryTemplates",
+    })
+end
+
+--- Returns an item iterator for listWhatsAppTemplateLibrary.
+function M.items_list_whats_app_template_library(client, input)
+    return paginator.items(client, "listWhatsAppTemplateLibrary", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "metaLibraryTemplates",
+    })
+end
+
+return M

@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSWesleyFrontend"
-    cfg.signing_name = "eks"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "eks", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateAccessPolicy(input, options)
         output_schema = types.AssociateAccessPolicyOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/access-entries/{principalArn}/access-policies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:associateEncryptionConfig(input, options)
         output_schema = types.AssociateEncryptionConfigOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/encryption-config/associate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:associateIdentityProviderConfig(input, options)
         output_schema = types.AssociateIdentityProviderConfigOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/identity-provider-configs/associate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createAccessEntry(input, options)
         output_schema = types.CreateAccessEntryOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/access-entries",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createAddon(input, options)
         output_schema = types.CreateAddonOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/addons",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createCapability(input, options)
         output_schema = types.CreateCapabilityOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/capabilities",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createCluster(input, options)
         output_schema = types.CreateClusterOutput,
         http_method = "POST",
         http_path = "/clusters",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createEksAnywhereSubscription(input, options)
         output_schema = types.CreateEksAnywhereSubscriptionOutput,
         http_method = "POST",
         http_path = "/eks-anywhere-subscriptions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createFargateProfile(input, options)
         output_schema = types.CreateFargateProfileOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/fargate-profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createNodegroup(input, options)
         output_schema = types.CreateNodegroupOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/node-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createPodIdentityAssociation(input, options)
         output_schema = types.CreatePodIdentityAssociationOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/pod-identity-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteAccessEntry(input, options)
         output_schema = types.DeleteAccessEntryOutput,
         http_method = "DELETE",
         http_path = "/clusters/{clusterName}/access-entries/{principalArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteAddon(input, options)
         output_schema = types.DeleteAddonOutput,
         http_method = "DELETE",
         http_path = "/clusters/{clusterName}/addons/{addonName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteCapability(input, options)
         output_schema = types.DeleteCapabilityOutput,
         http_method = "DELETE",
         http_path = "/clusters/{clusterName}/capabilities/{capabilityName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteCluster(input, options)
         output_schema = types.DeleteClusterOutput,
         http_method = "DELETE",
         http_path = "/clusters/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteEksAnywhereSubscription(input, options)
         output_schema = types.DeleteEksAnywhereSubscriptionOutput,
         http_method = "DELETE",
         http_path = "/eks-anywhere-subscriptions/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deleteFargateProfile(input, options)
         output_schema = types.DeleteFargateProfileOutput,
         http_method = "DELETE",
         http_path = "/clusters/{clusterName}/fargate-profiles/{fargateProfileName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteNodegroup(input, options)
         output_schema = types.DeleteNodegroupOutput,
         http_method = "DELETE",
         http_path = "/clusters/{clusterName}/node-groups/{nodegroupName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deletePodIdentityAssociation(input, options)
         output_schema = types.DeletePodIdentityAssociationOutput,
         http_method = "DELETE",
         http_path = "/clusters/{clusterName}/pod-identity-associations/{associationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deregisterCluster(input, options)
         output_schema = types.DeregisterClusterOutput,
         http_method = "DELETE",
         http_path = "/cluster-registrations/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:describeAccessEntry(input, options)
         output_schema = types.DescribeAccessEntryOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/access-entries/{principalArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:describeAddon(input, options)
         output_schema = types.DescribeAddonOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/addons/{addonName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:describeAddonConfiguration(input, options)
         output_schema = types.DescribeAddonConfigurationOutput,
         http_method = "GET",
         http_path = "/addons/configuration-schemas",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:describeAddonVersions(input, options)
         output_schema = types.DescribeAddonVersionsOutput,
         http_method = "GET",
         http_path = "/addons/supported-versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:describeCapability(input, options)
         output_schema = types.DescribeCapabilityOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/capabilities/{capabilityName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:describeCluster(input, options)
         output_schema = types.DescribeClusterOutput,
         http_method = "GET",
         http_path = "/clusters/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:describeClusterVersions(input, options)
         output_schema = types.DescribeClusterVersionsOutput,
         http_method = "GET",
         http_path = "/cluster-versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:describeEksAnywhereSubscription(input, options)
         output_schema = types.DescribeEksAnywhereSubscriptionOutput,
         http_method = "GET",
         http_path = "/eks-anywhere-subscriptions/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:describeFargateProfile(input, options)
         output_schema = types.DescribeFargateProfileOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/fargate-profiles/{fargateProfileName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:describeIdentityProviderConfig(input, options)
         output_schema = types.DescribeIdentityProviderConfigOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/identity-provider-configs/describe",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:describeInsight(input, options)
         output_schema = types.DescribeInsightOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/insights/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:describeInsightsRefresh(input, options)
         output_schema = types.DescribeInsightsRefreshOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/insights-refresh",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:describeNodegroup(input, options)
         output_schema = types.DescribeNodegroupOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/node-groups/{nodegroupName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:describePodIdentityAssociation(input, options)
         output_schema = types.DescribePodIdentityAssociationOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/pod-identity-associations/{associationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:describeUpdate(input, options)
         output_schema = types.DescribeUpdateOutput,
         http_method = "GET",
         http_path = "/clusters/{name}/updates/{updateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:disassociateAccessPolicy(input, options)
         output_schema = types.DisassociateAccessPolicyOutput,
         http_method = "DELETE",
         http_path = "/clusters/{clusterName}/access-entries/{principalArn}/access-policies/{policyArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:disassociateIdentityProviderConfig(input, options)
         output_schema = types.DisassociateIdentityProviderConfigOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/identity-provider-configs/disassociate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:listAccessEntries(input, options)
         output_schema = types.ListAccessEntriesOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/access-entries",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:listAccessPolicies(input, options)
         output_schema = types.ListAccessPoliciesOutput,
         http_method = "GET",
         http_path = "/access-policies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:listAddons(input, options)
         output_schema = types.ListAddonsOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/addons",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:listAssociatedAccessPolicies(input, options)
         output_schema = types.ListAssociatedAccessPoliciesOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/access-entries/{principalArn}/access-policies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:listCapabilities(input, options)
         output_schema = types.ListCapabilitiesOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/capabilities",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:listClusters(input, options)
         output_schema = types.ListClustersOutput,
         http_method = "GET",
         http_path = "/clusters",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:listEksAnywhereSubscriptions(input, options)
         output_schema = types.ListEksAnywhereSubscriptionsOutput,
         http_method = "GET",
         http_path = "/eks-anywhere-subscriptions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:listFargateProfiles(input, options)
         output_schema = types.ListFargateProfilesOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/fargate-profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:listIdentityProviderConfigs(input, options)
         output_schema = types.ListIdentityProviderConfigsOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/identity-provider-configs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:listInsights(input, options)
         output_schema = types.ListInsightsOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/insights",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:listNodegroups(input, options)
         output_schema = types.ListNodegroupsOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/node-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:listPodIdentityAssociations(input, options)
         output_schema = types.ListPodIdentityAssociationsOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/pod-identity-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:listUpdates(input, options)
         output_schema = types.ListUpdatesOutput,
         http_method = "GET",
         http_path = "/clusters/{name}/updates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:registerCluster(input, options)
         output_schema = types.RegisterClusterOutput,
         http_method = "POST",
         http_path = "/cluster-registrations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:startInsightsRefresh(input, options)
         output_schema = types.StartInsightsRefreshOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/insights-refresh",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:updateAccessEntry(input, options)
         output_schema = types.UpdateAccessEntryOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/access-entries/{principalArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:updateAddon(input, options)
         output_schema = types.UpdateAddonOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/addons/{addonName}/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:updateCapability(input, options)
         output_schema = types.UpdateCapabilityOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/capabilities/{capabilityName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:updateClusterConfig(input, options)
         output_schema = types.UpdateClusterConfigOutput,
         http_method = "POST",
         http_path = "/clusters/{name}/update-config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:updateClusterVersion(input, options)
         output_schema = types.UpdateClusterVersionOutput,
         http_method = "POST",
         http_path = "/clusters/{name}/updates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:updateEksAnywhereSubscription(input, options)
         output_schema = types.UpdateEksAnywhereSubscriptionOutput,
         http_method = "POST",
         http_path = "/eks-anywhere-subscriptions/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:updateNodegroupConfig(input, options)
         output_schema = types.UpdateNodegroupConfigOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/node-groups/{nodegroupName}/update-config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:updateNodegroupVersion(input, options)
         output_schema = types.UpdateNodegroupVersionOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/node-groups/{nodegroupName}/update-version",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:updatePodIdentityAssociation(input, options)
         output_schema = types.UpdatePodIdentityAssociationOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/pod-identity-associations/{associationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

@@ -237,6 +237,7 @@ M.CreateAccessPointInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -366,6 +367,7 @@ M.CreateFileSystemInput = {
         CreationToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },

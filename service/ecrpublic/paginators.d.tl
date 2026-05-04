@@ -1,0 +1,12 @@
+local record M
+    pages_describe_image_tags: function(client: table, input: table): function(): table, table
+    items_describe_image_tags: function(client: table, input: table): function(): any
+    pages_describe_images: function(client: table, input: table): function(): table, table
+    items_describe_images: function(client: table, input: table): function(): any
+    pages_describe_registries: function(client: table, input: table): function(): table, table
+    items_describe_registries: function(client: table, input: table): function(): any
+    pages_describe_repositories: function(client: table, input: table): function(): table, table
+    items_describe_repositories: function(client: table, input: table): function(): any
+end
+
+return M

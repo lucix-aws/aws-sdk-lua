@@ -1,0 +1,77 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listDbClusters.
+function M.pages_list_db_clusters(client, input)
+    return paginator.pages(client, "listDbClusters", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listDbClusters.
+function M.items_list_db_clusters(client, input)
+    return paginator.items(client, "listDbClusters", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for listDbInstances.
+function M.pages_list_db_instances(client, input)
+    return paginator.pages(client, "listDbInstances", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listDbInstances.
+function M.items_list_db_instances(client, input)
+    return paginator.items(client, "listDbInstances", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for listDbInstancesForCluster.
+function M.pages_list_db_instances_for_cluster(client, input)
+    return paginator.pages(client, "listDbInstancesForCluster", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listDbInstancesForCluster.
+function M.items_list_db_instances_for_cluster(client, input)
+    return paginator.items(client, "listDbInstancesForCluster", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for listDbParameterGroups.
+function M.pages_list_db_parameter_groups(client, input)
+    return paginator.pages(client, "listDbParameterGroups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listDbParameterGroups.
+function M.items_list_db_parameter_groups(client, input)
+    return paginator.items(client, "listDbParameterGroups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+return M

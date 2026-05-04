@@ -368,6 +368,9 @@ M.CreateScheduledQueryInput = {
         TargetConfiguration = M.TargetConfiguration,
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ScheduledQueryExecutionRoleArn = {
             type = "string",
@@ -820,6 +823,9 @@ M.ExecuteScheduledQueryInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         QueryInsights = M.ScheduledQueryInsights,
     },
@@ -1014,6 +1020,9 @@ M.QueryInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         NextToken = {
             type = "string",

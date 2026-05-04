@@ -2309,6 +2309,9 @@ M.KafkaStreamingSourceOptions = {
         },
         StartingTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2417,6 +2420,9 @@ M.KinesisStreamingSourceOptions = {
         },
         StartingTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         FanoutConsumerARN = {
             type = "string",

@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "Ardi"
-    cfg.signing_name = "resource-groups"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "resource-groups", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:cancelTagSyncTask(input, options)
         output_schema = types.CancelTagSyncTaskOutput,
         http_method = "POST",
         http_path = "/cancel-tag-sync-task",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createGroup(input, options)
         output_schema = types.CreateGroupOutput,
         http_method = "POST",
         http_path = "/groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:deleteGroup(input, options)
         output_schema = types.DeleteGroupOutput,
         http_method = "POST",
         http_path = "/delete-group",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:getAccountSettings(input, options)
         output_schema = types.GetAccountSettingsOutput,
         http_method = "POST",
         http_path = "/get-account-settings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:getGroup(input, options)
         output_schema = types.GetGroupOutput,
         http_method = "POST",
         http_path = "/get-group",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:getGroupConfiguration(input, options)
         output_schema = types.GetGroupConfigurationOutput,
         http_method = "POST",
         http_path = "/get-group-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:getGroupQuery(input, options)
         output_schema = types.GetGroupQueryOutput,
         http_method = "POST",
         http_path = "/get-group-query",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:getTags(input, options)
         output_schema = types.GetTagsOutput,
         http_method = "GET",
         http_path = "/resources/{Arn}/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getTagSyncTask(input, options)
         output_schema = types.GetTagSyncTaskOutput,
         http_method = "POST",
         http_path = "/get-tag-sync-task",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:groupResources(input, options)
         output_schema = types.GroupResourcesOutput,
         http_method = "POST",
         http_path = "/group-resources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:listGroupingStatuses(input, options)
         output_schema = types.ListGroupingStatusesOutput,
         http_method = "POST",
         http_path = "/list-grouping-statuses",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:listGroupResources(input, options)
         output_schema = types.ListGroupResourcesOutput,
         http_method = "POST",
         http_path = "/list-group-resources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:listGroups(input, options)
         output_schema = types.ListGroupsOutput,
         http_method = "POST",
         http_path = "/groups-list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:listTagSyncTasks(input, options)
         output_schema = types.ListTagSyncTasksOutput,
         http_method = "POST",
         http_path = "/list-tag-sync-tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:putGroupConfiguration(input, options)
         output_schema = types.PutGroupConfigurationOutput,
         http_method = "POST",
         http_path = "/put-group-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:searchResources(input, options)
         output_schema = types.SearchResourcesOutput,
         http_method = "POST",
         http_path = "/resources/search",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:startTagSyncTask(input, options)
         output_schema = types.StartTagSyncTaskOutput,
         http_method = "POST",
         http_path = "/start-tag-sync-task",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:tag(input, options)
         output_schema = types.TagOutput,
         http_method = "PUT",
         http_path = "/resources/{Arn}/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:ungroupResources(input, options)
         output_schema = types.UngroupResourcesOutput,
         http_method = "POST",
         http_path = "/ungroup-resources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:untag(input, options)
         output_schema = types.UntagOutput,
         http_method = "PATCH",
         http_path = "/resources/{Arn}/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:updateAccountSettings(input, options)
         output_schema = types.UpdateAccountSettingsOutput,
         http_method = "POST",
         http_path = "/update-account-settings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:updateGroup(input, options)
         output_schema = types.UpdateGroupOutput,
         http_method = "POST",
         http_path = "/update-group",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:updateGroupQuery(input, options)
         output_schema = types.UpdateGroupQueryOutput,
         http_method = "POST",
         http_path = "/update-group-query",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

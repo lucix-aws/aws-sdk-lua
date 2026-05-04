@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSStarkControlService"
-    cfg.signing_name = "cleanrooms-ml"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cleanrooms-ml", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:cancelTrainedModel(input, options)
         output_schema = types.CancelTrainedModelOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}/trained-models/{trainedModelArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:cancelTrainedModelInferenceJob(input, options)
         output_schema = types.CancelTrainedModelInferenceJobOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}/trained-model-inference-jobs/{trainedModelInferenceJobArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createAudienceModel(input, options)
         output_schema = types.CreateAudienceModelOutput,
         http_method = "POST",
         http_path = "/audience-model",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createConfiguredAudienceModel(input, options)
         output_schema = types.CreateConfiguredAudienceModelOutput,
         http_method = "POST",
         http_path = "/configured-audience-model",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createConfiguredModelAlgorithm(input, options)
         output_schema = types.CreateConfiguredModelAlgorithmOutput,
         http_method = "POST",
         http_path = "/configured-model-algorithms",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createConfiguredModelAlgorithmAssociation(input, options)
         output_schema = types.CreateConfiguredModelAlgorithmAssociationOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/configured-model-algorithm-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createMLInputChannel(input, options)
         output_schema = types.CreateMLInputChannelOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/ml-input-channels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createTrainedModel(input, options)
         output_schema = types.CreateTrainedModelOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/trained-models",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createTrainingDataset(input, options)
         output_schema = types.CreateTrainingDatasetOutput,
         http_method = "POST",
         http_path = "/training-dataset",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteAudienceGenerationJob(input, options)
         output_schema = types.DeleteAudienceGenerationJobOutput,
         http_method = "DELETE",
         http_path = "/audience-generation-job/{audienceGenerationJobArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteAudienceModel(input, options)
         output_schema = types.DeleteAudienceModelOutput,
         http_method = "DELETE",
         http_path = "/audience-model/{audienceModelArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteConfiguredAudienceModel(input, options)
         output_schema = types.DeleteConfiguredAudienceModelOutput,
         http_method = "DELETE",
         http_path = "/configured-audience-model/{configuredAudienceModelArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteConfiguredAudienceModelPolicy(input, options)
         output_schema = types.DeleteConfiguredAudienceModelPolicyOutput,
         http_method = "DELETE",
         http_path = "/configured-audience-model/{configuredAudienceModelArn}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteConfiguredModelAlgorithm(input, options)
         output_schema = types.DeleteConfiguredModelAlgorithmOutput,
         http_method = "DELETE",
         http_path = "/configured-model-algorithms/{configuredModelAlgorithmArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteConfiguredModelAlgorithmAssociation(input, options)
         output_schema = types.DeleteConfiguredModelAlgorithmAssociationOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}/configured-model-algorithm-associations/{configuredModelAlgorithmAssociationArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteMLConfiguration(input, options)
         output_schema = types.DeleteMLConfigurationOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}/ml-configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deleteMLInputChannelData(input, options)
         output_schema = types.DeleteMLInputChannelDataOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}/ml-input-channels/{mlInputChannelArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteTrainedModelOutput(input, options)
         output_schema = types.DeleteTrainedModelOutputOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}/trained-models/{trainedModelArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteTrainingDataset(input, options)
         output_schema = types.DeleteTrainingDatasetOutput,
         http_method = "DELETE",
         http_path = "/training-dataset/{trainingDatasetArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:getAudienceGenerationJob(input, options)
         output_schema = types.GetAudienceGenerationJobOutput,
         http_method = "GET",
         http_path = "/audience-generation-job/{audienceGenerationJobArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:getAudienceModel(input, options)
         output_schema = types.GetAudienceModelOutput,
         http_method = "GET",
         http_path = "/audience-model/{audienceModelArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:getCollaborationConfiguredModelAlgorithmAssociation(input, optio
         output_schema = types.GetCollaborationConfiguredModelAlgorithmAssociationOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/configured-model-algorithm-associations/{configuredModelAlgorithmAssociationArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:getCollaborationMLInputChannel(input, options)
         output_schema = types.GetCollaborationMLInputChannelOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/ml-input-channels/{mlInputChannelArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:getCollaborationTrainedModel(input, options)
         output_schema = types.GetCollaborationTrainedModelOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/trained-models/{trainedModelArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:getConfiguredAudienceModel(input, options)
         output_schema = types.GetConfiguredAudienceModelOutput,
         http_method = "GET",
         http_path = "/configured-audience-model/{configuredAudienceModelArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:getConfiguredAudienceModelPolicy(input, options)
         output_schema = types.GetConfiguredAudienceModelPolicyOutput,
         http_method = "GET",
         http_path = "/configured-audience-model/{configuredAudienceModelArn}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:getConfiguredModelAlgorithm(input, options)
         output_schema = types.GetConfiguredModelAlgorithmOutput,
         http_method = "GET",
         http_path = "/configured-model-algorithms/{configuredModelAlgorithmArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:getConfiguredModelAlgorithmAssociation(input, options)
         output_schema = types.GetConfiguredModelAlgorithmAssociationOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/configured-model-algorithm-associations/{configuredModelAlgorithmAssociationArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:getMLConfiguration(input, options)
         output_schema = types.GetMLConfigurationOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/ml-configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:getMLInputChannel(input, options)
         output_schema = types.GetMLInputChannelOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/ml-input-channels/{mlInputChannelArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:getTrainedModel(input, options)
         output_schema = types.GetTrainedModelOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/trained-models/{trainedModelArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:getTrainedModelInferenceJob(input, options)
         output_schema = types.GetTrainedModelInferenceJobOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/trained-model-inference-jobs/{trainedModelInferenceJobArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:getTrainingDataset(input, options)
         output_schema = types.GetTrainingDatasetOutput,
         http_method = "GET",
         http_path = "/training-dataset/{trainingDatasetArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:listAudienceExportJobs(input, options)
         output_schema = types.ListAudienceExportJobsOutput,
         http_method = "GET",
         http_path = "/audience-export-job",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:listAudienceGenerationJobs(input, options)
         output_schema = types.ListAudienceGenerationJobsOutput,
         http_method = "GET",
         http_path = "/audience-generation-job",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:listAudienceModels(input, options)
         output_schema = types.ListAudienceModelsOutput,
         http_method = "GET",
         http_path = "/audience-model",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:listCollaborationConfiguredModelAlgorithmAssociations(input, opt
         output_schema = types.ListCollaborationConfiguredModelAlgorithmAssociationsOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/configured-model-algorithm-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:listCollaborationMLInputChannels(input, options)
         output_schema = types.ListCollaborationMLInputChannelsOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/ml-input-channels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:listCollaborationTrainedModelExportJobs(input, options)
         output_schema = types.ListCollaborationTrainedModelExportJobsOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/trained-models/{trainedModelArn}/export-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:listCollaborationTrainedModelInferenceJobs(input, options)
         output_schema = types.ListCollaborationTrainedModelInferenceJobsOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/trained-model-inference-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:listCollaborationTrainedModels(input, options)
         output_schema = types.ListCollaborationTrainedModelsOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/trained-models",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:listConfiguredAudienceModels(input, options)
         output_schema = types.ListConfiguredAudienceModelsOutput,
         http_method = "GET",
         http_path = "/configured-audience-model",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:listConfiguredModelAlgorithmAssociations(input, options)
         output_schema = types.ListConfiguredModelAlgorithmAssociationsOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/configured-model-algorithm-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:listConfiguredModelAlgorithms(input, options)
         output_schema = types.ListConfiguredModelAlgorithmsOutput,
         http_method = "GET",
         http_path = "/configured-model-algorithms",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:listMLInputChannels(input, options)
         output_schema = types.ListMLInputChannelsOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/ml-input-channels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:listTrainedModelInferenceJobs(input, options)
         output_schema = types.ListTrainedModelInferenceJobsOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/trained-model-inference-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:listTrainedModels(input, options)
         output_schema = types.ListTrainedModelsOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/trained-models",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:listTrainedModelVersions(input, options)
         output_schema = types.ListTrainedModelVersionsOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/trained-models/{trainedModelArn}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:listTrainingDatasets(input, options)
         output_schema = types.ListTrainingDatasetsOutput,
         http_method = "GET",
         http_path = "/training-dataset",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:putConfiguredAudienceModelPolicy(input, options)
         output_schema = types.PutConfiguredAudienceModelPolicyOutput,
         http_method = "PUT",
         http_path = "/configured-audience-model/{configuredAudienceModelArn}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:putMLConfiguration(input, options)
         output_schema = types.PutMLConfigurationOutput,
         http_method = "PUT",
         http_path = "/memberships/{membershipIdentifier}/ml-configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:startAudienceExportJob(input, options)
         output_schema = types.StartAudienceExportJobOutput,
         http_method = "POST",
         http_path = "/audience-export-job",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:startAudienceGenerationJob(input, options)
         output_schema = types.StartAudienceGenerationJobOutput,
         http_method = "POST",
         http_path = "/audience-generation-job",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:startTrainedModelExportJob(input, options)
         output_schema = types.StartTrainedModelExportJobOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/trained-models/{trainedModelArn}/export-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:startTrainedModelInferenceJob(input, options)
         output_schema = types.StartTrainedModelInferenceJobOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/trained-model-inference-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:updateConfiguredAudienceModel(input, options)
         output_schema = types.UpdateConfiguredAudienceModelOutput,
         http_method = "PATCH",
         http_path = "/configured-audience-model/{configuredAudienceModelArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

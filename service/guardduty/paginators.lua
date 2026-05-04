@@ -1,0 +1,263 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for describeMalwareScans.
+function M.pages_describe_malware_scans(client, input)
+    return paginator.pages(client, "describeMalwareScans", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Scans",
+    })
+end
+
+--- Returns an item iterator for describeMalwareScans.
+function M.items_describe_malware_scans(client, input)
+    return paginator.items(client, "describeMalwareScans", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Scans",
+    })
+end
+
+--- Returns a page iterator for describeOrganizationConfiguration.
+function M.pages_describe_organization_configuration(client, input)
+    return paginator.pages(client, "describeOrganizationConfiguration", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for getUsageStatistics.
+function M.pages_get_usage_statistics(client, input)
+    return paginator.pages(client, "getUsageStatistics", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listCoverage.
+function M.pages_list_coverage(client, input)
+    return paginator.pages(client, "listCoverage", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Resources",
+    })
+end
+
+--- Returns an item iterator for listCoverage.
+function M.items_list_coverage(client, input)
+    return paginator.items(client, "listCoverage", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Resources",
+    })
+end
+
+--- Returns a page iterator for listDetectors.
+function M.pages_list_detectors(client, input)
+    return paginator.pages(client, "listDetectors", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DetectorIds",
+    })
+end
+
+--- Returns an item iterator for listDetectors.
+function M.items_list_detectors(client, input)
+    return paginator.items(client, "listDetectors", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DetectorIds",
+    })
+end
+
+--- Returns a page iterator for listFilters.
+function M.pages_list_filters(client, input)
+    return paginator.pages(client, "listFilters", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FilterNames",
+    })
+end
+
+--- Returns an item iterator for listFilters.
+function M.items_list_filters(client, input)
+    return paginator.items(client, "listFilters", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FilterNames",
+    })
+end
+
+--- Returns a page iterator for listFindings.
+function M.pages_list_findings(client, input)
+    return paginator.pages(client, "listFindings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FindingIds",
+    })
+end
+
+--- Returns an item iterator for listFindings.
+function M.items_list_findings(client, input)
+    return paginator.items(client, "listFindings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FindingIds",
+    })
+end
+
+--- Returns a page iterator for listIPSets.
+function M.pages_list_i_p_sets(client, input)
+    return paginator.pages(client, "listIPSets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpSetIds",
+    })
+end
+
+--- Returns an item iterator for listIPSets.
+function M.items_list_i_p_sets(client, input)
+    return paginator.items(client, "listIPSets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpSetIds",
+    })
+end
+
+--- Returns a page iterator for listInvitations.
+function M.pages_list_invitations(client, input)
+    return paginator.pages(client, "listInvitations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Invitations",
+    })
+end
+
+--- Returns an item iterator for listInvitations.
+function M.items_list_invitations(client, input)
+    return paginator.items(client, "listInvitations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Invitations",
+    })
+end
+
+--- Returns a page iterator for listMalwareScans.
+function M.pages_list_malware_scans(client, input)
+    return paginator.pages(client, "listMalwareScans", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Scans",
+    })
+end
+
+--- Returns an item iterator for listMalwareScans.
+function M.items_list_malware_scans(client, input)
+    return paginator.items(client, "listMalwareScans", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Scans",
+    })
+end
+
+--- Returns a page iterator for listMembers.
+function M.pages_list_members(client, input)
+    return paginator.pages(client, "listMembers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Members",
+    })
+end
+
+--- Returns an item iterator for listMembers.
+function M.items_list_members(client, input)
+    return paginator.items(client, "listMembers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Members",
+    })
+end
+
+--- Returns a page iterator for listOrganizationAdminAccounts.
+function M.pages_list_organization_admin_accounts(client, input)
+    return paginator.pages(client, "listOrganizationAdminAccounts", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AdminAccounts",
+    })
+end
+
+--- Returns an item iterator for listOrganizationAdminAccounts.
+function M.items_list_organization_admin_accounts(client, input)
+    return paginator.items(client, "listOrganizationAdminAccounts", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AdminAccounts",
+    })
+end
+
+--- Returns a page iterator for listPublishingDestinations.
+function M.pages_list_publishing_destinations(client, input)
+    return paginator.pages(client, "listPublishingDestinations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listThreatEntitySets.
+function M.pages_list_threat_entity_sets(client, input)
+    return paginator.pages(client, "listThreatEntitySets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ThreatEntitySetIds",
+    })
+end
+
+--- Returns an item iterator for listThreatEntitySets.
+function M.items_list_threat_entity_sets(client, input)
+    return paginator.items(client, "listThreatEntitySets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ThreatEntitySetIds",
+    })
+end
+
+--- Returns a page iterator for listThreatIntelSets.
+function M.pages_list_threat_intel_sets(client, input)
+    return paginator.pages(client, "listThreatIntelSets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ThreatIntelSetIds",
+    })
+end
+
+--- Returns an item iterator for listThreatIntelSets.
+function M.items_list_threat_intel_sets(client, input)
+    return paginator.items(client, "listThreatIntelSets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ThreatIntelSetIds",
+    })
+end
+
+--- Returns a page iterator for listTrustedEntitySets.
+function M.pages_list_trusted_entity_sets(client, input)
+    return paginator.pages(client, "listTrustedEntitySets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TrustedEntitySetIds",
+    })
+end
+
+--- Returns an item iterator for listTrustedEntitySets.
+function M.items_list_trusted_entity_sets(client, input)
+    return paginator.items(client, "listTrustedEntitySets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TrustedEntitySetIds",
+    })
+end
+
+return M

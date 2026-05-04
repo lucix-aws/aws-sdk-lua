@@ -1,0 +1,14 @@
+local record M
+    pages_list_discoverers: function(client: table, input: table): function(): table, table
+    items_list_discoverers: function(client: table, input: table): function(): any
+    pages_list_registries: function(client: table, input: table): function(): table, table
+    items_list_registries: function(client: table, input: table): function(): any
+    pages_list_schema_versions: function(client: table, input: table): function(): table, table
+    items_list_schema_versions: function(client: table, input: table): function(): any
+    pages_list_schemas: function(client: table, input: table): function(): table, table
+    items_list_schemas: function(client: table, input: table): function(): any
+    pages_search_schemas: function(client: table, input: table): function(): table, table
+    items_search_schemas: function(client: table, input: table): function(): any
+end
+
+return M

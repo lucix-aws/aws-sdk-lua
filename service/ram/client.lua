@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonResourceSharing"
-    cfg.signing_name = "ram"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ram", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:acceptResourceShareInvitation(input, options)
         output_schema = types.AcceptResourceShareInvitationOutput,
         http_method = "POST",
         http_path = "/acceptresourceshareinvitation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:associateResourceShare(input, options)
         output_schema = types.AssociateResourceShareOutput,
         http_method = "POST",
         http_path = "/associateresourceshare",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:associateResourceSharePermission(input, options)
         output_schema = types.AssociateResourceSharePermissionOutput,
         http_method = "POST",
         http_path = "/associateresourcesharepermission",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createPermission(input, options)
         output_schema = types.CreatePermissionOutput,
         http_method = "POST",
         http_path = "/createpermission",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createPermissionVersion(input, options)
         output_schema = types.CreatePermissionVersionOutput,
         http_method = "POST",
         http_path = "/createpermissionversion",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createResourceShare(input, options)
         output_schema = types.CreateResourceShareOutput,
         http_method = "POST",
         http_path = "/createresourceshare",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deletePermission(input, options)
         output_schema = types.DeletePermissionOutput,
         http_method = "DELETE",
         http_path = "/deletepermission",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deletePermissionVersion(input, options)
         output_schema = types.DeletePermissionVersionOutput,
         http_method = "DELETE",
         http_path = "/deletepermissionversion",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteResourceShare(input, options)
         output_schema = types.DeleteResourceShareOutput,
         http_method = "DELETE",
         http_path = "/deleteresourceshare",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:disassociateResourceShare(input, options)
         output_schema = types.DisassociateResourceShareOutput,
         http_method = "POST",
         http_path = "/disassociateresourceshare",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:disassociateResourceSharePermission(input, options)
         output_schema = types.DisassociateResourceSharePermissionOutput,
         http_method = "POST",
         http_path = "/disassociateresourcesharepermission",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:enableSharingWithAwsOrganization(input, options)
         output_schema = types.EnableSharingWithAwsOrganizationOutput,
         http_method = "POST",
         http_path = "/enablesharingwithawsorganization",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getPermission(input, options)
         output_schema = types.GetPermissionOutput,
         http_method = "POST",
         http_path = "/getpermission",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getResourcePolicies(input, options)
         output_schema = types.GetResourcePoliciesOutput,
         http_method = "POST",
         http_path = "/getresourcepolicies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getResourceShareAssociations(input, options)
         output_schema = types.GetResourceShareAssociationsOutput,
         http_method = "POST",
         http_path = "/getresourceshareassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getResourceShareInvitations(input, options)
         output_schema = types.GetResourceShareInvitationsOutput,
         http_method = "POST",
         http_path = "/getresourceshareinvitations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getResourceShares(input, options)
         output_schema = types.GetResourceSharesOutput,
         http_method = "POST",
         http_path = "/getresourceshares",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listPendingInvitationResources(input, options)
         output_schema = types.ListPendingInvitationResourcesOutput,
         http_method = "POST",
         http_path = "/listpendinginvitationresources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listPermissionAssociations(input, options)
         output_schema = types.ListPermissionAssociationsOutput,
         http_method = "POST",
         http_path = "/listpermissionassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listPermissions(input, options)
         output_schema = types.ListPermissionsOutput,
         http_method = "POST",
         http_path = "/listpermissions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listPermissionVersions(input, options)
         output_schema = types.ListPermissionVersionsOutput,
         http_method = "POST",
         http_path = "/listpermissionversions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listPrincipals(input, options)
         output_schema = types.ListPrincipalsOutput,
         http_method = "POST",
         http_path = "/listprincipals",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listReplacePermissionAssociationsWork(input, options)
         output_schema = types.ListReplacePermissionAssociationsWorkOutput,
         http_method = "POST",
         http_path = "/listreplacepermissionassociationswork",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listResources(input, options)
         output_schema = types.ListResourcesOutput,
         http_method = "POST",
         http_path = "/listresources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listResourceSharePermissions(input, options)
         output_schema = types.ListResourceSharePermissionsOutput,
         http_method = "POST",
         http_path = "/listresourcesharepermissions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listResourceTypes(input, options)
         output_schema = types.ListResourceTypesOutput,
         http_method = "POST",
         http_path = "/listresourcetypes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:listSourceAssociations(input, options)
         output_schema = types.ListSourceAssociationsOutput,
         http_method = "POST",
         http_path = "/listsourceassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:promotePermissionCreatedFromPolicy(input, options)
         output_schema = types.PromotePermissionCreatedFromPolicyOutput,
         http_method = "POST",
         http_path = "/promotepermissioncreatedfrompolicy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:promoteResourceShareCreatedFromPolicy(input, options)
         output_schema = types.PromoteResourceShareCreatedFromPolicyOutput,
         http_method = "POST",
         http_path = "/promoteresourcesharecreatedfrompolicy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:rejectResourceShareInvitation(input, options)
         output_schema = types.RejectResourceShareInvitationOutput,
         http_method = "POST",
         http_path = "/rejectresourceshareinvitation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:replacePermissionAssociations(input, options)
         output_schema = types.ReplacePermissionAssociationsOutput,
         http_method = "POST",
         http_path = "/replacepermissionassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:setDefaultPermissionVersion(input, options)
         output_schema = types.SetDefaultPermissionVersionOutput,
         http_method = "POST",
         http_path = "/setdefaultpermissionversion",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tagresource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/untagresource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:updateResourceShare(input, options)
         output_schema = types.UpdateResourceShareOutput,
         http_method = "POST",
         http_path = "/updateresourceshare",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

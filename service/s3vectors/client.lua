@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "S3Vectors"
-    cfg.signing_name = "s3vectors"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "s3vectors", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createIndex(input, options)
         output_schema = types.CreateIndexOutput,
         http_method = "POST",
         http_path = "/CreateIndex",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createVectorBucket(input, options)
         output_schema = types.CreateVectorBucketOutput,
         http_method = "POST",
         http_path = "/CreateVectorBucket",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:deleteIndex(input, options)
         output_schema = types.DeleteIndexOutput,
         http_method = "POST",
         http_path = "/DeleteIndex",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:deleteVectorBucket(input, options)
         output_schema = types.DeleteVectorBucketOutput,
         http_method = "POST",
         http_path = "/DeleteVectorBucket",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteVectorBucketPolicy(input, options)
         output_schema = types.DeleteVectorBucketPolicyOutput,
         http_method = "POST",
         http_path = "/DeleteVectorBucketPolicy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteVectors(input, options)
         output_schema = types.DeleteVectorsOutput,
         http_method = "POST",
         http_path = "/DeleteVectors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:getIndex(input, options)
         output_schema = types.GetIndexOutput,
         http_method = "POST",
         http_path = "/GetIndex",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:getVectorBucket(input, options)
         output_schema = types.GetVectorBucketOutput,
         http_method = "POST",
         http_path = "/GetVectorBucket",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getVectorBucketPolicy(input, options)
         output_schema = types.GetVectorBucketPolicyOutput,
         http_method = "POST",
         http_path = "/GetVectorBucketPolicy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:getVectors(input, options)
         output_schema = types.GetVectorsOutput,
         http_method = "POST",
         http_path = "/GetVectors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:listIndexes(input, options)
         output_schema = types.ListIndexesOutput,
         http_method = "POST",
         http_path = "/ListIndexes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:listVectorBuckets(input, options)
         output_schema = types.ListVectorBucketsOutput,
         http_method = "POST",
         http_path = "/ListVectorBuckets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:listVectors(input, options)
         output_schema = types.ListVectorsOutput,
         http_method = "POST",
         http_path = "/ListVectors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:putVectorBucketPolicy(input, options)
         output_schema = types.PutVectorBucketPolicyOutput,
         http_method = "POST",
         http_path = "/PutVectorBucketPolicy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:putVectors(input, options)
         output_schema = types.PutVectorsOutput,
         http_method = "POST",
         http_path = "/PutVectors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:queryVectors(input, options)
         output_schema = types.QueryVectorsOutput,
         http_method = "POST",
         http_path = "/QueryVectors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AwsSupernovaControlPlaneService"
-    cfg.signing_name = "m2"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "m2", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:cancelBatchJobExecution(input, options)
         output_schema = types.CancelBatchJobExecutionOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/batch-job-executions/{executionId}/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createApplication(input, options)
         output_schema = types.CreateApplicationOutput,
         http_method = "POST",
         http_path = "/applications",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createDataSetExportTask(input, options)
         output_schema = types.CreateDataSetExportTaskOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/dataset-export-task",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createDataSetImportTask(input, options)
         output_schema = types.CreateDataSetImportTaskOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/dataset-import-task",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createDeployment(input, options)
         output_schema = types.CreateDeploymentOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/deployments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createEnvironment(input, options)
         output_schema = types.CreateEnvironmentOutput,
         http_method = "POST",
         http_path = "/environments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteApplication(input, options)
         output_schema = types.DeleteApplicationOutput,
         http_method = "DELETE",
         http_path = "/applications/{applicationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteApplicationFromEnvironment(input, options)
         output_schema = types.DeleteApplicationFromEnvironmentOutput,
         http_method = "DELETE",
         http_path = "/applications/{applicationId}/environment/{environmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteEnvironment(input, options)
         output_schema = types.DeleteEnvironmentOutput,
         http_method = "DELETE",
         http_path = "/environments/{environmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:getApplication(input, options)
         output_schema = types.GetApplicationOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getApplicationVersion(input, options)
         output_schema = types.GetApplicationVersionOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/versions/{applicationVersion}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getBatchJobExecution(input, options)
         output_schema = types.GetBatchJobExecutionOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/batch-job-executions/{executionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getDataSetDetails(input, options)
         output_schema = types.GetDataSetDetailsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/datasets/{dataSetName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getDataSetExportTask(input, options)
         output_schema = types.GetDataSetExportTaskOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/dataset-export-tasks/{taskId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getDataSetImportTask(input, options)
         output_schema = types.GetDataSetImportTaskOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/dataset-import-tasks/{taskId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getDeployment(input, options)
         output_schema = types.GetDeploymentOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/deployments/{deploymentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getEnvironment(input, options)
         output_schema = types.GetEnvironmentOutput,
         http_method = "GET",
         http_path = "/environments/{environmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getSignedBluinsightsUrl(input, options)
         output_schema = types.GetSignedBluinsightsUrlOutput,
         http_method = "GET",
         http_path = "/signed-bi-url",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listApplications(input, options)
         output_schema = types.ListApplicationsOutput,
         http_method = "GET",
         http_path = "/applications",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listApplicationVersions(input, options)
         output_schema = types.ListApplicationVersionsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listBatchJobDefinitions(input, options)
         output_schema = types.ListBatchJobDefinitionsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/batch-job-definitions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listBatchJobExecutions(input, options)
         output_schema = types.ListBatchJobExecutionsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/batch-job-executions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listBatchJobRestartPoints(input, options)
         output_schema = types.ListBatchJobRestartPointsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/batch-job-executions/{executionId}/steps",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listDataSetExportHistory(input, options)
         output_schema = types.ListDataSetExportHistoryOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/dataset-export-tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listDataSetImportHistory(input, options)
         output_schema = types.ListDataSetImportHistoryOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/dataset-import-tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listDataSets(input, options)
         output_schema = types.ListDataSetsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/datasets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:listDeployments(input, options)
         output_schema = types.ListDeploymentsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/deployments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:listEngineVersions(input, options)
         output_schema = types.ListEngineVersionsOutput,
         http_method = "GET",
         http_path = "/engine-versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listEnvironments(input, options)
         output_schema = types.ListEnvironmentsOutput,
         http_method = "GET",
         http_path = "/environments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:startApplication(input, options)
         output_schema = types.StartApplicationOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/start",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:startBatchJob(input, options)
         output_schema = types.StartBatchJobOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/batch-job",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:stopApplication(input, options)
         output_schema = types.StopApplicationOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:updateApplication(input, options)
         output_schema = types.UpdateApplicationOutput,
         http_method = "PATCH",
         http_path = "/applications/{applicationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:updateEnvironment(input, options)
         output_schema = types.UpdateEnvironmentOutput,
         http_method = "PATCH",
         http_path = "/environments/{environmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

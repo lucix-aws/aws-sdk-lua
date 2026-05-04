@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "TietonChainQueryService"
-    cfg.signing_name = "managedblockchain-query"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "managedblockchain-query", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:batchGetTokenBalance(input, options)
         output_schema = types.BatchGetTokenBalanceOutput,
         http_method = "POST",
         http_path = "/batch-get-token-balance",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:getAssetContract(input, options)
         output_schema = types.GetAssetContractOutput,
         http_method = "POST",
         http_path = "/get-asset-contract",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:getTokenBalance(input, options)
         output_schema = types.GetTokenBalanceOutput,
         http_method = "POST",
         http_path = "/get-token-balance",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:getTransaction(input, options)
         output_schema = types.GetTransactionOutput,
         http_method = "POST",
         http_path = "/get-transaction",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:listAssetContracts(input, options)
         output_schema = types.ListAssetContractsOutput,
         http_method = "POST",
         http_path = "/list-asset-contracts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:listFilteredTransactionEvents(input, options)
         output_schema = types.ListFilteredTransactionEventsOutput,
         http_method = "POST",
         http_path = "/list-filtered-transaction-events",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:listTokenBalances(input, options)
         output_schema = types.ListTokenBalancesOutput,
         http_method = "POST",
         http_path = "/list-token-balances",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:listTransactionEvents(input, options)
         output_schema = types.ListTransactionEventsOutput,
         http_method = "POST",
         http_path = "/list-transaction-events",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:listTransactions(input, options)
         output_schema = types.ListTransactionsOutput,
         http_method = "POST",
         http_path = "/list-transactions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

@@ -5,6 +5,9 @@ M.AssociateEipToVlanInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         environmentId = {
             type = "string",
@@ -201,6 +204,9 @@ M.CreateEntitlementInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         environmentId = {
             type = "string",
@@ -504,6 +510,9 @@ M.CreateEnvironmentInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         environmentName = {
             type = "string",
@@ -700,6 +709,9 @@ M.CreateEnvironmentConnectorInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         environmentId = {
             type = "string",
@@ -809,6 +821,9 @@ M.CreateEnvironmentHostInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         environmentId = {
             type = "string",
@@ -930,6 +945,9 @@ M.DeleteEntitlementInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         environmentId = {
             type = "string",
@@ -974,6 +992,9 @@ M.DeleteEnvironmentInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         environmentId = {
             type = "string",
@@ -997,6 +1018,9 @@ M.DeleteEnvironmentConnectorInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         environmentId = {
             type = "string",
@@ -1028,6 +1052,9 @@ M.DeleteEnvironmentHostInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         environmentId = {
             type = "string",
@@ -1057,6 +1084,9 @@ M.DisassociateEipFromVlanInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         environmentId = {
             type = "string",
@@ -1312,6 +1342,9 @@ M.UpdateEnvironmentConnectorInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         environmentId = {
             type = "string",

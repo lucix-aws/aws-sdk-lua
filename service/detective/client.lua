@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonDetective"
-    cfg.signing_name = "detective"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "detective", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:acceptInvitation(input, options)
         output_schema = types.AcceptInvitationOutput,
         http_method = "PUT",
         http_path = "/invitation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchGetGraphMemberDatasources(input, options)
         output_schema = types.BatchGetGraphMemberDatasourcesOutput,
         http_method = "POST",
         http_path = "/graph/datasources/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchGetMembershipDatasources(input, options)
         output_schema = types.BatchGetMembershipDatasourcesOutput,
         http_method = "POST",
         http_path = "/membership/datasources/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createGraph(input, options)
         output_schema = types.CreateGraphOutput,
         http_method = "POST",
         http_path = "/graph",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createMembers(input, options)
         output_schema = types.CreateMembersOutput,
         http_method = "POST",
         http_path = "/graph/members",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteGraph(input, options)
         output_schema = types.DeleteGraphOutput,
         http_method = "POST",
         http_path = "/graph/removal",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteMembers(input, options)
         output_schema = types.DeleteMembersOutput,
         http_method = "POST",
         http_path = "/graph/members/removal",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:describeOrganizationConfiguration(input, options)
         output_schema = types.DescribeOrganizationConfigurationOutput,
         http_method = "POST",
         http_path = "/orgs/describeOrganizationConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:disableOrganizationAdminAccount(input, options)
         output_schema = types.DisableOrganizationAdminAccountOutput,
         http_method = "POST",
         http_path = "/orgs/disableAdminAccount",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:disassociateMembership(input, options)
         output_schema = types.DisassociateMembershipOutput,
         http_method = "POST",
         http_path = "/membership/removal",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:enableOrganizationAdminAccount(input, options)
         output_schema = types.EnableOrganizationAdminAccountOutput,
         http_method = "POST",
         http_path = "/orgs/enableAdminAccount",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getInvestigation(input, options)
         output_schema = types.GetInvestigationOutput,
         http_method = "POST",
         http_path = "/investigations/getInvestigation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getMembers(input, options)
         output_schema = types.GetMembersOutput,
         http_method = "POST",
         http_path = "/graph/members/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:listDatasourcePackages(input, options)
         output_schema = types.ListDatasourcePackagesOutput,
         http_method = "POST",
         http_path = "/graph/datasources/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:listGraphs(input, options)
         output_schema = types.ListGraphsOutput,
         http_method = "POST",
         http_path = "/graphs/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listIndicators(input, options)
         output_schema = types.ListIndicatorsOutput,
         http_method = "POST",
         http_path = "/investigations/listIndicators",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listInvestigations(input, options)
         output_schema = types.ListInvestigationsOutput,
         http_method = "POST",
         http_path = "/investigations/listInvestigations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listInvitations(input, options)
         output_schema = types.ListInvitationsOutput,
         http_method = "POST",
         http_path = "/invitations/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listMembers(input, options)
         output_schema = types.ListMembersOutput,
         http_method = "POST",
         http_path = "/graph/members/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listOrganizationAdminAccounts(input, options)
         output_schema = types.ListOrganizationAdminAccountsOutput,
         http_method = "POST",
         http_path = "/orgs/adminAccountslist",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:rejectInvitation(input, options)
         output_schema = types.RejectInvitationOutput,
         http_method = "POST",
         http_path = "/invitation/removal",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:startInvestigation(input, options)
         output_schema = types.StartInvestigationOutput,
         http_method = "POST",
         http_path = "/investigations/startInvestigation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:startMonitoringMember(input, options)
         output_schema = types.StartMonitoringMemberOutput,
         http_method = "POST",
         http_path = "/graph/member/monitoringstate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:updateDatasourcePackages(input, options)
         output_schema = types.UpdateDatasourcePackagesOutput,
         http_method = "POST",
         http_path = "/graph/datasources/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:updateInvestigationState(input, options)
         output_schema = types.UpdateInvestigationStateOutput,
         http_method = "POST",
         http_path = "/investigations/updateInvestigationState",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:updateOrganizationConfiguration(input, options)
         output_schema = types.UpdateOrganizationConfigurationOutput,
         http_method = "POST",
         http_path = "/orgs/updateOrganizationConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

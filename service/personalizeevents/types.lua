@@ -11,6 +11,9 @@ M.Action = {
         },
         properties = {
             type = "string",
+            traits = {
+                media_type = "application/json",
+            },
         },
     },
 }
@@ -57,6 +60,9 @@ M.ActionInteraction = {
         },
         properties = {
             type = "string",
+            traits = {
+                media_type = "application/json",
+            },
         },
     },
 }
@@ -169,6 +175,9 @@ M.Event = {
         },
         properties = {
             type = "string",
+            traits = {
+                media_type = "application/json",
+            },
         },
         sentAt = {
             type = "timestamp",
@@ -230,6 +239,9 @@ M.Item = {
         },
         properties = {
             type = "string",
+            traits = {
+                media_type = "application/json",
+            },
         },
     },
 }
@@ -268,6 +280,9 @@ M.User = {
         },
         properties = {
             type = "string",
+            traits = {
+                media_type = "application/json",
+            },
         },
     },
 }

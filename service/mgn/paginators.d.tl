@@ -1,0 +1,62 @@
+local record M
+    pages_describe_job_log_items: function(client: table, input: table): function(): table, table
+    items_describe_job_log_items: function(client: table, input: table): function(): any
+    pages_describe_jobs: function(client: table, input: table): function(): table, table
+    items_describe_jobs: function(client: table, input: table): function(): any
+    pages_describe_launch_configuration_templates: function(client: table, input: table): function(): table, table
+    items_describe_launch_configuration_templates: function(client: table, input: table): function(): any
+    pages_describe_replication_configuration_templates: function(client: table, input: table): function(): table, table
+    items_describe_replication_configuration_templates: function(client: table, input: table): function(): any
+    pages_describe_source_servers: function(client: table, input: table): function(): table, table
+    items_describe_source_servers: function(client: table, input: table): function(): any
+    pages_describe_vcenter_clients: function(client: table, input: table): function(): table, table
+    items_describe_vcenter_clients: function(client: table, input: table): function(): any
+    pages_list_applications: function(client: table, input: table): function(): table, table
+    items_list_applications: function(client: table, input: table): function(): any
+    pages_list_connectors: function(client: table, input: table): function(): table, table
+    items_list_connectors: function(client: table, input: table): function(): any
+    pages_list_export_errors: function(client: table, input: table): function(): table, table
+    items_list_export_errors: function(client: table, input: table): function(): any
+    pages_list_exports: function(client: table, input: table): function(): table, table
+    items_list_exports: function(client: table, input: table): function(): any
+    pages_list_import_errors: function(client: table, input: table): function(): table, table
+    items_list_import_errors: function(client: table, input: table): function(): any
+    pages_list_import_file_enrichments: function(client: table, input: table): function(): table, table
+    items_list_import_file_enrichments: function(client: table, input: table): function(): any
+    pages_list_imports: function(client: table, input: table): function(): table, table
+    items_list_imports: function(client: table, input: table): function(): any
+    pages_list_managed_accounts: function(client: table, input: table): function(): table, table
+    items_list_managed_accounts: function(client: table, input: table): function(): any
+    pages_list_network_migration_analyses: function(client: table, input: table): function(): table, table
+    items_list_network_migration_analyses: function(client: table, input: table): function(): any
+    pages_list_network_migration_analysis_results: function(client: table, input: table): function(): table, table
+    items_list_network_migration_analysis_results: function(client: table, input: table): function(): any
+    pages_list_network_migration_code_generation_segments: function(client: table, input: table): function(): table, table
+    items_list_network_migration_code_generation_segments: function(client: table, input: table): function(): any
+    pages_list_network_migration_code_generations: function(client: table, input: table): function(): table, table
+    items_list_network_migration_code_generations: function(client: table, input: table): function(): any
+    pages_list_network_migration_definitions: function(client: table, input: table): function(): table, table
+    items_list_network_migration_definitions: function(client: table, input: table): function(): any
+    pages_list_network_migration_deployed_stacks: function(client: table, input: table): function(): table, table
+    items_list_network_migration_deployed_stacks: function(client: table, input: table): function(): any
+    pages_list_network_migration_deployments: function(client: table, input: table): function(): table, table
+    items_list_network_migration_deployments: function(client: table, input: table): function(): any
+    pages_list_network_migration_executions: function(client: table, input: table): function(): table, table
+    items_list_network_migration_executions: function(client: table, input: table): function(): any
+    pages_list_network_migration_mapper_segment_constructs: function(client: table, input: table): function(): table, table
+    items_list_network_migration_mapper_segment_constructs: function(client: table, input: table): function(): any
+    pages_list_network_migration_mapper_segments: function(client: table, input: table): function(): table, table
+    items_list_network_migration_mapper_segments: function(client: table, input: table): function(): any
+    pages_list_network_migration_mapping_updates: function(client: table, input: table): function(): table, table
+    items_list_network_migration_mapping_updates: function(client: table, input: table): function(): any
+    pages_list_network_migration_mappings: function(client: table, input: table): function(): table, table
+    items_list_network_migration_mappings: function(client: table, input: table): function(): any
+    pages_list_source_server_actions: function(client: table, input: table): function(): table, table
+    items_list_source_server_actions: function(client: table, input: table): function(): any
+    pages_list_template_actions: function(client: table, input: table): function(): table, table
+    items_list_template_actions: function(client: table, input: table): function(): any
+    pages_list_waves: function(client: table, input: table): function(): table, table
+    items_list_waves: function(client: table, input: table): function(): any
+end
+
+return M

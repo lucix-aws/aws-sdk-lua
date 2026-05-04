@@ -1,0 +1,131 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listDataGrants.
+function M.pages_list_data_grants(client, input)
+    return paginator.pages(client, "listDataGrants", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DataGrantSummaries",
+    })
+end
+
+--- Returns an item iterator for listDataGrants.
+function M.items_list_data_grants(client, input)
+    return paginator.items(client, "listDataGrants", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DataGrantSummaries",
+    })
+end
+
+--- Returns a page iterator for listDataSetRevisions.
+function M.pages_list_data_set_revisions(client, input)
+    return paginator.pages(client, "listDataSetRevisions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Revisions",
+    })
+end
+
+--- Returns an item iterator for listDataSetRevisions.
+function M.items_list_data_set_revisions(client, input)
+    return paginator.items(client, "listDataSetRevisions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Revisions",
+    })
+end
+
+--- Returns a page iterator for listDataSets.
+function M.pages_list_data_sets(client, input)
+    return paginator.pages(client, "listDataSets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DataSets",
+    })
+end
+
+--- Returns an item iterator for listDataSets.
+function M.items_list_data_sets(client, input)
+    return paginator.items(client, "listDataSets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DataSets",
+    })
+end
+
+--- Returns a page iterator for listEventActions.
+function M.pages_list_event_actions(client, input)
+    return paginator.pages(client, "listEventActions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "EventActions",
+    })
+end
+
+--- Returns an item iterator for listEventActions.
+function M.items_list_event_actions(client, input)
+    return paginator.items(client, "listEventActions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "EventActions",
+    })
+end
+
+--- Returns a page iterator for listJobs.
+function M.pages_list_jobs(client, input)
+    return paginator.pages(client, "listJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Jobs",
+    })
+end
+
+--- Returns an item iterator for listJobs.
+function M.items_list_jobs(client, input)
+    return paginator.items(client, "listJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Jobs",
+    })
+end
+
+--- Returns a page iterator for listReceivedDataGrants.
+function M.pages_list_received_data_grants(client, input)
+    return paginator.pages(client, "listReceivedDataGrants", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DataGrantSummaries",
+    })
+end
+
+--- Returns an item iterator for listReceivedDataGrants.
+function M.items_list_received_data_grants(client, input)
+    return paginator.items(client, "listReceivedDataGrants", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DataGrantSummaries",
+    })
+end
+
+--- Returns a page iterator for listRevisionAssets.
+function M.pages_list_revision_assets(client, input)
+    return paginator.pages(client, "listRevisionAssets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Assets",
+    })
+end
+
+--- Returns an item iterator for listRevisionAssets.
+function M.items_list_revision_assets(client, input)
+    return paginator.items(client, "listRevisionAssets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Assets",
+    })
+end
+
+return M

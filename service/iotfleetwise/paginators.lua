@@ -1,0 +1,257 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for getVehicleStatus.
+function M.pages_get_vehicle_status(client, input)
+    return paginator.pages(client, "getVehicleStatus", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "campaigns",
+    })
+end
+
+--- Returns an item iterator for getVehicleStatus.
+function M.items_get_vehicle_status(client, input)
+    return paginator.items(client, "getVehicleStatus", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "campaigns",
+    })
+end
+
+--- Returns a page iterator for listCampaigns.
+function M.pages_list_campaigns(client, input)
+    return paginator.pages(client, "listCampaigns", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "campaignSummaries",
+    })
+end
+
+--- Returns an item iterator for listCampaigns.
+function M.items_list_campaigns(client, input)
+    return paginator.items(client, "listCampaigns", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "campaignSummaries",
+    })
+end
+
+--- Returns a page iterator for listDecoderManifestNetworkInterfaces.
+function M.pages_list_decoder_manifest_network_interfaces(client, input)
+    return paginator.pages(client, "listDecoderManifestNetworkInterfaces", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "networkInterfaces",
+    })
+end
+
+--- Returns an item iterator for listDecoderManifestNetworkInterfaces.
+function M.items_list_decoder_manifest_network_interfaces(client, input)
+    return paginator.items(client, "listDecoderManifestNetworkInterfaces", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "networkInterfaces",
+    })
+end
+
+--- Returns a page iterator for listDecoderManifestSignals.
+function M.pages_list_decoder_manifest_signals(client, input)
+    return paginator.pages(client, "listDecoderManifestSignals", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "signalDecoders",
+    })
+end
+
+--- Returns an item iterator for listDecoderManifestSignals.
+function M.items_list_decoder_manifest_signals(client, input)
+    return paginator.items(client, "listDecoderManifestSignals", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "signalDecoders",
+    })
+end
+
+--- Returns a page iterator for listDecoderManifests.
+function M.pages_list_decoder_manifests(client, input)
+    return paginator.pages(client, "listDecoderManifests", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "summaries",
+    })
+end
+
+--- Returns an item iterator for listDecoderManifests.
+function M.items_list_decoder_manifests(client, input)
+    return paginator.items(client, "listDecoderManifests", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "summaries",
+    })
+end
+
+--- Returns a page iterator for listFleets.
+function M.pages_list_fleets(client, input)
+    return paginator.pages(client, "listFleets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "fleetSummaries",
+    })
+end
+
+--- Returns an item iterator for listFleets.
+function M.items_list_fleets(client, input)
+    return paginator.items(client, "listFleets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "fleetSummaries",
+    })
+end
+
+--- Returns a page iterator for listFleetsForVehicle.
+function M.pages_list_fleets_for_vehicle(client, input)
+    return paginator.pages(client, "listFleetsForVehicle", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "fleets",
+    })
+end
+
+--- Returns an item iterator for listFleetsForVehicle.
+function M.items_list_fleets_for_vehicle(client, input)
+    return paginator.items(client, "listFleetsForVehicle", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "fleets",
+    })
+end
+
+--- Returns a page iterator for listModelManifestNodes.
+function M.pages_list_model_manifest_nodes(client, input)
+    return paginator.pages(client, "listModelManifestNodes", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "nodes",
+    })
+end
+
+--- Returns an item iterator for listModelManifestNodes.
+function M.items_list_model_manifest_nodes(client, input)
+    return paginator.items(client, "listModelManifestNodes", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "nodes",
+    })
+end
+
+--- Returns a page iterator for listModelManifests.
+function M.pages_list_model_manifests(client, input)
+    return paginator.pages(client, "listModelManifests", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "summaries",
+    })
+end
+
+--- Returns an item iterator for listModelManifests.
+function M.items_list_model_manifests(client, input)
+    return paginator.items(client, "listModelManifests", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "summaries",
+    })
+end
+
+--- Returns a page iterator for listSignalCatalogNodes.
+function M.pages_list_signal_catalog_nodes(client, input)
+    return paginator.pages(client, "listSignalCatalogNodes", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "nodes",
+    })
+end
+
+--- Returns an item iterator for listSignalCatalogNodes.
+function M.items_list_signal_catalog_nodes(client, input)
+    return paginator.items(client, "listSignalCatalogNodes", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "nodes",
+    })
+end
+
+--- Returns a page iterator for listSignalCatalogs.
+function M.pages_list_signal_catalogs(client, input)
+    return paginator.pages(client, "listSignalCatalogs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "summaries",
+    })
+end
+
+--- Returns an item iterator for listSignalCatalogs.
+function M.items_list_signal_catalogs(client, input)
+    return paginator.items(client, "listSignalCatalogs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "summaries",
+    })
+end
+
+--- Returns a page iterator for listStateTemplates.
+function M.pages_list_state_templates(client, input)
+    return paginator.pages(client, "listStateTemplates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "summaries",
+    })
+end
+
+--- Returns an item iterator for listStateTemplates.
+function M.items_list_state_templates(client, input)
+    return paginator.items(client, "listStateTemplates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "summaries",
+    })
+end
+
+--- Returns a page iterator for listVehicles.
+function M.pages_list_vehicles(client, input)
+    return paginator.pages(client, "listVehicles", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "vehicleSummaries",
+    })
+end
+
+--- Returns an item iterator for listVehicles.
+function M.items_list_vehicles(client, input)
+    return paginator.items(client, "listVehicles", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "vehicleSummaries",
+    })
+end
+
+--- Returns a page iterator for listVehiclesInFleet.
+function M.pages_list_vehicles_in_fleet(client, input)
+    return paginator.pages(client, "listVehiclesInFleet", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "vehicles",
+    })
+end
+
+--- Returns an item iterator for listVehiclesInFleet.
+function M.items_list_vehicles_in_fleet(client, input)
+    return paginator.items(client, "listVehiclesInFleet", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "vehicles",
+    })
+end
+
+return M

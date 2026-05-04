@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "ApplicationSignals"
-    cfg.signing_name = "application-signals"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "application-signals", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:batchGetServiceLevelObjectiveBudgetReport(input, options)
         output_schema = types.BatchGetServiceLevelObjectiveBudgetReportOutput,
         http_method = "POST",
         http_path = "/budget-report",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchUpdateExclusionWindows(input, options)
         output_schema = types.BatchUpdateExclusionWindowsOutput,
         http_method = "PATCH",
         http_path = "/exclusion-windows",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createServiceLevelObjective(input, options)
         output_schema = types.CreateServiceLevelObjectiveOutput,
         http_method = "POST",
         http_path = "/slo",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:deleteGroupingConfiguration(input, options)
         output_schema = types.DeleteGroupingConfigurationOutput,
         http_method = "DELETE",
         http_path = "/grouping-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteServiceLevelObjective(input, options)
         output_schema = types.DeleteServiceLevelObjectiveOutput,
         http_method = "DELETE",
         http_path = "/slo/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:getService(input, options)
         output_schema = types.GetServiceOutput,
         http_method = "POST",
         http_path = "/service",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:getServiceLevelObjective(input, options)
         output_schema = types.GetServiceLevelObjectiveOutput,
         http_method = "GET",
         http_path = "/slo/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:listAuditFindings(input, options)
         output_schema = types.ListAuditFindingsOutput,
         http_method = "POST",
         http_path = "/auditFindings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:listEntityEvents(input, options)
         output_schema = types.ListEntityEventsOutput,
         http_method = "POST",
         http_path = "/events",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:listGroupingAttributeDefinitions(input, options)
         output_schema = types.ListGroupingAttributeDefinitionsOutput,
         http_method = "POST",
         http_path = "/grouping-attribute-definitions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:listServiceDependencies(input, options)
         output_schema = types.ListServiceDependenciesOutput,
         http_method = "POST",
         http_path = "/service-dependencies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:listServiceDependents(input, options)
         output_schema = types.ListServiceDependentsOutput,
         http_method = "POST",
         http_path = "/service-dependents",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:listServiceLevelObjectiveExclusionWindows(input, options)
         output_schema = types.ListServiceLevelObjectiveExclusionWindowsOutput,
         http_method = "GET",
         http_path = "/slo/{Id}/exclusion-windows",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:listServiceLevelObjectives(input, options)
         output_schema = types.ListServiceLevelObjectivesOutput,
         http_method = "POST",
         http_path = "/slos",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:listServiceOperations(input, options)
         output_schema = types.ListServiceOperationsOutput,
         http_method = "POST",
         http_path = "/service-operations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listServices(input, options)
         output_schema = types.ListServicesOutput,
         http_method = "GET",
         http_path = "/services",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listServiceStates(input, options)
         output_schema = types.ListServiceStatesOutput,
         http_method = "POST",
         http_path = "/service/states",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:putGroupingConfiguration(input, options)
         output_schema = types.PutGroupingConfigurationOutput,
         http_method = "PUT",
         http_path = "/grouping-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:startDiscovery(input, options)
         output_schema = types.StartDiscoveryOutput,
         http_method = "POST",
         http_path = "/start-discovery",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tag-resource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/untag-resource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:updateServiceLevelObjective(input, options)
         output_schema = types.UpdateServiceLevelObjectiveOutput,
         http_method = "PATCH",
         http_path = "/slo/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

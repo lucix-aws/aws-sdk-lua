@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AccessAnalyzer"
-    cfg.signing_name = "access-analyzer"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "access-analyzer", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:applyArchiveRule(input, options)
         output_schema = types.ApplyArchiveRuleOutput,
         http_method = "PUT",
         http_path = "/archive-rule",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:cancelPolicyGeneration(input, options)
         output_schema = types.CancelPolicyGenerationOutput,
         http_method = "PUT",
         http_path = "/policy/generation/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:checkAccessNotGranted(input, options)
         output_schema = types.CheckAccessNotGrantedOutput,
         http_method = "POST",
         http_path = "/policy/check-access-not-granted",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:checkNoNewAccess(input, options)
         output_schema = types.CheckNoNewAccessOutput,
         http_method = "POST",
         http_path = "/policy/check-no-new-access",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:checkNoPublicAccess(input, options)
         output_schema = types.CheckNoPublicAccessOutput,
         http_method = "POST",
         http_path = "/policy/check-no-public-access",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createAccessPreview(input, options)
         output_schema = types.CreateAccessPreviewOutput,
         http_method = "PUT",
         http_path = "/access-preview",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createAnalyzer(input, options)
         output_schema = types.CreateAnalyzerOutput,
         http_method = "PUT",
         http_path = "/analyzer",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createArchiveRule(input, options)
         output_schema = types.CreateArchiveRuleOutput,
         http_method = "PUT",
         http_path = "/analyzer/{analyzerName}/archive-rule",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteAnalyzer(input, options)
         output_schema = types.DeleteAnalyzerOutput,
         http_method = "DELETE",
         http_path = "/analyzer/{analyzerName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteArchiveRule(input, options)
         output_schema = types.DeleteArchiveRuleOutput,
         http_method = "DELETE",
         http_path = "/analyzer/{analyzerName}/archive-rule/{ruleName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:generateFindingRecommendation(input, options)
         output_schema = types.GenerateFindingRecommendationOutput,
         http_method = "POST",
         http_path = "/recommendation/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getAccessPreview(input, options)
         output_schema = types.GetAccessPreviewOutput,
         http_method = "GET",
         http_path = "/access-preview/{accessPreviewId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getAnalyzedResource(input, options)
         output_schema = types.GetAnalyzedResourceOutput,
         http_method = "GET",
         http_path = "/analyzed-resource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getAnalyzer(input, options)
         output_schema = types.GetAnalyzerOutput,
         http_method = "GET",
         http_path = "/analyzer/{analyzerName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getArchiveRule(input, options)
         output_schema = types.GetArchiveRuleOutput,
         http_method = "GET",
         http_path = "/analyzer/{analyzerName}/archive-rule/{ruleName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getFinding(input, options)
         output_schema = types.GetFindingOutput,
         http_method = "GET",
         http_path = "/finding/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getFindingRecommendation(input, options)
         output_schema = types.GetFindingRecommendationOutput,
         http_method = "GET",
         http_path = "/recommendation/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getFindingsStatistics(input, options)
         output_schema = types.GetFindingsStatisticsOutput,
         http_method = "POST",
         http_path = "/analyzer/findings/statistics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getFindingV2(input, options)
         output_schema = types.GetFindingV2Output,
         http_method = "GET",
         http_path = "/findingv2/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:getGeneratedPolicy(input, options)
         output_schema = types.GetGeneratedPolicyOutput,
         http_method = "GET",
         http_path = "/policy/generation/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listAccessPreviewFindings(input, options)
         output_schema = types.ListAccessPreviewFindingsOutput,
         http_method = "POST",
         http_path = "/access-preview/{accessPreviewId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listAccessPreviews(input, options)
         output_schema = types.ListAccessPreviewsOutput,
         http_method = "GET",
         http_path = "/access-preview",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listAnalyzedResources(input, options)
         output_schema = types.ListAnalyzedResourcesOutput,
         http_method = "POST",
         http_path = "/analyzed-resource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listAnalyzers(input, options)
         output_schema = types.ListAnalyzersOutput,
         http_method = "GET",
         http_path = "/analyzer",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listArchiveRules(input, options)
         output_schema = types.ListArchiveRulesOutput,
         http_method = "GET",
         http_path = "/analyzer/{analyzerName}/archive-rule",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listFindings(input, options)
         output_schema = types.ListFindingsOutput,
         http_method = "POST",
         http_path = "/finding",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:listFindingsV2(input, options)
         output_schema = types.ListFindingsV2Output,
         http_method = "POST",
         http_path = "/findingv2",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:listPolicyGenerations(input, options)
         output_schema = types.ListPolicyGenerationsOutput,
         http_method = "GET",
         http_path = "/policy/generation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:startPolicyGeneration(input, options)
         output_schema = types.StartPolicyGenerationOutput,
         http_method = "PUT",
         http_path = "/policy/generation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:startResourceScan(input, options)
         output_schema = types.StartResourceScanOutput,
         http_method = "POST",
         http_path = "/resource/scan",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:updateAnalyzer(input, options)
         output_schema = types.UpdateAnalyzerOutput,
         http_method = "PUT",
         http_path = "/analyzer/{analyzerName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:updateArchiveRule(input, options)
         output_schema = types.UpdateArchiveRuleOutput,
         http_method = "PUT",
         http_path = "/analyzer/{analyzerName}/archive-rule/{ruleName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:updateFindings(input, options)
         output_schema = types.UpdateFindingsOutput,
         http_method = "PUT",
         http_path = "/finding",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:validatePolicy(input, options)
         output_schema = types.ValidatePolicyOutput,
         http_method = "POST",
         http_path = "/policy/validation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

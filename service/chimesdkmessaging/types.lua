@@ -568,6 +568,7 @@ M.ChannelFlowCallbackInput = {
         CallbackId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -916,6 +917,7 @@ M.CreateChannelInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1020,6 +1022,7 @@ M.CreateChannelFlowInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -2556,6 +2559,7 @@ M.SendChannelMessageInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },

@@ -1,0 +1,8 @@
+local record M
+    pages_list_dashboards: function(client: table, input: table): function(): table, table
+    items_list_dashboards: function(client: table, input: table): function(): any
+    pages_list_scheduled_reports: function(client: table, input: table): function(): table, table
+    items_list_scheduled_reports: function(client: table, input: table): function(): any
+end
+
+return M

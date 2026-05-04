@@ -1,0 +1,329 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listAutomatedReasoningPolicies.
+function M.pages_list_automated_reasoning_policies(client, input)
+    return paginator.pages(client, "listAutomatedReasoningPolicies", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "automatedReasoningPolicySummaries",
+    })
+end
+
+--- Returns an item iterator for listAutomatedReasoningPolicies.
+function M.items_list_automated_reasoning_policies(client, input)
+    return paginator.items(client, "listAutomatedReasoningPolicies", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "automatedReasoningPolicySummaries",
+    })
+end
+
+--- Returns a page iterator for listAutomatedReasoningPolicyBuildWorkflows.
+function M.pages_list_automated_reasoning_policy_build_workflows(client, input)
+    return paginator.pages(client, "listAutomatedReasoningPolicyBuildWorkflows", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "automatedReasoningPolicyBuildWorkflowSummaries",
+    })
+end
+
+--- Returns an item iterator for listAutomatedReasoningPolicyBuildWorkflows.
+function M.items_list_automated_reasoning_policy_build_workflows(client, input)
+    return paginator.items(client, "listAutomatedReasoningPolicyBuildWorkflows", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "automatedReasoningPolicyBuildWorkflowSummaries",
+    })
+end
+
+--- Returns a page iterator for listAutomatedReasoningPolicyTestCases.
+function M.pages_list_automated_reasoning_policy_test_cases(client, input)
+    return paginator.pages(client, "listAutomatedReasoningPolicyTestCases", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "testCases",
+    })
+end
+
+--- Returns an item iterator for listAutomatedReasoningPolicyTestCases.
+function M.items_list_automated_reasoning_policy_test_cases(client, input)
+    return paginator.items(client, "listAutomatedReasoningPolicyTestCases", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "testCases",
+    })
+end
+
+--- Returns a page iterator for listAutomatedReasoningPolicyTestResults.
+function M.pages_list_automated_reasoning_policy_test_results(client, input)
+    return paginator.pages(client, "listAutomatedReasoningPolicyTestResults", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "testResults",
+    })
+end
+
+--- Returns an item iterator for listAutomatedReasoningPolicyTestResults.
+function M.items_list_automated_reasoning_policy_test_results(client, input)
+    return paginator.items(client, "listAutomatedReasoningPolicyTestResults", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "testResults",
+    })
+end
+
+--- Returns a page iterator for listCustomModelDeployments.
+function M.pages_list_custom_model_deployments(client, input)
+    return paginator.pages(client, "listCustomModelDeployments", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "modelDeploymentSummaries",
+    })
+end
+
+--- Returns an item iterator for listCustomModelDeployments.
+function M.items_list_custom_model_deployments(client, input)
+    return paginator.items(client, "listCustomModelDeployments", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "modelDeploymentSummaries",
+    })
+end
+
+--- Returns a page iterator for listCustomModels.
+function M.pages_list_custom_models(client, input)
+    return paginator.pages(client, "listCustomModels", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "modelSummaries",
+    })
+end
+
+--- Returns an item iterator for listCustomModels.
+function M.items_list_custom_models(client, input)
+    return paginator.items(client, "listCustomModels", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "modelSummaries",
+    })
+end
+
+--- Returns a page iterator for listEnforcedGuardrailsConfiguration.
+function M.pages_list_enforced_guardrails_configuration(client, input)
+    return paginator.pages(client, "listEnforcedGuardrailsConfiguration", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "guardrailsConfig",
+    })
+end
+
+--- Returns an item iterator for listEnforcedGuardrailsConfiguration.
+function M.items_list_enforced_guardrails_configuration(client, input)
+    return paginator.items(client, "listEnforcedGuardrailsConfiguration", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "guardrailsConfig",
+    })
+end
+
+--- Returns a page iterator for listEvaluationJobs.
+function M.pages_list_evaluation_jobs(client, input)
+    return paginator.pages(client, "listEvaluationJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "jobSummaries",
+    })
+end
+
+--- Returns an item iterator for listEvaluationJobs.
+function M.items_list_evaluation_jobs(client, input)
+    return paginator.items(client, "listEvaluationJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "jobSummaries",
+    })
+end
+
+--- Returns a page iterator for listGuardrails.
+function M.pages_list_guardrails(client, input)
+    return paginator.pages(client, "listGuardrails", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "guardrails",
+    })
+end
+
+--- Returns an item iterator for listGuardrails.
+function M.items_list_guardrails(client, input)
+    return paginator.items(client, "listGuardrails", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "guardrails",
+    })
+end
+
+--- Returns a page iterator for listImportedModels.
+function M.pages_list_imported_models(client, input)
+    return paginator.pages(client, "listImportedModels", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "modelSummaries",
+    })
+end
+
+--- Returns an item iterator for listImportedModels.
+function M.items_list_imported_models(client, input)
+    return paginator.items(client, "listImportedModels", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "modelSummaries",
+    })
+end
+
+--- Returns a page iterator for listInferenceProfiles.
+function M.pages_list_inference_profiles(client, input)
+    return paginator.pages(client, "listInferenceProfiles", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "inferenceProfileSummaries",
+    })
+end
+
+--- Returns an item iterator for listInferenceProfiles.
+function M.items_list_inference_profiles(client, input)
+    return paginator.items(client, "listInferenceProfiles", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "inferenceProfileSummaries",
+    })
+end
+
+--- Returns a page iterator for listMarketplaceModelEndpoints.
+function M.pages_list_marketplace_model_endpoints(client, input)
+    return paginator.pages(client, "listMarketplaceModelEndpoints", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "marketplaceModelEndpoints",
+    })
+end
+
+--- Returns an item iterator for listMarketplaceModelEndpoints.
+function M.items_list_marketplace_model_endpoints(client, input)
+    return paginator.items(client, "listMarketplaceModelEndpoints", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "marketplaceModelEndpoints",
+    })
+end
+
+--- Returns a page iterator for listModelCopyJobs.
+function M.pages_list_model_copy_jobs(client, input)
+    return paginator.pages(client, "listModelCopyJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "modelCopyJobSummaries",
+    })
+end
+
+--- Returns an item iterator for listModelCopyJobs.
+function M.items_list_model_copy_jobs(client, input)
+    return paginator.items(client, "listModelCopyJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "modelCopyJobSummaries",
+    })
+end
+
+--- Returns a page iterator for listModelCustomizationJobs.
+function M.pages_list_model_customization_jobs(client, input)
+    return paginator.pages(client, "listModelCustomizationJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "modelCustomizationJobSummaries",
+    })
+end
+
+--- Returns an item iterator for listModelCustomizationJobs.
+function M.items_list_model_customization_jobs(client, input)
+    return paginator.items(client, "listModelCustomizationJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "modelCustomizationJobSummaries",
+    })
+end
+
+--- Returns a page iterator for listModelImportJobs.
+function M.pages_list_model_import_jobs(client, input)
+    return paginator.pages(client, "listModelImportJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "modelImportJobSummaries",
+    })
+end
+
+--- Returns an item iterator for listModelImportJobs.
+function M.items_list_model_import_jobs(client, input)
+    return paginator.items(client, "listModelImportJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "modelImportJobSummaries",
+    })
+end
+
+--- Returns a page iterator for listModelInvocationJobs.
+function M.pages_list_model_invocation_jobs(client, input)
+    return paginator.pages(client, "listModelInvocationJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "invocationJobSummaries",
+    })
+end
+
+--- Returns an item iterator for listModelInvocationJobs.
+function M.items_list_model_invocation_jobs(client, input)
+    return paginator.items(client, "listModelInvocationJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "invocationJobSummaries",
+    })
+end
+
+--- Returns a page iterator for listPromptRouters.
+function M.pages_list_prompt_routers(client, input)
+    return paginator.pages(client, "listPromptRouters", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "promptRouterSummaries",
+    })
+end
+
+--- Returns an item iterator for listPromptRouters.
+function M.items_list_prompt_routers(client, input)
+    return paginator.items(client, "listPromptRouters", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "promptRouterSummaries",
+    })
+end
+
+--- Returns a page iterator for listProvisionedModelThroughputs.
+function M.pages_list_provisioned_model_throughputs(client, input)
+    return paginator.pages(client, "listProvisionedModelThroughputs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "provisionedModelSummaries",
+    })
+end
+
+--- Returns an item iterator for listProvisionedModelThroughputs.
+function M.items_list_provisioned_model_throughputs(client, input)
+    return paginator.items(client, "listProvisionedModelThroughputs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "provisionedModelSummaries",
+    })
+end
+
+return M

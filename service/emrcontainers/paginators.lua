@@ -1,0 +1,95 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listJobRuns.
+function M.pages_list_job_runs(client, input)
+    return paginator.pages(client, "listJobRuns", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "jobRuns",
+    })
+end
+
+--- Returns an item iterator for listJobRuns.
+function M.items_list_job_runs(client, input)
+    return paginator.items(client, "listJobRuns", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "jobRuns",
+    })
+end
+
+--- Returns a page iterator for listJobTemplates.
+function M.pages_list_job_templates(client, input)
+    return paginator.pages(client, "listJobTemplates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "templates",
+    })
+end
+
+--- Returns an item iterator for listJobTemplates.
+function M.items_list_job_templates(client, input)
+    return paginator.items(client, "listJobTemplates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "templates",
+    })
+end
+
+--- Returns a page iterator for listManagedEndpoints.
+function M.pages_list_managed_endpoints(client, input)
+    return paginator.pages(client, "listManagedEndpoints", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "endpoints",
+    })
+end
+
+--- Returns an item iterator for listManagedEndpoints.
+function M.items_list_managed_endpoints(client, input)
+    return paginator.items(client, "listManagedEndpoints", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "endpoints",
+    })
+end
+
+--- Returns a page iterator for listSecurityConfigurations.
+function M.pages_list_security_configurations(client, input)
+    return paginator.pages(client, "listSecurityConfigurations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "securityConfigurations",
+    })
+end
+
+--- Returns an item iterator for listSecurityConfigurations.
+function M.items_list_security_configurations(client, input)
+    return paginator.items(client, "listSecurityConfigurations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "securityConfigurations",
+    })
+end
+
+--- Returns a page iterator for listVirtualClusters.
+function M.pages_list_virtual_clusters(client, input)
+    return paginator.pages(client, "listVirtualClusters", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "virtualClusters",
+    })
+end
+
+--- Returns an item iterator for listVirtualClusters.
+function M.items_list_virtual_clusters(client, input)
+    return paginator.items(client, "listVirtualClusters", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "virtualClusters",
+    })
+end
+
+return M

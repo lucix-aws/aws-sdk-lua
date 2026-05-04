@@ -121,6 +121,9 @@ M.CreateKeyInput = {
         },
         ExpireTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         NoExpiry = {
             type = "boolean",
@@ -158,6 +161,7 @@ M.CreateKeyOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -341,18 +345,21 @@ M.DescribeKeyOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         ExpireTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -395,6 +402,7 @@ M.ListKeysResponseEntry = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -407,12 +415,14 @@ M.ListKeysResponseEntry = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -449,6 +459,9 @@ M.UpdateKeyInput = {
         },
         ExpireTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         NoExpiry = {
             type = "boolean",
@@ -479,6 +492,7 @@ M.UpdateKeyOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -649,6 +663,7 @@ M.DevicePositionUpdate = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Position = {
@@ -700,6 +715,7 @@ M.BatchEvaluateGeofencesError = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Error = setmetatable({ traits = {
@@ -751,12 +767,14 @@ M.DevicePosition = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         ReceivedTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Position = {
@@ -915,12 +933,14 @@ M.BatchPutGeofenceSuccess = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -979,6 +999,7 @@ M.BatchUpdateDevicePositionError = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Error = setmetatable({ traits = {
@@ -1117,6 +1138,9 @@ M.CalculateRouteInput = {
         },
         DepartureTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         DepartNow = {
             type = "boolean",
@@ -1131,6 +1155,9 @@ M.CalculateRouteInput = {
         TruckModeOptions = M.CalculateRouteTruckModeOptions,
         ArrivalTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         OptimizeFor = {
             type = "string",
@@ -1311,6 +1338,9 @@ M.CalculateRouteMatrixInput = {
         },
         DepartureTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         DepartNow = {
             type = "boolean",
@@ -1630,6 +1660,7 @@ M.CreateGeofenceCollectionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1699,6 +1730,7 @@ M.CreateMapOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1767,6 +1799,7 @@ M.CreatePlaceIndexOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1820,6 +1853,7 @@ M.CreateRouteCalculatorOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1888,6 +1922,7 @@ M.CreateTrackerOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2030,12 +2065,14 @@ M.DescribeGeofenceCollectionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         GeofenceCount = {
@@ -2099,12 +2136,14 @@ M.DescribeMapOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2151,12 +2190,14 @@ M.DescribePlaceIndexOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         DataSource = {
@@ -2217,12 +2258,14 @@ M.DescribeRouteCalculatorOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         DataSource = {
@@ -2288,12 +2331,14 @@ M.DescribeTrackerOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         KmsKeyId = {
@@ -2342,6 +2387,7 @@ M.DeviceState = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Position = {
@@ -2429,6 +2475,9 @@ M.ForecastedEvent = {
         },
         ForecastedBreachTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         GeofenceProperties = {
             type = "map",
@@ -2637,12 +2686,14 @@ M.GetGeofenceOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         GeofenceProperties = {
@@ -2693,12 +2744,14 @@ M.ListGeofenceCollectionsResponseEntry = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2764,12 +2817,14 @@ M.ListGeofenceResponseEntry = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         GeofenceProperties = {
@@ -2837,12 +2892,14 @@ M.PutGeofenceOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2889,6 +2946,7 @@ M.UpdateGeofenceCollectionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2924,12 +2982,14 @@ M.GetDevicePositionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         ReceivedTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Position = {
@@ -2970,9 +3030,15 @@ M.GetDevicePositionHistoryInput = {
         },
         StartTimeInclusive = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         EndTimeExclusive = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         MaxResults = {
             type = "integer",
@@ -3117,10 +3183,14 @@ M.GetJobOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         EndedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Error = M.JobError,
         ExecutionRoleArn = {
@@ -3160,6 +3230,7 @@ M.GetJobOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Tags = {
@@ -3566,6 +3637,7 @@ M.ListJobsResponseEntry = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         ExecutionRoleArn = {
@@ -3576,6 +3648,9 @@ M.ListJobsResponseEntry = {
         },
         EndedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Error = M.JobError,
         InputOptions = setmetatable({ traits = {
@@ -3609,6 +3684,7 @@ M.ListJobsResponseEntry = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -3635,6 +3711,9 @@ M.StartJobInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Action = {
             type = "string",
@@ -3673,6 +3752,7 @@ M.StartJobOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         JobArn = {
@@ -3742,6 +3822,7 @@ M.ListDevicePositionsResponseEntry = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Position = {
@@ -3819,12 +3900,14 @@ M.ListMapsResponseEntry = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -3889,12 +3972,14 @@ M.ListPlaceIndexesResponseEntry = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -3959,12 +4044,14 @@ M.ListRouteCalculatorsResponseEntry = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -4064,12 +4151,14 @@ M.ListTrackersResponseEntry = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -4143,6 +4232,7 @@ M.UpdateMapOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -4532,6 +4622,7 @@ M.UpdatePlaceIndexOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -4575,6 +4666,7 @@ M.UpdateRouteCalculatorOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -4630,6 +4722,7 @@ M.UpdateTrackerOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -4670,12 +4763,14 @@ M.VerifyDevicePositionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         ReceivedTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         DistanceUnit = {

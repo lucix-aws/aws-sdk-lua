@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "TNB"
-    cfg.signing_name = "tnb"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "tnb", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:cancelSolNetworkOperation(input, options)
         output_schema = types.CancelSolNetworkOperationOutput,
         http_method = "POST",
         http_path = "/sol/nslcm/v1/ns_lcm_op_occs/{nsLcmOpOccId}/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createSolFunctionPackage(input, options)
         output_schema = types.CreateSolFunctionPackageOutput,
         http_method = "POST",
         http_path = "/sol/vnfpkgm/v1/vnf_packages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createSolNetworkInstance(input, options)
         output_schema = types.CreateSolNetworkInstanceOutput,
         http_method = "POST",
         http_path = "/sol/nslcm/v1/ns_instances",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createSolNetworkPackage(input, options)
         output_schema = types.CreateSolNetworkPackageOutput,
         http_method = "POST",
         http_path = "/sol/nsd/v1/ns_descriptors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteSolFunctionPackage(input, options)
         output_schema = types.DeleteSolFunctionPackageOutput,
         http_method = "DELETE",
         http_path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteSolNetworkInstance(input, options)
         output_schema = types.DeleteSolNetworkInstanceOutput,
         http_method = "DELETE",
         http_path = "/sol/nslcm/v1/ns_instances/{nsInstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteSolNetworkPackage(input, options)
         output_schema = types.DeleteSolNetworkPackageOutput,
         http_method = "DELETE",
         http_path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:getSolFunctionInstance(input, options)
         output_schema = types.GetSolFunctionInstanceOutput,
         http_method = "GET",
         http_path = "/sol/vnflcm/v1/vnf_instances/{vnfInstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getSolFunctionPackage(input, options)
         output_schema = types.GetSolFunctionPackageOutput,
         http_method = "GET",
         http_path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:getSolFunctionPackageContent(input, options)
         output_schema = types.GetSolFunctionPackageContentOutput,
         http_method = "GET",
         http_path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}/package_content",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getSolFunctionPackageDescriptor(input, options)
         output_schema = types.GetSolFunctionPackageDescriptorOutput,
         http_method = "GET",
         http_path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}/vnfd",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getSolNetworkInstance(input, options)
         output_schema = types.GetSolNetworkInstanceOutput,
         http_method = "GET",
         http_path = "/sol/nslcm/v1/ns_instances/{nsInstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getSolNetworkOperation(input, options)
         output_schema = types.GetSolNetworkOperationOutput,
         http_method = "GET",
         http_path = "/sol/nslcm/v1/ns_lcm_op_occs/{nsLcmOpOccId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getSolNetworkPackage(input, options)
         output_schema = types.GetSolNetworkPackageOutput,
         http_method = "GET",
         http_path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getSolNetworkPackageContent(input, options)
         output_schema = types.GetSolNetworkPackageContentOutput,
         http_method = "GET",
         http_path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}/nsd_content",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getSolNetworkPackageDescriptor(input, options)
         output_schema = types.GetSolNetworkPackageDescriptorOutput,
         http_method = "GET",
         http_path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}/nsd",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:instantiateSolNetworkInstance(input, options)
         output_schema = types.InstantiateSolNetworkInstanceOutput,
         http_method = "POST",
         http_path = "/sol/nslcm/v1/ns_instances/{nsInstanceId}/instantiate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listSolFunctionInstances(input, options)
         output_schema = types.ListSolFunctionInstancesOutput,
         http_method = "GET",
         http_path = "/sol/vnflcm/v1/vnf_instances",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listSolFunctionPackages(input, options)
         output_schema = types.ListSolFunctionPackagesOutput,
         http_method = "GET",
         http_path = "/sol/vnfpkgm/v1/vnf_packages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listSolNetworkInstances(input, options)
         output_schema = types.ListSolNetworkInstancesOutput,
         http_method = "GET",
         http_path = "/sol/nslcm/v1/ns_instances",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listSolNetworkOperations(input, options)
         output_schema = types.ListSolNetworkOperationsOutput,
         http_method = "GET",
         http_path = "/sol/nslcm/v1/ns_lcm_op_occs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listSolNetworkPackages(input, options)
         output_schema = types.ListSolNetworkPackagesOutput,
         http_method = "GET",
         http_path = "/sol/nsd/v1/ns_descriptors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:putSolFunctionPackageContent(input, options)
         output_schema = types.PutSolFunctionPackageContentOutput,
         http_method = "PUT",
         http_path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}/package_content",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:putSolNetworkPackageContent(input, options)
         output_schema = types.PutSolNetworkPackageContentOutput,
         http_method = "PUT",
         http_path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}/nsd_content",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:terminateSolNetworkInstance(input, options)
         output_schema = types.TerminateSolNetworkInstanceOutput,
         http_method = "POST",
         http_path = "/sol/nslcm/v1/ns_instances/{nsInstanceId}/terminate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:updateSolFunctionPackage(input, options)
         output_schema = types.UpdateSolFunctionPackageOutput,
         http_method = "PATCH",
         http_path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:updateSolNetworkInstance(input, options)
         output_schema = types.UpdateSolNetworkInstanceOutput,
         http_method = "POST",
         http_path = "/sol/nslcm/v1/ns_instances/{nsInstanceId}/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:updateSolNetworkPackage(input, options)
         output_schema = types.UpdateSolNetworkPackageOutput,
         http_method = "PATCH",
         http_path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:validateSolFunctionPackageContent(input, options)
         output_schema = types.ValidateSolFunctionPackageContentOutput,
         http_method = "PUT",
         http_path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}/package_content/validate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:validateSolNetworkPackageContent(input, options)
         output_schema = types.ValidateSolNetworkPackageContentOutput,
         http_method = "PUT",
         http_path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}/nsd_content/validate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

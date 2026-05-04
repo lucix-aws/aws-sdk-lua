@@ -708,6 +708,9 @@ M.CreateMediaCapturePipelineInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ChimeSdkMeetingConfiguration = M.ChimeSdkMeetingConfiguration,
         SseAwsKeyManagementParams = M.SseAwsKeyManagementParams,
@@ -757,9 +760,15 @@ M.MediaCapturePipeline = {
         },
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ChimeSdkMeetingConfiguration = M.ChimeSdkMeetingConfiguration,
         SseAwsKeyManagementParams = M.SseAwsKeyManagementParams,
@@ -965,6 +974,9 @@ M.CreateMediaConcatenationPipelineInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",
@@ -995,9 +1007,15 @@ M.MediaConcatenationPipeline = {
         },
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1181,6 +1199,9 @@ M.CreateMediaInsightsPipelineInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1245,6 +1266,9 @@ M.MediaInsightsPipeline = {
         S3RecordingSinkRuntimeConfiguration = M.S3RecordingSinkRuntimeConfiguration,
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ElementStatuses = {
             type = "list",
@@ -1507,6 +1531,9 @@ M.CreateMediaInsightsPipelineConfigurationInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1533,9 +1560,15 @@ M.MediaInsightsPipelineConfiguration = {
         },
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1647,6 +1680,9 @@ M.CreateMediaLiveConnectorPipelineInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",
@@ -1677,9 +1713,15 @@ M.MediaLiveConnectorPipeline = {
         },
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1736,6 +1778,9 @@ M.CreateMediaPipelineKinesisVideoStreamPoolInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",
@@ -1773,9 +1818,15 @@ M.KinesisVideoStreamPoolConfiguration = {
         StreamConfiguration = M.KinesisVideoStreamConfiguration,
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1863,6 +1914,9 @@ M.CreateMediaStreamPipelineInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",
@@ -1882,9 +1936,15 @@ M.MediaStreamPipeline = {
         },
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Status = {
             type = "string",
@@ -2106,9 +2166,15 @@ M.SpeakerSearchTask = {
         },
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2151,9 +2217,15 @@ M.VoiceToneAnalysisTask = {
         },
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2407,6 +2479,9 @@ M.StartSpeakerSearchTaskInput = {
         KinesisVideoStreamSourceTaskConfiguration = M.KinesisVideoStreamSourceTaskConfiguration,
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2441,6 +2516,9 @@ M.StartVoiceToneAnalysisTaskInput = {
         KinesisVideoStreamSourceTaskConfiguration = M.KinesisVideoStreamSourceTaskConfiguration,
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

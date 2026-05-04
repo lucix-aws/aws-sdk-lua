@@ -849,6 +849,9 @@ M.AssociateApprovedOriginInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -923,6 +926,9 @@ M.AssociateBotInput = {
         LexV2Bot = M.LexV2Bot,
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1056,6 +1062,9 @@ M.AssociateEmailAddressAliasInput = {
         } }, { __index = M.AliasConfiguration }),
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1317,6 +1326,9 @@ M.AssociateInstanceStorageConfigInput = {
         } }, { __index = M.InstanceStorageConfig }),
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1348,6 +1360,9 @@ M.AssociateLambdaFunctionInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1371,6 +1386,9 @@ M.AssociateLexBotInput = {
         } }, { __index = M.LexBot }),
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1446,6 +1464,9 @@ M.AssociateQueueEmailAddressesInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1584,6 +1605,9 @@ M.AssociateSecurityKeyInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2621,6 +2645,9 @@ M.BatchPutContactInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         InstanceId = {
             type = "string",
@@ -2813,6 +2840,9 @@ M.ClaimPhoneNumberInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3123,6 +3153,9 @@ M.CreateContactFlowModuleInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Settings = {
             type = "string",
@@ -4400,6 +4433,9 @@ M.CreateInstanceInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         IdentityManagementType = {
             type = "string",
@@ -4580,6 +4616,9 @@ M.CreateNotificationInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -4640,6 +4679,9 @@ M.CreateParticipantInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ParticipantDetails = setmetatable({ traits = {
             required = true,
@@ -4853,6 +4895,9 @@ M.CreatePushNotificationRegistrationInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         PinpointAppArn = {
             type = "string",
@@ -5533,6 +5578,9 @@ M.CreateRuleInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -5832,6 +5880,9 @@ M.CreateTaskTemplateInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -6050,6 +6101,9 @@ M.CreateTrafficDistributionGroupInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "map",
@@ -6595,6 +6649,9 @@ M.CreateVocabularyInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         InstanceId = {
             type = "string",
@@ -7335,6 +7392,7 @@ M.DeleteInstanceInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -11378,6 +11436,7 @@ M.DisassociateApprovedOriginInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -11401,6 +11460,9 @@ M.DisassociateBotInput = {
         LexV2Bot = M.LexV2Bot,
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -11431,6 +11493,9 @@ M.DisassociateEmailAddressAliasInput = {
         } }, { __index = M.AliasConfiguration }),
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -11529,6 +11594,7 @@ M.DisassociateInstanceStorageConfigInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -11559,6 +11625,7 @@ M.DisassociateLambdaFunctionInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -11596,6 +11663,7 @@ M.DisassociateLexBotInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -11655,6 +11723,9 @@ M.DisassociateQueueEmailAddressesInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -11747,6 +11818,7 @@ M.DisassociateSecurityKeyInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -13445,6 +13517,9 @@ M.ImportPhoneNumberInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -16343,6 +16418,9 @@ M.RealTimeContactAnalysisTimeData = {
     members = {
         AbsoluteTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -18372,6 +18450,9 @@ M.MonitorContactInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -18457,6 +18538,7 @@ M.ReleasePhoneNumberInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -18484,6 +18566,9 @@ M.ReplicateInstanceInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ReplicaAlias = {
             type = "string",
@@ -20594,6 +20679,9 @@ M.SendOutboundEmailInput = {
         SourceCampaign = M.SourceCampaign,
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -20607,6 +20695,9 @@ M.StartAttachedFileUploadInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         InstanceId = {
             type = "string",
@@ -20793,6 +20884,9 @@ M.StartContactEvaluationInput = {
         AutoEvaluationConfiguration = M.AutoEvaluationConfiguration,
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "map",
@@ -20921,6 +21015,7 @@ M.StartContactStreamingInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -21068,6 +21163,9 @@ M.StartOutboundEmailContactInput = {
         } }, { __index = M.OutboundEmailContent }),
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -21156,6 +21254,9 @@ M.StartOutboundVoiceContactInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         SourcePhoneNumber = {
             type = "string",
@@ -21196,6 +21297,9 @@ M.StartScreenSharingInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         InstanceId = {
             type = "string",
@@ -21262,6 +21366,9 @@ M.StartTestCaseExecutionInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -21291,6 +21398,9 @@ M.StartWebRTCContactInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ContactFlowId = {
             type = "string",
@@ -21557,6 +21667,9 @@ M.StopTestCaseExecutionInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -21745,6 +21858,9 @@ M.TransferContactInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -22627,6 +22743,9 @@ M.UpdateInstanceAttributeInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -22664,6 +22783,9 @@ M.UpdateInstanceStorageConfigInput = {
         } }, { __index = M.InstanceStorageConfig }),
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -22847,6 +22969,9 @@ M.UpdatePhoneNumberInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -22878,6 +23003,9 @@ M.UpdatePhoneNumberMetadataInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -25109,6 +25237,9 @@ M.CreateContactInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         RelatedContactId = {
             type = "string",
@@ -25186,6 +25317,9 @@ M.StartChatContactInput = {
         InitialMessage = M.ChatMessage,
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ChatDurationInMinutes = {
             type = "integer",
@@ -25268,6 +25402,9 @@ M.StartEmailContactInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -25321,6 +25458,9 @@ M.StartOutboundChatContactInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -25361,6 +25501,9 @@ M.StartTaskContactInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ScheduledTime = {
             type = "timestamp",
@@ -25524,6 +25667,9 @@ M.CreateEvaluationFormInput = {
         AutoEvaluationConfiguration = M.EvaluationFormAutoEvaluationConfiguration,
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         AsDraft = {
             type = "boolean",
@@ -25760,6 +25906,9 @@ M.UpdateEvaluationFormInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         TargetConfiguration = M.EvaluationFormTargetConfiguration,
         LanguageConfiguration = M.EvaluationFormLanguageConfiguration,

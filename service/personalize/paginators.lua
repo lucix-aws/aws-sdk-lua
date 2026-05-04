@@ -1,0 +1,293 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listBatchInferenceJobs.
+function M.pages_list_batch_inference_jobs(client, input)
+    return paginator.pages(client, "listBatchInferenceJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "batchInferenceJobs",
+    })
+end
+
+--- Returns an item iterator for listBatchInferenceJobs.
+function M.items_list_batch_inference_jobs(client, input)
+    return paginator.items(client, "listBatchInferenceJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "batchInferenceJobs",
+    })
+end
+
+--- Returns a page iterator for listBatchSegmentJobs.
+function M.pages_list_batch_segment_jobs(client, input)
+    return paginator.pages(client, "listBatchSegmentJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "batchSegmentJobs",
+    })
+end
+
+--- Returns an item iterator for listBatchSegmentJobs.
+function M.items_list_batch_segment_jobs(client, input)
+    return paginator.items(client, "listBatchSegmentJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "batchSegmentJobs",
+    })
+end
+
+--- Returns a page iterator for listCampaigns.
+function M.pages_list_campaigns(client, input)
+    return paginator.pages(client, "listCampaigns", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "campaigns",
+    })
+end
+
+--- Returns an item iterator for listCampaigns.
+function M.items_list_campaigns(client, input)
+    return paginator.items(client, "listCampaigns", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "campaigns",
+    })
+end
+
+--- Returns a page iterator for listDatasetExportJobs.
+function M.pages_list_dataset_export_jobs(client, input)
+    return paginator.pages(client, "listDatasetExportJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "datasetExportJobs",
+    })
+end
+
+--- Returns an item iterator for listDatasetExportJobs.
+function M.items_list_dataset_export_jobs(client, input)
+    return paginator.items(client, "listDatasetExportJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "datasetExportJobs",
+    })
+end
+
+--- Returns a page iterator for listDatasetGroups.
+function M.pages_list_dataset_groups(client, input)
+    return paginator.pages(client, "listDatasetGroups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "datasetGroups",
+    })
+end
+
+--- Returns an item iterator for listDatasetGroups.
+function M.items_list_dataset_groups(client, input)
+    return paginator.items(client, "listDatasetGroups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "datasetGroups",
+    })
+end
+
+--- Returns a page iterator for listDatasetImportJobs.
+function M.pages_list_dataset_import_jobs(client, input)
+    return paginator.pages(client, "listDatasetImportJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "datasetImportJobs",
+    })
+end
+
+--- Returns an item iterator for listDatasetImportJobs.
+function M.items_list_dataset_import_jobs(client, input)
+    return paginator.items(client, "listDatasetImportJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "datasetImportJobs",
+    })
+end
+
+--- Returns a page iterator for listDatasets.
+function M.pages_list_datasets(client, input)
+    return paginator.pages(client, "listDatasets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "datasets",
+    })
+end
+
+--- Returns an item iterator for listDatasets.
+function M.items_list_datasets(client, input)
+    return paginator.items(client, "listDatasets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "datasets",
+    })
+end
+
+--- Returns a page iterator for listEventTrackers.
+function M.pages_list_event_trackers(client, input)
+    return paginator.pages(client, "listEventTrackers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "eventTrackers",
+    })
+end
+
+--- Returns an item iterator for listEventTrackers.
+function M.items_list_event_trackers(client, input)
+    return paginator.items(client, "listEventTrackers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "eventTrackers",
+    })
+end
+
+--- Returns a page iterator for listFilters.
+function M.pages_list_filters(client, input)
+    return paginator.pages(client, "listFilters", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "Filters",
+    })
+end
+
+--- Returns an item iterator for listFilters.
+function M.items_list_filters(client, input)
+    return paginator.items(client, "listFilters", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "Filters",
+    })
+end
+
+--- Returns a page iterator for listMetricAttributionMetrics.
+function M.pages_list_metric_attribution_metrics(client, input)
+    return paginator.pages(client, "listMetricAttributionMetrics", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "metrics",
+    })
+end
+
+--- Returns an item iterator for listMetricAttributionMetrics.
+function M.items_list_metric_attribution_metrics(client, input)
+    return paginator.items(client, "listMetricAttributionMetrics", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "metrics",
+    })
+end
+
+--- Returns a page iterator for listMetricAttributions.
+function M.pages_list_metric_attributions(client, input)
+    return paginator.pages(client, "listMetricAttributions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "metricAttributions",
+    })
+end
+
+--- Returns an item iterator for listMetricAttributions.
+function M.items_list_metric_attributions(client, input)
+    return paginator.items(client, "listMetricAttributions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "metricAttributions",
+    })
+end
+
+--- Returns a page iterator for listRecipes.
+function M.pages_list_recipes(client, input)
+    return paginator.pages(client, "listRecipes", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "recipes",
+    })
+end
+
+--- Returns an item iterator for listRecipes.
+function M.items_list_recipes(client, input)
+    return paginator.items(client, "listRecipes", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "recipes",
+    })
+end
+
+--- Returns a page iterator for listRecommenders.
+function M.pages_list_recommenders(client, input)
+    return paginator.pages(client, "listRecommenders", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "recommenders",
+    })
+end
+
+--- Returns an item iterator for listRecommenders.
+function M.items_list_recommenders(client, input)
+    return paginator.items(client, "listRecommenders", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "recommenders",
+    })
+end
+
+--- Returns a page iterator for listSchemas.
+function M.pages_list_schemas(client, input)
+    return paginator.pages(client, "listSchemas", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "schemas",
+    })
+end
+
+--- Returns an item iterator for listSchemas.
+function M.items_list_schemas(client, input)
+    return paginator.items(client, "listSchemas", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "schemas",
+    })
+end
+
+--- Returns a page iterator for listSolutionVersions.
+function M.pages_list_solution_versions(client, input)
+    return paginator.pages(client, "listSolutionVersions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "solutionVersions",
+    })
+end
+
+--- Returns an item iterator for listSolutionVersions.
+function M.items_list_solution_versions(client, input)
+    return paginator.items(client, "listSolutionVersions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "solutionVersions",
+    })
+end
+
+--- Returns a page iterator for listSolutions.
+function M.pages_list_solutions(client, input)
+    return paginator.pages(client, "listSolutions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "solutions",
+    })
+end
+
+--- Returns an item iterator for listSolutions.
+function M.items_list_solutions(client, input)
+    return paginator.items(client, "listSolutions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "solutions",
+    })
+end
+
+return M

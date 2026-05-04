@@ -400,6 +400,7 @@ M.CreateScheduledReportInput = {
             type = "string",
             traits = {
                 http_header = "X-Amzn-Client-Token",
+                idempotency_token = true,
             },
         },
     },
@@ -491,6 +492,7 @@ M.ExecuteScheduledReportInput = {
             type = "string",
             traits = {
                 http_header = "X-Amzn-Client-Token",
+                idempotency_token = true,
             },
         },
         dryRun = {

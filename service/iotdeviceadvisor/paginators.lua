@@ -1,0 +1,21 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listSuiteDefinitions.
+function M.pages_list_suite_definitions(client, input)
+    return paginator.pages(client, "listSuiteDefinitions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for listSuiteRuns.
+function M.pages_list_suite_runs(client, input)
+    return paginator.pages(client, "listSuiteRuns", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+return M

@@ -1,0 +1,10 @@
+local record M
+    pages_list_supplemental_tax_registrations: function(client: table, input: table): function(): table, table
+    items_list_supplemental_tax_registrations: function(client: table, input: table): function(): any
+    pages_list_tax_exemptions: function(client: table, input: table): function(): table, table
+    items_list_tax_exemptions: function(client: table, input: table): function(): any
+    pages_list_tax_registrations: function(client: table, input: table): function(): table, table
+    items_list_tax_registrations: function(client: table, input: table): function(): any
+end
+
+return M

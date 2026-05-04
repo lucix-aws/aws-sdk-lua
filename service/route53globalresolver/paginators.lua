@@ -1,0 +1,167 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listAccessSources.
+function M.pages_list_access_sources(client, input)
+    return paginator.pages(client, "listAccessSources", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "accessSources",
+    })
+end
+
+--- Returns an item iterator for listAccessSources.
+function M.items_list_access_sources(client, input)
+    return paginator.items(client, "listAccessSources", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "accessSources",
+    })
+end
+
+--- Returns a page iterator for listAccessTokens.
+function M.pages_list_access_tokens(client, input)
+    return paginator.pages(client, "listAccessTokens", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "accessTokens",
+    })
+end
+
+--- Returns an item iterator for listAccessTokens.
+function M.items_list_access_tokens(client, input)
+    return paginator.items(client, "listAccessTokens", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "accessTokens",
+    })
+end
+
+--- Returns a page iterator for listDNSViews.
+function M.pages_list_d_n_s_views(client, input)
+    return paginator.pages(client, "listDNSViews", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "dnsViews",
+    })
+end
+
+--- Returns an item iterator for listDNSViews.
+function M.items_list_d_n_s_views(client, input)
+    return paginator.items(client, "listDNSViews", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "dnsViews",
+    })
+end
+
+--- Returns a page iterator for listFirewallDomainLists.
+function M.pages_list_firewall_domain_lists(client, input)
+    return paginator.pages(client, "listFirewallDomainLists", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "firewallDomainLists",
+    })
+end
+
+--- Returns an item iterator for listFirewallDomainLists.
+function M.items_list_firewall_domain_lists(client, input)
+    return paginator.items(client, "listFirewallDomainLists", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "firewallDomainLists",
+    })
+end
+
+--- Returns a page iterator for listFirewallDomains.
+function M.pages_list_firewall_domains(client, input)
+    return paginator.pages(client, "listFirewallDomains", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "domains",
+    })
+end
+
+--- Returns an item iterator for listFirewallDomains.
+function M.items_list_firewall_domains(client, input)
+    return paginator.items(client, "listFirewallDomains", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "domains",
+    })
+end
+
+--- Returns a page iterator for listFirewallRules.
+function M.pages_list_firewall_rules(client, input)
+    return paginator.pages(client, "listFirewallRules", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "firewallRules",
+    })
+end
+
+--- Returns an item iterator for listFirewallRules.
+function M.items_list_firewall_rules(client, input)
+    return paginator.items(client, "listFirewallRules", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "firewallRules",
+    })
+end
+
+--- Returns a page iterator for listGlobalResolvers.
+function M.pages_list_global_resolvers(client, input)
+    return paginator.pages(client, "listGlobalResolvers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "globalResolvers",
+    })
+end
+
+--- Returns an item iterator for listGlobalResolvers.
+function M.items_list_global_resolvers(client, input)
+    return paginator.items(client, "listGlobalResolvers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "globalResolvers",
+    })
+end
+
+--- Returns a page iterator for listHostedZoneAssociations.
+function M.pages_list_hosted_zone_associations(client, input)
+    return paginator.pages(client, "listHostedZoneAssociations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "hostedZoneAssociations",
+    })
+end
+
+--- Returns an item iterator for listHostedZoneAssociations.
+function M.items_list_hosted_zone_associations(client, input)
+    return paginator.items(client, "listHostedZoneAssociations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "hostedZoneAssociations",
+    })
+end
+
+--- Returns a page iterator for listManagedFirewallDomainLists.
+function M.pages_list_managed_firewall_domain_lists(client, input)
+    return paginator.pages(client, "listManagedFirewallDomainLists", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "managedFirewallDomainLists",
+    })
+end
+
+--- Returns an item iterator for listManagedFirewallDomainLists.
+function M.items_list_managed_firewall_domain_lists(client, input)
+    return paginator.items(client, "listManagedFirewallDomainLists", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "managedFirewallDomainLists",
+    })
+end
+
+return M

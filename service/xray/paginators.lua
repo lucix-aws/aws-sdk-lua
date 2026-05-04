@@ -1,0 +1,201 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for batchGetTraces.
+function M.pages_batch_get_traces(client, input)
+    return paginator.pages(client, "batchGetTraces", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Traces",
+    })
+end
+
+--- Returns an item iterator for batchGetTraces.
+function M.items_batch_get_traces(client, input)
+    return paginator.items(client, "batchGetTraces", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Traces",
+    })
+end
+
+--- Returns a page iterator for getGroups.
+function M.pages_get_groups(client, input)
+    return paginator.pages(client, "getGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Groups",
+    })
+end
+
+--- Returns an item iterator for getGroups.
+function M.items_get_groups(client, input)
+    return paginator.items(client, "getGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Groups",
+    })
+end
+
+--- Returns a page iterator for getInsightEvents.
+function M.pages_get_insight_events(client, input)
+    return paginator.pages(client, "getInsightEvents", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for getInsightSummaries.
+function M.pages_get_insight_summaries(client, input)
+    return paginator.pages(client, "getInsightSummaries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for getSamplingRules.
+function M.pages_get_sampling_rules(client, input)
+    return paginator.pages(client, "getSamplingRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SamplingRuleRecords",
+    })
+end
+
+--- Returns an item iterator for getSamplingRules.
+function M.items_get_sampling_rules(client, input)
+    return paginator.items(client, "getSamplingRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SamplingRuleRecords",
+    })
+end
+
+--- Returns a page iterator for getSamplingStatisticSummaries.
+function M.pages_get_sampling_statistic_summaries(client, input)
+    return paginator.pages(client, "getSamplingStatisticSummaries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SamplingStatisticSummaries",
+    })
+end
+
+--- Returns an item iterator for getSamplingStatisticSummaries.
+function M.items_get_sampling_statistic_summaries(client, input)
+    return paginator.items(client, "getSamplingStatisticSummaries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SamplingStatisticSummaries",
+    })
+end
+
+--- Returns a page iterator for getServiceGraph.
+function M.pages_get_service_graph(client, input)
+    return paginator.pages(client, "getServiceGraph", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Services",
+    })
+end
+
+--- Returns an item iterator for getServiceGraph.
+function M.items_get_service_graph(client, input)
+    return paginator.items(client, "getServiceGraph", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Services",
+    })
+end
+
+--- Returns a page iterator for getTimeSeriesServiceStatistics.
+function M.pages_get_time_series_service_statistics(client, input)
+    return paginator.pages(client, "getTimeSeriesServiceStatistics", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TimeSeriesServiceStatistics",
+    })
+end
+
+--- Returns an item iterator for getTimeSeriesServiceStatistics.
+function M.items_get_time_series_service_statistics(client, input)
+    return paginator.items(client, "getTimeSeriesServiceStatistics", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TimeSeriesServiceStatistics",
+    })
+end
+
+--- Returns a page iterator for getTraceGraph.
+function M.pages_get_trace_graph(client, input)
+    return paginator.pages(client, "getTraceGraph", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Services",
+    })
+end
+
+--- Returns an item iterator for getTraceGraph.
+function M.items_get_trace_graph(client, input)
+    return paginator.items(client, "getTraceGraph", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Services",
+    })
+end
+
+--- Returns a page iterator for getTraceSummaries.
+function M.pages_get_trace_summaries(client, input)
+    return paginator.pages(client, "getTraceSummaries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TraceSummaries",
+    })
+end
+
+--- Returns an item iterator for getTraceSummaries.
+function M.items_get_trace_summaries(client, input)
+    return paginator.items(client, "getTraceSummaries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TraceSummaries",
+    })
+end
+
+--- Returns a page iterator for listResourcePolicies.
+function M.pages_list_resource_policies(client, input)
+    return paginator.pages(client, "listResourcePolicies", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResourcePolicies",
+    })
+end
+
+--- Returns an item iterator for listResourcePolicies.
+function M.items_list_resource_policies(client, input)
+    return paginator.items(client, "listResourcePolicies", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResourcePolicies",
+    })
+end
+
+--- Returns a page iterator for listTagsForResource.
+function M.pages_list_tags_for_resource(client, input)
+    return paginator.pages(client, "listTagsForResource", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Tags",
+    })
+end
+
+--- Returns an item iterator for listTagsForResource.
+function M.items_list_tags_for_resource(client, input)
+    return paginator.items(client, "listTagsForResource", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Tags",
+    })
+end
+
+return M

@@ -1,0 +1,257 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listCustomDomainAssociations.
+function M.pages_list_custom_domain_associations(client, input)
+    return paginator.pages(client, "listCustomDomainAssociations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "associations",
+    })
+end
+
+--- Returns an item iterator for listCustomDomainAssociations.
+function M.items_list_custom_domain_associations(client, input)
+    return paginator.items(client, "listCustomDomainAssociations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "associations",
+    })
+end
+
+--- Returns a page iterator for listEndpointAccess.
+function M.pages_list_endpoint_access(client, input)
+    return paginator.pages(client, "listEndpointAccess", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "endpoints",
+    })
+end
+
+--- Returns an item iterator for listEndpointAccess.
+function M.items_list_endpoint_access(client, input)
+    return paginator.items(client, "listEndpointAccess", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "endpoints",
+    })
+end
+
+--- Returns a page iterator for listManagedWorkgroups.
+function M.pages_list_managed_workgroups(client, input)
+    return paginator.pages(client, "listManagedWorkgroups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "managedWorkgroups",
+    })
+end
+
+--- Returns an item iterator for listManagedWorkgroups.
+function M.items_list_managed_workgroups(client, input)
+    return paginator.items(client, "listManagedWorkgroups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "managedWorkgroups",
+    })
+end
+
+--- Returns a page iterator for listNamespaces.
+function M.pages_list_namespaces(client, input)
+    return paginator.pages(client, "listNamespaces", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "namespaces",
+    })
+end
+
+--- Returns an item iterator for listNamespaces.
+function M.items_list_namespaces(client, input)
+    return paginator.items(client, "listNamespaces", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "namespaces",
+    })
+end
+
+--- Returns a page iterator for listRecoveryPoints.
+function M.pages_list_recovery_points(client, input)
+    return paginator.pages(client, "listRecoveryPoints", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "recoveryPoints",
+    })
+end
+
+--- Returns an item iterator for listRecoveryPoints.
+function M.items_list_recovery_points(client, input)
+    return paginator.items(client, "listRecoveryPoints", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "recoveryPoints",
+    })
+end
+
+--- Returns a page iterator for listReservationOfferings.
+function M.pages_list_reservation_offerings(client, input)
+    return paginator.pages(client, "listReservationOfferings", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "reservationOfferingsList",
+    })
+end
+
+--- Returns an item iterator for listReservationOfferings.
+function M.items_list_reservation_offerings(client, input)
+    return paginator.items(client, "listReservationOfferings", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "reservationOfferingsList",
+    })
+end
+
+--- Returns a page iterator for listReservations.
+function M.pages_list_reservations(client, input)
+    return paginator.pages(client, "listReservations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "reservationsList",
+    })
+end
+
+--- Returns an item iterator for listReservations.
+function M.items_list_reservations(client, input)
+    return paginator.items(client, "listReservations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "reservationsList",
+    })
+end
+
+--- Returns a page iterator for listScheduledActions.
+function M.pages_list_scheduled_actions(client, input)
+    return paginator.pages(client, "listScheduledActions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "scheduledActions",
+    })
+end
+
+--- Returns an item iterator for listScheduledActions.
+function M.items_list_scheduled_actions(client, input)
+    return paginator.items(client, "listScheduledActions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "scheduledActions",
+    })
+end
+
+--- Returns a page iterator for listSnapshotCopyConfigurations.
+function M.pages_list_snapshot_copy_configurations(client, input)
+    return paginator.pages(client, "listSnapshotCopyConfigurations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "snapshotCopyConfigurations",
+    })
+end
+
+--- Returns an item iterator for listSnapshotCopyConfigurations.
+function M.items_list_snapshot_copy_configurations(client, input)
+    return paginator.items(client, "listSnapshotCopyConfigurations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "snapshotCopyConfigurations",
+    })
+end
+
+--- Returns a page iterator for listSnapshots.
+function M.pages_list_snapshots(client, input)
+    return paginator.pages(client, "listSnapshots", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "snapshots",
+    })
+end
+
+--- Returns an item iterator for listSnapshots.
+function M.items_list_snapshots(client, input)
+    return paginator.items(client, "listSnapshots", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "snapshots",
+    })
+end
+
+--- Returns a page iterator for listTableRestoreStatus.
+function M.pages_list_table_restore_status(client, input)
+    return paginator.pages(client, "listTableRestoreStatus", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "tableRestoreStatuses",
+    })
+end
+
+--- Returns an item iterator for listTableRestoreStatus.
+function M.items_list_table_restore_status(client, input)
+    return paginator.items(client, "listTableRestoreStatus", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "tableRestoreStatuses",
+    })
+end
+
+--- Returns a page iterator for listTracks.
+function M.pages_list_tracks(client, input)
+    return paginator.pages(client, "listTracks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "tracks",
+    })
+end
+
+--- Returns an item iterator for listTracks.
+function M.items_list_tracks(client, input)
+    return paginator.items(client, "listTracks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "tracks",
+    })
+end
+
+--- Returns a page iterator for listUsageLimits.
+function M.pages_list_usage_limits(client, input)
+    return paginator.pages(client, "listUsageLimits", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "usageLimits",
+    })
+end
+
+--- Returns an item iterator for listUsageLimits.
+function M.items_list_usage_limits(client, input)
+    return paginator.items(client, "listUsageLimits", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "usageLimits",
+    })
+end
+
+--- Returns a page iterator for listWorkgroups.
+function M.pages_list_workgroups(client, input)
+    return paginator.pages(client, "listWorkgroups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "workgroups",
+    })
+end
+
+--- Returns an item iterator for listWorkgroups.
+function M.items_list_workgroups(client, input)
+    return paginator.items(client, "listWorkgroups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "workgroups",
+    })
+end
+
+return M

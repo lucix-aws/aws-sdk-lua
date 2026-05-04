@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "PcaConnectorAd"
-    cfg.signing_name = "pca-connector-ad"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "pca-connector-ad", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createConnector(input, options)
         output_schema = types.CreateConnectorOutput,
         http_method = "POST",
         http_path = "/connectors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createDirectoryRegistration(input, options)
         output_schema = types.CreateDirectoryRegistrationOutput,
         http_method = "POST",
         http_path = "/directoryRegistrations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createServicePrincipalName(input, options)
         output_schema = types.CreateServicePrincipalNameOutput,
         http_method = "POST",
         http_path = "/directoryRegistrations/{DirectoryRegistrationArn}/servicePrincipalNames/{ConnectorArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createTemplate(input, options)
         output_schema = types.CreateTemplateOutput,
         http_method = "POST",
         http_path = "/templates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createTemplateGroupAccessControlEntry(input, options)
         output_schema = types.CreateTemplateGroupAccessControlEntryOutput,
         http_method = "POST",
         http_path = "/templates/{TemplateArn}/accessControlEntries",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteConnector(input, options)
         output_schema = types.DeleteConnectorOutput,
         http_method = "DELETE",
         http_path = "/connectors/{ConnectorArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteDirectoryRegistration(input, options)
         output_schema = types.DeleteDirectoryRegistrationOutput,
         http_method = "DELETE",
         http_path = "/directoryRegistrations/{DirectoryRegistrationArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteServicePrincipalName(input, options)
         output_schema = types.DeleteServicePrincipalNameOutput,
         http_method = "DELETE",
         http_path = "/directoryRegistrations/{DirectoryRegistrationArn}/servicePrincipalNames/{ConnectorArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteTemplate(input, options)
         output_schema = types.DeleteTemplateOutput,
         http_method = "DELETE",
         http_path = "/templates/{TemplateArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteTemplateGroupAccessControlEntry(input, options)
         output_schema = types.DeleteTemplateGroupAccessControlEntryOutput,
         http_method = "DELETE",
         http_path = "/templates/{TemplateArn}/accessControlEntries/{GroupSecurityIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getConnector(input, options)
         output_schema = types.GetConnectorOutput,
         http_method = "GET",
         http_path = "/connectors/{ConnectorArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getDirectoryRegistration(input, options)
         output_schema = types.GetDirectoryRegistrationOutput,
         http_method = "GET",
         http_path = "/directoryRegistrations/{DirectoryRegistrationArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getServicePrincipalName(input, options)
         output_schema = types.GetServicePrincipalNameOutput,
         http_method = "GET",
         http_path = "/directoryRegistrations/{DirectoryRegistrationArn}/servicePrincipalNames/{ConnectorArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getTemplate(input, options)
         output_schema = types.GetTemplateOutput,
         http_method = "GET",
         http_path = "/templates/{TemplateArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getTemplateGroupAccessControlEntry(input, options)
         output_schema = types.GetTemplateGroupAccessControlEntryOutput,
         http_method = "GET",
         http_path = "/templates/{TemplateArn}/accessControlEntries/{GroupSecurityIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listConnectors(input, options)
         output_schema = types.ListConnectorsOutput,
         http_method = "GET",
         http_path = "/connectors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listDirectoryRegistrations(input, options)
         output_schema = types.ListDirectoryRegistrationsOutput,
         http_method = "GET",
         http_path = "/directoryRegistrations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listServicePrincipalNames(input, options)
         output_schema = types.ListServicePrincipalNamesOutput,
         http_method = "GET",
         http_path = "/directoryRegistrations/{DirectoryRegistrationArn}/servicePrincipalNames",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listTemplateGroupAccessControlEntries(input, options)
         output_schema = types.ListTemplateGroupAccessControlEntriesOutput,
         http_method = "GET",
         http_path = "/templates/{TemplateArn}/accessControlEntries",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listTemplates(input, options)
         output_schema = types.ListTemplatesOutput,
         http_method = "GET",
         http_path = "/templates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:updateTemplate(input, options)
         output_schema = types.UpdateTemplateOutput,
         http_method = "PATCH",
         http_path = "/templates/{TemplateArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:updateTemplateGroupAccessControlEntry(input, options)
         output_schema = types.UpdateTemplateGroupAccessControlEntryOutput,
         http_method = "PATCH",
         http_path = "/templates/{TemplateArn}/accessControlEntries/{GroupSecurityIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

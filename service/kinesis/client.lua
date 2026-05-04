@@ -16,16 +16,29 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "Kinesis_20131202"
-    cfg.signing_name = "kinesis"
     if not cfg.protocol then
-        cfg.protocol = awsjson_protocol.new({ version = "1.1", service_id = cfg.service_id })
+        cfg.protocol = awsjson_protocol.new("1.1")
     end
     if not cfg.endpoint_provider then
         cfg.endpoint_provider = function(params)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "kinesis", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:addTagsToStream(input, options)
         output_schema = types.AddTagsToStreamOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -54,6 +70,9 @@ function Client:createStream(input, options)
         output_schema = types.CreateStreamOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -64,6 +83,9 @@ function Client:decreaseStreamRetentionPeriod(input, options)
         output_schema = types.DecreaseStreamRetentionPeriodOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -78,6 +100,9 @@ function Client:deleteResourcePolicy(input, options)
         output_schema = types.DeleteResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceARN = "ResourceARN",
             StreamId = "StreamId",
@@ -92,6 +117,9 @@ function Client:deleteStream(input, options)
         output_schema = types.DeleteStreamOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -106,6 +134,9 @@ function Client:deregisterStreamConsumer(input, options)
         output_schema = types.DeregisterStreamConsumerOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ConsumerARN = "ConsumerARN",
             StreamARN = "StreamARN",
@@ -121,6 +152,9 @@ function Client:describeAccountSettings(input, options)
         output_schema = types.DescribeAccountSettingsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -131,6 +165,9 @@ function Client:describeLimits(input, options)
         output_schema = types.DescribeLimitsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -141,6 +178,9 @@ function Client:describeStream(input, options)
         output_schema = types.DescribeStreamOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -155,6 +195,9 @@ function Client:describeStreamConsumer(input, options)
         output_schema = types.DescribeStreamConsumerOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ConsumerARN = "ConsumerARN",
             StreamARN = "StreamARN",
@@ -170,6 +213,9 @@ function Client:describeStreamSummary(input, options)
         output_schema = types.DescribeStreamSummaryOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -184,6 +230,9 @@ function Client:disableEnhancedMonitoring(input, options)
         output_schema = types.DisableEnhancedMonitoringOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -198,6 +247,9 @@ function Client:enableEnhancedMonitoring(input, options)
         output_schema = types.EnableEnhancedMonitoringOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -212,6 +264,9 @@ function Client:getRecords(input, options)
         output_schema = types.GetRecordsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -226,6 +281,9 @@ function Client:getResourcePolicy(input, options)
         output_schema = types.GetResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceARN = "ResourceARN",
             StreamId = "StreamId",
@@ -240,6 +298,9 @@ function Client:getShardIterator(input, options)
         output_schema = types.GetShardIteratorOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -254,6 +315,9 @@ function Client:increaseStreamRetentionPeriod(input, options)
         output_schema = types.IncreaseStreamRetentionPeriodOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -268,6 +332,9 @@ function Client:listShards(input, options)
         output_schema = types.ListShardsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -282,6 +349,9 @@ function Client:listStreamConsumers(input, options)
         output_schema = types.ListStreamConsumersOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -296,6 +366,9 @@ function Client:listStreams(input, options)
         output_schema = types.ListStreamsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -306,6 +379,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceARN = "ResourceARN",
             StreamId = "StreamId",
@@ -320,6 +396,9 @@ function Client:listTagsForStream(input, options)
         output_schema = types.ListTagsForStreamOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -334,6 +413,9 @@ function Client:mergeShards(input, options)
         output_schema = types.MergeShardsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -348,6 +430,9 @@ function Client:putRecord(input, options)
         output_schema = types.PutRecordOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -362,6 +447,9 @@ function Client:putRecords(input, options)
         output_schema = types.PutRecordsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -376,6 +464,9 @@ function Client:putResourcePolicy(input, options)
         output_schema = types.PutResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceARN = "ResourceARN",
             StreamId = "StreamId",
@@ -390,6 +481,9 @@ function Client:registerStreamConsumer(input, options)
         output_schema = types.RegisterStreamConsumerOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -404,6 +498,9 @@ function Client:removeTagsFromStream(input, options)
         output_schema = types.RemoveTagsFromStreamOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -418,6 +515,9 @@ function Client:splitShard(input, options)
         output_schema = types.SplitShardOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -432,6 +532,9 @@ function Client:startStreamEncryption(input, options)
         output_schema = types.StartStreamEncryptionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -446,6 +549,9 @@ function Client:stopStreamEncryption(input, options)
         output_schema = types.StopStreamEncryptionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -460,6 +566,9 @@ function Client:subscribeToShard(input, options)
         output_schema = types.SubscribeToShardOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ConsumerARN = "ConsumerARN",
             StreamId = "StreamId",
@@ -474,6 +583,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceARN = "ResourceARN",
             StreamId = "StreamId",
@@ -488,6 +600,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceARN = "ResourceARN",
             StreamId = "StreamId",
@@ -502,6 +617,9 @@ function Client:updateAccountSettings(input, options)
         output_schema = types.UpdateAccountSettingsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -512,6 +630,9 @@ function Client:updateMaxRecordSize(input, options)
         output_schema = types.UpdateMaxRecordSizeOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -526,6 +647,9 @@ function Client:updateShardCount(input, options)
         output_schema = types.UpdateShardCountOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -540,6 +664,9 @@ function Client:updateStreamMode(input, options)
         output_schema = types.UpdateStreamModeOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
@@ -554,6 +681,9 @@ function Client:updateStreamWarmThroughput(input, options)
         output_schema = types.UpdateStreamWarmThroughputOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",

@@ -1,0 +1,15 @@
+local record M
+    pages_describe_access_points: function(client: table, input: table): function(): table, table
+    items_describe_access_points: function(client: table, input: table): function(): any
+    pages_describe_file_systems: function(client: table, input: table): function(): table, table
+    items_describe_file_systems: function(client: table, input: table): function(): any
+    pages_describe_mount_targets: function(client: table, input: table): function(): table, table
+    items_describe_mount_targets: function(client: table, input: table): function(): any
+    pages_describe_replication_configurations: function(client: table, input: table): function(): table, table
+    items_describe_replication_configurations: function(client: table, input: table): function(): any
+    pages_describe_tags: function(client: table, input: table): function(): table, table
+    items_describe_tags: function(client: table, input: table): function(): any
+    pages_list_tags_for_resource: function(client: table, input: table): function(): table, table
+end
+
+return M

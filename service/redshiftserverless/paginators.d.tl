@@ -1,0 +1,32 @@
+local record M
+    pages_list_custom_domain_associations: function(client: table, input: table): function(): table, table
+    items_list_custom_domain_associations: function(client: table, input: table): function(): any
+    pages_list_endpoint_access: function(client: table, input: table): function(): table, table
+    items_list_endpoint_access: function(client: table, input: table): function(): any
+    pages_list_managed_workgroups: function(client: table, input: table): function(): table, table
+    items_list_managed_workgroups: function(client: table, input: table): function(): any
+    pages_list_namespaces: function(client: table, input: table): function(): table, table
+    items_list_namespaces: function(client: table, input: table): function(): any
+    pages_list_recovery_points: function(client: table, input: table): function(): table, table
+    items_list_recovery_points: function(client: table, input: table): function(): any
+    pages_list_reservation_offerings: function(client: table, input: table): function(): table, table
+    items_list_reservation_offerings: function(client: table, input: table): function(): any
+    pages_list_reservations: function(client: table, input: table): function(): table, table
+    items_list_reservations: function(client: table, input: table): function(): any
+    pages_list_scheduled_actions: function(client: table, input: table): function(): table, table
+    items_list_scheduled_actions: function(client: table, input: table): function(): any
+    pages_list_snapshot_copy_configurations: function(client: table, input: table): function(): table, table
+    items_list_snapshot_copy_configurations: function(client: table, input: table): function(): any
+    pages_list_snapshots: function(client: table, input: table): function(): table, table
+    items_list_snapshots: function(client: table, input: table): function(): any
+    pages_list_table_restore_status: function(client: table, input: table): function(): table, table
+    items_list_table_restore_status: function(client: table, input: table): function(): any
+    pages_list_tracks: function(client: table, input: table): function(): table, table
+    items_list_tracks: function(client: table, input: table): function(): any
+    pages_list_usage_limits: function(client: table, input: table): function(): table, table
+    items_list_usage_limits: function(client: table, input: table): function(): any
+    pages_list_workgroups: function(client: table, input: table): function(): table, table
+    items_list_workgroups: function(client: table, input: table): function(): any
+end
+
+return M

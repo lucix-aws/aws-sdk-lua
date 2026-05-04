@@ -1,0 +1,6 @@
+local record M
+    pages_list_slack_channel_configurations: function(client: table, input: table): function(): table, table
+    pages_list_slack_workspace_configurations: function(client: table, input: table): function(): table, table
+end
+
+return M

@@ -1,0 +1,23 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listExports.
+function M.pages_list_exports(client, input)
+    return paginator.pages(client, "listExports", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "exportSummaries",
+    })
+end
+
+--- Returns an item iterator for listExports.
+function M.items_list_exports(client, input)
+    return paginator.items(client, "listExports", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "exportSummaries",
+    })
+end
+
+return M

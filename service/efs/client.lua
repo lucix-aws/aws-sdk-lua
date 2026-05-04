@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "MagnolioAPIService_v20150201"
-    cfg.signing_name = "elasticfilesystem"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "elasticfilesystem", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createAccessPoint(input, options)
         output_schema = types.CreateAccessPointOutput,
         http_method = "POST",
         http_path = "/2015-02-01/access-points",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createFileSystem(input, options)
         output_schema = types.CreateFileSystemOutput,
         http_method = "POST",
         http_path = "/2015-02-01/file-systems",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createMountTarget(input, options)
         output_schema = types.CreateMountTargetOutput,
         http_method = "POST",
         http_path = "/2015-02-01/mount-targets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createReplicationConfiguration(input, options)
         output_schema = types.CreateReplicationConfigurationOutput,
         http_method = "POST",
         http_path = "/2015-02-01/file-systems/{SourceFileSystemId}/replication-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createTags(input, options)
         output_schema = types.CreateTagsOutput,
         http_method = "POST",
         http_path = "/2015-02-01/create-tags/{FileSystemId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteAccessPoint(input, options)
         output_schema = types.DeleteAccessPointOutput,
         http_method = "DELETE",
         http_path = "/2015-02-01/access-points/{AccessPointId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteFileSystem(input, options)
         output_schema = types.DeleteFileSystemOutput,
         http_method = "DELETE",
         http_path = "/2015-02-01/file-systems/{FileSystemId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteFileSystemPolicy(input, options)
         output_schema = types.DeleteFileSystemPolicyOutput,
         http_method = "DELETE",
         http_path = "/2015-02-01/file-systems/{FileSystemId}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteMountTarget(input, options)
         output_schema = types.DeleteMountTargetOutput,
         http_method = "DELETE",
         http_path = "/2015-02-01/mount-targets/{MountTargetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteReplicationConfiguration(input, options)
         output_schema = types.DeleteReplicationConfigurationOutput,
         http_method = "DELETE",
         http_path = "/2015-02-01/file-systems/{SourceFileSystemId}/replication-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteTags(input, options)
         output_schema = types.DeleteTagsOutput,
         http_method = "POST",
         http_path = "/2015-02-01/delete-tags/{FileSystemId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:describeAccessPoints(input, options)
         output_schema = types.DescribeAccessPointsOutput,
         http_method = "GET",
         http_path = "/2015-02-01/access-points",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:describeAccountPreferences(input, options)
         output_schema = types.DescribeAccountPreferencesOutput,
         http_method = "GET",
         http_path = "/2015-02-01/account-preferences",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:describeBackupPolicy(input, options)
         output_schema = types.DescribeBackupPolicyOutput,
         http_method = "GET",
         http_path = "/2015-02-01/file-systems/{FileSystemId}/backup-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:describeFileSystemPolicy(input, options)
         output_schema = types.DescribeFileSystemPolicyOutput,
         http_method = "GET",
         http_path = "/2015-02-01/file-systems/{FileSystemId}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:describeFileSystems(input, options)
         output_schema = types.DescribeFileSystemsOutput,
         http_method = "GET",
         http_path = "/2015-02-01/file-systems",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:describeLifecycleConfiguration(input, options)
         output_schema = types.DescribeLifecycleConfigurationOutput,
         http_method = "GET",
         http_path = "/2015-02-01/file-systems/{FileSystemId}/lifecycle-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:describeMountTargets(input, options)
         output_schema = types.DescribeMountTargetsOutput,
         http_method = "GET",
         http_path = "/2015-02-01/mount-targets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:describeMountTargetSecurityGroups(input, options)
         output_schema = types.DescribeMountTargetSecurityGroupsOutput,
         http_method = "GET",
         http_path = "/2015-02-01/mount-targets/{MountTargetId}/security-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:describeReplicationConfigurations(input, options)
         output_schema = types.DescribeReplicationConfigurationsOutput,
         http_method = "GET",
         http_path = "/2015-02-01/file-systems/replication-configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:describeTags(input, options)
         output_schema = types.DescribeTagsOutput,
         http_method = "GET",
         http_path = "/2015-02-01/tags/{FileSystemId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/2015-02-01/resource-tags/{ResourceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:modifyMountTargetSecurityGroups(input, options)
         output_schema = types.ModifyMountTargetSecurityGroupsOutput,
         http_method = "PUT",
         http_path = "/2015-02-01/mount-targets/{MountTargetId}/security-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:putAccountPreferences(input, options)
         output_schema = types.PutAccountPreferencesOutput,
         http_method = "PUT",
         http_path = "/2015-02-01/account-preferences",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:putBackupPolicy(input, options)
         output_schema = types.PutBackupPolicyOutput,
         http_method = "PUT",
         http_path = "/2015-02-01/file-systems/{FileSystemId}/backup-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:putFileSystemPolicy(input, options)
         output_schema = types.PutFileSystemPolicyOutput,
         http_method = "PUT",
         http_path = "/2015-02-01/file-systems/{FileSystemId}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:putLifecycleConfiguration(input, options)
         output_schema = types.PutLifecycleConfigurationOutput,
         http_method = "PUT",
         http_path = "/2015-02-01/file-systems/{FileSystemId}/lifecycle-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/2015-02-01/resource-tags/{ResourceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/2015-02-01/resource-tags/{ResourceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:updateFileSystem(input, options)
         output_schema = types.UpdateFileSystemOutput,
         http_method = "PUT",
         http_path = "/2015-02-01/file-systems/{FileSystemId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:updateFileSystemProtection(input, options)
         output_schema = types.UpdateFileSystemProtectionOutput,
         http_method = "PUT",
         http_path = "/2015-02-01/file-systems/{FileSystemId}/protection",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

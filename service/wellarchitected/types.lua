@@ -730,6 +730,7 @@ M.CreateLensShareInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -798,6 +799,7 @@ M.CreateLensVersionInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -835,6 +837,7 @@ M.CreateMilestoneInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -891,6 +894,7 @@ M.CreateProfileInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -933,6 +937,7 @@ M.CreateProfileShareInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -984,6 +989,7 @@ M.CreateReviewTemplateInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1018,6 +1024,7 @@ M.CreateTemplateShareInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1147,6 +1154,7 @@ M.CreateWorkloadInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1214,6 +1222,7 @@ M.CreateWorkloadShareInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1252,6 +1261,7 @@ M.DeleteLensInput = {
             type = "string",
             traits = {
                 http_query = "ClientRequestToken",
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1290,6 +1300,7 @@ M.DeleteLensShareInput = {
             type = "string",
             traits = {
                 http_query = "ClientRequestToken",
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1314,6 +1325,7 @@ M.DeleteProfileInput = {
             type = "string",
             traits = {
                 http_query = "ClientRequestToken",
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1345,6 +1357,7 @@ M.DeleteProfileShareInput = {
             type = "string",
             traits = {
                 http_query = "ClientRequestToken",
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1369,6 +1382,7 @@ M.DeleteReviewTemplateInput = {
             type = "string",
             traits = {
                 http_query = "ClientRequestToken",
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1400,6 +1414,7 @@ M.DeleteTemplateShareInput = {
             type = "string",
             traits = {
                 http_query = "ClientRequestToken",
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1424,6 +1439,7 @@ M.DeleteWorkloadInput = {
             type = "string",
             traits = {
                 http_query = "ClientRequestToken",
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1455,6 +1471,7 @@ M.DeleteWorkloadShareInput = {
             type = "string",
             traits = {
                 http_query = "ClientRequestToken",
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -2678,6 +2695,7 @@ M.ImportLensInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -4281,6 +4299,7 @@ M.UpdateIntegrationInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -4712,6 +4731,9 @@ M.UpgradeProfileVersionInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

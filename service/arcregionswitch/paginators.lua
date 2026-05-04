@@ -1,0 +1,149 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for getPlanEvaluationStatus.
+function M.pages_get_plan_evaluation_status(client, input)
+    return paginator.pages(client, "getPlanEvaluationStatus", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "warnings",
+    })
+end
+
+--- Returns an item iterator for getPlanEvaluationStatus.
+function M.items_get_plan_evaluation_status(client, input)
+    return paginator.items(client, "getPlanEvaluationStatus", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "warnings",
+    })
+end
+
+--- Returns a page iterator for getPlanExecution.
+function M.pages_get_plan_execution(client, input)
+    return paginator.pages(client, "getPlanExecution", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "stepStates",
+    })
+end
+
+--- Returns an item iterator for getPlanExecution.
+function M.items_get_plan_execution(client, input)
+    return paginator.items(client, "getPlanExecution", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "stepStates",
+    })
+end
+
+--- Returns a page iterator for listPlanExecutionEvents.
+function M.pages_list_plan_execution_events(client, input)
+    return paginator.pages(client, "listPlanExecutionEvents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listPlanExecutionEvents.
+function M.items_list_plan_execution_events(client, input)
+    return paginator.items(client, "listPlanExecutionEvents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for listPlanExecutions.
+function M.pages_list_plan_executions(client, input)
+    return paginator.pages(client, "listPlanExecutions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listPlanExecutions.
+function M.items_list_plan_executions(client, input)
+    return paginator.items(client, "listPlanExecutions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for listPlans.
+function M.pages_list_plans(client, input)
+    return paginator.pages(client, "listPlans", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "plans",
+    })
+end
+
+--- Returns an item iterator for listPlans.
+function M.items_list_plans(client, input)
+    return paginator.items(client, "listPlans", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "plans",
+    })
+end
+
+--- Returns a page iterator for listPlansInRegion.
+function M.pages_list_plans_in_region(client, input)
+    return paginator.pages(client, "listPlansInRegion", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "plans",
+    })
+end
+
+--- Returns an item iterator for listPlansInRegion.
+function M.items_list_plans_in_region(client, input)
+    return paginator.items(client, "listPlansInRegion", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "plans",
+    })
+end
+
+--- Returns a page iterator for listRoute53HealthChecks.
+function M.pages_list_route53_health_checks(client, input)
+    return paginator.pages(client, "listRoute53HealthChecks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "healthChecks",
+    })
+end
+
+--- Returns an item iterator for listRoute53HealthChecks.
+function M.items_list_route53_health_checks(client, input)
+    return paginator.items(client, "listRoute53HealthChecks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "healthChecks",
+    })
+end
+
+--- Returns a page iterator for listRoute53HealthChecksInRegion.
+function M.pages_list_route53_health_checks_in_region(client, input)
+    return paginator.pages(client, "listRoute53HealthChecksInRegion", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "healthChecks",
+    })
+end
+
+--- Returns an item iterator for listRoute53HealthChecksInRegion.
+function M.items_list_route53_health_checks_in_region(client, input)
+    return paginator.items(client, "listRoute53HealthChecksInRegion", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "healthChecks",
+    })
+end
+
+return M

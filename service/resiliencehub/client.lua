@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AwsResilienceHub"
-    cfg.signing_name = "resiliencehub"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "resiliencehub", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:acceptResourceGroupingRecommendations(input, options)
         output_schema = types.AcceptResourceGroupingRecommendationsOutput,
         http_method = "POST",
         http_path = "/accept-resource-grouping-recommendations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:addDraftAppVersionResourceMappings(input, options)
         output_schema = types.AddDraftAppVersionResourceMappingsOutput,
         http_method = "POST",
         http_path = "/add-draft-app-version-resource-mappings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchUpdateRecommendationStatus(input, options)
         output_schema = types.BatchUpdateRecommendationStatusOutput,
         http_method = "POST",
         http_path = "/batch-update-recommendation-status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createApp(input, options)
         output_schema = types.CreateAppOutput,
         http_method = "POST",
         http_path = "/create-app",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createAppVersionAppComponent(input, options)
         output_schema = types.CreateAppVersionAppComponentOutput,
         http_method = "POST",
         http_path = "/create-app-version-app-component",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createAppVersionResource(input, options)
         output_schema = types.CreateAppVersionResourceOutput,
         http_method = "POST",
         http_path = "/create-app-version-resource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createRecommendationTemplate(input, options)
         output_schema = types.CreateRecommendationTemplateOutput,
         http_method = "POST",
         http_path = "/create-recommendation-template",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createResiliencyPolicy(input, options)
         output_schema = types.CreateResiliencyPolicyOutput,
         http_method = "POST",
         http_path = "/create-resiliency-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteApp(input, options)
         output_schema = types.DeleteAppOutput,
         http_method = "POST",
         http_path = "/delete-app",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteAppAssessment(input, options)
         output_schema = types.DeleteAppAssessmentOutput,
         http_method = "POST",
         http_path = "/delete-app-assessment",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteAppInputSource(input, options)
         output_schema = types.DeleteAppInputSourceOutput,
         http_method = "POST",
         http_path = "/delete-app-input-source",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteAppVersionAppComponent(input, options)
         output_schema = types.DeleteAppVersionAppComponentOutput,
         http_method = "POST",
         http_path = "/delete-app-version-app-component",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteAppVersionResource(input, options)
         output_schema = types.DeleteAppVersionResourceOutput,
         http_method = "POST",
         http_path = "/delete-app-version-resource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteRecommendationTemplate(input, options)
         output_schema = types.DeleteRecommendationTemplateOutput,
         http_method = "POST",
         http_path = "/delete-recommendation-template",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteResiliencyPolicy(input, options)
         output_schema = types.DeleteResiliencyPolicyOutput,
         http_method = "POST",
         http_path = "/delete-resiliency-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:describeApp(input, options)
         output_schema = types.DescribeAppOutput,
         http_method = "POST",
         http_path = "/describe-app",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:describeAppAssessment(input, options)
         output_schema = types.DescribeAppAssessmentOutput,
         http_method = "POST",
         http_path = "/describe-app-assessment",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:describeAppVersion(input, options)
         output_schema = types.DescribeAppVersionOutput,
         http_method = "POST",
         http_path = "/describe-app-version",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:describeAppVersionAppComponent(input, options)
         output_schema = types.DescribeAppVersionAppComponentOutput,
         http_method = "POST",
         http_path = "/describe-app-version-app-component",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:describeAppVersionResource(input, options)
         output_schema = types.DescribeAppVersionResourceOutput,
         http_method = "POST",
         http_path = "/describe-app-version-resource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:describeAppVersionResourcesResolutionStatus(input, options)
         output_schema = types.DescribeAppVersionResourcesResolutionStatusOutput,
         http_method = "POST",
         http_path = "/describe-app-version-resources-resolution-status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:describeAppVersionTemplate(input, options)
         output_schema = types.DescribeAppVersionTemplateOutput,
         http_method = "POST",
         http_path = "/describe-app-version-template",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:describeDraftAppVersionResourcesImportStatus(input, options)
         output_schema = types.DescribeDraftAppVersionResourcesImportStatusOutput,
         http_method = "POST",
         http_path = "/describe-draft-app-version-resources-import-status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:describeMetricsExport(input, options)
         output_schema = types.DescribeMetricsExportOutput,
         http_method = "POST",
         http_path = "/describe-metrics-export",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:describeResiliencyPolicy(input, options)
         output_schema = types.DescribeResiliencyPolicyOutput,
         http_method = "POST",
         http_path = "/describe-resiliency-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:describeResourceGroupingRecommendationTask(input, options)
         output_schema = types.DescribeResourceGroupingRecommendationTaskOutput,
         http_method = "POST",
         http_path = "/describe-resource-grouping-recommendation-task",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:importResourcesToDraftAppVersion(input, options)
         output_schema = types.ImportResourcesToDraftAppVersionOutput,
         http_method = "POST",
         http_path = "/import-resources-to-draft-app-version",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:listAlarmRecommendations(input, options)
         output_schema = types.ListAlarmRecommendationsOutput,
         http_method = "POST",
         http_path = "/list-alarm-recommendations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listAppAssessmentComplianceDrifts(input, options)
         output_schema = types.ListAppAssessmentComplianceDriftsOutput,
         http_method = "POST",
         http_path = "/list-app-assessment-compliance-drifts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:listAppAssessmentResourceDrifts(input, options)
         output_schema = types.ListAppAssessmentResourceDriftsOutput,
         http_method = "POST",
         http_path = "/list-app-assessment-resource-drifts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:listAppAssessments(input, options)
         output_schema = types.ListAppAssessmentsOutput,
         http_method = "GET",
         http_path = "/list-app-assessments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:listAppComponentCompliances(input, options)
         output_schema = types.ListAppComponentCompliancesOutput,
         http_method = "POST",
         http_path = "/list-app-component-compliances",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:listAppComponentRecommendations(input, options)
         output_schema = types.ListAppComponentRecommendationsOutput,
         http_method = "POST",
         http_path = "/list-app-component-recommendations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:listAppInputSources(input, options)
         output_schema = types.ListAppInputSourcesOutput,
         http_method = "POST",
         http_path = "/list-app-input-sources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:listApps(input, options)
         output_schema = types.ListAppsOutput,
         http_method = "GET",
         http_path = "/list-apps",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:listAppVersionAppComponents(input, options)
         output_schema = types.ListAppVersionAppComponentsOutput,
         http_method = "POST",
         http_path = "/list-app-version-app-components",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:listAppVersionResourceMappings(input, options)
         output_schema = types.ListAppVersionResourceMappingsOutput,
         http_method = "POST",
         http_path = "/list-app-version-resource-mappings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:listAppVersionResources(input, options)
         output_schema = types.ListAppVersionResourcesOutput,
         http_method = "POST",
         http_path = "/list-app-version-resources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:listAppVersions(input, options)
         output_schema = types.ListAppVersionsOutput,
         http_method = "POST",
         http_path = "/list-app-versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:listMetrics(input, options)
         output_schema = types.ListMetricsOutput,
         http_method = "POST",
         http_path = "/list-metrics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:listRecommendationTemplates(input, options)
         output_schema = types.ListRecommendationTemplatesOutput,
         http_method = "GET",
         http_path = "/list-recommendation-templates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:listResiliencyPolicies(input, options)
         output_schema = types.ListResiliencyPoliciesOutput,
         http_method = "GET",
         http_path = "/list-resiliency-policies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:listResourceGroupingRecommendations(input, options)
         output_schema = types.ListResourceGroupingRecommendationsOutput,
         http_method = "GET",
         http_path = "/list-resource-grouping-recommendations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:listSopRecommendations(input, options)
         output_schema = types.ListSopRecommendationsOutput,
         http_method = "POST",
         http_path = "/list-sop-recommendations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:listSuggestedResiliencyPolicies(input, options)
         output_schema = types.ListSuggestedResiliencyPoliciesOutput,
         http_method = "GET",
         http_path = "/list-suggested-resiliency-policies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:listTestRecommendations(input, options)
         output_schema = types.ListTestRecommendationsOutput,
         http_method = "POST",
         http_path = "/list-test-recommendations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:listUnsupportedAppVersionResources(input, options)
         output_schema = types.ListUnsupportedAppVersionResourcesOutput,
         http_method = "POST",
         http_path = "/list-unsupported-app-version-resources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:publishAppVersion(input, options)
         output_schema = types.PublishAppVersionOutput,
         http_method = "POST",
         http_path = "/publish-app-version",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:putDraftAppVersionTemplate(input, options)
         output_schema = types.PutDraftAppVersionTemplateOutput,
         http_method = "POST",
         http_path = "/put-draft-app-version-template",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:rejectResourceGroupingRecommendations(input, options)
         output_schema = types.RejectResourceGroupingRecommendationsOutput,
         http_method = "POST",
         http_path = "/reject-resource-grouping-recommendations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:removeDraftAppVersionResourceMappings(input, options)
         output_schema = types.RemoveDraftAppVersionResourceMappingsOutput,
         http_method = "POST",
         http_path = "/remove-draft-app-version-resource-mappings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:resolveAppVersionResources(input, options)
         output_schema = types.ResolveAppVersionResourcesOutput,
         http_method = "POST",
         http_path = "/resolve-app-version-resources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:startAppAssessment(input, options)
         output_schema = types.StartAppAssessmentOutput,
         http_method = "POST",
         http_path = "/start-app-assessment",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:startMetricsExport(input, options)
         output_schema = types.StartMetricsExportOutput,
         http_method = "POST",
         http_path = "/start-metrics-export",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:startResourceGroupingRecommendationTask(input, options)
         output_schema = types.StartResourceGroupingRecommendationTaskOutput,
         http_method = "POST",
         http_path = "/start-resource-grouping-recommendation-task",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:updateApp(input, options)
         output_schema = types.UpdateAppOutput,
         http_method = "POST",
         http_path = "/update-app",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:updateAppVersion(input, options)
         output_schema = types.UpdateAppVersionOutput,
         http_method = "POST",
         http_path = "/update-app-version",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:updateAppVersionAppComponent(input, options)
         output_schema = types.UpdateAppVersionAppComponentOutput,
         http_method = "POST",
         http_path = "/update-app-version-app-component",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:updateAppVersionResource(input, options)
         output_schema = types.UpdateAppVersionResourceOutput,
         http_method = "POST",
         http_path = "/update-app-version-resource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:updateResiliencyPolicy(input, options)
         output_schema = types.UpdateResiliencyPolicyOutput,
         http_method = "POST",
         http_path = "/update-resiliency-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

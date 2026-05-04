@@ -1,0 +1,41 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listAdapterVersions.
+function M.pages_list_adapter_versions(client, input)
+    return paginator.pages(client, "listAdapterVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AdapterVersions",
+    })
+end
+
+--- Returns an item iterator for listAdapterVersions.
+function M.items_list_adapter_versions(client, input)
+    return paginator.items(client, "listAdapterVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AdapterVersions",
+    })
+end
+
+--- Returns a page iterator for listAdapters.
+function M.pages_list_adapters(client, input)
+    return paginator.pages(client, "listAdapters", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Adapters",
+    })
+end
+
+--- Returns an item iterator for listAdapters.
+function M.items_list_adapters(client, input)
+    return paginator.items(client, "listAdapters", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Adapters",
+    })
+end
+
+return M

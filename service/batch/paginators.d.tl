@@ -1,0 +1,24 @@
+local record M
+    pages_describe_compute_environments: function(client: table, input: table): function(): table, table
+    items_describe_compute_environments: function(client: table, input: table): function(): any
+    pages_describe_job_definitions: function(client: table, input: table): function(): table, table
+    items_describe_job_definitions: function(client: table, input: table): function(): any
+    pages_describe_job_queues: function(client: table, input: table): function(): table, table
+    items_describe_job_queues: function(client: table, input: table): function(): any
+    pages_describe_service_environments: function(client: table, input: table): function(): table, table
+    items_describe_service_environments: function(client: table, input: table): function(): any
+    pages_list_consumable_resources: function(client: table, input: table): function(): table, table
+    items_list_consumable_resources: function(client: table, input: table): function(): any
+    pages_list_jobs: function(client: table, input: table): function(): table, table
+    items_list_jobs: function(client: table, input: table): function(): any
+    pages_list_jobs_by_consumable_resource: function(client: table, input: table): function(): table, table
+    items_list_jobs_by_consumable_resource: function(client: table, input: table): function(): any
+    pages_list_quota_shares: function(client: table, input: table): function(): table, table
+    items_list_quota_shares: function(client: table, input: table): function(): any
+    pages_list_scheduling_policies: function(client: table, input: table): function(): table, table
+    items_list_scheduling_policies: function(client: table, input: table): function(): any
+    pages_list_service_jobs: function(client: table, input: table): function(): table, table
+    items_list_service_jobs: function(client: table, input: table): function(): any
+end
+
+return M

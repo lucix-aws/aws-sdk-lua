@@ -1,0 +1,16 @@
+local record M
+    pages_list_checks: function(client: table, input: table): function(): table, table
+    items_list_checks: function(client: table, input: table): function(): any
+    pages_list_organization_recommendation_accounts: function(client: table, input: table): function(): table, table
+    items_list_organization_recommendation_accounts: function(client: table, input: table): function(): any
+    pages_list_organization_recommendation_resources: function(client: table, input: table): function(): table, table
+    items_list_organization_recommendation_resources: function(client: table, input: table): function(): any
+    pages_list_organization_recommendations: function(client: table, input: table): function(): table, table
+    items_list_organization_recommendations: function(client: table, input: table): function(): any
+    pages_list_recommendation_resources: function(client: table, input: table): function(): table, table
+    items_list_recommendation_resources: function(client: table, input: table): function(): any
+    pages_list_recommendations: function(client: table, input: table): function(): table, table
+    items_list_recommendations: function(client: table, input: table): function(): any
+end
+
+return M

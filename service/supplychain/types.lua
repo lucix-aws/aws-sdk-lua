@@ -79,6 +79,9 @@ M.CreateBillOfMaterialsImportJobInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -762,6 +765,9 @@ M.CreateInstanceInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1900,6 +1906,9 @@ M.SendDataIntegrationEventInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         datasetTarget = M.DataIntegrationEventDatasetTargetConfiguration,
     },

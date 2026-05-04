@@ -318,9 +318,9 @@ local record ValidationException
     Message: string
 end
 
-local type SortKey = "DESCENDING" | "ASCENDING"
-
 local type ScanDirection = "FORWARD" | "BACKWARD"
+
+local type SortKey = "DESCENDING" | "ASCENDING"
 
 local record M
     CancelParticipantAuthenticationInput: CancelParticipantAuthenticationInput

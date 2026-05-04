@@ -2132,6 +2132,7 @@ M.CreateDetectorInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "clientToken",
             },
         },
@@ -2289,6 +2290,7 @@ M.CreateFilterInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "clientToken",
             },
         },
@@ -2366,6 +2368,7 @@ M.CreateIPSetInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "clientToken",
             },
         },
@@ -2459,6 +2462,7 @@ M.CreateMalwareProtectionPlanInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "clientToken",
             },
         },
@@ -2600,6 +2604,7 @@ M.CreatePublishingDestinationInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "clientToken",
             },
         },
@@ -2707,6 +2712,7 @@ M.CreateThreatEntitySetInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "clientToken",
             },
         },
@@ -2784,6 +2790,7 @@ M.CreateThreatIntelSetInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "clientToken",
             },
         },
@@ -2873,6 +2880,7 @@ M.CreateTrustedEntitySetInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "clientToken",
             },
         },
@@ -9951,6 +9959,7 @@ M.StartMalwareScanInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "clientToken",
             },
         },

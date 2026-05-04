@@ -181,6 +181,9 @@ M.CreateMonitorInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "map",
@@ -1317,6 +1320,9 @@ M.UpdateMonitorInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         MaxCityNetworksToMonitor = {
             type = "integer",

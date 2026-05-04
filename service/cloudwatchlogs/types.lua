@@ -5382,6 +5382,9 @@ M.PutQueryDefinitionInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         parameters = {
             type = "list",

@@ -187,6 +187,7 @@ M.GetDeviceOutput = {
         deviceCapabilities = {
             type = "string",
             traits = {
+                media_type = "application/json",
                 required = true,
             },
         },
@@ -581,6 +582,7 @@ M.CreateJobInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1010,6 +1012,7 @@ M.CancelQuantumTaskInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1054,6 +1057,7 @@ M.CreateQuantumTaskInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1065,6 +1069,9 @@ M.CreateQuantumTaskInput = {
         },
         deviceParameters = {
             type = "string",
+            traits = {
+                media_type = "application/json",
+            },
         },
         shots = {
             type = "long",
@@ -1087,6 +1094,7 @@ M.CreateQuantumTaskInput = {
         action = {
             type = "string",
             traits = {
+                media_type = "application/json",
                 required = true,
             },
         },
@@ -1203,6 +1211,7 @@ M.GetQuantumTaskOutput = {
         deviceParameters = {
             type = "string",
             traits = {
+                media_type = "application/json",
                 required = true,
             },
         },
@@ -1413,6 +1422,7 @@ M.CreateSpendingLimitInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1598,6 +1608,7 @@ M.UpdateSpendingLimitInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },

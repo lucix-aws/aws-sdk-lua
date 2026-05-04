@@ -1,0 +1,30 @@
+local record M
+    pages_describe_certificates: function(client: table, input: table): function(): table, table
+    items_describe_certificates: function(client: table, input: table): function(): any
+    pages_describe_d_b_cluster_parameter_groups: function(client: table, input: table): function(): table, table
+    items_describe_d_b_cluster_parameter_groups: function(client: table, input: table): function(): any
+    pages_describe_d_b_cluster_parameters: function(client: table, input: table): function(): table, table
+    items_describe_d_b_cluster_parameters: function(client: table, input: table): function(): any
+    pages_describe_d_b_cluster_snapshots: function(client: table, input: table): function(): table, table
+    items_describe_d_b_cluster_snapshots: function(client: table, input: table): function(): any
+    pages_describe_d_b_clusters: function(client: table, input: table): function(): table, table
+    items_describe_d_b_clusters: function(client: table, input: table): function(): any
+    pages_describe_d_b_engine_versions: function(client: table, input: table): function(): table, table
+    items_describe_d_b_engine_versions: function(client: table, input: table): function(): any
+    pages_describe_d_b_instances: function(client: table, input: table): function(): table, table
+    items_describe_d_b_instances: function(client: table, input: table): function(): any
+    pages_describe_d_b_subnet_groups: function(client: table, input: table): function(): table, table
+    items_describe_d_b_subnet_groups: function(client: table, input: table): function(): any
+    pages_describe_event_subscriptions: function(client: table, input: table): function(): table, table
+    items_describe_event_subscriptions: function(client: table, input: table): function(): any
+    pages_describe_events: function(client: table, input: table): function(): table, table
+    items_describe_events: function(client: table, input: table): function(): any
+    pages_describe_global_clusters: function(client: table, input: table): function(): table, table
+    items_describe_global_clusters: function(client: table, input: table): function(): any
+    pages_describe_orderable_d_b_instance_options: function(client: table, input: table): function(): table, table
+    items_describe_orderable_d_b_instance_options: function(client: table, input: table): function(): any
+    pages_describe_pending_maintenance_actions: function(client: table, input: table): function(): table, table
+    items_describe_pending_maintenance_actions: function(client: table, input: table): function(): any
+end
+
+return M

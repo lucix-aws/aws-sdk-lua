@@ -119,6 +119,9 @@ M.CreateActInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -521,10 +524,14 @@ M.ActSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         traceLocation = M.TraceLocation,
     },
@@ -729,6 +736,9 @@ M.CreateSessionInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -838,6 +848,9 @@ M.CreateWorkflowDefinitionInput = {
         exportConfig = M.WorkflowExportConfig,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -916,6 +929,7 @@ M.GetWorkflowDefinitionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         description = {
@@ -971,6 +985,7 @@ M.WorkflowDefinitionSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -1031,6 +1046,9 @@ M.CreateWorkflowRunInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         logGroupName = {
             type = "string",
@@ -1144,10 +1162,14 @@ M.GetWorkflowRunOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         modelId = {
             type = "string",
@@ -1214,10 +1236,14 @@ M.WorkflowRunSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         traceLocation = M.TraceLocation,
     },

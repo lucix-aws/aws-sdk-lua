@@ -499,6 +499,7 @@ M.CreateInboundExternalLinkInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -665,6 +666,7 @@ M.CreateOutboundExternalLinkInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -743,6 +745,7 @@ M.CreateRequesterGatewayInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -918,6 +921,7 @@ M.CreateResponderGatewayInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1464,6 +1468,7 @@ M.UpdateLinkModuleFlowInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1932,6 +1937,7 @@ M.UpdateRequesterGatewayInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1990,6 +1996,7 @@ M.UpdateResponderGatewayInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },

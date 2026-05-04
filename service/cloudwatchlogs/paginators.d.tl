@@ -1,0 +1,39 @@
+local record M
+    pages_describe_configuration_templates: function(client: table, input: table): function(): table, table
+    items_describe_configuration_templates: function(client: table, input: table): function(): any
+    pages_describe_deliveries: function(client: table, input: table): function(): table, table
+    items_describe_deliveries: function(client: table, input: table): function(): any
+    pages_describe_delivery_destinations: function(client: table, input: table): function(): table, table
+    items_describe_delivery_destinations: function(client: table, input: table): function(): any
+    pages_describe_delivery_sources: function(client: table, input: table): function(): table, table
+    items_describe_delivery_sources: function(client: table, input: table): function(): any
+    pages_describe_destinations: function(client: table, input: table): function(): table, table
+    items_describe_destinations: function(client: table, input: table): function(): any
+    pages_describe_log_groups: function(client: table, input: table): function(): table, table
+    items_describe_log_groups: function(client: table, input: table): function(): any
+    pages_describe_log_streams: function(client: table, input: table): function(): table, table
+    items_describe_log_streams: function(client: table, input: table): function(): any
+    pages_describe_metric_filters: function(client: table, input: table): function(): table, table
+    items_describe_metric_filters: function(client: table, input: table): function(): any
+    pages_describe_subscription_filters: function(client: table, input: table): function(): table, table
+    items_describe_subscription_filters: function(client: table, input: table): function(): any
+    pages_filter_log_events: function(client: table, input: table): function(): table, table
+    pages_get_log_events: function(client: table, input: table): function(): table, table
+    items_get_log_events: function(client: table, input: table): function(): any
+    pages_get_scheduled_query_history: function(client: table, input: table): function(): table, table
+    items_get_scheduled_query_history: function(client: table, input: table): function(): any
+    pages_list_aggregate_log_group_summaries: function(client: table, input: table): function(): table, table
+    items_list_aggregate_log_group_summaries: function(client: table, input: table): function(): any
+    pages_list_anomalies: function(client: table, input: table): function(): table, table
+    items_list_anomalies: function(client: table, input: table): function(): any
+    pages_list_log_anomaly_detectors: function(client: table, input: table): function(): table, table
+    items_list_log_anomaly_detectors: function(client: table, input: table): function(): any
+    pages_list_log_groups_for_query: function(client: table, input: table): function(): table, table
+    items_list_log_groups_for_query: function(client: table, input: table): function(): any
+    pages_list_scheduled_queries: function(client: table, input: table): function(): table, table
+    items_list_scheduled_queries: function(client: table, input: table): function(): any
+    pages_list_sources_for_s3_table_integration: function(client: table, input: table): function(): table, table
+    items_list_sources_for_s3_table_integration: function(client: table, input: table): function(): any
+end
+
+return M

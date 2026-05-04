@@ -95,6 +95,9 @@ M.CreateApprovalTeamInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ApprovalStrategy = setmetatable({ traits = {
             required = true,
@@ -138,6 +141,9 @@ M.CreateApprovalTeamOutput = {
     members = {
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Arn = {
             type = "string",
@@ -301,6 +307,9 @@ M.GetApprovalTeamResponseApprover = {
         },
         ResponseTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         PrimaryIdentityId = {
             type = "string",
@@ -316,6 +325,9 @@ M.GetApprovalTeamResponseApprover = {
         },
         LastActivityTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         PendingBaselineSessionArn = {
             type = "string",
@@ -377,6 +389,9 @@ M.PendingUpdate = {
         },
         UpdateInitiationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -386,6 +401,9 @@ M.GetApprovalTeamOutput = {
     members = {
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ApprovalStrategy = M.ApprovalStrategyResponse,
         NumberOfApprovers = {
@@ -425,6 +443,9 @@ M.GetApprovalTeamOutput = {
         },
         LastUpdateTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         PendingUpdate = M.PendingUpdate,
     },
@@ -454,6 +475,9 @@ M.ListApprovalTeamsResponseApprovalTeam = {
     members = {
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ApprovalStrategy = M.ApprovalStrategyResponse,
         NumberOfApprovers = {
@@ -514,9 +538,15 @@ M.StartActiveApprovalTeamDeletionOutput = {
     members = {
         DeletionCompletionTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         DeletionStartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -657,12 +687,14 @@ M.PolicyVersion = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         LastUpdatedTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Document = {
@@ -786,6 +818,9 @@ M.CreateIdentitySourceInput = {
         } }, { __index = M.IdentitySourceParameters }),
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "map",
@@ -810,6 +845,9 @@ M.CreateIdentitySourceOutput = {
         },
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -892,6 +930,9 @@ M.GetIdentitySourceOutput = {
         },
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Status = {
             type = "string",
@@ -958,6 +999,9 @@ M.IdentitySourceForList = {
         },
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Status = {
             type = "string",
@@ -1121,12 +1165,14 @@ M.PolicyVersionSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         LastUpdatedTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1276,6 +1322,9 @@ M.GetSessionResponseApproverResponse = {
         },
         ResponseTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1322,12 +1371,21 @@ M.GetSessionOutput = {
         },
         InitiationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ExpirationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         CompletionTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Description = {
             type = "string",
@@ -1457,12 +1515,21 @@ M.ListSessionsResponseSession = {
         },
         InitiationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ExpirationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         CompletionTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Description = {
             type = "string",

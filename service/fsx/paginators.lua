@@ -1,0 +1,133 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for describeBackups.
+function M.pages_describe_backups(client, input)
+    return paginator.pages(client, "describeBackups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for describeDataRepositoryAssociations.
+function M.pages_describe_data_repository_associations(client, input)
+    return paginator.pages(client, "describeDataRepositoryAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for describeDataRepositoryTasks.
+function M.pages_describe_data_repository_tasks(client, input)
+    return paginator.pages(client, "describeDataRepositoryTasks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for describeFileCaches.
+function M.pages_describe_file_caches(client, input)
+    return paginator.pages(client, "describeFileCaches", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for describeFileSystemAliases.
+function M.pages_describe_file_system_aliases(client, input)
+    return paginator.pages(client, "describeFileSystemAliases", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for describeFileSystems.
+function M.pages_describe_file_systems(client, input)
+    return paginator.pages(client, "describeFileSystems", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for describeS3AccessPointAttachments.
+function M.pages_describe_s3_access_point_attachments(client, input)
+    return paginator.pages(client, "describeS3AccessPointAttachments", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "S3AccessPointAttachments",
+    })
+end
+
+--- Returns an item iterator for describeS3AccessPointAttachments.
+function M.items_describe_s3_access_point_attachments(client, input)
+    return paginator.items(client, "describeS3AccessPointAttachments", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "S3AccessPointAttachments",
+    })
+end
+
+--- Returns a page iterator for describeSnapshots.
+function M.pages_describe_snapshots(client, input)
+    return paginator.pages(client, "describeSnapshots", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Snapshots",
+    })
+end
+
+--- Returns an item iterator for describeSnapshots.
+function M.items_describe_snapshots(client, input)
+    return paginator.items(client, "describeSnapshots", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Snapshots",
+    })
+end
+
+--- Returns a page iterator for describeStorageVirtualMachines.
+function M.pages_describe_storage_virtual_machines(client, input)
+    return paginator.pages(client, "describeStorageVirtualMachines", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "StorageVirtualMachines",
+    })
+end
+
+--- Returns an item iterator for describeStorageVirtualMachines.
+function M.items_describe_storage_virtual_machines(client, input)
+    return paginator.items(client, "describeStorageVirtualMachines", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "StorageVirtualMachines",
+    })
+end
+
+--- Returns a page iterator for describeVolumes.
+function M.pages_describe_volumes(client, input)
+    return paginator.pages(client, "describeVolumes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Volumes",
+    })
+end
+
+--- Returns an item iterator for describeVolumes.
+function M.items_describe_volumes(client, input)
+    return paginator.items(client, "describeVolumes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Volumes",
+    })
+end
+
+--- Returns a page iterator for listTagsForResource.
+function M.pages_list_tags_for_resource(client, input)
+    return paginator.pages(client, "listTagsForResource", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+return M

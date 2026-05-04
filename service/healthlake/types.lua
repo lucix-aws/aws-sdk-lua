@@ -133,6 +133,9 @@ M.CreateFHIRDatastoreInput = {
         PreloadDataConfig = M.PreloadDataConfig,
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",
@@ -762,6 +765,9 @@ M.StartFHIRExportJobInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -813,6 +819,9 @@ M.StartFHIRImportJobInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ValidationLevel = {
             type = "string",

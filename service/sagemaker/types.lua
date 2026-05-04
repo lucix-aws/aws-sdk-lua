@@ -4208,6 +4208,9 @@ M.BatchAddClusterNodesInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         NodesToAdd = {
             type = "list",
@@ -10340,6 +10343,7 @@ M.HumanLoopActivationConditionsConfig = {
         HumanLoopActivationConditions = {
             type = "string",
             traits = {
+                media_type = "application/json",
                 required = true,
             },
         },
@@ -11114,6 +11118,7 @@ M.CreateImageVersionInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -12941,6 +12946,9 @@ M.CreateModelPackageInput = {
         ModelMetrics = M.ModelMetrics,
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Domain = {
             type = "string",
@@ -13825,6 +13833,9 @@ M.CreatePartnerAppInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",
@@ -13924,6 +13935,7 @@ M.CreatePipelineInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -16626,6 +16638,9 @@ M.DeletePartnerAppInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -16651,6 +16666,7 @@ M.DeletePipelineInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -32556,6 +32572,7 @@ M.RetryPipelineExecutionInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -33014,6 +33031,9 @@ M.SendPipelineExecutionStepFailureInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -33042,6 +33062,9 @@ M.SendPipelineExecutionStepSuccessInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -33207,6 +33230,7 @@ M.StartPipelineExecutionInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -33546,6 +33570,7 @@ M.StopPipelineExecutionInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -34893,6 +34918,9 @@ M.UpdatePartnerAppInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",

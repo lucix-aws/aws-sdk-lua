@@ -1,0 +1,12 @@
+local record M
+    pages_list_keyspaces: function(client: table, input: table): function(): table, table
+    items_list_keyspaces: function(client: table, input: table): function(): any
+    pages_list_tables: function(client: table, input: table): function(): table, table
+    items_list_tables: function(client: table, input: table): function(): any
+    pages_list_tags_for_resource: function(client: table, input: table): function(): table, table
+    items_list_tags_for_resource: function(client: table, input: table): function(): any
+    pages_list_types: function(client: table, input: table): function(): table, table
+    items_list_types: function(client: table, input: table): function(): any
+end
+
+return M

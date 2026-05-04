@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "BedrockAssessmentManagerLambda"
-    cfg.signing_name = "auditmanager"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "auditmanager", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateAssessmentReportEvidenceFolder(input, options)
         output_schema = types.AssociateAssessmentReportEvidenceFolderOutput,
         http_method = "PUT",
         http_path = "/assessments/{assessmentId}/associateToAssessmentReport",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchAssociateAssessmentReportEvidence(input, options)
         output_schema = types.BatchAssociateAssessmentReportEvidenceOutput,
         http_method = "PUT",
         http_path = "/assessments/{assessmentId}/batchAssociateToAssessmentReport",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchCreateDelegationByAssessment(input, options)
         output_schema = types.BatchCreateDelegationByAssessmentOutput,
         http_method = "POST",
         http_path = "/assessments/{assessmentId}/delegations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:batchDeleteDelegationByAssessment(input, options)
         output_schema = types.BatchDeleteDelegationByAssessmentOutput,
         http_method = "PUT",
         http_path = "/assessments/{assessmentId}/delegations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:batchDisassociateAssessmentReportEvidence(input, options)
         output_schema = types.BatchDisassociateAssessmentReportEvidenceOutput,
         http_method = "PUT",
         http_path = "/assessments/{assessmentId}/batchDisassociateFromAssessmentReport",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:batchImportEvidenceToAssessmentControl(input, options)
         output_schema = types.BatchImportEvidenceToAssessmentControlOutput,
         http_method = "POST",
         http_path = "/assessments/{assessmentId}/controlSets/{controlSetId}/controls/{controlId}/evidence",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createAssessment(input, options)
         output_schema = types.CreateAssessmentOutput,
         http_method = "POST",
         http_path = "/assessments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createAssessmentFramework(input, options)
         output_schema = types.CreateAssessmentFrameworkOutput,
         http_method = "POST",
         http_path = "/assessmentFrameworks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createAssessmentReport(input, options)
         output_schema = types.CreateAssessmentReportOutput,
         http_method = "POST",
         http_path = "/assessments/{assessmentId}/reports",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createControl(input, options)
         output_schema = types.CreateControlOutput,
         http_method = "POST",
         http_path = "/controls",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteAssessment(input, options)
         output_schema = types.DeleteAssessmentOutput,
         http_method = "DELETE",
         http_path = "/assessments/{assessmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteAssessmentFramework(input, options)
         output_schema = types.DeleteAssessmentFrameworkOutput,
         http_method = "DELETE",
         http_path = "/assessmentFrameworks/{frameworkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteAssessmentFrameworkShare(input, options)
         output_schema = types.DeleteAssessmentFrameworkShareOutput,
         http_method = "DELETE",
         http_path = "/assessmentFrameworkShareRequests/{requestId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteAssessmentReport(input, options)
         output_schema = types.DeleteAssessmentReportOutput,
         http_method = "DELETE",
         http_path = "/assessments/{assessmentId}/reports/{assessmentReportId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteControl(input, options)
         output_schema = types.DeleteControlOutput,
         http_method = "DELETE",
         http_path = "/controls/{controlId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deregisterAccount(input, options)
         output_schema = types.DeregisterAccountOutput,
         http_method = "POST",
         http_path = "/account/deregisterAccount",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deregisterOrganizationAdminAccount(input, options)
         output_schema = types.DeregisterOrganizationAdminAccountOutput,
         http_method = "POST",
         http_path = "/account/deregisterOrganizationAdminAccount",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:disassociateAssessmentReportEvidenceFolder(input, options)
         output_schema = types.DisassociateAssessmentReportEvidenceFolderOutput,
         http_method = "PUT",
         http_path = "/assessments/{assessmentId}/disassociateFromAssessmentReport",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getAccountStatus(input, options)
         output_schema = types.GetAccountStatusOutput,
         http_method = "GET",
         http_path = "/account/status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:getAssessment(input, options)
         output_schema = types.GetAssessmentOutput,
         http_method = "GET",
         http_path = "/assessments/{assessmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:getAssessmentFramework(input, options)
         output_schema = types.GetAssessmentFrameworkOutput,
         http_method = "GET",
         http_path = "/assessmentFrameworks/{frameworkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:getAssessmentReportUrl(input, options)
         output_schema = types.GetAssessmentReportUrlOutput,
         http_method = "GET",
         http_path = "/assessments/{assessmentId}/reports/{assessmentReportId}/url",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:getChangeLogs(input, options)
         output_schema = types.GetChangeLogsOutput,
         http_method = "GET",
         http_path = "/assessments/{assessmentId}/changelogs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:getControl(input, options)
         output_schema = types.GetControlOutput,
         http_method = "GET",
         http_path = "/controls/{controlId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:getDelegations(input, options)
         output_schema = types.GetDelegationsOutput,
         http_method = "GET",
         http_path = "/delegations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:getEvidence(input, options)
         output_schema = types.GetEvidenceOutput,
         http_method = "GET",
         http_path = "/assessments/{assessmentId}/controlSets/{controlSetId}/evidenceFolders/{evidenceFolderId}/evidence/{evidenceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:getEvidenceByEvidenceFolder(input, options)
         output_schema = types.GetEvidenceByEvidenceFolderOutput,
         http_method = "GET",
         http_path = "/assessments/{assessmentId}/controlSets/{controlSetId}/evidenceFolders/{evidenceFolderId}/evidence",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:getEvidenceFileUploadUrl(input, options)
         output_schema = types.GetEvidenceFileUploadUrlOutput,
         http_method = "GET",
         http_path = "/evidenceFileUploadUrl",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:getEvidenceFolder(input, options)
         output_schema = types.GetEvidenceFolderOutput,
         http_method = "GET",
         http_path = "/assessments/{assessmentId}/controlSets/{controlSetId}/evidenceFolders/{evidenceFolderId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:getEvidenceFoldersByAssessment(input, options)
         output_schema = types.GetEvidenceFoldersByAssessmentOutput,
         http_method = "GET",
         http_path = "/assessments/{assessmentId}/evidenceFolders",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:getEvidenceFoldersByAssessmentControl(input, options)
         output_schema = types.GetEvidenceFoldersByAssessmentControlOutput,
         http_method = "GET",
         http_path = "/assessments/{assessmentId}/evidenceFolders-by-assessment-control/{controlSetId}/{controlId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:getInsights(input, options)
         output_schema = types.GetInsightsOutput,
         http_method = "GET",
         http_path = "/insights",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:getInsightsByAssessment(input, options)
         output_schema = types.GetInsightsByAssessmentOutput,
         http_method = "GET",
         http_path = "/insights/assessments/{assessmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:getOrganizationAdminAccount(input, options)
         output_schema = types.GetOrganizationAdminAccountOutput,
         http_method = "GET",
         http_path = "/account/organizationAdminAccount",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:getServicesInScope(input, options)
         output_schema = types.GetServicesInScopeOutput,
         http_method = "GET",
         http_path = "/services",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:getSettings(input, options)
         output_schema = types.GetSettingsOutput,
         http_method = "GET",
         http_path = "/settings/{attribute}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:listAssessmentControlInsightsByControlDomain(input, options)
         output_schema = types.ListAssessmentControlInsightsByControlDomainOutput,
         http_method = "GET",
         http_path = "/insights/controls-by-assessment",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:listAssessmentFrameworks(input, options)
         output_schema = types.ListAssessmentFrameworksOutput,
         http_method = "GET",
         http_path = "/assessmentFrameworks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:listAssessmentFrameworkShareRequests(input, options)
         output_schema = types.ListAssessmentFrameworkShareRequestsOutput,
         http_method = "GET",
         http_path = "/assessmentFrameworkShareRequests",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:listAssessmentReports(input, options)
         output_schema = types.ListAssessmentReportsOutput,
         http_method = "GET",
         http_path = "/assessmentReports",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:listAssessments(input, options)
         output_schema = types.ListAssessmentsOutput,
         http_method = "GET",
         http_path = "/assessments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:listControlDomainInsights(input, options)
         output_schema = types.ListControlDomainInsightsOutput,
         http_method = "GET",
         http_path = "/insights/control-domains",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:listControlDomainInsightsByAssessment(input, options)
         output_schema = types.ListControlDomainInsightsByAssessmentOutput,
         http_method = "GET",
         http_path = "/insights/control-domains-by-assessment",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:listControlInsightsByControlDomain(input, options)
         output_schema = types.ListControlInsightsByControlDomainOutput,
         http_method = "GET",
         http_path = "/insights/controls",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:listControls(input, options)
         output_schema = types.ListControlsOutput,
         http_method = "GET",
         http_path = "/controls",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:listKeywordsForDataSource(input, options)
         output_schema = types.ListKeywordsForDataSourceOutput,
         http_method = "GET",
         http_path = "/dataSourceKeywords",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:listNotifications(input, options)
         output_schema = types.ListNotificationsOutput,
         http_method = "GET",
         http_path = "/notifications",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:registerAccount(input, options)
         output_schema = types.RegisterAccountOutput,
         http_method = "POST",
         http_path = "/account/registerAccount",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:registerOrganizationAdminAccount(input, options)
         output_schema = types.RegisterOrganizationAdminAccountOutput,
         http_method = "POST",
         http_path = "/account/registerOrganizationAdminAccount",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:startAssessmentFrameworkShare(input, options)
         output_schema = types.StartAssessmentFrameworkShareOutput,
         http_method = "POST",
         http_path = "/assessmentFrameworks/{frameworkId}/shareRequests",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:updateAssessment(input, options)
         output_schema = types.UpdateAssessmentOutput,
         http_method = "PUT",
         http_path = "/assessments/{assessmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:updateAssessmentControl(input, options)
         output_schema = types.UpdateAssessmentControlOutput,
         http_method = "PUT",
         http_path = "/assessments/{assessmentId}/controlSets/{controlSetId}/controls/{controlId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:updateAssessmentControlSetStatus(input, options)
         output_schema = types.UpdateAssessmentControlSetStatusOutput,
         http_method = "PUT",
         http_path = "/assessments/{assessmentId}/controlSets/{controlSetId}/status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:updateAssessmentFramework(input, options)
         output_schema = types.UpdateAssessmentFrameworkOutput,
         http_method = "PUT",
         http_path = "/assessmentFrameworks/{frameworkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:updateAssessmentFrameworkShare(input, options)
         output_schema = types.UpdateAssessmentFrameworkShareOutput,
         http_method = "PUT",
         http_path = "/assessmentFrameworkShareRequests/{requestId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:updateAssessmentStatus(input, options)
         output_schema = types.UpdateAssessmentStatusOutput,
         http_method = "PUT",
         http_path = "/assessments/{assessmentId}/status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:updateControl(input, options)
         output_schema = types.UpdateControlOutput,
         http_method = "PUT",
         http_path = "/controls/{controlId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:updateSettings(input, options)
         output_schema = types.UpdateSettingsOutput,
         http_method = "PUT",
         http_path = "/settings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:validateAssessmentReportIntegrity(input, options)
         output_schema = types.ValidateAssessmentReportIntegrityOutput,
         http_method = "POST",
         http_path = "/assessmentReports/integrity",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

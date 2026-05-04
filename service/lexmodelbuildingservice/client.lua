@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSDeepSenseModelBuildingService"
-    cfg.signing_name = "lex"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "lex", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createBotVersion(input, options)
         output_schema = types.CreateBotVersionOutput,
         http_method = "POST",
         http_path = "/bots/{name}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createIntentVersion(input, options)
         output_schema = types.CreateIntentVersionOutput,
         http_method = "POST",
         http_path = "/intents/{name}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createSlotTypeVersion(input, options)
         output_schema = types.CreateSlotTypeVersionOutput,
         http_method = "POST",
         http_path = "/slottypes/{name}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:deleteBot(input, options)
         output_schema = types.DeleteBotOutput,
         http_method = "DELETE",
         http_path = "/bots/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteBotAlias(input, options)
         output_schema = types.DeleteBotAliasOutput,
         http_method = "DELETE",
         http_path = "/bots/{botName}/aliases/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteBotChannelAssociation(input, options)
         output_schema = types.DeleteBotChannelAssociationOutput,
         http_method = "DELETE",
         http_path = "/bots/{botName}/aliases/{botAlias}/channels/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteBotVersion(input, options)
         output_schema = types.DeleteBotVersionOutput,
         http_method = "DELETE",
         http_path = "/bots/{name}/versions/{version}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteIntent(input, options)
         output_schema = types.DeleteIntentOutput,
         http_method = "DELETE",
         http_path = "/intents/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteIntentVersion(input, options)
         output_schema = types.DeleteIntentVersionOutput,
         http_method = "DELETE",
         http_path = "/intents/{name}/versions/{version}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteSlotType(input, options)
         output_schema = types.DeleteSlotTypeOutput,
         http_method = "DELETE",
         http_path = "/slottypes/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteSlotTypeVersion(input, options)
         output_schema = types.DeleteSlotTypeVersionOutput,
         http_method = "DELETE",
         http_path = "/slottypes/{name}/version/{version}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteUtterances(input, options)
         output_schema = types.DeleteUtterancesOutput,
         http_method = "DELETE",
         http_path = "/bots/{botName}/utterances/{userId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getBot(input, options)
         output_schema = types.GetBotOutput,
         http_method = "GET",
         http_path = "/bots/{name}/versions/{versionOrAlias}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getBotAlias(input, options)
         output_schema = types.GetBotAliasOutput,
         http_method = "GET",
         http_path = "/bots/{botName}/aliases/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getBotAliases(input, options)
         output_schema = types.GetBotAliasesOutput,
         http_method = "GET",
         http_path = "/bots/{botName}/aliases",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getBotChannelAssociation(input, options)
         output_schema = types.GetBotChannelAssociationOutput,
         http_method = "GET",
         http_path = "/bots/{botName}/aliases/{botAlias}/channels/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getBotChannelAssociations(input, options)
         output_schema = types.GetBotChannelAssociationsOutput,
         http_method = "GET",
         http_path = "/bots/{botName}/aliases/{botAlias}/channels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getBots(input, options)
         output_schema = types.GetBotsOutput,
         http_method = "GET",
         http_path = "/bots",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getBotVersions(input, options)
         output_schema = types.GetBotVersionsOutput,
         http_method = "GET",
         http_path = "/bots/{name}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:getBuiltinIntent(input, options)
         output_schema = types.GetBuiltinIntentOutput,
         http_method = "GET",
         http_path = "/builtins/intents/{signature}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:getBuiltinIntents(input, options)
         output_schema = types.GetBuiltinIntentsOutput,
         http_method = "GET",
         http_path = "/builtins/intents",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:getBuiltinSlotTypes(input, options)
         output_schema = types.GetBuiltinSlotTypesOutput,
         http_method = "GET",
         http_path = "/builtins/slottypes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:getExport(input, options)
         output_schema = types.GetExportOutput,
         http_method = "GET",
         http_path = "/exports",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:getImport(input, options)
         output_schema = types.GetImportOutput,
         http_method = "GET",
         http_path = "/imports/{importId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:getIntent(input, options)
         output_schema = types.GetIntentOutput,
         http_method = "GET",
         http_path = "/intents/{name}/versions/{version}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:getIntents(input, options)
         output_schema = types.GetIntentsOutput,
         http_method = "GET",
         http_path = "/intents",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:getIntentVersions(input, options)
         output_schema = types.GetIntentVersionsOutput,
         http_method = "GET",
         http_path = "/intents/{name}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:getMigration(input, options)
         output_schema = types.GetMigrationOutput,
         http_method = "GET",
         http_path = "/migrations/{migrationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:getMigrations(input, options)
         output_schema = types.GetMigrationsOutput,
         http_method = "GET",
         http_path = "/migrations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:getSlotType(input, options)
         output_schema = types.GetSlotTypeOutput,
         http_method = "GET",
         http_path = "/slottypes/{name}/versions/{version}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:getSlotTypes(input, options)
         output_schema = types.GetSlotTypesOutput,
         http_method = "GET",
         http_path = "/slottypes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:getSlotTypeVersions(input, options)
         output_schema = types.GetSlotTypeVersionsOutput,
         http_method = "GET",
         http_path = "/slottypes/{name}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:getUtterancesView(input, options)
         output_schema = types.GetUtterancesViewOutput,
         http_method = "GET",
         http_path = "/bots/{botName}/utterances?view=aggregation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:putBot(input, options)
         output_schema = types.PutBotOutput,
         http_method = "PUT",
         http_path = "/bots/{name}/versions/$LATEST",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:putBotAlias(input, options)
         output_schema = types.PutBotAliasOutput,
         http_method = "PUT",
         http_path = "/bots/{botName}/aliases/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:putIntent(input, options)
         output_schema = types.PutIntentOutput,
         http_method = "PUT",
         http_path = "/intents/{name}/versions/$LATEST",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:putSlotType(input, options)
         output_schema = types.PutSlotTypeOutput,
         http_method = "PUT",
         http_path = "/slottypes/{name}/versions/$LATEST",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:startImport(input, options)
         output_schema = types.StartImportOutput,
         http_method = "POST",
         http_path = "/imports",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:startMigration(input, options)
         output_schema = types.StartMigrationOutput,
         http_method = "POST",
         http_path = "/migrations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

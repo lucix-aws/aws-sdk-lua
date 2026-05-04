@@ -1,0 +1,11 @@
+local record M
+    pages_get_query_results: function(client: table, input: table): function(): table, table
+    pages_list_health_events: function(client: table, input: table): function(): table, table
+    items_list_health_events: function(client: table, input: table): function(): any
+    pages_list_internet_events: function(client: table, input: table): function(): table, table
+    items_list_internet_events: function(client: table, input: table): function(): any
+    pages_list_monitors: function(client: table, input: table): function(): table, table
+    items_list_monitors: function(client: table, input: table): function(): any
+end
+
+return M

@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "SSMIncidents"
-    cfg.signing_name = "ssm-incidents"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ssm-incidents", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:batchGetIncidentFindings(input, options)
         output_schema = types.BatchGetIncidentFindingsOutput,
         http_method = "POST",
         http_path = "/batchGetIncidentFindings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createReplicationSet(input, options)
         output_schema = types.CreateReplicationSetOutput,
         http_method = "POST",
         http_path = "/createReplicationSet",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createResponsePlan(input, options)
         output_schema = types.CreateResponsePlanOutput,
         http_method = "POST",
         http_path = "/createResponsePlan",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createTimelineEvent(input, options)
         output_schema = types.CreateTimelineEventOutput,
         http_method = "POST",
         http_path = "/createTimelineEvent",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteIncidentRecord(input, options)
         output_schema = types.DeleteIncidentRecordOutput,
         http_method = "POST",
         http_path = "/deleteIncidentRecord",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteReplicationSet(input, options)
         output_schema = types.DeleteReplicationSetOutput,
         http_method = "POST",
         http_path = "/deleteReplicationSet",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteResourcePolicy(input, options)
         output_schema = types.DeleteResourcePolicyOutput,
         http_method = "POST",
         http_path = "/deleteResourcePolicy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteResponsePlan(input, options)
         output_schema = types.DeleteResponsePlanOutput,
         http_method = "POST",
         http_path = "/deleteResponsePlan",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteTimelineEvent(input, options)
         output_schema = types.DeleteTimelineEventOutput,
         http_method = "POST",
         http_path = "/deleteTimelineEvent",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:getIncidentRecord(input, options)
         output_schema = types.GetIncidentRecordOutput,
         http_method = "GET",
         http_path = "/getIncidentRecord",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getReplicationSet(input, options)
         output_schema = types.GetReplicationSetOutput,
         http_method = "GET",
         http_path = "/getReplicationSet",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getResourcePolicies(input, options)
         output_schema = types.GetResourcePoliciesOutput,
         http_method = "POST",
         http_path = "/getResourcePolicies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getResponsePlan(input, options)
         output_schema = types.GetResponsePlanOutput,
         http_method = "GET",
         http_path = "/getResponsePlan",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getTimelineEvent(input, options)
         output_schema = types.GetTimelineEventOutput,
         http_method = "GET",
         http_path = "/getTimelineEvent",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:listIncidentFindings(input, options)
         output_schema = types.ListIncidentFindingsOutput,
         http_method = "POST",
         http_path = "/listIncidentFindings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listIncidentRecords(input, options)
         output_schema = types.ListIncidentRecordsOutput,
         http_method = "POST",
         http_path = "/listIncidentRecords",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listRelatedItems(input, options)
         output_schema = types.ListRelatedItemsOutput,
         http_method = "POST",
         http_path = "/listRelatedItems",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listReplicationSets(input, options)
         output_schema = types.ListReplicationSetsOutput,
         http_method = "POST",
         http_path = "/listReplicationSets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listResponsePlans(input, options)
         output_schema = types.ListResponsePlansOutput,
         http_method = "POST",
         http_path = "/listResponsePlans",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listTimelineEvents(input, options)
         output_schema = types.ListTimelineEventsOutput,
         http_method = "POST",
         http_path = "/listTimelineEvents",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:putResourcePolicy(input, options)
         output_schema = types.PutResourcePolicyOutput,
         http_method = "POST",
         http_path = "/putResourcePolicy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:startIncident(input, options)
         output_schema = types.StartIncidentOutput,
         http_method = "POST",
         http_path = "/startIncident",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:updateDeletionProtection(input, options)
         output_schema = types.UpdateDeletionProtectionOutput,
         http_method = "POST",
         http_path = "/updateDeletionProtection",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:updateIncidentRecord(input, options)
         output_schema = types.UpdateIncidentRecordOutput,
         http_method = "POST",
         http_path = "/updateIncidentRecord",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:updateRelatedItems(input, options)
         output_schema = types.UpdateRelatedItemsOutput,
         http_method = "POST",
         http_path = "/updateRelatedItems",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:updateReplicationSet(input, options)
         output_schema = types.UpdateReplicationSetOutput,
         http_method = "POST",
         http_path = "/updateReplicationSet",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:updateResponsePlan(input, options)
         output_schema = types.UpdateResponsePlanOutput,
         http_method = "POST",
         http_path = "/updateResponsePlan",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:updateTimelineEvent(input, options)
         output_schema = types.UpdateTimelineEventOutput,
         http_method = "POST",
         http_path = "/updateTimelineEvent",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

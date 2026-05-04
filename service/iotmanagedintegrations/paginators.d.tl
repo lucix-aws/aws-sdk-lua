@@ -1,0 +1,38 @@
+local record M
+    pages_list_account_associations: function(client: table, input: table): function(): table, table
+    items_list_account_associations: function(client: table, input: table): function(): any
+    pages_list_cloud_connectors: function(client: table, input: table): function(): table, table
+    items_list_cloud_connectors: function(client: table, input: table): function(): any
+    pages_list_connector_destinations: function(client: table, input: table): function(): table, table
+    items_list_connector_destinations: function(client: table, input: table): function(): any
+    pages_list_credential_lockers: function(client: table, input: table): function(): table, table
+    items_list_credential_lockers: function(client: table, input: table): function(): any
+    pages_list_destinations: function(client: table, input: table): function(): table, table
+    items_list_destinations: function(client: table, input: table): function(): any
+    pages_list_device_discoveries: function(client: table, input: table): function(): table, table
+    items_list_device_discoveries: function(client: table, input: table): function(): any
+    pages_list_discovered_devices: function(client: table, input: table): function(): table, table
+    items_list_discovered_devices: function(client: table, input: table): function(): any
+    pages_list_event_log_configurations: function(client: table, input: table): function(): table, table
+    items_list_event_log_configurations: function(client: table, input: table): function(): any
+    pages_list_managed_thing_account_associations: function(client: table, input: table): function(): table, table
+    items_list_managed_thing_account_associations: function(client: table, input: table): function(): any
+    pages_list_managed_thing_schemas: function(client: table, input: table): function(): table, table
+    items_list_managed_thing_schemas: function(client: table, input: table): function(): any
+    pages_list_managed_things: function(client: table, input: table): function(): table, table
+    items_list_managed_things: function(client: table, input: table): function(): any
+    pages_list_notification_configurations: function(client: table, input: table): function(): table, table
+    items_list_notification_configurations: function(client: table, input: table): function(): any
+    pages_list_ota_task_configurations: function(client: table, input: table): function(): table, table
+    items_list_ota_task_configurations: function(client: table, input: table): function(): any
+    pages_list_ota_task_executions: function(client: table, input: table): function(): table, table
+    items_list_ota_task_executions: function(client: table, input: table): function(): any
+    pages_list_ota_tasks: function(client: table, input: table): function(): table, table
+    items_list_ota_tasks: function(client: table, input: table): function(): any
+    pages_list_provisioning_profiles: function(client: table, input: table): function(): table, table
+    items_list_provisioning_profiles: function(client: table, input: table): function(): any
+    pages_list_schema_versions: function(client: table, input: table): function(): table, table
+    items_list_schema_versions: function(client: table, input: table): function(): any
+end
+
+return M

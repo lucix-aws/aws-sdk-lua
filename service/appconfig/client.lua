@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonAppConfig"
-    cfg.signing_name = "appconfig"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "appconfig", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createApplication(input, options)
         output_schema = types.CreateApplicationOutput,
         http_method = "POST",
         http_path = "/applications",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createConfigurationProfile(input, options)
         output_schema = types.CreateConfigurationProfileOutput,
         http_method = "POST",
         http_path = "/applications/{ApplicationId}/configurationprofiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createDeploymentStrategy(input, options)
         output_schema = types.CreateDeploymentStrategyOutput,
         http_method = "POST",
         http_path = "/deploymentstrategies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createEnvironment(input, options)
         output_schema = types.CreateEnvironmentOutput,
         http_method = "POST",
         http_path = "/applications/{ApplicationId}/environments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createExtension(input, options)
         output_schema = types.CreateExtensionOutput,
         http_method = "POST",
         http_path = "/extensions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createExtensionAssociation(input, options)
         output_schema = types.CreateExtensionAssociationOutput,
         http_method = "POST",
         http_path = "/extensionassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createHostedConfigurationVersion(input, options)
         output_schema = types.CreateHostedConfigurationVersionOutput,
         http_method = "POST",
         http_path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/hostedconfigurationversions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteApplication(input, options)
         output_schema = types.DeleteApplicationOutput,
         http_method = "DELETE",
         http_path = "/applications/{ApplicationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteConfigurationProfile(input, options)
         output_schema = types.DeleteConfigurationProfileOutput,
         http_method = "DELETE",
         http_path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteDeploymentStrategy(input, options)
         output_schema = types.DeleteDeploymentStrategyOutput,
         http_method = "DELETE",
         http_path = "/deployementstrategies/{DeploymentStrategyId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteEnvironment(input, options)
         output_schema = types.DeleteEnvironmentOutput,
         http_method = "DELETE",
         http_path = "/applications/{ApplicationId}/environments/{EnvironmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteExtension(input, options)
         output_schema = types.DeleteExtensionOutput,
         http_method = "DELETE",
         http_path = "/extensions/{ExtensionIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteExtensionAssociation(input, options)
         output_schema = types.DeleteExtensionAssociationOutput,
         http_method = "DELETE",
         http_path = "/extensionassociations/{ExtensionAssociationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteHostedConfigurationVersion(input, options)
         output_schema = types.DeleteHostedConfigurationVersionOutput,
         http_method = "DELETE",
         http_path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/hostedconfigurationversions/{VersionNumber}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getAccountSettings(input, options)
         output_schema = types.GetAccountSettingsOutput,
         http_method = "GET",
         http_path = "/settings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getApplication(input, options)
         output_schema = types.GetApplicationOutput,
         http_method = "GET",
         http_path = "/applications/{ApplicationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getConfiguration(input, options)
         output_schema = types.GetConfigurationOutput,
         http_method = "GET",
         http_path = "/applications/{Application}/environments/{Environment}/configurations/{Configuration}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getConfigurationProfile(input, options)
         output_schema = types.GetConfigurationProfileOutput,
         http_method = "GET",
         http_path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getDeployment(input, options)
         output_schema = types.GetDeploymentOutput,
         http_method = "GET",
         http_path = "/applications/{ApplicationId}/environments/{EnvironmentId}/deployments/{DeploymentNumber}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:getDeploymentStrategy(input, options)
         output_schema = types.GetDeploymentStrategyOutput,
         http_method = "GET",
         http_path = "/deploymentstrategies/{DeploymentStrategyId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:getEnvironment(input, options)
         output_schema = types.GetEnvironmentOutput,
         http_method = "GET",
         http_path = "/applications/{ApplicationId}/environments/{EnvironmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:getExtension(input, options)
         output_schema = types.GetExtensionOutput,
         http_method = "GET",
         http_path = "/extensions/{ExtensionIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:getExtensionAssociation(input, options)
         output_schema = types.GetExtensionAssociationOutput,
         http_method = "GET",
         http_path = "/extensionassociations/{ExtensionAssociationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:getHostedConfigurationVersion(input, options)
         output_schema = types.GetHostedConfigurationVersionOutput,
         http_method = "GET",
         http_path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/hostedconfigurationversions/{VersionNumber}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listApplications(input, options)
         output_schema = types.ListApplicationsOutput,
         http_method = "GET",
         http_path = "/applications",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listConfigurationProfiles(input, options)
         output_schema = types.ListConfigurationProfilesOutput,
         http_method = "GET",
         http_path = "/applications/{ApplicationId}/configurationprofiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:listDeployments(input, options)
         output_schema = types.ListDeploymentsOutput,
         http_method = "GET",
         http_path = "/applications/{ApplicationId}/environments/{EnvironmentId}/deployments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:listDeploymentStrategies(input, options)
         output_schema = types.ListDeploymentStrategiesOutput,
         http_method = "GET",
         http_path = "/deploymentstrategies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listEnvironments(input, options)
         output_schema = types.ListEnvironmentsOutput,
         http_method = "GET",
         http_path = "/applications/{ApplicationId}/environments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:listExtensionAssociations(input, options)
         output_schema = types.ListExtensionAssociationsOutput,
         http_method = "GET",
         http_path = "/extensionassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:listExtensions(input, options)
         output_schema = types.ListExtensionsOutput,
         http_method = "GET",
         http_path = "/extensions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:listHostedConfigurationVersions(input, options)
         output_schema = types.ListHostedConfigurationVersionsOutput,
         http_method = "GET",
         http_path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/hostedconfigurationversions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:startDeployment(input, options)
         output_schema = types.StartDeploymentOutput,
         http_method = "POST",
         http_path = "/applications/{ApplicationId}/environments/{EnvironmentId}/deployments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:stopDeployment(input, options)
         output_schema = types.StopDeploymentOutput,
         http_method = "DELETE",
         http_path = "/applications/{ApplicationId}/environments/{EnvironmentId}/deployments/{DeploymentNumber}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:updateAccountSettings(input, options)
         output_schema = types.UpdateAccountSettingsOutput,
         http_method = "PATCH",
         http_path = "/settings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:updateApplication(input, options)
         output_schema = types.UpdateApplicationOutput,
         http_method = "PATCH",
         http_path = "/applications/{ApplicationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:updateConfigurationProfile(input, options)
         output_schema = types.UpdateConfigurationProfileOutput,
         http_method = "PATCH",
         http_path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:updateDeploymentStrategy(input, options)
         output_schema = types.UpdateDeploymentStrategyOutput,
         http_method = "PATCH",
         http_path = "/deploymentstrategies/{DeploymentStrategyId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:updateEnvironment(input, options)
         output_schema = types.UpdateEnvironmentOutput,
         http_method = "PATCH",
         http_path = "/applications/{ApplicationId}/environments/{EnvironmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:updateExtension(input, options)
         output_schema = types.UpdateExtensionOutput,
         http_method = "PATCH",
         http_path = "/extensions/{ExtensionIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:updateExtensionAssociation(input, options)
         output_schema = types.UpdateExtensionAssociationOutput,
         http_method = "PATCH",
         http_path = "/extensionassociations/{ExtensionAssociationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:validateConfiguration(input, options)
         output_schema = types.ValidateConfigurationOutput,
         http_method = "POST",
         http_path = "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/validators",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

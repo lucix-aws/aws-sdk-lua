@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "ResourceExplorer"
-    cfg.signing_name = "resource-explorer-2"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "resource-explorer-2", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateDefaultView(input, options)
         output_schema = types.AssociateDefaultViewOutput,
         http_method = "POST",
         http_path = "/AssociateDefaultView",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchGetView(input, options)
         output_schema = types.BatchGetViewOutput,
         http_method = "POST",
         http_path = "/BatchGetView",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createIndex(input, options)
         output_schema = types.CreateIndexOutput,
         http_method = "POST",
         http_path = "/CreateIndex",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createResourceExplorerSetup(input, options)
         output_schema = types.CreateResourceExplorerSetupOutput,
         http_method = "POST",
         http_path = "/CreateResourceExplorerSetup",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createView(input, options)
         output_schema = types.CreateViewOutput,
         http_method = "POST",
         http_path = "/CreateView",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteIndex(input, options)
         output_schema = types.DeleteIndexOutput,
         http_method = "POST",
         http_path = "/DeleteIndex",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteResourceExplorerSetup(input, options)
         output_schema = types.DeleteResourceExplorerSetupOutput,
         http_method = "POST",
         http_path = "/DeleteResourceExplorerSetup",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteView(input, options)
         output_schema = types.DeleteViewOutput,
         http_method = "POST",
         http_path = "/DeleteView",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:disassociateDefaultView(input, options)
         output_schema = types.DisassociateDefaultViewOutput,
         http_method = "POST",
         http_path = "/DisassociateDefaultView",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:getAccountLevelServiceConfiguration(input, options)
         output_schema = types.GetAccountLevelServiceConfigurationOutput,
         http_method = "POST",
         http_path = "/GetAccountLevelServiceConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getDefaultView(input, options)
         output_schema = types.GetDefaultViewOutput,
         http_method = "POST",
         http_path = "/GetDefaultView",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getIndex(input, options)
         output_schema = types.GetIndexOutput,
         http_method = "POST",
         http_path = "/GetIndex",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getManagedView(input, options)
         output_schema = types.GetManagedViewOutput,
         http_method = "POST",
         http_path = "/GetManagedView",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getResourceExplorerSetup(input, options)
         output_schema = types.GetResourceExplorerSetupOutput,
         http_method = "POST",
         http_path = "/GetResourceExplorerSetup",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getServiceIndex(input, options)
         output_schema = types.GetServiceIndexOutput,
         http_method = "POST",
         http_path = "/GetServiceIndex",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getServiceView(input, options)
         output_schema = types.GetServiceViewOutput,
         http_method = "POST",
         http_path = "/GetServiceView",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getView(input, options)
         output_schema = types.GetViewOutput,
         http_method = "POST",
         http_path = "/GetView",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listIndexes(input, options)
         output_schema = types.ListIndexesOutput,
         http_method = "POST",
         http_path = "/ListIndexes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listIndexesForMembers(input, options)
         output_schema = types.ListIndexesForMembersOutput,
         http_method = "POST",
         http_path = "/ListIndexesForMembers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listManagedViews(input, options)
         output_schema = types.ListManagedViewsOutput,
         http_method = "POST",
         http_path = "/ListManagedViews",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listResources(input, options)
         output_schema = types.ListResourcesOutput,
         http_method = "POST",
         http_path = "/ListResources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listServiceIndexes(input, options)
         output_schema = types.ListServiceIndexesOutput,
         http_method = "POST",
         http_path = "/ListServiceIndexes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listServiceViews(input, options)
         output_schema = types.ListServiceViewsOutput,
         http_method = "POST",
         http_path = "/ListServiceViews",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listStreamingAccessForServices(input, options)
         output_schema = types.ListStreamingAccessForServicesOutput,
         http_method = "POST",
         http_path = "/ListStreamingAccessForServices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listSupportedResourceTypes(input, options)
         output_schema = types.ListSupportedResourceTypesOutput,
         http_method = "POST",
         http_path = "/ListSupportedResourceTypes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:listViews(input, options)
         output_schema = types.ListViewsOutput,
         http_method = "POST",
         http_path = "/ListViews",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:search(input, options)
         output_schema = types.SearchOutput,
         http_method = "POST",
         http_path = "/Search",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:updateIndexType(input, options)
         output_schema = types.UpdateIndexTypeOutput,
         http_method = "POST",
         http_path = "/UpdateIndexType",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:updateView(input, options)
         output_schema = types.UpdateViewOutput,
         http_method = "POST",
         http_path = "/UpdateView",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

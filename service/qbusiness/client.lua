@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "ExpertQ"
-    cfg.signing_name = "qbusiness"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "qbusiness", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associatePermission(input, options)
         output_schema = types.AssociatePermissionOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchDeleteDocument(input, options)
         output_schema = types.BatchDeleteDocumentOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/indices/{indexId}/documents/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchPutDocument(input, options)
         output_schema = types.BatchPutDocumentOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/indices/{indexId}/documents",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:cancelSubscription(input, options)
         output_schema = types.CancelSubscriptionOutput,
         http_method = "DELETE",
         http_path = "/applications/{applicationId}/subscriptions/{subscriptionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:chat(input, options)
         output_schema = types.ChatOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/conversations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:chatSync(input, options)
         output_schema = types.ChatSyncOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/conversations?sync",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:checkDocumentAccess(input, options)
         output_schema = types.CheckDocumentAccessOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/index/{indexId}/users/{userId}/documents/{documentId}/check-document-access",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createAnonymousWebExperienceUrl(input, options)
         output_schema = types.CreateAnonymousWebExperienceUrlOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/experiences/{webExperienceId}/anonymous-url",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createApplication(input, options)
         output_schema = types.CreateApplicationOutput,
         http_method = "POST",
         http_path = "/applications",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createChatResponseConfiguration(input, options)
         output_schema = types.CreateChatResponseConfigurationOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/chatresponseconfigurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createDataAccessor(input, options)
         output_schema = types.CreateDataAccessorOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/dataaccessors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createDataSource(input, options)
         output_schema = types.CreateDataSourceOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/indices/{indexId}/datasources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createIndex(input, options)
         output_schema = types.CreateIndexOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/indices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:createPlugin(input, options)
         output_schema = types.CreatePluginOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/plugins",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:createRetriever(input, options)
         output_schema = types.CreateRetrieverOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/retrievers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:createSubscription(input, options)
         output_schema = types.CreateSubscriptionOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/subscriptions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:createUser(input, options)
         output_schema = types.CreateUserOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/users",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:createWebExperience(input, options)
         output_schema = types.CreateWebExperienceOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/experiences",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteApplication(input, options)
         output_schema = types.DeleteApplicationOutput,
         http_method = "DELETE",
         http_path = "/applications/{applicationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deleteAttachment(input, options)
         output_schema = types.DeleteAttachmentOutput,
         http_method = "DELETE",
         http_path = "/applications/{applicationId}/conversations/{conversationId}/attachments/{attachmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deleteChatControlsConfiguration(input, options)
         output_schema = types.DeleteChatControlsConfigurationOutput,
         http_method = "DELETE",
         http_path = "/applications/{applicationId}/chatcontrols",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:deleteChatResponseConfiguration(input, options)
         output_schema = types.DeleteChatResponseConfigurationOutput,
         http_method = "DELETE",
         http_path = "/applications/{applicationId}/chatresponseconfigurations/{chatResponseConfigurationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:deleteConversation(input, options)
         output_schema = types.DeleteConversationOutput,
         http_method = "DELETE",
         http_path = "/applications/{applicationId}/conversations/{conversationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:deleteDataAccessor(input, options)
         output_schema = types.DeleteDataAccessorOutput,
         http_method = "DELETE",
         http_path = "/applications/{applicationId}/dataaccessors/{dataAccessorId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:deleteDataSource(input, options)
         output_schema = types.DeleteDataSourceOutput,
         http_method = "DELETE",
         http_path = "/applications/{applicationId}/indices/{indexId}/datasources/{dataSourceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:deleteGroup(input, options)
         output_schema = types.DeleteGroupOutput,
         http_method = "DELETE",
         http_path = "/applications/{applicationId}/indices/{indexId}/groups/{groupName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:deleteIndex(input, options)
         output_schema = types.DeleteIndexOutput,
         http_method = "DELETE",
         http_path = "/applications/{applicationId}/indices/{indexId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:deletePlugin(input, options)
         output_schema = types.DeletePluginOutput,
         http_method = "DELETE",
         http_path = "/applications/{applicationId}/plugins/{pluginId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:deleteRetriever(input, options)
         output_schema = types.DeleteRetrieverOutput,
         http_method = "DELETE",
         http_path = "/applications/{applicationId}/retrievers/{retrieverId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:deleteUser(input, options)
         output_schema = types.DeleteUserOutput,
         http_method = "DELETE",
         http_path = "/applications/{applicationId}/users/{userId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:deleteWebExperience(input, options)
         output_schema = types.DeleteWebExperienceOutput,
         http_method = "DELETE",
         http_path = "/applications/{applicationId}/experiences/{webExperienceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:disassociatePermission(input, options)
         output_schema = types.DisassociatePermissionOutput,
         http_method = "DELETE",
         http_path = "/applications/{applicationId}/policy/{statementId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:getApplication(input, options)
         output_schema = types.GetApplicationOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:getChatControlsConfiguration(input, options)
         output_schema = types.GetChatControlsConfigurationOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/chatcontrols",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:getChatResponseConfiguration(input, options)
         output_schema = types.GetChatResponseConfigurationOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/chatresponseconfigurations/{chatResponseConfigurationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:getDataAccessor(input, options)
         output_schema = types.GetDataAccessorOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/dataaccessors/{dataAccessorId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:getDataSource(input, options)
         output_schema = types.GetDataSourceOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/indices/{indexId}/datasources/{dataSourceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:getDocumentContent(input, options)
         output_schema = types.GetDocumentContentOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/index/{indexId}/documents/{documentId}/content",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:getGroup(input, options)
         output_schema = types.GetGroupOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/indices/{indexId}/groups/{groupName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:getIndex(input, options)
         output_schema = types.GetIndexOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/indices/{indexId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:getMedia(input, options)
         output_schema = types.GetMediaOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/conversations/{conversationId}/messages/{messageId}/media/{mediaId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:getPlugin(input, options)
         output_schema = types.GetPluginOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/plugins/{pluginId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:getPolicy(input, options)
         output_schema = types.GetPolicyOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:getRetriever(input, options)
         output_schema = types.GetRetrieverOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/retrievers/{retrieverId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:getUser(input, options)
         output_schema = types.GetUserOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/users/{userId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:getWebExperience(input, options)
         output_schema = types.GetWebExperienceOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/experiences/{webExperienceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:listApplications(input, options)
         output_schema = types.ListApplicationsOutput,
         http_method = "GET",
         http_path = "/applications",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:listAttachments(input, options)
         output_schema = types.ListAttachmentsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/attachments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:listChatResponseConfigurations(input, options)
         output_schema = types.ListChatResponseConfigurationsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/chatresponseconfigurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:listConversations(input, options)
         output_schema = types.ListConversationsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/conversations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:listDataAccessors(input, options)
         output_schema = types.ListDataAccessorsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/dataaccessors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:listDataSources(input, options)
         output_schema = types.ListDataSourcesOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/indices/{indexId}/datasources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:listDataSourceSyncJobs(input, options)
         output_schema = types.ListDataSourceSyncJobsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/indices/{indexId}/datasources/{dataSourceId}/syncjobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:listDocuments(input, options)
         output_schema = types.ListDocumentsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/index/{indexId}/documents",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:listGroups(input, options)
         output_schema = types.ListGroupsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/indices/{indexId}/groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:listIndices(input, options)
         output_schema = types.ListIndicesOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/indices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:listMessages(input, options)
         output_schema = types.ListMessagesOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/conversations/{conversationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:listPluginActions(input, options)
         output_schema = types.ListPluginActionsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/plugins/{pluginId}/actions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:listPlugins(input, options)
         output_schema = types.ListPluginsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/plugins",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:listPluginTypeActions(input, options)
         output_schema = types.ListPluginTypeActionsOutput,
         http_method = "GET",
         http_path = "/pluginTypes/{pluginType}/actions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:listPluginTypeMetadata(input, options)
         output_schema = types.ListPluginTypeMetadataOutput,
         http_method = "GET",
         http_path = "/pluginTypeMetadata",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:listRetrievers(input, options)
         output_schema = types.ListRetrieversOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/retrievers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:listSubscriptions(input, options)
         output_schema = types.ListSubscriptionsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/subscriptions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/v1/tags/{resourceARN}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:listWebExperiences(input, options)
         output_schema = types.ListWebExperiencesOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/experiences",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:putFeedback(input, options)
         output_schema = types.PutFeedbackOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/conversations/{conversationId}/messages/{messageId}/feedback",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:putGroup(input, options)
         output_schema = types.PutGroupOutput,
         http_method = "PUT",
         http_path = "/applications/{applicationId}/indices/{indexId}/groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:searchRelevantContent(input, options)
         output_schema = types.SearchRelevantContentOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/relevant-content",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:startDataSourceSyncJob(input, options)
         output_schema = types.StartDataSourceSyncJobOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/indices/{indexId}/datasources/{dataSourceId}/startsync",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:stopDataSourceSyncJob(input, options)
         output_schema = types.StopDataSourceSyncJobOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/indices/{indexId}/datasources/{dataSourceId}/stopsync",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/v1/tags/{resourceARN}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/v1/tags/{resourceARN}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:updateApplication(input, options)
         output_schema = types.UpdateApplicationOutput,
         http_method = "PUT",
         http_path = "/applications/{applicationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:updateChatControlsConfiguration(input, options)
         output_schema = types.UpdateChatControlsConfigurationOutput,
         http_method = "PATCH",
         http_path = "/applications/{applicationId}/chatcontrols",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:updateChatResponseConfiguration(input, options)
         output_schema = types.UpdateChatResponseConfigurationOutput,
         http_method = "PUT",
         http_path = "/applications/{applicationId}/chatresponseconfigurations/{chatResponseConfigurationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:updateDataAccessor(input, options)
         output_schema = types.UpdateDataAccessorOutput,
         http_method = "PUT",
         http_path = "/applications/{applicationId}/dataaccessors/{dataAccessorId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:updateDataSource(input, options)
         output_schema = types.UpdateDataSourceOutput,
         http_method = "PUT",
         http_path = "/applications/{applicationId}/indices/{indexId}/datasources/{dataSourceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:updateIndex(input, options)
         output_schema = types.UpdateIndexOutput,
         http_method = "PUT",
         http_path = "/applications/{applicationId}/indices/{indexId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:updatePlugin(input, options)
         output_schema = types.UpdatePluginOutput,
         http_method = "PUT",
         http_path = "/applications/{applicationId}/plugins/{pluginId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:updateRetriever(input, options)
         output_schema = types.UpdateRetrieverOutput,
         http_method = "PUT",
         http_path = "/applications/{applicationId}/retrievers/{retrieverId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:updateSubscription(input, options)
         output_schema = types.UpdateSubscriptionOutput,
         http_method = "PUT",
         http_path = "/applications/{applicationId}/subscriptions/{subscriptionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:updateUser(input, options)
         output_schema = types.UpdateUserOutput,
         http_method = "PUT",
         http_path = "/applications/{applicationId}/users/{userId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:updateWebExperience(input, options)
         output_schema = types.UpdateWebExperienceOutput,
         http_method = "PUT",
         http_path = "/applications/{applicationId}/experiences/{webExperienceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

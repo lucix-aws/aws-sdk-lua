@@ -3007,6 +3007,9 @@ M.AllocateIpamPoolCidrInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Description = {
             type = "string",
@@ -3602,6 +3605,9 @@ M.AssociateClientVpnTargetNetworkInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -4061,6 +4067,9 @@ M.AssociateIpamResourceDiscoveryInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -4703,6 +4712,9 @@ M.AssociateTrunkInterfaceInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -5103,6 +5115,9 @@ M.AttachVerifiedAccessTrustProviderInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -5636,6 +5651,9 @@ M.AuthorizeClientVpnIngressInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -6986,6 +7004,9 @@ M.CopyImageInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Description = {
             type = "string",
@@ -7195,6 +7216,9 @@ M.CopyVolumesInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -7477,6 +7501,9 @@ M.CreateCapacityManagerDataExportInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -7967,6 +7994,9 @@ M.CreateCapacityReservationBySplittingInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         SourceCapacityReservationId = {
             type = "string",
@@ -9266,6 +9296,9 @@ M.CreateCapacityReservationFleetInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         InstanceTypeSpecifications = {
             type = "list",
@@ -9470,6 +9503,9 @@ M.CreateCarrierGatewayInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -9712,6 +9748,9 @@ M.CreateClientVpnEndpointInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         TagSpecifications = {
             type = "list",
@@ -9822,6 +9861,9 @@ M.CreateClientVpnRouteInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -10552,6 +10594,9 @@ M.CreateDelegateMacVolumeOwnershipTaskInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -11516,6 +11561,9 @@ M.CreateFleetInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         SpotOptions = M.SpotOptionsRequest,
         OnDemandOptions = M.OnDemandOptionsRequest,
@@ -12573,6 +12621,9 @@ M.CreateImageUsageReportInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         TagSpecifications = {
             type = "list",
@@ -12626,6 +12677,9 @@ M.CreateInstanceConnectEndpointInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         TagSpecifications = {
             type = "list",
@@ -13134,6 +13188,9 @@ M.CreateInterruptibleCapacityReservationAllocationInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -13213,6 +13270,9 @@ M.CreateIpamInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tier = {
             type = "string",
@@ -13399,6 +13459,9 @@ M.CreateIpamExternalResourceVerificationTokenInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -13514,6 +13577,9 @@ M.CreateIpamPolicyInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         IpamId = {
             type = "string",
@@ -13705,6 +13771,9 @@ M.CreateIpamPoolInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         AwsService = {
             type = "string",
@@ -14057,6 +14126,9 @@ M.CreateIpamPrefixListResolverInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -14206,6 +14278,9 @@ M.CreateIpamPrefixListResolverTargetInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -14341,6 +14416,9 @@ M.CreateIpamResourceDiscoveryInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -14490,6 +14568,9 @@ M.CreateIpamScopeInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ExternalAuthorityConfiguration = M.ExternalAuthorityConfiguration,
     },
@@ -15415,6 +15496,9 @@ M.CreateLaunchTemplateInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         LaunchTemplateName = {
             type = "string",
@@ -15542,6 +15626,9 @@ M.CreateLaunchTemplateVersionInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         LaunchTemplateId = {
             type = "string",
@@ -17314,6 +17401,9 @@ M.CreateMacSystemIntegrityProtectionModificationTaskInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -17393,6 +17483,9 @@ M.CreateManagedPrefixListInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -17540,6 +17633,9 @@ M.CreateNatGatewayInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -17846,6 +17942,9 @@ M.CreateNetworkAclInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -18113,6 +18212,7 @@ M.CreateNetworkInsightsAccessScopeInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -18270,6 +18370,7 @@ M.CreateNetworkInsightsPathInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -18456,6 +18557,9 @@ M.CreateNetworkInterfaceInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         EnablePrimaryIpv6 = {
             type = "boolean",
@@ -19312,6 +19416,9 @@ M.CreateReplaceRootVolumeTaskInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -19646,6 +19753,9 @@ M.CreateRouteServerInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -19767,6 +19877,9 @@ M.CreateRouteServerEndpointInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -20076,6 +20189,9 @@ M.CreateRouteTableInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -20353,6 +20469,9 @@ M.CreateSecondaryNetworkInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -20503,6 +20622,9 @@ M.CreateSecondarySubnetInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         AvailabilityZone = {
             type = "string",
@@ -21440,6 +21562,9 @@ M.CreateTrafficMirrorFilterInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -21674,6 +21799,9 @@ M.CreateTrafficMirrorFilterRuleInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         TagSpecifications = {
             type = "list",
@@ -21748,6 +21876,9 @@ M.CreateTrafficMirrorSessionInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -21858,6 +21989,9 @@ M.CreateTrafficMirrorTargetInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         GatewayLoadBalancerEndpointId = {
             type = "string",
@@ -23710,6 +23844,9 @@ M.CreateVerifiedAccessEndpointInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -24063,6 +24200,9 @@ M.CreateVerifiedAccessGroupInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -24159,6 +24299,9 @@ M.CreateVerifiedAccessInstanceInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -24285,6 +24428,9 @@ M.CreateVerifiedAccessTrustProviderInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -24351,6 +24497,9 @@ M.CreateVolumeInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         VolumeInitializationRate = {
             type = "integer",
@@ -28241,6 +28390,9 @@ M.DeleteSecondaryNetworkInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -28274,6 +28426,9 @@ M.DeleteSecondarySubnetInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -28926,6 +29081,9 @@ M.DeleteVerifiedAccessEndpointInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -28953,6 +29111,9 @@ M.DeleteVerifiedAccessGroupInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -28983,6 +29144,9 @@ M.DeleteVerifiedAccessInstanceInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -29010,6 +29174,9 @@ M.DeleteVerifiedAccessTrustProviderInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -50080,6 +50247,9 @@ M.DetachVerifiedAccessTrustProviderInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -50300,6 +50470,9 @@ M.DisableCapacityManagerInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -51587,6 +51760,9 @@ M.DisassociateTrunkInterfaceInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -51744,6 +51920,9 @@ M.EnableCapacityManagerInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -52621,6 +52800,9 @@ M.ExportImageInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Description = {
             type = "string",
@@ -60787,6 +60969,9 @@ M.ModifyIpamPrefixListResolverTargetInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -60954,6 +61139,9 @@ M.ModifyLaunchTemplateInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         LaunchTemplateId = {
             type = "string",
@@ -62046,6 +62234,9 @@ M.ModifyVerifiedAccessEndpointInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -62081,6 +62272,9 @@ M.ModifyVerifiedAccessEndpointPolicyInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -62127,6 +62321,9 @@ M.ModifyVerifiedAccessGroupInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -62160,6 +62357,9 @@ M.ModifyVerifiedAccessGroupPolicyInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -62206,6 +62406,9 @@ M.ModifyVerifiedAccessInstanceInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         CidrEndpointsCustomSubDomain = {
             type = "string",
@@ -62305,6 +62508,9 @@ M.ModifyVerifiedAccessInstanceLoggingConfigurationInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -62403,6 +62609,9 @@ M.ModifyVerifiedAccessTrustProviderInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         SseSpecification = M.VerifiedAccessSseSpecificationRequest,
         NativeApplicationOidcOptions = M.ModifyVerifiedAccessNativeApplicationOidcOptions,
@@ -63365,6 +63574,9 @@ M.MoveCapacityReservationInstancesInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         SourceCapacityReservationId = {
             type = "string",
@@ -63556,6 +63768,9 @@ M.ProvisionIpamPoolCidrInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         VerificationMethod = {
             type = "string",
@@ -63853,6 +64068,9 @@ M.PurchaseScheduledInstancesInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -66264,6 +66482,7 @@ M.RunInstancesInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 xml_name = "clientToken",
             },
         },
@@ -66540,6 +66759,9 @@ M.RunScheduledInstancesInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DryRun = {
             type = "boolean",
@@ -66938,6 +67160,7 @@ M.StartNetworkInsightsAccessScopeAnalysisInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -66996,6 +67219,7 @@ M.StartNetworkInsightsAnalysisInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -67397,6 +67621,9 @@ M.UpdateCapacityManagerMonitoredTagKeysInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -67428,6 +67655,9 @@ M.UpdateCapacityManagerOrganizationsAccessInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

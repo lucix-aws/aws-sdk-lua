@@ -1,0 +1,77 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listApplications.
+function M.pages_list_applications(client, input)
+    return paginator.pages(client, "listApplications", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listApplications.
+function M.items_list_applications(client, input)
+    return paginator.items(client, "listApplications", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listStreamGroups.
+function M.pages_list_stream_groups(client, input)
+    return paginator.pages(client, "listStreamGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listStreamGroups.
+function M.items_list_stream_groups(client, input)
+    return paginator.items(client, "listStreamGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listStreamSessions.
+function M.pages_list_stream_sessions(client, input)
+    return paginator.pages(client, "listStreamSessions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listStreamSessions.
+function M.items_list_stream_sessions(client, input)
+    return paginator.items(client, "listStreamSessions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listStreamSessionsByAccount.
+function M.pages_list_stream_sessions_by_account(client, input)
+    return paginator.pages(client, "listStreamSessionsByAccount", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listStreamSessionsByAccount.
+function M.items_list_stream_sessions_by_account(client, input)
+    return paginator.items(client, "listStreamSessionsByAccount", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+return M

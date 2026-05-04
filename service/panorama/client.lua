@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "OmniCloudServiceLambda"
-    cfg.signing_name = "panorama"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "panorama", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createApplicationInstance(input, options)
         output_schema = types.CreateApplicationInstanceOutput,
         http_method = "POST",
         http_path = "/application-instances",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createJobForDevices(input, options)
         output_schema = types.CreateJobForDevicesOutput,
         http_method = "POST",
         http_path = "/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createNodeFromTemplateJob(input, options)
         output_schema = types.CreateNodeFromTemplateJobOutput,
         http_method = "POST",
         http_path = "/packages/template-job",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createPackage(input, options)
         output_schema = types.CreatePackageOutput,
         http_method = "POST",
         http_path = "/packages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createPackageImportJob(input, options)
         output_schema = types.CreatePackageImportJobOutput,
         http_method = "POST",
         http_path = "/packages/import-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteDevice(input, options)
         output_schema = types.DeleteDeviceOutput,
         http_method = "DELETE",
         http_path = "/devices/{DeviceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deletePackage(input, options)
         output_schema = types.DeletePackageOutput,
         http_method = "DELETE",
         http_path = "/packages/{PackageId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deregisterPackageVersion(input, options)
         output_schema = types.DeregisterPackageVersionOutput,
         http_method = "DELETE",
         http_path = "/packages/{PackageId}/versions/{PackageVersion}/patch/{PatchVersion}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:describeApplicationInstance(input, options)
         output_schema = types.DescribeApplicationInstanceOutput,
         http_method = "GET",
         http_path = "/application-instances/{ApplicationInstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:describeApplicationInstanceDetails(input, options)
         output_schema = types.DescribeApplicationInstanceDetailsOutput,
         http_method = "GET",
         http_path = "/application-instances/{ApplicationInstanceId}/details",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:describeDevice(input, options)
         output_schema = types.DescribeDeviceOutput,
         http_method = "GET",
         http_path = "/devices/{DeviceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:describeDeviceJob(input, options)
         output_schema = types.DescribeDeviceJobOutput,
         http_method = "GET",
         http_path = "/jobs/{JobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:describeNode(input, options)
         output_schema = types.DescribeNodeOutput,
         http_method = "GET",
         http_path = "/nodes/{NodeId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:describeNodeFromTemplateJob(input, options)
         output_schema = types.DescribeNodeFromTemplateJobOutput,
         http_method = "GET",
         http_path = "/packages/template-job/{JobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:describePackage(input, options)
         output_schema = types.DescribePackageOutput,
         http_method = "GET",
         http_path = "/packages/metadata/{PackageId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:describePackageImportJob(input, options)
         output_schema = types.DescribePackageImportJobOutput,
         http_method = "GET",
         http_path = "/packages/import-jobs/{JobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:describePackageVersion(input, options)
         output_schema = types.DescribePackageVersionOutput,
         http_method = "GET",
         http_path = "/packages/metadata/{PackageId}/versions/{PackageVersion}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listApplicationInstanceDependencies(input, options)
         output_schema = types.ListApplicationInstanceDependenciesOutput,
         http_method = "GET",
         http_path = "/application-instances/{ApplicationInstanceId}/package-dependencies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listApplicationInstanceNodeInstances(input, options)
         output_schema = types.ListApplicationInstanceNodeInstancesOutput,
         http_method = "GET",
         http_path = "/application-instances/{ApplicationInstanceId}/node-instances",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listApplicationInstances(input, options)
         output_schema = types.ListApplicationInstancesOutput,
         http_method = "GET",
         http_path = "/application-instances",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listDevices(input, options)
         output_schema = types.ListDevicesOutput,
         http_method = "GET",
         http_path = "/devices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listDevicesJobs(input, options)
         output_schema = types.ListDevicesJobsOutput,
         http_method = "GET",
         http_path = "/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listNodeFromTemplateJobs(input, options)
         output_schema = types.ListNodeFromTemplateJobsOutput,
         http_method = "GET",
         http_path = "/packages/template-job",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listNodes(input, options)
         output_schema = types.ListNodesOutput,
         http_method = "GET",
         http_path = "/nodes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listPackageImportJobs(input, options)
         output_schema = types.ListPackageImportJobsOutput,
         http_method = "GET",
         http_path = "/packages/import-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listPackages(input, options)
         output_schema = types.ListPackagesOutput,
         http_method = "GET",
         http_path = "/packages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:provisionDevice(input, options)
         output_schema = types.ProvisionDeviceOutput,
         http_method = "POST",
         http_path = "/devices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:registerPackageVersion(input, options)
         output_schema = types.RegisterPackageVersionOutput,
         http_method = "PUT",
         http_path = "/packages/{PackageId}/versions/{PackageVersion}/patch/{PatchVersion}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:removeApplicationInstance(input, options)
         output_schema = types.RemoveApplicationInstanceOutput,
         http_method = "DELETE",
         http_path = "/application-instances/{ApplicationInstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:signalApplicationInstanceNodeInstances(input, options)
         output_schema = types.SignalApplicationInstanceNodeInstancesOutput,
         http_method = "PUT",
         http_path = "/application-instances/{ApplicationInstanceId}/node-signals",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:updateDeviceMetadata(input, options)
         output_schema = types.UpdateDeviceMetadataOutput,
         http_method = "PUT",
         http_path = "/devices/{DeviceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

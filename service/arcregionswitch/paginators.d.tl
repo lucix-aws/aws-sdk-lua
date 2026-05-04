@@ -1,0 +1,20 @@
+local record M
+    pages_get_plan_evaluation_status: function(client: table, input: table): function(): table, table
+    items_get_plan_evaluation_status: function(client: table, input: table): function(): any
+    pages_get_plan_execution: function(client: table, input: table): function(): table, table
+    items_get_plan_execution: function(client: table, input: table): function(): any
+    pages_list_plan_execution_events: function(client: table, input: table): function(): table, table
+    items_list_plan_execution_events: function(client: table, input: table): function(): any
+    pages_list_plan_executions: function(client: table, input: table): function(): table, table
+    items_list_plan_executions: function(client: table, input: table): function(): any
+    pages_list_plans: function(client: table, input: table): function(): table, table
+    items_list_plans: function(client: table, input: table): function(): any
+    pages_list_plans_in_region: function(client: table, input: table): function(): table, table
+    items_list_plans_in_region: function(client: table, input: table): function(): any
+    pages_list_route53_health_checks: function(client: table, input: table): function(): table, table
+    items_list_route53_health_checks: function(client: table, input: table): function(): any
+    pages_list_route53_health_checks_in_region: function(client: table, input: table): function(): table, table
+    items_list_route53_health_checks_in_region: function(client: table, input: table): function(): any
+end
+
+return M

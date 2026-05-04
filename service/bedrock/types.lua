@@ -97,12 +97,18 @@ M.AccountEnforcedGuardrailOutputConfiguration = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         createdBy = {
             type = "string",
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -380,6 +386,9 @@ M.CreateAutomatedReasoningPolicyInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         policyDefinition = M.AutomatedReasoningPolicyDefinition,
         kmsKeyId = {
@@ -423,12 +432,14 @@ M.CreateAutomatedReasoningPolicyOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -494,6 +505,9 @@ M.CreateAutomatedReasoningPolicyTestCaseInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         confidenceThreshold = {
             type = "double",
@@ -531,6 +545,9 @@ M.CreateAutomatedReasoningPolicyVersionInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         lastUpdatedDefinitionHash = {
             type = "string",
@@ -579,6 +596,7 @@ M.CreateAutomatedReasoningPolicyVersionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -640,6 +658,7 @@ M.DeleteAutomatedReasoningPolicyBuildWorkflowInput = {
             traits = {
                 http_query = "updatedAt",
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -671,6 +690,7 @@ M.DeleteAutomatedReasoningPolicyTestCaseInput = {
             traits = {
                 http_query = "updatedAt",
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -757,11 +777,15 @@ M.GetAutomatedReasoningPolicyOutput = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1115,6 +1139,7 @@ M.GetAutomatedReasoningPolicyAnnotationsOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1204,12 +1229,14 @@ M.GetAutomatedReasoningPolicyBuildWorkflowOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2037,12 +2064,14 @@ M.AutomatedReasoningPolicyTestCase = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         confidenceThreshold = {
@@ -2329,6 +2358,7 @@ M.AutomatedReasoningPolicyTestResult = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2402,12 +2432,14 @@ M.AutomatedReasoningPolicySummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2486,12 +2518,14 @@ M.AutomatedReasoningPolicyBuildWorkflowSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2697,6 +2731,7 @@ M.StartAutomatedReasoningPolicyBuildWorkflowInput = {
             type = "string",
             traits = {
                 http_header = "x-amz-client-token",
+                idempotency_token = true,
             },
         },
         sourceContent = setmetatable({ traits = {
@@ -2747,6 +2782,9 @@ M.StartAutomatedReasoningPolicyTestWorkflowInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2810,6 +2848,7 @@ M.UpdateAutomatedReasoningPolicyOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2873,6 +2912,7 @@ M.UpdateAutomatedReasoningPolicyAnnotationsOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2908,6 +2948,7 @@ M.UpdateAutomatedReasoningPolicyTestCaseInput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         expectedAggregatedFindingsResult = {
@@ -2921,6 +2962,9 @@ M.UpdateAutomatedReasoningPolicyTestCaseInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3024,6 +3068,9 @@ M.CreateMarketplaceModelEndpointInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "list",
@@ -3062,12 +3109,14 @@ M.MarketplaceModelEndpoint = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         endpointConfig = setmetatable({ traits = {
@@ -3207,12 +3256,14 @@ M.MarketplaceModelEndpointSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -3274,6 +3325,9 @@ M.UpdateMarketplaceModelEndpointInput = {
         } }, { __index = M.EndpointConfig }),
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3311,6 +3365,9 @@ M.CreateCustomModelDeploymentInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3412,6 +3469,7 @@ M.GetCustomModelDeploymentOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -3429,6 +3487,9 @@ M.GetCustomModelDeploymentOutput = {
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -3449,12 +3510,14 @@ M.ListCustomModelDeploymentsInput = {
             type = "timestamp",
             traits = {
                 http_query = "createdBefore",
+                timestamp_format = "date-time",
             },
         },
         createdAfter = {
             type = "timestamp",
             traits = {
                 http_query = "createdAfter",
+                timestamp_format = "date-time",
             },
         },
         nameContains = {
@@ -3527,6 +3590,7 @@ M.CustomModelDeploymentSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -3537,6 +3601,9 @@ M.CustomModelDeploymentSummary = {
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         failureMessage = {
             type = "string",
@@ -3631,6 +3698,9 @@ M.CreateCustomModelInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3963,6 +4033,7 @@ M.GetCustomModelOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         customizationConfig = M.CustomizationConfig,
@@ -3982,12 +4053,14 @@ M.ListCustomModelsInput = {
             type = "timestamp",
             traits = {
                 http_query = "creationTimeBefore",
+                timestamp_format = "date-time",
             },
         },
         creationTimeAfter = {
             type = "timestamp",
             traits = {
                 http_query = "creationTimeAfter",
+                timestamp_format = "date-time",
             },
         },
         nameContains = {
@@ -4066,6 +4139,7 @@ M.CustomModelSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         baseModelArn = {
@@ -4170,6 +4244,9 @@ M.PutEnforcedGuardrailConfigurationOutput = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -4999,12 +5076,14 @@ M.ListEvaluationJobsInput = {
             type = "timestamp",
             traits = {
                 http_query = "creationTimeAfter",
+                timestamp_format = "date-time",
             },
         },
         creationTimeBefore = {
             type = "timestamp",
             traits = {
                 http_query = "creationTimeBefore",
+                timestamp_format = "date-time",
             },
         },
         statusEquals = {
@@ -5113,6 +5192,7 @@ M.EvaluationSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         jobType = {
@@ -5674,6 +5754,9 @@ M.CreateGuardrailInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -5703,6 +5786,7 @@ M.CreateGuardrailOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -5723,6 +5807,9 @@ M.CreateGuardrailVersionInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -6183,12 +6270,14 @@ M.GetGuardrailOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         statusReasons = {
@@ -6281,12 +6370,14 @@ M.GuardrailSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         crossRegionDetails = M.GuardrailCrossRegionDetails,
@@ -6378,6 +6469,7 @@ M.UpdateGuardrailOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -6406,6 +6498,9 @@ M.CreateInferenceProfileInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         modelSource = setmetatable({ traits = {
             required = true,
@@ -6494,9 +6589,15 @@ M.GetInferenceProfileOutput = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         inferenceProfileArn = {
             type = "string",
@@ -6570,9 +6671,15 @@ M.InferenceProfileSummary = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         inferenceProfileArn = {
             type = "string",
@@ -6734,6 +6841,9 @@ M.CreateModelCopyJobInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -6788,6 +6898,7 @@ M.GetModelCopyJobOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         targetModelArn = {
@@ -6834,12 +6945,14 @@ M.ListModelCopyJobsInput = {
             type = "timestamp",
             traits = {
                 http_query = "creationTimeAfter",
+                timestamp_format = "date-time",
             },
         },
         creationTimeBefore = {
             type = "timestamp",
             traits = {
                 http_query = "creationTimeBefore",
+                timestamp_format = "date-time",
             },
         },
         statusEquals = {
@@ -6912,6 +7025,7 @@ M.ModelCopyJobSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         targetModelArn = {
@@ -7078,6 +7192,9 @@ M.GetImportedModelOutput = {
         modelDataSource = M.ModelDataSource,
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         modelArchitecture = {
             type = "string",
@@ -7138,12 +7255,21 @@ M.GetModelImportJobOutput = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         vpcConfig = M.VpcConfig,
         importedModelKmsKeyArn = {
@@ -7159,12 +7285,14 @@ M.ListImportedModelsInput = {
             type = "timestamp",
             traits = {
                 http_query = "creationTimeBefore",
+                timestamp_format = "date-time",
             },
         },
         creationTimeAfter = {
             type = "timestamp",
             traits = {
                 http_query = "creationTimeAfter",
+                timestamp_format = "date-time",
             },
         },
         nameContains = {
@@ -7219,6 +7347,7 @@ M.ImportedModelSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         instructSupported = {
@@ -7250,12 +7379,14 @@ M.ListModelImportJobsInput = {
             type = "timestamp",
             traits = {
                 http_query = "creationTimeAfter",
+                timestamp_format = "date-time",
             },
         },
         creationTimeBefore = {
             type = "timestamp",
             traits = {
                 http_query = "creationTimeBefore",
+                timestamp_format = "date-time",
             },
         },
         statusEquals = {
@@ -7320,15 +7451,22 @@ M.ModelImportJobSummary = {
         },
         lastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         creationTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         endTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         importedModelArn = {
             type = "string",
@@ -7428,6 +7566,9 @@ M.CreateModelInvocationJobInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         modelId = {
             type = "string",
@@ -7533,13 +7674,20 @@ M.GetModelInvocationJobOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         inputDataConfig = setmetatable({ traits = {
             required = true,
@@ -7553,6 +7701,9 @@ M.GetModelInvocationJobOutput = {
         },
         jobExpirationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         modelInvocationType = {
             type = "string",
@@ -7579,12 +7730,14 @@ M.ListModelInvocationJobsInput = {
             type = "timestamp",
             traits = {
                 http_query = "submitTimeAfter",
+                timestamp_format = "date-time",
             },
         },
         submitTimeBefore = {
             type = "timestamp",
             traits = {
                 http_query = "submitTimeBefore",
+                timestamp_format = "date-time",
             },
         },
         statusEquals = {
@@ -7666,13 +7819,20 @@ M.ModelInvocationJobSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         inputDataConfig = setmetatable({ traits = {
             required = true,
@@ -7686,6 +7846,9 @@ M.ModelInvocationJobSummary = {
         },
         jobExpirationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         modelInvocationType = {
             type = "string",
@@ -7781,15 +7944,27 @@ M.FoundationModelLifecycle = {
         },
         startOfLifeTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endOfLifeTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         legacyTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         publicExtendedAccessTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -7958,6 +8133,9 @@ M.CreatePromptRouterInput = {
     members = {
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         promptRouterName = {
             type = "string",
@@ -8053,9 +8231,15 @@ M.GetPromptRouterOutput = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         promptRouterArn = {
             type = "string",
@@ -8130,9 +8314,15 @@ M.PromptRouterSummary = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         promptRouterArn = {
             type = "string",
@@ -8188,6 +8378,9 @@ M.CreateProvisionedModelThroughputInput = {
     members = {
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         modelUnits = {
             type = "integer",
@@ -8321,12 +8514,14 @@ M.GetProvisionedModelThroughputOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastModifiedTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         failureMessage = {
@@ -8337,6 +8532,9 @@ M.GetProvisionedModelThroughputOutput = {
         },
         commitmentExpirationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -8352,12 +8550,14 @@ M.ListProvisionedModelThroughputsInput = {
             type = "timestamp",
             traits = {
                 http_query = "creationTimeAfter",
+                timestamp_format = "date-time",
             },
         },
         creationTimeBefore = {
             type = "timestamp",
             traits = {
                 http_query = "creationTimeBefore",
+                timestamp_format = "date-time",
             },
         },
         statusEquals = {
@@ -8461,17 +8661,22 @@ M.ProvisionedModelSummary = {
         },
         commitmentExpirationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         creationTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastModifiedTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -8912,6 +9117,9 @@ M.CreateModelCustomizationJobInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         baseModelIdentifier = {
             type = "string",
@@ -9000,9 +9208,15 @@ M.DataProcessingDetails = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -9015,9 +9229,15 @@ M.TrainingDetails = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -9030,9 +9250,15 @@ M.ValidationDetails = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -9090,13 +9316,20 @@ M.GetModelCustomizationJobOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         baseModelArn = {
             type = "string",
@@ -9149,12 +9382,14 @@ M.ListModelCustomizationJobsInput = {
             type = "timestamp",
             traits = {
                 http_query = "creationTimeAfter",
+                timestamp_format = "date-time",
             },
         },
         creationTimeBefore = {
             type = "timestamp",
             traits = {
                 http_query = "creationTimeBefore",
+                timestamp_format = "date-time",
             },
         },
         statusEquals = {
@@ -9226,15 +9461,22 @@ M.ModelCustomizationJobSummary = {
         statusDetails = M.StatusDetails,
         lastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         creationTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         endTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         customModelArn = {
             type = "string",
@@ -9421,6 +9663,9 @@ M.CreateEvaluationJobInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         roleArn = {
             type = "string",
@@ -9505,10 +9750,14 @@ M.GetEvaluationJobOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         failureMessages = {
             type = "list",

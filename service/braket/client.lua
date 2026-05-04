@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "Braket"
-    cfg.signing_name = "braket"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "braket", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:cancelJob(input, options)
         output_schema = types.CancelJobOutput,
         http_method = "PUT",
         http_path = "/job/{jobArn}/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:cancelQuantumTask(input, options)
         output_schema = types.CancelQuantumTaskOutput,
         http_method = "PUT",
         http_path = "/quantum-task/{quantumTaskArn}/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createJob(input, options)
         output_schema = types.CreateJobOutput,
         http_method = "POST",
         http_path = "/job",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createQuantumTask(input, options)
         output_schema = types.CreateQuantumTaskOutput,
         http_method = "POST",
         http_path = "/quantum-task",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createSpendingLimit(input, options)
         output_schema = types.CreateSpendingLimitOutput,
         http_method = "POST",
         http_path = "/spending-limit",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteSpendingLimit(input, options)
         output_schema = types.DeleteSpendingLimitOutput,
         http_method = "DELETE",
         http_path = "/spending-limit/{spendingLimitArn}/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:getDevice(input, options)
         output_schema = types.GetDeviceOutput,
         http_method = "GET",
         http_path = "/device/{deviceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:getJob(input, options)
         output_schema = types.GetJobOutput,
         http_method = "GET",
         http_path = "/job/{jobArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getQuantumTask(input, options)
         output_schema = types.GetQuantumTaskOutput,
         http_method = "GET",
         http_path = "/quantum-task/{quantumTaskArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:searchDevices(input, options)
         output_schema = types.SearchDevicesOutput,
         http_method = "POST",
         http_path = "/devices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:searchJobs(input, options)
         output_schema = types.SearchJobsOutput,
         http_method = "POST",
         http_path = "/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:searchQuantumTasks(input, options)
         output_schema = types.SearchQuantumTasksOutput,
         http_method = "POST",
         http_path = "/quantum-tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:searchSpendingLimits(input, options)
         output_schema = types.SearchSpendingLimitsOutput,
         http_method = "POST",
         http_path = "/spending-limits",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:updateSpendingLimit(input, options)
         output_schema = types.UpdateSpendingLimitOutput,
         http_method = "PATCH",
         http_path = "/spending-limit/{spendingLimitArn}/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

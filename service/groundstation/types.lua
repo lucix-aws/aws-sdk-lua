@@ -1869,6 +1869,9 @@ M.UpdateContactInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         trackingOverrides = M.TrackingOverrides,
         satelliteArn = {

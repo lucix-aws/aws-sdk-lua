@@ -89,6 +89,9 @@ M.CreateNotificationRuleInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "map",

@@ -1,0 +1,257 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for describeTopicPartitions.
+function M.pages_describe_topic_partitions(client, input)
+    return paginator.pages(client, "describeTopicPartitions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Partitions",
+    })
+end
+
+--- Returns an item iterator for describeTopicPartitions.
+function M.items_describe_topic_partitions(client, input)
+    return paginator.items(client, "describeTopicPartitions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Partitions",
+    })
+end
+
+--- Returns a page iterator for listClientVpcConnections.
+function M.pages_list_client_vpc_connections(client, input)
+    return paginator.pages(client, "listClientVpcConnections", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ClientVpcConnections",
+    })
+end
+
+--- Returns an item iterator for listClientVpcConnections.
+function M.items_list_client_vpc_connections(client, input)
+    return paginator.items(client, "listClientVpcConnections", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ClientVpcConnections",
+    })
+end
+
+--- Returns a page iterator for listClusterOperations.
+function M.pages_list_cluster_operations(client, input)
+    return paginator.pages(client, "listClusterOperations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ClusterOperationInfoList",
+    })
+end
+
+--- Returns an item iterator for listClusterOperations.
+function M.items_list_cluster_operations(client, input)
+    return paginator.items(client, "listClusterOperations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ClusterOperationInfoList",
+    })
+end
+
+--- Returns a page iterator for listClusterOperationsV2.
+function M.pages_list_cluster_operations_v2(client, input)
+    return paginator.pages(client, "listClusterOperationsV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ClusterOperationInfoList",
+    })
+end
+
+--- Returns an item iterator for listClusterOperationsV2.
+function M.items_list_cluster_operations_v2(client, input)
+    return paginator.items(client, "listClusterOperationsV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ClusterOperationInfoList",
+    })
+end
+
+--- Returns a page iterator for listClusters.
+function M.pages_list_clusters(client, input)
+    return paginator.pages(client, "listClusters", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ClusterInfoList",
+    })
+end
+
+--- Returns an item iterator for listClusters.
+function M.items_list_clusters(client, input)
+    return paginator.items(client, "listClusters", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ClusterInfoList",
+    })
+end
+
+--- Returns a page iterator for listClustersV2.
+function M.pages_list_clusters_v2(client, input)
+    return paginator.pages(client, "listClustersV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ClusterInfoList",
+    })
+end
+
+--- Returns an item iterator for listClustersV2.
+function M.items_list_clusters_v2(client, input)
+    return paginator.items(client, "listClustersV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ClusterInfoList",
+    })
+end
+
+--- Returns a page iterator for listConfigurationRevisions.
+function M.pages_list_configuration_revisions(client, input)
+    return paginator.pages(client, "listConfigurationRevisions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Revisions",
+    })
+end
+
+--- Returns an item iterator for listConfigurationRevisions.
+function M.items_list_configuration_revisions(client, input)
+    return paginator.items(client, "listConfigurationRevisions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Revisions",
+    })
+end
+
+--- Returns a page iterator for listConfigurations.
+function M.pages_list_configurations(client, input)
+    return paginator.pages(client, "listConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Configurations",
+    })
+end
+
+--- Returns an item iterator for listConfigurations.
+function M.items_list_configurations(client, input)
+    return paginator.items(client, "listConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Configurations",
+    })
+end
+
+--- Returns a page iterator for listKafkaVersions.
+function M.pages_list_kafka_versions(client, input)
+    return paginator.pages(client, "listKafkaVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "KafkaVersions",
+    })
+end
+
+--- Returns an item iterator for listKafkaVersions.
+function M.items_list_kafka_versions(client, input)
+    return paginator.items(client, "listKafkaVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "KafkaVersions",
+    })
+end
+
+--- Returns a page iterator for listNodes.
+function M.pages_list_nodes(client, input)
+    return paginator.pages(client, "listNodes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NodeInfoList",
+    })
+end
+
+--- Returns an item iterator for listNodes.
+function M.items_list_nodes(client, input)
+    return paginator.items(client, "listNodes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NodeInfoList",
+    })
+end
+
+--- Returns a page iterator for listReplicators.
+function M.pages_list_replicators(client, input)
+    return paginator.pages(client, "listReplicators", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Replicators",
+    })
+end
+
+--- Returns an item iterator for listReplicators.
+function M.items_list_replicators(client, input)
+    return paginator.items(client, "listReplicators", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Replicators",
+    })
+end
+
+--- Returns a page iterator for listScramSecrets.
+function M.pages_list_scram_secrets(client, input)
+    return paginator.pages(client, "listScramSecrets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SecretArnList",
+    })
+end
+
+--- Returns an item iterator for listScramSecrets.
+function M.items_list_scram_secrets(client, input)
+    return paginator.items(client, "listScramSecrets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SecretArnList",
+    })
+end
+
+--- Returns a page iterator for listTopics.
+function M.pages_list_topics(client, input)
+    return paginator.pages(client, "listTopics", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Topics",
+    })
+end
+
+--- Returns an item iterator for listTopics.
+function M.items_list_topics(client, input)
+    return paginator.items(client, "listTopics", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Topics",
+    })
+end
+
+--- Returns a page iterator for listVpcConnections.
+function M.pages_list_vpc_connections(client, input)
+    return paginator.pages(client, "listVpcConnections", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VpcConnections",
+    })
+end
+
+--- Returns an item iterator for listVpcConnections.
+function M.items_list_vpc_connections(client, input)
+    return paginator.items(client, "listVpcConnections", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VpcConnections",
+    })
+end
+
+return M

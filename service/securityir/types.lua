@@ -455,6 +455,9 @@ M.CreateCaseInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         resolverType = {
             type = "string",
@@ -544,6 +547,9 @@ M.CreateCaseCommentInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         body = {
             type = "string",
@@ -780,6 +786,9 @@ M.GetCaseAttachmentUploadUrlInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1387,6 +1396,9 @@ M.CreateMembershipInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         membershipName = {
             type = "string",

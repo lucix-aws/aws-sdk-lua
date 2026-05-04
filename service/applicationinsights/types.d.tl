@@ -801,9 +801,9 @@ local record ValidationException
     Message: string
 end
 
-local type Visibility = "IGNORED" | "VISIBLE"
-
 local type RecommendationType = "INFRA_ONLY" | "WORKLOAD_ONLY" | "ALL"
+
+local type Visibility = "IGNORED" | "VISIBLE"
 
 local type UpdateStatus = "RESOLVED"
 

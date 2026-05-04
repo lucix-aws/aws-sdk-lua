@@ -285,6 +285,7 @@ M.CreateProfileInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },

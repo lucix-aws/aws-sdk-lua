@@ -754,6 +754,9 @@ M.Submission = {
         },
         timestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -946,6 +949,7 @@ M.CreateLibraryItemOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -956,6 +960,9 @@ M.CreateLibraryItemOutput = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -1050,6 +1057,7 @@ M.CreatePresignedUrlOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1098,6 +1106,7 @@ M.CreateQAppOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -1110,6 +1119,7 @@ M.CreateQAppOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedBy = {
@@ -1320,6 +1330,7 @@ M.ExportQAppSessionDataOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         sessionArn = {
@@ -1395,6 +1406,7 @@ M.GetLibraryItemOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -1405,6 +1417,9 @@ M.GetLibraryItemOutput = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -1675,6 +1690,7 @@ M.LibraryItemMember = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -1685,6 +1701,9 @@ M.LibraryItemMember = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -1832,6 +1851,7 @@ M.UserAppItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         canEdit = {
@@ -1914,6 +1934,9 @@ M.QAppSessionData = {
         },
         timestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2204,6 +2227,7 @@ M.UpdateLibraryItemOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -2214,6 +2238,9 @@ M.UpdateLibraryItemOutput = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -2305,6 +2332,7 @@ M.UpdateQAppOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -2317,6 +2345,7 @@ M.UpdateQAppOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedBy = {
@@ -2706,6 +2735,7 @@ M.GetQAppOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -2718,6 +2748,7 @@ M.GetQAppOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedBy = {

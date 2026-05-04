@@ -337,6 +337,9 @@ M.CreateCustomActionInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ActionName = {
             type = "string",

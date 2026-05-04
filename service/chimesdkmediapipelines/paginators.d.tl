@@ -1,0 +1,8 @@
+local record M
+    pages_list_media_capture_pipelines: function(client: table, input: table): function(): table, table
+    pages_list_media_insights_pipeline_configurations: function(client: table, input: table): function(): table, table
+    pages_list_media_pipeline_kinesis_video_stream_pools: function(client: table, input: table): function(): table, table
+    pages_list_media_pipelines: function(client: table, input: table): function(): table, table
+end
+
+return M

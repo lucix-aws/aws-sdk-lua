@@ -1293,6 +1293,9 @@ M.CreateDatasetInput = {
         } }, { __index = M.DatasetInputDataConfig }),
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",
@@ -1480,6 +1483,9 @@ M.CreateDocumentClassifierInput = {
         OutputDataConfig = M.DocumentClassifierOutputDataConfig,
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         LanguageCode = {
             type = "string",
@@ -1542,6 +1548,9 @@ M.CreateEndpointInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",
@@ -1680,6 +1689,9 @@ M.CreateEntityRecognizerInput = {
         } }, { __index = M.EntityRecognizerInputDataConfig }),
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         LanguageCode = {
             type = "string",
@@ -1804,6 +1816,9 @@ M.CreateFlywheelInput = {
         DataSecurityConfig = M.DataSecurityConfig,
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",
@@ -4271,6 +4286,9 @@ M.StartDocumentClassificationJobInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         VolumeKmsKeyId = {
             type = "string",
@@ -4324,6 +4342,9 @@ M.StartDominantLanguageDetectionJobInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         VolumeKmsKeyId = {
             type = "string",
@@ -4380,6 +4401,9 @@ M.StartEntitiesDetectionJobInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         VolumeKmsKeyId = {
             type = "string",
@@ -4439,6 +4463,9 @@ M.StartEventsDetectionJobInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         TargetEventTypes = {
             type = "list",
@@ -4522,6 +4549,9 @@ M.StartKeyPhrasesDetectionJobInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         VolumeKmsKeyId = {
             type = "string",
@@ -4582,6 +4612,9 @@ M.StartPiiEntitiesDetectionJobInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",
@@ -4631,6 +4664,9 @@ M.StartSentimentDetectionJobInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         VolumeKmsKeyId = {
             type = "string",
@@ -4684,6 +4720,9 @@ M.StartTargetedSentimentDetectionJobInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         VolumeKmsKeyId = {
             type = "string",
@@ -4734,6 +4773,9 @@ M.StartTopicsDetectionJobInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         VolumeKmsKeyId = {
             type = "string",

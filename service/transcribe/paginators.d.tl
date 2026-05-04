@@ -1,0 +1,13 @@
+local record M
+    pages_list_call_analytics_categories: function(client: table, input: table): function(): table, table
+    pages_list_call_analytics_jobs: function(client: table, input: table): function(): table, table
+    pages_list_language_models: function(client: table, input: table): function(): table, table
+    pages_list_medical_scribe_jobs: function(client: table, input: table): function(): table, table
+    pages_list_medical_transcription_jobs: function(client: table, input: table): function(): table, table
+    pages_list_medical_vocabularies: function(client: table, input: table): function(): table, table
+    pages_list_transcription_jobs: function(client: table, input: table): function(): table, table
+    pages_list_vocabularies: function(client: table, input: table): function(): table, table
+    pages_list_vocabulary_filters: function(client: table, input: table): function(): table, table
+end
+
+return M

@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSMigrationHubStrategyRecommendation"
-    cfg.signing_name = "migrationhub-strategy"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "migrationhub-strategy", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:getApplicationComponentDetails(input, options)
         output_schema = types.GetApplicationComponentDetailsOutput,
         http_method = "GET",
         http_path = "/get-applicationcomponent-details/{applicationComponentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:getApplicationComponentStrategies(input, options)
         output_schema = types.GetApplicationComponentStrategiesOutput,
         http_method = "GET",
         http_path = "/get-applicationcomponent-strategies/{applicationComponentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:getAssessment(input, options)
         output_schema = types.GetAssessmentOutput,
         http_method = "GET",
         http_path = "/get-assessment/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:getImportFileTask(input, options)
         output_schema = types.GetImportFileTaskOutput,
         http_method = "GET",
         http_path = "/get-import-file-task/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:getLatestAssessmentId(input, options)
         output_schema = types.GetLatestAssessmentIdOutput,
         http_method = "GET",
         http_path = "/get-latest-assessment-id",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:getPortfolioPreferences(input, options)
         output_schema = types.GetPortfolioPreferencesOutput,
         http_method = "GET",
         http_path = "/get-portfolio-preferences",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:getPortfolioSummary(input, options)
         output_schema = types.GetPortfolioSummaryOutput,
         http_method = "GET",
         http_path = "/get-portfolio-summary",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:getRecommendationReportDetails(input, options)
         output_schema = types.GetRecommendationReportDetailsOutput,
         http_method = "GET",
         http_path = "/get-recommendation-report-details/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getServerDetails(input, options)
         output_schema = types.GetServerDetailsOutput,
         http_method = "GET",
         http_path = "/get-server-details/{serverId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:getServerStrategies(input, options)
         output_schema = types.GetServerStrategiesOutput,
         http_method = "GET",
         http_path = "/get-server-strategies/{serverId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:listAnalyzableServers(input, options)
         output_schema = types.ListAnalyzableServersOutput,
         http_method = "POST",
         http_path = "/list-analyzable-servers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:listApplicationComponents(input, options)
         output_schema = types.ListApplicationComponentsOutput,
         http_method = "POST",
         http_path = "/list-applicationcomponents",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:listCollectors(input, options)
         output_schema = types.ListCollectorsOutput,
         http_method = "GET",
         http_path = "/list-collectors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:listImportFileTask(input, options)
         output_schema = types.ListImportFileTaskOutput,
         http_method = "GET",
         http_path = "/list-import-file-task",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:listServers(input, options)
         output_schema = types.ListServersOutput,
         http_method = "POST",
         http_path = "/list-servers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:putPortfolioPreferences(input, options)
         output_schema = types.PutPortfolioPreferencesOutput,
         http_method = "POST",
         http_path = "/put-portfolio-preferences",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:startAssessment(input, options)
         output_schema = types.StartAssessmentOutput,
         http_method = "POST",
         http_path = "/start-assessment",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:startImportFileTask(input, options)
         output_schema = types.StartImportFileTaskOutput,
         http_method = "POST",
         http_path = "/start-import-file-task",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:startRecommendationReportGeneration(input, options)
         output_schema = types.StartRecommendationReportGenerationOutput,
         http_method = "POST",
         http_path = "/start-recommendation-report-generation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:stopAssessment(input, options)
         output_schema = types.StopAssessmentOutput,
         http_method = "POST",
         http_path = "/stop-assessment",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:updateApplicationComponentConfig(input, options)
         output_schema = types.UpdateApplicationComponentConfigOutput,
         http_method = "POST",
         http_path = "/update-applicationcomponent-config/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:updateServerConfig(input, options)
         output_schema = types.UpdateServerConfigOutput,
         http_method = "POST",
         http_path = "/update-server-config/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

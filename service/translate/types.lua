@@ -122,6 +122,7 @@ M.CreateParallelDataInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -913,6 +914,7 @@ M.StartTextTranslationJobInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1209,6 +1211,7 @@ M.UpdateParallelDataInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },

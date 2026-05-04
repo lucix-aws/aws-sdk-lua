@@ -1,0 +1,457 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listBackupJobSummaries.
+function M.pages_list_backup_job_summaries(client, input)
+    return paginator.pages(client, "listBackupJobSummaries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listBackupJobs.
+function M.pages_list_backup_jobs(client, input)
+    return paginator.pages(client, "listBackupJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BackupJobs",
+    })
+end
+
+--- Returns an item iterator for listBackupJobs.
+function M.items_list_backup_jobs(client, input)
+    return paginator.items(client, "listBackupJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BackupJobs",
+    })
+end
+
+--- Returns a page iterator for listBackupPlanTemplates.
+function M.pages_list_backup_plan_templates(client, input)
+    return paginator.pages(client, "listBackupPlanTemplates", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BackupPlanTemplatesList",
+    })
+end
+
+--- Returns an item iterator for listBackupPlanTemplates.
+function M.items_list_backup_plan_templates(client, input)
+    return paginator.items(client, "listBackupPlanTemplates", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BackupPlanTemplatesList",
+    })
+end
+
+--- Returns a page iterator for listBackupPlanVersions.
+function M.pages_list_backup_plan_versions(client, input)
+    return paginator.pages(client, "listBackupPlanVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BackupPlanVersionsList",
+    })
+end
+
+--- Returns an item iterator for listBackupPlanVersions.
+function M.items_list_backup_plan_versions(client, input)
+    return paginator.items(client, "listBackupPlanVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BackupPlanVersionsList",
+    })
+end
+
+--- Returns a page iterator for listBackupPlans.
+function M.pages_list_backup_plans(client, input)
+    return paginator.pages(client, "listBackupPlans", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BackupPlansList",
+    })
+end
+
+--- Returns an item iterator for listBackupPlans.
+function M.items_list_backup_plans(client, input)
+    return paginator.items(client, "listBackupPlans", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BackupPlansList",
+    })
+end
+
+--- Returns a page iterator for listBackupSelections.
+function M.pages_list_backup_selections(client, input)
+    return paginator.pages(client, "listBackupSelections", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BackupSelectionsList",
+    })
+end
+
+--- Returns an item iterator for listBackupSelections.
+function M.items_list_backup_selections(client, input)
+    return paginator.items(client, "listBackupSelections", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BackupSelectionsList",
+    })
+end
+
+--- Returns a page iterator for listBackupVaults.
+function M.pages_list_backup_vaults(client, input)
+    return paginator.pages(client, "listBackupVaults", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BackupVaultList",
+    })
+end
+
+--- Returns an item iterator for listBackupVaults.
+function M.items_list_backup_vaults(client, input)
+    return paginator.items(client, "listBackupVaults", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BackupVaultList",
+    })
+end
+
+--- Returns a page iterator for listCopyJobSummaries.
+function M.pages_list_copy_job_summaries(client, input)
+    return paginator.pages(client, "listCopyJobSummaries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listCopyJobs.
+function M.pages_list_copy_jobs(client, input)
+    return paginator.pages(client, "listCopyJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CopyJobs",
+    })
+end
+
+--- Returns an item iterator for listCopyJobs.
+function M.items_list_copy_jobs(client, input)
+    return paginator.items(client, "listCopyJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CopyJobs",
+    })
+end
+
+--- Returns a page iterator for listFrameworks.
+function M.pages_list_frameworks(client, input)
+    return paginator.pages(client, "listFrameworks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listIndexedRecoveryPoints.
+function M.pages_list_indexed_recovery_points(client, input)
+    return paginator.pages(client, "listIndexedRecoveryPoints", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IndexedRecoveryPoints",
+    })
+end
+
+--- Returns an item iterator for listIndexedRecoveryPoints.
+function M.items_list_indexed_recovery_points(client, input)
+    return paginator.items(client, "listIndexedRecoveryPoints", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IndexedRecoveryPoints",
+    })
+end
+
+--- Returns a page iterator for listLegalHolds.
+function M.pages_list_legal_holds(client, input)
+    return paginator.pages(client, "listLegalHolds", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LegalHolds",
+    })
+end
+
+--- Returns an item iterator for listLegalHolds.
+function M.items_list_legal_holds(client, input)
+    return paginator.items(client, "listLegalHolds", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LegalHolds",
+    })
+end
+
+--- Returns a page iterator for listProtectedResources.
+function M.pages_list_protected_resources(client, input)
+    return paginator.pages(client, "listProtectedResources", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Results",
+    })
+end
+
+--- Returns an item iterator for listProtectedResources.
+function M.items_list_protected_resources(client, input)
+    return paginator.items(client, "listProtectedResources", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Results",
+    })
+end
+
+--- Returns a page iterator for listProtectedResourcesByBackupVault.
+function M.pages_list_protected_resources_by_backup_vault(client, input)
+    return paginator.pages(client, "listProtectedResourcesByBackupVault", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Results",
+    })
+end
+
+--- Returns an item iterator for listProtectedResourcesByBackupVault.
+function M.items_list_protected_resources_by_backup_vault(client, input)
+    return paginator.items(client, "listProtectedResourcesByBackupVault", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Results",
+    })
+end
+
+--- Returns a page iterator for listRecoveryPointsByBackupVault.
+function M.pages_list_recovery_points_by_backup_vault(client, input)
+    return paginator.pages(client, "listRecoveryPointsByBackupVault", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RecoveryPoints",
+    })
+end
+
+--- Returns an item iterator for listRecoveryPointsByBackupVault.
+function M.items_list_recovery_points_by_backup_vault(client, input)
+    return paginator.items(client, "listRecoveryPointsByBackupVault", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RecoveryPoints",
+    })
+end
+
+--- Returns a page iterator for listRecoveryPointsByLegalHold.
+function M.pages_list_recovery_points_by_legal_hold(client, input)
+    return paginator.pages(client, "listRecoveryPointsByLegalHold", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RecoveryPoints",
+    })
+end
+
+--- Returns an item iterator for listRecoveryPointsByLegalHold.
+function M.items_list_recovery_points_by_legal_hold(client, input)
+    return paginator.items(client, "listRecoveryPointsByLegalHold", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RecoveryPoints",
+    })
+end
+
+--- Returns a page iterator for listRecoveryPointsByResource.
+function M.pages_list_recovery_points_by_resource(client, input)
+    return paginator.pages(client, "listRecoveryPointsByResource", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RecoveryPoints",
+    })
+end
+
+--- Returns an item iterator for listRecoveryPointsByResource.
+function M.items_list_recovery_points_by_resource(client, input)
+    return paginator.items(client, "listRecoveryPointsByResource", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RecoveryPoints",
+    })
+end
+
+--- Returns a page iterator for listReportJobs.
+function M.pages_list_report_jobs(client, input)
+    return paginator.pages(client, "listReportJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listReportPlans.
+function M.pages_list_report_plans(client, input)
+    return paginator.pages(client, "listReportPlans", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listRestoreAccessBackupVaults.
+function M.pages_list_restore_access_backup_vaults(client, input)
+    return paginator.pages(client, "listRestoreAccessBackupVaults", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RestoreAccessBackupVaults",
+    })
+end
+
+--- Returns an item iterator for listRestoreAccessBackupVaults.
+function M.items_list_restore_access_backup_vaults(client, input)
+    return paginator.items(client, "listRestoreAccessBackupVaults", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RestoreAccessBackupVaults",
+    })
+end
+
+--- Returns a page iterator for listRestoreJobSummaries.
+function M.pages_list_restore_job_summaries(client, input)
+    return paginator.pages(client, "listRestoreJobSummaries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listRestoreJobs.
+function M.pages_list_restore_jobs(client, input)
+    return paginator.pages(client, "listRestoreJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RestoreJobs",
+    })
+end
+
+--- Returns an item iterator for listRestoreJobs.
+function M.items_list_restore_jobs(client, input)
+    return paginator.items(client, "listRestoreJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RestoreJobs",
+    })
+end
+
+--- Returns a page iterator for listRestoreJobsByProtectedResource.
+function M.pages_list_restore_jobs_by_protected_resource(client, input)
+    return paginator.pages(client, "listRestoreJobsByProtectedResource", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RestoreJobs",
+    })
+end
+
+--- Returns an item iterator for listRestoreJobsByProtectedResource.
+function M.items_list_restore_jobs_by_protected_resource(client, input)
+    return paginator.items(client, "listRestoreJobsByProtectedResource", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RestoreJobs",
+    })
+end
+
+--- Returns a page iterator for listRestoreTestingPlans.
+function M.pages_list_restore_testing_plans(client, input)
+    return paginator.pages(client, "listRestoreTestingPlans", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RestoreTestingPlans",
+    })
+end
+
+--- Returns an item iterator for listRestoreTestingPlans.
+function M.items_list_restore_testing_plans(client, input)
+    return paginator.items(client, "listRestoreTestingPlans", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RestoreTestingPlans",
+    })
+end
+
+--- Returns a page iterator for listRestoreTestingSelections.
+function M.pages_list_restore_testing_selections(client, input)
+    return paginator.pages(client, "listRestoreTestingSelections", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RestoreTestingSelections",
+    })
+end
+
+--- Returns an item iterator for listRestoreTestingSelections.
+function M.items_list_restore_testing_selections(client, input)
+    return paginator.items(client, "listRestoreTestingSelections", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RestoreTestingSelections",
+    })
+end
+
+--- Returns a page iterator for listScanJobSummaries.
+function M.pages_list_scan_job_summaries(client, input)
+    return paginator.pages(client, "listScanJobSummaries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ScanJobSummaries",
+    })
+end
+
+--- Returns an item iterator for listScanJobSummaries.
+function M.items_list_scan_job_summaries(client, input)
+    return paginator.items(client, "listScanJobSummaries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ScanJobSummaries",
+    })
+end
+
+--- Returns a page iterator for listScanJobs.
+function M.pages_list_scan_jobs(client, input)
+    return paginator.pages(client, "listScanJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ScanJobs",
+    })
+end
+
+--- Returns an item iterator for listScanJobs.
+function M.items_list_scan_jobs(client, input)
+    return paginator.items(client, "listScanJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ScanJobs",
+    })
+end
+
+--- Returns a page iterator for listTags.
+function M.pages_list_tags(client, input)
+    return paginator.pages(client, "listTags", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listTieringConfigurations.
+function M.pages_list_tiering_configurations(client, input)
+    return paginator.pages(client, "listTieringConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TieringConfigurations",
+    })
+end
+
+--- Returns an item iterator for listTieringConfigurations.
+function M.items_list_tiering_configurations(client, input)
+    return paginator.items(client, "listTieringConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TieringConfigurations",
+    })
+end
+
+return M

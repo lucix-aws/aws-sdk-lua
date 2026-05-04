@@ -100,6 +100,9 @@ M.CreateMonitorInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -267,6 +270,9 @@ M.CreateScopeInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -1205,6 +1211,9 @@ M.UpdateMonitorInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

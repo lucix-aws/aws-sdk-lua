@@ -1,0 +1,157 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for describePortfolioShares.
+function M.pages_describe_portfolio_shares(client, input)
+    return paginator.pages(client, "describePortfolioShares", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+    })
+end
+
+--- Returns a page iterator for getProvisionedProductOutputs.
+function M.pages_get_provisioned_product_outputs(client, input)
+    return paginator.pages(client, "getProvisionedProductOutputs", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+    })
+end
+
+--- Returns a page iterator for listAcceptedPortfolioShares.
+function M.pages_list_accepted_portfolio_shares(client, input)
+    return paginator.pages(client, "listAcceptedPortfolioShares", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+    })
+end
+
+--- Returns a page iterator for listBudgetsForResource.
+function M.pages_list_budgets_for_resource(client, input)
+    return paginator.pages(client, "listBudgetsForResource", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+    })
+end
+
+--- Returns a page iterator for listConstraintsForPortfolio.
+function M.pages_list_constraints_for_portfolio(client, input)
+    return paginator.pages(client, "listConstraintsForPortfolio", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+    })
+end
+
+--- Returns a page iterator for listLaunchPaths.
+function M.pages_list_launch_paths(client, input)
+    return paginator.pages(client, "listLaunchPaths", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+    })
+end
+
+--- Returns a page iterator for listOrganizationPortfolioAccess.
+function M.pages_list_organization_portfolio_access(client, input)
+    return paginator.pages(client, "listOrganizationPortfolioAccess", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+    })
+end
+
+--- Returns a page iterator for listPortfolioAccess.
+function M.pages_list_portfolio_access(client, input)
+    return paginator.pages(client, "listPortfolioAccess", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+    })
+end
+
+--- Returns a page iterator for listPortfolios.
+function M.pages_list_portfolios(client, input)
+    return paginator.pages(client, "listPortfolios", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+    })
+end
+
+--- Returns a page iterator for listPortfoliosForProduct.
+function M.pages_list_portfolios_for_product(client, input)
+    return paginator.pages(client, "listPortfoliosForProduct", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+    })
+end
+
+--- Returns a page iterator for listPrincipalsForPortfolio.
+function M.pages_list_principals_for_portfolio(client, input)
+    return paginator.pages(client, "listPrincipalsForPortfolio", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+    })
+end
+
+--- Returns a page iterator for listProvisioningArtifactsForServiceAction.
+function M.pages_list_provisioning_artifacts_for_service_action(client, input)
+    return paginator.pages(client, "listProvisioningArtifactsForServiceAction", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+    })
+end
+
+--- Returns a page iterator for listResourcesForTagOption.
+function M.pages_list_resources_for_tag_option(client, input)
+    return paginator.pages(client, "listResourcesForTagOption", input, {
+        input_token = "PageToken",
+        output_token = "PageToken",
+    })
+end
+
+--- Returns a page iterator for listServiceActions.
+function M.pages_list_service_actions(client, input)
+    return paginator.pages(client, "listServiceActions", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+    })
+end
+
+--- Returns a page iterator for listServiceActionsForProvisioningArtifact.
+function M.pages_list_service_actions_for_provisioning_artifact(client, input)
+    return paginator.pages(client, "listServiceActionsForProvisioningArtifact", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+    })
+end
+
+--- Returns a page iterator for listTagOptions.
+function M.pages_list_tag_options(client, input)
+    return paginator.pages(client, "listTagOptions", input, {
+        input_token = "PageToken",
+        output_token = "PageToken",
+    })
+end
+
+--- Returns a page iterator for searchProducts.
+function M.pages_search_products(client, input)
+    return paginator.pages(client, "searchProducts", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+    })
+end
+
+--- Returns a page iterator for searchProductsAsAdmin.
+function M.pages_search_products_as_admin(client, input)
+    return paginator.pages(client, "searchProductsAsAdmin", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+    })
+end
+
+--- Returns a page iterator for searchProvisionedProducts.
+function M.pages_search_provisioned_products(client, input)
+    return paginator.pages(client, "searchProvisionedProducts", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+    })
+end
+
+return M

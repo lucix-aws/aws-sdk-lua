@@ -1,0 +1,14 @@
+local record M
+    pages_list_blueprints: function(client: table, input: table): function(): table, table
+    items_list_blueprints: function(client: table, input: table): function(): any
+    pages_list_data_automation_libraries: function(client: table, input: table): function(): table, table
+    items_list_data_automation_libraries: function(client: table, input: table): function(): any
+    pages_list_data_automation_library_entities: function(client: table, input: table): function(): table, table
+    items_list_data_automation_library_entities: function(client: table, input: table): function(): any
+    pages_list_data_automation_library_ingestion_jobs: function(client: table, input: table): function(): table, table
+    items_list_data_automation_library_ingestion_jobs: function(client: table, input: table): function(): any
+    pages_list_data_automation_projects: function(client: table, input: table): function(): table, table
+    items_list_data_automation_projects: function(client: table, input: table): function(): any
+end
+
+return M

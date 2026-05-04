@@ -759,6 +759,9 @@ M.CreateCloudAutonomousVmClusterInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         autonomousDataStorageSizeInTBs = {
             type = "double",
@@ -1304,6 +1307,9 @@ M.CreateCloudExadataInfrastructureInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         databaseServerType = {
             type = "string",
@@ -2165,6 +2171,9 @@ M.CreateCloudVmClusterInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         scanListenerPortTcp = {
             type = "integer",
@@ -2299,6 +2308,9 @@ M.CreateOdbNetworkInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         s3Access = {
             type = "string",
@@ -2382,6 +2394,9 @@ M.CreateOdbPeeringConnectionInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",

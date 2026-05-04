@@ -1150,6 +1150,7 @@ M.BatchGetJobItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -1160,15 +1161,24 @@ M.BatchGetJobItem = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
         },
         startedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         taskRunStatus = {
             type = "string",
@@ -1885,6 +1895,7 @@ M.BatchGetSessionItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lifecycleStatus = {
@@ -1895,12 +1906,18 @@ M.BatchGetSessionItem = {
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         targetLifecycleStatus = {
             type = "string",
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -2151,12 +2168,21 @@ M.BatchGetSessionActionItem = {
         },
         startedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         workerUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         progressPercent = {
             type = "float",
@@ -2542,6 +2568,7 @@ M.BatchGetStepItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -2552,15 +2579,24 @@ M.BatchGetStepItem = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
         },
         startedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         dependencyCounts = M.DependencyCounts,
         requiredCapabilities = M.StepRequiredCapabilities,
@@ -2742,6 +2778,7 @@ M.BatchGetTaskItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -2764,12 +2801,21 @@ M.BatchGetTaskItem = {
         },
         startedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -2928,6 +2974,7 @@ M.BatchGetWorkerItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -2938,6 +2985,9 @@ M.BatchGetWorkerItem = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -3024,6 +3074,7 @@ M.BatchUpdateJobInput = {
             type = "string",
             traits = {
                 http_header = "X-Amz-Client-Token",
+                idempotency_token = true,
             },
         },
         jobs = {
@@ -3143,6 +3194,7 @@ M.BatchUpdateTaskInput = {
             type = "string",
             traits = {
                 http_header = "X-Amz-Client-Token",
+                idempotency_token = true,
             },
         },
         tasks = {
@@ -3276,12 +3328,14 @@ M.FixedBudgetSchedule = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         endTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -3329,6 +3383,7 @@ M.CreateBudgetInput = {
             type = "string",
             traits = {
                 http_header = "X-Amz-Client-Token",
+                idempotency_token = true,
             },
         },
         usageTrackingResource = setmetatable({ traits = {
@@ -3495,6 +3550,7 @@ M.GetBudgetOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedBy = {
@@ -3502,6 +3558,9 @@ M.GetBudgetOutput = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         description = {
             type = "string",
@@ -3518,6 +3577,9 @@ M.GetBudgetOutput = {
         } }, { __index = M.BudgetSchedule }),
         queueStoppedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -3597,6 +3659,7 @@ M.BudgetSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedBy = {
@@ -3604,6 +3667,9 @@ M.BudgetSummary = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         description = {
             type = "string",
@@ -3648,6 +3714,7 @@ M.UpdateBudgetInput = {
             type = "string",
             traits = {
                 http_header = "X-Amz-Client-Token",
+                idempotency_token = true,
             },
         },
         displayName = {
@@ -3774,6 +3841,7 @@ M.CreateFarmInput = {
             type = "string",
             traits = {
                 http_header = "X-Amz-Client-Token",
+                idempotency_token = true,
             },
         },
         displayName = {
@@ -4150,6 +4218,7 @@ M.CreateFleetInput = {
             type = "string",
             traits = {
                 http_header = "X-Amz-Client-Token",
+                idempotency_token = true,
             },
         },
         displayName = {
@@ -4232,6 +4301,7 @@ M.CreateJobInput = {
             type = "string",
             traits = {
                 http_header = "X-Amz-Client-Token",
+                idempotency_token = true,
             },
         },
         template = {
@@ -4312,6 +4382,7 @@ M.CreateLicenseEndpointInput = {
             type = "string",
             traits = {
                 http_header = "X-Amz-Client-Token",
+                idempotency_token = true,
             },
         },
         vpcId = {
@@ -4368,6 +4439,7 @@ M.CreateLimitInput = {
             type = "string",
             traits = {
                 http_header = "X-Amz-Client-Token",
+                idempotency_token = true,
             },
         },
         displayName = {
@@ -4416,6 +4488,7 @@ M.CreateMonitorInput = {
             type = "string",
             traits = {
                 http_header = "X-Amz-Client-Token",
+                idempotency_token = true,
             },
         },
         displayName = {
@@ -4576,6 +4649,7 @@ M.CreateQueueInput = {
             type = "string",
             traits = {
                 http_header = "X-Amz-Client-Token",
+                idempotency_token = true,
             },
         },
         displayName = {
@@ -4656,6 +4730,7 @@ M.CreateQueueEnvironmentInput = {
             type = "string",
             traits = {
                 http_header = "X-Amz-Client-Token",
+                idempotency_token = true,
             },
         },
         priority = {
@@ -4798,6 +4873,7 @@ M.CreateStorageProfileInput = {
             type = "string",
             traits = {
                 http_header = "X-Amz-Client-Token",
+                idempotency_token = true,
             },
         },
         displayName = {
@@ -4863,6 +4939,7 @@ M.CreateWorkerInput = {
             type = "string",
             traits = {
                 http_header = "X-Amz-Client-Token",
+                idempotency_token = true,
             },
         },
         tags = {
@@ -5082,6 +5159,7 @@ M.DeleteFleetInput = {
             type = "string",
             traits = {
                 http_header = "X-Amz-Client-Token",
+                idempotency_token = true,
             },
         },
     },
@@ -5226,6 +5304,7 @@ M.GetFleetOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -5236,6 +5315,9 @@ M.GetFleetOutput = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -5450,6 +5532,7 @@ M.FleetSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -5460,6 +5543,9 @@ M.FleetSummary = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -5504,6 +5590,7 @@ M.UpdateFleetInput = {
             type = "string",
             traits = {
                 http_header = "X-Amz-Client-Token",
+                idempotency_token = true,
             },
         },
         displayName = {
@@ -5621,6 +5708,7 @@ M.GetWorkerOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -5631,6 +5719,9 @@ M.GetWorkerOutput = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -5703,6 +5794,7 @@ M.WorkerSessionSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lifecycleStatus = {
@@ -5713,6 +5805,9 @@ M.WorkerSessionSummary = {
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         targetLifecycleStatus = {
             type = "string",
@@ -5802,6 +5897,7 @@ M.WorkerSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -5812,6 +5908,9 @@ M.WorkerSummary = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -6092,6 +6191,7 @@ M.GetFarmOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -6102,6 +6202,9 @@ M.GetFarmOutput = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -6164,6 +6267,7 @@ M.GetLimitOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -6174,6 +6278,9 @@ M.GetLimitOutput = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -6247,6 +6354,7 @@ M.GetStorageProfileOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -6257,6 +6365,9 @@ M.GetStorageProfileOutput = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -6393,6 +6504,7 @@ M.FarmSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -6403,6 +6515,9 @@ M.FarmSummary = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -6477,6 +6592,7 @@ M.LimitSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -6487,6 +6603,9 @@ M.LimitSummary = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -6751,6 +6870,7 @@ M.GetQueueOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -6761,6 +6881,9 @@ M.GetQueueOutput = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -6849,6 +6972,7 @@ M.GetQueueEnvironmentOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -6859,6 +6983,9 @@ M.GetQueueEnvironmentOutput = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -7023,6 +7150,7 @@ M.GetJobOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -7033,15 +7161,24 @@ M.GetJobOutput = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
         },
         startedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         taskRunStatus = {
             type = "string",
@@ -7143,6 +7280,7 @@ M.GetSessionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lifecycleStatus = {
@@ -7153,12 +7291,18 @@ M.GetSessionOutput = {
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         targetLifecycleStatus = {
             type = "string",
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -7222,12 +7366,21 @@ M.GetSessionActionOutput = {
         },
         startedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         workerUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         progressPercent = {
             type = "float",
@@ -7340,6 +7493,7 @@ M.GetStepOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -7350,15 +7504,24 @@ M.GetStepOutput = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
         },
         startedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         dependencyCounts = M.DependencyCounts,
         requiredCapabilities = M.StepRequiredCapabilities,
@@ -7423,6 +7586,7 @@ M.GetTaskOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -7445,12 +7609,21 @@ M.GetTaskOutput = {
         },
         startedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -7702,6 +7875,7 @@ M.JobSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -7712,15 +7886,24 @@ M.JobSummary = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
         },
         startedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         taskRunStatus = {
             type = "string",
@@ -7899,12 +8082,21 @@ M.SessionActionSummary = {
         },
         startedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         workerUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         progressPercent = {
             type = "float",
@@ -8000,6 +8192,7 @@ M.SessionSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lifecycleStatus = {
@@ -8010,12 +8203,18 @@ M.SessionSummary = {
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         targetLifecycleStatus = {
             type = "string",
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -8294,6 +8493,7 @@ M.StepSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -8304,15 +8504,24 @@ M.StepSummary = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
         },
         startedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         dependencyCounts = M.DependencyCounts,
     },
@@ -8394,6 +8603,7 @@ M.TaskSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -8416,12 +8626,21 @@ M.TaskSummary = {
         },
         startedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -8481,6 +8700,7 @@ M.UpdateJobInput = {
             type = "string",
             traits = {
                 http_header = "X-Amz-Client-Token",
+                idempotency_token = true,
             },
         },
         targetTaskRunStatus = {
@@ -8549,6 +8769,7 @@ M.UpdateSessionInput = {
             type = "string",
             traits = {
                 http_header = "X-Amz-Client-Token",
+                idempotency_token = true,
             },
         },
         targetLifecycleStatus = {
@@ -8599,6 +8820,7 @@ M.UpdateStepInput = {
             type = "string",
             traits = {
                 http_header = "X-Amz-Client-Token",
+                idempotency_token = true,
             },
         },
         targetTaskRunStatus = {
@@ -8656,6 +8878,7 @@ M.UpdateTaskInput = {
             type = "string",
             traits = {
                 http_header = "X-Amz-Client-Token",
+                idempotency_token = true,
             },
         },
         targetRunStatus = {
@@ -8913,6 +9136,7 @@ M.QueueSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -8923,6 +9147,9 @@ M.QueueSummary = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -9016,6 +9243,7 @@ M.UpdateQueueInput = {
             type = "string",
             traits = {
                 http_header = "X-Amz-Client-Token",
+                idempotency_token = true,
             },
         },
         displayName = {
@@ -9084,6 +9312,7 @@ M.UpdateQueueEnvironmentInput = {
             type = "string",
             traits = {
                 http_header = "X-Amz-Client-Token",
+                idempotency_token = true,
             },
         },
         priority = {
@@ -9182,6 +9411,7 @@ M.UpdateStorageProfileInput = {
             type = "string",
             traits = {
                 http_header = "X-Amz-Client-Token",
+                idempotency_token = true,
             },
         },
         displayName = {
@@ -9264,6 +9494,7 @@ M.GetQueueFleetAssociationOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -9274,6 +9505,9 @@ M.GetQueueFleetAssociationOutput = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -9340,6 +9574,7 @@ M.GetQueueLimitAssociationOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -9350,6 +9585,9 @@ M.GetQueueLimitAssociationOutput = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -9842,6 +10080,7 @@ M.QueueFleetAssociationSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -9852,6 +10091,9 @@ M.QueueFleetAssociationSummary = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -9938,6 +10180,7 @@ M.QueueLimitAssociationSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -9948,6 +10191,9 @@ M.QueueLimitAssociationSummary = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -10077,6 +10323,7 @@ M.GetMonitorOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -10087,6 +10334,9 @@ M.GetMonitorOutput = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -10192,6 +10442,7 @@ M.MonitorSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         createdBy = {
@@ -10202,6 +10453,9 @@ M.MonitorSummary = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -10485,15 +10739,27 @@ M.JobSearchSummary = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         startedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -10571,18 +10837,30 @@ M.StepSearchSummary = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         createdBy = {
             type = "string",
         },
         startedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -10644,12 +10922,21 @@ M.TaskSearchSummary = {
         },
         startedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
@@ -10700,12 +10987,18 @@ M.WorkerSearchSummary = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedBy = {
             type = "string",
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }

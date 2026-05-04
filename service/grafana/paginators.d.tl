@@ -1,0 +1,14 @@
+local record M
+    pages_list_permissions: function(client: table, input: table): function(): table, table
+    items_list_permissions: function(client: table, input: table): function(): any
+    pages_list_versions: function(client: table, input: table): function(): table, table
+    items_list_versions: function(client: table, input: table): function(): any
+    pages_list_workspace_service_account_tokens: function(client: table, input: table): function(): table, table
+    items_list_workspace_service_account_tokens: function(client: table, input: table): function(): any
+    pages_list_workspace_service_accounts: function(client: table, input: table): function(): table, table
+    items_list_workspace_service_accounts: function(client: table, input: table): function(): any
+    pages_list_workspaces: function(client: table, input: table): function(): table, table
+    items_list_workspaces: function(client: table, input: table): function(): any
+end
+
+return M

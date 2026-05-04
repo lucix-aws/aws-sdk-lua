@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "NetworkManager"
-    cfg.signing_name = "networkmanager"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "networkmanager", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:acceptAttachment(input, options)
         output_schema = types.AcceptAttachmentOutput,
         http_method = "POST",
         http_path = "/attachments/{AttachmentId}/accept",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:associateConnectPeer(input, options)
         output_schema = types.AssociateConnectPeerOutput,
         http_method = "POST",
         http_path = "/global-networks/{GlobalNetworkId}/connect-peer-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:associateCustomerGateway(input, options)
         output_schema = types.AssociateCustomerGatewayOutput,
         http_method = "POST",
         http_path = "/global-networks/{GlobalNetworkId}/customer-gateway-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:associateLink(input, options)
         output_schema = types.AssociateLinkOutput,
         http_method = "POST",
         http_path = "/global-networks/{GlobalNetworkId}/link-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:associateTransitGatewayConnectPeer(input, options)
         output_schema = types.AssociateTransitGatewayConnectPeerOutput,
         http_method = "POST",
         http_path = "/global-networks/{GlobalNetworkId}/transit-gateway-connect-peer-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createConnectAttachment(input, options)
         output_schema = types.CreateConnectAttachmentOutput,
         http_method = "POST",
         http_path = "/connect-attachments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createConnection(input, options)
         output_schema = types.CreateConnectionOutput,
         http_method = "POST",
         http_path = "/global-networks/{GlobalNetworkId}/connections",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createConnectPeer(input, options)
         output_schema = types.CreateConnectPeerOutput,
         http_method = "POST",
         http_path = "/connect-peers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createCoreNetwork(input, options)
         output_schema = types.CreateCoreNetworkOutput,
         http_method = "POST",
         http_path = "/core-networks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createCoreNetworkPrefixListAssociation(input, options)
         output_schema = types.CreateCoreNetworkPrefixListAssociationOutput,
         http_method = "POST",
         http_path = "/prefix-list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createDevice(input, options)
         output_schema = types.CreateDeviceOutput,
         http_method = "POST",
         http_path = "/global-networks/{GlobalNetworkId}/devices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createDirectConnectGatewayAttachment(input, options)
         output_schema = types.CreateDirectConnectGatewayAttachmentOutput,
         http_method = "POST",
         http_path = "/direct-connect-gateway-attachments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createGlobalNetwork(input, options)
         output_schema = types.CreateGlobalNetworkOutput,
         http_method = "POST",
         http_path = "/global-networks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:createLink(input, options)
         output_schema = types.CreateLinkOutput,
         http_method = "POST",
         http_path = "/global-networks/{GlobalNetworkId}/links",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:createSite(input, options)
         output_schema = types.CreateSiteOutput,
         http_method = "POST",
         http_path = "/global-networks/{GlobalNetworkId}/sites",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:createSiteToSiteVpnAttachment(input, options)
         output_schema = types.CreateSiteToSiteVpnAttachmentOutput,
         http_method = "POST",
         http_path = "/site-to-site-vpn-attachments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:createTransitGatewayPeering(input, options)
         output_schema = types.CreateTransitGatewayPeeringOutput,
         http_method = "POST",
         http_path = "/transit-gateway-peerings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:createTransitGatewayRouteTableAttachment(input, options)
         output_schema = types.CreateTransitGatewayRouteTableAttachmentOutput,
         http_method = "POST",
         http_path = "/transit-gateway-route-table-attachments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:createVpcAttachment(input, options)
         output_schema = types.CreateVpcAttachmentOutput,
         http_method = "POST",
         http_path = "/vpc-attachments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deleteAttachment(input, options)
         output_schema = types.DeleteAttachmentOutput,
         http_method = "DELETE",
         http_path = "/attachments/{AttachmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deleteConnection(input, options)
         output_schema = types.DeleteConnectionOutput,
         http_method = "DELETE",
         http_path = "/global-networks/{GlobalNetworkId}/connections/{ConnectionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:deleteConnectPeer(input, options)
         output_schema = types.DeleteConnectPeerOutput,
         http_method = "DELETE",
         http_path = "/connect-peers/{ConnectPeerId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:deleteCoreNetwork(input, options)
         output_schema = types.DeleteCoreNetworkOutput,
         http_method = "DELETE",
         http_path = "/core-networks/{CoreNetworkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:deleteCoreNetworkPolicyVersion(input, options)
         output_schema = types.DeleteCoreNetworkPolicyVersionOutput,
         http_method = "DELETE",
         http_path = "/core-networks/{CoreNetworkId}/core-network-policy-versions/{PolicyVersionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:deleteCoreNetworkPrefixListAssociation(input, options)
         output_schema = types.DeleteCoreNetworkPrefixListAssociationOutput,
         http_method = "DELETE",
         http_path = "/prefix-list/{PrefixListArn}/core-network/{CoreNetworkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:deleteDevice(input, options)
         output_schema = types.DeleteDeviceOutput,
         http_method = "DELETE",
         http_path = "/global-networks/{GlobalNetworkId}/devices/{DeviceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:deleteGlobalNetwork(input, options)
         output_schema = types.DeleteGlobalNetworkOutput,
         http_method = "DELETE",
         http_path = "/global-networks/{GlobalNetworkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:deleteLink(input, options)
         output_schema = types.DeleteLinkOutput,
         http_method = "DELETE",
         http_path = "/global-networks/{GlobalNetworkId}/links/{LinkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:deletePeering(input, options)
         output_schema = types.DeletePeeringOutput,
         http_method = "DELETE",
         http_path = "/peerings/{PeeringId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:deleteResourcePolicy(input, options)
         output_schema = types.DeleteResourcePolicyOutput,
         http_method = "DELETE",
         http_path = "/resource-policy/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:deleteSite(input, options)
         output_schema = types.DeleteSiteOutput,
         http_method = "DELETE",
         http_path = "/global-networks/{GlobalNetworkId}/sites/{SiteId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:deregisterTransitGateway(input, options)
         output_schema = types.DeregisterTransitGatewayOutput,
         http_method = "DELETE",
         http_path = "/global-networks/{GlobalNetworkId}/transit-gateway-registrations/{TransitGatewayArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:describeGlobalNetworks(input, options)
         output_schema = types.DescribeGlobalNetworksOutput,
         http_method = "GET",
         http_path = "/global-networks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:disassociateConnectPeer(input, options)
         output_schema = types.DisassociateConnectPeerOutput,
         http_method = "DELETE",
         http_path = "/global-networks/{GlobalNetworkId}/connect-peer-associations/{ConnectPeerId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:disassociateCustomerGateway(input, options)
         output_schema = types.DisassociateCustomerGatewayOutput,
         http_method = "DELETE",
         http_path = "/global-networks/{GlobalNetworkId}/customer-gateway-associations/{CustomerGatewayArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:disassociateLink(input, options)
         output_schema = types.DisassociateLinkOutput,
         http_method = "DELETE",
         http_path = "/global-networks/{GlobalNetworkId}/link-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:disassociateTransitGatewayConnectPeer(input, options)
         output_schema = types.DisassociateTransitGatewayConnectPeerOutput,
         http_method = "DELETE",
         http_path = "/global-networks/{GlobalNetworkId}/transit-gateway-connect-peer-associations/{TransitGatewayConnectPeerArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:executeCoreNetworkChangeSet(input, options)
         output_schema = types.ExecuteCoreNetworkChangeSetOutput,
         http_method = "POST",
         http_path = "/core-networks/{CoreNetworkId}/core-network-change-sets/{PolicyVersionId}/execute",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:getConnectAttachment(input, options)
         output_schema = types.GetConnectAttachmentOutput,
         http_method = "GET",
         http_path = "/connect-attachments/{AttachmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:getConnections(input, options)
         output_schema = types.GetConnectionsOutput,
         http_method = "GET",
         http_path = "/global-networks/{GlobalNetworkId}/connections",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:getConnectPeer(input, options)
         output_schema = types.GetConnectPeerOutput,
         http_method = "GET",
         http_path = "/connect-peers/{ConnectPeerId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:getConnectPeerAssociations(input, options)
         output_schema = types.GetConnectPeerAssociationsOutput,
         http_method = "GET",
         http_path = "/global-networks/{GlobalNetworkId}/connect-peer-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:getCoreNetwork(input, options)
         output_schema = types.GetCoreNetworkOutput,
         http_method = "GET",
         http_path = "/core-networks/{CoreNetworkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:getCoreNetworkChangeEvents(input, options)
         output_schema = types.GetCoreNetworkChangeEventsOutput,
         http_method = "GET",
         http_path = "/core-networks/{CoreNetworkId}/core-network-change-events/{PolicyVersionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:getCoreNetworkChangeSet(input, options)
         output_schema = types.GetCoreNetworkChangeSetOutput,
         http_method = "GET",
         http_path = "/core-networks/{CoreNetworkId}/core-network-change-sets/{PolicyVersionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:getCoreNetworkPolicy(input, options)
         output_schema = types.GetCoreNetworkPolicyOutput,
         http_method = "GET",
         http_path = "/core-networks/{CoreNetworkId}/core-network-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:getCustomerGatewayAssociations(input, options)
         output_schema = types.GetCustomerGatewayAssociationsOutput,
         http_method = "GET",
         http_path = "/global-networks/{GlobalNetworkId}/customer-gateway-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:getDevices(input, options)
         output_schema = types.GetDevicesOutput,
         http_method = "GET",
         http_path = "/global-networks/{GlobalNetworkId}/devices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:getDirectConnectGatewayAttachment(input, options)
         output_schema = types.GetDirectConnectGatewayAttachmentOutput,
         http_method = "GET",
         http_path = "/direct-connect-gateway-attachments/{AttachmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:getLinkAssociations(input, options)
         output_schema = types.GetLinkAssociationsOutput,
         http_method = "GET",
         http_path = "/global-networks/{GlobalNetworkId}/link-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:getLinks(input, options)
         output_schema = types.GetLinksOutput,
         http_method = "GET",
         http_path = "/global-networks/{GlobalNetworkId}/links",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:getNetworkResourceCounts(input, options)
         output_schema = types.GetNetworkResourceCountsOutput,
         http_method = "GET",
         http_path = "/global-networks/{GlobalNetworkId}/network-resource-count",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:getNetworkResourceRelationships(input, options)
         output_schema = types.GetNetworkResourceRelationshipsOutput,
         http_method = "GET",
         http_path = "/global-networks/{GlobalNetworkId}/network-resource-relationships",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:getNetworkResources(input, options)
         output_schema = types.GetNetworkResourcesOutput,
         http_method = "GET",
         http_path = "/global-networks/{GlobalNetworkId}/network-resources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:getNetworkRoutes(input, options)
         output_schema = types.GetNetworkRoutesOutput,
         http_method = "POST",
         http_path = "/global-networks/{GlobalNetworkId}/network-routes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:getNetworkTelemetry(input, options)
         output_schema = types.GetNetworkTelemetryOutput,
         http_method = "GET",
         http_path = "/global-networks/{GlobalNetworkId}/network-telemetry",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:getResourcePolicy(input, options)
         output_schema = types.GetResourcePolicyOutput,
         http_method = "GET",
         http_path = "/resource-policy/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:getRouteAnalysis(input, options)
         output_schema = types.GetRouteAnalysisOutput,
         http_method = "GET",
         http_path = "/global-networks/{GlobalNetworkId}/route-analyses/{RouteAnalysisId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:getSites(input, options)
         output_schema = types.GetSitesOutput,
         http_method = "GET",
         http_path = "/global-networks/{GlobalNetworkId}/sites",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:getSiteToSiteVpnAttachment(input, options)
         output_schema = types.GetSiteToSiteVpnAttachmentOutput,
         http_method = "GET",
         http_path = "/site-to-site-vpn-attachments/{AttachmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:getTransitGatewayConnectPeerAssociations(input, options)
         output_schema = types.GetTransitGatewayConnectPeerAssociationsOutput,
         http_method = "GET",
         http_path = "/global-networks/{GlobalNetworkId}/transit-gateway-connect-peer-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:getTransitGatewayPeering(input, options)
         output_schema = types.GetTransitGatewayPeeringOutput,
         http_method = "GET",
         http_path = "/transit-gateway-peerings/{PeeringId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:getTransitGatewayRegistrations(input, options)
         output_schema = types.GetTransitGatewayRegistrationsOutput,
         http_method = "GET",
         http_path = "/global-networks/{GlobalNetworkId}/transit-gateway-registrations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:getTransitGatewayRouteTableAttachment(input, options)
         output_schema = types.GetTransitGatewayRouteTableAttachmentOutput,
         http_method = "GET",
         http_path = "/transit-gateway-route-table-attachments/{AttachmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:getVpcAttachment(input, options)
         output_schema = types.GetVpcAttachmentOutput,
         http_method = "GET",
         http_path = "/vpc-attachments/{AttachmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:listAttachmentRoutingPolicyAssociations(input, options)
         output_schema = types.ListAttachmentRoutingPolicyAssociationsOutput,
         http_method = "GET",
         http_path = "/routing-policy-label/core-network/{CoreNetworkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:listAttachments(input, options)
         output_schema = types.ListAttachmentsOutput,
         http_method = "GET",
         http_path = "/attachments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:listConnectPeers(input, options)
         output_schema = types.ListConnectPeersOutput,
         http_method = "GET",
         http_path = "/connect-peers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:listCoreNetworkPolicyVersions(input, options)
         output_schema = types.ListCoreNetworkPolicyVersionsOutput,
         http_method = "GET",
         http_path = "/core-networks/{CoreNetworkId}/core-network-policy-versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:listCoreNetworkPrefixListAssociations(input, options)
         output_schema = types.ListCoreNetworkPrefixListAssociationsOutput,
         http_method = "GET",
         http_path = "/prefix-list/core-network/{CoreNetworkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:listCoreNetworkRoutingInformation(input, options)
         output_schema = types.ListCoreNetworkRoutingInformationOutput,
         http_method = "POST",
         http_path = "/core-networks/{CoreNetworkId}/core-network-routing-information",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:listCoreNetworks(input, options)
         output_schema = types.ListCoreNetworksOutput,
         http_method = "GET",
         http_path = "/core-networks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:listOrganizationServiceAccessStatus(input, options)
         output_schema = types.ListOrganizationServiceAccessStatusOutput,
         http_method = "GET",
         http_path = "/organizations/service-access",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:listPeerings(input, options)
         output_schema = types.ListPeeringsOutput,
         http_method = "GET",
         http_path = "/peerings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:putAttachmentRoutingPolicyLabel(input, options)
         output_schema = types.PutAttachmentRoutingPolicyLabelOutput,
         http_method = "POST",
         http_path = "/routing-policy-label",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:putCoreNetworkPolicy(input, options)
         output_schema = types.PutCoreNetworkPolicyOutput,
         http_method = "POST",
         http_path = "/core-networks/{CoreNetworkId}/core-network-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:putResourcePolicy(input, options)
         output_schema = types.PutResourcePolicyOutput,
         http_method = "POST",
         http_path = "/resource-policy/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:registerTransitGateway(input, options)
         output_schema = types.RegisterTransitGatewayOutput,
         http_method = "POST",
         http_path = "/global-networks/{GlobalNetworkId}/transit-gateway-registrations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:rejectAttachment(input, options)
         output_schema = types.RejectAttachmentOutput,
         http_method = "POST",
         http_path = "/attachments/{AttachmentId}/reject",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:removeAttachmentRoutingPolicyLabel(input, options)
         output_schema = types.RemoveAttachmentRoutingPolicyLabelOutput,
         http_method = "DELETE",
         http_path = "/routing-policy-label/core-network/{CoreNetworkId}/attachment/{AttachmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:restoreCoreNetworkPolicyVersion(input, options)
         output_schema = types.RestoreCoreNetworkPolicyVersionOutput,
         http_method = "POST",
         http_path = "/core-networks/{CoreNetworkId}/core-network-policy-versions/{PolicyVersionId}/restore",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:startOrganizationServiceAccessUpdate(input, options)
         output_schema = types.StartOrganizationServiceAccessUpdateOutput,
         http_method = "POST",
         http_path = "/organizations/service-access",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:startRouteAnalysis(input, options)
         output_schema = types.StartRouteAnalysisOutput,
         http_method = "POST",
         http_path = "/global-networks/{GlobalNetworkId}/route-analyses",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -890,6 +1158,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -900,6 +1171,9 @@ function Client:updateConnection(input, options)
         output_schema = types.UpdateConnectionOutput,
         http_method = "PATCH",
         http_path = "/global-networks/{GlobalNetworkId}/connections/{ConnectionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -910,6 +1184,9 @@ function Client:updateCoreNetwork(input, options)
         output_schema = types.UpdateCoreNetworkOutput,
         http_method = "PATCH",
         http_path = "/core-networks/{CoreNetworkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -920,6 +1197,9 @@ function Client:updateDevice(input, options)
         output_schema = types.UpdateDeviceOutput,
         http_method = "PATCH",
         http_path = "/global-networks/{GlobalNetworkId}/devices/{DeviceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -930,6 +1210,9 @@ function Client:updateDirectConnectGatewayAttachment(input, options)
         output_schema = types.UpdateDirectConnectGatewayAttachmentOutput,
         http_method = "PATCH",
         http_path = "/direct-connect-gateway-attachments/{AttachmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -940,6 +1223,9 @@ function Client:updateGlobalNetwork(input, options)
         output_schema = types.UpdateGlobalNetworkOutput,
         http_method = "PATCH",
         http_path = "/global-networks/{GlobalNetworkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -950,6 +1236,9 @@ function Client:updateLink(input, options)
         output_schema = types.UpdateLinkOutput,
         http_method = "PATCH",
         http_path = "/global-networks/{GlobalNetworkId}/links/{LinkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -960,6 +1249,9 @@ function Client:updateNetworkResourceMetadata(input, options)
         output_schema = types.UpdateNetworkResourceMetadataOutput,
         http_method = "PATCH",
         http_path = "/global-networks/{GlobalNetworkId}/network-resources/{ResourceArn}/metadata",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -970,6 +1262,9 @@ function Client:updateSite(input, options)
         output_schema = types.UpdateSiteOutput,
         http_method = "PATCH",
         http_path = "/global-networks/{GlobalNetworkId}/sites/{SiteId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -980,6 +1275,9 @@ function Client:updateVpcAttachment(input, options)
         output_schema = types.UpdateVpcAttachmentOutput,
         http_method = "PATCH",
         http_path = "/vpc-attachments/{AttachmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

@@ -1107,19 +1107,19 @@ local record ValidationException
     message: string
 end
 
-local type StageTransitionType = "Inbound" | "Outbound"
-
 local type ConditionType = "BEFORE_ENTRY" | "ON_SUCCESS"
 
-local type RuleOwner = "AWS"
+local type JobStatus = "Created" | "Queued" | "Dispatched" | "InProgress" | "TimedOut" | "Succeeded" | "Failed"
+
+local type StageRetryMode = "FAILED_ACTIONS" | "ALL_ACTIONS"
 
 local type ActionCategory = "Source" | "Build" | "Deploy" | "Test" | "Invoke" | "Approval" | "Compute"
 
 local type ActionOwner = "AWS" | "ThirdParty" | "Custom"
 
-local type StageRetryMode = "FAILED_ACTIONS" | "ALL_ACTIONS"
+local type StageTransitionType = "Inbound" | "Outbound"
 
-local type JobStatus = "Created" | "Queued" | "Dispatched" | "InProgress" | "TimedOut" | "Succeeded" | "Failed"
+local type RuleOwner = "AWS"
 
 local record M
     AcknowledgeJobInput: AcknowledgeJobInput

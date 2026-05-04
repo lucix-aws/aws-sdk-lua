@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSErmineControlPlaneService"
-    cfg.signing_name = "workspaces-web"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "workspaces-web", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateBrowserSettings(input, options)
         output_schema = types.AssociateBrowserSettingsOutput,
         http_method = "PUT",
         http_path = "/portals/{portalArn+}/browserSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:associateDataProtectionSettings(input, options)
         output_schema = types.AssociateDataProtectionSettingsOutput,
         http_method = "PUT",
         http_path = "/portals/{portalArn+}/dataProtectionSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:associateIpAccessSettings(input, options)
         output_schema = types.AssociateIpAccessSettingsOutput,
         http_method = "PUT",
         http_path = "/portals/{portalArn+}/ipAccessSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:associateNetworkSettings(input, options)
         output_schema = types.AssociateNetworkSettingsOutput,
         http_method = "PUT",
         http_path = "/portals/{portalArn+}/networkSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:associateSessionLogger(input, options)
         output_schema = types.AssociateSessionLoggerOutput,
         http_method = "PUT",
         http_path = "/portals/{portalArn+}/sessionLogger",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:associateTrustStore(input, options)
         output_schema = types.AssociateTrustStoreOutput,
         http_method = "PUT",
         http_path = "/portals/{portalArn+}/trustStores",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:associateUserAccessLoggingSettings(input, options)
         output_schema = types.AssociateUserAccessLoggingSettingsOutput,
         http_method = "PUT",
         http_path = "/portals/{portalArn+}/userAccessLoggingSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:associateUserSettings(input, options)
         output_schema = types.AssociateUserSettingsOutput,
         http_method = "PUT",
         http_path = "/portals/{portalArn+}/userSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createBrowserSettings(input, options)
         output_schema = types.CreateBrowserSettingsOutput,
         http_method = "POST",
         http_path = "/browserSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createDataProtectionSettings(input, options)
         output_schema = types.CreateDataProtectionSettingsOutput,
         http_method = "POST",
         http_path = "/dataProtectionSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createIdentityProvider(input, options)
         output_schema = types.CreateIdentityProviderOutput,
         http_method = "POST",
         http_path = "/identityProviders",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createIpAccessSettings(input, options)
         output_schema = types.CreateIpAccessSettingsOutput,
         http_method = "POST",
         http_path = "/ipAccessSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createNetworkSettings(input, options)
         output_schema = types.CreateNetworkSettingsOutput,
         http_method = "POST",
         http_path = "/networkSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:createPortal(input, options)
         output_schema = types.CreatePortalOutput,
         http_method = "POST",
         http_path = "/portals",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:createSessionLogger(input, options)
         output_schema = types.CreateSessionLoggerOutput,
         http_method = "POST",
         http_path = "/sessionLoggers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:createTrustStore(input, options)
         output_schema = types.CreateTrustStoreOutput,
         http_method = "POST",
         http_path = "/trustStores",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:createUserAccessLoggingSettings(input, options)
         output_schema = types.CreateUserAccessLoggingSettingsOutput,
         http_method = "POST",
         http_path = "/userAccessLoggingSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:createUserSettings(input, options)
         output_schema = types.CreateUserSettingsOutput,
         http_method = "POST",
         http_path = "/userSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteBrowserSettings(input, options)
         output_schema = types.DeleteBrowserSettingsOutput,
         http_method = "DELETE",
         http_path = "/browserSettings/{browserSettingsArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deleteDataProtectionSettings(input, options)
         output_schema = types.DeleteDataProtectionSettingsOutput,
         http_method = "DELETE",
         http_path = "/dataProtectionSettings/{dataProtectionSettingsArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deleteIdentityProvider(input, options)
         output_schema = types.DeleteIdentityProviderOutput,
         http_method = "DELETE",
         http_path = "/identityProviders/{identityProviderArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:deleteIpAccessSettings(input, options)
         output_schema = types.DeleteIpAccessSettingsOutput,
         http_method = "DELETE",
         http_path = "/ipAccessSettings/{ipAccessSettingsArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:deleteNetworkSettings(input, options)
         output_schema = types.DeleteNetworkSettingsOutput,
         http_method = "DELETE",
         http_path = "/networkSettings/{networkSettingsArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:deletePortal(input, options)
         output_schema = types.DeletePortalOutput,
         http_method = "DELETE",
         http_path = "/portals/{portalArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:deleteSessionLogger(input, options)
         output_schema = types.DeleteSessionLoggerOutput,
         http_method = "DELETE",
         http_path = "/sessionLoggers/{sessionLoggerArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:deleteTrustStore(input, options)
         output_schema = types.DeleteTrustStoreOutput,
         http_method = "DELETE",
         http_path = "/trustStores/{trustStoreArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:deleteUserAccessLoggingSettings(input, options)
         output_schema = types.DeleteUserAccessLoggingSettingsOutput,
         http_method = "DELETE",
         http_path = "/userAccessLoggingSettings/{userAccessLoggingSettingsArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:deleteUserSettings(input, options)
         output_schema = types.DeleteUserSettingsOutput,
         http_method = "DELETE",
         http_path = "/userSettings/{userSettingsArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:disassociateBrowserSettings(input, options)
         output_schema = types.DisassociateBrowserSettingsOutput,
         http_method = "DELETE",
         http_path = "/portals/{portalArn+}/browserSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:disassociateDataProtectionSettings(input, options)
         output_schema = types.DisassociateDataProtectionSettingsOutput,
         http_method = "DELETE",
         http_path = "/portals/{portalArn+}/dataProtectionSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:disassociateIpAccessSettings(input, options)
         output_schema = types.DisassociateIpAccessSettingsOutput,
         http_method = "DELETE",
         http_path = "/portals/{portalArn+}/ipAccessSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:disassociateNetworkSettings(input, options)
         output_schema = types.DisassociateNetworkSettingsOutput,
         http_method = "DELETE",
         http_path = "/portals/{portalArn+}/networkSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:disassociateSessionLogger(input, options)
         output_schema = types.DisassociateSessionLoggerOutput,
         http_method = "DELETE",
         http_path = "/portals/{portalArn+}/sessionLogger",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:disassociateTrustStore(input, options)
         output_schema = types.DisassociateTrustStoreOutput,
         http_method = "DELETE",
         http_path = "/portals/{portalArn+}/trustStores",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:disassociateUserAccessLoggingSettings(input, options)
         output_schema = types.DisassociateUserAccessLoggingSettingsOutput,
         http_method = "DELETE",
         http_path = "/portals/{portalArn+}/userAccessLoggingSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:disassociateUserSettings(input, options)
         output_schema = types.DisassociateUserSettingsOutput,
         http_method = "DELETE",
         http_path = "/portals/{portalArn+}/userSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:expireSession(input, options)
         output_schema = types.ExpireSessionOutput,
         http_method = "DELETE",
         http_path = "/portals/{portalId}/sessions/{sessionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:getBrowserSettings(input, options)
         output_schema = types.GetBrowserSettingsOutput,
         http_method = "GET",
         http_path = "/browserSettings/{browserSettingsArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:getDataProtectionSettings(input, options)
         output_schema = types.GetDataProtectionSettingsOutput,
         http_method = "GET",
         http_path = "/dataProtectionSettings/{dataProtectionSettingsArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:getIdentityProvider(input, options)
         output_schema = types.GetIdentityProviderOutput,
         http_method = "GET",
         http_path = "/identityProviders/{identityProviderArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:getIpAccessSettings(input, options)
         output_schema = types.GetIpAccessSettingsOutput,
         http_method = "GET",
         http_path = "/ipAccessSettings/{ipAccessSettingsArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:getNetworkSettings(input, options)
         output_schema = types.GetNetworkSettingsOutput,
         http_method = "GET",
         http_path = "/networkSettings/{networkSettingsArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:getPortal(input, options)
         output_schema = types.GetPortalOutput,
         http_method = "GET",
         http_path = "/portals/{portalArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:getPortalServiceProviderMetadata(input, options)
         output_schema = types.GetPortalServiceProviderMetadataOutput,
         http_method = "GET",
         http_path = "/portalIdp/{portalArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:getSession(input, options)
         output_schema = types.GetSessionOutput,
         http_method = "GET",
         http_path = "/portals/{portalId}/sessions/{sessionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:getSessionLogger(input, options)
         output_schema = types.GetSessionLoggerOutput,
         http_method = "GET",
         http_path = "/sessionLoggers/{sessionLoggerArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:getTrustStore(input, options)
         output_schema = types.GetTrustStoreOutput,
         http_method = "GET",
         http_path = "/trustStores/{trustStoreArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:getTrustStoreCertificate(input, options)
         output_schema = types.GetTrustStoreCertificateOutput,
         http_method = "GET",
         http_path = "/trustStores/{trustStoreArn+}/certificate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:getUserAccessLoggingSettings(input, options)
         output_schema = types.GetUserAccessLoggingSettingsOutput,
         http_method = "GET",
         http_path = "/userAccessLoggingSettings/{userAccessLoggingSettingsArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:getUserSettings(input, options)
         output_schema = types.GetUserSettingsOutput,
         http_method = "GET",
         http_path = "/userSettings/{userSettingsArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:listBrowserSettings(input, options)
         output_schema = types.ListBrowserSettingsOutput,
         http_method = "GET",
         http_path = "/browserSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:listDataProtectionSettings(input, options)
         output_schema = types.ListDataProtectionSettingsOutput,
         http_method = "GET",
         http_path = "/dataProtectionSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:listIdentityProviders(input, options)
         output_schema = types.ListIdentityProvidersOutput,
         http_method = "GET",
         http_path = "/portals/{portalArn+}/identityProviders",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:listIpAccessSettings(input, options)
         output_schema = types.ListIpAccessSettingsOutput,
         http_method = "GET",
         http_path = "/ipAccessSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:listNetworkSettings(input, options)
         output_schema = types.ListNetworkSettingsOutput,
         http_method = "GET",
         http_path = "/networkSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:listPortals(input, options)
         output_schema = types.ListPortalsOutput,
         http_method = "GET",
         http_path = "/portals",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:listSessionLoggers(input, options)
         output_schema = types.ListSessionLoggersOutput,
         http_method = "GET",
         http_path = "/sessionLoggers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:listSessions(input, options)
         output_schema = types.ListSessionsOutput,
         http_method = "GET",
         http_path = "/portals/{portalId}/sessions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:listTrustStoreCertificates(input, options)
         output_schema = types.ListTrustStoreCertificatesOutput,
         http_method = "GET",
         http_path = "/trustStores/{trustStoreArn+}/certificates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:listTrustStores(input, options)
         output_schema = types.ListTrustStoresOutput,
         http_method = "GET",
         http_path = "/trustStores",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:listUserAccessLoggingSettings(input, options)
         output_schema = types.ListUserAccessLoggingSettingsOutput,
         http_method = "GET",
         http_path = "/userAccessLoggingSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:listUserSettings(input, options)
         output_schema = types.ListUserSettingsOutput,
         http_method = "GET",
         http_path = "/userSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:updateBrowserSettings(input, options)
         output_schema = types.UpdateBrowserSettingsOutput,
         http_method = "PATCH",
         http_path = "/browserSettings/{browserSettingsArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:updateDataProtectionSettings(input, options)
         output_schema = types.UpdateDataProtectionSettingsOutput,
         http_method = "PATCH",
         http_path = "/dataProtectionSettings/{dataProtectionSettingsArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:updateIdentityProvider(input, options)
         output_schema = types.UpdateIdentityProviderOutput,
         http_method = "PATCH",
         http_path = "/identityProviders/{identityProviderArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:updateIpAccessSettings(input, options)
         output_schema = types.UpdateIpAccessSettingsOutput,
         http_method = "PATCH",
         http_path = "/ipAccessSettings/{ipAccessSettingsArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:updateNetworkSettings(input, options)
         output_schema = types.UpdateNetworkSettingsOutput,
         http_method = "PATCH",
         http_path = "/networkSettings/{networkSettingsArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:updatePortal(input, options)
         output_schema = types.UpdatePortalOutput,
         http_method = "PUT",
         http_path = "/portals/{portalArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:updateSessionLogger(input, options)
         output_schema = types.UpdateSessionLoggerOutput,
         http_method = "POST",
         http_path = "/sessionLoggers/{sessionLoggerArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:updateTrustStore(input, options)
         output_schema = types.UpdateTrustStoreOutput,
         http_method = "PATCH",
         http_path = "/trustStores/{trustStoreArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:updateUserAccessLoggingSettings(input, options)
         output_schema = types.UpdateUserAccessLoggingSettingsOutput,
         http_method = "PATCH",
         http_path = "/userAccessLoggingSettings/{userAccessLoggingSettingsArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:updateUserSettings(input, options)
         output_schema = types.UpdateUserSettingsOutput,
         http_method = "PATCH",
         http_path = "/userSettings/{userSettingsArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

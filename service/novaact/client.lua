@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonNovaAgentsDataPlane"
-    cfg.signing_name = "nova-act"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "nova-act", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createAct(input, options)
         output_schema = types.CreateActOutput,
         http_method = "PUT",
         http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}/sessions/{sessionId}/acts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createSession(input, options)
         output_schema = types.CreateSessionOutput,
         http_method = "PUT",
         http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}/sessions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createWorkflowDefinition(input, options)
         output_schema = types.CreateWorkflowDefinitionOutput,
         http_method = "PUT",
         http_path = "/workflow-definitions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createWorkflowRun(input, options)
         output_schema = types.CreateWorkflowRunOutput,
         http_method = "PUT",
         http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteWorkflowDefinition(input, options)
         output_schema = types.DeleteWorkflowDefinitionOutput,
         http_method = "DELETE",
         http_path = "/workflow-definitions/{workflowDefinitionName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteWorkflowRun(input, options)
         output_schema = types.DeleteWorkflowRunOutput,
         http_method = "DELETE",
         http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:getWorkflowDefinition(input, options)
         output_schema = types.GetWorkflowDefinitionOutput,
         http_method = "GET",
         http_path = "/workflow-definitions/{workflowDefinitionName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:getWorkflowRun(input, options)
         output_schema = types.GetWorkflowRunOutput,
         http_method = "GET",
         http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:invokeActStep(input, options)
         output_schema = types.InvokeActStepOutput,
         http_method = "PUT",
         http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}/sessions/{sessionId}/acts/{actId}/invoke-step/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:listActs(input, options)
         output_schema = types.ListActsOutput,
         http_method = "POST",
         http_path = "/workflow-definitions/{workflowDefinitionName}/acts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:listModels(input, options)
         output_schema = types.ListModelsOutput,
         http_method = "POST",
         http_path = "/models",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:listSessions(input, options)
         output_schema = types.ListSessionsOutput,
         http_method = "POST",
         http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:listWorkflowDefinitions(input, options)
         output_schema = types.ListWorkflowDefinitionsOutput,
         http_method = "POST",
         http_path = "/workflow-definitions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:listWorkflowRuns(input, options)
         output_schema = types.ListWorkflowRunsOutput,
         http_method = "POST",
         http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:updateAct(input, options)
         output_schema = types.UpdateActOutput,
         http_method = "PUT",
         http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}/sessions/{sessionId}/acts/{actId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:updateWorkflowRun(input, options)
         output_schema = types.UpdateWorkflowRunOutput,
         http_method = "PUT",
         http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

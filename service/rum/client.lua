@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "RUM"
-    cfg.signing_name = "rum"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "rum", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:batchCreateRumMetricDefinitions(input, options)
         output_schema = types.BatchCreateRumMetricDefinitionsOutput,
         http_method = "POST",
         http_path = "/rummetrics/{AppMonitorName}/metrics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchDeleteRumMetricDefinitions(input, options)
         output_schema = types.BatchDeleteRumMetricDefinitionsOutput,
         http_method = "DELETE",
         http_path = "/rummetrics/{AppMonitorName}/metrics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchGetRumMetricDefinitions(input, options)
         output_schema = types.BatchGetRumMetricDefinitionsOutput,
         http_method = "GET",
         http_path = "/rummetrics/{AppMonitorName}/metrics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createAppMonitor(input, options)
         output_schema = types.CreateAppMonitorOutput,
         http_method = "POST",
         http_path = "/appmonitor",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteAppMonitor(input, options)
         output_schema = types.DeleteAppMonitorOutput,
         http_method = "DELETE",
         http_path = "/appmonitor/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteResourcePolicy(input, options)
         output_schema = types.DeleteResourcePolicyOutput,
         http_method = "DELETE",
         http_path = "/appmonitor/{Name}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteRumMetricsDestination(input, options)
         output_schema = types.DeleteRumMetricsDestinationOutput,
         http_method = "DELETE",
         http_path = "/rummetrics/{AppMonitorName}/metricsdestination",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:getAppMonitor(input, options)
         output_schema = types.GetAppMonitorOutput,
         http_method = "GET",
         http_path = "/appmonitor/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getAppMonitorData(input, options)
         output_schema = types.GetAppMonitorDataOutput,
         http_method = "POST",
         http_path = "/appmonitor/{Name}/data",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:getResourcePolicy(input, options)
         output_schema = types.GetResourcePolicyOutput,
         http_method = "GET",
         http_path = "/appmonitor/{Name}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:listAppMonitors(input, options)
         output_schema = types.ListAppMonitorsOutput,
         http_method = "POST",
         http_path = "/appmonitors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:listRumMetricsDestinations(input, options)
         output_schema = types.ListRumMetricsDestinationsOutput,
         http_method = "GET",
         http_path = "/rummetrics/{AppMonitorName}/metricsdestination",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:putResourcePolicy(input, options)
         output_schema = types.PutResourcePolicyOutput,
         http_method = "PUT",
         http_path = "/appmonitor/{Name}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:putRumEvents(input, options)
         output_schema = types.PutRumEventsOutput,
         http_method = "POST",
         http_path = "/appmonitors/{Id}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:putRumMetricsDestination(input, options)
         output_schema = types.PutRumMetricsDestinationOutput,
         http_method = "POST",
         http_path = "/rummetrics/{AppMonitorName}/metricsdestination",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:updateAppMonitor(input, options)
         output_schema = types.UpdateAppMonitorOutput,
         http_method = "PATCH",
         http_path = "/appmonitor/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:updateRumMetricDefinition(input, options)
         output_schema = types.UpdateRumMetricDefinitionOutput,
         http_method = "PATCH",
         http_path = "/rummetrics/{AppMonitorName}/metrics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

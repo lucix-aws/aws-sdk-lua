@@ -1,0 +1,283 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for describeCodeCoverages.
+function M.pages_describe_code_coverages(client, input)
+    return paginator.pages(client, "describeCodeCoverages", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "codeCoverages",
+    })
+end
+
+--- Returns an item iterator for describeCodeCoverages.
+function M.items_describe_code_coverages(client, input)
+    return paginator.items(client, "describeCodeCoverages", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "codeCoverages",
+    })
+end
+
+--- Returns a page iterator for describeTestCases.
+function M.pages_describe_test_cases(client, input)
+    return paginator.pages(client, "describeTestCases", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "testCases",
+    })
+end
+
+--- Returns an item iterator for describeTestCases.
+function M.items_describe_test_cases(client, input)
+    return paginator.items(client, "describeTestCases", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "testCases",
+    })
+end
+
+--- Returns a page iterator for listBuildBatches.
+function M.pages_list_build_batches(client, input)
+    return paginator.pages(client, "listBuildBatches", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "ids",
+    })
+end
+
+--- Returns an item iterator for listBuildBatches.
+function M.items_list_build_batches(client, input)
+    return paginator.items(client, "listBuildBatches", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "ids",
+    })
+end
+
+--- Returns a page iterator for listBuildBatchesForProject.
+function M.pages_list_build_batches_for_project(client, input)
+    return paginator.pages(client, "listBuildBatchesForProject", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "ids",
+    })
+end
+
+--- Returns an item iterator for listBuildBatchesForProject.
+function M.items_list_build_batches_for_project(client, input)
+    return paginator.items(client, "listBuildBatchesForProject", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "ids",
+    })
+end
+
+--- Returns a page iterator for listBuilds.
+function M.pages_list_builds(client, input)
+    return paginator.pages(client, "listBuilds", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "ids",
+    })
+end
+
+--- Returns an item iterator for listBuilds.
+function M.items_list_builds(client, input)
+    return paginator.items(client, "listBuilds", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "ids",
+    })
+end
+
+--- Returns a page iterator for listBuildsForProject.
+function M.pages_list_builds_for_project(client, input)
+    return paginator.pages(client, "listBuildsForProject", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "ids",
+    })
+end
+
+--- Returns an item iterator for listBuildsForProject.
+function M.items_list_builds_for_project(client, input)
+    return paginator.items(client, "listBuildsForProject", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "ids",
+    })
+end
+
+--- Returns a page iterator for listCommandExecutionsForSandbox.
+function M.pages_list_command_executions_for_sandbox(client, input)
+    return paginator.pages(client, "listCommandExecutionsForSandbox", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "commandExecutions",
+    })
+end
+
+--- Returns an item iterator for listCommandExecutionsForSandbox.
+function M.items_list_command_executions_for_sandbox(client, input)
+    return paginator.items(client, "listCommandExecutionsForSandbox", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "commandExecutions",
+    })
+end
+
+--- Returns a page iterator for listFleets.
+function M.pages_list_fleets(client, input)
+    return paginator.pages(client, "listFleets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for listProjects.
+function M.pages_list_projects(client, input)
+    return paginator.pages(client, "listProjects", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "projects",
+    })
+end
+
+--- Returns an item iterator for listProjects.
+function M.items_list_projects(client, input)
+    return paginator.items(client, "listProjects", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "projects",
+    })
+end
+
+--- Returns a page iterator for listReportGroups.
+function M.pages_list_report_groups(client, input)
+    return paginator.pages(client, "listReportGroups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "reportGroups",
+    })
+end
+
+--- Returns an item iterator for listReportGroups.
+function M.items_list_report_groups(client, input)
+    return paginator.items(client, "listReportGroups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "reportGroups",
+    })
+end
+
+--- Returns a page iterator for listReports.
+function M.pages_list_reports(client, input)
+    return paginator.pages(client, "listReports", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "reports",
+    })
+end
+
+--- Returns an item iterator for listReports.
+function M.items_list_reports(client, input)
+    return paginator.items(client, "listReports", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "reports",
+    })
+end
+
+--- Returns a page iterator for listReportsForReportGroup.
+function M.pages_list_reports_for_report_group(client, input)
+    return paginator.pages(client, "listReportsForReportGroup", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "reports",
+    })
+end
+
+--- Returns an item iterator for listReportsForReportGroup.
+function M.items_list_reports_for_report_group(client, input)
+    return paginator.items(client, "listReportsForReportGroup", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "reports",
+    })
+end
+
+--- Returns a page iterator for listSandboxes.
+function M.pages_list_sandboxes(client, input)
+    return paginator.pages(client, "listSandboxes", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "ids",
+    })
+end
+
+--- Returns an item iterator for listSandboxes.
+function M.items_list_sandboxes(client, input)
+    return paginator.items(client, "listSandboxes", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "ids",
+    })
+end
+
+--- Returns a page iterator for listSandboxesForProject.
+function M.pages_list_sandboxes_for_project(client, input)
+    return paginator.pages(client, "listSandboxesForProject", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "ids",
+    })
+end
+
+--- Returns an item iterator for listSandboxesForProject.
+function M.items_list_sandboxes_for_project(client, input)
+    return paginator.items(client, "listSandboxesForProject", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "ids",
+    })
+end
+
+--- Returns a page iterator for listSharedProjects.
+function M.pages_list_shared_projects(client, input)
+    return paginator.pages(client, "listSharedProjects", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "projects",
+    })
+end
+
+--- Returns an item iterator for listSharedProjects.
+function M.items_list_shared_projects(client, input)
+    return paginator.items(client, "listSharedProjects", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "projects",
+    })
+end
+
+--- Returns a page iterator for listSharedReportGroups.
+function M.pages_list_shared_report_groups(client, input)
+    return paginator.pages(client, "listSharedReportGroups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "reportGroups",
+    })
+end
+
+--- Returns an item iterator for listSharedReportGroups.
+function M.items_list_shared_report_groups(client, input)
+    return paginator.items(client, "listSharedReportGroups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "reportGroups",
+    })
+end
+
+return M

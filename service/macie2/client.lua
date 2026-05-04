@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "Macie2"
-    cfg.signing_name = "macie2"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "macie2", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:acceptInvitation(input, options)
         output_schema = types.AcceptInvitationOutput,
         http_method = "POST",
         http_path = "/invitations/accept",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchGetCustomDataIdentifiers(input, options)
         output_schema = types.BatchGetCustomDataIdentifiersOutput,
         http_method = "POST",
         http_path = "/custom-data-identifiers/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchUpdateAutomatedDiscoveryAccounts(input, options)
         output_schema = types.BatchUpdateAutomatedDiscoveryAccountsOutput,
         http_method = "PATCH",
         http_path = "/automated-discovery/accounts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createAllowList(input, options)
         output_schema = types.CreateAllowListOutput,
         http_method = "POST",
         http_path = "/allow-lists",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createClassificationJob(input, options)
         output_schema = types.CreateClassificationJobOutput,
         http_method = "POST",
         http_path = "/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createCustomDataIdentifier(input, options)
         output_schema = types.CreateCustomDataIdentifierOutput,
         http_method = "POST",
         http_path = "/custom-data-identifiers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createFindingsFilter(input, options)
         output_schema = types.CreateFindingsFilterOutput,
         http_method = "POST",
         http_path = "/findingsfilters",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createInvitations(input, options)
         output_schema = types.CreateInvitationsOutput,
         http_method = "POST",
         http_path = "/invitations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createMember(input, options)
         output_schema = types.CreateMemberOutput,
         http_method = "POST",
         http_path = "/members",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createSampleFindings(input, options)
         output_schema = types.CreateSampleFindingsOutput,
         http_method = "POST",
         http_path = "/findings/sample",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:declineInvitations(input, options)
         output_schema = types.DeclineInvitationsOutput,
         http_method = "POST",
         http_path = "/invitations/decline",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteAllowList(input, options)
         output_schema = types.DeleteAllowListOutput,
         http_method = "DELETE",
         http_path = "/allow-lists/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteCustomDataIdentifier(input, options)
         output_schema = types.DeleteCustomDataIdentifierOutput,
         http_method = "DELETE",
         http_path = "/custom-data-identifiers/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteFindingsFilter(input, options)
         output_schema = types.DeleteFindingsFilterOutput,
         http_method = "DELETE",
         http_path = "/findingsfilters/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteInvitations(input, options)
         output_schema = types.DeleteInvitationsOutput,
         http_method = "POST",
         http_path = "/invitations/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteMember(input, options)
         output_schema = types.DeleteMemberOutput,
         http_method = "DELETE",
         http_path = "/members/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:describeBuckets(input, options)
         output_schema = types.DescribeBucketsOutput,
         http_method = "POST",
         http_path = "/datasources/s3",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:describeClassificationJob(input, options)
         output_schema = types.DescribeClassificationJobOutput,
         http_method = "GET",
         http_path = "/jobs/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:describeOrganizationConfiguration(input, options)
         output_schema = types.DescribeOrganizationConfigurationOutput,
         http_method = "GET",
         http_path = "/admin/configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:disableMacie(input, options)
         output_schema = types.DisableMacieOutput,
         http_method = "DELETE",
         http_path = "/macie",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:disableOrganizationAdminAccount(input, options)
         output_schema = types.DisableOrganizationAdminAccountOutput,
         http_method = "DELETE",
         http_path = "/admin",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:disassociateFromAdministratorAccount(input, options)
         output_schema = types.DisassociateFromAdministratorAccountOutput,
         http_method = "POST",
         http_path = "/administrator/disassociate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:disassociateFromMasterAccount(input, options)
         output_schema = types.DisassociateFromMasterAccountOutput,
         http_method = "POST",
         http_path = "/master/disassociate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:disassociateMember(input, options)
         output_schema = types.DisassociateMemberOutput,
         http_method = "POST",
         http_path = "/members/disassociate/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:enableMacie(input, options)
         output_schema = types.EnableMacieOutput,
         http_method = "POST",
         http_path = "/macie",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:enableOrganizationAdminAccount(input, options)
         output_schema = types.EnableOrganizationAdminAccountOutput,
         http_method = "POST",
         http_path = "/admin",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:getAdministratorAccount(input, options)
         output_schema = types.GetAdministratorAccountOutput,
         http_method = "GET",
         http_path = "/administrator",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:getAllowList(input, options)
         output_schema = types.GetAllowListOutput,
         http_method = "GET",
         http_path = "/allow-lists/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:getAutomatedDiscoveryConfiguration(input, options)
         output_schema = types.GetAutomatedDiscoveryConfigurationOutput,
         http_method = "GET",
         http_path = "/automated-discovery/configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:getBucketStatistics(input, options)
         output_schema = types.GetBucketStatisticsOutput,
         http_method = "POST",
         http_path = "/datasources/s3/statistics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:getClassificationExportConfiguration(input, options)
         output_schema = types.GetClassificationExportConfigurationOutput,
         http_method = "GET",
         http_path = "/classification-export-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:getClassificationScope(input, options)
         output_schema = types.GetClassificationScopeOutput,
         http_method = "GET",
         http_path = "/classification-scopes/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:getCustomDataIdentifier(input, options)
         output_schema = types.GetCustomDataIdentifierOutput,
         http_method = "GET",
         http_path = "/custom-data-identifiers/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:getFindings(input, options)
         output_schema = types.GetFindingsOutput,
         http_method = "POST",
         http_path = "/findings/describe",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:getFindingsFilter(input, options)
         output_schema = types.GetFindingsFilterOutput,
         http_method = "GET",
         http_path = "/findingsfilters/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:getFindingsPublicationConfiguration(input, options)
         output_schema = types.GetFindingsPublicationConfigurationOutput,
         http_method = "GET",
         http_path = "/findings-publication-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:getFindingStatistics(input, options)
         output_schema = types.GetFindingStatisticsOutput,
         http_method = "POST",
         http_path = "/findings/statistics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:getInvitationsCount(input, options)
         output_schema = types.GetInvitationsCountOutput,
         http_method = "GET",
         http_path = "/invitations/count",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:getMacieSession(input, options)
         output_schema = types.GetMacieSessionOutput,
         http_method = "GET",
         http_path = "/macie",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:getMasterAccount(input, options)
         output_schema = types.GetMasterAccountOutput,
         http_method = "GET",
         http_path = "/master",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:getMember(input, options)
         output_schema = types.GetMemberOutput,
         http_method = "GET",
         http_path = "/members/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:getResourceProfile(input, options)
         output_schema = types.GetResourceProfileOutput,
         http_method = "GET",
         http_path = "/resource-profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:getRevealConfiguration(input, options)
         output_schema = types.GetRevealConfigurationOutput,
         http_method = "GET",
         http_path = "/reveal-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:getSensitiveDataOccurrences(input, options)
         output_schema = types.GetSensitiveDataOccurrencesOutput,
         http_method = "GET",
         http_path = "/findings/{findingId}/reveal",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:getSensitiveDataOccurrencesAvailability(input, options)
         output_schema = types.GetSensitiveDataOccurrencesAvailabilityOutput,
         http_method = "GET",
         http_path = "/findings/{findingId}/reveal/availability",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:getSensitivityInspectionTemplate(input, options)
         output_schema = types.GetSensitivityInspectionTemplateOutput,
         http_method = "GET",
         http_path = "/templates/sensitivity-inspections/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:getUsageStatistics(input, options)
         output_schema = types.GetUsageStatisticsOutput,
         http_method = "POST",
         http_path = "/usage/statistics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:getUsageTotals(input, options)
         output_schema = types.GetUsageTotalsOutput,
         http_method = "GET",
         http_path = "/usage",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:listAllowLists(input, options)
         output_schema = types.ListAllowListsOutput,
         http_method = "GET",
         http_path = "/allow-lists",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:listAutomatedDiscoveryAccounts(input, options)
         output_schema = types.ListAutomatedDiscoveryAccountsOutput,
         http_method = "GET",
         http_path = "/automated-discovery/accounts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:listClassificationJobs(input, options)
         output_schema = types.ListClassificationJobsOutput,
         http_method = "POST",
         http_path = "/jobs/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:listClassificationScopes(input, options)
         output_schema = types.ListClassificationScopesOutput,
         http_method = "GET",
         http_path = "/classification-scopes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:listCustomDataIdentifiers(input, options)
         output_schema = types.ListCustomDataIdentifiersOutput,
         http_method = "POST",
         http_path = "/custom-data-identifiers/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:listFindings(input, options)
         output_schema = types.ListFindingsOutput,
         http_method = "POST",
         http_path = "/findings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:listFindingsFilters(input, options)
         output_schema = types.ListFindingsFiltersOutput,
         http_method = "GET",
         http_path = "/findingsfilters",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:listInvitations(input, options)
         output_schema = types.ListInvitationsOutput,
         http_method = "GET",
         http_path = "/invitations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:listManagedDataIdentifiers(input, options)
         output_schema = types.ListManagedDataIdentifiersOutput,
         http_method = "POST",
         http_path = "/managed-data-identifiers/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:listMembers(input, options)
         output_schema = types.ListMembersOutput,
         http_method = "GET",
         http_path = "/members",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:listOrganizationAdminAccounts(input, options)
         output_schema = types.ListOrganizationAdminAccountsOutput,
         http_method = "GET",
         http_path = "/admin",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:listResourceProfileArtifacts(input, options)
         output_schema = types.ListResourceProfileArtifactsOutput,
         http_method = "GET",
         http_path = "/resource-profiles/artifacts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:listResourceProfileDetections(input, options)
         output_schema = types.ListResourceProfileDetectionsOutput,
         http_method = "GET",
         http_path = "/resource-profiles/detections",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:listSensitivityInspectionTemplates(input, options)
         output_schema = types.ListSensitivityInspectionTemplatesOutput,
         http_method = "GET",
         http_path = "/templates/sensitivity-inspections",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:putClassificationExportConfiguration(input, options)
         output_schema = types.PutClassificationExportConfigurationOutput,
         http_method = "PUT",
         http_path = "/classification-export-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:putFindingsPublicationConfiguration(input, options)
         output_schema = types.PutFindingsPublicationConfigurationOutput,
         http_method = "PUT",
         http_path = "/findings-publication-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:searchResources(input, options)
         output_schema = types.SearchResourcesOutput,
         http_method = "POST",
         http_path = "/datasources/search-resources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:testCustomDataIdentifier(input, options)
         output_schema = types.TestCustomDataIdentifierOutput,
         http_method = "POST",
         http_path = "/custom-data-identifiers/test",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:updateAllowList(input, options)
         output_schema = types.UpdateAllowListOutput,
         http_method = "PUT",
         http_path = "/allow-lists/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:updateAutomatedDiscoveryConfiguration(input, options)
         output_schema = types.UpdateAutomatedDiscoveryConfigurationOutput,
         http_method = "PUT",
         http_path = "/automated-discovery/configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:updateClassificationJob(input, options)
         output_schema = types.UpdateClassificationJobOutput,
         http_method = "PATCH",
         http_path = "/jobs/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:updateClassificationScope(input, options)
         output_schema = types.UpdateClassificationScopeOutput,
         http_method = "PATCH",
         http_path = "/classification-scopes/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:updateFindingsFilter(input, options)
         output_schema = types.UpdateFindingsFilterOutput,
         http_method = "PATCH",
         http_path = "/findingsfilters/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:updateMacieSession(input, options)
         output_schema = types.UpdateMacieSessionOutput,
         http_method = "PATCH",
         http_path = "/macie",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:updateMemberSession(input, options)
         output_schema = types.UpdateMemberSessionOutput,
         http_method = "PATCH",
         http_path = "/macie/members/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:updateOrganizationConfiguration(input, options)
         output_schema = types.UpdateOrganizationConfigurationOutput,
         http_method = "PATCH",
         http_path = "/admin/configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:updateResourceProfile(input, options)
         output_schema = types.UpdateResourceProfileOutput,
         http_method = "PATCH",
         http_path = "/resource-profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:updateResourceProfileDetections(input, options)
         output_schema = types.UpdateResourceProfileDetectionsOutput,
         http_method = "PATCH",
         http_path = "/resource-profiles/detections",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:updateRevealConfiguration(input, options)
         output_schema = types.UpdateRevealConfigurationOutput,
         http_method = "PUT",
         http_path = "/reveal-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:updateSensitivityInspectionTemplate(input, options)
         output_schema = types.UpdateSensitivityInspectionTemplateOutput,
         http_method = "PUT",
         http_path = "/templates/sensitivity-inspections/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

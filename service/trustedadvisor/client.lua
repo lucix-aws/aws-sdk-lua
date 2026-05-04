@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "TrustedAdvisor"
-    cfg.signing_name = "trustedadvisor"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "trustedadvisor", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:batchUpdateRecommendationResourceExclusion(input, options)
         output_schema = types.BatchUpdateRecommendationResourceExclusionOutput,
         http_method = "PUT",
         http_path = "/v1/batch-update-recommendation-resource-exclusion",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:getOrganizationRecommendation(input, options)
         output_schema = types.GetOrganizationRecommendationOutput,
         http_method = "GET",
         http_path = "/v1/organization-recommendations/{organizationRecommendationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:getRecommendation(input, options)
         output_schema = types.GetRecommendationOutput,
         http_method = "GET",
         http_path = "/v1/recommendations/{recommendationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:listChecks(input, options)
         output_schema = types.ListChecksOutput,
         http_method = "GET",
         http_path = "/v1/checks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:listOrganizationRecommendationAccounts(input, options)
         output_schema = types.ListOrganizationRecommendationAccountsOutput,
         http_method = "GET",
         http_path = "/v1/organization-recommendations/{organizationRecommendationIdentifier}/accounts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:listOrganizationRecommendationResources(input, options)
         output_schema = types.ListOrganizationRecommendationResourcesOutput,
         http_method = "GET",
         http_path = "/v1/organization-recommendations/{organizationRecommendationIdentifier}/resources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:listOrganizationRecommendations(input, options)
         output_schema = types.ListOrganizationRecommendationsOutput,
         http_method = "GET",
         http_path = "/v1/organization-recommendations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:listRecommendationResources(input, options)
         output_schema = types.ListRecommendationResourcesOutput,
         http_method = "GET",
         http_path = "/v1/recommendations/{recommendationIdentifier}/resources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:listRecommendations(input, options)
         output_schema = types.ListRecommendationsOutput,
         http_method = "GET",
         http_path = "/v1/recommendations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:updateOrganizationRecommendationLifecycle(input, options)
         output_schema = types.UpdateOrganizationRecommendationLifecycleOutput,
         http_method = "PUT",
         http_path = "/v1/organization-recommendations/{organizationRecommendationIdentifier}/lifecycle",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:updateRecommendationLifecycle(input, options)
         output_schema = types.UpdateRecommendationLifecycleOutput,
         http_method = "PUT",
         http_path = "/v1/recommendations/{recommendationIdentifier}/lifecycle",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

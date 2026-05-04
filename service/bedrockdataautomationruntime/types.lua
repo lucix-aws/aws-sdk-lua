@@ -270,6 +270,9 @@ M.InvokeDataAutomationAsyncInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         inputConfiguration = setmetatable({ traits = {
             required = true,

@@ -64,6 +64,7 @@ M.ClientVpcConnection = {
             type = "timestamp",
             traits = {
                 json_name = "creationTime",
+                timestamp_format = "date-time",
             },
         },
         State = {
@@ -794,6 +795,7 @@ M.Cluster = {
             type = "timestamp",
             traits = {
                 json_name = "creationTime",
+                timestamp_format = "date-time",
             },
         },
         CurrentVersion = {
@@ -910,6 +912,7 @@ M.ClusterInfo = {
             type = "timestamp",
             traits = {
                 json_name = "creationTime",
+                timestamp_format = "date-time",
             },
         },
         CurrentBrokerSoftwareInfo = setmetatable({ traits = {
@@ -1198,6 +1201,7 @@ M.VpcConnectionInfo = {
             type = "timestamp",
             traits = {
                 json_name = "creationTime",
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1222,12 +1226,14 @@ M.ClusterOperationInfo = {
             type = "timestamp",
             traits = {
                 json_name = "creationTime",
+                timestamp_format = "date-time",
             },
         },
         EndTime = {
             type = "timestamp",
             traits = {
                 json_name = "endTime",
+                timestamp_format = "date-time",
             },
         },
         ErrorInfo = setmetatable({ traits = {
@@ -1289,12 +1295,14 @@ M.ClusterOperationV2Summary = {
             type = "timestamp",
             traits = {
                 json_name = "startTime",
+                timestamp_format = "date-time",
             },
         },
         EndTime = {
             type = "timestamp",
             traits = {
                 json_name = "endTime",
+                timestamp_format = "date-time",
             },
         },
         OperationArn = {
@@ -1345,6 +1353,7 @@ M.ConfigurationRevision = {
             traits = {
                 json_name = "creationTime",
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -1384,6 +1393,7 @@ M.Configuration = {
             traits = {
                 json_name = "creationTime",
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -1995,6 +2005,7 @@ M.ReplicatorSummary = {
             type = "timestamp",
             traits = {
                 json_name = "creationTime",
+                timestamp_format = "date-time",
             },
         },
         CurrentVersion = {
@@ -2163,6 +2174,7 @@ M.VpcConnection = {
             type = "timestamp",
             traits = {
                 json_name = "creationTime",
+                timestamp_format = "date-time",
             },
         },
         Authentication = {
@@ -2447,6 +2459,7 @@ M.VpcConnectionInfoServerless = {
             type = "timestamp",
             traits = {
                 json_name = "creationTime",
+                timestamp_format = "date-time",
             },
         },
         Owner = {
@@ -2501,12 +2514,14 @@ M.ClusterOperationV2 = {
             type = "timestamp",
             traits = {
                 json_name = "startTime",
+                timestamp_format = "date-time",
             },
         },
         EndTime = {
             type = "timestamp",
             traits = {
                 json_name = "endTime",
+                timestamp_format = "date-time",
             },
         },
         ErrorInfo = setmetatable({ traits = {
@@ -2880,6 +2895,7 @@ M.CreateConfigurationOutput = {
             type = "timestamp",
             traits = {
                 json_name = "creationTime",
+                timestamp_format = "date-time",
             },
         },
         LatestRevision = setmetatable({ traits = {
@@ -3364,6 +3380,7 @@ M.CreateVpcConnectionOutput = {
             type = "timestamp",
             traits = {
                 json_name = "creationTime",
+                timestamp_format = "date-time",
             },
         },
         Tags = {
@@ -3688,6 +3705,7 @@ M.DescribeConfigurationOutput = {
             type = "timestamp",
             traits = {
                 json_name = "creationTime",
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -3754,6 +3772,7 @@ M.DescribeConfigurationRevisionOutput = {
             type = "timestamp",
             traits = {
                 json_name = "creationTime",
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -3815,6 +3834,7 @@ M.DescribeReplicatorOutput = {
             type = "timestamp",
             traits = {
                 json_name = "creationTime",
+                timestamp_format = "date-time",
             },
         },
         CurrentVersion = {
@@ -4073,6 +4093,7 @@ M.DescribeVpcConnectionOutput = {
             type = "timestamp",
             traits = {
                 json_name = "creationTime",
+                timestamp_format = "date-time",
             },
         },
         Tags = {

@@ -40,6 +40,9 @@ M.CreateAccessPolicyInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -143,6 +146,9 @@ M.DeleteAccessPolicyInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -274,6 +280,9 @@ M.UpdateAccessPolicyInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -886,6 +895,9 @@ M.CreateCollectionInput = {
         encryptionConfig = M.EncryptionConfig,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -961,6 +973,9 @@ M.DeleteCollectionInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1067,6 +1082,9 @@ M.UpdateCollectionInput = {
         vectorOptions = M.VectorOptions,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1134,6 +1152,9 @@ M.CreateCollectionGroupInput = {
         capacityLimits = M.CollectionGroupCapacityLimits,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1185,6 +1206,9 @@ M.DeleteCollectionGroupInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1255,6 +1279,9 @@ M.UpdateCollectionGroupInput = {
         capacityLimits = M.CollectionGroupCapacityLimits,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1371,6 +1398,9 @@ M.CreateLifecyclePolicyInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1447,6 +1477,9 @@ M.CreateSecurityConfigInput = {
         iamFederationOptions = M.IamFederationConfigOptions,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1540,6 +1573,9 @@ M.CreateSecurityPolicyInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1606,6 +1642,9 @@ M.CreateVpcEndpointInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1671,6 +1710,9 @@ M.DeleteLifecyclePolicyInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1690,6 +1732,9 @@ M.DeleteSecurityConfigInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1715,6 +1760,9 @@ M.DeleteSecurityPolicyInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1734,6 +1782,9 @@ M.DeleteVpcEndpointInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2002,6 +2053,9 @@ M.UpdateLifecyclePolicyInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2234,6 +2288,9 @@ M.UpdateSecurityConfigInput = {
         iamFederationOptions = M.IamFederationConfigOptions,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2274,6 +2331,9 @@ M.UpdateSecurityPolicyInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2372,6 +2432,9 @@ M.UpdateVpcEndpointInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

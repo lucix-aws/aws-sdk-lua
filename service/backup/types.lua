@@ -1144,6 +1144,9 @@ M.CreateBackupPlanInput = {
         },
         CreatorRequestId = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1204,6 +1207,9 @@ M.CreateBackupSelectionInput = {
         } }, { __index = M.BackupSelection }),
         CreatorRequestId = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1243,6 +1249,9 @@ M.CreateBackupVaultInput = {
         },
         CreatorRequestId = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1300,6 +1309,9 @@ M.CreateFrameworkInput = {
         },
         IdempotencyToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         FrameworkTags = {
             type = "map",
@@ -1371,6 +1383,9 @@ M.CreateLegalHoldInput = {
         },
         IdempotencyToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         RecoveryPointSelection = M.RecoveryPointSelection,
         Tags = {
@@ -1430,6 +1445,9 @@ M.CreateLogicallyAirGappedBackupVaultInput = {
         },
         CreatorRequestId = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         MinRetentionDays = {
             type = "long",
@@ -1545,6 +1563,9 @@ M.CreateReportPlanInput = {
         },
         IdempotencyToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1583,6 +1604,9 @@ M.CreateRestoreAccessBackupVaultInput = {
         },
         CreatorRequestId = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         RequesterComment = {
             type = "string",
@@ -1900,6 +1924,9 @@ M.CreateTieringConfigurationInput = {
         },
         CreatorRequestId = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -6242,6 +6269,9 @@ M.StartBackupJobInput = {
         },
         IdempotencyToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         StartWindowMinutes = {
             type = "long",
@@ -6316,6 +6346,9 @@ M.StartCopyJobInput = {
         },
         IdempotencyToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Lifecycle = M.Lifecycle,
     },
@@ -6351,6 +6384,9 @@ M.StartReportJobInput = {
         },
         IdempotencyToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -6386,6 +6422,9 @@ M.StartRestoreJobInput = {
         },
         IdempotencyToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ResourceType = {
             type = "string",
@@ -6601,6 +6640,9 @@ M.UpdateFrameworkInput = {
         },
         IdempotencyToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -6754,6 +6796,9 @@ M.UpdateReportPlanInput = {
         ReportSetting = M.ReportSetting,
         IdempotencyToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

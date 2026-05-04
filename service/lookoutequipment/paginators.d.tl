@@ -1,0 +1,15 @@
+local record M
+    pages_list_data_ingestion_jobs: function(client: table, input: table): function(): table, table
+    pages_list_datasets: function(client: table, input: table): function(): table, table
+    pages_list_inference_events: function(client: table, input: table): function(): table, table
+    pages_list_inference_executions: function(client: table, input: table): function(): table, table
+    pages_list_inference_schedulers: function(client: table, input: table): function(): table, table
+    pages_list_label_groups: function(client: table, input: table): function(): table, table
+    pages_list_labels: function(client: table, input: table): function(): table, table
+    pages_list_model_versions: function(client: table, input: table): function(): table, table
+    pages_list_models: function(client: table, input: table): function(): table, table
+    pages_list_retraining_schedulers: function(client: table, input: table): function(): table, table
+    pages_list_sensor_statistics: function(client: table, input: table): function(): table, table
+end
+
+return M

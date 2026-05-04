@@ -256,6 +256,9 @@ M.StartServicePeriodPayload = {
         },
         endDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -341,6 +344,9 @@ M.CreateChannelHandshakeInput = {
         payload = M.ChannelHandshakePayload,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "list",
@@ -595,9 +601,15 @@ M.RevokeServicePeriodHandshakeDetail = {
         },
         startDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -616,9 +628,15 @@ M.StartServicePeriodHandshakeDetail = {
         },
         startDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -665,9 +683,15 @@ M.ChannelHandshakeSummary = {
         detail = M.HandshakeDetail,
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         status = {
             type = "string",
@@ -762,6 +786,9 @@ M.CreateProgramManagementAccountInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "list",
@@ -922,6 +949,9 @@ M.CreateRelationshipInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "list",
@@ -967,6 +997,9 @@ M.DeleteProgramManagementAccountInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -998,6 +1031,9 @@ M.DeleteRelationshipInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1065,12 +1101,21 @@ M.RelationshipDetail = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         startDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1174,12 +1219,21 @@ M.ProgramManagementAccountSummary = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         startDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         status = {
             type = "string",
@@ -1292,12 +1346,21 @@ M.RelationshipSummary = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         startDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }

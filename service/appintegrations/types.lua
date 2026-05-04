@@ -141,6 +141,9 @@ M.CreateApplicationInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "map",
@@ -305,6 +308,9 @@ M.CreateDataIntegrationInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         FileConfiguration = M.FileConfiguration,
         ObjectConfiguration = {
@@ -416,6 +422,9 @@ M.CreateDataIntegrationAssociationInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ExecutionConfiguration = M.ExecutionConfiguration,
     },
@@ -478,6 +487,9 @@ M.CreateEventIntegrationInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "map",

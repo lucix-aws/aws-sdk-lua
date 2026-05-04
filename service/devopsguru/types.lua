@@ -2596,6 +2596,9 @@ M.StartCostEstimationInput = {
         } }, { __index = M.CostEstimationResourceCollectionFilter }),
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

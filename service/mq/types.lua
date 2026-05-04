@@ -188,6 +188,7 @@ M.BrokerSummary = {
             type = "timestamp",
             traits = {
                 json_name = "created",
+                timestamp_format = "date-time",
             },
         },
         DeploymentMode = {
@@ -227,6 +228,7 @@ M.ConfigurationRevision = {
             traits = {
                 json_name = "created",
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -267,6 +269,7 @@ M.Configuration = {
             traits = {
                 json_name = "created",
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -676,6 +679,7 @@ M.CreateBrokerInput = {
         CreatorRequestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "creatorRequestId",
             },
         },
@@ -909,6 +913,7 @@ M.CreateConfigurationOutput = {
             type = "timestamp",
             traits = {
                 json_name = "created",
+                timestamp_format = "date-time",
             },
         },
         Id = {
@@ -1357,6 +1362,7 @@ M.DescribeBrokerOutput = {
             type = "timestamp",
             traits = {
                 json_name = "created",
+                timestamp_format = "date-time",
             },
         },
         DeploymentMode = {
@@ -1627,6 +1633,7 @@ M.DescribeConfigurationOutput = {
             type = "timestamp",
             traits = {
                 json_name = "created",
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -1706,6 +1713,7 @@ M.DescribeConfigurationRevisionOutput = {
             type = "timestamp",
             traits = {
                 json_name = "created",
+                timestamp_format = "date-time",
             },
         },
         Data = {
@@ -2256,6 +2264,7 @@ M.UpdateConfigurationOutput = {
             type = "timestamp",
             traits = {
                 json_name = "created",
+                timestamp_format = "date-time",
             },
         },
         Id = {

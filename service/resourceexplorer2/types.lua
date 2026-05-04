@@ -224,6 +224,9 @@ M.CreateIndexInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "map",
@@ -410,6 +413,9 @@ M.CreateViewInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ViewName = {
             type = "string",

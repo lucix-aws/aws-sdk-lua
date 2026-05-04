@@ -1,0 +1,101 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for getSnapshots.
+function M.pages_get_snapshots(client, input)
+    return paginator.pages(client, "getSnapshots", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listAccessControlConfigurations.
+function M.pages_list_access_control_configurations(client, input)
+    return paginator.pages(client, "listAccessControlConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listDataSourceSyncJobs.
+function M.pages_list_data_source_sync_jobs(client, input)
+    return paginator.pages(client, "listDataSourceSyncJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listDataSources.
+function M.pages_list_data_sources(client, input)
+    return paginator.pages(client, "listDataSources", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listEntityPersonas.
+function M.pages_list_entity_personas(client, input)
+    return paginator.pages(client, "listEntityPersonas", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listExperienceEntities.
+function M.pages_list_experience_entities(client, input)
+    return paginator.pages(client, "listExperienceEntities", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listExperiences.
+function M.pages_list_experiences(client, input)
+    return paginator.pages(client, "listExperiences", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listFaqs.
+function M.pages_list_faqs(client, input)
+    return paginator.pages(client, "listFaqs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listGroupsOlderThanOrderingId.
+function M.pages_list_groups_older_than_ordering_id(client, input)
+    return paginator.pages(client, "listGroupsOlderThanOrderingId", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listIndices.
+function M.pages_list_indices(client, input)
+    return paginator.pages(client, "listIndices", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listQuerySuggestionsBlockLists.
+function M.pages_list_query_suggestions_block_lists(client, input)
+    return paginator.pages(client, "listQuerySuggestionsBlockLists", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listThesauri.
+function M.pages_list_thesauri(client, input)
+    return paginator.pages(client, "listThesauri", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+return M

@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonNeptuneDataplane"
-    cfg.signing_name = "neptune-db"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "neptune-db", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:cancelGremlinQuery(input, options)
         output_schema = types.CancelGremlinQueryOutput,
         http_method = "DELETE",
         http_path = "/gremlin/status/{queryId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:cancelLoaderJob(input, options)
         output_schema = types.CancelLoaderJobOutput,
         http_method = "DELETE",
         http_path = "/loader/{loadId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:cancelMLDataProcessingJob(input, options)
         output_schema = types.CancelMLDataProcessingJobOutput,
         http_method = "DELETE",
         http_path = "/ml/dataprocessing/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:cancelMLModelTrainingJob(input, options)
         output_schema = types.CancelMLModelTrainingJobOutput,
         http_method = "DELETE",
         http_path = "/ml/modeltraining/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:cancelMLModelTransformJob(input, options)
         output_schema = types.CancelMLModelTransformJobOutput,
         http_method = "DELETE",
         http_path = "/ml/modeltransform/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:cancelOpenCypherQuery(input, options)
         output_schema = types.CancelOpenCypherQueryOutput,
         http_method = "DELETE",
         http_path = "/opencypher/status/{queryId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createMLEndpoint(input, options)
         output_schema = types.CreateMLEndpointOutput,
         http_method = "POST",
         http_path = "/ml/endpoints",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteMLEndpoint(input, options)
         output_schema = types.DeleteMLEndpointOutput,
         http_method = "DELETE",
         http_path = "/ml/endpoints/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deletePropertygraphStatistics(input, options)
         output_schema = types.DeletePropertygraphStatisticsOutput,
         http_method = "DELETE",
         http_path = "/propertygraph/statistics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteSparqlStatistics(input, options)
         output_schema = types.DeleteSparqlStatisticsOutput,
         http_method = "DELETE",
         http_path = "/sparql/statistics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:executeFastReset(input, options)
         output_schema = types.ExecuteFastResetOutput,
         http_method = "POST",
         http_path = "/system",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:executeGremlinExplainQuery(input, options)
         output_schema = types.ExecuteGremlinExplainQueryOutput,
         http_method = "POST",
         http_path = "/gremlin/explain",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:executeGremlinProfileQuery(input, options)
         output_schema = types.ExecuteGremlinProfileQueryOutput,
         http_method = "POST",
         http_path = "/gremlin/profile",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:executeGremlinQuery(input, options)
         output_schema = types.ExecuteGremlinQueryOutput,
         http_method = "POST",
         http_path = "/gremlin",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:executeOpenCypherExplainQuery(input, options)
         output_schema = types.ExecuteOpenCypherExplainQueryOutput,
         http_method = "POST",
         http_path = "/opencypher/explain",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:executeOpenCypherQuery(input, options)
         output_schema = types.ExecuteOpenCypherQueryOutput,
         http_method = "POST",
         http_path = "/opencypher",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getEngineStatus(input, options)
         output_schema = types.GetEngineStatusOutput,
         http_method = "GET",
         http_path = "/status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getGremlinQueryStatus(input, options)
         output_schema = types.GetGremlinQueryStatusOutput,
         http_method = "GET",
         http_path = "/gremlin/status/{queryId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getLoaderJobStatus(input, options)
         output_schema = types.GetLoaderJobStatusOutput,
         http_method = "GET",
         http_path = "/loader/{loadId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:getMLDataProcessingJob(input, options)
         output_schema = types.GetMLDataProcessingJobOutput,
         http_method = "GET",
         http_path = "/ml/dataprocessing/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:getMLEndpoint(input, options)
         output_schema = types.GetMLEndpointOutput,
         http_method = "GET",
         http_path = "/ml/endpoints/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:getMLModelTrainingJob(input, options)
         output_schema = types.GetMLModelTrainingJobOutput,
         http_method = "GET",
         http_path = "/ml/modeltraining/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:getMLModelTransformJob(input, options)
         output_schema = types.GetMLModelTransformJobOutput,
         http_method = "GET",
         http_path = "/ml/modeltransform/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:getOpenCypherQueryStatus(input, options)
         output_schema = types.GetOpenCypherQueryStatusOutput,
         http_method = "GET",
         http_path = "/opencypher/status/{queryId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:getPropertygraphStatistics(input, options)
         output_schema = types.GetPropertygraphStatisticsOutput,
         http_method = "GET",
         http_path = "/propertygraph/statistics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:getPropertygraphStream(input, options)
         output_schema = types.GetPropertygraphStreamOutput,
         http_method = "GET",
         http_path = "/propertygraph/stream",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:getPropertygraphSummary(input, options)
         output_schema = types.GetPropertygraphSummaryOutput,
         http_method = "GET",
         http_path = "/propertygraph/statistics/summary",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:getRDFGraphSummary(input, options)
         output_schema = types.GetRDFGraphSummaryOutput,
         http_method = "GET",
         http_path = "/rdf/statistics/summary",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:getSparqlStatistics(input, options)
         output_schema = types.GetSparqlStatisticsOutput,
         http_method = "GET",
         http_path = "/sparql/statistics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:getSparqlStream(input, options)
         output_schema = types.GetSparqlStreamOutput,
         http_method = "GET",
         http_path = "/sparql/stream",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:listGremlinQueries(input, options)
         output_schema = types.ListGremlinQueriesOutput,
         http_method = "GET",
         http_path = "/gremlin/status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:listLoaderJobs(input, options)
         output_schema = types.ListLoaderJobsOutput,
         http_method = "GET",
         http_path = "/loader",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:listMLDataProcessingJobs(input, options)
         output_schema = types.ListMLDataProcessingJobsOutput,
         http_method = "GET",
         http_path = "/ml/dataprocessing",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:listMLEndpoints(input, options)
         output_schema = types.ListMLEndpointsOutput,
         http_method = "GET",
         http_path = "/ml/endpoints",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:listMLModelTrainingJobs(input, options)
         output_schema = types.ListMLModelTrainingJobsOutput,
         http_method = "GET",
         http_path = "/ml/modeltraining",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:listMLModelTransformJobs(input, options)
         output_schema = types.ListMLModelTransformJobsOutput,
         http_method = "GET",
         http_path = "/ml/modeltransform",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:listOpenCypherQueries(input, options)
         output_schema = types.ListOpenCypherQueriesOutput,
         http_method = "GET",
         http_path = "/opencypher/status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:managePropertygraphStatistics(input, options)
         output_schema = types.ManagePropertygraphStatisticsOutput,
         http_method = "POST",
         http_path = "/propertygraph/statistics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:manageSparqlStatistics(input, options)
         output_schema = types.ManageSparqlStatisticsOutput,
         http_method = "POST",
         http_path = "/sparql/statistics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:startLoaderJob(input, options)
         output_schema = types.StartLoaderJobOutput,
         http_method = "POST",
         http_path = "/loader",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:startMLDataProcessingJob(input, options)
         output_schema = types.StartMLDataProcessingJobOutput,
         http_method = "POST",
         http_path = "/ml/dataprocessing",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:startMLModelTrainingJob(input, options)
         output_schema = types.StartMLModelTrainingJobOutput,
         http_method = "POST",
         http_path = "/ml/modeltraining",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:startMLModelTransformJob(input, options)
         output_schema = types.StartMLModelTransformJobOutput,
         http_method = "POST",
         http_path = "/ml/modeltransform",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

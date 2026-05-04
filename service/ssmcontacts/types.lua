@@ -473,6 +473,9 @@ M.CreateContactInput = {
         },
         IdempotencyToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -562,6 +565,9 @@ M.CreateContactChannelInput = {
         },
         IdempotencyToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1944,6 +1950,9 @@ M.StartEngagementInput = {
         },
         IdempotencyToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

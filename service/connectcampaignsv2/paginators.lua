@@ -1,0 +1,41 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listCampaigns.
+function M.pages_list_campaigns(client, input)
+    return paginator.pages(client, "listCampaigns", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "campaignSummaryList",
+    })
+end
+
+--- Returns an item iterator for listCampaigns.
+function M.items_list_campaigns(client, input)
+    return paginator.items(client, "listCampaigns", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "campaignSummaryList",
+    })
+end
+
+--- Returns a page iterator for listConnectInstanceIntegrations.
+function M.pages_list_connect_instance_integrations(client, input)
+    return paginator.pages(client, "listConnectInstanceIntegrations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "integrationSummaryList",
+    })
+end
+
+--- Returns an item iterator for listConnectInstanceIntegrations.
+function M.items_list_connect_instance_integrations(client, input)
+    return paginator.items(client, "listConnectInstanceIntegrations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "integrationSummaryList",
+    })
+end
+
+return M

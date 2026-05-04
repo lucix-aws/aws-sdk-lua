@@ -59,9 +59,15 @@ M.ConnectorOperationSummary = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -339,6 +345,9 @@ M.ConnectorSummary = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         currentVersion = {
             type = "string",
@@ -423,6 +432,9 @@ M.CustomPluginRevisionSummary = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         description = {
             type = "string",
@@ -443,6 +455,9 @@ M.CustomPluginSummary = {
     members = {
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         customPluginArn = {
             type = "string",
@@ -493,6 +508,9 @@ M.WorkerConfigurationRevisionSummary = {
     members = {
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         description = {
             type = "string",
@@ -516,6 +534,9 @@ M.WorkerConfigurationSummary = {
     members = {
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         description = {
             type = "string",
@@ -1138,6 +1159,9 @@ M.CreateWorkerConfigurationOutput = {
     members = {
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         latestRevision = M.WorkerConfigurationRevisionSummary,
         name = {
@@ -1281,6 +1305,9 @@ M.DescribeConnectorOutput = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         currentVersion = {
             type = "string",
@@ -1361,9 +1388,15 @@ M.DescribeConnectorOperationOutput = {
         errorInfo = M.StateDescription,
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1386,6 +1419,9 @@ M.DescribeCustomPluginOutput = {
     members = {
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         customPluginArn = {
             type = "string",
@@ -1422,6 +1458,9 @@ M.WorkerConfigurationRevisionDescription = {
     members = {
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         description = {
             type = "string",
@@ -1443,6 +1482,9 @@ M.DescribeWorkerConfigurationOutput = {
     members = {
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         description = {
             type = "string",

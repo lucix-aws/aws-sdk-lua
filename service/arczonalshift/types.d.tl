@@ -533,11 +533,11 @@ local record ValidationException
     reason: string
 end
 
-local type ZonalShiftStatus = "ACTIVE" | "EXPIRED" | "CANCELED"
+local type ZonalAutoshiftStatus = "ENABLED" | "DISABLED"
 
 local type AutoshiftObserverNotificationStatus = "ENABLED" | "DISABLED"
 
-local type ZonalAutoshiftStatus = "ENABLED" | "DISABLED"
+local type ZonalShiftStatus = "ACTIVE" | "EXPIRED" | "CANCELED"
 
 local type AutoshiftExecutionStatus = "ACTIVE" | "COMPLETED"
 

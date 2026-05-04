@@ -1,0 +1,185 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for getFlowTemplateRevisions.
+function M.pages_get_flow_template_revisions(client, input)
+    return paginator.pages(client, "getFlowTemplateRevisions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "summaries",
+    })
+end
+
+--- Returns an item iterator for getFlowTemplateRevisions.
+function M.items_get_flow_template_revisions(client, input)
+    return paginator.items(client, "getFlowTemplateRevisions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "summaries",
+    })
+end
+
+--- Returns a page iterator for getSystemTemplateRevisions.
+function M.pages_get_system_template_revisions(client, input)
+    return paginator.pages(client, "getSystemTemplateRevisions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "summaries",
+    })
+end
+
+--- Returns an item iterator for getSystemTemplateRevisions.
+function M.items_get_system_template_revisions(client, input)
+    return paginator.items(client, "getSystemTemplateRevisions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "summaries",
+    })
+end
+
+--- Returns a page iterator for listFlowExecutionMessages.
+function M.pages_list_flow_execution_messages(client, input)
+    return paginator.pages(client, "listFlowExecutionMessages", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "messages",
+    })
+end
+
+--- Returns an item iterator for listFlowExecutionMessages.
+function M.items_list_flow_execution_messages(client, input)
+    return paginator.items(client, "listFlowExecutionMessages", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "messages",
+    })
+end
+
+--- Returns a page iterator for listTagsForResource.
+function M.pages_list_tags_for_resource(client, input)
+    return paginator.pages(client, "listTagsForResource", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "tags",
+    })
+end
+
+--- Returns an item iterator for listTagsForResource.
+function M.items_list_tags_for_resource(client, input)
+    return paginator.items(client, "listTagsForResource", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "tags",
+    })
+end
+
+--- Returns a page iterator for searchEntities.
+function M.pages_search_entities(client, input)
+    return paginator.pages(client, "searchEntities", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "descriptions",
+    })
+end
+
+--- Returns an item iterator for searchEntities.
+function M.items_search_entities(client, input)
+    return paginator.items(client, "searchEntities", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "descriptions",
+    })
+end
+
+--- Returns a page iterator for searchFlowExecutions.
+function M.pages_search_flow_executions(client, input)
+    return paginator.pages(client, "searchFlowExecutions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "summaries",
+    })
+end
+
+--- Returns an item iterator for searchFlowExecutions.
+function M.items_search_flow_executions(client, input)
+    return paginator.items(client, "searchFlowExecutions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "summaries",
+    })
+end
+
+--- Returns a page iterator for searchFlowTemplates.
+function M.pages_search_flow_templates(client, input)
+    return paginator.pages(client, "searchFlowTemplates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "summaries",
+    })
+end
+
+--- Returns an item iterator for searchFlowTemplates.
+function M.items_search_flow_templates(client, input)
+    return paginator.items(client, "searchFlowTemplates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "summaries",
+    })
+end
+
+--- Returns a page iterator for searchSystemInstances.
+function M.pages_search_system_instances(client, input)
+    return paginator.pages(client, "searchSystemInstances", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "summaries",
+    })
+end
+
+--- Returns an item iterator for searchSystemInstances.
+function M.items_search_system_instances(client, input)
+    return paginator.items(client, "searchSystemInstances", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "summaries",
+    })
+end
+
+--- Returns a page iterator for searchSystemTemplates.
+function M.pages_search_system_templates(client, input)
+    return paginator.pages(client, "searchSystemTemplates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "summaries",
+    })
+end
+
+--- Returns an item iterator for searchSystemTemplates.
+function M.items_search_system_templates(client, input)
+    return paginator.items(client, "searchSystemTemplates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "summaries",
+    })
+end
+
+--- Returns a page iterator for searchThings.
+function M.pages_search_things(client, input)
+    return paginator.pages(client, "searchThings", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "things",
+    })
+end
+
+--- Returns an item iterator for searchThings.
+function M.items_search_things(client, input)
+    return paginator.items(client, "searchThings", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "things",
+    })
+end
+
+return M

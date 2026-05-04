@@ -301,6 +301,7 @@ M.CreateDatastoreInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1353,6 +1354,7 @@ M.StartDICOMImportJobInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },

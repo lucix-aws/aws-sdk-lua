@@ -2381,9 +2381,9 @@ local record ValidationException
     exceptionMessage: string
 end
 
-local type ChannelType = "BASIC" | "STANDARD" | "ADVANCED_SD" | "ADVANCED_HD"
-
 local type TranscodePreset = "HIGHER_BANDWIDTH_DELIVERY" | "CONSTRAINED_BANDWIDTH_DELIVERY"
+
+local type ChannelType = "BASIC" | "STANDARD" | "ADVANCED_SD" | "ADVANCED_HD"
 
 local record M
     BatchGetChannelInput: BatchGetChannelInput

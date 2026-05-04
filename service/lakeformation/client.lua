@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSLakeFormation"
-    cfg.signing_name = "lakeformation"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "lakeformation", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:addLFTagsToResource(input, options)
         output_schema = types.AddLFTagsToResourceOutput,
         http_method = "POST",
         http_path = "/AddLFTagsToResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:assumeDecoratedRoleWithSAML(input, options)
         output_schema = types.AssumeDecoratedRoleWithSAMLOutput,
         http_method = "POST",
         http_path = "/AssumeDecoratedRoleWithSAML",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchGrantPermissions(input, options)
         output_schema = types.BatchGrantPermissionsOutput,
         http_method = "POST",
         http_path = "/BatchGrantPermissions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:batchRevokePermissions(input, options)
         output_schema = types.BatchRevokePermissionsOutput,
         http_method = "POST",
         http_path = "/BatchRevokePermissions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:cancelTransaction(input, options)
         output_schema = types.CancelTransactionOutput,
         http_method = "POST",
         http_path = "/CancelTransaction",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:commitTransaction(input, options)
         output_schema = types.CommitTransactionOutput,
         http_method = "POST",
         http_path = "/CommitTransaction",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createDataCellsFilter(input, options)
         output_schema = types.CreateDataCellsFilterOutput,
         http_method = "POST",
         http_path = "/CreateDataCellsFilter",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createLakeFormationIdentityCenterConfiguration(input, options)
         output_schema = types.CreateLakeFormationIdentityCenterConfigurationOutput,
         http_method = "POST",
         http_path = "/CreateLakeFormationIdentityCenterConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createLakeFormationOptIn(input, options)
         output_schema = types.CreateLakeFormationOptInOutput,
         http_method = "POST",
         http_path = "/CreateLakeFormationOptIn",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createLFTag(input, options)
         output_schema = types.CreateLFTagOutput,
         http_method = "POST",
         http_path = "/CreateLFTag",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createLFTagExpression(input, options)
         output_schema = types.CreateLFTagExpressionOutput,
         http_method = "POST",
         http_path = "/CreateLFTagExpression",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteDataCellsFilter(input, options)
         output_schema = types.DeleteDataCellsFilterOutput,
         http_method = "POST",
         http_path = "/DeleteDataCellsFilter",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteLakeFormationIdentityCenterConfiguration(input, options)
         output_schema = types.DeleteLakeFormationIdentityCenterConfigurationOutput,
         http_method = "POST",
         http_path = "/DeleteLakeFormationIdentityCenterConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteLakeFormationOptIn(input, options)
         output_schema = types.DeleteLakeFormationOptInOutput,
         http_method = "POST",
         http_path = "/DeleteLakeFormationOptIn",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteLFTag(input, options)
         output_schema = types.DeleteLFTagOutput,
         http_method = "POST",
         http_path = "/DeleteLFTag",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteLFTagExpression(input, options)
         output_schema = types.DeleteLFTagExpressionOutput,
         http_method = "POST",
         http_path = "/DeleteLFTagExpression",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deleteObjectsOnCancel(input, options)
         output_schema = types.DeleteObjectsOnCancelOutput,
         http_method = "POST",
         http_path = "/DeleteObjectsOnCancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deregisterResource(input, options)
         output_schema = types.DeregisterResourceOutput,
         http_method = "POST",
         http_path = "/DeregisterResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:describeLakeFormationIdentityCenterConfiguration(input, options)
         output_schema = types.DescribeLakeFormationIdentityCenterConfigurationOutput,
         http_method = "POST",
         http_path = "/DescribeLakeFormationIdentityCenterConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:describeResource(input, options)
         output_schema = types.DescribeResourceOutput,
         http_method = "POST",
         http_path = "/DescribeResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:describeTransaction(input, options)
         output_schema = types.DescribeTransactionOutput,
         http_method = "POST",
         http_path = "/DescribeTransaction",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:extendTransaction(input, options)
         output_schema = types.ExtendTransactionOutput,
         http_method = "POST",
         http_path = "/ExtendTransaction",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:getDataCellsFilter(input, options)
         output_schema = types.GetDataCellsFilterOutput,
         http_method = "POST",
         http_path = "/GetDataCellsFilter",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:getDataLakePrincipal(input, options)
         output_schema = types.GetDataLakePrincipalOutput,
         http_method = "POST",
         http_path = "/GetDataLakePrincipal",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:getDataLakeSettings(input, options)
         output_schema = types.GetDataLakeSettingsOutput,
         http_method = "POST",
         http_path = "/GetDataLakeSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:getEffectivePermissionsForPath(input, options)
         output_schema = types.GetEffectivePermissionsForPathOutput,
         http_method = "POST",
         http_path = "/GetEffectivePermissionsForPath",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:getLFTag(input, options)
         output_schema = types.GetLFTagOutput,
         http_method = "POST",
         http_path = "/GetLFTag",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:getLFTagExpression(input, options)
         output_schema = types.GetLFTagExpressionOutput,
         http_method = "POST",
         http_path = "/GetLFTagExpression",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:getQueryState(input, options)
         output_schema = types.GetQueryStateOutput,
         http_method = "POST",
         http_path = "/GetQueryState",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:getQueryStatistics(input, options)
         output_schema = types.GetQueryStatisticsOutput,
         http_method = "POST",
         http_path = "/GetQueryStatistics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:getResourceLFTags(input, options)
         output_schema = types.GetResourceLFTagsOutput,
         http_method = "POST",
         http_path = "/GetResourceLFTags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:getTableObjects(input, options)
         output_schema = types.GetTableObjectsOutput,
         http_method = "POST",
         http_path = "/GetTableObjects",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:getTemporaryDataLocationCredentials(input, options)
         output_schema = types.GetTemporaryDataLocationCredentialsOutput,
         http_method = "POST",
         http_path = "/GetTemporaryDataLocationCredentials",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:getTemporaryGluePartitionCredentials(input, options)
         output_schema = types.GetTemporaryGluePartitionCredentialsOutput,
         http_method = "POST",
         http_path = "/GetTemporaryGluePartitionCredentials",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:getTemporaryGlueTableCredentials(input, options)
         output_schema = types.GetTemporaryGlueTableCredentialsOutput,
         http_method = "POST",
         http_path = "/GetTemporaryGlueTableCredentials",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:getWorkUnitResults(input, options)
         output_schema = types.GetWorkUnitResultsOutput,
         http_method = "POST",
         http_path = "/GetWorkUnitResults",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:getWorkUnits(input, options)
         output_schema = types.GetWorkUnitsOutput,
         http_method = "POST",
         http_path = "/GetWorkUnits",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:grantPermissions(input, options)
         output_schema = types.GrantPermissionsOutput,
         http_method = "POST",
         http_path = "/GrantPermissions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:listDataCellsFilter(input, options)
         output_schema = types.ListDataCellsFilterOutput,
         http_method = "POST",
         http_path = "/ListDataCellsFilter",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:listLakeFormationOptIns(input, options)
         output_schema = types.ListLakeFormationOptInsOutput,
         http_method = "POST",
         http_path = "/ListLakeFormationOptIns",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:listLFTagExpressions(input, options)
         output_schema = types.ListLFTagExpressionsOutput,
         http_method = "POST",
         http_path = "/ListLFTagExpressions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:listLFTags(input, options)
         output_schema = types.ListLFTagsOutput,
         http_method = "POST",
         http_path = "/ListLFTags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:listPermissions(input, options)
         output_schema = types.ListPermissionsOutput,
         http_method = "POST",
         http_path = "/ListPermissions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:listResources(input, options)
         output_schema = types.ListResourcesOutput,
         http_method = "POST",
         http_path = "/ListResources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:listTableStorageOptimizers(input, options)
         output_schema = types.ListTableStorageOptimizersOutput,
         http_method = "POST",
         http_path = "/ListTableStorageOptimizers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:listTransactions(input, options)
         output_schema = types.ListTransactionsOutput,
         http_method = "POST",
         http_path = "/ListTransactions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:putDataLakeSettings(input, options)
         output_schema = types.PutDataLakeSettingsOutput,
         http_method = "POST",
         http_path = "/PutDataLakeSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:registerResource(input, options)
         output_schema = types.RegisterResourceOutput,
         http_method = "POST",
         http_path = "/RegisterResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:removeLFTagsFromResource(input, options)
         output_schema = types.RemoveLFTagsFromResourceOutput,
         http_method = "POST",
         http_path = "/RemoveLFTagsFromResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:revokePermissions(input, options)
         output_schema = types.RevokePermissionsOutput,
         http_method = "POST",
         http_path = "/RevokePermissions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:searchDatabasesByLFTags(input, options)
         output_schema = types.SearchDatabasesByLFTagsOutput,
         http_method = "POST",
         http_path = "/SearchDatabasesByLFTags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:searchTablesByLFTags(input, options)
         output_schema = types.SearchTablesByLFTagsOutput,
         http_method = "POST",
         http_path = "/SearchTablesByLFTags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:startQueryPlanning(input, options)
         output_schema = types.StartQueryPlanningOutput,
         http_method = "POST",
         http_path = "/StartQueryPlanning",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:startTransaction(input, options)
         output_schema = types.StartTransactionOutput,
         http_method = "POST",
         http_path = "/StartTransaction",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:updateDataCellsFilter(input, options)
         output_schema = types.UpdateDataCellsFilterOutput,
         http_method = "POST",
         http_path = "/UpdateDataCellsFilter",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:updateLakeFormationIdentityCenterConfiguration(input, options)
         output_schema = types.UpdateLakeFormationIdentityCenterConfigurationOutput,
         http_method = "POST",
         http_path = "/UpdateLakeFormationIdentityCenterConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:updateLFTag(input, options)
         output_schema = types.UpdateLFTagOutput,
         http_method = "POST",
         http_path = "/UpdateLFTag",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:updateLFTagExpression(input, options)
         output_schema = types.UpdateLFTagExpressionOutput,
         http_method = "POST",
         http_path = "/UpdateLFTagExpression",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:updateResource(input, options)
         output_schema = types.UpdateResourceOutput,
         http_method = "POST",
         http_path = "/UpdateResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:updateTableObjects(input, options)
         output_schema = types.UpdateTableObjectsOutput,
         http_method = "POST",
         http_path = "/UpdateTableObjects",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:updateTableStorageOptimizer(input, options)
         output_schema = types.UpdateTableStorageOptimizerOutput,
         http_method = "POST",
         http_path = "/UpdateTableStorageOptimizer",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonBedrockAgentRunTimeService"
-    cfg.signing_name = "bedrock"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "bedrock", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createInvocation(input, options)
         output_schema = types.CreateInvocationOutput,
         http_method = "PUT",
         http_path = "/sessions/{sessionIdentifier}/invocations/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createSession(input, options)
         output_schema = types.CreateSessionOutput,
         http_method = "PUT",
         http_path = "/sessions/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:deleteAgentMemory(input, options)
         output_schema = types.DeleteAgentMemoryOutput,
         http_method = "DELETE",
         http_path = "/agents/{agentId}/agentAliases/{agentAliasId}/memories",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:deleteSession(input, options)
         output_schema = types.DeleteSessionOutput,
         http_method = "DELETE",
         http_path = "/sessions/{sessionIdentifier}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:endSession(input, options)
         output_schema = types.EndSessionOutput,
         http_method = "PATCH",
         http_path = "/sessions/{sessionIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:generateQuery(input, options)
         output_schema = types.GenerateQueryOutput,
         http_method = "POST",
         http_path = "/generateQuery",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:getAgentMemory(input, options)
         output_schema = types.GetAgentMemoryOutput,
         http_method = "GET",
         http_path = "/agents/{agentId}/agentAliases/{agentAliasId}/memories",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:getExecutionFlowSnapshot(input, options)
         output_schema = types.GetExecutionFlowSnapshotOutput,
         http_method = "GET",
         http_path = "/flows/{flowIdentifier}/aliases/{flowAliasIdentifier}/executions/{executionIdentifier}/flowsnapshot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getFlowExecution(input, options)
         output_schema = types.GetFlowExecutionOutput,
         http_method = "GET",
         http_path = "/flows/{flowIdentifier}/aliases/{flowAliasIdentifier}/executions/{executionIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:getInvocationStep(input, options)
         output_schema = types.GetInvocationStepOutput,
         http_method = "POST",
         http_path = "/sessions/{sessionIdentifier}/invocationSteps/{invocationStepId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getSession(input, options)
         output_schema = types.GetSessionOutput,
         http_method = "GET",
         http_path = "/sessions/{sessionIdentifier}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:invokeAgent(input, options)
         output_schema = types.InvokeAgentOutput,
         http_method = "POST",
         http_path = "/agents/{agentId}/agentAliases/{agentAliasId}/sessions/{sessionId}/text",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:invokeFlow(input, options)
         output_schema = types.InvokeFlowOutput,
         http_method = "POST",
         http_path = "/flows/{flowIdentifier}/aliases/{flowAliasIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:invokeInlineAgent(input, options)
         output_schema = types.InvokeInlineAgentOutput,
         http_method = "POST",
         http_path = "/agents/{sessionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:listFlowExecutionEvents(input, options)
         output_schema = types.ListFlowExecutionEventsOutput,
         http_method = "GET",
         http_path = "/flows/{flowIdentifier}/aliases/{flowAliasIdentifier}/executions/{executionIdentifier}/events",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listFlowExecutions(input, options)
         output_schema = types.ListFlowExecutionsOutput,
         http_method = "GET",
         http_path = "/flows/{flowIdentifier}/executions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listInvocations(input, options)
         output_schema = types.ListInvocationsOutput,
         http_method = "POST",
         http_path = "/sessions/{sessionIdentifier}/invocations/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listInvocationSteps(input, options)
         output_schema = types.ListInvocationStepsOutput,
         http_method = "POST",
         http_path = "/sessions/{sessionIdentifier}/invocationSteps/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listSessions(input, options)
         output_schema = types.ListSessionsOutput,
         http_method = "POST",
         http_path = "/sessions/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:optimizePrompt(input, options)
         output_schema = types.OptimizePromptOutput,
         http_method = "POST",
         http_path = "/optimize-prompt",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:putInvocationStep(input, options)
         output_schema = types.PutInvocationStepOutput,
         http_method = "PUT",
         http_path = "/sessions/{sessionIdentifier}/invocationSteps/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:rerank(input, options)
         output_schema = types.RerankOutput,
         http_method = "POST",
         http_path = "/rerank",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:retrieve(input, options)
         output_schema = types.RetrieveOutput,
         http_method = "POST",
         http_path = "/knowledgebases/{knowledgeBaseId}/retrieve",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:retrieveAndGenerate(input, options)
         output_schema = types.RetrieveAndGenerateOperationOutput,
         http_method = "POST",
         http_path = "/retrieveAndGenerate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:retrieveAndGenerateStream(input, options)
         output_schema = types.RetrieveAndGenerateStreamOutput,
         http_method = "POST",
         http_path = "/retrieveAndGenerateStream",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:startFlowExecution(input, options)
         output_schema = types.StartFlowExecutionOutput,
         http_method = "POST",
         http_path = "/flows/{flowIdentifier}/aliases/{flowAliasIdentifier}/executions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:stopFlowExecution(input, options)
         output_schema = types.StopFlowExecutionOutput,
         http_method = "POST",
         http_path = "/flows/{flowIdentifier}/aliases/{flowAliasIdentifier}/executions/{executionIdentifier}/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:updateSession(input, options)
         output_schema = types.UpdateSessionOutput,
         http_method = "PUT",
         http_path = "/sessions/{sessionIdentifier}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "MercuryControlPlane"
-    cfg.signing_name = "vpc-lattice"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "vpc-lattice", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:batchUpdateRule(input, options)
         output_schema = types.BatchUpdateRuleOutput,
         http_method = "PATCH",
         http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createAccessLogSubscription(input, options)
         output_schema = types.CreateAccessLogSubscriptionOutput,
         http_method = "POST",
         http_path = "/accesslogsubscriptions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createListener(input, options)
         output_schema = types.CreateListenerOutput,
         http_method = "POST",
         http_path = "/services/{serviceIdentifier}/listeners",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createResourceConfiguration(input, options)
         output_schema = types.CreateResourceConfigurationOutput,
         http_method = "POST",
         http_path = "/resourceconfigurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createResourceGateway(input, options)
         output_schema = types.CreateResourceGatewayOutput,
         http_method = "POST",
         http_path = "/resourcegateways",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createRule(input, options)
         output_schema = types.CreateRuleOutput,
         http_method = "POST",
         http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createService(input, options)
         output_schema = types.CreateServiceOutput,
         http_method = "POST",
         http_path = "/services",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createServiceNetwork(input, options)
         output_schema = types.CreateServiceNetworkOutput,
         http_method = "POST",
         http_path = "/servicenetworks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createServiceNetworkResourceAssociation(input, options)
         output_schema = types.CreateServiceNetworkResourceAssociationOutput,
         http_method = "POST",
         http_path = "/servicenetworkresourceassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createServiceNetworkServiceAssociation(input, options)
         output_schema = types.CreateServiceNetworkServiceAssociationOutput,
         http_method = "POST",
         http_path = "/servicenetworkserviceassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createServiceNetworkVpcAssociation(input, options)
         output_schema = types.CreateServiceNetworkVpcAssociationOutput,
         http_method = "POST",
         http_path = "/servicenetworkvpcassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createTargetGroup(input, options)
         output_schema = types.CreateTargetGroupOutput,
         http_method = "POST",
         http_path = "/targetgroups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteAccessLogSubscription(input, options)
         output_schema = types.DeleteAccessLogSubscriptionOutput,
         http_method = "DELETE",
         http_path = "/accesslogsubscriptions/{accessLogSubscriptionIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteAuthPolicy(input, options)
         output_schema = types.DeleteAuthPolicyOutput,
         http_method = "DELETE",
         http_path = "/authpolicy/{resourceIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteDomainVerification(input, options)
         output_schema = types.DeleteDomainVerificationOutput,
         http_method = "DELETE",
         http_path = "/domainverifications/{domainVerificationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteListener(input, options)
         output_schema = types.DeleteListenerOutput,
         http_method = "DELETE",
         http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deleteResourceConfiguration(input, options)
         output_schema = types.DeleteResourceConfigurationOutput,
         http_method = "DELETE",
         http_path = "/resourceconfigurations/{resourceConfigurationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteResourceEndpointAssociation(input, options)
         output_schema = types.DeleteResourceEndpointAssociationOutput,
         http_method = "DELETE",
         http_path = "/resourceendpointassociations/{resourceEndpointAssociationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteResourceGateway(input, options)
         output_schema = types.DeleteResourceGatewayOutput,
         http_method = "DELETE",
         http_path = "/resourcegateways/{resourceGatewayIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deleteResourcePolicy(input, options)
         output_schema = types.DeleteResourcePolicyOutput,
         http_method = "DELETE",
         http_path = "/resourcepolicy/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deleteRule(input, options)
         output_schema = types.DeleteRuleOutput,
         http_method = "DELETE",
         http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules/{ruleIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:deleteService(input, options)
         output_schema = types.DeleteServiceOutput,
         http_method = "DELETE",
         http_path = "/services/{serviceIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:deleteServiceNetwork(input, options)
         output_schema = types.DeleteServiceNetworkOutput,
         http_method = "DELETE",
         http_path = "/servicenetworks/{serviceNetworkIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:deleteServiceNetworkResourceAssociation(input, options)
         output_schema = types.DeleteServiceNetworkResourceAssociationOutput,
         http_method = "DELETE",
         http_path = "/servicenetworkresourceassociations/{serviceNetworkResourceAssociationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:deleteServiceNetworkServiceAssociation(input, options)
         output_schema = types.DeleteServiceNetworkServiceAssociationOutput,
         http_method = "DELETE",
         http_path = "/servicenetworkserviceassociations/{serviceNetworkServiceAssociationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:deleteServiceNetworkVpcAssociation(input, options)
         output_schema = types.DeleteServiceNetworkVpcAssociationOutput,
         http_method = "DELETE",
         http_path = "/servicenetworkvpcassociations/{serviceNetworkVpcAssociationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:deleteTargetGroup(input, options)
         output_schema = types.DeleteTargetGroupOutput,
         http_method = "DELETE",
         http_path = "/targetgroups/{targetGroupIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:deregisterTargets(input, options)
         output_schema = types.DeregisterTargetsOutput,
         http_method = "POST",
         http_path = "/targetgroups/{targetGroupIdentifier}/deregistertargets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:getAccessLogSubscription(input, options)
         output_schema = types.GetAccessLogSubscriptionOutput,
         http_method = "GET",
         http_path = "/accesslogsubscriptions/{accessLogSubscriptionIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:getAuthPolicy(input, options)
         output_schema = types.GetAuthPolicyOutput,
         http_method = "GET",
         http_path = "/authpolicy/{resourceIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:getDomainVerification(input, options)
         output_schema = types.GetDomainVerificationOutput,
         http_method = "GET",
         http_path = "/domainverifications/{domainVerificationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:getListener(input, options)
         output_schema = types.GetListenerOutput,
         http_method = "GET",
         http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:getResourceConfiguration(input, options)
         output_schema = types.GetResourceConfigurationOutput,
         http_method = "GET",
         http_path = "/resourceconfigurations/{resourceConfigurationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:getResourceGateway(input, options)
         output_schema = types.GetResourceGatewayOutput,
         http_method = "GET",
         http_path = "/resourcegateways/{resourceGatewayIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:getResourcePolicy(input, options)
         output_schema = types.GetResourcePolicyOutput,
         http_method = "GET",
         http_path = "/resourcepolicy/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:getRule(input, options)
         output_schema = types.GetRuleOutput,
         http_method = "GET",
         http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules/{ruleIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:getService(input, options)
         output_schema = types.GetServiceOutput,
         http_method = "GET",
         http_path = "/services/{serviceIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:getServiceNetwork(input, options)
         output_schema = types.GetServiceNetworkOutput,
         http_method = "GET",
         http_path = "/servicenetworks/{serviceNetworkIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:getServiceNetworkResourceAssociation(input, options)
         output_schema = types.GetServiceNetworkResourceAssociationOutput,
         http_method = "GET",
         http_path = "/servicenetworkresourceassociations/{serviceNetworkResourceAssociationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:getServiceNetworkServiceAssociation(input, options)
         output_schema = types.GetServiceNetworkServiceAssociationOutput,
         http_method = "GET",
         http_path = "/servicenetworkserviceassociations/{serviceNetworkServiceAssociationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:getServiceNetworkVpcAssociation(input, options)
         output_schema = types.GetServiceNetworkVpcAssociationOutput,
         http_method = "GET",
         http_path = "/servicenetworkvpcassociations/{serviceNetworkVpcAssociationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:getTargetGroup(input, options)
         output_schema = types.GetTargetGroupOutput,
         http_method = "GET",
         http_path = "/targetgroups/{targetGroupIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:listAccessLogSubscriptions(input, options)
         output_schema = types.ListAccessLogSubscriptionsOutput,
         http_method = "GET",
         http_path = "/accesslogsubscriptions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:listDomainVerifications(input, options)
         output_schema = types.ListDomainVerificationsOutput,
         http_method = "GET",
         http_path = "/domainverifications",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:listListeners(input, options)
         output_schema = types.ListListenersOutput,
         http_method = "GET",
         http_path = "/services/{serviceIdentifier}/listeners",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:listResourceConfigurations(input, options)
         output_schema = types.ListResourceConfigurationsOutput,
         http_method = "GET",
         http_path = "/resourceconfigurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:listResourceEndpointAssociations(input, options)
         output_schema = types.ListResourceEndpointAssociationsOutput,
         http_method = "GET",
         http_path = "/resourceendpointassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:listResourceGateways(input, options)
         output_schema = types.ListResourceGatewaysOutput,
         http_method = "GET",
         http_path = "/resourcegateways",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:listRules(input, options)
         output_schema = types.ListRulesOutput,
         http_method = "GET",
         http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:listServiceNetworkResourceAssociations(input, options)
         output_schema = types.ListServiceNetworkResourceAssociationsOutput,
         http_method = "GET",
         http_path = "/servicenetworkresourceassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:listServiceNetworks(input, options)
         output_schema = types.ListServiceNetworksOutput,
         http_method = "GET",
         http_path = "/servicenetworks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:listServiceNetworkServiceAssociations(input, options)
         output_schema = types.ListServiceNetworkServiceAssociationsOutput,
         http_method = "GET",
         http_path = "/servicenetworkserviceassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:listServiceNetworkVpcAssociations(input, options)
         output_schema = types.ListServiceNetworkVpcAssociationsOutput,
         http_method = "GET",
         http_path = "/servicenetworkvpcassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:listServiceNetworkVpcEndpointAssociations(input, options)
         output_schema = types.ListServiceNetworkVpcEndpointAssociationsOutput,
         http_method = "GET",
         http_path = "/servicenetworkvpcendpointassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:listServices(input, options)
         output_schema = types.ListServicesOutput,
         http_method = "GET",
         http_path = "/services",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:listTargetGroups(input, options)
         output_schema = types.ListTargetGroupsOutput,
         http_method = "GET",
         http_path = "/targetgroups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:listTargets(input, options)
         output_schema = types.ListTargetsOutput,
         http_method = "POST",
         http_path = "/targetgroups/{targetGroupIdentifier}/listtargets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:putAuthPolicy(input, options)
         output_schema = types.PutAuthPolicyOutput,
         http_method = "PUT",
         http_path = "/authpolicy/{resourceIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:putResourcePolicy(input, options)
         output_schema = types.PutResourcePolicyOutput,
         http_method = "PUT",
         http_path = "/resourcepolicy/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:registerTargets(input, options)
         output_schema = types.RegisterTargetsOutput,
         http_method = "POST",
         http_path = "/targetgroups/{targetGroupIdentifier}/registertargets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:startDomainVerification(input, options)
         output_schema = types.StartDomainVerificationOutput,
         http_method = "POST",
         http_path = "/domainverifications",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:updateAccessLogSubscription(input, options)
         output_schema = types.UpdateAccessLogSubscriptionOutput,
         http_method = "PATCH",
         http_path = "/accesslogsubscriptions/{accessLogSubscriptionIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:updateListener(input, options)
         output_schema = types.UpdateListenerOutput,
         http_method = "PATCH",
         http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:updateResourceConfiguration(input, options)
         output_schema = types.UpdateResourceConfigurationOutput,
         http_method = "PATCH",
         http_path = "/resourceconfigurations/{resourceConfigurationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:updateResourceGateway(input, options)
         output_schema = types.UpdateResourceGatewayOutput,
         http_method = "PATCH",
         http_path = "/resourcegateways/{resourceGatewayIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:updateRule(input, options)
         output_schema = types.UpdateRuleOutput,
         http_method = "PATCH",
         http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules/{ruleIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:updateService(input, options)
         output_schema = types.UpdateServiceOutput,
         http_method = "PATCH",
         http_path = "/services/{serviceIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:updateServiceNetwork(input, options)
         output_schema = types.UpdateServiceNetworkOutput,
         http_method = "PATCH",
         http_path = "/servicenetworks/{serviceNetworkIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:updateServiceNetworkVpcAssociation(input, options)
         output_schema = types.UpdateServiceNetworkVpcAssociationOutput,
         http_method = "PATCH",
         http_path = "/servicenetworkvpcassociations/{serviceNetworkVpcAssociationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:updateTargetGroup(input, options)
         output_schema = types.UpdateTargetGroupOutput,
         http_method = "PATCH",
         http_path = "/targetgroups/{targetGroupIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

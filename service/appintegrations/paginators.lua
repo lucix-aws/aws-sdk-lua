@@ -1,0 +1,113 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listApplicationAssociations.
+function M.pages_list_application_associations(client, input)
+    return paginator.pages(client, "listApplicationAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ApplicationAssociations",
+    })
+end
+
+--- Returns an item iterator for listApplicationAssociations.
+function M.items_list_application_associations(client, input)
+    return paginator.items(client, "listApplicationAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ApplicationAssociations",
+    })
+end
+
+--- Returns a page iterator for listApplications.
+function M.pages_list_applications(client, input)
+    return paginator.pages(client, "listApplications", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Applications",
+    })
+end
+
+--- Returns an item iterator for listApplications.
+function M.items_list_applications(client, input)
+    return paginator.items(client, "listApplications", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Applications",
+    })
+end
+
+--- Returns a page iterator for listDataIntegrationAssociations.
+function M.pages_list_data_integration_associations(client, input)
+    return paginator.pages(client, "listDataIntegrationAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DataIntegrationAssociations",
+    })
+end
+
+--- Returns an item iterator for listDataIntegrationAssociations.
+function M.items_list_data_integration_associations(client, input)
+    return paginator.items(client, "listDataIntegrationAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DataIntegrationAssociations",
+    })
+end
+
+--- Returns a page iterator for listDataIntegrations.
+function M.pages_list_data_integrations(client, input)
+    return paginator.pages(client, "listDataIntegrations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DataIntegrations",
+    })
+end
+
+--- Returns an item iterator for listDataIntegrations.
+function M.items_list_data_integrations(client, input)
+    return paginator.items(client, "listDataIntegrations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DataIntegrations",
+    })
+end
+
+--- Returns a page iterator for listEventIntegrationAssociations.
+function M.pages_list_event_integration_associations(client, input)
+    return paginator.pages(client, "listEventIntegrationAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "EventIntegrationAssociations",
+    })
+end
+
+--- Returns an item iterator for listEventIntegrationAssociations.
+function M.items_list_event_integration_associations(client, input)
+    return paginator.items(client, "listEventIntegrationAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "EventIntegrationAssociations",
+    })
+end
+
+--- Returns a page iterator for listEventIntegrations.
+function M.pages_list_event_integrations(client, input)
+    return paginator.pages(client, "listEventIntegrations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "EventIntegrations",
+    })
+end
+
+--- Returns an item iterator for listEventIntegrations.
+function M.items_list_event_integrations(client, input)
+    return paginator.items(client, "listEventIntegrations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "EventIntegrations",
+    })
+end
+
+return M

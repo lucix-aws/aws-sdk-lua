@@ -72,6 +72,7 @@ M.GetConnectionOutput = {
             type = "timestamp",
             traits = {
                 json_name = "connectedAt",
+                timestamp_format = "date-time",
             },
         },
         Identity = setmetatable({ traits = {
@@ -81,6 +82,7 @@ M.GetConnectionOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastActiveAt",
+                timestamp_format = "date-time",
             },
         },
     },

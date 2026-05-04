@@ -1,0 +1,59 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listLinks.
+function M.pages_list_links(client, input)
+    return paginator.pages(client, "listLinks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "links",
+    })
+end
+
+--- Returns an item iterator for listLinks.
+function M.items_list_links(client, input)
+    return paginator.items(client, "listLinks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "links",
+    })
+end
+
+--- Returns a page iterator for listRequesterGateways.
+function M.pages_list_requester_gateways(client, input)
+    return paginator.pages(client, "listRequesterGateways", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "gatewayIds",
+    })
+end
+
+--- Returns an item iterator for listRequesterGateways.
+function M.items_list_requester_gateways(client, input)
+    return paginator.items(client, "listRequesterGateways", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "gatewayIds",
+    })
+end
+
+--- Returns a page iterator for listResponderGateways.
+function M.pages_list_responder_gateways(client, input)
+    return paginator.pages(client, "listResponderGateways", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "gatewayIds",
+    })
+end
+
+--- Returns an item iterator for listResponderGateways.
+function M.items_list_responder_gateways(client, input)
+    return paginator.items(client, "listResponderGateways", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "gatewayIds",
+    })
+end
+
+return M

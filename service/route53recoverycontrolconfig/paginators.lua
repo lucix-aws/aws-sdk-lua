@@ -1,0 +1,95 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listAssociatedRoute53HealthChecks.
+function M.pages_list_associated_route53_health_checks(client, input)
+    return paginator.pages(client, "listAssociatedRoute53HealthChecks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "HealthCheckIds",
+    })
+end
+
+--- Returns an item iterator for listAssociatedRoute53HealthChecks.
+function M.items_list_associated_route53_health_checks(client, input)
+    return paginator.items(client, "listAssociatedRoute53HealthChecks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "HealthCheckIds",
+    })
+end
+
+--- Returns a page iterator for listClusters.
+function M.pages_list_clusters(client, input)
+    return paginator.pages(client, "listClusters", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Clusters",
+    })
+end
+
+--- Returns an item iterator for listClusters.
+function M.items_list_clusters(client, input)
+    return paginator.items(client, "listClusters", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Clusters",
+    })
+end
+
+--- Returns a page iterator for listControlPanels.
+function M.pages_list_control_panels(client, input)
+    return paginator.pages(client, "listControlPanels", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ControlPanels",
+    })
+end
+
+--- Returns an item iterator for listControlPanels.
+function M.items_list_control_panels(client, input)
+    return paginator.items(client, "listControlPanels", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ControlPanels",
+    })
+end
+
+--- Returns a page iterator for listRoutingControls.
+function M.pages_list_routing_controls(client, input)
+    return paginator.pages(client, "listRoutingControls", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RoutingControls",
+    })
+end
+
+--- Returns an item iterator for listRoutingControls.
+function M.items_list_routing_controls(client, input)
+    return paginator.items(client, "listRoutingControls", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RoutingControls",
+    })
+end
+
+--- Returns a page iterator for listSafetyRules.
+function M.pages_list_safety_rules(client, input)
+    return paginator.pages(client, "listSafetyRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SafetyRules",
+    })
+end
+
+--- Returns an item iterator for listSafetyRules.
+function M.items_list_safety_rules(client, input)
+    return paginator.items(client, "listSafetyRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SafetyRules",
+    })
+end
+
+return M

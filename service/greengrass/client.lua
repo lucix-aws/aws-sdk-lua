@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "Greengrass"
-    cfg.signing_name = "greengrass"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "greengrass", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateRoleToGroup(input, options)
         output_schema = types.AssociateRoleToGroupOutput,
         http_method = "PUT",
         http_path = "/greengrass/groups/{GroupId}/role",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:associateServiceRoleToAccount(input, options)
         output_schema = types.AssociateServiceRoleToAccountOutput,
         http_method = "PUT",
         http_path = "/greengrass/servicerole",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createConnectorDefinition(input, options)
         output_schema = types.CreateConnectorDefinitionOutput,
         http_method = "POST",
         http_path = "/greengrass/definition/connectors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createConnectorDefinitionVersion(input, options)
         output_schema = types.CreateConnectorDefinitionVersionOutput,
         http_method = "POST",
         http_path = "/greengrass/definition/connectors/{ConnectorDefinitionId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createCoreDefinition(input, options)
         output_schema = types.CreateCoreDefinitionOutput,
         http_method = "POST",
         http_path = "/greengrass/definition/cores",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createCoreDefinitionVersion(input, options)
         output_schema = types.CreateCoreDefinitionVersionOutput,
         http_method = "POST",
         http_path = "/greengrass/definition/cores/{CoreDefinitionId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createDeployment(input, options)
         output_schema = types.CreateDeploymentOutput,
         http_method = "POST",
         http_path = "/greengrass/groups/{GroupId}/deployments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createDeviceDefinition(input, options)
         output_schema = types.CreateDeviceDefinitionOutput,
         http_method = "POST",
         http_path = "/greengrass/definition/devices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createDeviceDefinitionVersion(input, options)
         output_schema = types.CreateDeviceDefinitionVersionOutput,
         http_method = "POST",
         http_path = "/greengrass/definition/devices/{DeviceDefinitionId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createFunctionDefinition(input, options)
         output_schema = types.CreateFunctionDefinitionOutput,
         http_method = "POST",
         http_path = "/greengrass/definition/functions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createFunctionDefinitionVersion(input, options)
         output_schema = types.CreateFunctionDefinitionVersionOutput,
         http_method = "POST",
         http_path = "/greengrass/definition/functions/{FunctionDefinitionId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createGroup(input, options)
         output_schema = types.CreateGroupOutput,
         http_method = "POST",
         http_path = "/greengrass/groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createGroupCertificateAuthority(input, options)
         output_schema = types.CreateGroupCertificateAuthorityOutput,
         http_method = "POST",
         http_path = "/greengrass/groups/{GroupId}/certificateauthorities",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:createGroupVersion(input, options)
         output_schema = types.CreateGroupVersionOutput,
         http_method = "POST",
         http_path = "/greengrass/groups/{GroupId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:createLoggerDefinition(input, options)
         output_schema = types.CreateLoggerDefinitionOutput,
         http_method = "POST",
         http_path = "/greengrass/definition/loggers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:createLoggerDefinitionVersion(input, options)
         output_schema = types.CreateLoggerDefinitionVersionOutput,
         http_method = "POST",
         http_path = "/greengrass/definition/loggers/{LoggerDefinitionId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:createResourceDefinition(input, options)
         output_schema = types.CreateResourceDefinitionOutput,
         http_method = "POST",
         http_path = "/greengrass/definition/resources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:createResourceDefinitionVersion(input, options)
         output_schema = types.CreateResourceDefinitionVersionOutput,
         http_method = "POST",
         http_path = "/greengrass/definition/resources/{ResourceDefinitionId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:createSoftwareUpdateJob(input, options)
         output_schema = types.CreateSoftwareUpdateJobOutput,
         http_method = "POST",
         http_path = "/greengrass/updates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:createSubscriptionDefinition(input, options)
         output_schema = types.CreateSubscriptionDefinitionOutput,
         http_method = "POST",
         http_path = "/greengrass/definition/subscriptions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:createSubscriptionDefinitionVersion(input, options)
         output_schema = types.CreateSubscriptionDefinitionVersionOutput,
         http_method = "POST",
         http_path = "/greengrass/definition/subscriptions/{SubscriptionDefinitionId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:deleteConnectorDefinition(input, options)
         output_schema = types.DeleteConnectorDefinitionOutput,
         http_method = "DELETE",
         http_path = "/greengrass/definition/connectors/{ConnectorDefinitionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:deleteCoreDefinition(input, options)
         output_schema = types.DeleteCoreDefinitionOutput,
         http_method = "DELETE",
         http_path = "/greengrass/definition/cores/{CoreDefinitionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:deleteDeviceDefinition(input, options)
         output_schema = types.DeleteDeviceDefinitionOutput,
         http_method = "DELETE",
         http_path = "/greengrass/definition/devices/{DeviceDefinitionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:deleteFunctionDefinition(input, options)
         output_schema = types.DeleteFunctionDefinitionOutput,
         http_method = "DELETE",
         http_path = "/greengrass/definition/functions/{FunctionDefinitionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:deleteGroup(input, options)
         output_schema = types.DeleteGroupOutput,
         http_method = "DELETE",
         http_path = "/greengrass/groups/{GroupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:deleteLoggerDefinition(input, options)
         output_schema = types.DeleteLoggerDefinitionOutput,
         http_method = "DELETE",
         http_path = "/greengrass/definition/loggers/{LoggerDefinitionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:deleteResourceDefinition(input, options)
         output_schema = types.DeleteResourceDefinitionOutput,
         http_method = "DELETE",
         http_path = "/greengrass/definition/resources/{ResourceDefinitionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:deleteSubscriptionDefinition(input, options)
         output_schema = types.DeleteSubscriptionDefinitionOutput,
         http_method = "DELETE",
         http_path = "/greengrass/definition/subscriptions/{SubscriptionDefinitionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:disassociateRoleFromGroup(input, options)
         output_schema = types.DisassociateRoleFromGroupOutput,
         http_method = "DELETE",
         http_path = "/greengrass/groups/{GroupId}/role",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:disassociateServiceRoleFromAccount(input, options)
         output_schema = types.DisassociateServiceRoleFromAccountOutput,
         http_method = "DELETE",
         http_path = "/greengrass/servicerole",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:getAssociatedRole(input, options)
         output_schema = types.GetAssociatedRoleOutput,
         http_method = "GET",
         http_path = "/greengrass/groups/{GroupId}/role",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:getBulkDeploymentStatus(input, options)
         output_schema = types.GetBulkDeploymentStatusOutput,
         http_method = "GET",
         http_path = "/greengrass/bulk/deployments/{BulkDeploymentId}/status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:getConnectivityInfo(input, options)
         output_schema = types.GetConnectivityInfoOutput,
         http_method = "GET",
         http_path = "/greengrass/things/{ThingName}/connectivityInfo",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:getConnectorDefinition(input, options)
         output_schema = types.GetConnectorDefinitionOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/connectors/{ConnectorDefinitionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:getConnectorDefinitionVersion(input, options)
         output_schema = types.GetConnectorDefinitionVersionOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/connectors/{ConnectorDefinitionId}/versions/{ConnectorDefinitionVersionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:getCoreDefinition(input, options)
         output_schema = types.GetCoreDefinitionOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/cores/{CoreDefinitionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:getCoreDefinitionVersion(input, options)
         output_schema = types.GetCoreDefinitionVersionOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/cores/{CoreDefinitionId}/versions/{CoreDefinitionVersionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:getDeploymentStatus(input, options)
         output_schema = types.GetDeploymentStatusOutput,
         http_method = "GET",
         http_path = "/greengrass/groups/{GroupId}/deployments/{DeploymentId}/status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:getDeviceDefinition(input, options)
         output_schema = types.GetDeviceDefinitionOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/devices/{DeviceDefinitionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:getDeviceDefinitionVersion(input, options)
         output_schema = types.GetDeviceDefinitionVersionOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/devices/{DeviceDefinitionId}/versions/{DeviceDefinitionVersionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:getFunctionDefinition(input, options)
         output_schema = types.GetFunctionDefinitionOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/functions/{FunctionDefinitionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:getFunctionDefinitionVersion(input, options)
         output_schema = types.GetFunctionDefinitionVersionOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/functions/{FunctionDefinitionId}/versions/{FunctionDefinitionVersionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:getGroup(input, options)
         output_schema = types.GetGroupOutput,
         http_method = "GET",
         http_path = "/greengrass/groups/{GroupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:getGroupCertificateAuthority(input, options)
         output_schema = types.GetGroupCertificateAuthorityOutput,
         http_method = "GET",
         http_path = "/greengrass/groups/{GroupId}/certificateauthorities/{CertificateAuthorityId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:getGroupCertificateConfiguration(input, options)
         output_schema = types.GetGroupCertificateConfigurationOutput,
         http_method = "GET",
         http_path = "/greengrass/groups/{GroupId}/certificateauthorities/configuration/expiry",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:getGroupVersion(input, options)
         output_schema = types.GetGroupVersionOutput,
         http_method = "GET",
         http_path = "/greengrass/groups/{GroupId}/versions/{GroupVersionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:getLoggerDefinition(input, options)
         output_schema = types.GetLoggerDefinitionOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/loggers/{LoggerDefinitionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:getLoggerDefinitionVersion(input, options)
         output_schema = types.GetLoggerDefinitionVersionOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/loggers/{LoggerDefinitionId}/versions/{LoggerDefinitionVersionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:getResourceDefinition(input, options)
         output_schema = types.GetResourceDefinitionOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/resources/{ResourceDefinitionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:getResourceDefinitionVersion(input, options)
         output_schema = types.GetResourceDefinitionVersionOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/resources/{ResourceDefinitionId}/versions/{ResourceDefinitionVersionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:getServiceRoleForAccount(input, options)
         output_schema = types.GetServiceRoleForAccountOutput,
         http_method = "GET",
         http_path = "/greengrass/servicerole",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:getSubscriptionDefinition(input, options)
         output_schema = types.GetSubscriptionDefinitionOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/subscriptions/{SubscriptionDefinitionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:getSubscriptionDefinitionVersion(input, options)
         output_schema = types.GetSubscriptionDefinitionVersionOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/subscriptions/{SubscriptionDefinitionId}/versions/{SubscriptionDefinitionVersionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:getThingRuntimeConfiguration(input, options)
         output_schema = types.GetThingRuntimeConfigurationOutput,
         http_method = "GET",
         http_path = "/greengrass/things/{ThingName}/runtimeconfig",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:listBulkDeploymentDetailedReports(input, options)
         output_schema = types.ListBulkDeploymentDetailedReportsOutput,
         http_method = "GET",
         http_path = "/greengrass/bulk/deployments/{BulkDeploymentId}/detailed-reports",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:listBulkDeployments(input, options)
         output_schema = types.ListBulkDeploymentsOutput,
         http_method = "GET",
         http_path = "/greengrass/bulk/deployments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:listConnectorDefinitions(input, options)
         output_schema = types.ListConnectorDefinitionsOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/connectors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:listConnectorDefinitionVersions(input, options)
         output_schema = types.ListConnectorDefinitionVersionsOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/connectors/{ConnectorDefinitionId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:listCoreDefinitions(input, options)
         output_schema = types.ListCoreDefinitionsOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/cores",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:listCoreDefinitionVersions(input, options)
         output_schema = types.ListCoreDefinitionVersionsOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/cores/{CoreDefinitionId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:listDeployments(input, options)
         output_schema = types.ListDeploymentsOutput,
         http_method = "GET",
         http_path = "/greengrass/groups/{GroupId}/deployments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:listDeviceDefinitions(input, options)
         output_schema = types.ListDeviceDefinitionsOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/devices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:listDeviceDefinitionVersions(input, options)
         output_schema = types.ListDeviceDefinitionVersionsOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/devices/{DeviceDefinitionId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:listFunctionDefinitions(input, options)
         output_schema = types.ListFunctionDefinitionsOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/functions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:listFunctionDefinitionVersions(input, options)
         output_schema = types.ListFunctionDefinitionVersionsOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/functions/{FunctionDefinitionId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:listGroupCertificateAuthorities(input, options)
         output_schema = types.ListGroupCertificateAuthoritiesOutput,
         http_method = "GET",
         http_path = "/greengrass/groups/{GroupId}/certificateauthorities",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:listGroups(input, options)
         output_schema = types.ListGroupsOutput,
         http_method = "GET",
         http_path = "/greengrass/groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:listGroupVersions(input, options)
         output_schema = types.ListGroupVersionsOutput,
         http_method = "GET",
         http_path = "/greengrass/groups/{GroupId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:listLoggerDefinitions(input, options)
         output_schema = types.ListLoggerDefinitionsOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/loggers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:listLoggerDefinitionVersions(input, options)
         output_schema = types.ListLoggerDefinitionVersionsOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/loggers/{LoggerDefinitionId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:listResourceDefinitions(input, options)
         output_schema = types.ListResourceDefinitionsOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/resources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:listResourceDefinitionVersions(input, options)
         output_schema = types.ListResourceDefinitionVersionsOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/resources/{ResourceDefinitionId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:listSubscriptionDefinitions(input, options)
         output_schema = types.ListSubscriptionDefinitionsOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/subscriptions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:listSubscriptionDefinitionVersions(input, options)
         output_schema = types.ListSubscriptionDefinitionVersionsOutput,
         http_method = "GET",
         http_path = "/greengrass/definition/subscriptions/{SubscriptionDefinitionId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:resetDeployments(input, options)
         output_schema = types.ResetDeploymentsOutput,
         http_method = "POST",
         http_path = "/greengrass/groups/{GroupId}/deployments/$reset",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:startBulkDeployment(input, options)
         output_schema = types.StartBulkDeploymentOutput,
         http_method = "POST",
         http_path = "/greengrass/bulk/deployments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:stopBulkDeployment(input, options)
         output_schema = types.StopBulkDeploymentOutput,
         http_method = "PUT",
         http_path = "/greengrass/bulk/deployments/{BulkDeploymentId}/$stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:updateConnectivityInfo(input, options)
         output_schema = types.UpdateConnectivityInfoOutput,
         http_method = "PUT",
         http_path = "/greengrass/things/{ThingName}/connectivityInfo",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:updateConnectorDefinition(input, options)
         output_schema = types.UpdateConnectorDefinitionOutput,
         http_method = "PUT",
         http_path = "/greengrass/definition/connectors/{ConnectorDefinitionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:updateCoreDefinition(input, options)
         output_schema = types.UpdateCoreDefinitionOutput,
         http_method = "PUT",
         http_path = "/greengrass/definition/cores/{CoreDefinitionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:updateDeviceDefinition(input, options)
         output_schema = types.UpdateDeviceDefinitionOutput,
         http_method = "PUT",
         http_path = "/greengrass/definition/devices/{DeviceDefinitionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -890,6 +1158,9 @@ function Client:updateFunctionDefinition(input, options)
         output_schema = types.UpdateFunctionDefinitionOutput,
         http_method = "PUT",
         http_path = "/greengrass/definition/functions/{FunctionDefinitionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -900,6 +1171,9 @@ function Client:updateGroup(input, options)
         output_schema = types.UpdateGroupOutput,
         http_method = "PUT",
         http_path = "/greengrass/groups/{GroupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -910,6 +1184,9 @@ function Client:updateGroupCertificateConfiguration(input, options)
         output_schema = types.UpdateGroupCertificateConfigurationOutput,
         http_method = "PUT",
         http_path = "/greengrass/groups/{GroupId}/certificateauthorities/configuration/expiry",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -920,6 +1197,9 @@ function Client:updateLoggerDefinition(input, options)
         output_schema = types.UpdateLoggerDefinitionOutput,
         http_method = "PUT",
         http_path = "/greengrass/definition/loggers/{LoggerDefinitionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -930,6 +1210,9 @@ function Client:updateResourceDefinition(input, options)
         output_schema = types.UpdateResourceDefinitionOutput,
         http_method = "PUT",
         http_path = "/greengrass/definition/resources/{ResourceDefinitionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -940,6 +1223,9 @@ function Client:updateSubscriptionDefinition(input, options)
         output_schema = types.UpdateSubscriptionDefinitionOutput,
         http_method = "PUT",
         http_path = "/greengrass/definition/subscriptions/{SubscriptionDefinitionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -950,6 +1236,9 @@ function Client:updateThingRuntimeConfiguration(input, options)
         output_schema = types.UpdateThingRuntimeConfigurationOutput,
         http_method = "PUT",
         http_path = "/greengrass/things/{ThingName}/runtimeconfig",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

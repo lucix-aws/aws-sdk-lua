@@ -998,6 +998,7 @@ M.ExecuteGremlinExplainQueryOutput = {
             type = "blob",
             traits = {
                 http_payload = true,
+                media_type = "text/plain",
             },
         },
     },
@@ -1172,6 +1173,7 @@ M.ExecuteGremlinProfileQueryOutput = {
             type = "blob",
             traits = {
                 http_payload = true,
+                media_type = "text/plain",
             },
         },
     },

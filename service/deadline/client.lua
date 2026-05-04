@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "Deadline"
-    cfg.signing_name = "deadline"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "deadline", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateMemberToFarm(input, options)
         output_schema = types.AssociateMemberToFarmOutput,
         http_method = "PUT",
         http_path = "/2023-10-12/farms/{farmId}/members/{principalId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:associateMemberToFleet(input, options)
         output_schema = types.AssociateMemberToFleetOutput,
         http_method = "PUT",
         http_path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/members/{principalId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:associateMemberToJob(input, options)
         output_schema = types.AssociateMemberToJobOutput,
         http_method = "PUT",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/members/{principalId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:associateMemberToQueue(input, options)
         output_schema = types.AssociateMemberToQueueOutput,
         http_method = "PUT",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/members/{principalId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:assumeFleetRoleForRead(input, options)
         output_schema = types.AssumeFleetRoleForReadOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/read-roles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:assumeFleetRoleForWorker(input, options)
         output_schema = types.AssumeFleetRoleForWorkerOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/workers/{workerId}/fleet-roles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:assumeQueueRoleForRead(input, options)
         output_schema = types.AssumeQueueRoleForReadOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/read-roles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:assumeQueueRoleForUser(input, options)
         output_schema = types.AssumeQueueRoleForUserOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/user-roles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:assumeQueueRoleForWorker(input, options)
         output_schema = types.AssumeQueueRoleForWorkerOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/workers/{workerId}/queue-roles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:batchGetJob(input, options)
         output_schema = types.BatchGetJobOutput,
         http_method = "POST",
         http_path = "/2023-10-12/batch-get-job",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:batchGetJobEntity(input, options)
         output_schema = types.BatchGetJobEntityOutput,
         http_method = "POST",
         http_path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/workers/{workerId}/batchGetJobEntity",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:batchGetSession(input, options)
         output_schema = types.BatchGetSessionOutput,
         http_method = "POST",
         http_path = "/2023-10-12/batch-get-session",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:batchGetSessionAction(input, options)
         output_schema = types.BatchGetSessionActionOutput,
         http_method = "POST",
         http_path = "/2023-10-12/batch-get-session-action",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:batchGetStep(input, options)
         output_schema = types.BatchGetStepOutput,
         http_method = "POST",
         http_path = "/2023-10-12/batch-get-step",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:batchGetTask(input, options)
         output_schema = types.BatchGetTaskOutput,
         http_method = "POST",
         http_path = "/2023-10-12/batch-get-task",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:batchGetWorker(input, options)
         output_schema = types.BatchGetWorkerOutput,
         http_method = "POST",
         http_path = "/2023-10-12/batch-get-worker",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:batchUpdateJob(input, options)
         output_schema = types.BatchUpdateJobOutput,
         http_method = "PATCH",
         http_path = "/2023-10-12/batch-update-job",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:batchUpdateTask(input, options)
         output_schema = types.BatchUpdateTaskOutput,
         http_method = "PATCH",
         http_path = "/2023-10-12/batch-update-task",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:copyJobTemplate(input, options)
         output_schema = types.CopyJobTemplateOutput,
         http_method = "POST",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/template",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:createBudget(input, options)
         output_schema = types.CreateBudgetOutput,
         http_method = "POST",
         http_path = "/2023-10-12/farms/{farmId}/budgets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:createFarm(input, options)
         output_schema = types.CreateFarmOutput,
         http_method = "POST",
         http_path = "/2023-10-12/farms",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:createFleet(input, options)
         output_schema = types.CreateFleetOutput,
         http_method = "POST",
         http_path = "/2023-10-12/farms/{farmId}/fleets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:createJob(input, options)
         output_schema = types.CreateJobOutput,
         http_method = "POST",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:createLicenseEndpoint(input, options)
         output_schema = types.CreateLicenseEndpointOutput,
         http_method = "POST",
         http_path = "/2023-10-12/license-endpoints",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:createLimit(input, options)
         output_schema = types.CreateLimitOutput,
         http_method = "POST",
         http_path = "/2023-10-12/farms/{farmId}/limits",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:createMonitor(input, options)
         output_schema = types.CreateMonitorOutput,
         http_method = "POST",
         http_path = "/2023-10-12/monitors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:createQueue(input, options)
         output_schema = types.CreateQueueOutput,
         http_method = "POST",
         http_path = "/2023-10-12/farms/{farmId}/queues",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:createQueueEnvironment(input, options)
         output_schema = types.CreateQueueEnvironmentOutput,
         http_method = "POST",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/environments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:createQueueFleetAssociation(input, options)
         output_schema = types.CreateQueueFleetAssociationOutput,
         http_method = "PUT",
         http_path = "/2023-10-12/farms/{farmId}/queue-fleet-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:createQueueLimitAssociation(input, options)
         output_schema = types.CreateQueueLimitAssociationOutput,
         http_method = "PUT",
         http_path = "/2023-10-12/farms/{farmId}/queue-limit-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:createStorageProfile(input, options)
         output_schema = types.CreateStorageProfileOutput,
         http_method = "POST",
         http_path = "/2023-10-12/farms/{farmId}/storage-profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:createWorker(input, options)
         output_schema = types.CreateWorkerOutput,
         http_method = "POST",
         http_path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/workers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:deleteBudget(input, options)
         output_schema = types.DeleteBudgetOutput,
         http_method = "DELETE",
         http_path = "/2023-10-12/farms/{farmId}/budgets/{budgetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:deleteFarm(input, options)
         output_schema = types.DeleteFarmOutput,
         http_method = "DELETE",
         http_path = "/2023-10-12/farms/{farmId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:deleteFleet(input, options)
         output_schema = types.DeleteFleetOutput,
         http_method = "DELETE",
         http_path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:deleteLicenseEndpoint(input, options)
         output_schema = types.DeleteLicenseEndpointOutput,
         http_method = "DELETE",
         http_path = "/2023-10-12/license-endpoints/{licenseEndpointId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:deleteLimit(input, options)
         output_schema = types.DeleteLimitOutput,
         http_method = "DELETE",
         http_path = "/2023-10-12/farms/{farmId}/limits/{limitId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:deleteMeteredProduct(input, options)
         output_schema = types.DeleteMeteredProductOutput,
         http_method = "DELETE",
         http_path = "/2023-10-12/license-endpoints/{licenseEndpointId}/metered-products/{productId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:deleteMonitor(input, options)
         output_schema = types.DeleteMonitorOutput,
         http_method = "DELETE",
         http_path = "/2023-10-12/monitors/{monitorId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:deleteQueue(input, options)
         output_schema = types.DeleteQueueOutput,
         http_method = "DELETE",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:deleteQueueEnvironment(input, options)
         output_schema = types.DeleteQueueEnvironmentOutput,
         http_method = "DELETE",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/environments/{queueEnvironmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:deleteQueueFleetAssociation(input, options)
         output_schema = types.DeleteQueueFleetAssociationOutput,
         http_method = "DELETE",
         http_path = "/2023-10-12/farms/{farmId}/queue-fleet-associations/{queueId}/{fleetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:deleteQueueLimitAssociation(input, options)
         output_schema = types.DeleteQueueLimitAssociationOutput,
         http_method = "DELETE",
         http_path = "/2023-10-12/farms/{farmId}/queue-limit-associations/{queueId}/{limitId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:deleteStorageProfile(input, options)
         output_schema = types.DeleteStorageProfileOutput,
         http_method = "DELETE",
         http_path = "/2023-10-12/farms/{farmId}/storage-profiles/{storageProfileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:deleteWorker(input, options)
         output_schema = types.DeleteWorkerOutput,
         http_method = "DELETE",
         http_path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/workers/{workerId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:disassociateMemberFromFarm(input, options)
         output_schema = types.DisassociateMemberFromFarmOutput,
         http_method = "DELETE",
         http_path = "/2023-10-12/farms/{farmId}/members/{principalId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:disassociateMemberFromFleet(input, options)
         output_schema = types.DisassociateMemberFromFleetOutput,
         http_method = "DELETE",
         http_path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/members/{principalId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:disassociateMemberFromJob(input, options)
         output_schema = types.DisassociateMemberFromJobOutput,
         http_method = "DELETE",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/members/{principalId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:disassociateMemberFromQueue(input, options)
         output_schema = types.DisassociateMemberFromQueueOutput,
         http_method = "DELETE",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/members/{principalId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:getBudget(input, options)
         output_schema = types.GetBudgetOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/budgets/{budgetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:getFarm(input, options)
         output_schema = types.GetFarmOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:getFleet(input, options)
         output_schema = types.GetFleetOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:getJob(input, options)
         output_schema = types.GetJobOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:getLicenseEndpoint(input, options)
         output_schema = types.GetLicenseEndpointOutput,
         http_method = "GET",
         http_path = "/2023-10-12/license-endpoints/{licenseEndpointId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:getLimit(input, options)
         output_schema = types.GetLimitOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/limits/{limitId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:getMonitor(input, options)
         output_schema = types.GetMonitorOutput,
         http_method = "GET",
         http_path = "/2023-10-12/monitors/{monitorId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:getMonitorSettings(input, options)
         output_schema = types.GetMonitorSettingsOutput,
         http_method = "GET",
         http_path = "/2023-10-12/monitors/{monitorId}/settings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:getQueue(input, options)
         output_schema = types.GetQueueOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:getQueueEnvironment(input, options)
         output_schema = types.GetQueueEnvironmentOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/environments/{queueEnvironmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:getQueueFleetAssociation(input, options)
         output_schema = types.GetQueueFleetAssociationOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queue-fleet-associations/{queueId}/{fleetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:getQueueLimitAssociation(input, options)
         output_schema = types.GetQueueLimitAssociationOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queue-limit-associations/{queueId}/{limitId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:getSession(input, options)
         output_schema = types.GetSessionOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/sessions/{sessionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:getSessionAction(input, options)
         output_schema = types.GetSessionActionOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/session-actions/{sessionActionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:getSessionsStatisticsAggregation(input, options)
         output_schema = types.GetSessionsStatisticsAggregationOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/sessions-statistics-aggregation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:getStep(input, options)
         output_schema = types.GetStepOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/steps/{stepId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:getStorageProfile(input, options)
         output_schema = types.GetStorageProfileOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/storage-profiles/{storageProfileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:getStorageProfileForQueue(input, options)
         output_schema = types.GetStorageProfileForQueueOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/storage-profiles/{storageProfileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:getTask(input, options)
         output_schema = types.GetTaskOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/steps/{stepId}/tasks/{taskId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:getWorker(input, options)
         output_schema = types.GetWorkerOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/workers/{workerId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:listAvailableMeteredProducts(input, options)
         output_schema = types.ListAvailableMeteredProductsOutput,
         http_method = "GET",
         http_path = "/2023-10-12/metered-products",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:listBudgets(input, options)
         output_schema = types.ListBudgetsOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/budgets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:listFarmMembers(input, options)
         output_schema = types.ListFarmMembersOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/members",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:listFarms(input, options)
         output_schema = types.ListFarmsOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:listFleetMembers(input, options)
         output_schema = types.ListFleetMembersOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/members",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:listFleets(input, options)
         output_schema = types.ListFleetsOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/fleets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:listJobMembers(input, options)
         output_schema = types.ListJobMembersOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/members",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:listJobParameterDefinitions(input, options)
         output_schema = types.ListJobParameterDefinitionsOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/parameter-definitions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:listJobs(input, options)
         output_schema = types.ListJobsOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:listLicenseEndpoints(input, options)
         output_schema = types.ListLicenseEndpointsOutput,
         http_method = "GET",
         http_path = "/2023-10-12/license-endpoints",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:listLimits(input, options)
         output_schema = types.ListLimitsOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/limits",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:listMeteredProducts(input, options)
         output_schema = types.ListMeteredProductsOutput,
         http_method = "GET",
         http_path = "/2023-10-12/license-endpoints/{licenseEndpointId}/metered-products",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:listMonitors(input, options)
         output_schema = types.ListMonitorsOutput,
         http_method = "GET",
         http_path = "/2023-10-12/monitors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:listQueueEnvironments(input, options)
         output_schema = types.ListQueueEnvironmentsOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/environments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:listQueueFleetAssociations(input, options)
         output_schema = types.ListQueueFleetAssociationsOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queue-fleet-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:listQueueLimitAssociations(input, options)
         output_schema = types.ListQueueLimitAssociationsOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queue-limit-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -890,6 +1158,9 @@ function Client:listQueueMembers(input, options)
         output_schema = types.ListQueueMembersOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/members",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -900,6 +1171,9 @@ function Client:listQueues(input, options)
         output_schema = types.ListQueuesOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queues",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -910,6 +1184,9 @@ function Client:listSessionActions(input, options)
         output_schema = types.ListSessionActionsOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/session-actions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -920,6 +1197,9 @@ function Client:listSessions(input, options)
         output_schema = types.ListSessionsOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/sessions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -930,6 +1210,9 @@ function Client:listSessionsForWorker(input, options)
         output_schema = types.ListSessionsForWorkerOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/workers/{workerId}/sessions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -940,6 +1223,9 @@ function Client:listStepConsumers(input, options)
         output_schema = types.ListStepConsumersOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/steps/{stepId}/consumers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -950,6 +1236,9 @@ function Client:listStepDependencies(input, options)
         output_schema = types.ListStepDependenciesOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/steps/{stepId}/dependencies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -960,6 +1249,9 @@ function Client:listSteps(input, options)
         output_schema = types.ListStepsOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/steps",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -970,6 +1262,9 @@ function Client:listStorageProfiles(input, options)
         output_schema = types.ListStorageProfilesOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/storage-profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -980,6 +1275,9 @@ function Client:listStorageProfilesForQueue(input, options)
         output_schema = types.ListStorageProfilesForQueueOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/storage-profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -990,6 +1288,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/2023-10-12/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1000,6 +1301,9 @@ function Client:listTasks(input, options)
         output_schema = types.ListTasksOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/steps/{stepId}/tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1010,6 +1314,9 @@ function Client:listWorkers(input, options)
         output_schema = types.ListWorkersOutput,
         http_method = "GET",
         http_path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/workers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1020,6 +1327,9 @@ function Client:putMeteredProduct(input, options)
         output_schema = types.PutMeteredProductOutput,
         http_method = "PUT",
         http_path = "/2023-10-12/license-endpoints/{licenseEndpointId}/metered-products/{productId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1030,6 +1340,9 @@ function Client:searchJobs(input, options)
         output_schema = types.SearchJobsOutput,
         http_method = "POST",
         http_path = "/2023-10-12/farms/{farmId}/search/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1040,6 +1353,9 @@ function Client:searchSteps(input, options)
         output_schema = types.SearchStepsOutput,
         http_method = "POST",
         http_path = "/2023-10-12/farms/{farmId}/search/steps",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1050,6 +1366,9 @@ function Client:searchTasks(input, options)
         output_schema = types.SearchTasksOutput,
         http_method = "POST",
         http_path = "/2023-10-12/farms/{farmId}/search/tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1060,6 +1379,9 @@ function Client:searchWorkers(input, options)
         output_schema = types.SearchWorkersOutput,
         http_method = "POST",
         http_path = "/2023-10-12/farms/{farmId}/search/workers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1070,6 +1392,9 @@ function Client:startSessionsStatisticsAggregation(input, options)
         output_schema = types.StartSessionsStatisticsAggregationOutput,
         http_method = "POST",
         http_path = "/2023-10-12/farms/{farmId}/sessions-statistics-aggregation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1080,6 +1405,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/2023-10-12/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1090,6 +1418,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/2023-10-12/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1100,6 +1431,9 @@ function Client:updateBudget(input, options)
         output_schema = types.UpdateBudgetOutput,
         http_method = "PATCH",
         http_path = "/2023-10-12/farms/{farmId}/budgets/{budgetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1110,6 +1444,9 @@ function Client:updateFarm(input, options)
         output_schema = types.UpdateFarmOutput,
         http_method = "PATCH",
         http_path = "/2023-10-12/farms/{farmId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1120,6 +1457,9 @@ function Client:updateFleet(input, options)
         output_schema = types.UpdateFleetOutput,
         http_method = "PATCH",
         http_path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1130,6 +1470,9 @@ function Client:updateJob(input, options)
         output_schema = types.UpdateJobOutput,
         http_method = "PATCH",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1140,6 +1483,9 @@ function Client:updateLimit(input, options)
         output_schema = types.UpdateLimitOutput,
         http_method = "PATCH",
         http_path = "/2023-10-12/farms/{farmId}/limits/{limitId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1150,6 +1496,9 @@ function Client:updateMonitor(input, options)
         output_schema = types.UpdateMonitorOutput,
         http_method = "PATCH",
         http_path = "/2023-10-12/monitors/{monitorId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1160,6 +1509,9 @@ function Client:updateMonitorSettings(input, options)
         output_schema = types.UpdateMonitorSettingsOutput,
         http_method = "PATCH",
         http_path = "/2023-10-12/monitors/{monitorId}/settings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1170,6 +1522,9 @@ function Client:updateQueue(input, options)
         output_schema = types.UpdateQueueOutput,
         http_method = "PATCH",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1180,6 +1535,9 @@ function Client:updateQueueEnvironment(input, options)
         output_schema = types.UpdateQueueEnvironmentOutput,
         http_method = "PATCH",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/environments/{queueEnvironmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1190,6 +1548,9 @@ function Client:updateQueueFleetAssociation(input, options)
         output_schema = types.UpdateQueueFleetAssociationOutput,
         http_method = "PATCH",
         http_path = "/2023-10-12/farms/{farmId}/queue-fleet-associations/{queueId}/{fleetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1200,6 +1561,9 @@ function Client:updateQueueLimitAssociation(input, options)
         output_schema = types.UpdateQueueLimitAssociationOutput,
         http_method = "PATCH",
         http_path = "/2023-10-12/farms/{farmId}/queue-limit-associations/{queueId}/{limitId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1210,6 +1574,9 @@ function Client:updateSession(input, options)
         output_schema = types.UpdateSessionOutput,
         http_method = "PATCH",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/sessions/{sessionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1220,6 +1587,9 @@ function Client:updateStep(input, options)
         output_schema = types.UpdateStepOutput,
         http_method = "PATCH",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/steps/{stepId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1230,6 +1600,9 @@ function Client:updateStorageProfile(input, options)
         output_schema = types.UpdateStorageProfileOutput,
         http_method = "PATCH",
         http_path = "/2023-10-12/farms/{farmId}/storage-profiles/{storageProfileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1240,6 +1613,9 @@ function Client:updateTask(input, options)
         output_schema = types.UpdateTaskOutput,
         http_method = "PATCH",
         http_path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/steps/{stepId}/tasks/{taskId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1250,6 +1626,9 @@ function Client:updateWorker(input, options)
         output_schema = types.UpdateWorkerOutput,
         http_method = "PATCH",
         http_path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/workers/{workerId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1260,6 +1639,9 @@ function Client:updateWorkerSchedule(input, options)
         output_schema = types.UpdateWorkerScheduleOutput,
         http_method = "PATCH",
         http_path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/workers/{workerId}/schedule",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

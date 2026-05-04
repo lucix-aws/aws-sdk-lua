@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmplifyUIBuilder"
-    cfg.signing_name = "amplifyuibuilder"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "amplifyuibuilder", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createComponent(input, options)
         output_schema = types.CreateComponentOutput,
         http_method = "POST",
         http_path = "/app/{appId}/environment/{environmentName}/components",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createForm(input, options)
         output_schema = types.CreateFormOutput,
         http_method = "POST",
         http_path = "/app/{appId}/environment/{environmentName}/forms",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createTheme(input, options)
         output_schema = types.CreateThemeOutput,
         http_method = "POST",
         http_path = "/app/{appId}/environment/{environmentName}/themes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:deleteComponent(input, options)
         output_schema = types.DeleteComponentOutput,
         http_method = "DELETE",
         http_path = "/app/{appId}/environment/{environmentName}/components/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteForm(input, options)
         output_schema = types.DeleteFormOutput,
         http_method = "DELETE",
         http_path = "/app/{appId}/environment/{environmentName}/forms/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteTheme(input, options)
         output_schema = types.DeleteThemeOutput,
         http_method = "DELETE",
         http_path = "/app/{appId}/environment/{environmentName}/themes/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:exchangeCodeForToken(input, options)
         output_schema = types.ExchangeCodeForTokenOutput,
         http_method = "POST",
         http_path = "/tokens/{provider}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:exportComponents(input, options)
         output_schema = types.ExportComponentsOutput,
         http_method = "GET",
         http_path = "/export/app/{appId}/environment/{environmentName}/components",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:exportForms(input, options)
         output_schema = types.ExportFormsOutput,
         http_method = "GET",
         http_path = "/export/app/{appId}/environment/{environmentName}/forms",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:exportThemes(input, options)
         output_schema = types.ExportThemesOutput,
         http_method = "GET",
         http_path = "/export/app/{appId}/environment/{environmentName}/themes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getCodegenJob(input, options)
         output_schema = types.GetCodegenJobOutput,
         http_method = "GET",
         http_path = "/app/{appId}/environment/{environmentName}/codegen-jobs/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getComponent(input, options)
         output_schema = types.GetComponentOutput,
         http_method = "GET",
         http_path = "/app/{appId}/environment/{environmentName}/components/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getForm(input, options)
         output_schema = types.GetFormOutput,
         http_method = "GET",
         http_path = "/app/{appId}/environment/{environmentName}/forms/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getMetadata(input, options)
         output_schema = types.GetMetadataOutput,
         http_method = "GET",
         http_path = "/app/{appId}/environment/{environmentName}/metadata",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getTheme(input, options)
         output_schema = types.GetThemeOutput,
         http_method = "GET",
         http_path = "/app/{appId}/environment/{environmentName}/themes/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listCodegenJobs(input, options)
         output_schema = types.ListCodegenJobsOutput,
         http_method = "GET",
         http_path = "/app/{appId}/environment/{environmentName}/codegen-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listComponents(input, options)
         output_schema = types.ListComponentsOutput,
         http_method = "GET",
         http_path = "/app/{appId}/environment/{environmentName}/components",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listForms(input, options)
         output_schema = types.ListFormsOutput,
         http_method = "GET",
         http_path = "/app/{appId}/environment/{environmentName}/forms",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listThemes(input, options)
         output_schema = types.ListThemesOutput,
         http_method = "GET",
         http_path = "/app/{appId}/environment/{environmentName}/themes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:putMetadataFlag(input, options)
         output_schema = types.PutMetadataFlagOutput,
         http_method = "PUT",
         http_path = "/app/{appId}/environment/{environmentName}/metadata/features/{featureName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:refreshToken(input, options)
         output_schema = types.RefreshTokenOutput,
         http_method = "POST",
         http_path = "/tokens/{provider}/refresh",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:startCodegenJob(input, options)
         output_schema = types.StartCodegenJobOutput,
         http_method = "POST",
         http_path = "/app/{appId}/environment/{environmentName}/codegen-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:updateComponent(input, options)
         output_schema = types.UpdateComponentOutput,
         http_method = "PATCH",
         http_path = "/app/{appId}/environment/{environmentName}/components/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:updateForm(input, options)
         output_schema = types.UpdateFormOutput,
         http_method = "PATCH",
         http_path = "/app/{appId}/environment/{environmentName}/forms/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:updateTheme(input, options)
         output_schema = types.UpdateThemeOutput,
         http_method = "PATCH",
         http_path = "/app/{appId}/environment/{environmentName}/themes/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

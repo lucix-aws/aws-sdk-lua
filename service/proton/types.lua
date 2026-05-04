@@ -362,6 +362,9 @@ M.Component = {
         },
         serviceSpec = {
             type = "string",
+            traits = {
+                media_type = "application/yaml",
+            },
         },
         lastClientRequestToken = {
             type = "string",
@@ -474,6 +477,9 @@ M.Environment = {
         },
         spec = {
             type = "string",
+            traits = {
+                media_type = "application/yaml",
+            },
         },
         provisioning = {
             type = "string",
@@ -595,6 +601,9 @@ M.ServiceInstance = {
         },
         spec = {
             type = "string",
+            traits = {
+                media_type = "application/yaml",
+            },
         },
         lastClientRequestToken = {
             type = "string",
@@ -685,6 +694,9 @@ M.ServicePipeline = {
         },
         spec = {
             type = "string",
+            traits = {
+                media_type = "application/yaml",
+            },
         },
         lastAttemptedDeploymentId = {
             type = "string",
@@ -843,17 +855,22 @@ M.CreateComponentInput = {
         templateFile = {
             type = "string",
             traits = {
+                media_type = "application/yaml",
                 required = true,
             },
         },
         manifest = {
             type = "string",
             traits = {
+                media_type = "application/yaml",
                 required = true,
             },
         },
         serviceSpec = {
             type = "string",
+            traits = {
+                media_type = "application/yaml",
+            },
         },
         tags = {
             type = "list",
@@ -861,6 +878,9 @@ M.CreateComponentInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1056,12 +1076,21 @@ M.UpdateComponentInput = {
         },
         serviceSpec = {
             type = "string",
+            traits = {
+                media_type = "application/yaml",
+            },
         },
         templateFile = {
             type = "string",
+            traits = {
+                media_type = "application/yaml",
+            },
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1098,9 +1127,15 @@ M.ComponentState = {
         },
         serviceSpec = {
             type = "string",
+            traits = {
+                media_type = "application/yaml",
+            },
         },
         templateFile = {
             type = "string",
+            traits = {
+                media_type = "application/yaml",
+            },
         },
     },
 }
@@ -1110,6 +1145,9 @@ M.EnvironmentState = {
     members = {
         spec = {
             type = "string",
+            traits = {
+                media_type = "application/yaml",
+            },
         },
         templateName = {
             type = "string",
@@ -1138,6 +1176,7 @@ M.ServiceInstanceState = {
         spec = {
             type = "string",
             traits = {
+                media_type = "application/yaml",
                 required = true,
             },
         },
@@ -1177,6 +1216,9 @@ M.ServicePipelineState = {
     members = {
         spec = {
             type = "string",
+            traits = {
+                media_type = "application/yaml",
+            },
         },
         templateName = {
             type = "string",
@@ -1460,6 +1502,9 @@ M.CreateEnvironmentAccountConnectionInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         managementAccountId = {
             type = "string",
@@ -1793,6 +1838,7 @@ M.CreateEnvironmentInput = {
         spec = {
             type = "string",
             traits = {
+                media_type = "application/yaml",
                 required = true,
             },
         },
@@ -2023,6 +2069,9 @@ M.UpdateEnvironmentInput = {
         },
         spec = {
             type = "string",
+            traits = {
+                media_type = "application/yaml",
+            },
         },
         templateMajorVersion = {
             type = "string",
@@ -2310,6 +2359,9 @@ M.CreateEnvironmentTemplateVersionInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         templateName = {
             type = "string",
@@ -2396,6 +2448,9 @@ M.EnvironmentTemplateVersion = {
         },
         schema = {
             type = "string",
+            traits = {
+                media_type = "application/yaml",
+            },
         },
     },
 }
@@ -3357,6 +3412,7 @@ M.CreateServiceInstanceInput = {
         spec = {
             type = "string",
             traits = {
+                media_type = "application/yaml",
                 required = true,
             },
         },
@@ -3372,6 +3428,9 @@ M.CreateServiceInstanceInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3597,6 +3656,9 @@ M.UpdateServiceInstanceInput = {
         },
         spec = {
             type = "string",
+            traits = {
+                media_type = "application/yaml",
+            },
         },
         templateMajorVersion = {
             type = "string",
@@ -3606,6 +3668,9 @@ M.UpdateServiceInstanceInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3696,6 +3761,7 @@ M.UpdateServicePipelineInput = {
         spec = {
             type = "string",
             traits = {
+                media_type = "application/yaml",
                 required = true,
             },
         },
@@ -3753,6 +3819,7 @@ M.CreateServiceInput = {
         spec = {
             type = "string",
             traits = {
+                media_type = "application/yaml",
                 required = true,
             },
         },
@@ -3837,6 +3904,7 @@ M.Service = {
         spec = {
             type = "string",
             traits = {
+                media_type = "application/yaml",
                 required = true,
             },
         },
@@ -3990,6 +4058,9 @@ M.UpdateServiceInput = {
         },
         spec = {
             type = "string",
+            traits = {
+                media_type = "application/yaml",
+            },
         },
     },
 }
@@ -4559,6 +4630,9 @@ M.CreateServiceTemplateVersionInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         templateName = {
             type = "string",
@@ -4674,6 +4748,9 @@ M.ServiceTemplateVersion = {
         },
         schema = {
             type = "string",
+            traits = {
+                media_type = "application/yaml",
+            },
         },
         supportedComponentSources = {
             type = "list",

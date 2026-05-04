@@ -1539,9 +1539,9 @@ local type NetworkType = "ipv4" | "ipv6" | "dual_stack"
 
 local type UpdateStrategy = "coordinated" | "uncoordinated"
 
-local type IpDiscovery = "ipv4" | "ipv6"
-
 local type SourceType = "node" | "parameter-group" | "subnet-group" | "cluster" | "user" | "acl"
+
+local type IpDiscovery = "ipv4" | "ipv6"
 
 local record M
     BatchUpdateClusterInput: BatchUpdateClusterInput

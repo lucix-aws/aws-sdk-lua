@@ -39,6 +39,9 @@ M.DatasetSchema = {
     members = {
         InlineDataSchema = {
             type = "string",
+            traits = {
+                media_type = "application/json",
+            },
         },
     },
 }
@@ -77,6 +80,7 @@ M.CreateDatasetInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -276,6 +280,7 @@ M.CreateInferenceSchedulerInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -375,6 +380,7 @@ M.CreateLabelInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -406,6 +412,7 @@ M.CreateLabelGroupInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -523,6 +530,7 @@ M.CreateModelInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -610,6 +618,7 @@ M.CreateRetrainingSchedulerInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1033,6 +1042,9 @@ M.DescribeDatasetOutput = {
         },
         Schema = {
             type = "string",
+            traits = {
+                media_type = "application/json",
+            },
         },
         ServerSideKmsKeyId = {
             type = "string",
@@ -1241,6 +1253,9 @@ M.DescribeModelOutput = {
         },
         Schema = {
             type = "string",
+            traits = {
+                media_type = "application/json",
+            },
         },
         LabelsInputConfiguration = M.LabelsInputConfiguration,
         TrainingDataStartTime = {
@@ -1273,6 +1288,9 @@ M.DescribeModelOutput = {
         },
         ModelMetrics = {
             type = "string",
+            traits = {
+                media_type = "application/json",
+            },
         },
         LastUpdatedTime = {
             type = "timestamp",
@@ -1315,6 +1333,9 @@ M.DescribeModelOutput = {
         },
         PriorModelMetrics = {
             type = "string",
+            traits = {
+                media_type = "application/json",
+            },
         },
         LatestScheduledRetrainingFailedReason = {
             type = "string",
@@ -1567,6 +1588,7 @@ M.ImportDatasetInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1626,6 +1648,7 @@ M.ImportModelVersionInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -2519,6 +2542,7 @@ M.PutResourcePolicyInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -2558,6 +2582,7 @@ M.StartDataIngestionJobInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },

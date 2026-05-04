@@ -1251,6 +1251,7 @@ M.StartSigningJobInput = {
         clientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },

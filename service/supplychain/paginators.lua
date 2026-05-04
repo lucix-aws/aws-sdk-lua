@@ -1,0 +1,113 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listDataIntegrationEvents.
+function M.pages_list_data_integration_events(client, input)
+    return paginator.pages(client, "listDataIntegrationEvents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "events",
+    })
+end
+
+--- Returns an item iterator for listDataIntegrationEvents.
+function M.items_list_data_integration_events(client, input)
+    return paginator.items(client, "listDataIntegrationEvents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "events",
+    })
+end
+
+--- Returns a page iterator for listDataIntegrationFlowExecutions.
+function M.pages_list_data_integration_flow_executions(client, input)
+    return paginator.pages(client, "listDataIntegrationFlowExecutions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "flowExecutions",
+    })
+end
+
+--- Returns an item iterator for listDataIntegrationFlowExecutions.
+function M.items_list_data_integration_flow_executions(client, input)
+    return paginator.items(client, "listDataIntegrationFlowExecutions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "flowExecutions",
+    })
+end
+
+--- Returns a page iterator for listDataIntegrationFlows.
+function M.pages_list_data_integration_flows(client, input)
+    return paginator.pages(client, "listDataIntegrationFlows", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "flows",
+    })
+end
+
+--- Returns an item iterator for listDataIntegrationFlows.
+function M.items_list_data_integration_flows(client, input)
+    return paginator.items(client, "listDataIntegrationFlows", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "flows",
+    })
+end
+
+--- Returns a page iterator for listDataLakeDatasets.
+function M.pages_list_data_lake_datasets(client, input)
+    return paginator.pages(client, "listDataLakeDatasets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "datasets",
+    })
+end
+
+--- Returns an item iterator for listDataLakeDatasets.
+function M.items_list_data_lake_datasets(client, input)
+    return paginator.items(client, "listDataLakeDatasets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "datasets",
+    })
+end
+
+--- Returns a page iterator for listDataLakeNamespaces.
+function M.pages_list_data_lake_namespaces(client, input)
+    return paginator.pages(client, "listDataLakeNamespaces", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "namespaces",
+    })
+end
+
+--- Returns an item iterator for listDataLakeNamespaces.
+function M.items_list_data_lake_namespaces(client, input)
+    return paginator.items(client, "listDataLakeNamespaces", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "namespaces",
+    })
+end
+
+--- Returns a page iterator for listInstances.
+function M.pages_list_instances(client, input)
+    return paginator.pages(client, "listInstances", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "instances",
+    })
+end
+
+--- Returns an item iterator for listInstances.
+function M.items_list_instances(client, input)
+    return paginator.items(client, "listInstances", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "instances",
+    })
+end
+
+return M

@@ -1,0 +1,262 @@
+-- Generated endpoint ruleset tests — do not edit
+
+package.path = "runtime/?.lua;runtime/?/init.lua;" .. package.path
+
+local endpoint = require("endpoint")
+local ruleset = require("cloudfrontkeyvaluestore.endpoint_rules")
+
+local pass_count = 0
+local fail_count = 0
+
+local function test(name, fn)
+    local ok, err = pcall(fn)
+    if ok then
+        pass_count = pass_count + 1
+        print("PASS: " .. name)
+    else
+        fail_count = fail_count + 1
+        print("FAIL: " .. name .. "\n  " .. tostring(err))
+    end
+end
+
+local function assert_eq(a, b, msg)
+    if a ~= b then
+        error((msg or "assert_eq") .. ": expected " .. tostring(b) .. ", got " .. tostring(a), 2)
+    end
+end
+
+test("FIPS should error", function()
+    local params = {
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid Configuration: FIPS is not supported with CloudFront-KeyValueStore.", "error message")
+end)
+
+test("KVS ARN must be provided to use this service", function()
+    local params = {}
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "KVS ARN must be provided to use this service", "error message")
+end)
+
+test("KVS ARN must be a valid ARN", function()
+    local params = {
+        KvsARN = "not-a-valid-arn",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "KVS ARN must be a valid ARN", "error message")
+end)
+
+test("Provided ARN was not a valid CloudFront Service ARN. Found: `notcloudfront`", function()
+    local params = {
+        KvsARN = "arn:aws:notcloudfront::123456789012:key-value-store/my-first-kvs-e10b1dce4f394248811e77167e0451ba",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Provided ARN is not a valid CloudFront Service ARN. Found: `notcloudfront`", "error message")
+end)
+
+test("Provided ARN must be a global resource ARN. Found: `us-west-2`", function()
+    local params = {
+        KvsARN = "arn:aws:cloudfront:us-west-2:123456789012:key-value-store/my-first-kvs-e10b1dce4f394248811e77167e0451ba",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Provided ARN must be a global resource ARN. Found: `us-west-2`", "error message")
+end)
+
+test("ARN resource type is invalid. Expected `key-value-store`, found: `some-other-resource-type`", function()
+    local params = {
+        KvsARN = "arn:aws:cloudfront::123456789012:some-other-resource-type/my-first-kvs-e10b1dce4f394248811e77167e0451ba",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "ARN resource type is invalid. Expected `key-value-store`, found: `some-other-resource-type`", "error message")
+end)
+
+test("CloudFront-KeyValueStore is not supported in partition `aws-cn`", function()
+    local params = {
+        KvsARN = "arn:aws-cn:cloudfront::123456789012:key-value-store/my-first-kvs-e10b1dce4f394248811e77167e0451ba",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "CloudFront-KeyValueStore is not supported in partition `aws-cn`", "error message")
+end)
+
+test("CloudFront-KeyValueStore is not supported in partition `aws-us-gov`", function()
+    local params = {
+        KvsARN = "arn:aws-us-gov:cloudfront::123456789012:key-value-store/my-first-kvs-e10b1dce4f394248811e77167e0451ba",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "CloudFront-KeyValueStore is not supported in partition `aws-us-gov`", "error message")
+end)
+
+test("Valid account based endpoint", function()
+    local params = {
+        KvsARN = "arn:aws:cloudfront::123456789012:key-value-store/my-first-kvs-e10b1dce4f394248811e77167e0451ba",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://123456789012.cloudfront-kvs.global.api.aws", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        signingName = "cloudfront-keyvaluestore",
+        name = "sigv4a",
+        signingRegionSet = {
+        "*",
+    },
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Valid account based endpoint, with SDK region", function()
+    local params = {
+        KvsARN = "arn:aws:cloudfront::123456789012:key-value-store/my-first-kvs-e10b1dce4f394248811e77167e0451ba",
+        Region = "us-west-2",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://123456789012.cloudfront-kvs.global.api.aws", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        signingName = "cloudfront-keyvaluestore",
+        name = "sigv4a",
+        signingRegionSet = {
+        "*",
+    },
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Valid ARN, different partition, should error", function()
+    local params = {
+        KvsARN = "arn:aws:cloudfront::123456789012:key-value-store/my-first-kvs-e10b1dce4f394248811e77167e0451ba",
+        Region = "cn-north-1",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Client was configured for partition `aws-cn` but Kvs ARN has `aws`", "error message")
+end)
+
+test("Valid account based endpoint with FIPS, should error", function()
+    local params = {
+        KvsARN = "arn:aws:cloudfront::123456789012:key-value-store/my-first-kvs-e10b1dce4f394248811e77167e0451ba",
+        Region = "us-east-1",
+        UseFIPS = true,
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Invalid Configuration: FIPS is not supported with CloudFront-KeyValueStore.", "error message")
+end)
+
+test("Custom sdk endpoint override", function()
+    local params = {
+        KvsARN = "arn:aws:cloudfront::123456789012:key-value-store/my-first-kvs-e10b1dce4f394248811e77167e0451ba",
+        Region = "us-east-1",
+        Endpoint = "https://my-override.example.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "https://123456789012.my-override.example.com", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        signingName = "cloudfront-keyvaluestore",
+        name = "sigv4a",
+        signingRegionSet = {
+        "*",
+    },
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Custom sdk endpoint override with path and http", function()
+    local params = {
+        KvsARN = "arn:aws:cloudfront::123456789012:key-value-store/my-first-kvs-e10b1dce4f394248811e77167e0451ba",
+        Endpoint = "http://my-override.example.com/custom-path",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result ~= nil, "expected endpoint but got error: " .. tostring(err))
+    assert_eq(result.url, "http://123456789012.my-override.example.com/custom-path", "url")
+    assert(result.properties ~= nil, "missing properties")
+    local expected_props = {
+        authSchemes = {
+        {
+        signingName = "cloudfront-keyvaluestore",
+        name = "sigv4a",
+        signingRegionSet = {
+        "*",
+    },
+    },
+    },
+    }
+    local function deep_eq(a, b)
+        if type(a) ~= type(b) then return false end
+        if type(a) ~= "table" then return a == b end
+        for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+        for k, _ in pairs(b) do if a[k] == nil then return false end end
+        return true
+    end
+    assert(deep_eq(result.properties, expected_props), "properties mismatch")
+end)
+
+test("Custom override with different partition should error", function()
+    local params = {
+        KvsARN = "arn:aws:cloudfront::123456789012:key-value-store/my-first-kvs-e10b1dce4f394248811e77167e0451ba",
+        Region = "us-gov-east-1",
+        Endpoint = "https://my-override.example.com",
+    }
+    local result, err = endpoint.resolve(ruleset, params)
+    assert(result == nil, "expected error but got result")
+    assert(err ~= nil, "expected error but got nil")
+    assert_eq(err, "Client was configured for partition `aws-us-gov` but Kvs ARN has `aws`", "error message")
+end)
+
+print(string.format("\n%d passed, %d failed", pass_count, fail_count))
+if fail_count > 0 then os.exit(1) end

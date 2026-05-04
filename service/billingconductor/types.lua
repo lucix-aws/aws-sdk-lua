@@ -406,6 +406,7 @@ M.CreateBillingGroupInput = {
             type = "string",
             traits = {
                 http_header = "X-Amzn-Client-Token",
+                idempotency_token = true,
             },
         },
         Name = {
@@ -935,6 +936,7 @@ M.CreateCustomLineItemInput = {
             type = "string",
             traits = {
                 http_header = "X-Amzn-Client-Token",
+                idempotency_token = true,
             },
         },
         Name = {
@@ -1643,6 +1645,7 @@ M.CreatePricingPlanInput = {
             type = "string",
             traits = {
                 http_header = "X-Amzn-Client-Token",
+                idempotency_token = true,
             },
         },
         Name = {
@@ -1925,6 +1928,7 @@ M.CreatePricingRuleInput = {
             type = "string",
             traits = {
                 http_header = "X-Amzn-Client-Token",
+                idempotency_token = true,
             },
         },
         Name = {

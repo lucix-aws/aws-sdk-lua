@@ -680,9 +680,9 @@ local record TooManyRequestsException
     code: string
 end
 
-local type SigningProfileStatus = "Active" | "Canceled" | "Revoked"
-
 local type Category = "AWSIoT"
+
+local type SigningProfileStatus = "Active" | "Canceled" | "Revoked"
 
 local type SigningStatus = "InProgress" | "Failed" | "Succeeded"
 

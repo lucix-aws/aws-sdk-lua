@@ -1453,6 +1453,7 @@ M.AssociateSbomWithPackageVersionInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -2473,6 +2474,7 @@ M.CreateAuditSuppressionInput = {
         clientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -2671,6 +2673,9 @@ M.CreateCertificateProviderInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "list",
@@ -2943,6 +2948,7 @@ M.CreateCustomMetricInput = {
         clientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -2995,6 +3001,7 @@ M.CreateDimensionInput = {
         clientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -4117,6 +4124,7 @@ M.CreatePackageInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -4182,6 +4190,7 @@ M.CreatePackageVersionInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -5489,6 +5498,7 @@ M.DeletePackageInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -5519,6 +5529,7 @@ M.DeletePackageVersionInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -7920,6 +7931,7 @@ M.DisassociateSbomFromPackageVersionInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -13237,6 +13249,7 @@ M.StartAuditMitigationActionsTaskInput = {
         clientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -13292,6 +13305,7 @@ M.StartDetectMitigationActionsTaskInput = {
         clientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -14216,6 +14230,7 @@ M.UpdatePackageInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -14233,6 +14248,7 @@ M.UpdatePackageConfigurationInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -14283,6 +14299,7 @@ M.UpdatePackageVersionInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },

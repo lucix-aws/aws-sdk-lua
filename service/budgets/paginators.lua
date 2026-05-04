@@ -1,0 +1,139 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for describeBudgetActionHistories.
+function M.pages_describe_budget_action_histories(client, input)
+    return paginator.pages(client, "describeBudgetActionHistories", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ActionHistories",
+    })
+end
+
+--- Returns an item iterator for describeBudgetActionHistories.
+function M.items_describe_budget_action_histories(client, input)
+    return paginator.items(client, "describeBudgetActionHistories", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ActionHistories",
+    })
+end
+
+--- Returns a page iterator for describeBudgetActionsForAccount.
+function M.pages_describe_budget_actions_for_account(client, input)
+    return paginator.pages(client, "describeBudgetActionsForAccount", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Actions",
+    })
+end
+
+--- Returns an item iterator for describeBudgetActionsForAccount.
+function M.items_describe_budget_actions_for_account(client, input)
+    return paginator.items(client, "describeBudgetActionsForAccount", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Actions",
+    })
+end
+
+--- Returns a page iterator for describeBudgetActionsForBudget.
+function M.pages_describe_budget_actions_for_budget(client, input)
+    return paginator.pages(client, "describeBudgetActionsForBudget", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Actions",
+    })
+end
+
+--- Returns an item iterator for describeBudgetActionsForBudget.
+function M.items_describe_budget_actions_for_budget(client, input)
+    return paginator.items(client, "describeBudgetActionsForBudget", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Actions",
+    })
+end
+
+--- Returns a page iterator for describeBudgetNotificationsForAccount.
+function M.pages_describe_budget_notifications_for_account(client, input)
+    return paginator.pages(client, "describeBudgetNotificationsForAccount", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BudgetNotificationsForAccount",
+    })
+end
+
+--- Returns an item iterator for describeBudgetNotificationsForAccount.
+function M.items_describe_budget_notifications_for_account(client, input)
+    return paginator.items(client, "describeBudgetNotificationsForAccount", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BudgetNotificationsForAccount",
+    })
+end
+
+--- Returns a page iterator for describeBudgetPerformanceHistory.
+function M.pages_describe_budget_performance_history(client, input)
+    return paginator.pages(client, "describeBudgetPerformanceHistory", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for describeBudgets.
+function M.pages_describe_budgets(client, input)
+    return paginator.pages(client, "describeBudgets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Budgets",
+    })
+end
+
+--- Returns an item iterator for describeBudgets.
+function M.items_describe_budgets(client, input)
+    return paginator.items(client, "describeBudgets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Budgets",
+    })
+end
+
+--- Returns a page iterator for describeNotificationsForBudget.
+function M.pages_describe_notifications_for_budget(client, input)
+    return paginator.pages(client, "describeNotificationsForBudget", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Notifications",
+    })
+end
+
+--- Returns an item iterator for describeNotificationsForBudget.
+function M.items_describe_notifications_for_budget(client, input)
+    return paginator.items(client, "describeNotificationsForBudget", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Notifications",
+    })
+end
+
+--- Returns a page iterator for describeSubscribersForNotification.
+function M.pages_describe_subscribers_for_notification(client, input)
+    return paginator.pages(client, "describeSubscribersForNotification", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Subscribers",
+    })
+end
+
+--- Returns an item iterator for describeSubscribersForNotification.
+function M.items_describe_subscribers_for_notification(client, input)
+    return paginator.items(client, "describeSubscribersForNotification", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Subscribers",
+    })
+end
+
+return M

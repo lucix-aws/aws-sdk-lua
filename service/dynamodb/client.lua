@@ -16,16 +16,29 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "DynamoDB_20120810"
-    cfg.signing_name = "dynamodb"
     if not cfg.protocol then
-        cfg.protocol = awsjson_protocol.new({ version = "1.0", service_id = cfg.service_id })
+        cfg.protocol = awsjson_protocol.new("1.0")
     end
     if not cfg.endpoint_provider then
         cfg.endpoint_provider = function(params)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "dynamodb", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:batchExecuteStatement(input, options)
         output_schema = types.BatchExecuteStatementOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchGetItem(input, options)
         output_schema = types.BatchGetItemOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchWriteItem(input, options)
         output_schema = types.BatchWriteItemOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createBackup(input, options)
         output_schema = types.CreateBackupOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -83,6 +108,9 @@ function Client:createGlobalTable(input, options)
         output_schema = types.CreateGlobalTableOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "GlobalTableName",
         },
@@ -96,6 +124,9 @@ function Client:createTable(input, options)
         output_schema = types.CreateTableOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -109,6 +140,9 @@ function Client:deleteBackup(input, options)
         output_schema = types.DeleteBackupOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "BackupArn",
         },
@@ -122,6 +156,9 @@ function Client:deleteItem(input, options)
         output_schema = types.DeleteItemOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -135,6 +172,9 @@ function Client:deleteResourcePolicy(input, options)
         output_schema = types.DeleteResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "ResourceArn",
         },
@@ -148,6 +188,9 @@ function Client:deleteTable(input, options)
         output_schema = types.DeleteTableOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -161,6 +204,9 @@ function Client:describeBackup(input, options)
         output_schema = types.DescribeBackupOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "BackupArn",
         },
@@ -174,6 +220,9 @@ function Client:describeContinuousBackups(input, options)
         output_schema = types.DescribeContinuousBackupsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -187,6 +236,9 @@ function Client:describeContributorInsights(input, options)
         output_schema = types.DescribeContributorInsightsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -200,6 +252,9 @@ function Client:describeEndpoints(input, options)
         output_schema = types.DescribeEndpointsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +265,9 @@ function Client:describeExport(input, options)
         output_schema = types.DescribeExportOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "ExportArn",
         },
@@ -223,6 +281,9 @@ function Client:describeGlobalTable(input, options)
         output_schema = types.DescribeGlobalTableOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "GlobalTableName",
         },
@@ -236,6 +297,9 @@ function Client:describeGlobalTableSettings(input, options)
         output_schema = types.DescribeGlobalTableSettingsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "GlobalTableName",
         },
@@ -249,6 +313,9 @@ function Client:describeImport(input, options)
         output_schema = types.DescribeImportOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "ImportArn",
         },
@@ -262,6 +329,9 @@ function Client:describeKinesisStreamingDestination(input, options)
         output_schema = types.DescribeKinesisStreamingDestinationOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -275,6 +345,9 @@ function Client:describeLimits(input, options)
         output_schema = types.DescribeLimitsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -285,6 +358,9 @@ function Client:describeTable(input, options)
         output_schema = types.DescribeTableOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -298,6 +374,9 @@ function Client:describeTableReplicaAutoScaling(input, options)
         output_schema = types.DescribeTableReplicaAutoScalingOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -311,6 +390,9 @@ function Client:describeTimeToLive(input, options)
         output_schema = types.DescribeTimeToLiveOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -324,6 +406,9 @@ function Client:disableKinesisStreamingDestination(input, options)
         output_schema = types.DisableKinesisStreamingDestinationOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -337,6 +422,9 @@ function Client:enableKinesisStreamingDestination(input, options)
         output_schema = types.EnableKinesisStreamingDestinationOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -350,6 +438,9 @@ function Client:executeStatement(input, options)
         output_schema = types.ExecuteStatementOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +451,9 @@ function Client:executeTransaction(input, options)
         output_schema = types.ExecuteTransactionOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +464,9 @@ function Client:exportTableToPointInTime(input, options)
         output_schema = types.ExportTableToPointInTimeOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableArn",
         },
@@ -383,6 +480,9 @@ function Client:getItem(input, options)
         output_schema = types.GetItemOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -396,6 +496,9 @@ function Client:getResourcePolicy(input, options)
         output_schema = types.GetResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "ResourceArn",
         },
@@ -409,6 +512,9 @@ function Client:importTable(input, options)
         output_schema = types.ImportTableOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -419,6 +525,9 @@ function Client:listBackups(input, options)
         output_schema = types.ListBackupsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -432,6 +541,9 @@ function Client:listContributorInsights(input, options)
         output_schema = types.ListContributorInsightsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -445,6 +557,9 @@ function Client:listExports(input, options)
         output_schema = types.ListExportsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableArn",
         },
@@ -458,6 +573,9 @@ function Client:listGlobalTables(input, options)
         output_schema = types.ListGlobalTablesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -468,6 +586,9 @@ function Client:listImports(input, options)
         output_schema = types.ListImportsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableArn",
         },
@@ -481,6 +602,9 @@ function Client:listTables(input, options)
         output_schema = types.ListTablesOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -491,6 +615,9 @@ function Client:listTagsOfResource(input, options)
         output_schema = types.ListTagsOfResourceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "ResourceArn",
         },
@@ -504,6 +631,9 @@ function Client:putItem(input, options)
         output_schema = types.PutItemOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -517,6 +647,9 @@ function Client:putResourcePolicy(input, options)
         output_schema = types.PutResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "ResourceArn",
         },
@@ -530,6 +663,9 @@ function Client:query(input, options)
         output_schema = types.QueryOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -543,6 +679,9 @@ function Client:restoreTableFromBackup(input, options)
         output_schema = types.RestoreTableFromBackupOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TargetTableName",
         },
@@ -556,6 +695,9 @@ function Client:restoreTableToPointInTime(input, options)
         output_schema = types.RestoreTableToPointInTimeOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TargetTableName",
         },
@@ -569,6 +711,9 @@ function Client:scan(input, options)
         output_schema = types.ScanOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -582,6 +727,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "ResourceArn",
         },
@@ -595,6 +743,9 @@ function Client:transactGetItems(input, options)
         output_schema = types.TransactGetItemsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -605,6 +756,9 @@ function Client:transactWriteItems(input, options)
         output_schema = types.TransactWriteItemsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -615,6 +769,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "ResourceArn",
         },
@@ -628,6 +785,9 @@ function Client:updateContinuousBackups(input, options)
         output_schema = types.UpdateContinuousBackupsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -641,6 +801,9 @@ function Client:updateContributorInsights(input, options)
         output_schema = types.UpdateContributorInsightsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -654,6 +817,9 @@ function Client:updateGlobalTable(input, options)
         output_schema = types.UpdateGlobalTableOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "GlobalTableName",
         },
@@ -667,6 +833,9 @@ function Client:updateGlobalTableSettings(input, options)
         output_schema = types.UpdateGlobalTableSettingsOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "GlobalTableName",
         },
@@ -680,6 +849,9 @@ function Client:updateItem(input, options)
         output_schema = types.UpdateItemOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -693,6 +865,9 @@ function Client:updateKinesisStreamingDestination(input, options)
         output_schema = types.UpdateKinesisStreamingDestinationOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -706,6 +881,9 @@ function Client:updateTable(input, options)
         output_schema = types.UpdateTableOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -719,6 +897,9 @@ function Client:updateTableReplicaAutoScaling(input, options)
         output_schema = types.UpdateTableReplicaAutoScalingOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },
@@ -732,6 +913,9 @@ function Client:updateTimeToLive(input, options)
         output_schema = types.UpdateTimeToLiveOutput,
         http_method = "POST",
         http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             ResourceArn = "TableName",
         },

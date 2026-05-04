@@ -1619,6 +1619,7 @@ M.CreateApplicationInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1681,6 +1682,7 @@ M.UpdateApplicationInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1949,6 +1951,7 @@ M.StartJobRunInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1995,6 +1998,7 @@ M.StartSessionInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },

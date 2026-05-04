@@ -1,0 +1,12 @@
+local record M
+    pages_list_crls: function(client: table, input: table): function(): table, table
+    items_list_crls: function(client: table, input: table): function(): any
+    pages_list_profiles: function(client: table, input: table): function(): table, table
+    items_list_profiles: function(client: table, input: table): function(): any
+    pages_list_subjects: function(client: table, input: table): function(): table, table
+    items_list_subjects: function(client: table, input: table): function(): any
+    pages_list_trust_anchors: function(client: table, input: table): function(): table, table
+    items_list_trust_anchors: function(client: table, input: table): function(): any
+end
+
+return M

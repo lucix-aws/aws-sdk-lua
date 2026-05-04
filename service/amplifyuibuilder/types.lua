@@ -641,6 +641,7 @@ M.StartCodegenJobInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
         codegenJobToCreate = setmetatable({ traits = {
@@ -2091,6 +2092,7 @@ M.CreateThemeInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
         themeToCreate = setmetatable({ traits = {
@@ -2146,6 +2148,7 @@ M.UpdateThemeInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
         updatedTheme = setmetatable({ traits = {
@@ -2449,6 +2452,7 @@ M.CreateFormInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
         formToCreate = setmetatable({ traits = {
@@ -2504,6 +2508,7 @@ M.UpdateFormInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
         updatedForm = setmetatable({ traits = {
@@ -2864,6 +2869,7 @@ M.CreateComponentInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
         componentToCreate = setmetatable({ traits = {
@@ -2919,6 +2925,7 @@ M.UpdateComponentInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
         updatedComponent = setmetatable({ traits = {

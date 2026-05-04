@@ -1,0 +1,12 @@
+local record M
+    pages_describe_services: function(client: table, input: table): function(): table, table
+    items_describe_services: function(client: table, input: table): function(): any
+    pages_get_attribute_values: function(client: table, input: table): function(): table, table
+    items_get_attribute_values: function(client: table, input: table): function(): any
+    pages_get_products: function(client: table, input: table): function(): table, table
+    items_get_products: function(client: table, input: table): function(): any
+    pages_list_price_lists: function(client: table, input: table): function(): table, table
+    items_list_price_lists: function(client: table, input: table): function(): any
+end
+
+return M

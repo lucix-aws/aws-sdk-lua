@@ -2444,19 +2444,19 @@ local type ResourceManagedType = "AWS_MANAGED_THREAT_SIGNATURES" | "AWS_MANAGED_
 
 local type TransitGatewayAttachmentStatus = "CREATING" | "DELETING" | "DELETED" | "FAILED" | "ERROR" | "READY" | "PENDING_ACCEPTANCE" | "REJECTING" | "REJECTED"
 
-local type FlowOperationType = "FLOW_FLUSH" | "FLOW_CAPTURE"
-
-local type EnabledAnalysisType = "TLS_SNI" | "HTTP_HOST"
-
-local type SubscriptionStatus = "NOT_SUBSCRIBED" | "SUBSCRIBED"
+local type ResourceManagedStatus = "MANAGED" | "ACCOUNT"
 
 local type RuleGroupRequestPhase = "PRE_DNS" | "PRE_REQ" | "POST_RES"
 
-local type ResourceManagedStatus = "MANAGED" | "ACCOUNT"
-
 local type FlowOperationStatus = "COMPLETED" | "IN_PROGRESS" | "FAILED" | "COMPLETED_WITH_ERRORS"
 
+local type SubscriptionStatus = "NOT_SUBSCRIBED" | "SUBSCRIBED"
+
 local type ProxyRulePhaseAction = "ALLOW" | "DENY" | "ALERT"
+
+local type EnabledAnalysisType = "TLS_SNI" | "HTTP_HOST"
+
+local type FlowOperationType = "FLOW_FLUSH" | "FLOW_CAPTURE"
 
 local record M
     AcceptNetworkFirewallTransitGatewayAttachmentInput: AcceptNetworkFirewallTransitGatewayAttachmentInput

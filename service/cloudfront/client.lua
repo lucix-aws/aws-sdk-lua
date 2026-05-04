@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "Cloudfront2020_05_31"
-    cfg.signing_name = "cloudfront"
     if not cfg.protocol then
         cfg.protocol = restxml_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cloudfront", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateAlias(input, options)
         output_schema = types.AssociateAliasOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/distribution/{TargetDistributionId}/associate-alias",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:associateDistributionTenantWebACL(input, options)
         output_schema = types.AssociateDistributionTenantWebACLOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/distribution-tenant/{Id}/associate-web-acl",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:associateDistributionWebACL(input, options)
         output_schema = types.AssociateDistributionWebACLOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/distribution/{Id}/associate-web-acl",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:copyDistribution(input, options)
         output_schema = types.CopyDistributionOutput,
         http_method = "POST",
         http_path = "/2020-05-31/distribution/{PrimaryDistributionId}/copy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createAnycastIpList(input, options)
         output_schema = types.CreateAnycastIpListOutput,
         http_method = "POST",
         http_path = "/2020-05-31/anycast-ip-list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createCachePolicy(input, options)
         output_schema = types.CreateCachePolicyOutput,
         http_method = "POST",
         http_path = "/2020-05-31/cache-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createCloudFrontOriginAccessIdentity(input, options)
         output_schema = types.CreateCloudFrontOriginAccessIdentityOutput,
         http_method = "POST",
         http_path = "/2020-05-31/origin-access-identity/cloudfront",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createConnectionFunction(input, options)
         output_schema = types.CreateConnectionFunctionOutput,
         http_method = "POST",
         http_path = "/2020-05-31/connection-function",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createConnectionGroup(input, options)
         output_schema = types.CreateConnectionGroupOutput,
         http_method = "POST",
         http_path = "/2020-05-31/connection-group",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createContinuousDeploymentPolicy(input, options)
         output_schema = types.CreateContinuousDeploymentPolicyOutput,
         http_method = "POST",
         http_path = "/2020-05-31/continuous-deployment-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createDistribution(input, options)
         output_schema = types.CreateDistributionOutput,
         http_method = "POST",
         http_path = "/2020-05-31/distribution",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createDistributionTenant(input, options)
         output_schema = types.CreateDistributionTenantOutput,
         http_method = "POST",
         http_path = "/2020-05-31/distribution-tenant",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createDistributionWithTags(input, options)
         output_schema = types.CreateDistributionWithTagsOutput,
         http_method = "POST",
         http_path = "/2020-05-31/distribution?WithTags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:createFieldLevelEncryptionConfig(input, options)
         output_schema = types.CreateFieldLevelEncryptionConfigOutput,
         http_method = "POST",
         http_path = "/2020-05-31/field-level-encryption",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:createFieldLevelEncryptionProfile(input, options)
         output_schema = types.CreateFieldLevelEncryptionProfileOutput,
         http_method = "POST",
         http_path = "/2020-05-31/field-level-encryption-profile",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:createFunction(input, options)
         output_schema = types.CreateFunctionOutput,
         http_method = "POST",
         http_path = "/2020-05-31/function",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:createInvalidation(input, options)
         output_schema = types.CreateInvalidationOutput,
         http_method = "POST",
         http_path = "/2020-05-31/distribution/{DistributionId}/invalidation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:createInvalidationForDistributionTenant(input, options)
         output_schema = types.CreateInvalidationForDistributionTenantOutput,
         http_method = "POST",
         http_path = "/2020-05-31/distribution-tenant/{Id}/invalidation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:createKeyGroup(input, options)
         output_schema = types.CreateKeyGroupOutput,
         http_method = "POST",
         http_path = "/2020-05-31/key-group",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:createKeyValueStore(input, options)
         output_schema = types.CreateKeyValueStoreOutput,
         http_method = "POST",
         http_path = "/2020-05-31/key-value-store",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:createMonitoringSubscription(input, options)
         output_schema = types.CreateMonitoringSubscriptionOutput,
         http_method = "POST",
         http_path = "/2020-05-31/distributions/{DistributionId}/monitoring-subscription",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:createOriginAccessControl(input, options)
         output_schema = types.CreateOriginAccessControlOutput,
         http_method = "POST",
         http_path = "/2020-05-31/origin-access-control",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:createOriginRequestPolicy(input, options)
         output_schema = types.CreateOriginRequestPolicyOutput,
         http_method = "POST",
         http_path = "/2020-05-31/origin-request-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:createPublicKey(input, options)
         output_schema = types.CreatePublicKeyOutput,
         http_method = "POST",
         http_path = "/2020-05-31/public-key",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:createRealtimeLogConfig(input, options)
         output_schema = types.CreateRealtimeLogConfigOutput,
         http_method = "POST",
         http_path = "/2020-05-31/realtime-log-config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:createResponseHeadersPolicy(input, options)
         output_schema = types.CreateResponseHeadersPolicyOutput,
         http_method = "POST",
         http_path = "/2020-05-31/response-headers-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:createStreamingDistribution(input, options)
         output_schema = types.CreateStreamingDistributionOutput,
         http_method = "POST",
         http_path = "/2020-05-31/streaming-distribution",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:createStreamingDistributionWithTags(input, options)
         output_schema = types.CreateStreamingDistributionWithTagsOutput,
         http_method = "POST",
         http_path = "/2020-05-31/streaming-distribution?WithTags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:createTrustStore(input, options)
         output_schema = types.CreateTrustStoreOutput,
         http_method = "POST",
         http_path = "/2020-05-31/trust-store",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:createVpcOrigin(input, options)
         output_schema = types.CreateVpcOriginOutput,
         http_method = "POST",
         http_path = "/2020-05-31/vpc-origin",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:deleteAnycastIpList(input, options)
         output_schema = types.DeleteAnycastIpListOutput,
         http_method = "DELETE",
         http_path = "/2020-05-31/anycast-ip-list/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:deleteCachePolicy(input, options)
         output_schema = types.DeleteCachePolicyOutput,
         http_method = "DELETE",
         http_path = "/2020-05-31/cache-policy/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:deleteCloudFrontOriginAccessIdentity(input, options)
         output_schema = types.DeleteCloudFrontOriginAccessIdentityOutput,
         http_method = "DELETE",
         http_path = "/2020-05-31/origin-access-identity/cloudfront/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:deleteConnectionFunction(input, options)
         output_schema = types.DeleteConnectionFunctionOutput,
         http_method = "DELETE",
         http_path = "/2020-05-31/connection-function/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:deleteConnectionGroup(input, options)
         output_schema = types.DeleteConnectionGroupOutput,
         http_method = "DELETE",
         http_path = "/2020-05-31/connection-group/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:deleteContinuousDeploymentPolicy(input, options)
         output_schema = types.DeleteContinuousDeploymentPolicyOutput,
         http_method = "DELETE",
         http_path = "/2020-05-31/continuous-deployment-policy/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:deleteDistribution(input, options)
         output_schema = types.DeleteDistributionOutput,
         http_method = "DELETE",
         http_path = "/2020-05-31/distribution/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:deleteDistributionTenant(input, options)
         output_schema = types.DeleteDistributionTenantOutput,
         http_method = "DELETE",
         http_path = "/2020-05-31/distribution-tenant/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:deleteFieldLevelEncryptionConfig(input, options)
         output_schema = types.DeleteFieldLevelEncryptionConfigOutput,
         http_method = "DELETE",
         http_path = "/2020-05-31/field-level-encryption/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:deleteFieldLevelEncryptionProfile(input, options)
         output_schema = types.DeleteFieldLevelEncryptionProfileOutput,
         http_method = "DELETE",
         http_path = "/2020-05-31/field-level-encryption-profile/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:deleteFunction(input, options)
         output_schema = types.DeleteFunctionOutput,
         http_method = "DELETE",
         http_path = "/2020-05-31/function/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:deleteKeyGroup(input, options)
         output_schema = types.DeleteKeyGroupOutput,
         http_method = "DELETE",
         http_path = "/2020-05-31/key-group/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:deleteKeyValueStore(input, options)
         output_schema = types.DeleteKeyValueStoreOutput,
         http_method = "DELETE",
         http_path = "/2020-05-31/key-value-store/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:deleteMonitoringSubscription(input, options)
         output_schema = types.DeleteMonitoringSubscriptionOutput,
         http_method = "DELETE",
         http_path = "/2020-05-31/distributions/{DistributionId}/monitoring-subscription",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:deleteOriginAccessControl(input, options)
         output_schema = types.DeleteOriginAccessControlOutput,
         http_method = "DELETE",
         http_path = "/2020-05-31/origin-access-control/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:deleteOriginRequestPolicy(input, options)
         output_schema = types.DeleteOriginRequestPolicyOutput,
         http_method = "DELETE",
         http_path = "/2020-05-31/origin-request-policy/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:deletePublicKey(input, options)
         output_schema = types.DeletePublicKeyOutput,
         http_method = "DELETE",
         http_path = "/2020-05-31/public-key/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:deleteRealtimeLogConfig(input, options)
         output_schema = types.DeleteRealtimeLogConfigOutput,
         http_method = "POST",
         http_path = "/2020-05-31/delete-realtime-log-config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:deleteResourcePolicy(input, options)
         output_schema = types.DeleteResourcePolicyOutput,
         http_method = "POST",
         http_path = "/2020-05-31/delete-resource-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:deleteResponseHeadersPolicy(input, options)
         output_schema = types.DeleteResponseHeadersPolicyOutput,
         http_method = "DELETE",
         http_path = "/2020-05-31/response-headers-policy/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:deleteStreamingDistribution(input, options)
         output_schema = types.DeleteStreamingDistributionOutput,
         http_method = "DELETE",
         http_path = "/2020-05-31/streaming-distribution/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:deleteTrustStore(input, options)
         output_schema = types.DeleteTrustStoreOutput,
         http_method = "DELETE",
         http_path = "/2020-05-31/trust-store/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:deleteVpcOrigin(input, options)
         output_schema = types.DeleteVpcOriginOutput,
         http_method = "DELETE",
         http_path = "/2020-05-31/vpc-origin/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:describeConnectionFunction(input, options)
         output_schema = types.DescribeConnectionFunctionOutput,
         http_method = "GET",
         http_path = "/2020-05-31/connection-function/{Identifier}/describe",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:describeFunction(input, options)
         output_schema = types.DescribeFunctionOutput,
         http_method = "GET",
         http_path = "/2020-05-31/function/{Name}/describe",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:describeKeyValueStore(input, options)
         output_schema = types.DescribeKeyValueStoreOutput,
         http_method = "GET",
         http_path = "/2020-05-31/key-value-store/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:disassociateDistributionTenantWebACL(input, options)
         output_schema = types.DisassociateDistributionTenantWebACLOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/distribution-tenant/{Id}/disassociate-web-acl",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:disassociateDistributionWebACL(input, options)
         output_schema = types.DisassociateDistributionWebACLOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/distribution/{Id}/disassociate-web-acl",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:getAnycastIpList(input, options)
         output_schema = types.GetAnycastIpListOutput,
         http_method = "GET",
         http_path = "/2020-05-31/anycast-ip-list/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:getCachePolicy(input, options)
         output_schema = types.GetCachePolicyOutput,
         http_method = "GET",
         http_path = "/2020-05-31/cache-policy/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:getCachePolicyConfig(input, options)
         output_schema = types.GetCachePolicyConfigOutput,
         http_method = "GET",
         http_path = "/2020-05-31/cache-policy/{Id}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:getCloudFrontOriginAccessIdentity(input, options)
         output_schema = types.GetCloudFrontOriginAccessIdentityOutput,
         http_method = "GET",
         http_path = "/2020-05-31/origin-access-identity/cloudfront/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:getCloudFrontOriginAccessIdentityConfig(input, options)
         output_schema = types.GetCloudFrontOriginAccessIdentityConfigOutput,
         http_method = "GET",
         http_path = "/2020-05-31/origin-access-identity/cloudfront/{Id}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:getConnectionFunction(input, options)
         output_schema = types.GetConnectionFunctionOutput,
         http_method = "GET",
         http_path = "/2020-05-31/connection-function/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:getConnectionGroup(input, options)
         output_schema = types.GetConnectionGroupOutput,
         http_method = "GET",
         http_path = "/2020-05-31/connection-group/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:getConnectionGroupByRoutingEndpoint(input, options)
         output_schema = types.GetConnectionGroupByRoutingEndpointOutput,
         http_method = "GET",
         http_path = "/2020-05-31/connection-group",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:getContinuousDeploymentPolicy(input, options)
         output_schema = types.GetContinuousDeploymentPolicyOutput,
         http_method = "GET",
         http_path = "/2020-05-31/continuous-deployment-policy/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:getContinuousDeploymentPolicyConfig(input, options)
         output_schema = types.GetContinuousDeploymentPolicyConfigOutput,
         http_method = "GET",
         http_path = "/2020-05-31/continuous-deployment-policy/{Id}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:getDistribution(input, options)
         output_schema = types.GetDistributionOutput,
         http_method = "GET",
         http_path = "/2020-05-31/distribution/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:getDistributionConfig(input, options)
         output_schema = types.GetDistributionConfigOutput,
         http_method = "GET",
         http_path = "/2020-05-31/distribution/{Id}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:getDistributionTenant(input, options)
         output_schema = types.GetDistributionTenantOutput,
         http_method = "GET",
         http_path = "/2020-05-31/distribution-tenant/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:getDistributionTenantByDomain(input, options)
         output_schema = types.GetDistributionTenantByDomainOutput,
         http_method = "GET",
         http_path = "/2020-05-31/distribution-tenant",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:getFieldLevelEncryption(input, options)
         output_schema = types.GetFieldLevelEncryptionOutput,
         http_method = "GET",
         http_path = "/2020-05-31/field-level-encryption/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:getFieldLevelEncryptionConfig(input, options)
         output_schema = types.GetFieldLevelEncryptionConfigOutput,
         http_method = "GET",
         http_path = "/2020-05-31/field-level-encryption/{Id}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:getFieldLevelEncryptionProfile(input, options)
         output_schema = types.GetFieldLevelEncryptionProfileOutput,
         http_method = "GET",
         http_path = "/2020-05-31/field-level-encryption-profile/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:getFieldLevelEncryptionProfileConfig(input, options)
         output_schema = types.GetFieldLevelEncryptionProfileConfigOutput,
         http_method = "GET",
         http_path = "/2020-05-31/field-level-encryption-profile/{Id}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:getFunction(input, options)
         output_schema = types.GetFunctionOutput,
         http_method = "GET",
         http_path = "/2020-05-31/function/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:getInvalidation(input, options)
         output_schema = types.GetInvalidationOutput,
         http_method = "GET",
         http_path = "/2020-05-31/distribution/{DistributionId}/invalidation/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:getInvalidationForDistributionTenant(input, options)
         output_schema = types.GetInvalidationForDistributionTenantOutput,
         http_method = "GET",
         http_path = "/2020-05-31/distribution-tenant/{DistributionTenantId}/invalidation/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:getKeyGroup(input, options)
         output_schema = types.GetKeyGroupOutput,
         http_method = "GET",
         http_path = "/2020-05-31/key-group/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:getKeyGroupConfig(input, options)
         output_schema = types.GetKeyGroupConfigOutput,
         http_method = "GET",
         http_path = "/2020-05-31/key-group/{Id}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:getManagedCertificateDetails(input, options)
         output_schema = types.GetManagedCertificateDetailsOutput,
         http_method = "GET",
         http_path = "/2020-05-31/managed-certificate/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:getMonitoringSubscription(input, options)
         output_schema = types.GetMonitoringSubscriptionOutput,
         http_method = "GET",
         http_path = "/2020-05-31/distributions/{DistributionId}/monitoring-subscription",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:getOriginAccessControl(input, options)
         output_schema = types.GetOriginAccessControlOutput,
         http_method = "GET",
         http_path = "/2020-05-31/origin-access-control/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:getOriginAccessControlConfig(input, options)
         output_schema = types.GetOriginAccessControlConfigOutput,
         http_method = "GET",
         http_path = "/2020-05-31/origin-access-control/{Id}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -890,6 +1158,9 @@ function Client:getOriginRequestPolicy(input, options)
         output_schema = types.GetOriginRequestPolicyOutput,
         http_method = "GET",
         http_path = "/2020-05-31/origin-request-policy/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -900,6 +1171,9 @@ function Client:getOriginRequestPolicyConfig(input, options)
         output_schema = types.GetOriginRequestPolicyConfigOutput,
         http_method = "GET",
         http_path = "/2020-05-31/origin-request-policy/{Id}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -910,6 +1184,9 @@ function Client:getPublicKey(input, options)
         output_schema = types.GetPublicKeyOutput,
         http_method = "GET",
         http_path = "/2020-05-31/public-key/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -920,6 +1197,9 @@ function Client:getPublicKeyConfig(input, options)
         output_schema = types.GetPublicKeyConfigOutput,
         http_method = "GET",
         http_path = "/2020-05-31/public-key/{Id}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -930,6 +1210,9 @@ function Client:getRealtimeLogConfig(input, options)
         output_schema = types.GetRealtimeLogConfigOutput,
         http_method = "POST",
         http_path = "/2020-05-31/get-realtime-log-config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -940,6 +1223,9 @@ function Client:getResourcePolicy(input, options)
         output_schema = types.GetResourcePolicyOutput,
         http_method = "POST",
         http_path = "/2020-05-31/get-resource-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -950,6 +1236,9 @@ function Client:getResponseHeadersPolicy(input, options)
         output_schema = types.GetResponseHeadersPolicyOutput,
         http_method = "GET",
         http_path = "/2020-05-31/response-headers-policy/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -960,6 +1249,9 @@ function Client:getResponseHeadersPolicyConfig(input, options)
         output_schema = types.GetResponseHeadersPolicyConfigOutput,
         http_method = "GET",
         http_path = "/2020-05-31/response-headers-policy/{Id}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -970,6 +1262,9 @@ function Client:getStreamingDistribution(input, options)
         output_schema = types.GetStreamingDistributionOutput,
         http_method = "GET",
         http_path = "/2020-05-31/streaming-distribution/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -980,6 +1275,9 @@ function Client:getStreamingDistributionConfig(input, options)
         output_schema = types.GetStreamingDistributionConfigOutput,
         http_method = "GET",
         http_path = "/2020-05-31/streaming-distribution/{Id}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -990,6 +1288,9 @@ function Client:getTrustStore(input, options)
         output_schema = types.GetTrustStoreOutput,
         http_method = "GET",
         http_path = "/2020-05-31/trust-store/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1000,6 +1301,9 @@ function Client:getVpcOrigin(input, options)
         output_schema = types.GetVpcOriginOutput,
         http_method = "GET",
         http_path = "/2020-05-31/vpc-origin/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1010,6 +1314,9 @@ function Client:listAnycastIpLists(input, options)
         output_schema = types.ListAnycastIpListsOutput,
         http_method = "GET",
         http_path = "/2020-05-31/anycast-ip-list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1020,6 +1327,9 @@ function Client:listCachePolicies(input, options)
         output_schema = types.ListCachePoliciesOutput,
         http_method = "GET",
         http_path = "/2020-05-31/cache-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1030,6 +1340,9 @@ function Client:listCloudFrontOriginAccessIdentities(input, options)
         output_schema = types.ListCloudFrontOriginAccessIdentitiesOutput,
         http_method = "GET",
         http_path = "/2020-05-31/origin-access-identity/cloudfront",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1040,6 +1353,9 @@ function Client:listConflictingAliases(input, options)
         output_schema = types.ListConflictingAliasesOutput,
         http_method = "GET",
         http_path = "/2020-05-31/conflicting-alias",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1050,6 +1366,9 @@ function Client:listConnectionFunctions(input, options)
         output_schema = types.ListConnectionFunctionsOutput,
         http_method = "POST",
         http_path = "/2020-05-31/connection-functions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1060,6 +1379,9 @@ function Client:listConnectionGroups(input, options)
         output_schema = types.ListConnectionGroupsOutput,
         http_method = "POST",
         http_path = "/2020-05-31/connection-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1070,6 +1392,9 @@ function Client:listContinuousDeploymentPolicies(input, options)
         output_schema = types.ListContinuousDeploymentPoliciesOutput,
         http_method = "GET",
         http_path = "/2020-05-31/continuous-deployment-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1080,6 +1405,9 @@ function Client:listDistributions(input, options)
         output_schema = types.ListDistributionsOutput,
         http_method = "GET",
         http_path = "/2020-05-31/distribution",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1090,6 +1418,9 @@ function Client:listDistributionsByAnycastIpListId(input, options)
         output_schema = types.ListDistributionsByAnycastIpListIdOutput,
         http_method = "GET",
         http_path = "/2020-05-31/distributionsByAnycastIpListId/{AnycastIpListId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1100,6 +1431,9 @@ function Client:listDistributionsByCachePolicyId(input, options)
         output_schema = types.ListDistributionsByCachePolicyIdOutput,
         http_method = "GET",
         http_path = "/2020-05-31/distributionsByCachePolicyId/{CachePolicyId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1110,6 +1444,9 @@ function Client:listDistributionsByConnectionFunction(input, options)
         output_schema = types.ListDistributionsByConnectionFunctionOutput,
         http_method = "GET",
         http_path = "/2020-05-31/distributionsByConnectionFunction",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1120,6 +1457,9 @@ function Client:listDistributionsByConnectionMode(input, options)
         output_schema = types.ListDistributionsByConnectionModeOutput,
         http_method = "GET",
         http_path = "/2020-05-31/distributionsByConnectionMode/{ConnectionMode}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1130,6 +1470,9 @@ function Client:listDistributionsByKeyGroup(input, options)
         output_schema = types.ListDistributionsByKeyGroupOutput,
         http_method = "GET",
         http_path = "/2020-05-31/distributionsByKeyGroupId/{KeyGroupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1140,6 +1483,9 @@ function Client:listDistributionsByOriginRequestPolicyId(input, options)
         output_schema = types.ListDistributionsByOriginRequestPolicyIdOutput,
         http_method = "GET",
         http_path = "/2020-05-31/distributionsByOriginRequestPolicyId/{OriginRequestPolicyId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1150,6 +1496,9 @@ function Client:listDistributionsByOwnedResource(input, options)
         output_schema = types.ListDistributionsByOwnedResourceOutput,
         http_method = "GET",
         http_path = "/2020-05-31/distributionsByOwnedResource/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1160,6 +1509,9 @@ function Client:listDistributionsByRealtimeLogConfig(input, options)
         output_schema = types.ListDistributionsByRealtimeLogConfigOutput,
         http_method = "POST",
         http_path = "/2020-05-31/distributionsByRealtimeLogConfig",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1170,6 +1522,9 @@ function Client:listDistributionsByResponseHeadersPolicyId(input, options)
         output_schema = types.ListDistributionsByResponseHeadersPolicyIdOutput,
         http_method = "GET",
         http_path = "/2020-05-31/distributionsByResponseHeadersPolicyId/{ResponseHeadersPolicyId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1180,6 +1535,9 @@ function Client:listDistributionsByTrustStore(input, options)
         output_schema = types.ListDistributionsByTrustStoreOutput,
         http_method = "GET",
         http_path = "/2020-05-31/distributionsByTrustStore",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1190,6 +1548,9 @@ function Client:listDistributionsByVpcOriginId(input, options)
         output_schema = types.ListDistributionsByVpcOriginIdOutput,
         http_method = "GET",
         http_path = "/2020-05-31/distributionsByVpcOriginId/{VpcOriginId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1200,6 +1561,9 @@ function Client:listDistributionsByWebACLId(input, options)
         output_schema = types.ListDistributionsByWebACLIdOutput,
         http_method = "GET",
         http_path = "/2020-05-31/distributionsByWebACLId/{WebACLId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1210,6 +1574,9 @@ function Client:listDistributionTenants(input, options)
         output_schema = types.ListDistributionTenantsOutput,
         http_method = "POST",
         http_path = "/2020-05-31/distribution-tenants",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1220,6 +1587,9 @@ function Client:listDistributionTenantsByCustomization(input, options)
         output_schema = types.ListDistributionTenantsByCustomizationOutput,
         http_method = "POST",
         http_path = "/2020-05-31/distribution-tenants-by-customization",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1230,6 +1600,9 @@ function Client:listDomainConflicts(input, options)
         output_schema = types.ListDomainConflictsOutput,
         http_method = "POST",
         http_path = "/2020-05-31/domain-conflicts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1240,6 +1613,9 @@ function Client:listFieldLevelEncryptionConfigs(input, options)
         output_schema = types.ListFieldLevelEncryptionConfigsOutput,
         http_method = "GET",
         http_path = "/2020-05-31/field-level-encryption",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1250,6 +1626,9 @@ function Client:listFieldLevelEncryptionProfiles(input, options)
         output_schema = types.ListFieldLevelEncryptionProfilesOutput,
         http_method = "GET",
         http_path = "/2020-05-31/field-level-encryption-profile",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1260,6 +1639,9 @@ function Client:listFunctions(input, options)
         output_schema = types.ListFunctionsOutput,
         http_method = "GET",
         http_path = "/2020-05-31/function",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1270,6 +1652,9 @@ function Client:listInvalidations(input, options)
         output_schema = types.ListInvalidationsOutput,
         http_method = "GET",
         http_path = "/2020-05-31/distribution/{DistributionId}/invalidation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1280,6 +1665,9 @@ function Client:listInvalidationsForDistributionTenant(input, options)
         output_schema = types.ListInvalidationsForDistributionTenantOutput,
         http_method = "GET",
         http_path = "/2020-05-31/distribution-tenant/{Id}/invalidation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1290,6 +1678,9 @@ function Client:listKeyGroups(input, options)
         output_schema = types.ListKeyGroupsOutput,
         http_method = "GET",
         http_path = "/2020-05-31/key-group",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1300,6 +1691,9 @@ function Client:listKeyValueStores(input, options)
         output_schema = types.ListKeyValueStoresOutput,
         http_method = "GET",
         http_path = "/2020-05-31/key-value-store",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1310,6 +1704,9 @@ function Client:listOriginAccessControls(input, options)
         output_schema = types.ListOriginAccessControlsOutput,
         http_method = "GET",
         http_path = "/2020-05-31/origin-access-control",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1320,6 +1717,9 @@ function Client:listOriginRequestPolicies(input, options)
         output_schema = types.ListOriginRequestPoliciesOutput,
         http_method = "GET",
         http_path = "/2020-05-31/origin-request-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1330,6 +1730,9 @@ function Client:listPublicKeys(input, options)
         output_schema = types.ListPublicKeysOutput,
         http_method = "GET",
         http_path = "/2020-05-31/public-key",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1340,6 +1743,9 @@ function Client:listRealtimeLogConfigs(input, options)
         output_schema = types.ListRealtimeLogConfigsOutput,
         http_method = "GET",
         http_path = "/2020-05-31/realtime-log-config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1350,6 +1756,9 @@ function Client:listResponseHeadersPolicies(input, options)
         output_schema = types.ListResponseHeadersPoliciesOutput,
         http_method = "GET",
         http_path = "/2020-05-31/response-headers-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1360,6 +1769,9 @@ function Client:listStreamingDistributions(input, options)
         output_schema = types.ListStreamingDistributionsOutput,
         http_method = "GET",
         http_path = "/2020-05-31/streaming-distribution",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1370,6 +1782,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/2020-05-31/tagging",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1380,6 +1795,9 @@ function Client:listTrustStores(input, options)
         output_schema = types.ListTrustStoresOutput,
         http_method = "POST",
         http_path = "/2020-05-31/trust-stores",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1390,6 +1808,9 @@ function Client:listVpcOrigins(input, options)
         output_schema = types.ListVpcOriginsOutput,
         http_method = "GET",
         http_path = "/2020-05-31/vpc-origin",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1400,6 +1821,9 @@ function Client:publishConnectionFunction(input, options)
         output_schema = types.PublishConnectionFunctionOutput,
         http_method = "POST",
         http_path = "/2020-05-31/connection-function/{Id}/publish",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1410,6 +1834,9 @@ function Client:publishFunction(input, options)
         output_schema = types.PublishFunctionOutput,
         http_method = "POST",
         http_path = "/2020-05-31/function/{Name}/publish",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1420,6 +1847,9 @@ function Client:putResourcePolicy(input, options)
         output_schema = types.PutResourcePolicyOutput,
         http_method = "POST",
         http_path = "/2020-05-31/put-resource-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1430,6 +1860,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/2020-05-31/tagging?Operation=Tag",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1440,6 +1873,9 @@ function Client:testConnectionFunction(input, options)
         output_schema = types.TestConnectionFunctionOutput,
         http_method = "POST",
         http_path = "/2020-05-31/connection-function/{Id}/test",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1450,6 +1886,9 @@ function Client:testFunction(input, options)
         output_schema = types.TestFunctionOutput,
         http_method = "POST",
         http_path = "/2020-05-31/function/{Name}/test",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1460,6 +1899,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/2020-05-31/tagging?Operation=Untag",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1470,6 +1912,9 @@ function Client:updateAnycastIpList(input, options)
         output_schema = types.UpdateAnycastIpListOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/anycast-ip-list/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1480,6 +1925,9 @@ function Client:updateCachePolicy(input, options)
         output_schema = types.UpdateCachePolicyOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/cache-policy/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1490,6 +1938,9 @@ function Client:updateCloudFrontOriginAccessIdentity(input, options)
         output_schema = types.UpdateCloudFrontOriginAccessIdentityOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/origin-access-identity/cloudfront/{Id}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1500,6 +1951,9 @@ function Client:updateConnectionFunction(input, options)
         output_schema = types.UpdateConnectionFunctionOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/connection-function/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1510,6 +1964,9 @@ function Client:updateConnectionGroup(input, options)
         output_schema = types.UpdateConnectionGroupOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/connection-group/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1520,6 +1977,9 @@ function Client:updateContinuousDeploymentPolicy(input, options)
         output_schema = types.UpdateContinuousDeploymentPolicyOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/continuous-deployment-policy/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1530,6 +1990,9 @@ function Client:updateDistribution(input, options)
         output_schema = types.UpdateDistributionOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/distribution/{Id}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1540,6 +2003,9 @@ function Client:updateDistributionTenant(input, options)
         output_schema = types.UpdateDistributionTenantOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/distribution-tenant/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1550,6 +2016,9 @@ function Client:updateDistributionWithStagingConfig(input, options)
         output_schema = types.UpdateDistributionWithStagingConfigOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/distribution/{Id}/promote-staging-config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1560,6 +2029,9 @@ function Client:updateDomainAssociation(input, options)
         output_schema = types.UpdateDomainAssociationOutput,
         http_method = "POST",
         http_path = "/2020-05-31/domain-association",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1570,6 +2042,9 @@ function Client:updateFieldLevelEncryptionConfig(input, options)
         output_schema = types.UpdateFieldLevelEncryptionConfigOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/field-level-encryption/{Id}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1580,6 +2055,9 @@ function Client:updateFieldLevelEncryptionProfile(input, options)
         output_schema = types.UpdateFieldLevelEncryptionProfileOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/field-level-encryption-profile/{Id}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1590,6 +2068,9 @@ function Client:updateFunction(input, options)
         output_schema = types.UpdateFunctionOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/function/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1600,6 +2081,9 @@ function Client:updateKeyGroup(input, options)
         output_schema = types.UpdateKeyGroupOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/key-group/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1610,6 +2094,9 @@ function Client:updateKeyValueStore(input, options)
         output_schema = types.UpdateKeyValueStoreOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/key-value-store/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1620,6 +2107,9 @@ function Client:updateOriginAccessControl(input, options)
         output_schema = types.UpdateOriginAccessControlOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/origin-access-control/{Id}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1630,6 +2120,9 @@ function Client:updateOriginRequestPolicy(input, options)
         output_schema = types.UpdateOriginRequestPolicyOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/origin-request-policy/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1640,6 +2133,9 @@ function Client:updatePublicKey(input, options)
         output_schema = types.UpdatePublicKeyOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/public-key/{Id}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1650,6 +2146,9 @@ function Client:updateRealtimeLogConfig(input, options)
         output_schema = types.UpdateRealtimeLogConfigOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/realtime-log-config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1660,6 +2159,9 @@ function Client:updateResponseHeadersPolicy(input, options)
         output_schema = types.UpdateResponseHeadersPolicyOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/response-headers-policy/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1670,6 +2172,9 @@ function Client:updateStreamingDistribution(input, options)
         output_schema = types.UpdateStreamingDistributionOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/streaming-distribution/{Id}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1680,6 +2185,9 @@ function Client:updateTrustStore(input, options)
         output_schema = types.UpdateTrustStoreOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/trust-store/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1690,6 +2198,9 @@ function Client:updateVpcOrigin(input, options)
         output_schema = types.UpdateVpcOriginOutput,
         http_method = "PUT",
         http_path = "/2020-05-31/vpc-origin/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1700,6 +2211,9 @@ function Client:verifyDnsConfiguration(input, options)
         output_schema = types.VerifyDnsConfigurationOutput,
         http_method = "POST",
         http_path = "/2020-05-31/verify-dns-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

@@ -93,6 +93,9 @@ M.AssociateFacesInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1620,6 +1623,9 @@ M.CreateUserInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1996,6 +2002,9 @@ M.DeleteUserInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2696,6 +2705,9 @@ M.HumanLoopActivationOutput = {
         },
         HumanLoopActivationConditionsEvaluationResults = {
             type = "string",
+            traits = {
+                media_type = "application/json",
+            },
         },
     },
 }
@@ -2911,6 +2923,9 @@ M.DisassociateFacesInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         FaceIds = {
             type = "list",
@@ -4941,6 +4956,9 @@ M.StartMediaAnalysisJobInput = {
     members = {
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         JobName = {
             type = "string",

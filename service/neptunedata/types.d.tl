@@ -3952,9 +3952,13 @@ local record UnsupportedOperationException
     code: string
 end
 
+local type Encoding = "gzip"
+
+local type Format = "csv" | "opencypher" | "ntriples" | "nquads" | "rdfxml" | "turtle"
+
 local type OpenCypherExplainMode = "static" | "dynamic" | "details"
 
-local type StatisticsAutoGenerationMode = "disableAutoCompute" | "enableAutoCompute" | "refresh"
+local type GraphSummaryType = "basic" | "detailed"
 
 local type IteratorType = "AT_SEQUENCE_NUMBER" | "AFTER_SEQUENCE_NUMBER" | "TRIM_HORIZON" | "LATEST"
 
@@ -3962,15 +3966,11 @@ local type S3BucketRegion = "us-east-1" | "us-east-2" | "us-west-1" | "us-west-2
 
 local type Mode = "RESUME" | "NEW" | "AUTO"
 
-local type GraphSummaryType = "basic" | "detailed"
-
 local type Action = "initiateDatabaseReset" | "performDatabaseReset"
-
-local type Encoding = "gzip"
 
 local type Parallelism = "LOW" | "MEDIUM" | "HIGH" | "OVERSUBSCRIBE"
 
-local type Format = "csv" | "opencypher" | "ntriples" | "nquads" | "rdfxml" | "turtle"
+local type StatisticsAutoGenerationMode = "disableAutoCompute" | "enableAutoCompute" | "refresh"
 
 local record M
     CancelGremlinQueryInput: CancelGremlinQueryInput

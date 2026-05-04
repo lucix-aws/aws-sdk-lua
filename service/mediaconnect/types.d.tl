@@ -2864,37 +2864,37 @@ local type InstanceState = "REGISTERING" | "ACTIVE" | "DEREGISTERING" | "DEREGIS
 
 local type RouterNetworkInterfaceState = "CREATING" | "ACTIVE" | "UPDATING" | "DELETING" | "ERROR" | "RECOVERING"
 
-local type Protocol = "zixi-push" | "rtp-fec" | "rtp" | "zixi-pull" | "rist" | "st2110-jpegxs" | "cdi" | "srt-listener" | "srt-caller" | "fujitsu-qos" | "udp" | "ndi-speed-hq"
+local type State = "ENABLED" | "DISABLED"
 
-local type MaintenanceScheduleType = "WINDOW"
+local type FlowSize = "MEDIUM" | "LARGE" | "LARGE_4X"
 
-local type OutputStatus = "ENABLED" | "DISABLED"
+local type RouterInputTier = "INPUT_100" | "INPUT_50" | "INPUT_20"
 
-local type RouterOutputRoutedState = "ROUTED" | "ROUTING" | "UNROUTED"
+local type DesiredState = "ACTIVE" | "STANDBY" | "DELETED"
 
-local type RouterOutputTier = "OUTPUT_100" | "OUTPUT_50" | "OUTPUT_20"
+local type MediaStreamType = "video" | "audio" | "ancillary-data"
 
-local type RoutingScope = "REGIONAL" | "GLOBAL"
+local type RouterOutputState = "CREATING" | "STANDBY" | "STARTING" | "ACTIVE" | "STOPPING" | "DELETING" | "UPDATING" | "ERROR" | "RECOVERING" | "MIGRATING"
 
 local type BridgePlacement = "AVAILABLE" | "LOCKED"
 
 local type Status = "STANDBY" | "ACTIVE" | "UPDATING" | "DELETING" | "STARTING" | "STOPPING" | "ERROR"
 
-local type RouterInputTier = "INPUT_100" | "INPUT_50" | "INPUT_20"
+local type EntitlementStatus = "ENABLED" | "DISABLED"
 
 local type RouterInputState = "CREATING" | "STANDBY" | "STARTING" | "ACTIVE" | "STOPPING" | "DELETING" | "UPDATING" | "ERROR" | "RECOVERING" | "MIGRATING"
 
-local type RouterOutputState = "CREATING" | "STANDBY" | "STARTING" | "ACTIVE" | "STOPPING" | "DELETING" | "UPDATING" | "ERROR" | "RECOVERING" | "MIGRATING"
+local type RouterOutputRoutedState = "ROUTED" | "ROUTING" | "UNROUTED"
 
-local type DesiredState = "ACTIVE" | "STANDBY" | "DELETED"
+local type RouterOutputTier = "OUTPUT_100" | "OUTPUT_50" | "OUTPUT_20"
 
-local type EntitlementStatus = "ENABLED" | "DISABLED"
+local type OutputStatus = "ENABLED" | "DISABLED"
 
-local type MediaStreamType = "video" | "audio" | "ancillary-data"
+local type RoutingScope = "REGIONAL" | "GLOBAL"
 
-local type State = "ENABLED" | "DISABLED"
+local type Protocol = "zixi-push" | "rtp-fec" | "rtp" | "zixi-pull" | "rist" | "st2110-jpegxs" | "cdi" | "srt-listener" | "srt-caller" | "fujitsu-qos" | "udp" | "ndi-speed-hq"
 
-local type FlowSize = "MEDIUM" | "LARGE" | "LARGE_4X"
+local type MaintenanceScheduleType = "WINDOW"
 
 local record M
     AddBridgeOutputsInput: AddBridgeOutputsInput

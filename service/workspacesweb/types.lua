@@ -519,6 +519,9 @@ M.CreateBrowserSettingsInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         webContentFilteringPolicy = M.WebContentFilteringPolicy,
     },
@@ -681,6 +684,9 @@ M.UpdateBrowserSettingsInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         webContentFilteringPolicy = M.WebContentFilteringPolicy,
     },
@@ -810,6 +816,9 @@ M.CreateDataProtectionSettingsInput = {
         inlineRedactionConfiguration = M.InlineRedactionConfiguration,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -968,6 +977,9 @@ M.UpdateDataProtectionSettingsInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1105,6 +1117,9 @@ M.CreateIdentityProviderInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "list",
@@ -1264,6 +1279,9 @@ M.UpdateIdentityProviderInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1322,6 +1340,9 @@ M.CreateIpAccessSettingsInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1486,6 +1507,9 @@ M.UpdateIpAccessSettingsInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1645,6 +1669,9 @@ M.CreateNetworkSettingsInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1794,6 +1821,9 @@ M.UpdateNetworkSettingsInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1837,6 +1867,9 @@ M.CreatePortalInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         authenticationType = {
             type = "string",
@@ -2399,6 +2432,9 @@ M.CreateSessionLoggerInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2580,6 +2616,9 @@ M.TagResourceInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2638,6 +2677,9 @@ M.CreateTrustStoreInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2868,6 +2910,9 @@ M.UpdateTrustStoreInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2924,6 +2969,9 @@ M.CreateUserAccessLoggingSettingsInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3057,6 +3105,9 @@ M.UpdateUserAccessLoggingSettingsInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3181,6 +3232,9 @@ M.BrandingConfiguration = {
         },
         termsOfService = {
             type = "string",
+            traits = {
+                media_type = "text/markdown",
+            },
         },
     },
 }
@@ -3225,6 +3279,9 @@ M.IconImageInput = {
     members = {
         blob = {
             type = "blob",
+            traits = {
+                media_type = "image/*",
+            },
         },
         s3Uri = {
             type = "string",
@@ -3237,6 +3294,9 @@ M.WallpaperImageInput = {
     members = {
         blob = {
             type = "blob",
+            traits = {
+                media_type = "image/*",
+            },
         },
         s3Uri = {
             type = "string",
@@ -3270,6 +3330,9 @@ M.BrandingConfigurationCreateInput = {
         },
         termsOfService = {
             type = "string",
+            traits = {
+                media_type = "text/markdown",
+            },
         },
     },
 }
@@ -3378,6 +3441,9 @@ M.CreateUserSettingsInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         cookieSynchronizationConfiguration = M.CookieSynchronizationConfiguration,
         customerManagedKey = {
@@ -3603,6 +3669,9 @@ M.BrandingConfigurationUpdateInput = {
         },
         termsOfService = {
             type = "string",
+            traits = {
+                media_type = "text/markdown",
+            },
         },
     },
 }
@@ -3646,6 +3715,9 @@ M.UpdateUserSettingsInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         cookieSynchronizationConfiguration = M.CookieSynchronizationConfiguration,
         deepLinkAllowed = {

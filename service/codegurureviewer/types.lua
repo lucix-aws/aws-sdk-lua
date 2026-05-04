@@ -104,6 +104,9 @@ M.AssociateRepositoryInput = {
         } }, { __index = M.Repository }),
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "map",
@@ -389,6 +392,9 @@ M.CreateCodeReviewInput = {
         } }, { __index = M.CodeReviewType }),
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

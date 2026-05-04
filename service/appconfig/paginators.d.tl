@@ -1,0 +1,20 @@
+local record M
+    pages_list_applications: function(client: table, input: table): function(): table, table
+    items_list_applications: function(client: table, input: table): function(): any
+    pages_list_configuration_profiles: function(client: table, input: table): function(): table, table
+    items_list_configuration_profiles: function(client: table, input: table): function(): any
+    pages_list_deployment_strategies: function(client: table, input: table): function(): table, table
+    items_list_deployment_strategies: function(client: table, input: table): function(): any
+    pages_list_deployments: function(client: table, input: table): function(): table, table
+    items_list_deployments: function(client: table, input: table): function(): any
+    pages_list_environments: function(client: table, input: table): function(): table, table
+    items_list_environments: function(client: table, input: table): function(): any
+    pages_list_extension_associations: function(client: table, input: table): function(): table, table
+    items_list_extension_associations: function(client: table, input: table): function(): any
+    pages_list_extensions: function(client: table, input: table): function(): table, table
+    items_list_extensions: function(client: table, input: table): function(): any
+    pages_list_hosted_configuration_versions: function(client: table, input: table): function(): table, table
+    items_list_hosted_configuration_versions: function(client: table, input: table): function(): any
+end
+
+return M

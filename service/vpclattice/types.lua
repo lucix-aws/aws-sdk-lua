@@ -48,6 +48,9 @@ M.CreateAccessLogSubscriptionInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         resourceIdentifier = {
             type = "string",
@@ -298,12 +301,14 @@ M.GetAccessLogSubscriptionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -374,12 +379,14 @@ M.AccessLogSubscriptionSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -733,6 +740,9 @@ M.CreateListenerInput = {
         } }, { __index = M.RuleAction }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -894,6 +904,9 @@ M.CreateResourceConfigurationInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -950,6 +963,9 @@ M.CreateResourceConfigurationOutput = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         failureReason = {
             type = "string",
@@ -980,6 +996,9 @@ M.CreateResourceGatewayInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         name = {
             type = "string",
@@ -1094,6 +1113,9 @@ M.CreateRuleInput = {
         } }, { __index = M.RuleAction }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -1128,6 +1150,9 @@ M.CreateServiceInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         name = {
             type = "string",
@@ -1214,6 +1239,9 @@ M.CreateServiceNetworkInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         name = {
             type = "string",
@@ -1257,6 +1285,9 @@ M.CreateServiceNetworkResourceAssociationInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         resourceConfigurationIdentifier = {
             type = "string",
@@ -1316,6 +1347,9 @@ M.CreateServiceNetworkServiceAssociationInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         serviceIdentifier = {
             type = "string",
@@ -1392,6 +1426,9 @@ M.CreateServiceNetworkVpcAssociationInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         serviceNetworkIdentifier = {
             type = "string",
@@ -1577,6 +1614,9 @@ M.CreateTargetGroupInput = {
         config = M.TargetGroupConfig,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -2100,10 +2140,14 @@ M.GetDomainVerificationOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastVerifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         tags = {
             type = "map",
@@ -2163,10 +2207,14 @@ M.DomainVerificationSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastVerifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         tags = {
             type = "map",
@@ -2197,6 +2245,9 @@ M.StartDomainVerificationInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         domainName = {
             type = "string",
@@ -2267,9 +2318,15 @@ M.GetAuthPolicyOutput = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2321,9 +2378,15 @@ M.GetListenerOutput = {
         defaultAction = M.RuleAction,
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2381,6 +2444,9 @@ M.GetResourceConfigurationOutput = {
         resourceConfigurationDefinition = M.ResourceConfigurationDefinition,
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         amazonManaged = {
             type = "boolean",
@@ -2390,6 +2456,9 @@ M.GetResourceConfigurationOutput = {
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         domainVerificationId = {
             type = "string",
@@ -2453,9 +2522,15 @@ M.GetResourceGatewayOutput = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2531,9 +2606,15 @@ M.GetRuleOutput = {
         action = M.RuleAction,
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2565,9 +2646,15 @@ M.GetServiceOutput = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         dnsEntry = M.DnsEntry,
         customDomainName = {
@@ -2615,9 +2702,15 @@ M.GetServiceNetworkOutput = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         arn = {
             type = "string",
@@ -2665,6 +2758,9 @@ M.GetServiceNetworkResourceAssociationOutput = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         resourceConfigurationId = {
             type = "string",
@@ -2692,6 +2788,9 @@ M.GetServiceNetworkResourceAssociationOutput = {
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         privateDnsEntry = M.DnsEntry,
         privateDnsEnabled = {
@@ -2737,6 +2836,9 @@ M.GetServiceNetworkServiceAssociationOutput = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         serviceId = {
             type = "string",
@@ -2799,6 +2901,9 @@ M.GetServiceNetworkVpcAssociationOutput = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         serviceNetworkId = {
             type = "string",
@@ -2827,6 +2932,9 @@ M.GetServiceNetworkVpcAssociationOutput = {
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         dnsOptions = M.DnsOptions,
     },
@@ -2863,9 +2971,15 @@ M.GetTargetGroupOutput = {
         config = M.TargetGroupConfig,
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         status = {
             type = "string",
@@ -2928,9 +3042,15 @@ M.ListenerSummary = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -3067,9 +3187,15 @@ M.ResourceConfigurationSummary = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         customDomainName = {
             type = "string",
@@ -3168,6 +3294,9 @@ M.ResourceEndpointAssociationSummary = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -3240,9 +3369,15 @@ M.ResourceGatewaySummary = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -3312,9 +3447,15 @@ M.RuleSummary = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -3388,6 +3529,9 @@ M.ServiceNetworkResourceAssociationSummary = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         resourceConfigurationId = {
             type = "string",
@@ -3469,9 +3613,15 @@ M.ServiceNetworkSummary = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         numberOfAssociatedVPCs = {
             type = "long",
@@ -3548,6 +3698,9 @@ M.ServiceNetworkServiceAssociationSummary = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         serviceId = {
             type = "string",
@@ -3637,6 +3790,9 @@ M.ServiceNetworkVpcAssociationSummary = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         serviceNetworkId = {
             type = "string",
@@ -3656,6 +3812,9 @@ M.ServiceNetworkVpcAssociationSummary = {
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -3724,6 +3883,9 @@ M.ServiceNetworkEndpointAssociation = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -3776,9 +3938,15 @@ M.ServiceSummary = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         dnsEntry = M.DnsEntry,
         customDomainName = {
@@ -3874,6 +4042,9 @@ M.TargetGroupSummary = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         port = {
             type = "integer",
@@ -3889,6 +4060,9 @@ M.TargetGroupSummary = {
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         status = {
             type = "string",

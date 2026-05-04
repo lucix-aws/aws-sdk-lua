@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSMigrationHubOrchestrator"
-    cfg.signing_name = "migrationhub-orchestrator"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "migrationhub-orchestrator", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createTemplate(input, options)
         output_schema = types.CreateTemplateOutput,
         http_method = "POST",
         http_path = "/template",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createWorkflow(input, options)
         output_schema = types.CreateWorkflowOutput,
         http_method = "POST",
         http_path = "/migrationworkflow/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createWorkflowStep(input, options)
         output_schema = types.CreateWorkflowStepOutput,
         http_method = "POST",
         http_path = "/workflowstep",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createWorkflowStepGroup(input, options)
         output_schema = types.CreateWorkflowStepGroupOutput,
         http_method = "POST",
         http_path = "/workflowstepgroups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteTemplate(input, options)
         output_schema = types.DeleteTemplateOutput,
         http_method = "DELETE",
         http_path = "/template/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteWorkflow(input, options)
         output_schema = types.DeleteWorkflowOutput,
         http_method = "DELETE",
         http_path = "/migrationworkflow/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteWorkflowStep(input, options)
         output_schema = types.DeleteWorkflowStepOutput,
         http_method = "DELETE",
         http_path = "/workflowstep/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteWorkflowStepGroup(input, options)
         output_schema = types.DeleteWorkflowStepGroupOutput,
         http_method = "DELETE",
         http_path = "/workflowstepgroup/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getTemplate(input, options)
         output_schema = types.GetTemplateOutput,
         http_method = "GET",
         http_path = "/migrationworkflowtemplate/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:getTemplateStep(input, options)
         output_schema = types.GetTemplateStepOutput,
         http_method = "GET",
         http_path = "/templatestep/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getTemplateStepGroup(input, options)
         output_schema = types.GetTemplateStepGroupOutput,
         http_method = "GET",
         http_path = "/templates/{templateId}/stepgroups/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getWorkflow(input, options)
         output_schema = types.GetWorkflowOutput,
         http_method = "GET",
         http_path = "/migrationworkflow/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getWorkflowStep(input, options)
         output_schema = types.GetWorkflowStepOutput,
         http_method = "GET",
         http_path = "/workflowstep/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getWorkflowStepGroup(input, options)
         output_schema = types.GetWorkflowStepGroupOutput,
         http_method = "GET",
         http_path = "/workflowstepgroup/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:listPlugins(input, options)
         output_schema = types.ListPluginsOutput,
         http_method = "GET",
         http_path = "/plugins",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listTemplates(input, options)
         output_schema = types.ListTemplatesOutput,
         http_method = "GET",
         http_path = "/migrationworkflowtemplates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listTemplateStepGroups(input, options)
         output_schema = types.ListTemplateStepGroupsOutput,
         http_method = "GET",
         http_path = "/templatestepgroups/{templateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listTemplateSteps(input, options)
         output_schema = types.ListTemplateStepsOutput,
         http_method = "GET",
         http_path = "/templatesteps",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listWorkflows(input, options)
         output_schema = types.ListWorkflowsOutput,
         http_method = "GET",
         http_path = "/migrationworkflows",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listWorkflowStepGroups(input, options)
         output_schema = types.ListWorkflowStepGroupsOutput,
         http_method = "GET",
         http_path = "/workflowstepgroups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listWorkflowSteps(input, options)
         output_schema = types.ListWorkflowStepsOutput,
         http_method = "GET",
         http_path = "/workflow/{workflowId}/workflowstepgroups/{stepGroupId}/workflowsteps",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:retryWorkflowStep(input, options)
         output_schema = types.RetryWorkflowStepOutput,
         http_method = "POST",
         http_path = "/retryworkflowstep/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:startWorkflow(input, options)
         output_schema = types.StartWorkflowOutput,
         http_method = "POST",
         http_path = "/migrationworkflow/{id}/start",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:stopWorkflow(input, options)
         output_schema = types.StopWorkflowOutput,
         http_method = "POST",
         http_path = "/migrationworkflow/{id}/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:updateTemplate(input, options)
         output_schema = types.UpdateTemplateOutput,
         http_method = "POST",
         http_path = "/template/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:updateWorkflow(input, options)
         output_schema = types.UpdateWorkflowOutput,
         http_method = "POST",
         http_path = "/migrationworkflow/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:updateWorkflowStep(input, options)
         output_schema = types.UpdateWorkflowStepOutput,
         http_method = "POST",
         http_path = "/workflowstep/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:updateWorkflowStepGroup(input, options)
         output_schema = types.UpdateWorkflowStepGroupOutput,
         http_method = "POST",
         http_path = "/workflowstepgroup/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

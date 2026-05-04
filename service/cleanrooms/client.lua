@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSBastionControlPlaneServiceLambda"
-    cfg.signing_name = "cleanrooms"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cleanrooms", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:batchGetCollaborationAnalysisTemplate(input, options)
         output_schema = types.BatchGetCollaborationAnalysisTemplateOutput,
         http_method = "POST",
         http_path = "/collaborations/{collaborationIdentifier}/batch-analysistemplates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchGetSchema(input, options)
         output_schema = types.BatchGetSchemaOutput,
         http_method = "POST",
         http_path = "/collaborations/{collaborationIdentifier}/batch-schema",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchGetSchemaAnalysisRule(input, options)
         output_schema = types.BatchGetSchemaAnalysisRuleOutput,
         http_method = "POST",
         http_path = "/collaborations/{collaborationIdentifier}/batch-schema-analysis-rule",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createAnalysisTemplate(input, options)
         output_schema = types.CreateAnalysisTemplateOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/analysistemplates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createCollaboration(input, options)
         output_schema = types.CreateCollaborationOutput,
         http_method = "POST",
         http_path = "/collaborations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createCollaborationChangeRequest(input, options)
         output_schema = types.CreateCollaborationChangeRequestOutput,
         http_method = "POST",
         http_path = "/collaborations/{collaborationIdentifier}/changeRequests",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createConfiguredAudienceModelAssociation(input, options)
         output_schema = types.CreateConfiguredAudienceModelAssociationOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createConfiguredTable(input, options)
         output_schema = types.CreateConfiguredTableOutput,
         http_method = "POST",
         http_path = "/configuredTables",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createConfiguredTableAnalysisRule(input, options)
         output_schema = types.CreateConfiguredTableAnalysisRuleOutput,
         http_method = "POST",
         http_path = "/configuredTables/{configuredTableIdentifier}/analysisRule",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createConfiguredTableAssociation(input, options)
         output_schema = types.CreateConfiguredTableAssociationOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createConfiguredTableAssociationAnalysisRule(input, options)
         output_schema = types.CreateConfiguredTableAssociationAnalysisRuleOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}/analysisRule",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createIdMappingTable(input, options)
         output_schema = types.CreateIdMappingTableOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/idmappingtables",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createIdNamespaceAssociation(input, options)
         output_schema = types.CreateIdNamespaceAssociationOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/idnamespaceassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:createMembership(input, options)
         output_schema = types.CreateMembershipOutput,
         http_method = "POST",
         http_path = "/memberships",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:createPrivacyBudgetTemplate(input, options)
         output_schema = types.CreatePrivacyBudgetTemplateOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/privacybudgettemplates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteAnalysisTemplate(input, options)
         output_schema = types.DeleteAnalysisTemplateOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}/analysistemplates/{analysisTemplateIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deleteCollaboration(input, options)
         output_schema = types.DeleteCollaborationOutput,
         http_method = "DELETE",
         http_path = "/collaborations/{collaborationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteConfiguredAudienceModelAssociation(input, options)
         output_schema = types.DeleteConfiguredAudienceModelAssociationOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations/{configuredAudienceModelAssociationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteConfiguredTable(input, options)
         output_schema = types.DeleteConfiguredTableOutput,
         http_method = "DELETE",
         http_path = "/configuredTables/{configuredTableIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deleteConfiguredTableAnalysisRule(input, options)
         output_schema = types.DeleteConfiguredTableAnalysisRuleOutput,
         http_method = "DELETE",
         http_path = "/configuredTables/{configuredTableIdentifier}/analysisRule/{analysisRuleType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deleteConfiguredTableAssociation(input, options)
         output_schema = types.DeleteConfiguredTableAssociationOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:deleteConfiguredTableAssociationAnalysisRule(input, options)
         output_schema = types.DeleteConfiguredTableAssociationAnalysisRuleOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}/analysisRule/{analysisRuleType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:deleteIdMappingTable(input, options)
         output_schema = types.DeleteIdMappingTableOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}/idmappingtables/{idMappingTableIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:deleteIdNamespaceAssociation(input, options)
         output_schema = types.DeleteIdNamespaceAssociationOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}/idnamespaceassociations/{idNamespaceAssociationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:deleteMember(input, options)
         output_schema = types.DeleteMemberOutput,
         http_method = "DELETE",
         http_path = "/collaborations/{collaborationIdentifier}/member/{accountId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:deleteMembership(input, options)
         output_schema = types.DeleteMembershipOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:deletePrivacyBudgetTemplate(input, options)
         output_schema = types.DeletePrivacyBudgetTemplateOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}/privacybudgettemplates/{privacyBudgetTemplateIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:getAnalysisTemplate(input, options)
         output_schema = types.GetAnalysisTemplateOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/analysistemplates/{analysisTemplateIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:getCollaboration(input, options)
         output_schema = types.GetCollaborationOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:getCollaborationAnalysisTemplate(input, options)
         output_schema = types.GetCollaborationAnalysisTemplateOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/analysistemplates/{analysisTemplateArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:getCollaborationChangeRequest(input, options)
         output_schema = types.GetCollaborationChangeRequestOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/changeRequests/{changeRequestIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:getCollaborationConfiguredAudienceModelAssociation(input, option
         output_schema = types.GetCollaborationConfiguredAudienceModelAssociationOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/configuredaudiencemodelassociations/{configuredAudienceModelAssociationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:getCollaborationIdNamespaceAssociation(input, options)
         output_schema = types.GetCollaborationIdNamespaceAssociationOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/idnamespaceassociations/{idNamespaceAssociationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:getCollaborationPrivacyBudgetTemplate(input, options)
         output_schema = types.GetCollaborationPrivacyBudgetTemplateOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/privacybudgettemplates/{privacyBudgetTemplateIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:getConfiguredAudienceModelAssociation(input, options)
         output_schema = types.GetConfiguredAudienceModelAssociationOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations/{configuredAudienceModelAssociationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:getConfiguredTable(input, options)
         output_schema = types.GetConfiguredTableOutput,
         http_method = "GET",
         http_path = "/configuredTables/{configuredTableIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:getConfiguredTableAnalysisRule(input, options)
         output_schema = types.GetConfiguredTableAnalysisRuleOutput,
         http_method = "GET",
         http_path = "/configuredTables/{configuredTableIdentifier}/analysisRule/{analysisRuleType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:getConfiguredTableAssociation(input, options)
         output_schema = types.GetConfiguredTableAssociationOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:getConfiguredTableAssociationAnalysisRule(input, options)
         output_schema = types.GetConfiguredTableAssociationAnalysisRuleOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}/analysisRule/{analysisRuleType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:getIdMappingTable(input, options)
         output_schema = types.GetIdMappingTableOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/idmappingtables/{idMappingTableIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:getIdNamespaceAssociation(input, options)
         output_schema = types.GetIdNamespaceAssociationOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/idnamespaceassociations/{idNamespaceAssociationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:getMembership(input, options)
         output_schema = types.GetMembershipOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:getPrivacyBudgetTemplate(input, options)
         output_schema = types.GetPrivacyBudgetTemplateOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/privacybudgettemplates/{privacyBudgetTemplateIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:getProtectedJob(input, options)
         output_schema = types.GetProtectedJobOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/protectedJobs/{protectedJobIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:getProtectedQuery(input, options)
         output_schema = types.GetProtectedQueryOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/protectedQueries/{protectedQueryIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:getSchema(input, options)
         output_schema = types.GetSchemaOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/schemas/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:getSchemaAnalysisRule(input, options)
         output_schema = types.GetSchemaAnalysisRuleOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/schemas/{name}/analysisRule/{type}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:listAnalysisTemplates(input, options)
         output_schema = types.ListAnalysisTemplatesOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/analysistemplates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:listCollaborationAnalysisTemplates(input, options)
         output_schema = types.ListCollaborationAnalysisTemplatesOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/analysistemplates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:listCollaborationChangeRequests(input, options)
         output_schema = types.ListCollaborationChangeRequestsOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/changeRequests",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:listCollaborationConfiguredAudienceModelAssociations(input, opti
         output_schema = types.ListCollaborationConfiguredAudienceModelAssociationsOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/configuredaudiencemodelassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:listCollaborationIdNamespaceAssociations(input, options)
         output_schema = types.ListCollaborationIdNamespaceAssociationsOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/idnamespaceassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:listCollaborationPrivacyBudgets(input, options)
         output_schema = types.ListCollaborationPrivacyBudgetsOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/privacybudgets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:listCollaborationPrivacyBudgetTemplates(input, options)
         output_schema = types.ListCollaborationPrivacyBudgetTemplatesOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/privacybudgettemplates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:listCollaborations(input, options)
         output_schema = types.ListCollaborationsOutput,
         http_method = "GET",
         http_path = "/collaborations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:listConfiguredAudienceModelAssociations(input, options)
         output_schema = types.ListConfiguredAudienceModelAssociationsOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:listConfiguredTableAssociations(input, options)
         output_schema = types.ListConfiguredTableAssociationsOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:listConfiguredTables(input, options)
         output_schema = types.ListConfiguredTablesOutput,
         http_method = "GET",
         http_path = "/configuredTables",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:listIdMappingTables(input, options)
         output_schema = types.ListIdMappingTablesOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/idmappingtables",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:listIdNamespaceAssociations(input, options)
         output_schema = types.ListIdNamespaceAssociationsOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/idnamespaceassociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:listMembers(input, options)
         output_schema = types.ListMembersOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/members",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:listMemberships(input, options)
         output_schema = types.ListMembershipsOutput,
         http_method = "GET",
         http_path = "/memberships",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:listPrivacyBudgets(input, options)
         output_schema = types.ListPrivacyBudgetsOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/privacybudgets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:listPrivacyBudgetTemplates(input, options)
         output_schema = types.ListPrivacyBudgetTemplatesOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/privacybudgettemplates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:listProtectedJobs(input, options)
         output_schema = types.ListProtectedJobsOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/protectedJobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:listProtectedQueries(input, options)
         output_schema = types.ListProtectedQueriesOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/protectedQueries",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:listSchemas(input, options)
         output_schema = types.ListSchemasOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/schemas",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:populateIdMappingTable(input, options)
         output_schema = types.PopulateIdMappingTableOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/idmappingtables/{idMappingTableIdentifier}/populate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:previewPrivacyImpact(input, options)
         output_schema = types.PreviewPrivacyImpactOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/previewprivacyimpact",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:startProtectedJob(input, options)
         output_schema = types.StartProtectedJobOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/protectedJobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:startProtectedQuery(input, options)
         output_schema = types.StartProtectedQueryOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/protectedQueries",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:updateAnalysisTemplate(input, options)
         output_schema = types.UpdateAnalysisTemplateOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}/analysistemplates/{analysisTemplateIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:updateCollaboration(input, options)
         output_schema = types.UpdateCollaborationOutput,
         http_method = "PATCH",
         http_path = "/collaborations/{collaborationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:updateCollaborationChangeRequest(input, options)
         output_schema = types.UpdateCollaborationChangeRequestOutput,
         http_method = "PATCH",
         http_path = "/collaborations/{collaborationIdentifier}/changeRequests/{changeRequestIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:updateConfiguredAudienceModelAssociation(input, options)
         output_schema = types.UpdateConfiguredAudienceModelAssociationOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations/{configuredAudienceModelAssociationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:updateConfiguredTable(input, options)
         output_schema = types.UpdateConfiguredTableOutput,
         http_method = "PATCH",
         http_path = "/configuredTables/{configuredTableIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:updateConfiguredTableAnalysisRule(input, options)
         output_schema = types.UpdateConfiguredTableAnalysisRuleOutput,
         http_method = "PATCH",
         http_path = "/configuredTables/{configuredTableIdentifier}/analysisRule/{analysisRuleType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:updateConfiguredTableAssociation(input, options)
         output_schema = types.UpdateConfiguredTableAssociationOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:updateConfiguredTableAssociationAnalysisRule(input, options)
         output_schema = types.UpdateConfiguredTableAssociationAnalysisRuleOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}/analysisRule/{analysisRuleType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:updateIdMappingTable(input, options)
         output_schema = types.UpdateIdMappingTableOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}/idmappingtables/{idMappingTableIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:updateIdNamespaceAssociation(input, options)
         output_schema = types.UpdateIdNamespaceAssociationOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}/idnamespaceassociations/{idNamespaceAssociationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:updateMembership(input, options)
         output_schema = types.UpdateMembershipOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -890,6 +1158,9 @@ function Client:updatePrivacyBudgetTemplate(input, options)
         output_schema = types.UpdatePrivacyBudgetTemplateOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}/privacybudgettemplates/{privacyBudgetTemplateIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -900,6 +1171,9 @@ function Client:updateProtectedJob(input, options)
         output_schema = types.UpdateProtectedJobOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}/protectedJobs/{protectedJobIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -910,6 +1184,9 @@ function Client:updateProtectedQuery(input, options)
         output_schema = types.UpdateProtectedQueryOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}/protectedQueries/{protectedQueryIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

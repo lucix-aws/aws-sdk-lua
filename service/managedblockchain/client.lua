@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "TaigaWebService"
-    cfg.signing_name = "managedblockchain"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "managedblockchain", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createAccessor(input, options)
         output_schema = types.CreateAccessorOutput,
         http_method = "POST",
         http_path = "/accessors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createMember(input, options)
         output_schema = types.CreateMemberOutput,
         http_method = "POST",
         http_path = "/networks/{NetworkId}/members",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createNetwork(input, options)
         output_schema = types.CreateNetworkOutput,
         http_method = "POST",
         http_path = "/networks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createNode(input, options)
         output_schema = types.CreateNodeOutput,
         http_method = "POST",
         http_path = "/networks/{NetworkId}/nodes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createProposal(input, options)
         output_schema = types.CreateProposalOutput,
         http_method = "POST",
         http_path = "/networks/{NetworkId}/proposals",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteAccessor(input, options)
         output_schema = types.DeleteAccessorOutput,
         http_method = "DELETE",
         http_path = "/accessors/{AccessorId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteMember(input, options)
         output_schema = types.DeleteMemberOutput,
         http_method = "DELETE",
         http_path = "/networks/{NetworkId}/members/{MemberId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteNode(input, options)
         output_schema = types.DeleteNodeOutput,
         http_method = "DELETE",
         http_path = "/networks/{NetworkId}/nodes/{NodeId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getAccessor(input, options)
         output_schema = types.GetAccessorOutput,
         http_method = "GET",
         http_path = "/accessors/{AccessorId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:getMember(input, options)
         output_schema = types.GetMemberOutput,
         http_method = "GET",
         http_path = "/networks/{NetworkId}/members/{MemberId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getNetwork(input, options)
         output_schema = types.GetNetworkOutput,
         http_method = "GET",
         http_path = "/networks/{NetworkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getNode(input, options)
         output_schema = types.GetNodeOutput,
         http_method = "GET",
         http_path = "/networks/{NetworkId}/nodes/{NodeId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getProposal(input, options)
         output_schema = types.GetProposalOutput,
         http_method = "GET",
         http_path = "/networks/{NetworkId}/proposals/{ProposalId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:listAccessors(input, options)
         output_schema = types.ListAccessorsOutput,
         http_method = "GET",
         http_path = "/accessors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:listInvitations(input, options)
         output_schema = types.ListInvitationsOutput,
         http_method = "GET",
         http_path = "/invitations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listMembers(input, options)
         output_schema = types.ListMembersOutput,
         http_method = "GET",
         http_path = "/networks/{NetworkId}/members",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listNetworks(input, options)
         output_schema = types.ListNetworksOutput,
         http_method = "GET",
         http_path = "/networks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listNodes(input, options)
         output_schema = types.ListNodesOutput,
         http_method = "GET",
         http_path = "/networks/{NetworkId}/nodes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listProposals(input, options)
         output_schema = types.ListProposalsOutput,
         http_method = "GET",
         http_path = "/networks/{NetworkId}/proposals",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listProposalVotes(input, options)
         output_schema = types.ListProposalVotesOutput,
         http_method = "GET",
         http_path = "/networks/{NetworkId}/proposals/{ProposalId}/votes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:rejectInvitation(input, options)
         output_schema = types.RejectInvitationOutput,
         http_method = "DELETE",
         http_path = "/invitations/{InvitationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:updateMember(input, options)
         output_schema = types.UpdateMemberOutput,
         http_method = "PATCH",
         http_path = "/networks/{NetworkId}/members/{MemberId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:updateNode(input, options)
         output_schema = types.UpdateNodeOutput,
         http_method = "PATCH",
         http_path = "/networks/{NetworkId}/nodes/{NodeId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:voteOnProposal(input, options)
         output_schema = types.VoteOnProposalOutput,
         http_method = "POST",
         http_path = "/networks/{NetworkId}/proposals/{ProposalId}/votes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

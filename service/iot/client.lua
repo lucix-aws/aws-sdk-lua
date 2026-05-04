@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSIotService"
-    cfg.signing_name = "iot"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "iot", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:acceptCertificateTransfer(input, options)
         output_schema = types.AcceptCertificateTransferOutput,
         http_method = "PATCH",
         http_path = "/accept-certificate-transfer/{certificateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:addThingToBillingGroup(input, options)
         output_schema = types.AddThingToBillingGroupOutput,
         http_method = "PUT",
         http_path = "/billing-groups/addThingToBillingGroup",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:addThingToThingGroup(input, options)
         output_schema = types.AddThingToThingGroupOutput,
         http_method = "PUT",
         http_path = "/thing-groups/addThingToThingGroup",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:associateSbomWithPackageVersion(input, options)
         output_schema = types.AssociateSbomWithPackageVersionOutput,
         http_method = "PUT",
         http_path = "/packages/{packageName}/versions/{versionName}/sbom",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:associateTargetsWithJob(input, options)
         output_schema = types.AssociateTargetsWithJobOutput,
         http_method = "POST",
         http_path = "/jobs/{jobId}/targets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:attachPolicy(input, options)
         output_schema = types.AttachPolicyOutput,
         http_method = "PUT",
         http_path = "/target-policies/{policyName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:attachPrincipalPolicy(input, options)
         output_schema = types.AttachPrincipalPolicyOutput,
         http_method = "PUT",
         http_path = "/principal-policies/{policyName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:attachSecurityProfile(input, options)
         output_schema = types.AttachSecurityProfileOutput,
         http_method = "PUT",
         http_path = "/security-profiles/{securityProfileName}/targets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:attachThingPrincipal(input, options)
         output_schema = types.AttachThingPrincipalOutput,
         http_method = "PUT",
         http_path = "/things/{thingName}/principals",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:cancelAuditMitigationActionsTask(input, options)
         output_schema = types.CancelAuditMitigationActionsTaskOutput,
         http_method = "PUT",
         http_path = "/audit/mitigationactions/tasks/{taskId}/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:cancelAuditTask(input, options)
         output_schema = types.CancelAuditTaskOutput,
         http_method = "PUT",
         http_path = "/audit/tasks/{taskId}/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:cancelCertificateTransfer(input, options)
         output_schema = types.CancelCertificateTransferOutput,
         http_method = "PATCH",
         http_path = "/cancel-certificate-transfer/{certificateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:cancelDetectMitigationActionsTask(input, options)
         output_schema = types.CancelDetectMitigationActionsTaskOutput,
         http_method = "PUT",
         http_path = "/detect/mitigationactions/tasks/{taskId}/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:cancelJob(input, options)
         output_schema = types.CancelJobOutput,
         http_method = "PUT",
         http_path = "/jobs/{jobId}/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:cancelJobExecution(input, options)
         output_schema = types.CancelJobExecutionOutput,
         http_method = "PUT",
         http_path = "/things/{thingName}/jobs/{jobId}/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:clearDefaultAuthorizer(input, options)
         output_schema = types.ClearDefaultAuthorizerOutput,
         http_method = "DELETE",
         http_path = "/default-authorizer",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:confirmTopicRuleDestination(input, options)
         output_schema = types.ConfirmTopicRuleDestinationOutput,
         http_method = "GET",
         http_path = "/confirmdestination/{confirmationToken+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:createAuditSuppression(input, options)
         output_schema = types.CreateAuditSuppressionOutput,
         http_method = "POST",
         http_path = "/audit/suppressions/create",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:createAuthorizer(input, options)
         output_schema = types.CreateAuthorizerOutput,
         http_method = "POST",
         http_path = "/authorizer/{authorizerName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:createBillingGroup(input, options)
         output_schema = types.CreateBillingGroupOutput,
         http_method = "POST",
         http_path = "/billing-groups/{billingGroupName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:createCertificateFromCsr(input, options)
         output_schema = types.CreateCertificateFromCsrOutput,
         http_method = "POST",
         http_path = "/certificates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:createCertificateProvider(input, options)
         output_schema = types.CreateCertificateProviderOutput,
         http_method = "POST",
         http_path = "/certificate-providers/{certificateProviderName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:createCommand(input, options)
         output_schema = types.CreateCommandOutput,
         http_method = "PUT",
         http_path = "/commands/{commandId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:createCustomMetric(input, options)
         output_schema = types.CreateCustomMetricOutput,
         http_method = "POST",
         http_path = "/custom-metric/{metricName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:createDimension(input, options)
         output_schema = types.CreateDimensionOutput,
         http_method = "POST",
         http_path = "/dimensions/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:createDomainConfiguration(input, options)
         output_schema = types.CreateDomainConfigurationOutput,
         http_method = "POST",
         http_path = "/domainConfigurations/{domainConfigurationName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:createDynamicThingGroup(input, options)
         output_schema = types.CreateDynamicThingGroupOutput,
         http_method = "POST",
         http_path = "/dynamic-thing-groups/{thingGroupName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:createFleetMetric(input, options)
         output_schema = types.CreateFleetMetricOutput,
         http_method = "PUT",
         http_path = "/fleet-metric/{metricName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:createJob(input, options)
         output_schema = types.CreateJobOutput,
         http_method = "PUT",
         http_path = "/jobs/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:createJobTemplate(input, options)
         output_schema = types.CreateJobTemplateOutput,
         http_method = "PUT",
         http_path = "/job-templates/{jobTemplateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:createKeysAndCertificate(input, options)
         output_schema = types.CreateKeysAndCertificateOutput,
         http_method = "POST",
         http_path = "/keys-and-certificate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:createMitigationAction(input, options)
         output_schema = types.CreateMitigationActionOutput,
         http_method = "POST",
         http_path = "/mitigationactions/actions/{actionName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:createOTAUpdate(input, options)
         output_schema = types.CreateOTAUpdateOutput,
         http_method = "POST",
         http_path = "/otaUpdates/{otaUpdateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:createPackage(input, options)
         output_schema = types.CreatePackageOutput,
         http_method = "PUT",
         http_path = "/packages/{packageName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:createPackageVersion(input, options)
         output_schema = types.CreatePackageVersionOutput,
         http_method = "PUT",
         http_path = "/packages/{packageName}/versions/{versionName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:createPolicy(input, options)
         output_schema = types.CreatePolicyOutput,
         http_method = "POST",
         http_path = "/policies/{policyName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:createPolicyVersion(input, options)
         output_schema = types.CreatePolicyVersionOutput,
         http_method = "POST",
         http_path = "/policies/{policyName}/version",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:createProvisioningClaim(input, options)
         output_schema = types.CreateProvisioningClaimOutput,
         http_method = "POST",
         http_path = "/provisioning-templates/{templateName}/provisioning-claim",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:createProvisioningTemplate(input, options)
         output_schema = types.CreateProvisioningTemplateOutput,
         http_method = "POST",
         http_path = "/provisioning-templates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:createProvisioningTemplateVersion(input, options)
         output_schema = types.CreateProvisioningTemplateVersionOutput,
         http_method = "POST",
         http_path = "/provisioning-templates/{templateName}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:createRoleAlias(input, options)
         output_schema = types.CreateRoleAliasOutput,
         http_method = "POST",
         http_path = "/role-aliases/{roleAlias}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:createScheduledAudit(input, options)
         output_schema = types.CreateScheduledAuditOutput,
         http_method = "POST",
         http_path = "/audit/scheduledaudits/{scheduledAuditName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:createSecurityProfile(input, options)
         output_schema = types.CreateSecurityProfileOutput,
         http_method = "POST",
         http_path = "/security-profiles/{securityProfileName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:createStream(input, options)
         output_schema = types.CreateStreamOutput,
         http_method = "POST",
         http_path = "/streams/{streamId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:createThing(input, options)
         output_schema = types.CreateThingOutput,
         http_method = "POST",
         http_path = "/things/{thingName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:createThingGroup(input, options)
         output_schema = types.CreateThingGroupOutput,
         http_method = "POST",
         http_path = "/thing-groups/{thingGroupName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:createThingType(input, options)
         output_schema = types.CreateThingTypeOutput,
         http_method = "POST",
         http_path = "/thing-types/{thingTypeName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:createTopicRule(input, options)
         output_schema = types.CreateTopicRuleOutput,
         http_method = "POST",
         http_path = "/rules/{ruleName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:createTopicRuleDestination(input, options)
         output_schema = types.CreateTopicRuleDestinationOutput,
         http_method = "POST",
         http_path = "/destinations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:deleteAccountAuditConfiguration(input, options)
         output_schema = types.DeleteAccountAuditConfigurationOutput,
         http_method = "DELETE",
         http_path = "/audit/configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:deleteAuditSuppression(input, options)
         output_schema = types.DeleteAuditSuppressionOutput,
         http_method = "POST",
         http_path = "/audit/suppressions/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:deleteAuthorizer(input, options)
         output_schema = types.DeleteAuthorizerOutput,
         http_method = "DELETE",
         http_path = "/authorizer/{authorizerName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:deleteBillingGroup(input, options)
         output_schema = types.DeleteBillingGroupOutput,
         http_method = "DELETE",
         http_path = "/billing-groups/{billingGroupName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:deleteCACertificate(input, options)
         output_schema = types.DeleteCACertificateOutput,
         http_method = "DELETE",
         http_path = "/cacertificate/{certificateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:deleteCertificate(input, options)
         output_schema = types.DeleteCertificateOutput,
         http_method = "DELETE",
         http_path = "/certificates/{certificateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:deleteCertificateProvider(input, options)
         output_schema = types.DeleteCertificateProviderOutput,
         http_method = "DELETE",
         http_path = "/certificate-providers/{certificateProviderName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:deleteCommand(input, options)
         output_schema = types.DeleteCommandOutput,
         http_method = "DELETE",
         http_path = "/commands/{commandId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:deleteCommandExecution(input, options)
         output_schema = types.DeleteCommandExecutionOutput,
         http_method = "DELETE",
         http_path = "/command-executions/{executionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:deleteCustomMetric(input, options)
         output_schema = types.DeleteCustomMetricOutput,
         http_method = "DELETE",
         http_path = "/custom-metric/{metricName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:deleteDimension(input, options)
         output_schema = types.DeleteDimensionOutput,
         http_method = "DELETE",
         http_path = "/dimensions/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:deleteDomainConfiguration(input, options)
         output_schema = types.DeleteDomainConfigurationOutput,
         http_method = "DELETE",
         http_path = "/domainConfigurations/{domainConfigurationName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:deleteDynamicThingGroup(input, options)
         output_schema = types.DeleteDynamicThingGroupOutput,
         http_method = "DELETE",
         http_path = "/dynamic-thing-groups/{thingGroupName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:deleteFleetMetric(input, options)
         output_schema = types.DeleteFleetMetricOutput,
         http_method = "DELETE",
         http_path = "/fleet-metric/{metricName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:deleteJob(input, options)
         output_schema = types.DeleteJobOutput,
         http_method = "DELETE",
         http_path = "/jobs/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:deleteJobExecution(input, options)
         output_schema = types.DeleteJobExecutionOutput,
         http_method = "DELETE",
         http_path = "/things/{thingName}/jobs/{jobId}/executionNumber/{executionNumber}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:deleteJobTemplate(input, options)
         output_schema = types.DeleteJobTemplateOutput,
         http_method = "DELETE",
         http_path = "/job-templates/{jobTemplateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:deleteMitigationAction(input, options)
         output_schema = types.DeleteMitigationActionOutput,
         http_method = "DELETE",
         http_path = "/mitigationactions/actions/{actionName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:deleteOTAUpdate(input, options)
         output_schema = types.DeleteOTAUpdateOutput,
         http_method = "DELETE",
         http_path = "/otaUpdates/{otaUpdateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:deletePackage(input, options)
         output_schema = types.DeletePackageOutput,
         http_method = "DELETE",
         http_path = "/packages/{packageName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:deletePackageVersion(input, options)
         output_schema = types.DeletePackageVersionOutput,
         http_method = "DELETE",
         http_path = "/packages/{packageName}/versions/{versionName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:deletePolicy(input, options)
         output_schema = types.DeletePolicyOutput,
         http_method = "DELETE",
         http_path = "/policies/{policyName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:deletePolicyVersion(input, options)
         output_schema = types.DeletePolicyVersionOutput,
         http_method = "DELETE",
         http_path = "/policies/{policyName}/version/{policyVersionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:deleteProvisioningTemplate(input, options)
         output_schema = types.DeleteProvisioningTemplateOutput,
         http_method = "DELETE",
         http_path = "/provisioning-templates/{templateName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:deleteProvisioningTemplateVersion(input, options)
         output_schema = types.DeleteProvisioningTemplateVersionOutput,
         http_method = "DELETE",
         http_path = "/provisioning-templates/{templateName}/versions/{versionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:deleteRegistrationCode(input, options)
         output_schema = types.DeleteRegistrationCodeOutput,
         http_method = "DELETE",
         http_path = "/registrationcode",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:deleteRoleAlias(input, options)
         output_schema = types.DeleteRoleAliasOutput,
         http_method = "DELETE",
         http_path = "/role-aliases/{roleAlias}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:deleteScheduledAudit(input, options)
         output_schema = types.DeleteScheduledAuditOutput,
         http_method = "DELETE",
         http_path = "/audit/scheduledaudits/{scheduledAuditName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:deleteSecurityProfile(input, options)
         output_schema = types.DeleteSecurityProfileOutput,
         http_method = "DELETE",
         http_path = "/security-profiles/{securityProfileName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:deleteStream(input, options)
         output_schema = types.DeleteStreamOutput,
         http_method = "DELETE",
         http_path = "/streams/{streamId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:deleteThing(input, options)
         output_schema = types.DeleteThingOutput,
         http_method = "DELETE",
         http_path = "/things/{thingName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:deleteThingGroup(input, options)
         output_schema = types.DeleteThingGroupOutput,
         http_method = "DELETE",
         http_path = "/thing-groups/{thingGroupName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:deleteThingType(input, options)
         output_schema = types.DeleteThingTypeOutput,
         http_method = "DELETE",
         http_path = "/thing-types/{thingTypeName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:deleteTopicRule(input, options)
         output_schema = types.DeleteTopicRuleOutput,
         http_method = "DELETE",
         http_path = "/rules/{ruleName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:deleteTopicRuleDestination(input, options)
         output_schema = types.DeleteTopicRuleDestinationOutput,
         http_method = "DELETE",
         http_path = "/destinations/{arn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:deleteV2LoggingLevel(input, options)
         output_schema = types.DeleteV2LoggingLevelOutput,
         http_method = "DELETE",
         http_path = "/v2LoggingLevel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -890,6 +1158,9 @@ function Client:deprecateThingType(input, options)
         output_schema = types.DeprecateThingTypeOutput,
         http_method = "POST",
         http_path = "/thing-types/{thingTypeName}/deprecate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -900,6 +1171,9 @@ function Client:describeAccountAuditConfiguration(input, options)
         output_schema = types.DescribeAccountAuditConfigurationOutput,
         http_method = "GET",
         http_path = "/audit/configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -910,6 +1184,9 @@ function Client:describeAuditFinding(input, options)
         output_schema = types.DescribeAuditFindingOutput,
         http_method = "GET",
         http_path = "/audit/findings/{findingId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -920,6 +1197,9 @@ function Client:describeAuditMitigationActionsTask(input, options)
         output_schema = types.DescribeAuditMitigationActionsTaskOutput,
         http_method = "GET",
         http_path = "/audit/mitigationactions/tasks/{taskId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -930,6 +1210,9 @@ function Client:describeAuditSuppression(input, options)
         output_schema = types.DescribeAuditSuppressionOutput,
         http_method = "POST",
         http_path = "/audit/suppressions/describe",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -940,6 +1223,9 @@ function Client:describeAuditTask(input, options)
         output_schema = types.DescribeAuditTaskOutput,
         http_method = "GET",
         http_path = "/audit/tasks/{taskId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -950,6 +1236,9 @@ function Client:describeAuthorizer(input, options)
         output_schema = types.DescribeAuthorizerOutput,
         http_method = "GET",
         http_path = "/authorizer/{authorizerName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -960,6 +1249,9 @@ function Client:describeBillingGroup(input, options)
         output_schema = types.DescribeBillingGroupOutput,
         http_method = "GET",
         http_path = "/billing-groups/{billingGroupName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -970,6 +1262,9 @@ function Client:describeCACertificate(input, options)
         output_schema = types.DescribeCACertificateOutput,
         http_method = "GET",
         http_path = "/cacertificate/{certificateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -980,6 +1275,9 @@ function Client:describeCertificate(input, options)
         output_schema = types.DescribeCertificateOutput,
         http_method = "GET",
         http_path = "/certificates/{certificateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -990,6 +1288,9 @@ function Client:describeCertificateProvider(input, options)
         output_schema = types.DescribeCertificateProviderOutput,
         http_method = "GET",
         http_path = "/certificate-providers/{certificateProviderName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1000,6 +1301,9 @@ function Client:describeCustomMetric(input, options)
         output_schema = types.DescribeCustomMetricOutput,
         http_method = "GET",
         http_path = "/custom-metric/{metricName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1010,6 +1314,9 @@ function Client:describeDefaultAuthorizer(input, options)
         output_schema = types.DescribeDefaultAuthorizerOutput,
         http_method = "GET",
         http_path = "/default-authorizer",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1020,6 +1327,9 @@ function Client:describeDetectMitigationActionsTask(input, options)
         output_schema = types.DescribeDetectMitigationActionsTaskOutput,
         http_method = "GET",
         http_path = "/detect/mitigationactions/tasks/{taskId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1030,6 +1340,9 @@ function Client:describeDimension(input, options)
         output_schema = types.DescribeDimensionOutput,
         http_method = "GET",
         http_path = "/dimensions/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1040,6 +1353,9 @@ function Client:describeDomainConfiguration(input, options)
         output_schema = types.DescribeDomainConfigurationOutput,
         http_method = "GET",
         http_path = "/domainConfigurations/{domainConfigurationName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1050,6 +1366,9 @@ function Client:describeEncryptionConfiguration(input, options)
         output_schema = types.DescribeEncryptionConfigurationOutput,
         http_method = "GET",
         http_path = "/encryption-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1060,6 +1379,9 @@ function Client:describeEndpoint(input, options)
         output_schema = types.DescribeEndpointOutput,
         http_method = "GET",
         http_path = "/endpoint",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1070,6 +1392,9 @@ function Client:describeEventConfigurations(input, options)
         output_schema = types.DescribeEventConfigurationsOutput,
         http_method = "GET",
         http_path = "/event-configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1080,6 +1405,9 @@ function Client:describeFleetMetric(input, options)
         output_schema = types.DescribeFleetMetricOutput,
         http_method = "GET",
         http_path = "/fleet-metric/{metricName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1090,6 +1418,9 @@ function Client:describeIndex(input, options)
         output_schema = types.DescribeIndexOutput,
         http_method = "GET",
         http_path = "/indices/{indexName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1100,6 +1431,9 @@ function Client:describeJob(input, options)
         output_schema = types.DescribeJobOutput,
         http_method = "GET",
         http_path = "/jobs/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1110,6 +1444,9 @@ function Client:describeJobExecution(input, options)
         output_schema = types.DescribeJobExecutionOutput,
         http_method = "GET",
         http_path = "/things/{thingName}/jobs/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1120,6 +1457,9 @@ function Client:describeJobTemplate(input, options)
         output_schema = types.DescribeJobTemplateOutput,
         http_method = "GET",
         http_path = "/job-templates/{jobTemplateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1130,6 +1470,9 @@ function Client:describeManagedJobTemplate(input, options)
         output_schema = types.DescribeManagedJobTemplateOutput,
         http_method = "GET",
         http_path = "/managed-job-templates/{templateName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1140,6 +1483,9 @@ function Client:describeMitigationAction(input, options)
         output_schema = types.DescribeMitigationActionOutput,
         http_method = "GET",
         http_path = "/mitigationactions/actions/{actionName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1150,6 +1496,9 @@ function Client:describeProvisioningTemplate(input, options)
         output_schema = types.DescribeProvisioningTemplateOutput,
         http_method = "GET",
         http_path = "/provisioning-templates/{templateName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1160,6 +1509,9 @@ function Client:describeProvisioningTemplateVersion(input, options)
         output_schema = types.DescribeProvisioningTemplateVersionOutput,
         http_method = "GET",
         http_path = "/provisioning-templates/{templateName}/versions/{versionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1170,6 +1522,9 @@ function Client:describeRoleAlias(input, options)
         output_schema = types.DescribeRoleAliasOutput,
         http_method = "GET",
         http_path = "/role-aliases/{roleAlias}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1180,6 +1535,9 @@ function Client:describeScheduledAudit(input, options)
         output_schema = types.DescribeScheduledAuditOutput,
         http_method = "GET",
         http_path = "/audit/scheduledaudits/{scheduledAuditName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1190,6 +1548,9 @@ function Client:describeSecurityProfile(input, options)
         output_schema = types.DescribeSecurityProfileOutput,
         http_method = "GET",
         http_path = "/security-profiles/{securityProfileName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1200,6 +1561,9 @@ function Client:describeStream(input, options)
         output_schema = types.DescribeStreamOutput,
         http_method = "GET",
         http_path = "/streams/{streamId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1210,6 +1574,9 @@ function Client:describeThing(input, options)
         output_schema = types.DescribeThingOutput,
         http_method = "GET",
         http_path = "/things/{thingName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1220,6 +1587,9 @@ function Client:describeThingGroup(input, options)
         output_schema = types.DescribeThingGroupOutput,
         http_method = "GET",
         http_path = "/thing-groups/{thingGroupName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1230,6 +1600,9 @@ function Client:describeThingRegistrationTask(input, options)
         output_schema = types.DescribeThingRegistrationTaskOutput,
         http_method = "GET",
         http_path = "/thing-registration-tasks/{taskId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1240,6 +1613,9 @@ function Client:describeThingType(input, options)
         output_schema = types.DescribeThingTypeOutput,
         http_method = "GET",
         http_path = "/thing-types/{thingTypeName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1250,6 +1626,9 @@ function Client:detachPolicy(input, options)
         output_schema = types.DetachPolicyOutput,
         http_method = "POST",
         http_path = "/target-policies/{policyName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1260,6 +1639,9 @@ function Client:detachPrincipalPolicy(input, options)
         output_schema = types.DetachPrincipalPolicyOutput,
         http_method = "DELETE",
         http_path = "/principal-policies/{policyName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1270,6 +1652,9 @@ function Client:detachSecurityProfile(input, options)
         output_schema = types.DetachSecurityProfileOutput,
         http_method = "DELETE",
         http_path = "/security-profiles/{securityProfileName}/targets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1280,6 +1665,9 @@ function Client:detachThingPrincipal(input, options)
         output_schema = types.DetachThingPrincipalOutput,
         http_method = "DELETE",
         http_path = "/things/{thingName}/principals",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1290,6 +1678,9 @@ function Client:disableTopicRule(input, options)
         output_schema = types.DisableTopicRuleOutput,
         http_method = "POST",
         http_path = "/rules/{ruleName}/disable",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1300,6 +1691,9 @@ function Client:disassociateSbomFromPackageVersion(input, options)
         output_schema = types.DisassociateSbomFromPackageVersionOutput,
         http_method = "DELETE",
         http_path = "/packages/{packageName}/versions/{versionName}/sbom",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1310,6 +1704,9 @@ function Client:enableTopicRule(input, options)
         output_schema = types.EnableTopicRuleOutput,
         http_method = "POST",
         http_path = "/rules/{ruleName}/enable",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1320,6 +1717,9 @@ function Client:getBehaviorModelTrainingSummaries(input, options)
         output_schema = types.GetBehaviorModelTrainingSummariesOutput,
         http_method = "GET",
         http_path = "/behavior-model-training/summaries",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1330,6 +1730,9 @@ function Client:getBucketsAggregation(input, options)
         output_schema = types.GetBucketsAggregationOutput,
         http_method = "POST",
         http_path = "/indices/buckets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1340,6 +1743,9 @@ function Client:getCardinality(input, options)
         output_schema = types.GetCardinalityOutput,
         http_method = "POST",
         http_path = "/indices/cardinality",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1350,6 +1756,9 @@ function Client:getCommand(input, options)
         output_schema = types.GetCommandOutput,
         http_method = "GET",
         http_path = "/commands/{commandId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1360,6 +1769,9 @@ function Client:getCommandExecution(input, options)
         output_schema = types.GetCommandExecutionOutput,
         http_method = "GET",
         http_path = "/command-executions/{executionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1370,6 +1782,9 @@ function Client:getEffectivePolicies(input, options)
         output_schema = types.GetEffectivePoliciesOutput,
         http_method = "POST",
         http_path = "/effective-policies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1380,6 +1795,9 @@ function Client:getIndexingConfiguration(input, options)
         output_schema = types.GetIndexingConfigurationOutput,
         http_method = "GET",
         http_path = "/indexing/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1390,6 +1808,9 @@ function Client:getJobDocument(input, options)
         output_schema = types.GetJobDocumentOutput,
         http_method = "GET",
         http_path = "/jobs/{jobId}/job-document",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1400,6 +1821,9 @@ function Client:getLoggingOptions(input, options)
         output_schema = types.GetLoggingOptionsOutput,
         http_method = "GET",
         http_path = "/loggingOptions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1410,6 +1834,9 @@ function Client:getOTAUpdate(input, options)
         output_schema = types.GetOTAUpdateOutput,
         http_method = "GET",
         http_path = "/otaUpdates/{otaUpdateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1420,6 +1847,9 @@ function Client:getPackage(input, options)
         output_schema = types.GetPackageOutput,
         http_method = "GET",
         http_path = "/packages/{packageName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1430,6 +1860,9 @@ function Client:getPackageConfiguration(input, options)
         output_schema = types.GetPackageConfigurationOutput,
         http_method = "GET",
         http_path = "/package-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1440,6 +1873,9 @@ function Client:getPackageVersion(input, options)
         output_schema = types.GetPackageVersionOutput,
         http_method = "GET",
         http_path = "/packages/{packageName}/versions/{versionName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1450,6 +1886,9 @@ function Client:getPercentiles(input, options)
         output_schema = types.GetPercentilesOutput,
         http_method = "POST",
         http_path = "/indices/percentiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1460,6 +1899,9 @@ function Client:getPolicy(input, options)
         output_schema = types.GetPolicyOutput,
         http_method = "GET",
         http_path = "/policies/{policyName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1470,6 +1912,9 @@ function Client:getPolicyVersion(input, options)
         output_schema = types.GetPolicyVersionOutput,
         http_method = "GET",
         http_path = "/policies/{policyName}/version/{policyVersionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1480,6 +1925,9 @@ function Client:getRegistrationCode(input, options)
         output_schema = types.GetRegistrationCodeOutput,
         http_method = "GET",
         http_path = "/registrationcode",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1490,6 +1938,9 @@ function Client:getStatistics(input, options)
         output_schema = types.GetStatisticsOutput,
         http_method = "POST",
         http_path = "/indices/statistics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1500,6 +1951,9 @@ function Client:getThingConnectivityData(input, options)
         output_schema = types.GetThingConnectivityDataOutput,
         http_method = "POST",
         http_path = "/things/{thingName}/connectivity-data",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1510,6 +1964,9 @@ function Client:getTopicRule(input, options)
         output_schema = types.GetTopicRuleOutput,
         http_method = "GET",
         http_path = "/rules/{ruleName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1520,6 +1977,9 @@ function Client:getTopicRuleDestination(input, options)
         output_schema = types.GetTopicRuleDestinationOutput,
         http_method = "GET",
         http_path = "/destinations/{arn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1530,6 +1990,9 @@ function Client:getV2LoggingOptions(input, options)
         output_schema = types.GetV2LoggingOptionsOutput,
         http_method = "GET",
         http_path = "/v2LoggingOptions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1540,6 +2003,9 @@ function Client:listActiveViolations(input, options)
         output_schema = types.ListActiveViolationsOutput,
         http_method = "GET",
         http_path = "/active-violations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1550,6 +2016,9 @@ function Client:listAttachedPolicies(input, options)
         output_schema = types.ListAttachedPoliciesOutput,
         http_method = "POST",
         http_path = "/attached-policies/{target}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1560,6 +2029,9 @@ function Client:listAuditFindings(input, options)
         output_schema = types.ListAuditFindingsOutput,
         http_method = "POST",
         http_path = "/audit/findings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1570,6 +2042,9 @@ function Client:listAuditMitigationActionsExecutions(input, options)
         output_schema = types.ListAuditMitigationActionsExecutionsOutput,
         http_method = "GET",
         http_path = "/audit/mitigationactions/executions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1580,6 +2055,9 @@ function Client:listAuditMitigationActionsTasks(input, options)
         output_schema = types.ListAuditMitigationActionsTasksOutput,
         http_method = "GET",
         http_path = "/audit/mitigationactions/tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1590,6 +2068,9 @@ function Client:listAuditSuppressions(input, options)
         output_schema = types.ListAuditSuppressionsOutput,
         http_method = "POST",
         http_path = "/audit/suppressions/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1600,6 +2081,9 @@ function Client:listAuditTasks(input, options)
         output_schema = types.ListAuditTasksOutput,
         http_method = "GET",
         http_path = "/audit/tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1610,6 +2094,9 @@ function Client:listAuthorizers(input, options)
         output_schema = types.ListAuthorizersOutput,
         http_method = "GET",
         http_path = "/authorizers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1620,6 +2107,9 @@ function Client:listBillingGroups(input, options)
         output_schema = types.ListBillingGroupsOutput,
         http_method = "GET",
         http_path = "/billing-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1630,6 +2120,9 @@ function Client:listCACertificates(input, options)
         output_schema = types.ListCACertificatesOutput,
         http_method = "GET",
         http_path = "/cacertificates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1640,6 +2133,9 @@ function Client:listCertificateProviders(input, options)
         output_schema = types.ListCertificateProvidersOutput,
         http_method = "GET",
         http_path = "/certificate-providers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1650,6 +2146,9 @@ function Client:listCertificates(input, options)
         output_schema = types.ListCertificatesOutput,
         http_method = "GET",
         http_path = "/certificates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1660,6 +2159,9 @@ function Client:listCertificatesByCA(input, options)
         output_schema = types.ListCertificatesByCAOutput,
         http_method = "GET",
         http_path = "/certificates-by-ca/{caCertificateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1670,6 +2172,9 @@ function Client:listCommandExecutions(input, options)
         output_schema = types.ListCommandExecutionsOutput,
         http_method = "POST",
         http_path = "/command-executions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1680,6 +2185,9 @@ function Client:listCommands(input, options)
         output_schema = types.ListCommandsOutput,
         http_method = "GET",
         http_path = "/commands",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1690,6 +2198,9 @@ function Client:listCustomMetrics(input, options)
         output_schema = types.ListCustomMetricsOutput,
         http_method = "GET",
         http_path = "/custom-metrics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1700,6 +2211,9 @@ function Client:listDetectMitigationActionsExecutions(input, options)
         output_schema = types.ListDetectMitigationActionsExecutionsOutput,
         http_method = "GET",
         http_path = "/detect/mitigationactions/executions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1710,6 +2224,9 @@ function Client:listDetectMitigationActionsTasks(input, options)
         output_schema = types.ListDetectMitigationActionsTasksOutput,
         http_method = "GET",
         http_path = "/detect/mitigationactions/tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1720,6 +2237,9 @@ function Client:listDimensions(input, options)
         output_schema = types.ListDimensionsOutput,
         http_method = "GET",
         http_path = "/dimensions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1730,6 +2250,9 @@ function Client:listDomainConfigurations(input, options)
         output_schema = types.ListDomainConfigurationsOutput,
         http_method = "GET",
         http_path = "/domainConfigurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1740,6 +2263,9 @@ function Client:listFleetMetrics(input, options)
         output_schema = types.ListFleetMetricsOutput,
         http_method = "GET",
         http_path = "/fleet-metrics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1750,6 +2276,9 @@ function Client:listIndices(input, options)
         output_schema = types.ListIndicesOutput,
         http_method = "GET",
         http_path = "/indices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1760,6 +2289,9 @@ function Client:listJobExecutionsForJob(input, options)
         output_schema = types.ListJobExecutionsForJobOutput,
         http_method = "GET",
         http_path = "/jobs/{jobId}/things",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1770,6 +2302,9 @@ function Client:listJobExecutionsForThing(input, options)
         output_schema = types.ListJobExecutionsForThingOutput,
         http_method = "GET",
         http_path = "/things/{thingName}/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1780,6 +2315,9 @@ function Client:listJobs(input, options)
         output_schema = types.ListJobsOutput,
         http_method = "GET",
         http_path = "/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1790,6 +2328,9 @@ function Client:listJobTemplates(input, options)
         output_schema = types.ListJobTemplatesOutput,
         http_method = "GET",
         http_path = "/job-templates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1800,6 +2341,9 @@ function Client:listManagedJobTemplates(input, options)
         output_schema = types.ListManagedJobTemplatesOutput,
         http_method = "GET",
         http_path = "/managed-job-templates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1810,6 +2354,9 @@ function Client:listMetricValues(input, options)
         output_schema = types.ListMetricValuesOutput,
         http_method = "GET",
         http_path = "/metric-values",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1820,6 +2367,9 @@ function Client:listMitigationActions(input, options)
         output_schema = types.ListMitigationActionsOutput,
         http_method = "GET",
         http_path = "/mitigationactions/actions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1830,6 +2380,9 @@ function Client:listOTAUpdates(input, options)
         output_schema = types.ListOTAUpdatesOutput,
         http_method = "GET",
         http_path = "/otaUpdates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1840,6 +2393,9 @@ function Client:listOutgoingCertificates(input, options)
         output_schema = types.ListOutgoingCertificatesOutput,
         http_method = "GET",
         http_path = "/certificates-out-going",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1850,6 +2406,9 @@ function Client:listPackages(input, options)
         output_schema = types.ListPackagesOutput,
         http_method = "GET",
         http_path = "/packages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1860,6 +2419,9 @@ function Client:listPackageVersions(input, options)
         output_schema = types.ListPackageVersionsOutput,
         http_method = "GET",
         http_path = "/packages/{packageName}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1870,6 +2432,9 @@ function Client:listPolicies(input, options)
         output_schema = types.ListPoliciesOutput,
         http_method = "GET",
         http_path = "/policies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1880,6 +2445,9 @@ function Client:listPolicyPrincipals(input, options)
         output_schema = types.ListPolicyPrincipalsOutput,
         http_method = "GET",
         http_path = "/policy-principals",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1890,6 +2458,9 @@ function Client:listPolicyVersions(input, options)
         output_schema = types.ListPolicyVersionsOutput,
         http_method = "GET",
         http_path = "/policies/{policyName}/version",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1900,6 +2471,9 @@ function Client:listPrincipalPolicies(input, options)
         output_schema = types.ListPrincipalPoliciesOutput,
         http_method = "GET",
         http_path = "/principal-policies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1910,6 +2484,9 @@ function Client:listPrincipalThings(input, options)
         output_schema = types.ListPrincipalThingsOutput,
         http_method = "GET",
         http_path = "/principals/things",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1920,6 +2497,9 @@ function Client:listPrincipalThingsV2(input, options)
         output_schema = types.ListPrincipalThingsV2Output,
         http_method = "GET",
         http_path = "/principals/things-v2",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1930,6 +2510,9 @@ function Client:listProvisioningTemplates(input, options)
         output_schema = types.ListProvisioningTemplatesOutput,
         http_method = "GET",
         http_path = "/provisioning-templates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1940,6 +2523,9 @@ function Client:listProvisioningTemplateVersions(input, options)
         output_schema = types.ListProvisioningTemplateVersionsOutput,
         http_method = "GET",
         http_path = "/provisioning-templates/{templateName}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1950,6 +2536,9 @@ function Client:listRelatedResourcesForAuditFinding(input, options)
         output_schema = types.ListRelatedResourcesForAuditFindingOutput,
         http_method = "GET",
         http_path = "/audit/relatedResources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1960,6 +2549,9 @@ function Client:listRoleAliases(input, options)
         output_schema = types.ListRoleAliasesOutput,
         http_method = "GET",
         http_path = "/role-aliases",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1970,6 +2562,9 @@ function Client:listSbomValidationResults(input, options)
         output_schema = types.ListSbomValidationResultsOutput,
         http_method = "GET",
         http_path = "/packages/{packageName}/versions/{versionName}/sbom-validation-results",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1980,6 +2575,9 @@ function Client:listScheduledAudits(input, options)
         output_schema = types.ListScheduledAuditsOutput,
         http_method = "GET",
         http_path = "/audit/scheduledaudits",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1990,6 +2588,9 @@ function Client:listSecurityProfiles(input, options)
         output_schema = types.ListSecurityProfilesOutput,
         http_method = "GET",
         http_path = "/security-profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2000,6 +2601,9 @@ function Client:listSecurityProfilesForTarget(input, options)
         output_schema = types.ListSecurityProfilesForTargetOutput,
         http_method = "GET",
         http_path = "/security-profiles-for-target",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2010,6 +2614,9 @@ function Client:listStreams(input, options)
         output_schema = types.ListStreamsOutput,
         http_method = "GET",
         http_path = "/streams",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2020,6 +2627,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2030,6 +2640,9 @@ function Client:listTargetsForPolicy(input, options)
         output_schema = types.ListTargetsForPolicyOutput,
         http_method = "POST",
         http_path = "/policy-targets/{policyName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2040,6 +2653,9 @@ function Client:listTargetsForSecurityProfile(input, options)
         output_schema = types.ListTargetsForSecurityProfileOutput,
         http_method = "GET",
         http_path = "/security-profiles/{securityProfileName}/targets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2050,6 +2666,9 @@ function Client:listThingGroups(input, options)
         output_schema = types.ListThingGroupsOutput,
         http_method = "GET",
         http_path = "/thing-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2060,6 +2679,9 @@ function Client:listThingGroupsForThing(input, options)
         output_schema = types.ListThingGroupsForThingOutput,
         http_method = "GET",
         http_path = "/things/{thingName}/thing-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2070,6 +2692,9 @@ function Client:listThingPrincipals(input, options)
         output_schema = types.ListThingPrincipalsOutput,
         http_method = "GET",
         http_path = "/things/{thingName}/principals",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2080,6 +2705,9 @@ function Client:listThingPrincipalsV2(input, options)
         output_schema = types.ListThingPrincipalsV2Output,
         http_method = "GET",
         http_path = "/things/{thingName}/principals-v2",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2090,6 +2718,9 @@ function Client:listThingRegistrationTaskReports(input, options)
         output_schema = types.ListThingRegistrationTaskReportsOutput,
         http_method = "GET",
         http_path = "/thing-registration-tasks/{taskId}/reports",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2100,6 +2731,9 @@ function Client:listThingRegistrationTasks(input, options)
         output_schema = types.ListThingRegistrationTasksOutput,
         http_method = "GET",
         http_path = "/thing-registration-tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2110,6 +2744,9 @@ function Client:listThings(input, options)
         output_schema = types.ListThingsOutput,
         http_method = "GET",
         http_path = "/things",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2120,6 +2757,9 @@ function Client:listThingsInBillingGroup(input, options)
         output_schema = types.ListThingsInBillingGroupOutput,
         http_method = "GET",
         http_path = "/billing-groups/{billingGroupName}/things",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2130,6 +2770,9 @@ function Client:listThingsInThingGroup(input, options)
         output_schema = types.ListThingsInThingGroupOutput,
         http_method = "GET",
         http_path = "/thing-groups/{thingGroupName}/things",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2140,6 +2783,9 @@ function Client:listThingTypes(input, options)
         output_schema = types.ListThingTypesOutput,
         http_method = "GET",
         http_path = "/thing-types",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2150,6 +2796,9 @@ function Client:listTopicRuleDestinations(input, options)
         output_schema = types.ListTopicRuleDestinationsOutput,
         http_method = "GET",
         http_path = "/destinations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2160,6 +2809,9 @@ function Client:listTopicRules(input, options)
         output_schema = types.ListTopicRulesOutput,
         http_method = "GET",
         http_path = "/rules",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2170,6 +2822,9 @@ function Client:listV2LoggingLevels(input, options)
         output_schema = types.ListV2LoggingLevelsOutput,
         http_method = "GET",
         http_path = "/v2LoggingLevel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2180,6 +2835,9 @@ function Client:listViolationEvents(input, options)
         output_schema = types.ListViolationEventsOutput,
         http_method = "GET",
         http_path = "/violation-events",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2190,6 +2848,9 @@ function Client:putVerificationStateOnViolation(input, options)
         output_schema = types.PutVerificationStateOnViolationOutput,
         http_method = "POST",
         http_path = "/violations/verification-state/{violationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2200,6 +2861,9 @@ function Client:registerCACertificate(input, options)
         output_schema = types.RegisterCACertificateOutput,
         http_method = "POST",
         http_path = "/cacertificate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2210,6 +2874,9 @@ function Client:registerCertificate(input, options)
         output_schema = types.RegisterCertificateOutput,
         http_method = "POST",
         http_path = "/certificate/register",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2220,6 +2887,9 @@ function Client:registerCertificateWithoutCA(input, options)
         output_schema = types.RegisterCertificateWithoutCAOutput,
         http_method = "POST",
         http_path = "/certificate/register-no-ca",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2230,6 +2900,9 @@ function Client:registerThing(input, options)
         output_schema = types.RegisterThingOutput,
         http_method = "POST",
         http_path = "/things",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2240,6 +2913,9 @@ function Client:rejectCertificateTransfer(input, options)
         output_schema = types.RejectCertificateTransferOutput,
         http_method = "PATCH",
         http_path = "/reject-certificate-transfer/{certificateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2250,6 +2926,9 @@ function Client:removeThingFromBillingGroup(input, options)
         output_schema = types.RemoveThingFromBillingGroupOutput,
         http_method = "PUT",
         http_path = "/billing-groups/removeThingFromBillingGroup",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2260,6 +2939,9 @@ function Client:removeThingFromThingGroup(input, options)
         output_schema = types.RemoveThingFromThingGroupOutput,
         http_method = "PUT",
         http_path = "/thing-groups/removeThingFromThingGroup",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2270,6 +2952,9 @@ function Client:replaceTopicRule(input, options)
         output_schema = types.ReplaceTopicRuleOutput,
         http_method = "PATCH",
         http_path = "/rules/{ruleName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2280,6 +2965,9 @@ function Client:searchIndex(input, options)
         output_schema = types.SearchIndexOutput,
         http_method = "POST",
         http_path = "/indices/search",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2290,6 +2978,9 @@ function Client:setDefaultAuthorizer(input, options)
         output_schema = types.SetDefaultAuthorizerOutput,
         http_method = "POST",
         http_path = "/default-authorizer",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2300,6 +2991,9 @@ function Client:setDefaultPolicyVersion(input, options)
         output_schema = types.SetDefaultPolicyVersionOutput,
         http_method = "PATCH",
         http_path = "/policies/{policyName}/version/{policyVersionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2310,6 +3004,9 @@ function Client:setLoggingOptions(input, options)
         output_schema = types.SetLoggingOptionsOutput,
         http_method = "POST",
         http_path = "/loggingOptions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2320,6 +3017,9 @@ function Client:setV2LoggingLevel(input, options)
         output_schema = types.SetV2LoggingLevelOutput,
         http_method = "POST",
         http_path = "/v2LoggingLevel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2330,6 +3030,9 @@ function Client:setV2LoggingOptions(input, options)
         output_schema = types.SetV2LoggingOptionsOutput,
         http_method = "POST",
         http_path = "/v2LoggingOptions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2340,6 +3043,9 @@ function Client:startAuditMitigationActionsTask(input, options)
         output_schema = types.StartAuditMitigationActionsTaskOutput,
         http_method = "POST",
         http_path = "/audit/mitigationactions/tasks/{taskId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2350,6 +3056,9 @@ function Client:startDetectMitigationActionsTask(input, options)
         output_schema = types.StartDetectMitigationActionsTaskOutput,
         http_method = "PUT",
         http_path = "/detect/mitigationactions/tasks/{taskId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2360,6 +3069,9 @@ function Client:startOnDemandAuditTask(input, options)
         output_schema = types.StartOnDemandAuditTaskOutput,
         http_method = "POST",
         http_path = "/audit/tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2370,6 +3082,9 @@ function Client:startThingRegistrationTask(input, options)
         output_schema = types.StartThingRegistrationTaskOutput,
         http_method = "POST",
         http_path = "/thing-registration-tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2380,6 +3095,9 @@ function Client:stopThingRegistrationTask(input, options)
         output_schema = types.StopThingRegistrationTaskOutput,
         http_method = "PUT",
         http_path = "/thing-registration-tasks/{taskId}/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2390,6 +3108,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2400,6 +3121,9 @@ function Client:testAuthorization(input, options)
         output_schema = types.TestAuthorizationOutput,
         http_method = "POST",
         http_path = "/test-authorization",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2410,6 +3134,9 @@ function Client:testInvokeAuthorizer(input, options)
         output_schema = types.TestInvokeAuthorizerOutput,
         http_method = "POST",
         http_path = "/authorizer/{authorizerName}/test",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2420,6 +3147,9 @@ function Client:transferCertificate(input, options)
         output_schema = types.TransferCertificateOutput,
         http_method = "PATCH",
         http_path = "/transfer-certificate/{certificateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2430,6 +3160,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/untag",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2440,6 +3173,9 @@ function Client:updateAccountAuditConfiguration(input, options)
         output_schema = types.UpdateAccountAuditConfigurationOutput,
         http_method = "PATCH",
         http_path = "/audit/configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2450,6 +3186,9 @@ function Client:updateAuditSuppression(input, options)
         output_schema = types.UpdateAuditSuppressionOutput,
         http_method = "PATCH",
         http_path = "/audit/suppressions/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2460,6 +3199,9 @@ function Client:updateAuthorizer(input, options)
         output_schema = types.UpdateAuthorizerOutput,
         http_method = "PUT",
         http_path = "/authorizer/{authorizerName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2470,6 +3212,9 @@ function Client:updateBillingGroup(input, options)
         output_schema = types.UpdateBillingGroupOutput,
         http_method = "PATCH",
         http_path = "/billing-groups/{billingGroupName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2480,6 +3225,9 @@ function Client:updateCACertificate(input, options)
         output_schema = types.UpdateCACertificateOutput,
         http_method = "PUT",
         http_path = "/cacertificate/{certificateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2490,6 +3238,9 @@ function Client:updateCertificate(input, options)
         output_schema = types.UpdateCertificateOutput,
         http_method = "PUT",
         http_path = "/certificates/{certificateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2500,6 +3251,9 @@ function Client:updateCertificateProvider(input, options)
         output_schema = types.UpdateCertificateProviderOutput,
         http_method = "PUT",
         http_path = "/certificate-providers/{certificateProviderName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2510,6 +3264,9 @@ function Client:updateCommand(input, options)
         output_schema = types.UpdateCommandOutput,
         http_method = "PATCH",
         http_path = "/commands/{commandId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2520,6 +3277,9 @@ function Client:updateCustomMetric(input, options)
         output_schema = types.UpdateCustomMetricOutput,
         http_method = "PATCH",
         http_path = "/custom-metric/{metricName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2530,6 +3290,9 @@ function Client:updateDimension(input, options)
         output_schema = types.UpdateDimensionOutput,
         http_method = "PATCH",
         http_path = "/dimensions/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2540,6 +3303,9 @@ function Client:updateDomainConfiguration(input, options)
         output_schema = types.UpdateDomainConfigurationOutput,
         http_method = "PUT",
         http_path = "/domainConfigurations/{domainConfigurationName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2550,6 +3316,9 @@ function Client:updateDynamicThingGroup(input, options)
         output_schema = types.UpdateDynamicThingGroupOutput,
         http_method = "PATCH",
         http_path = "/dynamic-thing-groups/{thingGroupName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2560,6 +3329,9 @@ function Client:updateEncryptionConfiguration(input, options)
         output_schema = types.UpdateEncryptionConfigurationOutput,
         http_method = "PATCH",
         http_path = "/encryption-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2570,6 +3342,9 @@ function Client:updateEventConfigurations(input, options)
         output_schema = types.UpdateEventConfigurationsOutput,
         http_method = "PATCH",
         http_path = "/event-configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2580,6 +3355,9 @@ function Client:updateFleetMetric(input, options)
         output_schema = types.UpdateFleetMetricOutput,
         http_method = "PATCH",
         http_path = "/fleet-metric/{metricName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2590,6 +3368,9 @@ function Client:updateIndexingConfiguration(input, options)
         output_schema = types.UpdateIndexingConfigurationOutput,
         http_method = "POST",
         http_path = "/indexing/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2600,6 +3381,9 @@ function Client:updateJob(input, options)
         output_schema = types.UpdateJobOutput,
         http_method = "PATCH",
         http_path = "/jobs/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2610,6 +3394,9 @@ function Client:updateMitigationAction(input, options)
         output_schema = types.UpdateMitigationActionOutput,
         http_method = "PATCH",
         http_path = "/mitigationactions/actions/{actionName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2620,6 +3407,9 @@ function Client:updatePackage(input, options)
         output_schema = types.UpdatePackageOutput,
         http_method = "PATCH",
         http_path = "/packages/{packageName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2630,6 +3420,9 @@ function Client:updatePackageConfiguration(input, options)
         output_schema = types.UpdatePackageConfigurationOutput,
         http_method = "PATCH",
         http_path = "/package-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2640,6 +3433,9 @@ function Client:updatePackageVersion(input, options)
         output_schema = types.UpdatePackageVersionOutput,
         http_method = "PATCH",
         http_path = "/packages/{packageName}/versions/{versionName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2650,6 +3446,9 @@ function Client:updateProvisioningTemplate(input, options)
         output_schema = types.UpdateProvisioningTemplateOutput,
         http_method = "PATCH",
         http_path = "/provisioning-templates/{templateName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2660,6 +3459,9 @@ function Client:updateRoleAlias(input, options)
         output_schema = types.UpdateRoleAliasOutput,
         http_method = "PUT",
         http_path = "/role-aliases/{roleAlias}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2670,6 +3472,9 @@ function Client:updateScheduledAudit(input, options)
         output_schema = types.UpdateScheduledAuditOutput,
         http_method = "PATCH",
         http_path = "/audit/scheduledaudits/{scheduledAuditName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2680,6 +3485,9 @@ function Client:updateSecurityProfile(input, options)
         output_schema = types.UpdateSecurityProfileOutput,
         http_method = "PATCH",
         http_path = "/security-profiles/{securityProfileName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2690,6 +3498,9 @@ function Client:updateStream(input, options)
         output_schema = types.UpdateStreamOutput,
         http_method = "PUT",
         http_path = "/streams/{streamId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2700,6 +3511,9 @@ function Client:updateThing(input, options)
         output_schema = types.UpdateThingOutput,
         http_method = "PATCH",
         http_path = "/things/{thingName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2710,6 +3524,9 @@ function Client:updateThingGroup(input, options)
         output_schema = types.UpdateThingGroupOutput,
         http_method = "PATCH",
         http_path = "/thing-groups/{thingGroupName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2720,6 +3537,9 @@ function Client:updateThingGroupsForThing(input, options)
         output_schema = types.UpdateThingGroupsForThingOutput,
         http_method = "PUT",
         http_path = "/thing-groups/updateThingGroupsForThing",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2730,6 +3550,9 @@ function Client:updateThingType(input, options)
         output_schema = types.UpdateThingTypeOutput,
         http_method = "PATCH",
         http_path = "/thing-types/{thingTypeName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2740,6 +3563,9 @@ function Client:updateTopicRuleDestination(input, options)
         output_schema = types.UpdateTopicRuleDestinationOutput,
         http_method = "PATCH",
         http_path = "/destinations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2750,6 +3576,9 @@ function Client:validateSecurityProfileBehaviors(input, options)
         output_schema = types.ValidateSecurityProfileBehaviorsOutput,
         http_method = "POST",
         http_path = "/security-profile-behaviors/validate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

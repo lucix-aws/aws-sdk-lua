@@ -70,6 +70,9 @@ M.CreateAssistantAssociationInput = {
         } }, { __index = M.AssistantAssociationInputData }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -336,6 +339,9 @@ M.CreateAssistantInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         name = {
             type = "string",
@@ -1005,6 +1011,9 @@ M.CreateSessionInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         assistantId = {
             type = "string",
@@ -1157,6 +1166,9 @@ M.CreateContentInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -1548,6 +1560,9 @@ M.CreateKnowledgeBaseInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         name = {
             type = "string",
@@ -1707,6 +1722,9 @@ M.CreateQuickResponseInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -2850,6 +2868,9 @@ M.StartImportJobInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         metadata = {
             type = "map",

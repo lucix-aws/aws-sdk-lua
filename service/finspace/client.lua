@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSHabaneroManagementService"
-    cfg.signing_name = "finspace"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "finspace", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createEnvironment(input, options)
         output_schema = types.CreateEnvironmentOutput,
         http_method = "POST",
         http_path = "/environment",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createKxChangeset(input, options)
         output_schema = types.CreateKxChangesetOutput,
         http_method = "POST",
         http_path = "/kx/environments/{environmentId}/databases/{databaseName}/changesets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createKxCluster(input, options)
         output_schema = types.CreateKxClusterOutput,
         http_method = "POST",
         http_path = "/kx/environments/{environmentId}/clusters",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createKxDatabase(input, options)
         output_schema = types.CreateKxDatabaseOutput,
         http_method = "POST",
         http_path = "/kx/environments/{environmentId}/databases",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createKxDataview(input, options)
         output_schema = types.CreateKxDataviewOutput,
         http_method = "POST",
         http_path = "/kx/environments/{environmentId}/databases/{databaseName}/dataviews",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createKxEnvironment(input, options)
         output_schema = types.CreateKxEnvironmentOutput,
         http_method = "POST",
         http_path = "/kx/environments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createKxScalingGroup(input, options)
         output_schema = types.CreateKxScalingGroupOutput,
         http_method = "POST",
         http_path = "/kx/environments/{environmentId}/scalingGroups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createKxUser(input, options)
         output_schema = types.CreateKxUserOutput,
         http_method = "POST",
         http_path = "/kx/environments/{environmentId}/users",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createKxVolume(input, options)
         output_schema = types.CreateKxVolumeOutput,
         http_method = "POST",
         http_path = "/kx/environments/{environmentId}/kxvolumes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteEnvironment(input, options)
         output_schema = types.DeleteEnvironmentOutput,
         http_method = "DELETE",
         http_path = "/environment/{environmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteKxCluster(input, options)
         output_schema = types.DeleteKxClusterOutput,
         http_method = "DELETE",
         http_path = "/kx/environments/{environmentId}/clusters/{clusterName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteKxClusterNode(input, options)
         output_schema = types.DeleteKxClusterNodeOutput,
         http_method = "DELETE",
         http_path = "/kx/environments/{environmentId}/clusters/{clusterName}/nodes/{nodeId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteKxDatabase(input, options)
         output_schema = types.DeleteKxDatabaseOutput,
         http_method = "DELETE",
         http_path = "/kx/environments/{environmentId}/databases/{databaseName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteKxDataview(input, options)
         output_schema = types.DeleteKxDataviewOutput,
         http_method = "DELETE",
         http_path = "/kx/environments/{environmentId}/databases/{databaseName}/dataviews/{dataviewName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteKxEnvironment(input, options)
         output_schema = types.DeleteKxEnvironmentOutput,
         http_method = "DELETE",
         http_path = "/kx/environments/{environmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteKxScalingGroup(input, options)
         output_schema = types.DeleteKxScalingGroupOutput,
         http_method = "DELETE",
         http_path = "/kx/environments/{environmentId}/scalingGroups/{scalingGroupName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deleteKxUser(input, options)
         output_schema = types.DeleteKxUserOutput,
         http_method = "DELETE",
         http_path = "/kx/environments/{environmentId}/users/{userName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteKxVolume(input, options)
         output_schema = types.DeleteKxVolumeOutput,
         http_method = "DELETE",
         http_path = "/kx/environments/{environmentId}/kxvolumes/{volumeName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getEnvironment(input, options)
         output_schema = types.GetEnvironmentOutput,
         http_method = "GET",
         http_path = "/environment/{environmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:getKxChangeset(input, options)
         output_schema = types.GetKxChangesetOutput,
         http_method = "GET",
         http_path = "/kx/environments/{environmentId}/databases/{databaseName}/changesets/{changesetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:getKxCluster(input, options)
         output_schema = types.GetKxClusterOutput,
         http_method = "GET",
         http_path = "/kx/environments/{environmentId}/clusters/{clusterName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:getKxConnectionString(input, options)
         output_schema = types.GetKxConnectionStringOutput,
         http_method = "GET",
         http_path = "/kx/environments/{environmentId}/connectionString",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:getKxDatabase(input, options)
         output_schema = types.GetKxDatabaseOutput,
         http_method = "GET",
         http_path = "/kx/environments/{environmentId}/databases/{databaseName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:getKxDataview(input, options)
         output_schema = types.GetKxDataviewOutput,
         http_method = "GET",
         http_path = "/kx/environments/{environmentId}/databases/{databaseName}/dataviews/{dataviewName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:getKxEnvironment(input, options)
         output_schema = types.GetKxEnvironmentOutput,
         http_method = "GET",
         http_path = "/kx/environments/{environmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:getKxScalingGroup(input, options)
         output_schema = types.GetKxScalingGroupOutput,
         http_method = "GET",
         http_path = "/kx/environments/{environmentId}/scalingGroups/{scalingGroupName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:getKxUser(input, options)
         output_schema = types.GetKxUserOutput,
         http_method = "GET",
         http_path = "/kx/environments/{environmentId}/users/{userName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:getKxVolume(input, options)
         output_schema = types.GetKxVolumeOutput,
         http_method = "GET",
         http_path = "/kx/environments/{environmentId}/kxvolumes/{volumeName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listEnvironments(input, options)
         output_schema = types.ListEnvironmentsOutput,
         http_method = "GET",
         http_path = "/environment",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:listKxChangesets(input, options)
         output_schema = types.ListKxChangesetsOutput,
         http_method = "GET",
         http_path = "/kx/environments/{environmentId}/databases/{databaseName}/changesets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:listKxClusterNodes(input, options)
         output_schema = types.ListKxClusterNodesOutput,
         http_method = "GET",
         http_path = "/kx/environments/{environmentId}/clusters/{clusterName}/nodes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:listKxClusters(input, options)
         output_schema = types.ListKxClustersOutput,
         http_method = "GET",
         http_path = "/kx/environments/{environmentId}/clusters",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:listKxDatabases(input, options)
         output_schema = types.ListKxDatabasesOutput,
         http_method = "GET",
         http_path = "/kx/environments/{environmentId}/databases",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:listKxDataviews(input, options)
         output_schema = types.ListKxDataviewsOutput,
         http_method = "GET",
         http_path = "/kx/environments/{environmentId}/databases/{databaseName}/dataviews",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:listKxEnvironments(input, options)
         output_schema = types.ListKxEnvironmentsOutput,
         http_method = "GET",
         http_path = "/kx/environments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:listKxScalingGroups(input, options)
         output_schema = types.ListKxScalingGroupsOutput,
         http_method = "GET",
         http_path = "/kx/environments/{environmentId}/scalingGroups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:listKxUsers(input, options)
         output_schema = types.ListKxUsersOutput,
         http_method = "GET",
         http_path = "/kx/environments/{environmentId}/users",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:listKxVolumes(input, options)
         output_schema = types.ListKxVolumesOutput,
         http_method = "GET",
         http_path = "/kx/environments/{environmentId}/kxvolumes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:updateEnvironment(input, options)
         output_schema = types.UpdateEnvironmentOutput,
         http_method = "PUT",
         http_path = "/environment/{environmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:updateKxClusterCodeConfiguration(input, options)
         output_schema = types.UpdateKxClusterCodeConfigurationOutput,
         http_method = "PUT",
         http_path = "/kx/environments/{environmentId}/clusters/{clusterName}/configuration/code",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:updateKxClusterDatabases(input, options)
         output_schema = types.UpdateKxClusterDatabasesOutput,
         http_method = "PUT",
         http_path = "/kx/environments/{environmentId}/clusters/{clusterName}/configuration/databases",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:updateKxDatabase(input, options)
         output_schema = types.UpdateKxDatabaseOutput,
         http_method = "PUT",
         http_path = "/kx/environments/{environmentId}/databases/{databaseName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:updateKxDataview(input, options)
         output_schema = types.UpdateKxDataviewOutput,
         http_method = "PUT",
         http_path = "/kx/environments/{environmentId}/databases/{databaseName}/dataviews/{dataviewName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:updateKxEnvironment(input, options)
         output_schema = types.UpdateKxEnvironmentOutput,
         http_method = "PUT",
         http_path = "/kx/environments/{environmentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:updateKxEnvironmentNetwork(input, options)
         output_schema = types.UpdateKxEnvironmentNetworkOutput,
         http_method = "PUT",
         http_path = "/kx/environments/{environmentId}/network",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:updateKxUser(input, options)
         output_schema = types.UpdateKxUserOutput,
         http_method = "PUT",
         http_path = "/kx/environments/{environmentId}/users/{userName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:updateKxVolume(input, options)
         output_schema = types.UpdateKxVolumeOutput,
         http_method = "PATCH",
         http_path = "/kx/environments/{environmentId}/kxvolumes/{volumeName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

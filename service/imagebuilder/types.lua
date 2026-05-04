@@ -194,6 +194,7 @@ M.CancelImageCreationInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -297,6 +298,7 @@ M.CancelLifecycleExecutionInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -852,6 +854,7 @@ M.CreateComponentInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1002,6 +1005,7 @@ M.CreateContainerRecipeInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1214,6 +1218,7 @@ M.CreateDistributionConfigurationInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1355,6 +1360,7 @@ M.CreateImageInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1472,6 +1478,7 @@ M.CreateImagePipelineInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1551,6 +1558,7 @@ M.CreateImageRecipeInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1682,6 +1690,7 @@ M.CreateInfrastructureConfigurationInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1939,6 +1948,7 @@ M.CreateLifecyclePolicyInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -2001,6 +2011,7 @@ M.CreateWorkflowInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -2345,6 +2356,7 @@ M.DistributeImageInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -3554,6 +3566,7 @@ M.ImportComponentInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -3655,6 +3668,7 @@ M.ImportDiskImageInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -3715,6 +3729,7 @@ M.ImportVmImageInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -5314,6 +5329,7 @@ M.RetryImageInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -5364,6 +5380,7 @@ M.SendWorkflowStepActionInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -5397,6 +5414,7 @@ M.StartImagePipelineExecutionInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -5493,6 +5511,7 @@ M.StartResourceStateUpdateInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -5583,6 +5602,7 @@ M.UpdateDistributionConfigurationInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -5642,6 +5662,7 @@ M.UpdateImagePipelineInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -5726,6 +5747,7 @@ M.UpdateInfrastructureConfigurationInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -5787,6 +5809,7 @@ M.UpdateLifecyclePolicyInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },

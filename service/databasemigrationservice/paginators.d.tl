@@ -1,0 +1,49 @@
+local record M
+    pages_describe_applicable_individual_assessments: function(client: table, input: table): function(): table, table
+    pages_describe_certificates: function(client: table, input: table): function(): table, table
+    pages_describe_connections: function(client: table, input: table): function(): table, table
+    pages_describe_data_migrations: function(client: table, input: table): function(): table, table
+    items_describe_data_migrations: function(client: table, input: table): function(): any
+    pages_describe_data_providers: function(client: table, input: table): function(): table, table
+    pages_describe_endpoint_settings: function(client: table, input: table): function(): table, table
+    pages_describe_endpoint_types: function(client: table, input: table): function(): table, table
+    pages_describe_endpoints: function(client: table, input: table): function(): table, table
+    pages_describe_engine_versions: function(client: table, input: table): function(): table, table
+    pages_describe_event_subscriptions: function(client: table, input: table): function(): table, table
+    pages_describe_events: function(client: table, input: table): function(): table, table
+    pages_describe_extension_pack_associations: function(client: table, input: table): function(): table, table
+    pages_describe_fleet_advisor_collectors: function(client: table, input: table): function(): table, table
+    pages_describe_fleet_advisor_databases: function(client: table, input: table): function(): table, table
+    pages_describe_fleet_advisor_lsa_analysis: function(client: table, input: table): function(): table, table
+    pages_describe_fleet_advisor_schema_object_summary: function(client: table, input: table): function(): table, table
+    pages_describe_fleet_advisor_schemas: function(client: table, input: table): function(): table, table
+    pages_describe_instance_profiles: function(client: table, input: table): function(): table, table
+    pages_describe_metadata_model_assessments: function(client: table, input: table): function(): table, table
+    pages_describe_metadata_model_children: function(client: table, input: table): function(): table, table
+    items_describe_metadata_model_children: function(client: table, input: table): function(): any
+    pages_describe_metadata_model_conversions: function(client: table, input: table): function(): table, table
+    pages_describe_metadata_model_creations: function(client: table, input: table): function(): table, table
+    items_describe_metadata_model_creations: function(client: table, input: table): function(): any
+    pages_describe_metadata_model_exports_as_script: function(client: table, input: table): function(): table, table
+    pages_describe_metadata_model_exports_to_target: function(client: table, input: table): function(): table, table
+    pages_describe_metadata_model_imports: function(client: table, input: table): function(): table, table
+    pages_describe_migration_projects: function(client: table, input: table): function(): table, table
+    pages_describe_orderable_replication_instances: function(client: table, input: table): function(): table, table
+    pages_describe_pending_maintenance_actions: function(client: table, input: table): function(): table, table
+    pages_describe_recommendation_limitations: function(client: table, input: table): function(): table, table
+    pages_describe_recommendations: function(client: table, input: table): function(): table, table
+    pages_describe_replication_configs: function(client: table, input: table): function(): table, table
+    pages_describe_replication_instance_task_logs: function(client: table, input: table): function(): table, table
+    pages_describe_replication_instances: function(client: table, input: table): function(): table, table
+    pages_describe_replication_subnet_groups: function(client: table, input: table): function(): table, table
+    pages_describe_replication_table_statistics: function(client: table, input: table): function(): table, table
+    pages_describe_replication_task_assessment_results: function(client: table, input: table): function(): table, table
+    pages_describe_replication_task_assessment_runs: function(client: table, input: table): function(): table, table
+    pages_describe_replication_task_individual_assessments: function(client: table, input: table): function(): table, table
+    pages_describe_replication_tasks: function(client: table, input: table): function(): table, table
+    pages_describe_replications: function(client: table, input: table): function(): table, table
+    pages_describe_schemas: function(client: table, input: table): function(): table, table
+    pages_describe_table_statistics: function(client: table, input: table): function(): table, table
+end
+
+return M

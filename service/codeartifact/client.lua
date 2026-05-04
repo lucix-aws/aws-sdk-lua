@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "CodeArtifactControlPlaneService"
-    cfg.signing_name = "codeartifact"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "codeartifact", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateExternalConnection(input, options)
         output_schema = types.AssociateExternalConnectionOutput,
         http_method = "POST",
         http_path = "/v1/repository/external-connection",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:copyPackageVersions(input, options)
         output_schema = types.CopyPackageVersionsOutput,
         http_method = "POST",
         http_path = "/v1/package/versions/copy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createDomain(input, options)
         output_schema = types.CreateDomainOutput,
         http_method = "POST",
         http_path = "/v1/domain",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createPackageGroup(input, options)
         output_schema = types.CreatePackageGroupOutput,
         http_method = "POST",
         http_path = "/v1/package-group",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createRepository(input, options)
         output_schema = types.CreateRepositoryOutput,
         http_method = "POST",
         http_path = "/v1/repository",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteDomain(input, options)
         output_schema = types.DeleteDomainOutput,
         http_method = "DELETE",
         http_path = "/v1/domain",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteDomainPermissionsPolicy(input, options)
         output_schema = types.DeleteDomainPermissionsPolicyOutput,
         http_method = "DELETE",
         http_path = "/v1/domain/permissions/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deletePackage(input, options)
         output_schema = types.DeletePackageOutput,
         http_method = "DELETE",
         http_path = "/v1/package",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deletePackageGroup(input, options)
         output_schema = types.DeletePackageGroupOutput,
         http_method = "DELETE",
         http_path = "/v1/package-group",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deletePackageVersions(input, options)
         output_schema = types.DeletePackageVersionsOutput,
         http_method = "POST",
         http_path = "/v1/package/versions/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteRepository(input, options)
         output_schema = types.DeleteRepositoryOutput,
         http_method = "DELETE",
         http_path = "/v1/repository",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteRepositoryPermissionsPolicy(input, options)
         output_schema = types.DeleteRepositoryPermissionsPolicyOutput,
         http_method = "DELETE",
         http_path = "/v1/repository/permissions/policies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:describeDomain(input, options)
         output_schema = types.DescribeDomainOutput,
         http_method = "GET",
         http_path = "/v1/domain",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:describePackage(input, options)
         output_schema = types.DescribePackageOutput,
         http_method = "GET",
         http_path = "/v1/package",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:describePackageGroup(input, options)
         output_schema = types.DescribePackageGroupOutput,
         http_method = "GET",
         http_path = "/v1/package-group",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:describePackageVersion(input, options)
         output_schema = types.DescribePackageVersionOutput,
         http_method = "GET",
         http_path = "/v1/package/version",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:describeRepository(input, options)
         output_schema = types.DescribeRepositoryOutput,
         http_method = "GET",
         http_path = "/v1/repository",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:disassociateExternalConnection(input, options)
         output_schema = types.DisassociateExternalConnectionOutput,
         http_method = "DELETE",
         http_path = "/v1/repository/external-connection",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:disposePackageVersions(input, options)
         output_schema = types.DisposePackageVersionsOutput,
         http_method = "POST",
         http_path = "/v1/package/versions/dispose",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:getAssociatedPackageGroup(input, options)
         output_schema = types.GetAssociatedPackageGroupOutput,
         http_method = "GET",
         http_path = "/v1/get-associated-package-group",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:getAuthorizationToken(input, options)
         output_schema = types.GetAuthorizationTokenOutput,
         http_method = "POST",
         http_path = "/v1/authorization-token",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:getDomainPermissionsPolicy(input, options)
         output_schema = types.GetDomainPermissionsPolicyOutput,
         http_method = "GET",
         http_path = "/v1/domain/permissions/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:getPackageVersionAsset(input, options)
         output_schema = types.GetPackageVersionAssetOutput,
         http_method = "GET",
         http_path = "/v1/package/version/asset",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:getPackageVersionReadme(input, options)
         output_schema = types.GetPackageVersionReadmeOutput,
         http_method = "GET",
         http_path = "/v1/package/version/readme",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:getRepositoryEndpoint(input, options)
         output_schema = types.GetRepositoryEndpointOutput,
         http_method = "GET",
         http_path = "/v1/repository/endpoint",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:getRepositoryPermissionsPolicy(input, options)
         output_schema = types.GetRepositoryPermissionsPolicyOutput,
         http_method = "GET",
         http_path = "/v1/repository/permissions/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:listAllowedRepositoriesForGroup(input, options)
         output_schema = types.ListAllowedRepositoriesForGroupOutput,
         http_method = "GET",
         http_path = "/v1/package-group-allowed-repositories",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:listAssociatedPackages(input, options)
         output_schema = types.ListAssociatedPackagesOutput,
         http_method = "GET",
         http_path = "/v1/list-associated-packages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listDomains(input, options)
         output_schema = types.ListDomainsOutput,
         http_method = "POST",
         http_path = "/v1/domains",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:listPackageGroups(input, options)
         output_schema = types.ListPackageGroupsOutput,
         http_method = "POST",
         http_path = "/v1/package-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:listPackages(input, options)
         output_schema = types.ListPackagesOutput,
         http_method = "POST",
         http_path = "/v1/packages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:listPackageVersionAssets(input, options)
         output_schema = types.ListPackageVersionAssetsOutput,
         http_method = "POST",
         http_path = "/v1/package/version/assets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:listPackageVersionDependencies(input, options)
         output_schema = types.ListPackageVersionDependenciesOutput,
         http_method = "POST",
         http_path = "/v1/package/version/dependencies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:listPackageVersions(input, options)
         output_schema = types.ListPackageVersionsOutput,
         http_method = "POST",
         http_path = "/v1/package/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:listRepositories(input, options)
         output_schema = types.ListRepositoriesOutput,
         http_method = "POST",
         http_path = "/v1/repositories",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:listRepositoriesInDomain(input, options)
         output_schema = types.ListRepositoriesInDomainOutput,
         http_method = "POST",
         http_path = "/v1/domain/repositories",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:listSubPackageGroups(input, options)
         output_schema = types.ListSubPackageGroupsOutput,
         http_method = "POST",
         http_path = "/v1/package-groups/sub-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/v1/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:publishPackageVersion(input, options)
         output_schema = types.PublishPackageVersionOutput,
         http_method = "POST",
         http_path = "/v1/package/version/publish",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:putDomainPermissionsPolicy(input, options)
         output_schema = types.PutDomainPermissionsPolicyOutput,
         http_method = "PUT",
         http_path = "/v1/domain/permissions/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:putPackageOriginConfiguration(input, options)
         output_schema = types.PutPackageOriginConfigurationOutput,
         http_method = "POST",
         http_path = "/v1/package",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:putRepositoryPermissionsPolicy(input, options)
         output_schema = types.PutRepositoryPermissionsPolicyOutput,
         http_method = "PUT",
         http_path = "/v1/repository/permissions/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/v1/tag",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/v1/untag",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:updatePackageGroup(input, options)
         output_schema = types.UpdatePackageGroupOutput,
         http_method = "PUT",
         http_path = "/v1/package-group",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:updatePackageGroupOriginConfiguration(input, options)
         output_schema = types.UpdatePackageGroupOriginConfigurationOutput,
         http_method = "PUT",
         http_path = "/v1/package-group-origin-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:updatePackageVersionsStatus(input, options)
         output_schema = types.UpdatePackageVersionsStatusOutput,
         http_method = "POST",
         http_path = "/v1/package/versions/update_status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:updateRepository(input, options)
         output_schema = types.UpdateRepositoryOutput,
         http_method = "PUT",
         http_path = "/v1/repository",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

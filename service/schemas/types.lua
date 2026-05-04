@@ -59,6 +59,9 @@ M.SchemaSummary = {
     members = {
         LastModified = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         SchemaArn = {
             type = "string",
@@ -108,6 +111,9 @@ M.SearchSchemaVersionSummary = {
     members = {
         CreatedDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         SchemaVersion = {
             type = "string",
@@ -413,6 +419,9 @@ M.CreateSchemaOutput = {
         },
         LastModified = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         SchemaArn = {
             type = "string",
@@ -436,6 +445,9 @@ M.CreateSchemaOutput = {
         },
         VersionCreatedDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -602,9 +614,15 @@ M.DescribeCodeBindingOutput = {
     members = {
         CreationDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         LastModified = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         SchemaVersion = {
             type = "string",
@@ -752,6 +770,9 @@ M.DescribeSchemaOutput = {
         },
         LastModified = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         SchemaArn = {
             type = "string",
@@ -775,6 +796,9 @@ M.DescribeSchemaOutput = {
         },
         VersionCreatedDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -923,6 +947,9 @@ M.GetResourcePolicyOutput = {
     members = {
         Policy = {
             type = "string",
+            traits = {
+                media_type = "application/json",
+            },
         },
         RevisionId = {
             type = "string",
@@ -1208,9 +1235,15 @@ M.PutCodeBindingOutput = {
     members = {
         CreationDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         LastModified = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         SchemaVersion = {
             type = "string",
@@ -1227,6 +1260,7 @@ M.PutResourcePolicyInput = {
         Policy = {
             type = "string",
             traits = {
+                media_type = "application/json",
                 required = true,
             },
         },
@@ -1247,6 +1281,9 @@ M.PutResourcePolicyOutput = {
     members = {
         Policy = {
             type = "string",
+            traits = {
+                media_type = "application/json",
+            },
         },
         RevisionId = {
             type = "string",
@@ -1495,6 +1532,9 @@ M.UpdateSchemaInput = {
     members = {
         ClientTokenId = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Content = {
             type = "string",
@@ -1530,6 +1570,9 @@ M.UpdateSchemaOutput = {
         },
         LastModified = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         SchemaArn = {
             type = "string",
@@ -1553,6 +1596,9 @@ M.UpdateSchemaOutput = {
         },
         VersionCreatedDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }

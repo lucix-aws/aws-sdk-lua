@@ -1,0 +1,32 @@
+local record M
+    pages_list_agent_action_groups: function(client: table, input: table): function(): table, table
+    items_list_agent_action_groups: function(client: table, input: table): function(): any
+    pages_list_agent_aliases: function(client: table, input: table): function(): table, table
+    items_list_agent_aliases: function(client: table, input: table): function(): any
+    pages_list_agent_collaborators: function(client: table, input: table): function(): table, table
+    items_list_agent_collaborators: function(client: table, input: table): function(): any
+    pages_list_agent_knowledge_bases: function(client: table, input: table): function(): table, table
+    items_list_agent_knowledge_bases: function(client: table, input: table): function(): any
+    pages_list_agent_versions: function(client: table, input: table): function(): table, table
+    items_list_agent_versions: function(client: table, input: table): function(): any
+    pages_list_agents: function(client: table, input: table): function(): table, table
+    items_list_agents: function(client: table, input: table): function(): any
+    pages_list_data_sources: function(client: table, input: table): function(): table, table
+    items_list_data_sources: function(client: table, input: table): function(): any
+    pages_list_flow_aliases: function(client: table, input: table): function(): table, table
+    items_list_flow_aliases: function(client: table, input: table): function(): any
+    pages_list_flow_versions: function(client: table, input: table): function(): table, table
+    items_list_flow_versions: function(client: table, input: table): function(): any
+    pages_list_flows: function(client: table, input: table): function(): table, table
+    items_list_flows: function(client: table, input: table): function(): any
+    pages_list_ingestion_jobs: function(client: table, input: table): function(): table, table
+    items_list_ingestion_jobs: function(client: table, input: table): function(): any
+    pages_list_knowledge_base_documents: function(client: table, input: table): function(): table, table
+    items_list_knowledge_base_documents: function(client: table, input: table): function(): any
+    pages_list_knowledge_bases: function(client: table, input: table): function(): table, table
+    items_list_knowledge_bases: function(client: table, input: table): function(): any
+    pages_list_prompts: function(client: table, input: table): function(): table, table
+    items_list_prompts: function(client: table, input: table): function(): any
+end
+
+return M

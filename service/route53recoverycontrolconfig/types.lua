@@ -296,6 +296,9 @@ M.CreateClusterInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ClusterName = {
             type = "string",
@@ -396,6 +399,9 @@ M.CreateControlPanelInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ClusterArn = {
             type = "string",
@@ -429,6 +435,9 @@ M.CreateRoutingControlInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ClusterArn = {
             type = "string",
@@ -536,6 +545,9 @@ M.CreateSafetyRuleInput = {
         AssertionRule = M.NewAssertionRule,
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         GatingRule = M.NewGatingRule,
         Tags = {

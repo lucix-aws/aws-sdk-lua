@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "Account"
-    cfg.signing_name = "account"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "account", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:acceptPrimaryEmailUpdate(input, options)
         output_schema = types.AcceptPrimaryEmailUpdateOutput,
         http_method = "POST",
         http_path = "/acceptPrimaryEmailUpdate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:deleteAlternateContact(input, options)
         output_schema = types.DeleteAlternateContactOutput,
         http_method = "POST",
         http_path = "/deleteAlternateContact",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:disableRegion(input, options)
         output_schema = types.DisableRegionOutput,
         http_method = "POST",
         http_path = "/disableRegion",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:enableRegion(input, options)
         output_schema = types.EnableRegionOutput,
         http_method = "POST",
         http_path = "/enableRegion",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:getAccountInformation(input, options)
         output_schema = types.GetAccountInformationOutput,
         http_method = "POST",
         http_path = "/getAccountInformation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:getAlternateContact(input, options)
         output_schema = types.GetAlternateContactOutput,
         http_method = "POST",
         http_path = "/getAlternateContact",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:getContactInformation(input, options)
         output_schema = types.GetContactInformationOutput,
         http_method = "POST",
         http_path = "/getContactInformation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:getGovCloudAccountInformation(input, options)
         output_schema = types.GetGovCloudAccountInformationOutput,
         http_method = "POST",
         http_path = "/getGovCloudAccountInformation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getPrimaryEmail(input, options)
         output_schema = types.GetPrimaryEmailOutput,
         http_method = "POST",
         http_path = "/getPrimaryEmail",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:getRegionOptStatus(input, options)
         output_schema = types.GetRegionOptStatusOutput,
         http_method = "POST",
         http_path = "/getRegionOptStatus",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:listRegions(input, options)
         output_schema = types.ListRegionsOutput,
         http_method = "POST",
         http_path = "/listRegions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:putAccountName(input, options)
         output_schema = types.PutAccountNameOutput,
         http_method = "POST",
         http_path = "/putAccountName",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:putAlternateContact(input, options)
         output_schema = types.PutAlternateContactOutput,
         http_method = "POST",
         http_path = "/putAlternateContact",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:putContactInformation(input, options)
         output_schema = types.PutContactInformationOutput,
         http_method = "POST",
         http_path = "/putContactInformation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:startPrimaryEmailUpdate(input, options)
         output_schema = types.StartPrimaryEmailUpdateOutput,
         http_method = "POST",
         http_path = "/startPrimaryEmailUpdate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

@@ -1,0 +1,77 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for getDataLakeSources.
+function M.pages_get_data_lake_sources(client, input)
+    return paginator.pages(client, "getDataLakeSources", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "dataLakeSources",
+    })
+end
+
+--- Returns an item iterator for getDataLakeSources.
+function M.items_get_data_lake_sources(client, input)
+    return paginator.items(client, "getDataLakeSources", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "dataLakeSources",
+    })
+end
+
+--- Returns a page iterator for listDataLakeExceptions.
+function M.pages_list_data_lake_exceptions(client, input)
+    return paginator.pages(client, "listDataLakeExceptions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "exceptions",
+    })
+end
+
+--- Returns an item iterator for listDataLakeExceptions.
+function M.items_list_data_lake_exceptions(client, input)
+    return paginator.items(client, "listDataLakeExceptions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "exceptions",
+    })
+end
+
+--- Returns a page iterator for listLogSources.
+function M.pages_list_log_sources(client, input)
+    return paginator.pages(client, "listLogSources", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "sources",
+    })
+end
+
+--- Returns an item iterator for listLogSources.
+function M.items_list_log_sources(client, input)
+    return paginator.items(client, "listLogSources", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "sources",
+    })
+end
+
+--- Returns a page iterator for listSubscribers.
+function M.pages_list_subscribers(client, input)
+    return paginator.pages(client, "listSubscribers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "subscribers",
+    })
+end
+
+--- Returns an item iterator for listSubscribers.
+function M.items_list_subscribers(client, input)
+    return paginator.items(client, "listSubscribers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "subscribers",
+    })
+end
+
+return M

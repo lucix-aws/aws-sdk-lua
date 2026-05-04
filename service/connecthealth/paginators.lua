@@ -1,0 +1,41 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listDomains.
+function M.pages_list_domains(client, input)
+    return paginator.pages(client, "listDomains", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "domains",
+    })
+end
+
+--- Returns an item iterator for listDomains.
+function M.items_list_domains(client, input)
+    return paginator.items(client, "listDomains", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "domains",
+    })
+end
+
+--- Returns a page iterator for listSubscriptions.
+function M.pages_list_subscriptions(client, input)
+    return paginator.pages(client, "listSubscriptions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "subscriptions",
+    })
+end
+
+--- Returns an item iterator for listSubscriptions.
+function M.items_list_subscriptions(client, input)
+    return paginator.items(client, "listSubscriptions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "subscriptions",
+    })
+end
+
+return M

@@ -1,0 +1,170 @@
+local record M
+    pages_evaluate_data_table_values: function(client: table, input: table): function(): table, table
+    pages_get_current_metric_data: function(client: table, input: table): function(): table, table
+    pages_get_current_user_data: function(client: table, input: table): function(): table, table
+    pages_get_metric_data: function(client: table, input: table): function(): table, table
+    pages_get_metric_data_v2: function(client: table, input: table): function(): table, table
+    pages_list_agent_statuses: function(client: table, input: table): function(): table, table
+    items_list_agent_statuses: function(client: table, input: table): function(): any
+    pages_list_approved_origins: function(client: table, input: table): function(): table, table
+    items_list_approved_origins: function(client: table, input: table): function(): any
+    pages_list_attached_files_configurations: function(client: table, input: table): function(): table, table
+    items_list_attached_files_configurations: function(client: table, input: table): function(): any
+    pages_list_authentication_profiles: function(client: table, input: table): function(): table, table
+    items_list_authentication_profiles: function(client: table, input: table): function(): any
+    pages_list_bots: function(client: table, input: table): function(): table, table
+    items_list_bots: function(client: table, input: table): function(): any
+    pages_list_child_hours_of_operations: function(client: table, input: table): function(): table, table
+    items_list_child_hours_of_operations: function(client: table, input: table): function(): any
+    pages_list_contact_evaluations: function(client: table, input: table): function(): table, table
+    items_list_contact_evaluations: function(client: table, input: table): function(): any
+    pages_list_contact_flow_module_aliases: function(client: table, input: table): function(): table, table
+    items_list_contact_flow_module_aliases: function(client: table, input: table): function(): any
+    pages_list_contact_flow_module_versions: function(client: table, input: table): function(): table, table
+    items_list_contact_flow_module_versions: function(client: table, input: table): function(): any
+    pages_list_contact_flow_modules: function(client: table, input: table): function(): table, table
+    items_list_contact_flow_modules: function(client: table, input: table): function(): any
+    pages_list_contact_flow_versions: function(client: table, input: table): function(): table, table
+    items_list_contact_flow_versions: function(client: table, input: table): function(): any
+    pages_list_contact_flows: function(client: table, input: table): function(): table, table
+    items_list_contact_flows: function(client: table, input: table): function(): any
+    pages_list_contact_references: function(client: table, input: table): function(): table, table
+    items_list_contact_references: function(client: table, input: table): function(): any
+    pages_list_data_table_attributes: function(client: table, input: table): function(): table, table
+    items_list_data_table_attributes: function(client: table, input: table): function(): any
+    pages_list_data_table_primary_values: function(client: table, input: table): function(): table, table
+    items_list_data_table_primary_values: function(client: table, input: table): function(): any
+    pages_list_data_table_values: function(client: table, input: table): function(): table, table
+    items_list_data_table_values: function(client: table, input: table): function(): any
+    pages_list_data_tables: function(client: table, input: table): function(): table, table
+    items_list_data_tables: function(client: table, input: table): function(): any
+    pages_list_default_vocabularies: function(client: table, input: table): function(): table, table
+    items_list_default_vocabularies: function(client: table, input: table): function(): any
+    pages_list_entity_security_profiles: function(client: table, input: table): function(): table, table
+    items_list_entity_security_profiles: function(client: table, input: table): function(): any
+    pages_list_evaluation_form_versions: function(client: table, input: table): function(): table, table
+    items_list_evaluation_form_versions: function(client: table, input: table): function(): any
+    pages_list_evaluation_forms: function(client: table, input: table): function(): table, table
+    items_list_evaluation_forms: function(client: table, input: table): function(): any
+    pages_list_flow_associations: function(client: table, input: table): function(): table, table
+    items_list_flow_associations: function(client: table, input: table): function(): any
+    pages_list_hours_of_operation_overrides: function(client: table, input: table): function(): table, table
+    items_list_hours_of_operation_overrides: function(client: table, input: table): function(): any
+    pages_list_hours_of_operations: function(client: table, input: table): function(): table, table
+    items_list_hours_of_operations: function(client: table, input: table): function(): any
+    pages_list_instance_attributes: function(client: table, input: table): function(): table, table
+    items_list_instance_attributes: function(client: table, input: table): function(): any
+    pages_list_instance_storage_configs: function(client: table, input: table): function(): table, table
+    items_list_instance_storage_configs: function(client: table, input: table): function(): any
+    pages_list_instances: function(client: table, input: table): function(): table, table
+    items_list_instances: function(client: table, input: table): function(): any
+    pages_list_integration_associations: function(client: table, input: table): function(): table, table
+    items_list_integration_associations: function(client: table, input: table): function(): any
+    pages_list_lambda_functions: function(client: table, input: table): function(): table, table
+    items_list_lambda_functions: function(client: table, input: table): function(): any
+    pages_list_lex_bots: function(client: table, input: table): function(): table, table
+    items_list_lex_bots: function(client: table, input: table): function(): any
+    pages_list_phone_numbers: function(client: table, input: table): function(): table, table
+    items_list_phone_numbers: function(client: table, input: table): function(): any
+    pages_list_phone_numbers_v2: function(client: table, input: table): function(): table, table
+    items_list_phone_numbers_v2: function(client: table, input: table): function(): any
+    pages_list_predefined_attributes: function(client: table, input: table): function(): table, table
+    items_list_predefined_attributes: function(client: table, input: table): function(): any
+    pages_list_prompts: function(client: table, input: table): function(): table, table
+    items_list_prompts: function(client: table, input: table): function(): any
+    pages_list_queue_quick_connects: function(client: table, input: table): function(): table, table
+    items_list_queue_quick_connects: function(client: table, input: table): function(): any
+    pages_list_queues: function(client: table, input: table): function(): table, table
+    items_list_queues: function(client: table, input: table): function(): any
+    pages_list_quick_connects: function(client: table, input: table): function(): table, table
+    items_list_quick_connects: function(client: table, input: table): function(): any
+    pages_list_realtime_contact_analysis_segments_v2: function(client: table, input: table): function(): table, table
+    pages_list_routing_profile_manual_assignment_queues: function(client: table, input: table): function(): table, table
+    items_list_routing_profile_manual_assignment_queues: function(client: table, input: table): function(): any
+    pages_list_routing_profile_queues: function(client: table, input: table): function(): table, table
+    items_list_routing_profile_queues: function(client: table, input: table): function(): any
+    pages_list_routing_profiles: function(client: table, input: table): function(): table, table
+    items_list_routing_profiles: function(client: table, input: table): function(): any
+    pages_list_rules: function(client: table, input: table): function(): table, table
+    items_list_rules: function(client: table, input: table): function(): any
+    pages_list_security_keys: function(client: table, input: table): function(): table, table
+    items_list_security_keys: function(client: table, input: table): function(): any
+    pages_list_security_profile_applications: function(client: table, input: table): function(): table, table
+    items_list_security_profile_applications: function(client: table, input: table): function(): any
+    pages_list_security_profile_flow_modules: function(client: table, input: table): function(): table, table
+    items_list_security_profile_flow_modules: function(client: table, input: table): function(): any
+    pages_list_security_profile_permissions: function(client: table, input: table): function(): table, table
+    items_list_security_profile_permissions: function(client: table, input: table): function(): any
+    pages_list_security_profiles: function(client: table, input: table): function(): table, table
+    items_list_security_profiles: function(client: table, input: table): function(): any
+    pages_list_task_templates: function(client: table, input: table): function(): table, table
+    items_list_task_templates: function(client: table, input: table): function(): any
+    pages_list_test_cases: function(client: table, input: table): function(): table, table
+    items_list_test_cases: function(client: table, input: table): function(): any
+    pages_list_traffic_distribution_group_users: function(client: table, input: table): function(): table, table
+    items_list_traffic_distribution_group_users: function(client: table, input: table): function(): any
+    pages_list_traffic_distribution_groups: function(client: table, input: table): function(): table, table
+    items_list_traffic_distribution_groups: function(client: table, input: table): function(): any
+    pages_list_use_cases: function(client: table, input: table): function(): table, table
+    items_list_use_cases: function(client: table, input: table): function(): any
+    pages_list_user_hierarchy_groups: function(client: table, input: table): function(): table, table
+    items_list_user_hierarchy_groups: function(client: table, input: table): function(): any
+    pages_list_user_proficiencies: function(client: table, input: table): function(): table, table
+    items_list_user_proficiencies: function(client: table, input: table): function(): any
+    pages_list_users: function(client: table, input: table): function(): table, table
+    items_list_users: function(client: table, input: table): function(): any
+    pages_list_view_versions: function(client: table, input: table): function(): table, table
+    items_list_view_versions: function(client: table, input: table): function(): any
+    pages_list_views: function(client: table, input: table): function(): table, table
+    items_list_views: function(client: table, input: table): function(): any
+    pages_list_workspace_pages: function(client: table, input: table): function(): table, table
+    items_list_workspace_pages: function(client: table, input: table): function(): any
+    pages_list_workspaces: function(client: table, input: table): function(): table, table
+    items_list_workspaces: function(client: table, input: table): function(): any
+    pages_search_agent_statuses: function(client: table, input: table): function(): table, table
+    items_search_agent_statuses: function(client: table, input: table): function(): any
+    pages_search_available_phone_numbers: function(client: table, input: table): function(): table, table
+    items_search_available_phone_numbers: function(client: table, input: table): function(): any
+    pages_search_contact_flow_modules: function(client: table, input: table): function(): table, table
+    items_search_contact_flow_modules: function(client: table, input: table): function(): any
+    pages_search_contact_flows: function(client: table, input: table): function(): table, table
+    items_search_contact_flows: function(client: table, input: table): function(): any
+    pages_search_contacts: function(client: table, input: table): function(): table, table
+    items_search_contacts: function(client: table, input: table): function(): any
+    pages_search_data_tables: function(client: table, input: table): function(): table, table
+    items_search_data_tables: function(client: table, input: table): function(): any
+    pages_search_hours_of_operation_overrides: function(client: table, input: table): function(): table, table
+    items_search_hours_of_operation_overrides: function(client: table, input: table): function(): any
+    pages_search_hours_of_operations: function(client: table, input: table): function(): table, table
+    items_search_hours_of_operations: function(client: table, input: table): function(): any
+    pages_search_predefined_attributes: function(client: table, input: table): function(): table, table
+    items_search_predefined_attributes: function(client: table, input: table): function(): any
+    pages_search_prompts: function(client: table, input: table): function(): table, table
+    items_search_prompts: function(client: table, input: table): function(): any
+    pages_search_queues: function(client: table, input: table): function(): table, table
+    items_search_queues: function(client: table, input: table): function(): any
+    pages_search_quick_connects: function(client: table, input: table): function(): table, table
+    items_search_quick_connects: function(client: table, input: table): function(): any
+    pages_search_resource_tags: function(client: table, input: table): function(): table, table
+    items_search_resource_tags: function(client: table, input: table): function(): any
+    pages_search_routing_profiles: function(client: table, input: table): function(): table, table
+    items_search_routing_profiles: function(client: table, input: table): function(): any
+    pages_search_security_profiles: function(client: table, input: table): function(): table, table
+    items_search_security_profiles: function(client: table, input: table): function(): any
+    pages_search_test_cases: function(client: table, input: table): function(): table, table
+    items_search_test_cases: function(client: table, input: table): function(): any
+    pages_search_user_hierarchy_groups: function(client: table, input: table): function(): table, table
+    items_search_user_hierarchy_groups: function(client: table, input: table): function(): any
+    pages_search_users: function(client: table, input: table): function(): table, table
+    items_search_users: function(client: table, input: table): function(): any
+    pages_search_views: function(client: table, input: table): function(): table, table
+    items_search_views: function(client: table, input: table): function(): any
+    pages_search_vocabularies: function(client: table, input: table): function(): table, table
+    items_search_vocabularies: function(client: table, input: table): function(): any
+    pages_search_workspace_associations: function(client: table, input: table): function(): table, table
+    items_search_workspace_associations: function(client: table, input: table): function(): any
+    pages_search_workspaces: function(client: table, input: table): function(): table, table
+    items_search_workspaces: function(client: table, input: table): function(): any
+end
+
+return M

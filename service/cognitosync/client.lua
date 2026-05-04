@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSCognitoSyncService"
-    cfg.signing_name = "cognito-sync"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cognito-sync", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:bulkPublish(input, options)
         output_schema = types.BulkPublishOutput,
         http_method = "POST",
         http_path = "/identitypools/{IdentityPoolId}/bulkpublish",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:deleteDataset(input, options)
         output_schema = types.DeleteDatasetOutput,
         http_method = "DELETE",
         http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:describeDataset(input, options)
         output_schema = types.DescribeDatasetOutput,
         http_method = "GET",
         http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:describeIdentityPoolUsage(input, options)
         output_schema = types.DescribeIdentityPoolUsageOutput,
         http_method = "GET",
         http_path = "/identitypools/{IdentityPoolId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:describeIdentityUsage(input, options)
         output_schema = types.DescribeIdentityUsageOutput,
         http_method = "GET",
         http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:getBulkPublishDetails(input, options)
         output_schema = types.GetBulkPublishDetailsOutput,
         http_method = "POST",
         http_path = "/identitypools/{IdentityPoolId}/getBulkPublishDetails",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:getCognitoEvents(input, options)
         output_schema = types.GetCognitoEventsOutput,
         http_method = "GET",
         http_path = "/identitypools/{IdentityPoolId}/events",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:getIdentityPoolConfiguration(input, options)
         output_schema = types.GetIdentityPoolConfigurationOutput,
         http_method = "GET",
         http_path = "/identitypools/{IdentityPoolId}/configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:listDatasets(input, options)
         output_schema = types.ListDatasetsOutput,
         http_method = "GET",
         http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:listIdentityPoolUsage(input, options)
         output_schema = types.ListIdentityPoolUsageOutput,
         http_method = "GET",
         http_path = "/identitypools",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:listRecords(input, options)
         output_schema = types.ListRecordsOutput,
         http_method = "GET",
         http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/records",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:registerDevice(input, options)
         output_schema = types.RegisterDeviceOutput,
         http_method = "POST",
         http_path = "/identitypools/{IdentityPoolId}/identity/{IdentityId}/device",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:setCognitoEvents(input, options)
         output_schema = types.SetCognitoEventsOutput,
         http_method = "POST",
         http_path = "/identitypools/{IdentityPoolId}/events",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:setIdentityPoolConfiguration(input, options)
         output_schema = types.SetIdentityPoolConfigurationOutput,
         http_method = "POST",
         http_path = "/identitypools/{IdentityPoolId}/configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:subscribeToDataset(input, options)
         output_schema = types.SubscribeToDatasetOutput,
         http_method = "POST",
         http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/subscriptions/{DeviceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:unsubscribeFromDataset(input, options)
         output_schema = types.UnsubscribeFromDatasetOutput,
         http_method = "DELETE",
         http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/subscriptions/{DeviceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:updateRecords(input, options)
         output_schema = types.UpdateRecordsOutput,
         http_method = "POST",
         http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

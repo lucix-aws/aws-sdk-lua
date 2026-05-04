@@ -1030,6 +1030,9 @@ M.AssociateFileSystemAliasesInput = {
     members = {
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         FileSystemId = {
             type = "string",
@@ -1191,6 +1194,9 @@ M.CopyBackupInput = {
     members = {
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         SourceBackupId = {
             type = "string",
@@ -1353,6 +1359,9 @@ M.CopySnapshotAndUpdateVolumeInput = {
     members = {
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         VolumeId = {
             type = "string",
@@ -1517,6 +1526,9 @@ M.CreateAndAttachS3AccessPointInput = {
     members = {
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Name = {
             type = "string",
@@ -1674,6 +1686,9 @@ M.CreateBackupInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",
@@ -1720,6 +1735,9 @@ M.CreateDataRepositoryAssociationInput = {
         S3 = M.S3DataRepositoryConfiguration,
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",
@@ -1889,6 +1907,9 @@ M.CreateDataRepositoryTaskInput = {
         } }, { __index = M.CompletionReport }),
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",
@@ -2096,6 +2117,9 @@ M.CreateFileCacheInput = {
     members = {
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         FileCacheType = {
             type = "string",
@@ -2592,6 +2616,9 @@ M.CreateFileSystemInput = {
     members = {
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         FileSystemType = {
             type = "string",
@@ -2677,6 +2704,9 @@ M.CreateFileSystemFromBackupInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         SubnetIds = {
             type = "list",
@@ -2719,6 +2749,9 @@ M.CreateSnapshotInput = {
     members = {
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Name = {
             type = "string",
@@ -2764,6 +2797,9 @@ M.CreateStorageVirtualMachineInput = {
         ActiveDirectoryConfiguration = M.CreateSvmActiveDirectoryConfiguration,
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         FileSystemId = {
             type = "string",
@@ -3035,6 +3071,9 @@ M.CreateVolumeInput = {
     members = {
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         VolumeType = {
             type = "string",
@@ -3088,6 +3127,9 @@ M.CreateVolumeFromBackupInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Name = {
             type = "string",
@@ -3140,6 +3182,9 @@ M.DeleteBackupInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3177,6 +3222,9 @@ M.DeleteDataRepositoryAssociationInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DeleteDataInFileSystem = {
             type = "boolean",
@@ -3210,6 +3258,9 @@ M.DeleteFileCacheInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3294,6 +3345,9 @@ M.DeleteFileSystemInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         WindowsConfiguration = M.DeleteFileSystemWindowsConfiguration,
         LustreConfiguration = M.DeleteFileSystemLustreConfiguration,
@@ -3360,6 +3414,9 @@ M.DeleteSnapshotInput = {
     members = {
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         SnapshotId = {
             type = "string",
@@ -3397,6 +3454,9 @@ M.DeleteStorageVirtualMachineInput = {
     members = {
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         StorageVirtualMachineId = {
             type = "string",
@@ -3454,6 +3514,9 @@ M.DeleteVolumeInput = {
     members = {
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         VolumeId = {
             type = "string",
@@ -3718,6 +3781,9 @@ M.DescribeFileSystemAliasesInput = {
     members = {
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         FileSystemId = {
             type = "string",
@@ -3972,6 +4038,9 @@ M.DetachAndDeleteS3AccessPointInput = {
     members = {
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Name = {
             type = "string",
@@ -3999,6 +4068,9 @@ M.DisassociateFileSystemAliasesInput = {
     members = {
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         FileSystemId = {
             type = "string",
@@ -4116,6 +4188,9 @@ M.ReleaseFileSystemNfsV3LocksInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -4130,6 +4205,9 @@ M.RestoreVolumeFromSnapshotInput = {
     members = {
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         VolumeId = {
             type = "string",
@@ -4155,6 +4233,9 @@ M.StartMisconfiguredStateRecoveryInput = {
     members = {
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         FileSystemId = {
             type = "string",
@@ -4222,6 +4303,9 @@ M.UpdateDataRepositoryAssociationInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ImportedFileChunkSize = {
             type = "integer",
@@ -4257,6 +4341,9 @@ M.UpdateFileCacheInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         LustreConfiguration = M.UpdateFileCacheLustreConfiguration,
     },
@@ -4449,6 +4536,9 @@ M.UpdateFileSystemInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         StorageCapacity = {
             type = "integer",
@@ -4477,6 +4567,9 @@ M.UpdateSharedVpcConfigurationInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -4495,6 +4588,9 @@ M.UpdateSnapshotInput = {
     members = {
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Name = {
             type = "string",
@@ -4527,6 +4623,9 @@ M.UpdateStorageVirtualMachineInput = {
         ActiveDirectoryConfiguration = M.UpdateSvmActiveDirectoryConfiguration,
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         StorageVirtualMachineId = {
             type = "string",
@@ -4627,6 +4726,9 @@ M.UpdateVolumeInput = {
     members = {
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         VolumeId = {
             type = "string",

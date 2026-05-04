@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "Inspector2"
-    cfg.signing_name = "inspector2"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "inspector2", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateMember(input, options)
         output_schema = types.AssociateMemberOutput,
         http_method = "POST",
         http_path = "/members/associate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchAssociateCodeSecurityScanConfiguration(input, options)
         output_schema = types.BatchAssociateCodeSecurityScanConfigurationOutput,
         http_method = "POST",
         http_path = "/codesecurity/scan-configuration/batch/associate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchDisassociateCodeSecurityScanConfiguration(input, options)
         output_schema = types.BatchDisassociateCodeSecurityScanConfigurationOutput,
         http_method = "POST",
         http_path = "/codesecurity/scan-configuration/batch/disassociate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:batchGetAccountStatus(input, options)
         output_schema = types.BatchGetAccountStatusOutput,
         http_method = "POST",
         http_path = "/status/batch/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:batchGetCodeSnippet(input, options)
         output_schema = types.BatchGetCodeSnippetOutput,
         http_method = "POST",
         http_path = "/codesnippet/batchget",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:batchGetFindingDetails(input, options)
         output_schema = types.BatchGetFindingDetailsOutput,
         http_method = "POST",
         http_path = "/findings/details/batch/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:batchGetFreeTrialInfo(input, options)
         output_schema = types.BatchGetFreeTrialInfoOutput,
         http_method = "POST",
         http_path = "/freetrialinfo/batchget",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:batchGetMemberEc2DeepInspectionStatus(input, options)
         output_schema = types.BatchGetMemberEc2DeepInspectionStatusOutput,
         http_method = "POST",
         http_path = "/ec2deepinspectionstatus/member/batch/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:batchUpdateMemberEc2DeepInspectionStatus(input, options)
         output_schema = types.BatchUpdateMemberEc2DeepInspectionStatusOutput,
         http_method = "POST",
         http_path = "/ec2deepinspectionstatus/member/batch/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:cancelFindingsReport(input, options)
         output_schema = types.CancelFindingsReportOutput,
         http_method = "POST",
         http_path = "/reporting/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:cancelSbomExport(input, options)
         output_schema = types.CancelSbomExportOutput,
         http_method = "POST",
         http_path = "/sbomexport/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createCisScanConfiguration(input, options)
         output_schema = types.CreateCisScanConfigurationOutput,
         http_method = "POST",
         http_path = "/cis/scan-configuration/create",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createCodeSecurityIntegration(input, options)
         output_schema = types.CreateCodeSecurityIntegrationOutput,
         http_method = "POST",
         http_path = "/codesecurity/integration/create",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:createCodeSecurityScanConfiguration(input, options)
         output_schema = types.CreateCodeSecurityScanConfigurationOutput,
         http_method = "POST",
         http_path = "/codesecurity/scan-configuration/create",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:createFilter(input, options)
         output_schema = types.CreateFilterOutput,
         http_method = "POST",
         http_path = "/filters/create",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:createFindingsReport(input, options)
         output_schema = types.CreateFindingsReportOutput,
         http_method = "POST",
         http_path = "/reporting/create",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:createSbomExport(input, options)
         output_schema = types.CreateSbomExportOutput,
         http_method = "POST",
         http_path = "/sbomexport/create",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteCisScanConfiguration(input, options)
         output_schema = types.DeleteCisScanConfigurationOutput,
         http_method = "POST",
         http_path = "/cis/scan-configuration/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteCodeSecurityIntegration(input, options)
         output_schema = types.DeleteCodeSecurityIntegrationOutput,
         http_method = "POST",
         http_path = "/codesecurity/integration/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deleteCodeSecurityScanConfiguration(input, options)
         output_schema = types.DeleteCodeSecurityScanConfigurationOutput,
         http_method = "POST",
         http_path = "/codesecurity/scan-configuration/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deleteFilter(input, options)
         output_schema = types.DeleteFilterOutput,
         http_method = "POST",
         http_path = "/filters/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:describeOrganizationConfiguration(input, options)
         output_schema = types.DescribeOrganizationConfigurationOutput,
         http_method = "POST",
         http_path = "/organizationconfiguration/describe",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:disable(input, options)
         output_schema = types.DisableOutput,
         http_method = "POST",
         http_path = "/disable",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:disableDelegatedAdminAccount(input, options)
         output_schema = types.DisableDelegatedAdminAccountOutput,
         http_method = "POST",
         http_path = "/delegatedadminaccounts/disable",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:disassociateMember(input, options)
         output_schema = types.DisassociateMemberOutput,
         http_method = "POST",
         http_path = "/members/disassociate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:enable(input, options)
         output_schema = types.EnableOutput,
         http_method = "POST",
         http_path = "/enable",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:enableDelegatedAdminAccount(input, options)
         output_schema = types.EnableDelegatedAdminAccountOutput,
         http_method = "POST",
         http_path = "/delegatedadminaccounts/enable",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:getCisScanReport(input, options)
         output_schema = types.GetCisScanReportOutput,
         http_method = "POST",
         http_path = "/cis/scan/report/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:getCisScanResultDetails(input, options)
         output_schema = types.GetCisScanResultDetailsOutput,
         http_method = "POST",
         http_path = "/cis/scan-result/details/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:getClustersForImage(input, options)
         output_schema = types.GetClustersForImageOutput,
         http_method = "POST",
         http_path = "/cluster/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:getCodeSecurityIntegration(input, options)
         output_schema = types.GetCodeSecurityIntegrationOutput,
         http_method = "POST",
         http_path = "/codesecurity/integration/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:getCodeSecurityScan(input, options)
         output_schema = types.GetCodeSecurityScanOutput,
         http_method = "POST",
         http_path = "/codesecurity/scan/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:getCodeSecurityScanConfiguration(input, options)
         output_schema = types.GetCodeSecurityScanConfigurationOutput,
         http_method = "POST",
         http_path = "/codesecurity/scan-configuration/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:getConfiguration(input, options)
         output_schema = types.GetConfigurationOutput,
         http_method = "POST",
         http_path = "/configuration/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:getDelegatedAdminAccount(input, options)
         output_schema = types.GetDelegatedAdminAccountOutput,
         http_method = "POST",
         http_path = "/delegatedadminaccounts/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:getEc2DeepInspectionConfiguration(input, options)
         output_schema = types.GetEc2DeepInspectionConfigurationOutput,
         http_method = "POST",
         http_path = "/ec2deepinspectionconfiguration/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:getEncryptionKey(input, options)
         output_schema = types.GetEncryptionKeyOutput,
         http_method = "GET",
         http_path = "/encryptionkey/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:getFindingsReportStatus(input, options)
         output_schema = types.GetFindingsReportStatusOutput,
         http_method = "POST",
         http_path = "/reporting/status/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:getMember(input, options)
         output_schema = types.GetMemberOutput,
         http_method = "POST",
         http_path = "/members/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:getSbomExport(input, options)
         output_schema = types.GetSbomExportOutput,
         http_method = "POST",
         http_path = "/sbomexport/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:listAccountPermissions(input, options)
         output_schema = types.ListAccountPermissionsOutput,
         http_method = "POST",
         http_path = "/accountpermissions/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:listCisScanConfigurations(input, options)
         output_schema = types.ListCisScanConfigurationsOutput,
         http_method = "POST",
         http_path = "/cis/scan-configuration/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:listCisScanResultsAggregatedByChecks(input, options)
         output_schema = types.ListCisScanResultsAggregatedByChecksOutput,
         http_method = "POST",
         http_path = "/cis/scan-result/check/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:listCisScanResultsAggregatedByTargetResource(input, options)
         output_schema = types.ListCisScanResultsAggregatedByTargetResourceOutput,
         http_method = "POST",
         http_path = "/cis/scan-result/resource/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:listCisScans(input, options)
         output_schema = types.ListCisScansOutput,
         http_method = "POST",
         http_path = "/cis/scan/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:listCodeSecurityIntegrations(input, options)
         output_schema = types.ListCodeSecurityIntegrationsOutput,
         http_method = "POST",
         http_path = "/codesecurity/integration/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:listCodeSecurityScanConfigurationAssociations(input, options)
         output_schema = types.ListCodeSecurityScanConfigurationAssociationsOutput,
         http_method = "POST",
         http_path = "/codesecurity/scan-configuration/associations/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:listCodeSecurityScanConfigurations(input, options)
         output_schema = types.ListCodeSecurityScanConfigurationsOutput,
         http_method = "POST",
         http_path = "/codesecurity/scan-configuration/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:listCoverage(input, options)
         output_schema = types.ListCoverageOutput,
         http_method = "POST",
         http_path = "/coverage/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:listCoverageStatistics(input, options)
         output_schema = types.ListCoverageStatisticsOutput,
         http_method = "POST",
         http_path = "/coverage/statistics/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:listDelegatedAdminAccounts(input, options)
         output_schema = types.ListDelegatedAdminAccountsOutput,
         http_method = "POST",
         http_path = "/delegatedadminaccounts/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:listFilters(input, options)
         output_schema = types.ListFiltersOutput,
         http_method = "POST",
         http_path = "/filters/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:listFindingAggregations(input, options)
         output_schema = types.ListFindingAggregationsOutput,
         http_method = "POST",
         http_path = "/findings/aggregation/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:listFindings(input, options)
         output_schema = types.ListFindingsOutput,
         http_method = "POST",
         http_path = "/findings/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:listMembers(input, options)
         output_schema = types.ListMembersOutput,
         http_method = "POST",
         http_path = "/members/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:listUsageTotals(input, options)
         output_schema = types.ListUsageTotalsOutput,
         http_method = "POST",
         http_path = "/usage/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:resetEncryptionKey(input, options)
         output_schema = types.ResetEncryptionKeyOutput,
         http_method = "PUT",
         http_path = "/encryptionkey/reset",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:searchVulnerabilities(input, options)
         output_schema = types.SearchVulnerabilitiesOutput,
         http_method = "POST",
         http_path = "/vulnerabilities/search",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:sendCisSessionHealth(input, options)
         output_schema = types.SendCisSessionHealthOutput,
         http_method = "PUT",
         http_path = "/cissession/health/send",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:sendCisSessionTelemetry(input, options)
         output_schema = types.SendCisSessionTelemetryOutput,
         http_method = "PUT",
         http_path = "/cissession/telemetry/send",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:startCisSession(input, options)
         output_schema = types.StartCisSessionOutput,
         http_method = "PUT",
         http_path = "/cissession/start",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:startCodeSecurityScan(input, options)
         output_schema = types.StartCodeSecurityScanOutput,
         http_method = "POST",
         http_path = "/codesecurity/scan/start",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:stopCisSession(input, options)
         output_schema = types.StopCisSessionOutput,
         http_method = "PUT",
         http_path = "/cissession/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:updateCisScanConfiguration(input, options)
         output_schema = types.UpdateCisScanConfigurationOutput,
         http_method = "POST",
         http_path = "/cis/scan-configuration/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:updateCodeSecurityIntegration(input, options)
         output_schema = types.UpdateCodeSecurityIntegrationOutput,
         http_method = "POST",
         http_path = "/codesecurity/integration/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:updateCodeSecurityScanConfiguration(input, options)
         output_schema = types.UpdateCodeSecurityScanConfigurationOutput,
         http_method = "POST",
         http_path = "/codesecurity/scan-configuration/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:updateConfiguration(input, options)
         output_schema = types.UpdateConfigurationOutput,
         http_method = "POST",
         http_path = "/configuration/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:updateEc2DeepInspectionConfiguration(input, options)
         output_schema = types.UpdateEc2DeepInspectionConfigurationOutput,
         http_method = "POST",
         http_path = "/ec2deepinspectionconfiguration/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:updateEncryptionKey(input, options)
         output_schema = types.UpdateEncryptionKeyOutput,
         http_method = "PUT",
         http_path = "/encryptionkey/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:updateFilter(input, options)
         output_schema = types.UpdateFilterOutput,
         http_method = "POST",
         http_path = "/filters/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:updateOrganizationConfiguration(input, options)
         output_schema = types.UpdateOrganizationConfigurationOutput,
         http_method = "POST",
         http_path = "/organizationconfiguration/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:updateOrgEc2DeepInspectionConfiguration(input, options)
         output_schema = types.UpdateOrgEc2DeepInspectionConfigurationOutput,
         http_method = "POST",
         http_path = "/ec2deepinspectionconfiguration/org/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

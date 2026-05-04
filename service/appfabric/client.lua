@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "FabricFrontEndService"
-    cfg.signing_name = "appfabric"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "appfabric", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:batchGetUserAccessTasks(input, options)
         output_schema = types.BatchGetUserAccessTasksOutput,
         http_method = "POST",
         http_path = "/useraccess/batchget",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:connectAppAuthorization(input, options)
         output_schema = types.ConnectAppAuthorizationOutput,
         http_method = "POST",
         http_path = "/appbundles/{appBundleIdentifier}/appauthorizations/{appAuthorizationIdentifier}/connect",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createAppAuthorization(input, options)
         output_schema = types.CreateAppAuthorizationOutput,
         http_method = "POST",
         http_path = "/appbundles/{appBundleIdentifier}/appauthorizations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createAppBundle(input, options)
         output_schema = types.CreateAppBundleOutput,
         http_method = "POST",
         http_path = "/appbundles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createIngestion(input, options)
         output_schema = types.CreateIngestionOutput,
         http_method = "POST",
         http_path = "/appbundles/{appBundleIdentifier}/ingestions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createIngestionDestination(input, options)
         output_schema = types.CreateIngestionDestinationOutput,
         http_method = "POST",
         http_path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/ingestiondestinations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteAppAuthorization(input, options)
         output_schema = types.DeleteAppAuthorizationOutput,
         http_method = "DELETE",
         http_path = "/appbundles/{appBundleIdentifier}/appauthorizations/{appAuthorizationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteAppBundle(input, options)
         output_schema = types.DeleteAppBundleOutput,
         http_method = "DELETE",
         http_path = "/appbundles/{appBundleIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteIngestion(input, options)
         output_schema = types.DeleteIngestionOutput,
         http_method = "DELETE",
         http_path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteIngestionDestination(input, options)
         output_schema = types.DeleteIngestionDestinationOutput,
         http_method = "DELETE",
         http_path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/ingestiondestinations/{ingestionDestinationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getAppAuthorization(input, options)
         output_schema = types.GetAppAuthorizationOutput,
         http_method = "GET",
         http_path = "/appbundles/{appBundleIdentifier}/appauthorizations/{appAuthorizationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getAppBundle(input, options)
         output_schema = types.GetAppBundleOutput,
         http_method = "GET",
         http_path = "/appbundles/{appBundleIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getIngestion(input, options)
         output_schema = types.GetIngestionOutput,
         http_method = "GET",
         http_path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getIngestionDestination(input, options)
         output_schema = types.GetIngestionDestinationOutput,
         http_method = "GET",
         http_path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/ingestiondestinations/{ingestionDestinationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:listAppAuthorizations(input, options)
         output_schema = types.ListAppAuthorizationsOutput,
         http_method = "GET",
         http_path = "/appbundles/{appBundleIdentifier}/appauthorizations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listAppBundles(input, options)
         output_schema = types.ListAppBundlesOutput,
         http_method = "GET",
         http_path = "/appbundles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listIngestionDestinations(input, options)
         output_schema = types.ListIngestionDestinationsOutput,
         http_method = "GET",
         http_path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/ingestiondestinations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listIngestions(input, options)
         output_schema = types.ListIngestionsOutput,
         http_method = "GET",
         http_path = "/appbundles/{appBundleIdentifier}/ingestions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:startIngestion(input, options)
         output_schema = types.StartIngestionOutput,
         http_method = "POST",
         http_path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/start",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:startUserAccessTasks(input, options)
         output_schema = types.StartUserAccessTasksOutput,
         http_method = "POST",
         http_path = "/useraccess/start",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:stopIngestion(input, options)
         output_schema = types.StopIngestionOutput,
         http_method = "POST",
         http_path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:updateAppAuthorization(input, options)
         output_schema = types.UpdateAppAuthorizationOutput,
         http_method = "PATCH",
         http_path = "/appbundles/{appBundleIdentifier}/appauthorizations/{appAuthorizationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:updateIngestionDestination(input, options)
         output_schema = types.UpdateIngestionDestinationOutput,
         http_method = "PATCH",
         http_path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/ingestiondestinations/{ingestionDestinationIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

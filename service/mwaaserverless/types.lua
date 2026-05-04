@@ -274,12 +274,21 @@ M.GetTaskInstanceOutput = {
         },
         ModifiedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         EndedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         StartedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         AttemptNumber = {
             type = "integer",
@@ -506,6 +515,9 @@ M.CreateWorkflowInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DefinitionS3Location = setmetatable({ traits = {
             required = true,
@@ -552,6 +564,9 @@ M.CreateWorkflowOutput = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         RevisionId = {
             type = "string",
@@ -691,9 +706,15 @@ M.GetWorkflowOutput = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ModifiedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         EncryptionConfiguration = M.EncryptionConfiguration,
         LoggingConfiguration = M.LoggingConfiguration,
@@ -757,9 +778,15 @@ M.WorkflowSummary = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ModifiedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         WorkflowStatus = {
             type = "string",
@@ -830,6 +857,9 @@ M.UpdateWorkflowOutput = {
         },
         ModifiedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         WorkflowVersion = {
             type = "string",
@@ -894,15 +924,27 @@ M.WorkflowRunDetail = {
         },
         StartedOn = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         CompletedOn = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ModifiedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Duration = {
             type = "integer",
@@ -984,12 +1026,21 @@ M.RunDetailSummary = {
         },
         CreatedOn = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         StartedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         EndedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1038,6 +1089,9 @@ M.StartWorkflowRunInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         OverrideParameters = {
             type = "map",
@@ -1061,6 +1115,9 @@ M.StartWorkflowRunOutput = {
         },
         StartedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1149,9 +1206,15 @@ M.WorkflowVersionSummary = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ModifiedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         DefinitionS3Location = M.DefinitionS3Location,
         ScheduleConfiguration = M.ScheduleConfiguration,

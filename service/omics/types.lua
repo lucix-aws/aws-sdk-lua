@@ -453,18 +453,21 @@ M.GetAnnotationImportJobOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         completionTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         items = {
@@ -564,16 +567,21 @@ M.AnnotationImportJobItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         completionTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         runLeftNormalization = {
             type = "boolean",
@@ -814,6 +822,7 @@ M.CreateAnnotationStoreOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -907,12 +916,14 @@ M.GetAnnotationStoreOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         tags = {
@@ -1029,12 +1040,14 @@ M.AnnotationStoreItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         statusMessage = {
@@ -1115,12 +1128,14 @@ M.UpdateAnnotationStoreOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         storeOptions = M.StoreOptions,
@@ -1229,6 +1244,7 @@ M.CreateAnnotationStoreVersionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1358,12 +1374,14 @@ M.GetAnnotationStoreVersionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         tags = {
@@ -1474,12 +1492,14 @@ M.AnnotationStoreVersionItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         statusMessage = {
@@ -1576,12 +1596,14 @@ M.UpdateAnnotationStoreVersionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1668,6 +1690,9 @@ M.BatchListItem = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         totalRuns = {
             type = "integer",
@@ -1887,6 +1912,9 @@ M.ConfigurationListItem = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1935,6 +1963,7 @@ M.CreateConfigurationInput = {
         requestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1986,6 +2015,9 @@ M.CreateConfigurationOutput = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         tags = {
             type = "map",
@@ -2046,6 +2078,9 @@ M.GetConfigurationOutput = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         tags = {
             type = "map",
@@ -2331,6 +2366,7 @@ M.CreateRunCacheInput = {
         requestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -2394,6 +2430,7 @@ M.CreateRunGroupInput = {
         requestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -2455,6 +2492,9 @@ M.CreateSequenceStoreInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         fallbackLocation = {
             type = "string",
@@ -2625,6 +2665,7 @@ M.CreateVariantStoreOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2738,6 +2779,7 @@ M.CreateWorkflowInput = {
         requestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -2753,6 +2795,9 @@ M.CreateWorkflowInput = {
         },
         readmeMarkdown = {
             type = "string",
+            traits = {
+                media_type = "text/markdown",
+            },
         },
         parameterTemplatePath = {
             type = "string",
@@ -2844,6 +2889,7 @@ M.CreateWorkflowVersionInput = {
         requestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -2867,6 +2913,9 @@ M.CreateWorkflowVersionInput = {
         },
         readmeMarkdown = {
             type = "string",
+            traits = {
+                media_type = "text/markdown",
+            },
         },
         parameterTemplatePath = {
             type = "string",
@@ -3572,15 +3621,27 @@ M.GetBatchOutput = {
         runSummary = M.RunSummary,
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         submittedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         processedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         failedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         failureReason = {
             type = "string",
@@ -4517,12 +4578,21 @@ M.GetRunOutput = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         startTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         stopTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         statusMessage = {
             type = "string",
@@ -4598,6 +4668,9 @@ M.GetRunCacheOutput = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         description = {
             type = "string",
@@ -4655,6 +4728,9 @@ M.GetRunGroupOutput = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         tags = {
             type = "map",
@@ -4738,12 +4814,21 @@ M.GetRunTaskOutput = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         startTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         stopTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         statusMessage = {
             type = "string",
@@ -4803,6 +4888,7 @@ M.GetS3AccessPolicyOutput = {
         s3AccessPolicy = {
             type = "string",
             traits = {
+                media_type = "application/json",
                 required = true,
             },
         },
@@ -4919,9 +5005,15 @@ M.ShareDetails = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updateTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -5004,16 +5096,21 @@ M.GetVariantImportJobOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         completionTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         items = {
             type = "list",
@@ -5093,12 +5190,14 @@ M.GetVariantStoreOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         tags = {
@@ -5204,6 +5303,9 @@ M.GetWorkflowOutput = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         statusMessage = {
             type = "string",
@@ -5294,6 +5396,9 @@ M.GetWorkflowVersionOutput = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         description = {
             type = "string",
@@ -6292,6 +6397,9 @@ M.RunCacheListItem = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         id = {
             type = "string",
@@ -6365,6 +6473,9 @@ M.RunGroupListItem = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         maxGpus = {
             type = "integer",
@@ -6456,12 +6567,21 @@ M.RunListItem = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         startTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         stopTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         storageType = {
             type = "string",
@@ -6634,12 +6754,21 @@ M.TaskListItem = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         startTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         stopTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         gpus = {
             type = "integer",
@@ -6923,16 +7052,21 @@ M.VariantImportJobItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         completionTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         runLeftNormalization = {
             type = "boolean",
@@ -7036,12 +7170,14 @@ M.VariantStoreItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         statusMessage = {
@@ -7125,6 +7261,9 @@ M.WorkflowListItem = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         metadata = {
             type = "map",
@@ -7210,6 +7349,9 @@ M.WorkflowVersionListItem = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         metadata = {
             type = "map",
@@ -7245,6 +7387,7 @@ M.PutS3AccessPolicyInput = {
         s3AccessPolicy = {
             type = "string",
             traits = {
+                media_type = "application/json",
                 required = true,
             },
         },
@@ -7367,6 +7510,7 @@ M.StartRunBatchInput = {
         requestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -7521,6 +7665,7 @@ M.StartRunInput = {
         requestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -7841,6 +7986,9 @@ M.UpdateSequenceStoreInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         fallbackLocation = {
             type = "string",
@@ -8121,12 +8269,14 @@ M.UpdateVariantStoreOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updateTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -8156,6 +8306,9 @@ M.UpdateWorkflowInput = {
         },
         readmeMarkdown = {
             type = "string",
+            traits = {
+                media_type = "text/markdown",
+            },
         },
     },
 }
@@ -8192,6 +8345,9 @@ M.UpdateWorkflowVersionInput = {
         },
         readmeMarkdown = {
             type = "string",
+            traits = {
+                media_type = "text/markdown",
+            },
         },
     },
 }

@@ -1245,13 +1245,13 @@ local record ServiceLinkedRoleFailure
     message: string
 end
 
-local type RefreshStrategy = "Rolling" | "ReplaceRootVolume"
-
-local type RetryStrategy = "retry-with-group-configuration" | "none"
-
 local type DeletionProtection = "none" | "prevent-force-deletion" | "prevent-all-deletion"
 
 local type WarmPoolState = "Stopped" | "Running" | "Hibernated"
+
+local type RetryStrategy = "retry-with-group-configuration" | "none"
+
+local type RefreshStrategy = "Rolling" | "ReplaceRootVolume"
 
 local record M
     AttachInstancesInput: AttachInstancesInput

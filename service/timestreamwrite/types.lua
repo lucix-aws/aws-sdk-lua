@@ -380,6 +380,9 @@ M.CreateBatchLoadTaskInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DataModelConfiguration = M.DataModelConfiguration,
         DataSourceConfiguration = setmetatable({ traits = {

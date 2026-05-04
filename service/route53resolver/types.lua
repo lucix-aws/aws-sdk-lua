@@ -45,6 +45,7 @@ M.AssociateFirewallRuleGroupInput = {
         CreatorRequestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -542,6 +543,7 @@ M.CreateFirewallDomainListInput = {
         CreatorRequestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -626,6 +628,7 @@ M.CreateFirewallRuleInput = {
         CreatorRequestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -753,6 +756,7 @@ M.CreateFirewallRuleGroupInput = {
         CreatorRequestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1031,6 +1035,7 @@ M.CreateResolverQueryLogConfigInput = {
         CreatorRequestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },

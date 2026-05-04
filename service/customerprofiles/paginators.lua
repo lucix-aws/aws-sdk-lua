@@ -1,0 +1,239 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for getSimilarProfiles.
+function M.pages_get_similar_profiles(client, input)
+    return paginator.pages(client, "getSimilarProfiles", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ProfileIds",
+    })
+end
+
+--- Returns an item iterator for getSimilarProfiles.
+function M.items_get_similar_profiles(client, input)
+    return paginator.items(client, "getSimilarProfiles", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ProfileIds",
+    })
+end
+
+--- Returns a page iterator for listDomainLayouts.
+function M.pages_list_domain_layouts(client, input)
+    return paginator.pages(client, "listDomainLayouts", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listDomainLayouts.
+function M.items_list_domain_layouts(client, input)
+    return paginator.items(client, "listDomainLayouts", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listDomainObjectTypes.
+function M.pages_list_domain_object_types(client, input)
+    return paginator.pages(client, "listDomainObjectTypes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listDomainObjectTypes.
+function M.items_list_domain_object_types(client, input)
+    return paginator.items(client, "listDomainObjectTypes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listEventStreams.
+function M.pages_list_event_streams(client, input)
+    return paginator.pages(client, "listEventStreams", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listEventStreams.
+function M.items_list_event_streams(client, input)
+    return paginator.items(client, "listEventStreams", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listEventTriggers.
+function M.pages_list_event_triggers(client, input)
+    return paginator.pages(client, "listEventTriggers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listEventTriggers.
+function M.items_list_event_triggers(client, input)
+    return paginator.items(client, "listEventTriggers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listObjectTypeAttributes.
+function M.pages_list_object_type_attributes(client, input)
+    return paginator.pages(client, "listObjectTypeAttributes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listObjectTypeAttributes.
+function M.items_list_object_type_attributes(client, input)
+    return paginator.items(client, "listObjectTypeAttributes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listRecommenderFilters.
+function M.pages_list_recommender_filters(client, input)
+    return paginator.pages(client, "listRecommenderFilters", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RecommenderFilters",
+    })
+end
+
+--- Returns an item iterator for listRecommenderFilters.
+function M.items_list_recommender_filters(client, input)
+    return paginator.items(client, "listRecommenderFilters", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RecommenderFilters",
+    })
+end
+
+--- Returns a page iterator for listRecommenderRecipes.
+function M.pages_list_recommender_recipes(client, input)
+    return paginator.pages(client, "listRecommenderRecipes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RecommenderRecipes",
+    })
+end
+
+--- Returns an item iterator for listRecommenderRecipes.
+function M.items_list_recommender_recipes(client, input)
+    return paginator.items(client, "listRecommenderRecipes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RecommenderRecipes",
+    })
+end
+
+--- Returns a page iterator for listRecommenderSchemas.
+function M.pages_list_recommender_schemas(client, input)
+    return paginator.pages(client, "listRecommenderSchemas", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RecommenderSchemas",
+    })
+end
+
+--- Returns an item iterator for listRecommenderSchemas.
+function M.items_list_recommender_schemas(client, input)
+    return paginator.items(client, "listRecommenderSchemas", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RecommenderSchemas",
+    })
+end
+
+--- Returns a page iterator for listRecommenders.
+function M.pages_list_recommenders(client, input)
+    return paginator.pages(client, "listRecommenders", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Recommenders",
+    })
+end
+
+--- Returns an item iterator for listRecommenders.
+function M.items_list_recommenders(client, input)
+    return paginator.items(client, "listRecommenders", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Recommenders",
+    })
+end
+
+--- Returns a page iterator for listRuleBasedMatches.
+function M.pages_list_rule_based_matches(client, input)
+    return paginator.pages(client, "listRuleBasedMatches", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MatchIds",
+    })
+end
+
+--- Returns an item iterator for listRuleBasedMatches.
+function M.items_list_rule_based_matches(client, input)
+    return paginator.items(client, "listRuleBasedMatches", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MatchIds",
+    })
+end
+
+--- Returns a page iterator for listSegmentDefinitions.
+function M.pages_list_segment_definitions(client, input)
+    return paginator.pages(client, "listSegmentDefinitions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listSegmentDefinitions.
+function M.items_list_segment_definitions(client, input)
+    return paginator.items(client, "listSegmentDefinitions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listUploadJobs.
+function M.pages_list_upload_jobs(client, input)
+    return paginator.pages(client, "listUploadJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listUploadJobs.
+function M.items_list_upload_jobs(client, input)
+    return paginator.items(client, "listUploadJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+return M

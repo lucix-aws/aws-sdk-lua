@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSIoTSiteWise"
-    cfg.signing_name = "iotsitewise"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "iotsitewise", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateAssets(input, options)
         output_schema = types.AssociateAssetsOutput,
         http_method = "POST",
         http_path = "/assets/{assetId}/associate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:associateTimeSeriesToAssetProperty(input, options)
         output_schema = types.AssociateTimeSeriesToAssetPropertyOutput,
         http_method = "POST",
         http_path = "/timeseries/associate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchAssociateProjectAssets(input, options)
         output_schema = types.BatchAssociateProjectAssetsOutput,
         http_method = "POST",
         http_path = "/projects/{projectId}/assets/associate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:batchDisassociateProjectAssets(input, options)
         output_schema = types.BatchDisassociateProjectAssetsOutput,
         http_method = "POST",
         http_path = "/projects/{projectId}/assets/disassociate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:batchGetAssetPropertyAggregates(input, options)
         output_schema = types.BatchGetAssetPropertyAggregatesOutput,
         http_method = "POST",
         http_path = "/properties/batch/aggregates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:batchGetAssetPropertyValue(input, options)
         output_schema = types.BatchGetAssetPropertyValueOutput,
         http_method = "POST",
         http_path = "/properties/batch/latest",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:batchGetAssetPropertyValueHistory(input, options)
         output_schema = types.BatchGetAssetPropertyValueHistoryOutput,
         http_method = "POST",
         http_path = "/properties/batch/history",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:batchPutAssetPropertyValue(input, options)
         output_schema = types.BatchPutAssetPropertyValueOutput,
         http_method = "POST",
         http_path = "/properties",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createAccessPolicy(input, options)
         output_schema = types.CreateAccessPolicyOutput,
         http_method = "POST",
         http_path = "/access-policies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createAsset(input, options)
         output_schema = types.CreateAssetOutput,
         http_method = "POST",
         http_path = "/assets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createAssetModel(input, options)
         output_schema = types.CreateAssetModelOutput,
         http_method = "POST",
         http_path = "/asset-models",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createAssetModelCompositeModel(input, options)
         output_schema = types.CreateAssetModelCompositeModelOutput,
         http_method = "POST",
         http_path = "/asset-models/{assetModelId}/composite-models",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createBulkImportJob(input, options)
         output_schema = types.CreateBulkImportJobOutput,
         http_method = "POST",
         http_path = "/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:createComputationModel(input, options)
         output_schema = types.CreateComputationModelOutput,
         http_method = "POST",
         http_path = "/computation-models",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:createDashboard(input, options)
         output_schema = types.CreateDashboardOutput,
         http_method = "POST",
         http_path = "/dashboards",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:createDataset(input, options)
         output_schema = types.CreateDatasetOutput,
         http_method = "POST",
         http_path = "/datasets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:createGateway(input, options)
         output_schema = types.CreateGatewayOutput,
         http_method = "POST",
         http_path = "/20200301/gateways",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:createPortal(input, options)
         output_schema = types.CreatePortalOutput,
         http_method = "POST",
         http_path = "/portals",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:createProject(input, options)
         output_schema = types.CreateProjectOutput,
         http_method = "POST",
         http_path = "/projects",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deleteAccessPolicy(input, options)
         output_schema = types.DeleteAccessPolicyOutput,
         http_method = "DELETE",
         http_path = "/access-policies/{accessPolicyId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deleteAsset(input, options)
         output_schema = types.DeleteAssetOutput,
         http_method = "DELETE",
         http_path = "/assets/{assetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:deleteAssetModel(input, options)
         output_schema = types.DeleteAssetModelOutput,
         http_method = "DELETE",
         http_path = "/asset-models/{assetModelId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:deleteAssetModelCompositeModel(input, options)
         output_schema = types.DeleteAssetModelCompositeModelOutput,
         http_method = "DELETE",
         http_path = "/asset-models/{assetModelId}/composite-models/{assetModelCompositeModelId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:deleteAssetModelInterfaceRelationship(input, options)
         output_schema = types.DeleteAssetModelInterfaceRelationshipOutput,
         http_method = "DELETE",
         http_path = "/asset-models/{assetModelId}/interface/{interfaceAssetModelId}/asset-model-interface-relationship",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:deleteComputationModel(input, options)
         output_schema = types.DeleteComputationModelOutput,
         http_method = "DELETE",
         http_path = "/computation-models/{computationModelId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:deleteDashboard(input, options)
         output_schema = types.DeleteDashboardOutput,
         http_method = "DELETE",
         http_path = "/dashboards/{dashboardId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:deleteDataset(input, options)
         output_schema = types.DeleteDatasetOutput,
         http_method = "DELETE",
         http_path = "/datasets/{datasetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:deleteGateway(input, options)
         output_schema = types.DeleteGatewayOutput,
         http_method = "DELETE",
         http_path = "/20200301/gateways/{gatewayId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:deletePortal(input, options)
         output_schema = types.DeletePortalOutput,
         http_method = "DELETE",
         http_path = "/portals/{portalId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:deleteProject(input, options)
         output_schema = types.DeleteProjectOutput,
         http_method = "DELETE",
         http_path = "/projects/{projectId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:deleteTimeSeries(input, options)
         output_schema = types.DeleteTimeSeriesOutput,
         http_method = "POST",
         http_path = "/timeseries/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:describeAccessPolicy(input, options)
         output_schema = types.DescribeAccessPolicyOutput,
         http_method = "GET",
         http_path = "/access-policies/{accessPolicyId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:describeAction(input, options)
         output_schema = types.DescribeActionOutput,
         http_method = "GET",
         http_path = "/actions/{actionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:describeAsset(input, options)
         output_schema = types.DescribeAssetOutput,
         http_method = "GET",
         http_path = "/assets/{assetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:describeAssetCompositeModel(input, options)
         output_schema = types.DescribeAssetCompositeModelOutput,
         http_method = "GET",
         http_path = "/assets/{assetId}/composite-models/{assetCompositeModelId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:describeAssetModel(input, options)
         output_schema = types.DescribeAssetModelOutput,
         http_method = "GET",
         http_path = "/asset-models/{assetModelId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:describeAssetModelCompositeModel(input, options)
         output_schema = types.DescribeAssetModelCompositeModelOutput,
         http_method = "GET",
         http_path = "/asset-models/{assetModelId}/composite-models/{assetModelCompositeModelId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:describeAssetModelInterfaceRelationship(input, options)
         output_schema = types.DescribeAssetModelInterfaceRelationshipOutput,
         http_method = "GET",
         http_path = "/asset-models/{assetModelId}/interface/{interfaceAssetModelId}/asset-model-interface-relationship",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:describeAssetProperty(input, options)
         output_schema = types.DescribeAssetPropertyOutput,
         http_method = "GET",
         http_path = "/assets/{assetId}/properties/{propertyId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:describeBulkImportJob(input, options)
         output_schema = types.DescribeBulkImportJobOutput,
         http_method = "GET",
         http_path = "/jobs/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:describeComputationModel(input, options)
         output_schema = types.DescribeComputationModelOutput,
         http_method = "GET",
         http_path = "/computation-models/{computationModelId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:describeComputationModelExecutionSummary(input, options)
         output_schema = types.DescribeComputationModelExecutionSummaryOutput,
         http_method = "GET",
         http_path = "/computation-models/{computationModelId}/execution-summary",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:describeDashboard(input, options)
         output_schema = types.DescribeDashboardOutput,
         http_method = "GET",
         http_path = "/dashboards/{dashboardId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:describeDataset(input, options)
         output_schema = types.DescribeDatasetOutput,
         http_method = "GET",
         http_path = "/datasets/{datasetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:describeDefaultEncryptionConfiguration(input, options)
         output_schema = types.DescribeDefaultEncryptionConfigurationOutput,
         http_method = "GET",
         http_path = "/configuration/account/encryption",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:describeExecution(input, options)
         output_schema = types.DescribeExecutionOutput,
         http_method = "GET",
         http_path = "/executions/{executionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:describeGateway(input, options)
         output_schema = types.DescribeGatewayOutput,
         http_method = "GET",
         http_path = "/20200301/gateways/{gatewayId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:describeGatewayCapabilityConfiguration(input, options)
         output_schema = types.DescribeGatewayCapabilityConfigurationOutput,
         http_method = "GET",
         http_path = "/20200301/gateways/{gatewayId}/capability/{capabilityNamespace}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:describeLoggingOptions(input, options)
         output_schema = types.DescribeLoggingOptionsOutput,
         http_method = "GET",
         http_path = "/logging",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:describePortal(input, options)
         output_schema = types.DescribePortalOutput,
         http_method = "GET",
         http_path = "/portals/{portalId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:describeProject(input, options)
         output_schema = types.DescribeProjectOutput,
         http_method = "GET",
         http_path = "/projects/{projectId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:describeStorageConfiguration(input, options)
         output_schema = types.DescribeStorageConfigurationOutput,
         http_method = "GET",
         http_path = "/configuration/account/storage",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:describeTimeSeries(input, options)
         output_schema = types.DescribeTimeSeriesOutput,
         http_method = "GET",
         http_path = "/timeseries/describe",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:disassociateAssets(input, options)
         output_schema = types.DisassociateAssetsOutput,
         http_method = "POST",
         http_path = "/assets/{assetId}/disassociate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:disassociateTimeSeriesFromAssetProperty(input, options)
         output_schema = types.DisassociateTimeSeriesFromAssetPropertyOutput,
         http_method = "POST",
         http_path = "/timeseries/disassociate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:executeAction(input, options)
         output_schema = types.ExecuteActionOutput,
         http_method = "POST",
         http_path = "/actions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:executeQuery(input, options)
         output_schema = types.ExecuteQueryOutput,
         http_method = "POST",
         http_path = "/queries/execution",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:getAssetPropertyAggregates(input, options)
         output_schema = types.GetAssetPropertyAggregatesOutput,
         http_method = "GET",
         http_path = "/properties/aggregates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:getAssetPropertyValue(input, options)
         output_schema = types.GetAssetPropertyValueOutput,
         http_method = "GET",
         http_path = "/properties/latest",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:getAssetPropertyValueHistory(input, options)
         output_schema = types.GetAssetPropertyValueHistoryOutput,
         http_method = "GET",
         http_path = "/properties/history",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:getInterpolatedAssetPropertyValues(input, options)
         output_schema = types.GetInterpolatedAssetPropertyValuesOutput,
         http_method = "GET",
         http_path = "/properties/interpolated",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:invokeAssistant(input, options)
         output_schema = types.InvokeAssistantOutput,
         http_method = "POST",
         http_path = "/assistant/invocation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:listAccessPolicies(input, options)
         output_schema = types.ListAccessPoliciesOutput,
         http_method = "GET",
         http_path = "/access-policies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:listActions(input, options)
         output_schema = types.ListActionsOutput,
         http_method = "GET",
         http_path = "/actions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:listAssetModelCompositeModels(input, options)
         output_schema = types.ListAssetModelCompositeModelsOutput,
         http_method = "GET",
         http_path = "/asset-models/{assetModelId}/composite-models",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:listAssetModelProperties(input, options)
         output_schema = types.ListAssetModelPropertiesOutput,
         http_method = "GET",
         http_path = "/asset-models/{assetModelId}/properties",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:listAssetModels(input, options)
         output_schema = types.ListAssetModelsOutput,
         http_method = "GET",
         http_path = "/asset-models",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:listAssetProperties(input, options)
         output_schema = types.ListAssetPropertiesOutput,
         http_method = "GET",
         http_path = "/assets/{assetId}/properties",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:listAssetRelationships(input, options)
         output_schema = types.ListAssetRelationshipsOutput,
         http_method = "GET",
         http_path = "/assets/{assetId}/assetRelationships",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:listAssets(input, options)
         output_schema = types.ListAssetsOutput,
         http_method = "GET",
         http_path = "/assets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:listAssociatedAssets(input, options)
         output_schema = types.ListAssociatedAssetsOutput,
         http_method = "GET",
         http_path = "/assets/{assetId}/hierarchies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:listBulkImportJobs(input, options)
         output_schema = types.ListBulkImportJobsOutput,
         http_method = "GET",
         http_path = "/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:listCompositionRelationships(input, options)
         output_schema = types.ListCompositionRelationshipsOutput,
         http_method = "GET",
         http_path = "/asset-models/{assetModelId}/composition-relationships",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:listComputationModelDataBindingUsages(input, options)
         output_schema = types.ListComputationModelDataBindingUsagesOutput,
         http_method = "POST",
         http_path = "/computation-models/data-binding-usages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:listComputationModelResolveToResources(input, options)
         output_schema = types.ListComputationModelResolveToResourcesOutput,
         http_method = "GET",
         http_path = "/computation-models/{computationModelId}/resolve-to-resources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:listComputationModels(input, options)
         output_schema = types.ListComputationModelsOutput,
         http_method = "GET",
         http_path = "/computation-models",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:listDashboards(input, options)
         output_schema = types.ListDashboardsOutput,
         http_method = "GET",
         http_path = "/dashboards",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:listDatasets(input, options)
         output_schema = types.ListDatasetsOutput,
         http_method = "GET",
         http_path = "/datasets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:listExecutions(input, options)
         output_schema = types.ListExecutionsOutput,
         http_method = "GET",
         http_path = "/executions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:listGateways(input, options)
         output_schema = types.ListGatewaysOutput,
         http_method = "GET",
         http_path = "/20200301/gateways",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:listInterfaceRelationships(input, options)
         output_schema = types.ListInterfaceRelationshipsOutput,
         http_method = "GET",
         http_path = "/interface/{interfaceAssetModelId}/asset-models",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:listPortals(input, options)
         output_schema = types.ListPortalsOutput,
         http_method = "GET",
         http_path = "/portals",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:listProjectAssets(input, options)
         output_schema = types.ListProjectAssetsOutput,
         http_method = "GET",
         http_path = "/projects/{projectId}/assets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:listProjects(input, options)
         output_schema = types.ListProjectsOutput,
         http_method = "GET",
         http_path = "/projects",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -890,6 +1158,9 @@ function Client:listTimeSeries(input, options)
         output_schema = types.ListTimeSeriesOutput,
         http_method = "GET",
         http_path = "/timeseries",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -900,6 +1171,9 @@ function Client:putAssetModelInterfaceRelationship(input, options)
         output_schema = types.PutAssetModelInterfaceRelationshipOutput,
         http_method = "PUT",
         http_path = "/asset-models/{assetModelId}/interface/{interfaceAssetModelId}/asset-model-interface-relationship",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -910,6 +1184,9 @@ function Client:putDefaultEncryptionConfiguration(input, options)
         output_schema = types.PutDefaultEncryptionConfigurationOutput,
         http_method = "POST",
         http_path = "/configuration/account/encryption",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -920,6 +1197,9 @@ function Client:putLoggingOptions(input, options)
         output_schema = types.PutLoggingOptionsOutput,
         http_method = "PUT",
         http_path = "/logging",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -930,6 +1210,9 @@ function Client:putStorageConfiguration(input, options)
         output_schema = types.PutStorageConfigurationOutput,
         http_method = "POST",
         http_path = "/configuration/account/storage",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -940,6 +1223,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -950,6 +1236,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -960,6 +1249,9 @@ function Client:updateAccessPolicy(input, options)
         output_schema = types.UpdateAccessPolicyOutput,
         http_method = "PUT",
         http_path = "/access-policies/{accessPolicyId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -970,6 +1262,9 @@ function Client:updateAsset(input, options)
         output_schema = types.UpdateAssetOutput,
         http_method = "PUT",
         http_path = "/assets/{assetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -980,6 +1275,9 @@ function Client:updateAssetModel(input, options)
         output_schema = types.UpdateAssetModelOutput,
         http_method = "PUT",
         http_path = "/asset-models/{assetModelId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -990,6 +1288,9 @@ function Client:updateAssetModelCompositeModel(input, options)
         output_schema = types.UpdateAssetModelCompositeModelOutput,
         http_method = "PUT",
         http_path = "/asset-models/{assetModelId}/composite-models/{assetModelCompositeModelId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1000,6 +1301,9 @@ function Client:updateAssetProperty(input, options)
         output_schema = types.UpdateAssetPropertyOutput,
         http_method = "PUT",
         http_path = "/assets/{assetId}/properties/{propertyId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1010,6 +1314,9 @@ function Client:updateComputationModel(input, options)
         output_schema = types.UpdateComputationModelOutput,
         http_method = "POST",
         http_path = "/computation-models/{computationModelId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1020,6 +1327,9 @@ function Client:updateDashboard(input, options)
         output_schema = types.UpdateDashboardOutput,
         http_method = "PUT",
         http_path = "/dashboards/{dashboardId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1030,6 +1340,9 @@ function Client:updateDataset(input, options)
         output_schema = types.UpdateDatasetOutput,
         http_method = "PUT",
         http_path = "/datasets/{datasetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1040,6 +1353,9 @@ function Client:updateGateway(input, options)
         output_schema = types.UpdateGatewayOutput,
         http_method = "PUT",
         http_path = "/20200301/gateways/{gatewayId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1050,6 +1366,9 @@ function Client:updateGatewayCapabilityConfiguration(input, options)
         output_schema = types.UpdateGatewayCapabilityConfigurationOutput,
         http_method = "POST",
         http_path = "/20200301/gateways/{gatewayId}/capability",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1060,6 +1379,9 @@ function Client:updatePortal(input, options)
         output_schema = types.UpdatePortalOutput,
         http_method = "PUT",
         http_path = "/portals/{portalId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1070,6 +1392,9 @@ function Client:updateProject(input, options)
         output_schema = types.UpdateProjectOutput,
         http_method = "PUT",
         http_path = "/projects/{projectId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

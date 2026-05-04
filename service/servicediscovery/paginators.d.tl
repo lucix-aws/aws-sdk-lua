@@ -1,0 +1,9 @@
+local record M
+    pages_get_instances_health_status: function(client: table, input: table): function(): table, table
+    pages_list_instances: function(client: table, input: table): function(): table, table
+    pages_list_namespaces: function(client: table, input: table): function(): table, table
+    pages_list_operations: function(client: table, input: table): function(): table, table
+    pages_list_services: function(client: table, input: table): function(): table, table
+end
+
+return M

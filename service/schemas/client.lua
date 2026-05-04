@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "schemas"
-    cfg.signing_name = "schemas"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "schemas", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createDiscoverer(input, options)
         output_schema = types.CreateDiscovererOutput,
         http_method = "POST",
         http_path = "/v1/discoverers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createRegistry(input, options)
         output_schema = types.CreateRegistryOutput,
         http_method = "POST",
         http_path = "/v1/registries/name/{RegistryName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createSchema(input, options)
         output_schema = types.CreateSchemaOutput,
         http_method = "POST",
         http_path = "/v1/registries/name/{RegistryName}/schemas/name/{SchemaName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:deleteDiscoverer(input, options)
         output_schema = types.DeleteDiscovererOutput,
         http_method = "DELETE",
         http_path = "/v1/discoverers/id/{DiscovererId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteRegistry(input, options)
         output_schema = types.DeleteRegistryOutput,
         http_method = "DELETE",
         http_path = "/v1/registries/name/{RegistryName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteResourcePolicy(input, options)
         output_schema = types.DeleteResourcePolicyOutput,
         http_method = "DELETE",
         http_path = "/v1/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteSchema(input, options)
         output_schema = types.DeleteSchemaOutput,
         http_method = "DELETE",
         http_path = "/v1/registries/name/{RegistryName}/schemas/name/{SchemaName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteSchemaVersion(input, options)
         output_schema = types.DeleteSchemaVersionOutput,
         http_method = "DELETE",
         http_path = "/v1/registries/name/{RegistryName}/schemas/name/{SchemaName}/version/{SchemaVersion}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:describeCodeBinding(input, options)
         output_schema = types.DescribeCodeBindingOutput,
         http_method = "GET",
         http_path = "/v1/registries/name/{RegistryName}/schemas/name/{SchemaName}/language/{Language}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:describeDiscoverer(input, options)
         output_schema = types.DescribeDiscovererOutput,
         http_method = "GET",
         http_path = "/v1/discoverers/id/{DiscovererId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:describeRegistry(input, options)
         output_schema = types.DescribeRegistryOutput,
         http_method = "GET",
         http_path = "/v1/registries/name/{RegistryName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:describeSchema(input, options)
         output_schema = types.DescribeSchemaOutput,
         http_method = "GET",
         http_path = "/v1/registries/name/{RegistryName}/schemas/name/{SchemaName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:exportSchema(input, options)
         output_schema = types.ExportSchemaOutput,
         http_method = "GET",
         http_path = "/v1/registries/name/{RegistryName}/schemas/name/{SchemaName}/export",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getCodeBindingSource(input, options)
         output_schema = types.GetCodeBindingSourceOutput,
         http_method = "GET",
         http_path = "/v1/registries/name/{RegistryName}/schemas/name/{SchemaName}/language/{Language}/source",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getDiscoveredSchema(input, options)
         output_schema = types.GetDiscoveredSchemaOutput,
         http_method = "POST",
         http_path = "/v1/discover",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getResourcePolicy(input, options)
         output_schema = types.GetResourcePolicyOutput,
         http_method = "GET",
         http_path = "/v1/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listDiscoverers(input, options)
         output_schema = types.ListDiscoverersOutput,
         http_method = "GET",
         http_path = "/v1/discoverers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listRegistries(input, options)
         output_schema = types.ListRegistriesOutput,
         http_method = "GET",
         http_path = "/v1/registries",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listSchemas(input, options)
         output_schema = types.ListSchemasOutput,
         http_method = "GET",
         http_path = "/v1/registries/name/{RegistryName}/schemas",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listSchemaVersions(input, options)
         output_schema = types.ListSchemaVersionsOutput,
         http_method = "GET",
         http_path = "/v1/registries/name/{RegistryName}/schemas/name/{SchemaName}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:putCodeBinding(input, options)
         output_schema = types.PutCodeBindingOutput,
         http_method = "POST",
         http_path = "/v1/registries/name/{RegistryName}/schemas/name/{SchemaName}/language/{Language}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:putResourcePolicy(input, options)
         output_schema = types.PutResourcePolicyOutput,
         http_method = "PUT",
         http_path = "/v1/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:searchSchemas(input, options)
         output_schema = types.SearchSchemasOutput,
         http_method = "GET",
         http_path = "/v1/registries/name/{RegistryName}/schemas/search",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:startDiscoverer(input, options)
         output_schema = types.StartDiscovererOutput,
         http_method = "POST",
         http_path = "/v1/discoverers/id/{DiscovererId}/start",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:stopDiscoverer(input, options)
         output_schema = types.StopDiscovererOutput,
         http_method = "POST",
         http_path = "/v1/discoverers/id/{DiscovererId}/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:updateDiscoverer(input, options)
         output_schema = types.UpdateDiscovererOutput,
         http_method = "PUT",
         http_path = "/v1/discoverers/id/{DiscovererId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:updateRegistry(input, options)
         output_schema = types.UpdateRegistryOutput,
         http_method = "PUT",
         http_path = "/v1/registries/name/{RegistryName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:updateSchema(input, options)
         output_schema = types.UpdateSchemaOutput,
         http_method = "PUT",
         http_path = "/v1/registries/name/{RegistryName}/schemas/name/{SchemaName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

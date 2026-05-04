@@ -495,9 +495,15 @@ M.SourceDataSetting = {
         },
         CDCStartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         CDCStopTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         SlotName = {
             type = "string",
@@ -630,9 +636,15 @@ M.DataMigrationStatistics = {
         },
         StartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         StopTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -648,12 +660,21 @@ M.DataMigration = {
         },
         DataMigrationCreateTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         DataMigrationStartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         DataMigrationEndTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ServiceAccessRoleArn = {
             type = "string",
@@ -1118,6 +1139,9 @@ M.DataProvider = {
         },
         DataProviderCreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Description = {
             type = "string",
@@ -2816,6 +2840,9 @@ M.InstanceProfile = {
         },
         InstanceProfileCreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         SubnetGroupIdentifier = {
             type = "string",
@@ -2933,6 +2960,9 @@ M.MigrationProject = {
         },
         MigrationProjectCreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         SourceDataProviderDescriptors = {
             type = "list",

@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "iotwireless"
-    cfg.signing_name = "iotwireless"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "iotwireless", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateAwsAccountWithPartnerAccount(input, options)
         output_schema = types.AssociateAwsAccountWithPartnerAccountOutput,
         http_method = "POST",
         http_path = "/partner-accounts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:associateMulticastGroupWithFuotaTask(input, options)
         output_schema = types.AssociateMulticastGroupWithFuotaTaskOutput,
         http_method = "PUT",
         http_path = "/fuota-tasks/{Id}/multicast-group",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:associateWirelessDeviceWithFuotaTask(input, options)
         output_schema = types.AssociateWirelessDeviceWithFuotaTaskOutput,
         http_method = "PUT",
         http_path = "/fuota-tasks/{Id}/wireless-device",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:associateWirelessDeviceWithMulticastGroup(input, options)
         output_schema = types.AssociateWirelessDeviceWithMulticastGroupOutput,
         http_method = "PUT",
         http_path = "/multicast-groups/{Id}/wireless-device",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:associateWirelessDeviceWithThing(input, options)
         output_schema = types.AssociateWirelessDeviceWithThingOutput,
         http_method = "PUT",
         http_path = "/wireless-devices/{Id}/thing",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:associateWirelessGatewayWithCertificate(input, options)
         output_schema = types.AssociateWirelessGatewayWithCertificateOutput,
         http_method = "PUT",
         http_path = "/wireless-gateways/{Id}/certificate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:associateWirelessGatewayWithThing(input, options)
         output_schema = types.AssociateWirelessGatewayWithThingOutput,
         http_method = "PUT",
         http_path = "/wireless-gateways/{Id}/thing",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:cancelMulticastGroupSession(input, options)
         output_schema = types.CancelMulticastGroupSessionOutput,
         http_method = "DELETE",
         http_path = "/multicast-groups/{Id}/session",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createDestination(input, options)
         output_schema = types.CreateDestinationOutput,
         http_method = "POST",
         http_path = "/destinations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createDeviceProfile(input, options)
         output_schema = types.CreateDeviceProfileOutput,
         http_method = "POST",
         http_path = "/device-profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createFuotaTask(input, options)
         output_schema = types.CreateFuotaTaskOutput,
         http_method = "POST",
         http_path = "/fuota-tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createMulticastGroup(input, options)
         output_schema = types.CreateMulticastGroupOutput,
         http_method = "POST",
         http_path = "/multicast-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createNetworkAnalyzerConfiguration(input, options)
         output_schema = types.CreateNetworkAnalyzerConfigurationOutput,
         http_method = "POST",
         http_path = "/network-analyzer-configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:createServiceProfile(input, options)
         output_schema = types.CreateServiceProfileOutput,
         http_method = "POST",
         http_path = "/service-profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:createWirelessDevice(input, options)
         output_schema = types.CreateWirelessDeviceOutput,
         http_method = "POST",
         http_path = "/wireless-devices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:createWirelessGateway(input, options)
         output_schema = types.CreateWirelessGatewayOutput,
         http_method = "POST",
         http_path = "/wireless-gateways",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:createWirelessGatewayTask(input, options)
         output_schema = types.CreateWirelessGatewayTaskOutput,
         http_method = "POST",
         http_path = "/wireless-gateways/{Id}/tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:createWirelessGatewayTaskDefinition(input, options)
         output_schema = types.CreateWirelessGatewayTaskDefinitionOutput,
         http_method = "POST",
         http_path = "/wireless-gateway-task-definitions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteDestination(input, options)
         output_schema = types.DeleteDestinationOutput,
         http_method = "DELETE",
         http_path = "/destinations/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deleteDeviceProfile(input, options)
         output_schema = types.DeleteDeviceProfileOutput,
         http_method = "DELETE",
         http_path = "/device-profiles/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deleteFuotaTask(input, options)
         output_schema = types.DeleteFuotaTaskOutput,
         http_method = "DELETE",
         http_path = "/fuota-tasks/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:deleteMulticastGroup(input, options)
         output_schema = types.DeleteMulticastGroupOutput,
         http_method = "DELETE",
         http_path = "/multicast-groups/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:deleteNetworkAnalyzerConfiguration(input, options)
         output_schema = types.DeleteNetworkAnalyzerConfigurationOutput,
         http_method = "DELETE",
         http_path = "/network-analyzer-configurations/{ConfigurationName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:deleteQueuedMessages(input, options)
         output_schema = types.DeleteQueuedMessagesOutput,
         http_method = "DELETE",
         http_path = "/wireless-devices/{Id}/data",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:deleteServiceProfile(input, options)
         output_schema = types.DeleteServiceProfileOutput,
         http_method = "DELETE",
         http_path = "/service-profiles/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:deleteWirelessDevice(input, options)
         output_schema = types.DeleteWirelessDeviceOutput,
         http_method = "DELETE",
         http_path = "/wireless-devices/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:deleteWirelessDeviceImportTask(input, options)
         output_schema = types.DeleteWirelessDeviceImportTaskOutput,
         http_method = "DELETE",
         http_path = "/wireless_device_import_task/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:deleteWirelessGateway(input, options)
         output_schema = types.DeleteWirelessGatewayOutput,
         http_method = "DELETE",
         http_path = "/wireless-gateways/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:deleteWirelessGatewayTask(input, options)
         output_schema = types.DeleteWirelessGatewayTaskOutput,
         http_method = "DELETE",
         http_path = "/wireless-gateways/{Id}/tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:deleteWirelessGatewayTaskDefinition(input, options)
         output_schema = types.DeleteWirelessGatewayTaskDefinitionOutput,
         http_method = "DELETE",
         http_path = "/wireless-gateway-task-definitions/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:deregisterWirelessDevice(input, options)
         output_schema = types.DeregisterWirelessDeviceOutput,
         http_method = "PATCH",
         http_path = "/wireless-devices/{Identifier}/deregister",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:disassociateAwsAccountFromPartnerAccount(input, options)
         output_schema = types.DisassociateAwsAccountFromPartnerAccountOutput,
         http_method = "DELETE",
         http_path = "/partner-accounts/{PartnerAccountId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:disassociateMulticastGroupFromFuotaTask(input, options)
         output_schema = types.DisassociateMulticastGroupFromFuotaTaskOutput,
         http_method = "DELETE",
         http_path = "/fuota-tasks/{Id}/multicast-groups/{MulticastGroupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:disassociateWirelessDeviceFromFuotaTask(input, options)
         output_schema = types.DisassociateWirelessDeviceFromFuotaTaskOutput,
         http_method = "DELETE",
         http_path = "/fuota-tasks/{Id}/wireless-devices/{WirelessDeviceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:disassociateWirelessDeviceFromMulticastGroup(input, options)
         output_schema = types.DisassociateWirelessDeviceFromMulticastGroupOutput,
         http_method = "DELETE",
         http_path = "/multicast-groups/{Id}/wireless-devices/{WirelessDeviceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:disassociateWirelessDeviceFromThing(input, options)
         output_schema = types.DisassociateWirelessDeviceFromThingOutput,
         http_method = "DELETE",
         http_path = "/wireless-devices/{Id}/thing",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:disassociateWirelessGatewayFromCertificate(input, options)
         output_schema = types.DisassociateWirelessGatewayFromCertificateOutput,
         http_method = "DELETE",
         http_path = "/wireless-gateways/{Id}/certificate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:disassociateWirelessGatewayFromThing(input, options)
         output_schema = types.DisassociateWirelessGatewayFromThingOutput,
         http_method = "DELETE",
         http_path = "/wireless-gateways/{Id}/thing",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:getDestination(input, options)
         output_schema = types.GetDestinationOutput,
         http_method = "GET",
         http_path = "/destinations/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:getDeviceProfile(input, options)
         output_schema = types.GetDeviceProfileOutput,
         http_method = "GET",
         http_path = "/device-profiles/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:getEventConfigurationByResourceTypes(input, options)
         output_schema = types.GetEventConfigurationByResourceTypesOutput,
         http_method = "GET",
         http_path = "/event-configurations-resource-types",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:getFuotaTask(input, options)
         output_schema = types.GetFuotaTaskOutput,
         http_method = "GET",
         http_path = "/fuota-tasks/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:getLogLevelsByResourceTypes(input, options)
         output_schema = types.GetLogLevelsByResourceTypesOutput,
         http_method = "GET",
         http_path = "/log-levels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:getMetricConfiguration(input, options)
         output_schema = types.GetMetricConfigurationOutput,
         http_method = "GET",
         http_path = "/metric-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:getMetrics(input, options)
         output_schema = types.GetMetricsOutput,
         http_method = "POST",
         http_path = "/metrics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:getMulticastGroup(input, options)
         output_schema = types.GetMulticastGroupOutput,
         http_method = "GET",
         http_path = "/multicast-groups/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:getMulticastGroupSession(input, options)
         output_schema = types.GetMulticastGroupSessionOutput,
         http_method = "GET",
         http_path = "/multicast-groups/{Id}/session",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:getNetworkAnalyzerConfiguration(input, options)
         output_schema = types.GetNetworkAnalyzerConfigurationOutput,
         http_method = "GET",
         http_path = "/network-analyzer-configurations/{ConfigurationName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:getPartnerAccount(input, options)
         output_schema = types.GetPartnerAccountOutput,
         http_method = "GET",
         http_path = "/partner-accounts/{PartnerAccountId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:getPosition(input, options)
         output_schema = types.GetPositionOutput,
         http_method = "GET",
         http_path = "/positions/{ResourceIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:getPositionConfiguration(input, options)
         output_schema = types.GetPositionConfigurationOutput,
         http_method = "GET",
         http_path = "/position-configurations/{ResourceIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:getPositionEstimate(input, options)
         output_schema = types.GetPositionEstimateOutput,
         http_method = "POST",
         http_path = "/position-estimate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:getResourceEventConfiguration(input, options)
         output_schema = types.GetResourceEventConfigurationOutput,
         http_method = "GET",
         http_path = "/event-configurations/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:getResourceLogLevel(input, options)
         output_schema = types.GetResourceLogLevelOutput,
         http_method = "GET",
         http_path = "/log-levels/{ResourceIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:getResourcePosition(input, options)
         output_schema = types.GetResourcePositionOutput,
         http_method = "GET",
         http_path = "/resource-positions/{ResourceIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:getServiceEndpoint(input, options)
         output_schema = types.GetServiceEndpointOutput,
         http_method = "GET",
         http_path = "/service-endpoint",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:getServiceProfile(input, options)
         output_schema = types.GetServiceProfileOutput,
         http_method = "GET",
         http_path = "/service-profiles/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:getWirelessDevice(input, options)
         output_schema = types.GetWirelessDeviceOutput,
         http_method = "GET",
         http_path = "/wireless-devices/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:getWirelessDeviceImportTask(input, options)
         output_schema = types.GetWirelessDeviceImportTaskOutput,
         http_method = "GET",
         http_path = "/wireless_device_import_task/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:getWirelessDeviceStatistics(input, options)
         output_schema = types.GetWirelessDeviceStatisticsOutput,
         http_method = "GET",
         http_path = "/wireless-devices/{WirelessDeviceId}/statistics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:getWirelessGateway(input, options)
         output_schema = types.GetWirelessGatewayOutput,
         http_method = "GET",
         http_path = "/wireless-gateways/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:getWirelessGatewayCertificate(input, options)
         output_schema = types.GetWirelessGatewayCertificateOutput,
         http_method = "GET",
         http_path = "/wireless-gateways/{Id}/certificate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:getWirelessGatewayFirmwareInformation(input, options)
         output_schema = types.GetWirelessGatewayFirmwareInformationOutput,
         http_method = "GET",
         http_path = "/wireless-gateways/{Id}/firmware-information",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:getWirelessGatewayStatistics(input, options)
         output_schema = types.GetWirelessGatewayStatisticsOutput,
         http_method = "GET",
         http_path = "/wireless-gateways/{WirelessGatewayId}/statistics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:getWirelessGatewayTask(input, options)
         output_schema = types.GetWirelessGatewayTaskOutput,
         http_method = "GET",
         http_path = "/wireless-gateways/{Id}/tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:getWirelessGatewayTaskDefinition(input, options)
         output_schema = types.GetWirelessGatewayTaskDefinitionOutput,
         http_method = "GET",
         http_path = "/wireless-gateway-task-definitions/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:listDestinations(input, options)
         output_schema = types.ListDestinationsOutput,
         http_method = "GET",
         http_path = "/destinations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:listDeviceProfiles(input, options)
         output_schema = types.ListDeviceProfilesOutput,
         http_method = "GET",
         http_path = "/device-profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:listDevicesForWirelessDeviceImportTask(input, options)
         output_schema = types.ListDevicesForWirelessDeviceImportTaskOutput,
         http_method = "GET",
         http_path = "/wireless_device_import_task",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:listEventConfigurations(input, options)
         output_schema = types.ListEventConfigurationsOutput,
         http_method = "GET",
         http_path = "/event-configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:listFuotaTasks(input, options)
         output_schema = types.ListFuotaTasksOutput,
         http_method = "GET",
         http_path = "/fuota-tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:listMulticastGroups(input, options)
         output_schema = types.ListMulticastGroupsOutput,
         http_method = "GET",
         http_path = "/multicast-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:listMulticastGroupsByFuotaTask(input, options)
         output_schema = types.ListMulticastGroupsByFuotaTaskOutput,
         http_method = "GET",
         http_path = "/fuota-tasks/{Id}/multicast-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:listNetworkAnalyzerConfigurations(input, options)
         output_schema = types.ListNetworkAnalyzerConfigurationsOutput,
         http_method = "GET",
         http_path = "/network-analyzer-configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:listPartnerAccounts(input, options)
         output_schema = types.ListPartnerAccountsOutput,
         http_method = "GET",
         http_path = "/partner-accounts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:listPositionConfigurations(input, options)
         output_schema = types.ListPositionConfigurationsOutput,
         http_method = "GET",
         http_path = "/position-configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:listQueuedMessages(input, options)
         output_schema = types.ListQueuedMessagesOutput,
         http_method = "GET",
         http_path = "/wireless-devices/{Id}/data",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:listServiceProfiles(input, options)
         output_schema = types.ListServiceProfilesOutput,
         http_method = "GET",
         http_path = "/service-profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:listWirelessDeviceImportTasks(input, options)
         output_schema = types.ListWirelessDeviceImportTasksOutput,
         http_method = "GET",
         http_path = "/wireless_device_import_tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:listWirelessDevices(input, options)
         output_schema = types.ListWirelessDevicesOutput,
         http_method = "GET",
         http_path = "/wireless-devices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:listWirelessGateways(input, options)
         output_schema = types.ListWirelessGatewaysOutput,
         http_method = "GET",
         http_path = "/wireless-gateways",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:listWirelessGatewayTaskDefinitions(input, options)
         output_schema = types.ListWirelessGatewayTaskDefinitionsOutput,
         http_method = "GET",
         http_path = "/wireless-gateway-task-definitions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:putPositionConfiguration(input, options)
         output_schema = types.PutPositionConfigurationOutput,
         http_method = "PUT",
         http_path = "/position-configurations/{ResourceIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:putResourceLogLevel(input, options)
         output_schema = types.PutResourceLogLevelOutput,
         http_method = "PUT",
         http_path = "/log-levels/{ResourceIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -890,6 +1158,9 @@ function Client:resetAllResourceLogLevels(input, options)
         output_schema = types.ResetAllResourceLogLevelsOutput,
         http_method = "DELETE",
         http_path = "/log-levels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -900,6 +1171,9 @@ function Client:resetResourceLogLevel(input, options)
         output_schema = types.ResetResourceLogLevelOutput,
         http_method = "DELETE",
         http_path = "/log-levels/{ResourceIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -910,6 +1184,9 @@ function Client:sendDataToMulticastGroup(input, options)
         output_schema = types.SendDataToMulticastGroupOutput,
         http_method = "POST",
         http_path = "/multicast-groups/{Id}/data",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -920,6 +1197,9 @@ function Client:sendDataToWirelessDevice(input, options)
         output_schema = types.SendDataToWirelessDeviceOutput,
         http_method = "POST",
         http_path = "/wireless-devices/{Id}/data",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -930,6 +1210,9 @@ function Client:startBulkAssociateWirelessDeviceWithMulticastGroup(input, option
         output_schema = types.StartBulkAssociateWirelessDeviceWithMulticastGroupOutput,
         http_method = "PATCH",
         http_path = "/multicast-groups/{Id}/bulk",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -940,6 +1223,9 @@ function Client:startBulkDisassociateWirelessDeviceFromMulticastGroup(input, opt
         output_schema = types.StartBulkDisassociateWirelessDeviceFromMulticastGroupOutput,
         http_method = "POST",
         http_path = "/multicast-groups/{Id}/bulk",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -950,6 +1236,9 @@ function Client:startFuotaTask(input, options)
         output_schema = types.StartFuotaTaskOutput,
         http_method = "PUT",
         http_path = "/fuota-tasks/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -960,6 +1249,9 @@ function Client:startMulticastGroupSession(input, options)
         output_schema = types.StartMulticastGroupSessionOutput,
         http_method = "PUT",
         http_path = "/multicast-groups/{Id}/session",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -970,6 +1262,9 @@ function Client:startSingleWirelessDeviceImportTask(input, options)
         output_schema = types.StartSingleWirelessDeviceImportTaskOutput,
         http_method = "POST",
         http_path = "/wireless_single_device_import_task",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -980,6 +1275,9 @@ function Client:startWirelessDeviceImportTask(input, options)
         output_schema = types.StartWirelessDeviceImportTaskOutput,
         http_method = "POST",
         http_path = "/wireless_device_import_task",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -990,6 +1288,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1000,6 +1301,9 @@ function Client:testWirelessDevice(input, options)
         output_schema = types.TestWirelessDeviceOutput,
         http_method = "POST",
         http_path = "/wireless-devices/{Id}/test",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1010,6 +1314,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1020,6 +1327,9 @@ function Client:updateDestination(input, options)
         output_schema = types.UpdateDestinationOutput,
         http_method = "PATCH",
         http_path = "/destinations/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1030,6 +1340,9 @@ function Client:updateEventConfigurationByResourceTypes(input, options)
         output_schema = types.UpdateEventConfigurationByResourceTypesOutput,
         http_method = "PATCH",
         http_path = "/event-configurations-resource-types",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1040,6 +1353,9 @@ function Client:updateFuotaTask(input, options)
         output_schema = types.UpdateFuotaTaskOutput,
         http_method = "PATCH",
         http_path = "/fuota-tasks/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1050,6 +1366,9 @@ function Client:updateLogLevelsByResourceTypes(input, options)
         output_schema = types.UpdateLogLevelsByResourceTypesOutput,
         http_method = "POST",
         http_path = "/log-levels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1060,6 +1379,9 @@ function Client:updateMetricConfiguration(input, options)
         output_schema = types.UpdateMetricConfigurationOutput,
         http_method = "PUT",
         http_path = "/metric-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1070,6 +1392,9 @@ function Client:updateMulticastGroup(input, options)
         output_schema = types.UpdateMulticastGroupOutput,
         http_method = "PATCH",
         http_path = "/multicast-groups/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1080,6 +1405,9 @@ function Client:updateNetworkAnalyzerConfiguration(input, options)
         output_schema = types.UpdateNetworkAnalyzerConfigurationOutput,
         http_method = "PATCH",
         http_path = "/network-analyzer-configurations/{ConfigurationName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1090,6 +1418,9 @@ function Client:updatePartnerAccount(input, options)
         output_schema = types.UpdatePartnerAccountOutput,
         http_method = "PATCH",
         http_path = "/partner-accounts/{PartnerAccountId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1100,6 +1431,9 @@ function Client:updatePosition(input, options)
         output_schema = types.UpdatePositionOutput,
         http_method = "PATCH",
         http_path = "/positions/{ResourceIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1110,6 +1444,9 @@ function Client:updateResourceEventConfiguration(input, options)
         output_schema = types.UpdateResourceEventConfigurationOutput,
         http_method = "PATCH",
         http_path = "/event-configurations/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1120,6 +1457,9 @@ function Client:updateResourcePosition(input, options)
         output_schema = types.UpdateResourcePositionOutput,
         http_method = "PATCH",
         http_path = "/resource-positions/{ResourceIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1130,6 +1470,9 @@ function Client:updateWirelessDevice(input, options)
         output_schema = types.UpdateWirelessDeviceOutput,
         http_method = "PATCH",
         http_path = "/wireless-devices/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1140,6 +1483,9 @@ function Client:updateWirelessDeviceImportTask(input, options)
         output_schema = types.UpdateWirelessDeviceImportTaskOutput,
         http_method = "PATCH",
         http_path = "/wireless_device_import_task/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1150,6 +1496,9 @@ function Client:updateWirelessGateway(input, options)
         output_schema = types.UpdateWirelessGatewayOutput,
         http_method = "PATCH",
         http_path = "/wireless-gateways/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

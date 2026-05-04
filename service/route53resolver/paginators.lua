@@ -1,0 +1,293 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listFirewallConfigs.
+function M.pages_list_firewall_configs(client, input)
+    return paginator.pages(client, "listFirewallConfigs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FirewallConfigs",
+    })
+end
+
+--- Returns an item iterator for listFirewallConfigs.
+function M.items_list_firewall_configs(client, input)
+    return paginator.items(client, "listFirewallConfigs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FirewallConfigs",
+    })
+end
+
+--- Returns a page iterator for listFirewallDomainLists.
+function M.pages_list_firewall_domain_lists(client, input)
+    return paginator.pages(client, "listFirewallDomainLists", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FirewallDomainLists",
+    })
+end
+
+--- Returns an item iterator for listFirewallDomainLists.
+function M.items_list_firewall_domain_lists(client, input)
+    return paginator.items(client, "listFirewallDomainLists", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FirewallDomainLists",
+    })
+end
+
+--- Returns a page iterator for listFirewallDomains.
+function M.pages_list_firewall_domains(client, input)
+    return paginator.pages(client, "listFirewallDomains", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Domains",
+    })
+end
+
+--- Returns an item iterator for listFirewallDomains.
+function M.items_list_firewall_domains(client, input)
+    return paginator.items(client, "listFirewallDomains", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Domains",
+    })
+end
+
+--- Returns a page iterator for listFirewallRuleGroupAssociations.
+function M.pages_list_firewall_rule_group_associations(client, input)
+    return paginator.pages(client, "listFirewallRuleGroupAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FirewallRuleGroupAssociations",
+    })
+end
+
+--- Returns an item iterator for listFirewallRuleGroupAssociations.
+function M.items_list_firewall_rule_group_associations(client, input)
+    return paginator.items(client, "listFirewallRuleGroupAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FirewallRuleGroupAssociations",
+    })
+end
+
+--- Returns a page iterator for listFirewallRuleGroups.
+function M.pages_list_firewall_rule_groups(client, input)
+    return paginator.pages(client, "listFirewallRuleGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FirewallRuleGroups",
+    })
+end
+
+--- Returns an item iterator for listFirewallRuleGroups.
+function M.items_list_firewall_rule_groups(client, input)
+    return paginator.items(client, "listFirewallRuleGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FirewallRuleGroups",
+    })
+end
+
+--- Returns a page iterator for listFirewallRules.
+function M.pages_list_firewall_rules(client, input)
+    return paginator.pages(client, "listFirewallRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FirewallRules",
+    })
+end
+
+--- Returns an item iterator for listFirewallRules.
+function M.items_list_firewall_rules(client, input)
+    return paginator.items(client, "listFirewallRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FirewallRules",
+    })
+end
+
+--- Returns a page iterator for listOutpostResolvers.
+function M.pages_list_outpost_resolvers(client, input)
+    return paginator.pages(client, "listOutpostResolvers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "OutpostResolvers",
+    })
+end
+
+--- Returns an item iterator for listOutpostResolvers.
+function M.items_list_outpost_resolvers(client, input)
+    return paginator.items(client, "listOutpostResolvers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "OutpostResolvers",
+    })
+end
+
+--- Returns a page iterator for listResolverConfigs.
+function M.pages_list_resolver_configs(client, input)
+    return paginator.pages(client, "listResolverConfigs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResolverConfigs",
+    })
+end
+
+--- Returns an item iterator for listResolverConfigs.
+function M.items_list_resolver_configs(client, input)
+    return paginator.items(client, "listResolverConfigs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResolverConfigs",
+    })
+end
+
+--- Returns a page iterator for listResolverDnssecConfigs.
+function M.pages_list_resolver_dnssec_configs(client, input)
+    return paginator.pages(client, "listResolverDnssecConfigs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResolverDnssecConfigs",
+    })
+end
+
+--- Returns an item iterator for listResolverDnssecConfigs.
+function M.items_list_resolver_dnssec_configs(client, input)
+    return paginator.items(client, "listResolverDnssecConfigs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResolverDnssecConfigs",
+    })
+end
+
+--- Returns a page iterator for listResolverEndpointIpAddresses.
+function M.pages_list_resolver_endpoint_ip_addresses(client, input)
+    return paginator.pages(client, "listResolverEndpointIpAddresses", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpAddresses",
+    })
+end
+
+--- Returns an item iterator for listResolverEndpointIpAddresses.
+function M.items_list_resolver_endpoint_ip_addresses(client, input)
+    return paginator.items(client, "listResolverEndpointIpAddresses", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpAddresses",
+    })
+end
+
+--- Returns a page iterator for listResolverEndpoints.
+function M.pages_list_resolver_endpoints(client, input)
+    return paginator.pages(client, "listResolverEndpoints", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResolverEndpoints",
+    })
+end
+
+--- Returns an item iterator for listResolverEndpoints.
+function M.items_list_resolver_endpoints(client, input)
+    return paginator.items(client, "listResolverEndpoints", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResolverEndpoints",
+    })
+end
+
+--- Returns a page iterator for listResolverQueryLogConfigAssociations.
+function M.pages_list_resolver_query_log_config_associations(client, input)
+    return paginator.pages(client, "listResolverQueryLogConfigAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResolverQueryLogConfigAssociations",
+    })
+end
+
+--- Returns an item iterator for listResolverQueryLogConfigAssociations.
+function M.items_list_resolver_query_log_config_associations(client, input)
+    return paginator.items(client, "listResolverQueryLogConfigAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResolverQueryLogConfigAssociations",
+    })
+end
+
+--- Returns a page iterator for listResolverQueryLogConfigs.
+function M.pages_list_resolver_query_log_configs(client, input)
+    return paginator.pages(client, "listResolverQueryLogConfigs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResolverQueryLogConfigs",
+    })
+end
+
+--- Returns an item iterator for listResolverQueryLogConfigs.
+function M.items_list_resolver_query_log_configs(client, input)
+    return paginator.items(client, "listResolverQueryLogConfigs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResolverQueryLogConfigs",
+    })
+end
+
+--- Returns a page iterator for listResolverRuleAssociations.
+function M.pages_list_resolver_rule_associations(client, input)
+    return paginator.pages(client, "listResolverRuleAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResolverRuleAssociations",
+    })
+end
+
+--- Returns an item iterator for listResolverRuleAssociations.
+function M.items_list_resolver_rule_associations(client, input)
+    return paginator.items(client, "listResolverRuleAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResolverRuleAssociations",
+    })
+end
+
+--- Returns a page iterator for listResolverRules.
+function M.pages_list_resolver_rules(client, input)
+    return paginator.pages(client, "listResolverRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResolverRules",
+    })
+end
+
+--- Returns an item iterator for listResolverRules.
+function M.items_list_resolver_rules(client, input)
+    return paginator.items(client, "listResolverRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResolverRules",
+    })
+end
+
+--- Returns a page iterator for listTagsForResource.
+function M.pages_list_tags_for_resource(client, input)
+    return paginator.pages(client, "listTagsForResource", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Tags",
+    })
+end
+
+--- Returns an item iterator for listTagsForResource.
+function M.items_list_tags_for_resource(client, input)
+    return paginator.items(client, "listTagsForResource", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Tags",
+    })
+end
+
+return M

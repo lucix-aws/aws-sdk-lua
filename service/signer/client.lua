@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "WallabyService"
-    cfg.signing_name = "signer"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "signer", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:addProfilePermission(input, options)
         output_schema = types.AddProfilePermissionOutput,
         http_method = "POST",
         http_path = "/signing-profiles/{profileName}/permissions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:cancelSigningProfile(input, options)
         output_schema = types.CancelSigningProfileOutput,
         http_method = "DELETE",
         http_path = "/signing-profiles/{profileName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:describeSigningJob(input, options)
         output_schema = types.DescribeSigningJobOutput,
         http_method = "GET",
         http_path = "/signing-jobs/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:getRevocationStatus(input, options)
         output_schema = types.GetRevocationStatusOutput,
         http_method = "GET",
         http_path = "/revocations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:getSigningPlatform(input, options)
         output_schema = types.GetSigningPlatformOutput,
         http_method = "GET",
         http_path = "/signing-platforms/{platformId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:getSigningProfile(input, options)
         output_schema = types.GetSigningProfileOutput,
         http_method = "GET",
         http_path = "/signing-profiles/{profileName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:listProfilePermissions(input, options)
         output_schema = types.ListProfilePermissionsOutput,
         http_method = "GET",
         http_path = "/signing-profiles/{profileName}/permissions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:listSigningJobs(input, options)
         output_schema = types.ListSigningJobsOutput,
         http_method = "GET",
         http_path = "/signing-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:listSigningPlatforms(input, options)
         output_schema = types.ListSigningPlatformsOutput,
         http_method = "GET",
         http_path = "/signing-platforms",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:listSigningProfiles(input, options)
         output_schema = types.ListSigningProfilesOutput,
         http_method = "GET",
         http_path = "/signing-profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:putSigningProfile(input, options)
         output_schema = types.PutSigningProfileOutput,
         http_method = "PUT",
         http_path = "/signing-profiles/{profileName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:removeProfilePermission(input, options)
         output_schema = types.RemoveProfilePermissionOutput,
         http_method = "DELETE",
         http_path = "/signing-profiles/{profileName}/permissions/{statementId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:revokeSignature(input, options)
         output_schema = types.RevokeSignatureOutput,
         http_method = "PUT",
         http_path = "/signing-jobs/{jobId}/revoke",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:revokeSigningProfile(input, options)
         output_schema = types.RevokeSigningProfileOutput,
         http_method = "PUT",
         http_path = "/signing-profiles/{profileName}/revoke",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:signPayload(input, options)
         output_schema = types.SignPayloadOutput,
         http_method = "POST",
         http_path = "/signing-jobs/with-payload",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:startSigningJob(input, options)
         output_schema = types.StartSigningJobOutput,
         http_method = "POST",
         http_path = "/signing-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

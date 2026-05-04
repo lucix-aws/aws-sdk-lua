@@ -1,0 +1,10 @@
+local record M
+    pages_list_invoice_summaries: function(client: table, input: table): function(): table, table
+    items_list_invoice_summaries: function(client: table, input: table): function(): any
+    pages_list_invoice_units: function(client: table, input: table): function(): table, table
+    items_list_invoice_units: function(client: table, input: table): function(): any
+    pages_list_procurement_portal_preferences: function(client: table, input: table): function(): table, table
+    items_list_procurement_portal_preferences: function(client: table, input: table): function(): any
+end
+
+return M

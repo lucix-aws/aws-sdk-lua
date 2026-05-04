@@ -726,11 +726,11 @@ local record ValidationException
     Reason: string
 end
 
+local type UpdateType = "ADD" | "REPLACE" | "REMOVE"
+
 local type GroupType = "Distribution" | "Security"
 
 local type GroupScope = "DomainLocal" | "Global" | "Universal" | "BuiltinLocal"
-
-local type UpdateType = "ADD" | "REPLACE" | "REMOVE"
 
 local record M
     AddGroupMemberInput: AddGroupMemberInput

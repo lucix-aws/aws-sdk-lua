@@ -451,6 +451,9 @@ M.CreateScheduleInput = {
         } }, { __index = M.FlexibleTimeWindow }),
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ActionAfterCompletion = {
             type = "string",
@@ -503,6 +506,7 @@ M.DeleteScheduleInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -712,6 +716,9 @@ M.UpdateScheduleInput = {
         } }, { __index = M.FlexibleTimeWindow }),
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ActionAfterCompletion = {
             type = "string",
@@ -747,6 +754,9 @@ M.CreateScheduleGroupInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -777,6 +787,7 @@ M.DeleteScheduleGroupInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },

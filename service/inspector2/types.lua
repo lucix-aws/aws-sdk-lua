@@ -4777,6 +4777,9 @@ M.EnableInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -4809,6 +4812,9 @@ M.EnableDelegatedAdminAccountInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -6731,6 +6737,9 @@ M.StartCodeSecurityScanInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         resource = setmetatable({ traits = {
             required = true,

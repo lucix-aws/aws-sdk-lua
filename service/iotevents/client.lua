@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "IotColumboService"
-    cfg.signing_name = "iotevents"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "iotevents", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createAlarmModel(input, options)
         output_schema = types.CreateAlarmModelOutput,
         http_method = "POST",
         http_path = "/alarm-models",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createDetectorModel(input, options)
         output_schema = types.CreateDetectorModelOutput,
         http_method = "POST",
         http_path = "/detector-models",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createInput(input, options)
         output_schema = types.CreateInputOutput,
         http_method = "POST",
         http_path = "/inputs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:deleteAlarmModel(input, options)
         output_schema = types.DeleteAlarmModelOutput,
         http_method = "DELETE",
         http_path = "/alarm-models/{alarmModelName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteDetectorModel(input, options)
         output_schema = types.DeleteDetectorModelOutput,
         http_method = "DELETE",
         http_path = "/detector-models/{detectorModelName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteInput(input, options)
         output_schema = types.DeleteInputOutput,
         http_method = "DELETE",
         http_path = "/inputs/{inputName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:describeAlarmModel(input, options)
         output_schema = types.DescribeAlarmModelOutput,
         http_method = "GET",
         http_path = "/alarm-models/{alarmModelName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:describeDetectorModel(input, options)
         output_schema = types.DescribeDetectorModelOutput,
         http_method = "GET",
         http_path = "/detector-models/{detectorModelName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:describeDetectorModelAnalysis(input, options)
         output_schema = types.DescribeDetectorModelAnalysisOutput,
         http_method = "GET",
         http_path = "/analysis/detector-models/{analysisId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:describeInput(input, options)
         output_schema = types.DescribeInputOutput,
         http_method = "GET",
         http_path = "/inputs/{inputName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:describeLoggingOptions(input, options)
         output_schema = types.DescribeLoggingOptionsOutput,
         http_method = "GET",
         http_path = "/logging",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getDetectorModelAnalysisResults(input, options)
         output_schema = types.GetDetectorModelAnalysisResultsOutput,
         http_method = "GET",
         http_path = "/analysis/detector-models/{analysisId}/results",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:listAlarmModels(input, options)
         output_schema = types.ListAlarmModelsOutput,
         http_method = "GET",
         http_path = "/alarm-models",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:listAlarmModelVersions(input, options)
         output_schema = types.ListAlarmModelVersionsOutput,
         http_method = "GET",
         http_path = "/alarm-models/{alarmModelName}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:listDetectorModels(input, options)
         output_schema = types.ListDetectorModelsOutput,
         http_method = "GET",
         http_path = "/detector-models",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listDetectorModelVersions(input, options)
         output_schema = types.ListDetectorModelVersionsOutput,
         http_method = "GET",
         http_path = "/detector-models/{detectorModelName}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listInputRoutings(input, options)
         output_schema = types.ListInputRoutingsOutput,
         http_method = "POST",
         http_path = "/input-routings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listInputs(input, options)
         output_schema = types.ListInputsOutput,
         http_method = "GET",
         http_path = "/inputs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:putLoggingOptions(input, options)
         output_schema = types.PutLoggingOptionsOutput,
         http_method = "PUT",
         http_path = "/logging",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:startDetectorModelAnalysis(input, options)
         output_schema = types.StartDetectorModelAnalysisOutput,
         http_method = "POST",
         http_path = "/analysis/detector-models",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:updateAlarmModel(input, options)
         output_schema = types.UpdateAlarmModelOutput,
         http_method = "POST",
         http_path = "/alarm-models/{alarmModelName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:updateDetectorModel(input, options)
         output_schema = types.UpdateDetectorModelOutput,
         http_method = "POST",
         http_path = "/detector-models/{detectorModelName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:updateInput(input, options)
         output_schema = types.UpdateInputOutput,
         http_method = "PUT",
         http_path = "/inputs/{inputName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

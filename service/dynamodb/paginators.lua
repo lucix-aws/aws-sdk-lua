@@ -1,0 +1,83 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listContributorInsights.
+function M.pages_list_contributor_insights(client, input)
+    return paginator.pages(client, "listContributorInsights", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listExports.
+function M.pages_list_exports(client, input)
+    return paginator.pages(client, "listExports", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listImports.
+function M.pages_list_imports(client, input)
+    return paginator.pages(client, "listImports", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listTables.
+function M.pages_list_tables(client, input)
+    return paginator.pages(client, "listTables", input, {
+        input_token = "ExclusiveStartTableName",
+        output_token = "LastEvaluatedTableName",
+        items = "TableNames",
+    })
+end
+
+--- Returns an item iterator for listTables.
+function M.items_list_tables(client, input)
+    return paginator.items(client, "listTables", input, {
+        input_token = "ExclusiveStartTableName",
+        output_token = "LastEvaluatedTableName",
+        items = "TableNames",
+    })
+end
+
+--- Returns a page iterator for query.
+function M.pages_query(client, input)
+    return paginator.pages(client, "query", input, {
+        input_token = "ExclusiveStartKey",
+        output_token = "LastEvaluatedKey",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for query.
+function M.items_query(client, input)
+    return paginator.items(client, "query", input, {
+        input_token = "ExclusiveStartKey",
+        output_token = "LastEvaluatedKey",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for scan.
+function M.pages_scan(client, input)
+    return paginator.pages(client, "scan", input, {
+        input_token = "ExclusiveStartKey",
+        output_token = "LastEvaluatedKey",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for scan.
+function M.items_scan(client, input)
+    return paginator.items(client, "scan", input, {
+        input_token = "ExclusiveStartKey",
+        output_token = "LastEvaluatedKey",
+        items = "Items",
+    })
+end
+
+return M

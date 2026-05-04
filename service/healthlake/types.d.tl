@@ -351,9 +351,9 @@ local record ValidationException
     Message: string
 end
 
-local type FHIRVersion = "R4"
-
 local type DatastoreStatus = "CREATING" | "ACTIVE" | "DELETING" | "DELETED" | "CREATE_FAILED"
+
+local type FHIRVersion = "R4"
 
 local type JobStatus = "SUBMITTED" | "QUEUED" | "IN_PROGRESS" | "COMPLETED_WITH_ERRORS" | "COMPLETED" | "FAILED" | "CANCEL_SUBMITTED" | "CANCEL_IN_PROGRESS" | "CANCEL_COMPLETED" | "CANCEL_FAILED"
 

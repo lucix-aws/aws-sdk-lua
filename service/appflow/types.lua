@@ -2250,6 +2250,9 @@ M.CreateConnectorProfileInput = {
         } }, { __index = M.ConnectorProfileConfig }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3161,6 +3164,9 @@ M.CreateFlowInput = {
         metadataCatalogConfig = M.MetadataCatalogConfig,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3754,6 +3760,9 @@ M.RegisterConnectorInput = {
         connectorProvisioningConfig = M.ConnectorProvisioningConfig,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3803,6 +3812,9 @@ M.StartFlowInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3948,6 +3960,9 @@ M.UpdateConnectorProfileInput = {
         } }, { __index = M.ConnectorProfileConfig }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3976,6 +3991,9 @@ M.UpdateConnectorRegistrationInput = {
         connectorProvisioningConfig = M.ConnectorProvisioningConfig,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -4024,6 +4042,9 @@ M.UpdateFlowInput = {
         metadataCatalogConfig = M.MetadataCatalogConfig,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

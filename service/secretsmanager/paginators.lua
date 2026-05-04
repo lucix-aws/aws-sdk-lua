@@ -1,0 +1,29 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for batchGetSecretValue.
+function M.pages_batch_get_secret_value(client, input)
+    return paginator.pages(client, "batchGetSecretValue", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listSecretVersionIds.
+function M.pages_list_secret_version_ids(client, input)
+    return paginator.pages(client, "listSecretVersionIds", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listSecrets.
+function M.pages_list_secrets(client, input)
+    return paginator.pages(client, "listSecrets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+return M

@@ -1841,6 +1841,9 @@ M.CreatePullRequestInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -5014,6 +5017,9 @@ M.PostCommentForComparedCommitInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -5077,6 +5083,9 @@ M.PostCommentForPullRequestInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -5118,6 +5127,9 @@ M.PostCommentReplyInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         content = {
             type = "string",

@@ -56,6 +56,9 @@ M.CreateAlertManagerDefinitionInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -261,6 +264,7 @@ M.DeleteAlertManagerDefinitionInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -337,6 +341,9 @@ M.PutAlertManagerDefinitionInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -499,6 +506,9 @@ M.CreateScraperInput = {
         roleConfiguration = M.RoleConfiguration,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -570,6 +580,7 @@ M.DeleteScraperInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -785,6 +796,7 @@ M.DeleteScraperLoggingConfigurationInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -958,6 +970,9 @@ M.UpdateScraperInput = {
         roleConfiguration = M.RoleConfiguration,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1128,6 +1143,9 @@ M.CreateAnomalyDetectorInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -1209,6 +1227,7 @@ M.DeleteAnomalyDetectorInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -1426,6 +1445,9 @@ M.PutAnomalyDetectorInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1464,6 +1486,9 @@ M.CreateWorkspaceInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -1539,6 +1564,7 @@ M.DeleteWorkspaceInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -1707,6 +1733,9 @@ M.CreateLoggingConfigurationInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1758,6 +1787,7 @@ M.DeleteLoggingConfigurationInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -1840,6 +1870,9 @@ M.UpdateLoggingConfigurationInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1896,6 +1929,9 @@ M.CreateQueryLoggingConfigurationInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1947,6 +1983,7 @@ M.DeleteQueryLoggingConfigurationInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -2031,6 +2068,9 @@ M.UpdateQueryLoggingConfigurationInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2068,6 +2108,9 @@ M.CreateRuleGroupsNamespaceInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -2148,6 +2191,7 @@ M.DeleteRuleGroupsNamespaceInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -2340,6 +2384,9 @@ M.PutRuleGroupsNamespaceInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2385,6 +2432,9 @@ M.UpdateWorkspaceAliasInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2490,6 +2540,9 @@ M.UpdateWorkspaceConfigurationInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         limitsPerLabelSet = {
             type = "list",
@@ -2524,6 +2577,7 @@ M.DeleteResourcePolicyInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
         revisionId = {
@@ -2601,6 +2655,9 @@ M.PutResourcePolicyInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         revisionId = {
             type = "string",

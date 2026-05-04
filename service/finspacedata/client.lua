@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSHabaneroPublicAPI"
-    cfg.signing_name = "finspace-api"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "finspace-api", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateUserToPermissionGroup(input, options)
         output_schema = types.AssociateUserToPermissionGroupOutput,
         http_method = "POST",
         http_path = "/permission-group/{permissionGroupId}/users/{userId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createChangeset(input, options)
         output_schema = types.CreateChangesetOutput,
         http_method = "POST",
         http_path = "/datasets/{datasetId}/changesetsv2",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createDataset(input, options)
         output_schema = types.CreateDatasetOutput,
         http_method = "POST",
         http_path = "/datasetsv2",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createDataView(input, options)
         output_schema = types.CreateDataViewOutput,
         http_method = "POST",
         http_path = "/datasets/{datasetId}/dataviewsv2",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createPermissionGroup(input, options)
         output_schema = types.CreatePermissionGroupOutput,
         http_method = "POST",
         http_path = "/permission-group",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createUser(input, options)
         output_schema = types.CreateUserOutput,
         http_method = "POST",
         http_path = "/user",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteDataset(input, options)
         output_schema = types.DeleteDatasetOutput,
         http_method = "DELETE",
         http_path = "/datasetsv2/{datasetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deletePermissionGroup(input, options)
         output_schema = types.DeletePermissionGroupOutput,
         http_method = "DELETE",
         http_path = "/permission-group/{permissionGroupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:disableUser(input, options)
         output_schema = types.DisableUserOutput,
         http_method = "POST",
         http_path = "/user/{userId}/disable",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:disassociateUserFromPermissionGroup(input, options)
         output_schema = types.DisassociateUserFromPermissionGroupOutput,
         http_method = "DELETE",
         http_path = "/permission-group/{permissionGroupId}/users/{userId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:enableUser(input, options)
         output_schema = types.EnableUserOutput,
         http_method = "POST",
         http_path = "/user/{userId}/enable",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getChangeset(input, options)
         output_schema = types.GetChangesetOutput,
         http_method = "GET",
         http_path = "/datasets/{datasetId}/changesetsv2/{changesetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getDataset(input, options)
         output_schema = types.GetDatasetOutput,
         http_method = "GET",
         http_path = "/datasetsv2/{datasetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getDataView(input, options)
         output_schema = types.GetDataViewOutput,
         http_method = "GET",
         http_path = "/datasets/{datasetId}/dataviewsv2/{dataViewId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getExternalDataViewAccessDetails(input, options)
         output_schema = types.GetExternalDataViewAccessDetailsOutput,
         http_method = "POST",
         http_path = "/datasets/{datasetId}/dataviewsv2/{dataViewId}/external-access-details",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getPermissionGroup(input, options)
         output_schema = types.GetPermissionGroupOutput,
         http_method = "GET",
         http_path = "/permission-group/{permissionGroupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getProgrammaticAccessCredentials(input, options)
         output_schema = types.GetProgrammaticAccessCredentialsOutput,
         http_method = "GET",
         http_path = "/credentials/programmatic",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getUser(input, options)
         output_schema = types.GetUserOutput,
         http_method = "GET",
         http_path = "/user/{userId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getWorkingLocation(input, options)
         output_schema = types.GetWorkingLocationOutput,
         http_method = "POST",
         http_path = "/workingLocationV1",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listChangesets(input, options)
         output_schema = types.ListChangesetsOutput,
         http_method = "GET",
         http_path = "/datasets/{datasetId}/changesetsv2",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listDatasets(input, options)
         output_schema = types.ListDatasetsOutput,
         http_method = "GET",
         http_path = "/datasetsv2",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listDataViews(input, options)
         output_schema = types.ListDataViewsOutput,
         http_method = "GET",
         http_path = "/datasets/{datasetId}/dataviewsv2",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listPermissionGroups(input, options)
         output_schema = types.ListPermissionGroupsOutput,
         http_method = "GET",
         http_path = "/permission-group",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listPermissionGroupsByUser(input, options)
         output_schema = types.ListPermissionGroupsByUserOutput,
         http_method = "GET",
         http_path = "/user/{userId}/permission-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listUsers(input, options)
         output_schema = types.ListUsersOutput,
         http_method = "GET",
         http_path = "/user",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listUsersByPermissionGroup(input, options)
         output_schema = types.ListUsersByPermissionGroupOutput,
         http_method = "GET",
         http_path = "/permission-group/{permissionGroupId}/users",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:resetUserPassword(input, options)
         output_schema = types.ResetUserPasswordOutput,
         http_method = "POST",
         http_path = "/user/{userId}/password",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:updateChangeset(input, options)
         output_schema = types.UpdateChangesetOutput,
         http_method = "PUT",
         http_path = "/datasets/{datasetId}/changesetsv2/{changesetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:updateDataset(input, options)
         output_schema = types.UpdateDatasetOutput,
         http_method = "PUT",
         http_path = "/datasetsv2/{datasetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:updatePermissionGroup(input, options)
         output_schema = types.UpdatePermissionGroupOutput,
         http_method = "PUT",
         http_path = "/permission-group/{permissionGroupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:updateUser(input, options)
         output_schema = types.UpdateUserOutput,
         http_method = "PUT",
         http_path = "/user/{userId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

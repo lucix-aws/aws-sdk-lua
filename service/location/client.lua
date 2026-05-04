@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "LocationService"
-    cfg.signing_name = "geo"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "geo", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateTrackerConsumer(input, options)
         output_schema = types.AssociateTrackerConsumerOutput,
         http_method = "POST",
         http_path = "/tracking/v0/trackers/{TrackerName}/consumers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchDeleteDevicePositionHistory(input, options)
         output_schema = types.BatchDeleteDevicePositionHistoryOutput,
         http_method = "POST",
         http_path = "/tracking/v0/trackers/{TrackerName}/delete-positions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchDeleteGeofence(input, options)
         output_schema = types.BatchDeleteGeofenceOutput,
         http_method = "POST",
         http_path = "/geofencing/v0/collections/{CollectionName}/delete-geofences",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:batchEvaluateGeofences(input, options)
         output_schema = types.BatchEvaluateGeofencesOutput,
         http_method = "POST",
         http_path = "/geofencing/v0/collections/{CollectionName}/positions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:batchGetDevicePosition(input, options)
         output_schema = types.BatchGetDevicePositionOutput,
         http_method = "POST",
         http_path = "/tracking/v0/trackers/{TrackerName}/get-positions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:batchPutGeofence(input, options)
         output_schema = types.BatchPutGeofenceOutput,
         http_method = "POST",
         http_path = "/geofencing/v0/collections/{CollectionName}/put-geofences",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:batchUpdateDevicePosition(input, options)
         output_schema = types.BatchUpdateDevicePositionOutput,
         http_method = "POST",
         http_path = "/tracking/v0/trackers/{TrackerName}/positions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:calculateRoute(input, options)
         output_schema = types.CalculateRouteOutput,
         http_method = "POST",
         http_path = "/routes/v0/calculators/{CalculatorName}/calculate/route",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:calculateRouteMatrix(input, options)
         output_schema = types.CalculateRouteMatrixOutput,
         http_method = "POST",
         http_path = "/routes/v0/calculators/{CalculatorName}/calculate/route-matrix",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:cancelJob(input, options)
         output_schema = types.CancelJobOutput,
         http_method = "POST",
         http_path = "/metadata/v0/jobs/cancel-job",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createGeofenceCollection(input, options)
         output_schema = types.CreateGeofenceCollectionOutput,
         http_method = "POST",
         http_path = "/geofencing/v0/collections",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createKey(input, options)
         output_schema = types.CreateKeyOutput,
         http_method = "POST",
         http_path = "/metadata/v0/keys",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createMap(input, options)
         output_schema = types.CreateMapOutput,
         http_method = "POST",
         http_path = "/maps/v0/maps",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:createPlaceIndex(input, options)
         output_schema = types.CreatePlaceIndexOutput,
         http_method = "POST",
         http_path = "/places/v0/indexes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:createRouteCalculator(input, options)
         output_schema = types.CreateRouteCalculatorOutput,
         http_method = "POST",
         http_path = "/routes/v0/calculators",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:createTracker(input, options)
         output_schema = types.CreateTrackerOutput,
         http_method = "POST",
         http_path = "/tracking/v0/trackers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deleteGeofenceCollection(input, options)
         output_schema = types.DeleteGeofenceCollectionOutput,
         http_method = "DELETE",
         http_path = "/geofencing/v0/collections/{CollectionName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteKey(input, options)
         output_schema = types.DeleteKeyOutput,
         http_method = "DELETE",
         http_path = "/metadata/v0/keys/{KeyName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteMap(input, options)
         output_schema = types.DeleteMapOutput,
         http_method = "DELETE",
         http_path = "/maps/v0/maps/{MapName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deletePlaceIndex(input, options)
         output_schema = types.DeletePlaceIndexOutput,
         http_method = "DELETE",
         http_path = "/places/v0/indexes/{IndexName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deleteRouteCalculator(input, options)
         output_schema = types.DeleteRouteCalculatorOutput,
         http_method = "DELETE",
         http_path = "/routes/v0/calculators/{CalculatorName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:deleteTracker(input, options)
         output_schema = types.DeleteTrackerOutput,
         http_method = "DELETE",
         http_path = "/tracking/v0/trackers/{TrackerName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:describeGeofenceCollection(input, options)
         output_schema = types.DescribeGeofenceCollectionOutput,
         http_method = "GET",
         http_path = "/geofencing/v0/collections/{CollectionName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:describeKey(input, options)
         output_schema = types.DescribeKeyOutput,
         http_method = "GET",
         http_path = "/metadata/v0/keys/{KeyName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:describeMap(input, options)
         output_schema = types.DescribeMapOutput,
         http_method = "GET",
         http_path = "/maps/v0/maps/{MapName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:describePlaceIndex(input, options)
         output_schema = types.DescribePlaceIndexOutput,
         http_method = "GET",
         http_path = "/places/v0/indexes/{IndexName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:describeRouteCalculator(input, options)
         output_schema = types.DescribeRouteCalculatorOutput,
         http_method = "GET",
         http_path = "/routes/v0/calculators/{CalculatorName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:describeTracker(input, options)
         output_schema = types.DescribeTrackerOutput,
         http_method = "GET",
         http_path = "/tracking/v0/trackers/{TrackerName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:disassociateTrackerConsumer(input, options)
         output_schema = types.DisassociateTrackerConsumerOutput,
         http_method = "DELETE",
         http_path = "/tracking/v0/trackers/{TrackerName}/consumers/{ConsumerArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:forecastGeofenceEvents(input, options)
         output_schema = types.ForecastGeofenceEventsOutput,
         http_method = "POST",
         http_path = "/geofencing/v0/collections/{CollectionName}/forecast-geofence-events",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:getDevicePosition(input, options)
         output_schema = types.GetDevicePositionOutput,
         http_method = "GET",
         http_path = "/tracking/v0/trackers/{TrackerName}/devices/{DeviceId}/positions/latest",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:getDevicePositionHistory(input, options)
         output_schema = types.GetDevicePositionHistoryOutput,
         http_method = "POST",
         http_path = "/tracking/v0/trackers/{TrackerName}/devices/{DeviceId}/list-positions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:getGeofence(input, options)
         output_schema = types.GetGeofenceOutput,
         http_method = "GET",
         http_path = "/geofencing/v0/collections/{CollectionName}/geofences/{GeofenceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:getJob(input, options)
         output_schema = types.GetJobOutput,
         http_method = "GET",
         http_path = "/metadata/v0/jobs/{JobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:getMapGlyphs(input, options)
         output_schema = types.GetMapGlyphsOutput,
         http_method = "GET",
         http_path = "/maps/v0/maps/{MapName}/glyphs/{FontStack}/{FontUnicodeRange}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:getMapSprites(input, options)
         output_schema = types.GetMapSpritesOutput,
         http_method = "GET",
         http_path = "/maps/v0/maps/{MapName}/sprites/{FileName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:getMapStyleDescriptor(input, options)
         output_schema = types.GetMapStyleDescriptorOutput,
         http_method = "GET",
         http_path = "/maps/v0/maps/{MapName}/style-descriptor",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:getMapTile(input, options)
         output_schema = types.GetMapTileOutput,
         http_method = "GET",
         http_path = "/maps/v0/maps/{MapName}/tiles/{Z}/{X}/{Y}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:getPlace(input, options)
         output_schema = types.GetPlaceOutput,
         http_method = "GET",
         http_path = "/places/v0/indexes/{IndexName}/places/{PlaceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:listDevicePositions(input, options)
         output_schema = types.ListDevicePositionsOutput,
         http_method = "POST",
         http_path = "/tracking/v0/trackers/{TrackerName}/list-positions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:listGeofenceCollections(input, options)
         output_schema = types.ListGeofenceCollectionsOutput,
         http_method = "POST",
         http_path = "/geofencing/v0/list-collections",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:listGeofences(input, options)
         output_schema = types.ListGeofencesOutput,
         http_method = "POST",
         http_path = "/geofencing/v0/collections/{CollectionName}/list-geofences",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:listJobs(input, options)
         output_schema = types.ListJobsOutput,
         http_method = "POST",
         http_path = "/metadata/v0/jobs/list-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:listKeys(input, options)
         output_schema = types.ListKeysOutput,
         http_method = "POST",
         http_path = "/metadata/v0/list-keys",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:listMaps(input, options)
         output_schema = types.ListMapsOutput,
         http_method = "POST",
         http_path = "/maps/v0/list-maps",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:listPlaceIndexes(input, options)
         output_schema = types.ListPlaceIndexesOutput,
         http_method = "POST",
         http_path = "/places/v0/list-indexes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:listRouteCalculators(input, options)
         output_schema = types.ListRouteCalculatorsOutput,
         http_method = "POST",
         http_path = "/routes/v0/list-calculators",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:listTrackerConsumers(input, options)
         output_schema = types.ListTrackerConsumersOutput,
         http_method = "POST",
         http_path = "/tracking/v0/trackers/{TrackerName}/list-consumers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:listTrackers(input, options)
         output_schema = types.ListTrackersOutput,
         http_method = "POST",
         http_path = "/tracking/v0/list-trackers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:putGeofence(input, options)
         output_schema = types.PutGeofenceOutput,
         http_method = "PUT",
         http_path = "/geofencing/v0/collections/{CollectionName}/geofences/{GeofenceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:searchPlaceIndexForPosition(input, options)
         output_schema = types.SearchPlaceIndexForPositionOutput,
         http_method = "POST",
         http_path = "/places/v0/indexes/{IndexName}/search/position",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:searchPlaceIndexForSuggestions(input, options)
         output_schema = types.SearchPlaceIndexForSuggestionsOutput,
         http_method = "POST",
         http_path = "/places/v0/indexes/{IndexName}/search/suggestions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:searchPlaceIndexForText(input, options)
         output_schema = types.SearchPlaceIndexForTextOutput,
         http_method = "POST",
         http_path = "/places/v0/indexes/{IndexName}/search/text",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:startJob(input, options)
         output_schema = types.StartJobOutput,
         http_method = "POST",
         http_path = "/metadata/v0/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:updateGeofenceCollection(input, options)
         output_schema = types.UpdateGeofenceCollectionOutput,
         http_method = "PATCH",
         http_path = "/geofencing/v0/collections/{CollectionName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:updateKey(input, options)
         output_schema = types.UpdateKeyOutput,
         http_method = "PATCH",
         http_path = "/metadata/v0/keys/{KeyName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:updateMap(input, options)
         output_schema = types.UpdateMapOutput,
         http_method = "PATCH",
         http_path = "/maps/v0/maps/{MapName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:updatePlaceIndex(input, options)
         output_schema = types.UpdatePlaceIndexOutput,
         http_method = "PATCH",
         http_path = "/places/v0/indexes/{IndexName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:updateRouteCalculator(input, options)
         output_schema = types.UpdateRouteCalculatorOutput,
         http_method = "PATCH",
         http_path = "/routes/v0/calculators/{CalculatorName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:updateTracker(input, options)
         output_schema = types.UpdateTrackerOutput,
         http_method = "PATCH",
         http_path = "/tracking/v0/trackers/{TrackerName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:verifyDevicePosition(input, options)
         output_schema = types.VerifyDevicePositionOutput,
         http_method = "POST",
         http_path = "/tracking/v0/trackers/{TrackerName}/positions/verify",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

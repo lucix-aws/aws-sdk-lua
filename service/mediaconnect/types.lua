@@ -5896,6 +5896,7 @@ M.CreateRouterInputInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "clientToken",
             },
         },
@@ -5957,6 +5958,7 @@ M.CreateRouterNetworkInterfaceInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "clientToken",
             },
         },
@@ -6048,6 +6050,7 @@ M.CreateRouterOutputInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "clientToken",
             },
         },

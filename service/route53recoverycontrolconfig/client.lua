@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "Route53RecoveryControlConfig"
-    cfg.signing_name = "route53-recovery-control-config"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "route53-recovery-control-config", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createCluster(input, options)
         output_schema = types.CreateClusterOutput,
         http_method = "POST",
         http_path = "/cluster",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createControlPanel(input, options)
         output_schema = types.CreateControlPanelOutput,
         http_method = "POST",
         http_path = "/controlpanel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createRoutingControl(input, options)
         output_schema = types.CreateRoutingControlOutput,
         http_method = "POST",
         http_path = "/routingcontrol",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createSafetyRule(input, options)
         output_schema = types.CreateSafetyRuleOutput,
         http_method = "POST",
         http_path = "/safetyrule",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteCluster(input, options)
         output_schema = types.DeleteClusterOutput,
         http_method = "DELETE",
         http_path = "/cluster/{ClusterArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteControlPanel(input, options)
         output_schema = types.DeleteControlPanelOutput,
         http_method = "DELETE",
         http_path = "/controlpanel/{ControlPanelArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteRoutingControl(input, options)
         output_schema = types.DeleteRoutingControlOutput,
         http_method = "DELETE",
         http_path = "/routingcontrol/{RoutingControlArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteSafetyRule(input, options)
         output_schema = types.DeleteSafetyRuleOutput,
         http_method = "DELETE",
         http_path = "/safetyrule/{SafetyRuleArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:describeCluster(input, options)
         output_schema = types.DescribeClusterOutput,
         http_method = "GET",
         http_path = "/cluster/{ClusterArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:describeControlPanel(input, options)
         output_schema = types.DescribeControlPanelOutput,
         http_method = "GET",
         http_path = "/controlpanel/{ControlPanelArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:describeRoutingControl(input, options)
         output_schema = types.DescribeRoutingControlOutput,
         http_method = "GET",
         http_path = "/routingcontrol/{RoutingControlArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:describeSafetyRule(input, options)
         output_schema = types.DescribeSafetyRuleOutput,
         http_method = "GET",
         http_path = "/safetyrule/{SafetyRuleArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getResourcePolicy(input, options)
         output_schema = types.GetResourcePolicyOutput,
         http_method = "GET",
         http_path = "/resourcePolicy/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:listAssociatedRoute53HealthChecks(input, options)
         output_schema = types.ListAssociatedRoute53HealthChecksOutput,
         http_method = "GET",
         http_path = "/routingcontrol/{RoutingControlArn}/associatedRoute53HealthChecks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:listClusters(input, options)
         output_schema = types.ListClustersOutput,
         http_method = "GET",
         http_path = "/cluster",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listControlPanels(input, options)
         output_schema = types.ListControlPanelsOutput,
         http_method = "GET",
         http_path = "/controlpanels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listRoutingControls(input, options)
         output_schema = types.ListRoutingControlsOutput,
         http_method = "GET",
         http_path = "/controlpanel/{ControlPanelArn}/routingcontrols",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listSafetyRules(input, options)
         output_schema = types.ListSafetyRulesOutput,
         http_method = "GET",
         http_path = "/controlpanel/{ControlPanelArn}/safetyrules",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:updateCluster(input, options)
         output_schema = types.UpdateClusterOutput,
         http_method = "PUT",
         http_path = "/cluster",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:updateControlPanel(input, options)
         output_schema = types.UpdateControlPanelOutput,
         http_method = "PUT",
         http_path = "/controlpanel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:updateRoutingControl(input, options)
         output_schema = types.UpdateRoutingControlOutput,
         http_method = "PUT",
         http_path = "/routingcontrol",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:updateSafetyRule(input, options)
         output_schema = types.UpdateSafetyRuleOutput,
         http_method = "PUT",
         http_path = "/safetyrule",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

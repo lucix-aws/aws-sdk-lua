@@ -1,0 +1,20 @@
+local record M
+    pages_get_change_logs: function(client: table, input: table): function(): table, table
+    pages_get_delegations: function(client: table, input: table): function(): table, table
+    pages_get_evidence_by_evidence_folder: function(client: table, input: table): function(): table, table
+    pages_get_evidence_folders_by_assessment: function(client: table, input: table): function(): table, table
+    pages_get_evidence_folders_by_assessment_control: function(client: table, input: table): function(): table, table
+    pages_list_assessment_control_insights_by_control_domain: function(client: table, input: table): function(): table, table
+    pages_list_assessment_framework_share_requests: function(client: table, input: table): function(): table, table
+    pages_list_assessment_frameworks: function(client: table, input: table): function(): table, table
+    pages_list_assessment_reports: function(client: table, input: table): function(): table, table
+    pages_list_assessments: function(client: table, input: table): function(): table, table
+    pages_list_control_domain_insights: function(client: table, input: table): function(): table, table
+    pages_list_control_domain_insights_by_assessment: function(client: table, input: table): function(): table, table
+    pages_list_control_insights_by_control_domain: function(client: table, input: table): function(): table, table
+    pages_list_controls: function(client: table, input: table): function(): table, table
+    pages_list_keywords_for_data_source: function(client: table, input: table): function(): table, table
+    pages_list_notifications: function(client: table, input: table): function(): table, table
+end
+
+return M

@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonBedrockAgentBuildTimeLambda"
-    cfg.signing_name = "bedrock"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "bedrock", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateAgentCollaborator(input, options)
         output_schema = types.AssociateAgentCollaboratorOutput,
         http_method = "PUT",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/agentcollaborators/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:associateAgentKnowledgeBase(input, options)
         output_schema = types.AssociateAgentKnowledgeBaseOutput,
         http_method = "PUT",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createAgent(input, options)
         output_schema = types.CreateAgentOutput,
         http_method = "PUT",
         http_path = "/agents/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createAgentActionGroup(input, options)
         output_schema = types.CreateAgentActionGroupOutput,
         http_method = "PUT",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/actiongroups/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createAgentAlias(input, options)
         output_schema = types.CreateAgentAliasOutput,
         http_method = "PUT",
         http_path = "/agents/{agentId}/agentaliases/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createDataSource(input, options)
         output_schema = types.CreateDataSourceOutput,
         http_method = "PUT",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createFlow(input, options)
         output_schema = types.CreateFlowOutput,
         http_method = "POST",
         http_path = "/flows/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createFlowAlias(input, options)
         output_schema = types.CreateFlowAliasOutput,
         http_method = "POST",
         http_path = "/flows/{flowIdentifier}/aliases",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createFlowVersion(input, options)
         output_schema = types.CreateFlowVersionOutput,
         http_method = "POST",
         http_path = "/flows/{flowIdentifier}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createKnowledgeBase(input, options)
         output_schema = types.CreateKnowledgeBaseOutput,
         http_method = "PUT",
         http_path = "/knowledgebases/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createPrompt(input, options)
         output_schema = types.CreatePromptOutput,
         http_method = "POST",
         http_path = "/prompts/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createPromptVersion(input, options)
         output_schema = types.CreatePromptVersionOutput,
         http_method = "POST",
         http_path = "/prompts/{promptIdentifier}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteAgent(input, options)
         output_schema = types.DeleteAgentOutput,
         http_method = "DELETE",
         http_path = "/agents/{agentId}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteAgentActionGroup(input, options)
         output_schema = types.DeleteAgentActionGroupOutput,
         http_method = "DELETE",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/actiongroups/{actionGroupId}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteAgentAlias(input, options)
         output_schema = types.DeleteAgentAliasOutput,
         http_method = "DELETE",
         http_path = "/agents/{agentId}/agentaliases/{agentAliasId}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteAgentVersion(input, options)
         output_schema = types.DeleteAgentVersionOutput,
         http_method = "DELETE",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deleteDataSource(input, options)
         output_schema = types.DeleteDataSourceOutput,
         http_method = "DELETE",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteFlow(input, options)
         output_schema = types.DeleteFlowOutput,
         http_method = "DELETE",
         http_path = "/flows/{flowIdentifier}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteFlowAlias(input, options)
         output_schema = types.DeleteFlowAliasOutput,
         http_method = "DELETE",
         http_path = "/flows/{flowIdentifier}/aliases/{aliasIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deleteFlowVersion(input, options)
         output_schema = types.DeleteFlowVersionOutput,
         http_method = "DELETE",
         http_path = "/flows/{flowIdentifier}/versions/{flowVersion}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deleteKnowledgeBase(input, options)
         output_schema = types.DeleteKnowledgeBaseOutput,
         http_method = "DELETE",
         http_path = "/knowledgebases/{knowledgeBaseId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:deleteKnowledgeBaseDocuments(input, options)
         output_schema = types.DeleteKnowledgeBaseDocumentsOutput,
         http_method = "POST",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/documents/deleteDocuments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:deletePrompt(input, options)
         output_schema = types.DeletePromptOutput,
         http_method = "DELETE",
         http_path = "/prompts/{promptIdentifier}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:disassociateAgentCollaborator(input, options)
         output_schema = types.DisassociateAgentCollaboratorOutput,
         http_method = "DELETE",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/agentcollaborators/{collaboratorId}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:disassociateAgentKnowledgeBase(input, options)
         output_schema = types.DisassociateAgentKnowledgeBaseOutput,
         http_method = "DELETE",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/{knowledgeBaseId}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:getAgent(input, options)
         output_schema = types.GetAgentOutput,
         http_method = "GET",
         http_path = "/agents/{agentId}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:getAgentActionGroup(input, options)
         output_schema = types.GetAgentActionGroupOutput,
         http_method = "GET",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/actiongroups/{actionGroupId}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:getAgentAlias(input, options)
         output_schema = types.GetAgentAliasOutput,
         http_method = "GET",
         http_path = "/agents/{agentId}/agentaliases/{agentAliasId}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:getAgentCollaborator(input, options)
         output_schema = types.GetAgentCollaboratorOutput,
         http_method = "GET",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/agentcollaborators/{collaboratorId}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:getAgentKnowledgeBase(input, options)
         output_schema = types.GetAgentKnowledgeBaseOutput,
         http_method = "GET",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/{knowledgeBaseId}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:getAgentVersion(input, options)
         output_schema = types.GetAgentVersionOutput,
         http_method = "GET",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:getDataSource(input, options)
         output_schema = types.GetDataSourceOutput,
         http_method = "GET",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:getFlow(input, options)
         output_schema = types.GetFlowOutput,
         http_method = "GET",
         http_path = "/flows/{flowIdentifier}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:getFlowAlias(input, options)
         output_schema = types.GetFlowAliasOutput,
         http_method = "GET",
         http_path = "/flows/{flowIdentifier}/aliases/{aliasIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:getFlowVersion(input, options)
         output_schema = types.GetFlowVersionOutput,
         http_method = "GET",
         http_path = "/flows/{flowIdentifier}/versions/{flowVersion}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:getIngestionJob(input, options)
         output_schema = types.GetIngestionJobOutput,
         http_method = "GET",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/ingestionjobs/{ingestionJobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:getKnowledgeBase(input, options)
         output_schema = types.GetKnowledgeBaseOutput,
         http_method = "GET",
         http_path = "/knowledgebases/{knowledgeBaseId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:getKnowledgeBaseDocuments(input, options)
         output_schema = types.GetKnowledgeBaseDocumentsOutput,
         http_method = "POST",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/documents/getDocuments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:getPrompt(input, options)
         output_schema = types.GetPromptOutput,
         http_method = "GET",
         http_path = "/prompts/{promptIdentifier}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:ingestKnowledgeBaseDocuments(input, options)
         output_schema = types.IngestKnowledgeBaseDocumentsOutput,
         http_method = "PUT",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/documents",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:listAgentActionGroups(input, options)
         output_schema = types.ListAgentActionGroupsOutput,
         http_method = "POST",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/actiongroups/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:listAgentAliases(input, options)
         output_schema = types.ListAgentAliasesOutput,
         http_method = "POST",
         http_path = "/agents/{agentId}/agentaliases/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:listAgentCollaborators(input, options)
         output_schema = types.ListAgentCollaboratorsOutput,
         http_method = "POST",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/agentcollaborators/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:listAgentKnowledgeBases(input, options)
         output_schema = types.ListAgentKnowledgeBasesOutput,
         http_method = "POST",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:listAgents(input, options)
         output_schema = types.ListAgentsOutput,
         http_method = "POST",
         http_path = "/agents/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:listAgentVersions(input, options)
         output_schema = types.ListAgentVersionsOutput,
         http_method = "POST",
         http_path = "/agents/{agentId}/agentversions/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:listDataSources(input, options)
         output_schema = types.ListDataSourcesOutput,
         http_method = "POST",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:listFlowAliases(input, options)
         output_schema = types.ListFlowAliasesOutput,
         http_method = "GET",
         http_path = "/flows/{flowIdentifier}/aliases",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:listFlows(input, options)
         output_schema = types.ListFlowsOutput,
         http_method = "GET",
         http_path = "/flows/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:listFlowVersions(input, options)
         output_schema = types.ListFlowVersionsOutput,
         http_method = "GET",
         http_path = "/flows/{flowIdentifier}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:listIngestionJobs(input, options)
         output_schema = types.ListIngestionJobsOutput,
         http_method = "POST",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/ingestionjobs/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:listKnowledgeBaseDocuments(input, options)
         output_schema = types.ListKnowledgeBaseDocumentsOutput,
         http_method = "POST",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/documents",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:listKnowledgeBases(input, options)
         output_schema = types.ListKnowledgeBasesOutput,
         http_method = "POST",
         http_path = "/knowledgebases/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:listPrompts(input, options)
         output_schema = types.ListPromptsOutput,
         http_method = "GET",
         http_path = "/prompts/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:prepareAgent(input, options)
         output_schema = types.PrepareAgentOutput,
         http_method = "POST",
         http_path = "/agents/{agentId}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:prepareFlow(input, options)
         output_schema = types.PrepareFlowOutput,
         http_method = "POST",
         http_path = "/flows/{flowIdentifier}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:startIngestionJob(input, options)
         output_schema = types.StartIngestionJobOutput,
         http_method = "PUT",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/ingestionjobs/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:stopIngestionJob(input, options)
         output_schema = types.StopIngestionJobOutput,
         http_method = "POST",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/ingestionjobs/{ingestionJobId}/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:updateAgent(input, options)
         output_schema = types.UpdateAgentOutput,
         http_method = "PUT",
         http_path = "/agents/{agentId}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:updateAgentActionGroup(input, options)
         output_schema = types.UpdateAgentActionGroupOutput,
         http_method = "PUT",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/actiongroups/{actionGroupId}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:updateAgentAlias(input, options)
         output_schema = types.UpdateAgentAliasOutput,
         http_method = "PUT",
         http_path = "/agents/{agentId}/agentaliases/{agentAliasId}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:updateAgentCollaborator(input, options)
         output_schema = types.UpdateAgentCollaboratorOutput,
         http_method = "PUT",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/agentcollaborators/{collaboratorId}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:updateAgentKnowledgeBase(input, options)
         output_schema = types.UpdateAgentKnowledgeBaseOutput,
         http_method = "PUT",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/{knowledgeBaseId}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:updateDataSource(input, options)
         output_schema = types.UpdateDataSourceOutput,
         http_method = "PUT",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:updateFlow(input, options)
         output_schema = types.UpdateFlowOutput,
         http_method = "PUT",
         http_path = "/flows/{flowIdentifier}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:updateFlowAlias(input, options)
         output_schema = types.UpdateFlowAliasOutput,
         http_method = "PUT",
         http_path = "/flows/{flowIdentifier}/aliases/{aliasIdentifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:updateKnowledgeBase(input, options)
         output_schema = types.UpdateKnowledgeBaseOutput,
         http_method = "PUT",
         http_path = "/knowledgebases/{knowledgeBaseId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:updatePrompt(input, options)
         output_schema = types.UpdatePromptOutput,
         http_method = "PUT",
         http_path = "/prompts/{promptIdentifier}/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:validateFlowDefinition(input, options)
         output_schema = types.ValidateFlowDefinitionOutput,
         http_method = "POST",
         http_path = "/flows/validate-definition",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

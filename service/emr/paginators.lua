@@ -1,0 +1,201 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listBootstrapActions.
+function M.pages_list_bootstrap_actions(client, input)
+    return paginator.pages(client, "listBootstrapActions", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "BootstrapActions",
+    })
+end
+
+--- Returns an item iterator for listBootstrapActions.
+function M.items_list_bootstrap_actions(client, input)
+    return paginator.items(client, "listBootstrapActions", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "BootstrapActions",
+    })
+end
+
+--- Returns a page iterator for listClusters.
+function M.pages_list_clusters(client, input)
+    return paginator.pages(client, "listClusters", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "Clusters",
+    })
+end
+
+--- Returns an item iterator for listClusters.
+function M.items_list_clusters(client, input)
+    return paginator.items(client, "listClusters", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "Clusters",
+    })
+end
+
+--- Returns a page iterator for listInstanceFleets.
+function M.pages_list_instance_fleets(client, input)
+    return paginator.pages(client, "listInstanceFleets", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "InstanceFleets",
+    })
+end
+
+--- Returns an item iterator for listInstanceFleets.
+function M.items_list_instance_fleets(client, input)
+    return paginator.items(client, "listInstanceFleets", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "InstanceFleets",
+    })
+end
+
+--- Returns a page iterator for listInstanceGroups.
+function M.pages_list_instance_groups(client, input)
+    return paginator.pages(client, "listInstanceGroups", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "InstanceGroups",
+    })
+end
+
+--- Returns an item iterator for listInstanceGroups.
+function M.items_list_instance_groups(client, input)
+    return paginator.items(client, "listInstanceGroups", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "InstanceGroups",
+    })
+end
+
+--- Returns a page iterator for listInstances.
+function M.pages_list_instances(client, input)
+    return paginator.pages(client, "listInstances", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "Instances",
+    })
+end
+
+--- Returns an item iterator for listInstances.
+function M.items_list_instances(client, input)
+    return paginator.items(client, "listInstances", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "Instances",
+    })
+end
+
+--- Returns a page iterator for listNotebookExecutions.
+function M.pages_list_notebook_executions(client, input)
+    return paginator.pages(client, "listNotebookExecutions", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "NotebookExecutions",
+    })
+end
+
+--- Returns an item iterator for listNotebookExecutions.
+function M.items_list_notebook_executions(client, input)
+    return paginator.items(client, "listNotebookExecutions", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "NotebookExecutions",
+    })
+end
+
+--- Returns a page iterator for listReleaseLabels.
+function M.pages_list_release_labels(client, input)
+    return paginator.pages(client, "listReleaseLabels", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listSecurityConfigurations.
+function M.pages_list_security_configurations(client, input)
+    return paginator.pages(client, "listSecurityConfigurations", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "SecurityConfigurations",
+    })
+end
+
+--- Returns an item iterator for listSecurityConfigurations.
+function M.items_list_security_configurations(client, input)
+    return paginator.items(client, "listSecurityConfigurations", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "SecurityConfigurations",
+    })
+end
+
+--- Returns a page iterator for listSteps.
+function M.pages_list_steps(client, input)
+    return paginator.pages(client, "listSteps", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "Steps",
+    })
+end
+
+--- Returns an item iterator for listSteps.
+function M.items_list_steps(client, input)
+    return paginator.items(client, "listSteps", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "Steps",
+    })
+end
+
+--- Returns a page iterator for listStudioSessionMappings.
+function M.pages_list_studio_session_mappings(client, input)
+    return paginator.pages(client, "listStudioSessionMappings", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "SessionMappings",
+    })
+end
+
+--- Returns an item iterator for listStudioSessionMappings.
+function M.items_list_studio_session_mappings(client, input)
+    return paginator.items(client, "listStudioSessionMappings", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "SessionMappings",
+    })
+end
+
+--- Returns a page iterator for listStudios.
+function M.pages_list_studios(client, input)
+    return paginator.pages(client, "listStudios", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "Studios",
+    })
+end
+
+--- Returns an item iterator for listStudios.
+function M.items_list_studios(client, input)
+    return paginator.items(client, "listStudios", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "Studios",
+    })
+end
+
+--- Returns a page iterator for listSupportedInstanceTypes.
+function M.pages_list_supported_instance_types(client, input)
+    return paginator.pages(client, "listSupportedInstanceTypes", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+    })
+end
+
+return M

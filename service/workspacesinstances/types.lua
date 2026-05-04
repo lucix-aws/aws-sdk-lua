@@ -380,6 +380,9 @@ M.CreateVolumeInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Encrypted = {
             type = "boolean",
@@ -898,6 +901,9 @@ M.CreateWorkspaceInstanceInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",

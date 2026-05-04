@@ -1,0 +1,131 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listBrowserSettings.
+function M.pages_list_browser_settings(client, input)
+    return paginator.pages(client, "listBrowserSettings", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for listDataProtectionSettings.
+function M.pages_list_data_protection_settings(client, input)
+    return paginator.pages(client, "listDataProtectionSettings", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "dataProtectionSettings",
+    })
+end
+
+--- Returns an item iterator for listDataProtectionSettings.
+function M.items_list_data_protection_settings(client, input)
+    return paginator.items(client, "listDataProtectionSettings", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "dataProtectionSettings",
+    })
+end
+
+--- Returns a page iterator for listIdentityProviders.
+function M.pages_list_identity_providers(client, input)
+    return paginator.pages(client, "listIdentityProviders", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for listIpAccessSettings.
+function M.pages_list_ip_access_settings(client, input)
+    return paginator.pages(client, "listIpAccessSettings", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for listNetworkSettings.
+function M.pages_list_network_settings(client, input)
+    return paginator.pages(client, "listNetworkSettings", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for listPortals.
+function M.pages_list_portals(client, input)
+    return paginator.pages(client, "listPortals", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for listSessionLoggers.
+function M.pages_list_session_loggers(client, input)
+    return paginator.pages(client, "listSessionLoggers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "sessionLoggers",
+    })
+end
+
+--- Returns an item iterator for listSessionLoggers.
+function M.items_list_session_loggers(client, input)
+    return paginator.items(client, "listSessionLoggers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "sessionLoggers",
+    })
+end
+
+--- Returns a page iterator for listSessions.
+function M.pages_list_sessions(client, input)
+    return paginator.pages(client, "listSessions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "sessions",
+    })
+end
+
+--- Returns an item iterator for listSessions.
+function M.items_list_sessions(client, input)
+    return paginator.items(client, "listSessions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "sessions",
+    })
+end
+
+--- Returns a page iterator for listTrustStoreCertificates.
+function M.pages_list_trust_store_certificates(client, input)
+    return paginator.pages(client, "listTrustStoreCertificates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for listTrustStores.
+function M.pages_list_trust_stores(client, input)
+    return paginator.pages(client, "listTrustStores", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for listUserAccessLoggingSettings.
+function M.pages_list_user_access_logging_settings(client, input)
+    return paginator.pages(client, "listUserAccessLoggingSettings", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for listUserSettings.
+function M.pages_list_user_settings(client, input)
+    return paginator.pages(client, "listUserSettings", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+return M

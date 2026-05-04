@@ -314,6 +314,7 @@ M.CreateExperimentTemplateInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -628,6 +629,9 @@ M.CreateTargetAccountConfigurationInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         experimentTemplateId = {
             type = "string",
@@ -1706,6 +1710,7 @@ M.StartExperimentInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },

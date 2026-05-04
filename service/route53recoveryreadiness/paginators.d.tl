@@ -1,0 +1,24 @@
+local record M
+    pages_get_cell_readiness_summary: function(client: table, input: table): function(): table, table
+    items_get_cell_readiness_summary: function(client: table, input: table): function(): any
+    pages_get_readiness_check_resource_status: function(client: table, input: table): function(): table, table
+    items_get_readiness_check_resource_status: function(client: table, input: table): function(): any
+    pages_get_readiness_check_status: function(client: table, input: table): function(): table, table
+    items_get_readiness_check_status: function(client: table, input: table): function(): any
+    pages_get_recovery_group_readiness_summary: function(client: table, input: table): function(): table, table
+    items_get_recovery_group_readiness_summary: function(client: table, input: table): function(): any
+    pages_list_cells: function(client: table, input: table): function(): table, table
+    items_list_cells: function(client: table, input: table): function(): any
+    pages_list_cross_account_authorizations: function(client: table, input: table): function(): table, table
+    items_list_cross_account_authorizations: function(client: table, input: table): function(): any
+    pages_list_readiness_checks: function(client: table, input: table): function(): table, table
+    items_list_readiness_checks: function(client: table, input: table): function(): any
+    pages_list_recovery_groups: function(client: table, input: table): function(): table, table
+    items_list_recovery_groups: function(client: table, input: table): function(): any
+    pages_list_resource_sets: function(client: table, input: table): function(): table, table
+    items_list_resource_sets: function(client: table, input: table): function(): any
+    pages_list_rules: function(client: table, input: table): function(): table, table
+    items_list_rules: function(client: table, input: table): function(): any
+end
+
+return M

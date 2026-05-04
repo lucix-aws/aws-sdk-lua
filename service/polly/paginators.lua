@@ -1,0 +1,13 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listSpeechSynthesisTasks.
+function M.pages_list_speech_synthesis_tasks(client, input)
+    return paginator.pages(client, "listSpeechSynthesisTasks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+return M

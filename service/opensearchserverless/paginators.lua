@@ -1,0 +1,61 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listAccessPolicies.
+function M.pages_list_access_policies(client, input)
+    return paginator.pages(client, "listAccessPolicies", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for listCollectionGroups.
+function M.pages_list_collection_groups(client, input)
+    return paginator.pages(client, "listCollectionGroups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for listCollections.
+function M.pages_list_collections(client, input)
+    return paginator.pages(client, "listCollections", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for listLifecyclePolicies.
+function M.pages_list_lifecycle_policies(client, input)
+    return paginator.pages(client, "listLifecyclePolicies", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for listSecurityConfigs.
+function M.pages_list_security_configs(client, input)
+    return paginator.pages(client, "listSecurityConfigs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for listSecurityPolicies.
+function M.pages_list_security_policies(client, input)
+    return paginator.pages(client, "listSecurityPolicies", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for listVpcEndpoints.
+function M.pages_list_vpc_endpoints(client, input)
+    return paginator.pages(client, "listVpcEndpoints", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+return M

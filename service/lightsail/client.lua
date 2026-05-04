@@ -16,16 +16,29 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "Lightsail_20161128"
-    cfg.signing_name = "lightsail"
     if not cfg.protocol then
-        cfg.protocol = awsjson_protocol.new({ version = "1.1", service_id = cfg.service_id })
+        cfg.protocol = awsjson_protocol.new("1.1")
     end
     if not cfg.endpoint_provider then
         cfg.endpoint_provider = function(params)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "lightsail", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:allocateStaticIp(input, options)
         output_schema = types.AllocateStaticIpOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/AllocateStaticIp",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:attachCertificateToDistribution(input, options)
         output_schema = types.AttachCertificateToDistributionOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/AttachCertificateToDistribution",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:attachDisk(input, options)
         output_schema = types.AttachDiskOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/AttachDisk",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:attachInstancesToLoadBalancer(input, options)
         output_schema = types.AttachInstancesToLoadBalancerOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/AttachInstancesToLoadBalancer",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:attachLoadBalancerTlsCertificate(input, options)
         output_schema = types.AttachLoadBalancerTlsCertificateOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/AttachLoadBalancerTlsCertificate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:attachStaticIp(input, options)
         output_schema = types.AttachStaticIpOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/AttachStaticIp",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:closeInstancePublicPorts(input, options)
         output_schema = types.CloseInstancePublicPortsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/CloseInstancePublicPorts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:copySnapshot(input, options)
         output_schema = types.CopySnapshotOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/CopySnapshot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createBucket(input, options)
         output_schema = types.CreateBucketOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/CreateBucket",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createBucketAccessKey(input, options)
         output_schema = types.CreateBucketAccessKeyOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/CreateBucketAccessKey",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createCertificate(input, options)
         output_schema = types.CreateCertificateOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/CreateCertificate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createCloudFormationStack(input, options)
         output_schema = types.CreateCloudFormationStackOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/CreateCloudFormationStack",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createContactMethod(input, options)
         output_schema = types.CreateContactMethodOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/CreateContactMethod",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:createContainerService(input, options)
         output_schema = types.CreateContainerServiceOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/container-services",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:createContainerServiceDeployment(input, options)
         output_schema = types.CreateContainerServiceDeploymentOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/container-services/{serviceName}/deployments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:createContainerServiceRegistryLogin(input, options)
         output_schema = types.CreateContainerServiceRegistryLoginOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/container-registry-login",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:createDisk(input, options)
         output_schema = types.CreateDiskOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/CreateDisk",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:createDiskFromSnapshot(input, options)
         output_schema = types.CreateDiskFromSnapshotOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/CreateDiskFromSnapshot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:createDiskSnapshot(input, options)
         output_schema = types.CreateDiskSnapshotOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/CreateDiskSnapshot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:createDistribution(input, options)
         output_schema = types.CreateDistributionOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/CreateDistribution",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:createDomain(input, options)
         output_schema = types.CreateDomainOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/CreateDomain",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:createDomainEntry(input, options)
         output_schema = types.CreateDomainEntryOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/CreateDomainEntry",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:createGUISessionAccessDetails(input, options)
         output_schema = types.CreateGUISessionAccessDetailsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/create-gui-session-access-details",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:createInstances(input, options)
         output_schema = types.CreateInstancesOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/CreateInstances",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:createInstancesFromSnapshot(input, options)
         output_schema = types.CreateInstancesFromSnapshotOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/CreateInstancesFromSnapshot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:createInstanceSnapshot(input, options)
         output_schema = types.CreateInstanceSnapshotOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/CreateInstanceSnapshot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:createKeyPair(input, options)
         output_schema = types.CreateKeyPairOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/CreateKeyPair",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:createLoadBalancer(input, options)
         output_schema = types.CreateLoadBalancerOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/CreateLoadBalancer",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:createLoadBalancerTlsCertificate(input, options)
         output_schema = types.CreateLoadBalancerTlsCertificateOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/CreateLoadBalancerTlsCertificate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:createRelationalDatabase(input, options)
         output_schema = types.CreateRelationalDatabaseOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/CreateRelationalDatabase",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:createRelationalDatabaseFromSnapshot(input, options)
         output_schema = types.CreateRelationalDatabaseFromSnapshotOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/CreateRelationalDatabaseFromSnapshot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:createRelationalDatabaseSnapshot(input, options)
         output_schema = types.CreateRelationalDatabaseSnapshotOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/CreateRelationalDatabaseSnapshot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:deleteAlarm(input, options)
         output_schema = types.DeleteAlarmOutput,
         http_method = "DELETE",
         http_path = "/ls/api/2016-11-28/DeleteAlarm/{alarmName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:deleteAutoSnapshot(input, options)
         output_schema = types.DeleteAutoSnapshotOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DeleteAutoSnapshot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:deleteBucket(input, options)
         output_schema = types.DeleteBucketOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DeleteBucket",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:deleteBucketAccessKey(input, options)
         output_schema = types.DeleteBucketAccessKeyOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DeleteBucketAccessKey",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:deleteCertificate(input, options)
         output_schema = types.DeleteCertificateOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DeleteCertificate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:deleteContactMethod(input, options)
         output_schema = types.DeleteContactMethodOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DeleteContactMethod",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:deleteContainerImage(input, options)
         output_schema = types.DeleteContainerImageOutput,
         http_method = "DELETE",
         http_path = "/ls/api/2016-11-28/container-services/{serviceName}/images/{image}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:deleteContainerService(input, options)
         output_schema = types.DeleteContainerServiceOutput,
         http_method = "DELETE",
         http_path = "/ls/api/2016-11-28/container-services/{serviceName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:deleteDisk(input, options)
         output_schema = types.DeleteDiskOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DeleteDisk",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:deleteDiskSnapshot(input, options)
         output_schema = types.DeleteDiskSnapshotOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DeleteDiskSnapshot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:deleteDistribution(input, options)
         output_schema = types.DeleteDistributionOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DeleteDistribution",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:deleteDomain(input, options)
         output_schema = types.DeleteDomainOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DeleteDomain",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:deleteDomainEntry(input, options)
         output_schema = types.DeleteDomainEntryOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DeleteDomainEntry",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:deleteInstance(input, options)
         output_schema = types.DeleteInstanceOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DeleteInstance",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:deleteInstanceSnapshot(input, options)
         output_schema = types.DeleteInstanceSnapshotOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DeleteInstanceSnapshot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:deleteKeyPair(input, options)
         output_schema = types.DeleteKeyPairOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DeleteKeyPair",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:deleteKnownHostKeys(input, options)
         output_schema = types.DeleteKnownHostKeysOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DeleteKnownHostKeys",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:deleteLoadBalancer(input, options)
         output_schema = types.DeleteLoadBalancerOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DeleteLoadBalancer",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:deleteLoadBalancerTlsCertificate(input, options)
         output_schema = types.DeleteLoadBalancerTlsCertificateOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DeleteLoadBalancerTlsCertificate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:deleteRelationalDatabase(input, options)
         output_schema = types.DeleteRelationalDatabaseOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DeleteRelationalDatabase",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:deleteRelationalDatabaseSnapshot(input, options)
         output_schema = types.DeleteRelationalDatabaseSnapshotOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DeleteRelationalDatabaseSnapshot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:detachCertificateFromDistribution(input, options)
         output_schema = types.DetachCertificateFromDistributionOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DetachCertificateFromDistribution",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:detachDisk(input, options)
         output_schema = types.DetachDiskOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DetachDisk",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:detachInstancesFromLoadBalancer(input, options)
         output_schema = types.DetachInstancesFromLoadBalancerOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DetachInstancesFromLoadBalancer",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:detachStaticIp(input, options)
         output_schema = types.DetachStaticIpOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DetachStaticIp",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:disableAddOn(input, options)
         output_schema = types.DisableAddOnOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DisableAddOn",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:downloadDefaultKeyPair(input, options)
         output_schema = types.DownloadDefaultKeyPairOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/DownloadDefaultKeyPair",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:enableAddOn(input, options)
         output_schema = types.EnableAddOnOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/EnableAddOn",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:exportSnapshot(input, options)
         output_schema = types.ExportSnapshotOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/ExportSnapshot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:getActiveNames(input, options)
         output_schema = types.GetActiveNamesOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetActiveNames",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:getAlarms(input, options)
         output_schema = types.GetAlarmsOutput,
         http_method = "GET",
         http_path = "/ls/api/2016-11-28/GetAlarms",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:getAutoSnapshots(input, options)
         output_schema = types.GetAutoSnapshotsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetAutoSnapshots",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:getBlueprints(input, options)
         output_schema = types.GetBlueprintsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetBlueprints",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:getBucketAccessKeys(input, options)
         output_schema = types.GetBucketAccessKeysOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetBucketAccessKeys",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:getBucketBundles(input, options)
         output_schema = types.GetBucketBundlesOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetBucketBundles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:getBucketMetricData(input, options)
         output_schema = types.GetBucketMetricDataOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetBucketMetricData",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:getBuckets(input, options)
         output_schema = types.GetBucketsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetBuckets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:getBundles(input, options)
         output_schema = types.GetBundlesOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetBundles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:getCertificates(input, options)
         output_schema = types.GetCertificatesOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetCertificates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:getCloudFormationStackRecords(input, options)
         output_schema = types.GetCloudFormationStackRecordsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetCloudFormationStackRecords",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:getContactMethods(input, options)
         output_schema = types.GetContactMethodsOutput,
         http_method = "GET",
         http_path = "/ls/api/2016-11-28/GetContactMethods",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:getContainerAPIMetadata(input, options)
         output_schema = types.GetContainerAPIMetadataOutput,
         http_method = "GET",
         http_path = "/ls/api/2016-11-28/container-api-metadata",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:getContainerImages(input, options)
         output_schema = types.GetContainerImagesOutput,
         http_method = "GET",
         http_path = "/ls/api/2016-11-28/container-services/{serviceName}/images",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:getContainerLog(input, options)
         output_schema = types.GetContainerLogOutput,
         http_method = "GET",
         http_path = "/ls/api/2016-11-28/container-services/{serviceName}/containers/{containerName}/log",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:getContainerServiceDeployments(input, options)
         output_schema = types.GetContainerServiceDeploymentsOutput,
         http_method = "GET",
         http_path = "/ls/api/2016-11-28/container-services/{serviceName}/deployments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:getContainerServiceMetricData(input, options)
         output_schema = types.GetContainerServiceMetricDataOutput,
         http_method = "GET",
         http_path = "/ls/api/2016-11-28/container-services/{serviceName}/metrics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:getContainerServicePowers(input, options)
         output_schema = types.GetContainerServicePowersOutput,
         http_method = "GET",
         http_path = "/ls/api/2016-11-28/container-service-powers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:getContainerServices(input, options)
         output_schema = types.GetContainerServicesOutput,
         http_method = "GET",
         http_path = "/ls/api/2016-11-28/container-services",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:getCostEstimate(input, options)
         output_schema = types.GetCostEstimateOutput,
         http_method = "POST",
         http_path = "/budgettracker/getCostEstimate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:getDisk(input, options)
         output_schema = types.GetDiskOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetDisk",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:getDisks(input, options)
         output_schema = types.GetDisksOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetDisks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:getDiskSnapshot(input, options)
         output_schema = types.GetDiskSnapshotOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetDiskSnapshot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:getDiskSnapshots(input, options)
         output_schema = types.GetDiskSnapshotsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetDiskSnapshots",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -890,6 +1158,9 @@ function Client:getDistributionBundles(input, options)
         output_schema = types.GetDistributionBundlesOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetDistributionBundles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -900,6 +1171,9 @@ function Client:getDistributionLatestCacheReset(input, options)
         output_schema = types.GetDistributionLatestCacheResetOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetDistributionLatestCacheReset",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -910,6 +1184,9 @@ function Client:getDistributionMetricData(input, options)
         output_schema = types.GetDistributionMetricDataOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetDistributionMetricData",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -920,6 +1197,9 @@ function Client:getDistributions(input, options)
         output_schema = types.GetDistributionsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetDistributions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -930,6 +1210,9 @@ function Client:getDomain(input, options)
         output_schema = types.GetDomainOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetDomain",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -940,6 +1223,9 @@ function Client:getDomains(input, options)
         output_schema = types.GetDomainsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetDomains",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -950,6 +1236,9 @@ function Client:getExportSnapshotRecords(input, options)
         output_schema = types.GetExportSnapshotRecordsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetExportSnapshotRecords",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -960,6 +1249,9 @@ function Client:getInstance(input, options)
         output_schema = types.GetInstanceOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetInstance",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -970,6 +1262,9 @@ function Client:getInstanceAccessDetails(input, options)
         output_schema = types.GetInstanceAccessDetailsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetInstanceAccessDetails",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -980,6 +1275,9 @@ function Client:getInstanceMetricData(input, options)
         output_schema = types.GetInstanceMetricDataOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetInstanceMetricData",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -990,6 +1288,9 @@ function Client:getInstancePortStates(input, options)
         output_schema = types.GetInstancePortStatesOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetInstancePortStates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1000,6 +1301,9 @@ function Client:getInstances(input, options)
         output_schema = types.GetInstancesOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetInstances",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1010,6 +1314,9 @@ function Client:getInstanceSnapshot(input, options)
         output_schema = types.GetInstanceSnapshotOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetInstanceSnapshot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1020,6 +1327,9 @@ function Client:getInstanceSnapshots(input, options)
         output_schema = types.GetInstanceSnapshotsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetInstanceSnapshots",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1030,6 +1340,9 @@ function Client:getInstanceState(input, options)
         output_schema = types.GetInstanceStateOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetInstanceState",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1040,6 +1353,9 @@ function Client:getKeyPair(input, options)
         output_schema = types.GetKeyPairOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetKeyPair",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1050,6 +1366,9 @@ function Client:getKeyPairs(input, options)
         output_schema = types.GetKeyPairsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetKeyPairs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1060,6 +1379,9 @@ function Client:getLoadBalancer(input, options)
         output_schema = types.GetLoadBalancerOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetLoadBalancer",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1070,6 +1392,9 @@ function Client:getLoadBalancerMetricData(input, options)
         output_schema = types.GetLoadBalancerMetricDataOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetLoadBalancerMetricData",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1080,6 +1405,9 @@ function Client:getLoadBalancers(input, options)
         output_schema = types.GetLoadBalancersOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetLoadBalancers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1090,6 +1418,9 @@ function Client:getLoadBalancerTlsCertificates(input, options)
         output_schema = types.GetLoadBalancerTlsCertificatesOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetLoadBalancerTlsCertificates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1100,6 +1431,9 @@ function Client:getLoadBalancerTlsPolicies(input, options)
         output_schema = types.GetLoadBalancerTlsPoliciesOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetLoadBalancerTlsPolicies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1110,6 +1444,9 @@ function Client:getOperation(input, options)
         output_schema = types.GetOperationOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetOperation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1120,6 +1457,9 @@ function Client:getOperations(input, options)
         output_schema = types.GetOperationsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetOperations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1130,6 +1470,9 @@ function Client:getOperationsForResource(input, options)
         output_schema = types.GetOperationsForResourceOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetOperationsForResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1140,6 +1483,9 @@ function Client:getRegions(input, options)
         output_schema = types.GetRegionsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetRegions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1150,6 +1496,9 @@ function Client:getRelationalDatabase(input, options)
         output_schema = types.GetRelationalDatabaseOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetRelationalDatabase",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1160,6 +1509,9 @@ function Client:getRelationalDatabaseBlueprints(input, options)
         output_schema = types.GetRelationalDatabaseBlueprintsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetRelationalDatabaseBlueprints",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1170,6 +1522,9 @@ function Client:getRelationalDatabaseBundles(input, options)
         output_schema = types.GetRelationalDatabaseBundlesOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetRelationalDatabaseBundles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1180,6 +1535,9 @@ function Client:getRelationalDatabaseEvents(input, options)
         output_schema = types.GetRelationalDatabaseEventsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetRelationalDatabaseEvents",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1190,6 +1548,9 @@ function Client:getRelationalDatabaseLogEvents(input, options)
         output_schema = types.GetRelationalDatabaseLogEventsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetRelationalDatabaseLogEvents",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1200,6 +1561,9 @@ function Client:getRelationalDatabaseLogStreams(input, options)
         output_schema = types.GetRelationalDatabaseLogStreamsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetRelationalDatabaseLogStreams",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1210,6 +1574,9 @@ function Client:getRelationalDatabaseMasterUserPassword(input, options)
         output_schema = types.GetRelationalDatabaseMasterUserPasswordOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetRelationalDatabaseMasterUserPassword",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1220,6 +1587,9 @@ function Client:getRelationalDatabaseMetricData(input, options)
         output_schema = types.GetRelationalDatabaseMetricDataOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetRelationalDatabaseMetricData",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1230,6 +1600,9 @@ function Client:getRelationalDatabaseParameters(input, options)
         output_schema = types.GetRelationalDatabaseParametersOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetRelationalDatabaseParameters",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1240,6 +1613,9 @@ function Client:getRelationalDatabases(input, options)
         output_schema = types.GetRelationalDatabasesOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetRelationalDatabases",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1250,6 +1626,9 @@ function Client:getRelationalDatabaseSnapshot(input, options)
         output_schema = types.GetRelationalDatabaseSnapshotOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetRelationalDatabaseSnapshot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1260,6 +1639,9 @@ function Client:getRelationalDatabaseSnapshots(input, options)
         output_schema = types.GetRelationalDatabaseSnapshotsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetRelationalDatabaseSnapshots",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1270,6 +1652,9 @@ function Client:getSetupHistory(input, options)
         output_schema = types.GetSetupHistoryOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/get-setup-history",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1280,6 +1665,9 @@ function Client:getStaticIp(input, options)
         output_schema = types.GetStaticIpOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetStaticIp",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1290,6 +1678,9 @@ function Client:getStaticIps(input, options)
         output_schema = types.GetStaticIpsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/GetStaticIps",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1300,6 +1691,9 @@ function Client:importKeyPair(input, options)
         output_schema = types.ImportKeyPairOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/ImportKeyPair",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1310,6 +1704,9 @@ function Client:isVpcPeered(input, options)
         output_schema = types.IsVpcPeeredOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/IsVpcPeered",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1320,6 +1717,9 @@ function Client:openInstancePublicPorts(input, options)
         output_schema = types.OpenInstancePublicPortsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/OpenInstancePublicPorts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1330,6 +1730,9 @@ function Client:peerVpc(input, options)
         output_schema = types.PeerVpcOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/PeerVpc",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1340,6 +1743,9 @@ function Client:putAlarm(input, options)
         output_schema = types.PutAlarmOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/PutAlarm",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1350,6 +1756,9 @@ function Client:putInstancePublicPorts(input, options)
         output_schema = types.PutInstancePublicPortsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/PutInstancePublicPorts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1360,6 +1769,9 @@ function Client:rebootInstance(input, options)
         output_schema = types.RebootInstanceOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/RebootInstance",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1370,6 +1782,9 @@ function Client:rebootRelationalDatabase(input, options)
         output_schema = types.RebootRelationalDatabaseOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/RebootRelationalDatabase",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1380,6 +1795,9 @@ function Client:registerContainerImage(input, options)
         output_schema = types.RegisterContainerImageOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/container-services/{serviceName}/images",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1390,6 +1808,9 @@ function Client:releaseStaticIp(input, options)
         output_schema = types.ReleaseStaticIpOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/ReleaseStaticIp",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1400,6 +1821,9 @@ function Client:resetDistributionCache(input, options)
         output_schema = types.ResetDistributionCacheOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/ResetDistributionCache",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1410,6 +1834,9 @@ function Client:sendContactMethodVerification(input, options)
         output_schema = types.SendContactMethodVerificationOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/SendContactMethodVerification",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1420,6 +1847,9 @@ function Client:setIpAddressType(input, options)
         output_schema = types.SetIpAddressTypeOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/SetIpAddressType",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1430,6 +1860,9 @@ function Client:setResourceAccessForBucket(input, options)
         output_schema = types.SetResourceAccessForBucketOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/SetResourceAccessForBucket",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1440,6 +1873,9 @@ function Client:setupInstanceHttps(input, options)
         output_schema = types.SetupInstanceHttpsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/setup-instance-https",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1450,6 +1886,9 @@ function Client:startGUISession(input, options)
         output_schema = types.StartGUISessionOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/start-gui-session",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1460,6 +1899,9 @@ function Client:startInstance(input, options)
         output_schema = types.StartInstanceOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/StartInstance",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1470,6 +1912,9 @@ function Client:startRelationalDatabase(input, options)
         output_schema = types.StartRelationalDatabaseOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/StartRelationalDatabase",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1480,6 +1925,9 @@ function Client:stopGUISession(input, options)
         output_schema = types.StopGUISessionOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/stop-gui-session",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1490,6 +1938,9 @@ function Client:stopInstance(input, options)
         output_schema = types.StopInstanceOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/StopInstance",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1500,6 +1951,9 @@ function Client:stopRelationalDatabase(input, options)
         output_schema = types.StopRelationalDatabaseOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/StopRelationalDatabase",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1510,6 +1964,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/TagResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1520,6 +1977,9 @@ function Client:testAlarm(input, options)
         output_schema = types.TestAlarmOutput,
         http_method = "GET",
         http_path = "/ls/api/2016-11-28/TestAlarm/{alarmName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1530,6 +1990,9 @@ function Client:unpeerVpc(input, options)
         output_schema = types.UnpeerVpcOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/UnpeerVpc",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1540,6 +2003,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/UntagResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1550,6 +2016,9 @@ function Client:updateBucket(input, options)
         output_schema = types.UpdateBucketOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/UpdateBucket",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1560,6 +2029,9 @@ function Client:updateBucketBundle(input, options)
         output_schema = types.UpdateBucketBundleOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/UpdateBucketBundle",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1570,6 +2042,9 @@ function Client:updateContainerService(input, options)
         output_schema = types.UpdateContainerServiceOutput,
         http_method = "PATCH",
         http_path = "/ls/api/2016-11-28/container-services/{serviceName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1580,6 +2055,9 @@ function Client:updateDistribution(input, options)
         output_schema = types.UpdateDistributionOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/UpdateDistribution",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1590,6 +2068,9 @@ function Client:updateDistributionBundle(input, options)
         output_schema = types.UpdateDistributionBundleOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/UpdateDistributionBundle",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1600,6 +2081,9 @@ function Client:updateDomainEntry(input, options)
         output_schema = types.UpdateDomainEntryOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/UpdateDomainEntry",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1610,6 +2094,9 @@ function Client:updateInstanceMetadataOptions(input, options)
         output_schema = types.UpdateInstanceMetadataOptionsOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/UpdateInstanceMetadataOptions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1620,6 +2107,9 @@ function Client:updateLoadBalancerAttribute(input, options)
         output_schema = types.UpdateLoadBalancerAttributeOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/UpdateLoadBalancerAttribute",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1630,6 +2120,9 @@ function Client:updateRelationalDatabase(input, options)
         output_schema = types.UpdateRelationalDatabaseOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/UpdateRelationalDatabase",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1640,6 +2133,9 @@ function Client:updateRelationalDatabaseParameters(input, options)
         output_schema = types.UpdateRelationalDatabaseParametersOutput,
         http_method = "POST",
         http_path = "/ls/api/2016-11-28/UpdateRelationalDatabaseParameters",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

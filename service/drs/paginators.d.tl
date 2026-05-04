@@ -1,0 +1,26 @@
+local record M
+    pages_describe_job_log_items: function(client: table, input: table): function(): table, table
+    items_describe_job_log_items: function(client: table, input: table): function(): any
+    pages_describe_jobs: function(client: table, input: table): function(): table, table
+    items_describe_jobs: function(client: table, input: table): function(): any
+    pages_describe_launch_configuration_templates: function(client: table, input: table): function(): table, table
+    items_describe_launch_configuration_templates: function(client: table, input: table): function(): any
+    pages_describe_recovery_instances: function(client: table, input: table): function(): table, table
+    items_describe_recovery_instances: function(client: table, input: table): function(): any
+    pages_describe_recovery_snapshots: function(client: table, input: table): function(): table, table
+    items_describe_recovery_snapshots: function(client: table, input: table): function(): any
+    pages_describe_replication_configuration_templates: function(client: table, input: table): function(): table, table
+    items_describe_replication_configuration_templates: function(client: table, input: table): function(): any
+    pages_describe_source_networks: function(client: table, input: table): function(): table, table
+    items_describe_source_networks: function(client: table, input: table): function(): any
+    pages_describe_source_servers: function(client: table, input: table): function(): table, table
+    items_describe_source_servers: function(client: table, input: table): function(): any
+    pages_list_extensible_source_servers: function(client: table, input: table): function(): table, table
+    items_list_extensible_source_servers: function(client: table, input: table): function(): any
+    pages_list_launch_actions: function(client: table, input: table): function(): table, table
+    items_list_launch_actions: function(client: table, input: table): function(): any
+    pages_list_staging_accounts: function(client: table, input: table): function(): table, table
+    items_list_staging_accounts: function(client: table, input: table): function(): any
+end
+
+return M

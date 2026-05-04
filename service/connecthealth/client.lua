@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "ConnectHealth"
-    cfg.signing_name = "health-agent"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "health-agent", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:activateSubscription(input, options)
         output_schema = types.ActivateSubscriptionOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/subscriptions/{subscriptionId}/activate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createDomain(input, options)
         output_schema = types.CreateDomainOutput,
         http_method = "POST",
         http_path = "/domain",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createSubscription(input, options)
         output_schema = types.CreateSubscriptionOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/subscriptions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:deactivateSubscription(input, options)
         output_schema = types.DeactivateSubscriptionOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/subscriptions/{subscriptionId}/deactivate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteDomain(input, options)
         output_schema = types.DeleteDomainOutput,
         http_method = "DELETE",
         http_path = "/domain/{domainId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:getDomain(input, options)
         output_schema = types.GetDomainOutput,
         http_method = "GET",
         http_path = "/domain/{domainId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:getMedicalScribeListeningSession(input, options)
         output_schema = types.GetMedicalScribeListeningSessionOutput,
         http_method = "GET",
         http_path = "/medical-scribe-stream/domain/{domainId}/subscription/{subscriptionId}/session/{sessionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:getPatientInsightsJob(input, options)
         output_schema = types.GetPatientInsightsJobOutput,
         http_method = "GET",
         http_path = "/domain/{domainId}/patient-insights-job/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getSubscription(input, options)
         output_schema = types.GetSubscriptionOutput,
         http_method = "GET",
         http_path = "/domains/{domainId}/subscriptions/{subscriptionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:listDomains(input, options)
         output_schema = types.ListDomainsOutput,
         http_method = "GET",
         http_path = "/domain",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:listSubscriptions(input, options)
         output_schema = types.ListSubscriptionsOutput,
         http_method = "GET",
         http_path = "/domains/{domainId}/subscriptions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:startMedicalScribeListeningSession(input, options)
         output_schema = types.StartMedicalScribeListeningSessionOutput,
         http_method = "POST",
         http_path = "/medical-scribe-stream/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:startPatientInsightsJob(input, options)
         output_schema = types.StartPatientInsightsJobOutput,
         http_method = "POST",
         http_path = "/domain/{domainId}/patient-insights-job",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

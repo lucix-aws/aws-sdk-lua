@@ -1,0 +1,77 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for describeServices.
+function M.pages_describe_services(client, input)
+    return paginator.pages(client, "describeServices", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Services",
+    })
+end
+
+--- Returns an item iterator for describeServices.
+function M.items_describe_services(client, input)
+    return paginator.items(client, "describeServices", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Services",
+    })
+end
+
+--- Returns a page iterator for getAttributeValues.
+function M.pages_get_attribute_values(client, input)
+    return paginator.pages(client, "getAttributeValues", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AttributeValues",
+    })
+end
+
+--- Returns an item iterator for getAttributeValues.
+function M.items_get_attribute_values(client, input)
+    return paginator.items(client, "getAttributeValues", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AttributeValues",
+    })
+end
+
+--- Returns a page iterator for getProducts.
+function M.pages_get_products(client, input)
+    return paginator.pages(client, "getProducts", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "PriceList",
+    })
+end
+
+--- Returns an item iterator for getProducts.
+function M.items_get_products(client, input)
+    return paginator.items(client, "getProducts", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "PriceList",
+    })
+end
+
+--- Returns a page iterator for listPriceLists.
+function M.pages_list_price_lists(client, input)
+    return paginator.pages(client, "listPriceLists", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "PriceLists",
+    })
+end
+
+--- Returns an item iterator for listPriceLists.
+function M.items_list_price_lists(client, input)
+    return paginator.items(client, "listPriceLists", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "PriceLists",
+    })
+end
+
+return M

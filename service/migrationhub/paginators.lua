@@ -1,0 +1,131 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listApplicationStates.
+function M.pages_list_application_states(client, input)
+    return paginator.pages(client, "listApplicationStates", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ApplicationStateList",
+    })
+end
+
+--- Returns an item iterator for listApplicationStates.
+function M.items_list_application_states(client, input)
+    return paginator.items(client, "listApplicationStates", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ApplicationStateList",
+    })
+end
+
+--- Returns a page iterator for listCreatedArtifacts.
+function M.pages_list_created_artifacts(client, input)
+    return paginator.pages(client, "listCreatedArtifacts", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CreatedArtifactList",
+    })
+end
+
+--- Returns an item iterator for listCreatedArtifacts.
+function M.items_list_created_artifacts(client, input)
+    return paginator.items(client, "listCreatedArtifacts", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CreatedArtifactList",
+    })
+end
+
+--- Returns a page iterator for listDiscoveredResources.
+function M.pages_list_discovered_resources(client, input)
+    return paginator.pages(client, "listDiscoveredResources", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DiscoveredResourceList",
+    })
+end
+
+--- Returns an item iterator for listDiscoveredResources.
+function M.items_list_discovered_resources(client, input)
+    return paginator.items(client, "listDiscoveredResources", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DiscoveredResourceList",
+    })
+end
+
+--- Returns a page iterator for listMigrationTaskUpdates.
+function M.pages_list_migration_task_updates(client, input)
+    return paginator.pages(client, "listMigrationTaskUpdates", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MigrationTaskUpdateList",
+    })
+end
+
+--- Returns an item iterator for listMigrationTaskUpdates.
+function M.items_list_migration_task_updates(client, input)
+    return paginator.items(client, "listMigrationTaskUpdates", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MigrationTaskUpdateList",
+    })
+end
+
+--- Returns a page iterator for listMigrationTasks.
+function M.pages_list_migration_tasks(client, input)
+    return paginator.pages(client, "listMigrationTasks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MigrationTaskSummaryList",
+    })
+end
+
+--- Returns an item iterator for listMigrationTasks.
+function M.items_list_migration_tasks(client, input)
+    return paginator.items(client, "listMigrationTasks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MigrationTaskSummaryList",
+    })
+end
+
+--- Returns a page iterator for listProgressUpdateStreams.
+function M.pages_list_progress_update_streams(client, input)
+    return paginator.pages(client, "listProgressUpdateStreams", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ProgressUpdateStreamSummaryList",
+    })
+end
+
+--- Returns an item iterator for listProgressUpdateStreams.
+function M.items_list_progress_update_streams(client, input)
+    return paginator.items(client, "listProgressUpdateStreams", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ProgressUpdateStreamSummaryList",
+    })
+end
+
+--- Returns a page iterator for listSourceResources.
+function M.pages_list_source_resources(client, input)
+    return paginator.pages(client, "listSourceResources", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SourceResourceList",
+    })
+end
+
+--- Returns an item iterator for listSourceResources.
+function M.items_list_source_resources(client, input)
+    return paginator.items(client, "listSourceResources", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SourceResourceList",
+    })
+end
+
+return M

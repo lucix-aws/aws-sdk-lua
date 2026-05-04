@@ -1,0 +1,10 @@
+local record M
+    pages_list_autoshifts: function(client: table, input: table): function(): table, table
+    items_list_autoshifts: function(client: table, input: table): function(): any
+    pages_list_managed_resources: function(client: table, input: table): function(): table, table
+    items_list_managed_resources: function(client: table, input: table): function(): any
+    pages_list_zonal_shifts: function(client: table, input: table): function(): table, table
+    items_list_zonal_shifts: function(client: table, input: table): function(): any
+end
+
+return M

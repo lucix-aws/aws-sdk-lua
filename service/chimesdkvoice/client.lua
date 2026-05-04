@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "ChimeSDKTelephonyService"
-    cfg.signing_name = "chime"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "chime", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associatePhoneNumbersWithVoiceConnector(input, options)
         output_schema = types.AssociatePhoneNumbersWithVoiceConnectorOutput,
         http_method = "POST",
         http_path = "/voice-connectors/{VoiceConnectorId}?operation=associate-phone-numbers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:associatePhoneNumbersWithVoiceConnectorGroup(input, options)
         output_schema = types.AssociatePhoneNumbersWithVoiceConnectorGroupOutput,
         http_method = "POST",
         http_path = "/voice-connector-groups/{VoiceConnectorGroupId}?operation=associate-phone-numbers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchDeletePhoneNumber(input, options)
         output_schema = types.BatchDeletePhoneNumberOutput,
         http_method = "POST",
         http_path = "/phone-numbers?operation=batch-delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:batchUpdatePhoneNumber(input, options)
         output_schema = types.BatchUpdatePhoneNumberOutput,
         http_method = "POST",
         http_path = "/phone-numbers?operation=batch-update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createPhoneNumberOrder(input, options)
         output_schema = types.CreatePhoneNumberOrderOutput,
         http_method = "POST",
         http_path = "/phone-number-orders",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createProxySession(input, options)
         output_schema = types.CreateProxySessionOutput,
         http_method = "POST",
         http_path = "/voice-connectors/{VoiceConnectorId}/proxy-sessions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createSipMediaApplication(input, options)
         output_schema = types.CreateSipMediaApplicationOutput,
         http_method = "POST",
         http_path = "/sip-media-applications",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createSipMediaApplicationCall(input, options)
         output_schema = types.CreateSipMediaApplicationCallOutput,
         http_method = "POST",
         http_path = "/sip-media-applications/{SipMediaApplicationId}/calls",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createSipRule(input, options)
         output_schema = types.CreateSipRuleOutput,
         http_method = "POST",
         http_path = "/sip-rules",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createVoiceConnector(input, options)
         output_schema = types.CreateVoiceConnectorOutput,
         http_method = "POST",
         http_path = "/voice-connectors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createVoiceConnectorGroup(input, options)
         output_schema = types.CreateVoiceConnectorGroupOutput,
         http_method = "POST",
         http_path = "/voice-connector-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createVoiceProfile(input, options)
         output_schema = types.CreateVoiceProfileOutput,
         http_method = "POST",
         http_path = "/voice-profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createVoiceProfileDomain(input, options)
         output_schema = types.CreateVoiceProfileDomainOutput,
         http_method = "POST",
         http_path = "/voice-profile-domains",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deletePhoneNumber(input, options)
         output_schema = types.DeletePhoneNumberOutput,
         http_method = "DELETE",
         http_path = "/phone-numbers/{PhoneNumberId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteProxySession(input, options)
         output_schema = types.DeleteProxySessionOutput,
         http_method = "DELETE",
         http_path = "/voice-connectors/{VoiceConnectorId}/proxy-sessions/{ProxySessionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteSipMediaApplication(input, options)
         output_schema = types.DeleteSipMediaApplicationOutput,
         http_method = "DELETE",
         http_path = "/sip-media-applications/{SipMediaApplicationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deleteSipRule(input, options)
         output_schema = types.DeleteSipRuleOutput,
         http_method = "DELETE",
         http_path = "/sip-rules/{SipRuleId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteVoiceConnector(input, options)
         output_schema = types.DeleteVoiceConnectorOutput,
         http_method = "DELETE",
         http_path = "/voice-connectors/{VoiceConnectorId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteVoiceConnectorEmergencyCallingConfiguration(input, options
         output_schema = types.DeleteVoiceConnectorEmergencyCallingConfigurationOutput,
         http_method = "DELETE",
         http_path = "/voice-connectors/{VoiceConnectorId}/emergency-calling-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deleteVoiceConnectorExternalSystemsConfiguration(input, options)
         output_schema = types.DeleteVoiceConnectorExternalSystemsConfigurationOutput,
         http_method = "DELETE",
         http_path = "/voice-connectors/{VoiceConnectorId}/external-systems-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deleteVoiceConnectorGroup(input, options)
         output_schema = types.DeleteVoiceConnectorGroupOutput,
         http_method = "DELETE",
         http_path = "/voice-connector-groups/{VoiceConnectorGroupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:deleteVoiceConnectorOrigination(input, options)
         output_schema = types.DeleteVoiceConnectorOriginationOutput,
         http_method = "DELETE",
         http_path = "/voice-connectors/{VoiceConnectorId}/origination",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:deleteVoiceConnectorProxy(input, options)
         output_schema = types.DeleteVoiceConnectorProxyOutput,
         http_method = "DELETE",
         http_path = "/voice-connectors/{VoiceConnectorId}/programmable-numbers/proxy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:deleteVoiceConnectorStreamingConfiguration(input, options)
         output_schema = types.DeleteVoiceConnectorStreamingConfigurationOutput,
         http_method = "DELETE",
         http_path = "/voice-connectors/{VoiceConnectorId}/streaming-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:deleteVoiceConnectorTermination(input, options)
         output_schema = types.DeleteVoiceConnectorTerminationOutput,
         http_method = "DELETE",
         http_path = "/voice-connectors/{VoiceConnectorId}/termination",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:deleteVoiceConnectorTerminationCredentials(input, options)
         output_schema = types.DeleteVoiceConnectorTerminationCredentialsOutput,
         http_method = "POST",
         http_path = "/voice-connectors/{VoiceConnectorId}/termination/credentials?operation=delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:deleteVoiceProfile(input, options)
         output_schema = types.DeleteVoiceProfileOutput,
         http_method = "DELETE",
         http_path = "/voice-profiles/{VoiceProfileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:deleteVoiceProfileDomain(input, options)
         output_schema = types.DeleteVoiceProfileDomainOutput,
         http_method = "DELETE",
         http_path = "/voice-profile-domains/{VoiceProfileDomainId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:disassociatePhoneNumbersFromVoiceConnector(input, options)
         output_schema = types.DisassociatePhoneNumbersFromVoiceConnectorOutput,
         http_method = "POST",
         http_path = "/voice-connectors/{VoiceConnectorId}?operation=disassociate-phone-numbers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:disassociatePhoneNumbersFromVoiceConnectorGroup(input, options)
         output_schema = types.DisassociatePhoneNumbersFromVoiceConnectorGroupOutput,
         http_method = "POST",
         http_path = "/voice-connector-groups/{VoiceConnectorGroupId}?operation=disassociate-phone-numbers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:getGlobalSettings(input, options)
         output_schema = types.GetGlobalSettingsOutput,
         http_method = "GET",
         http_path = "/settings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:getPhoneNumber(input, options)
         output_schema = types.GetPhoneNumberOutput,
         http_method = "GET",
         http_path = "/phone-numbers/{PhoneNumberId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:getPhoneNumberOrder(input, options)
         output_schema = types.GetPhoneNumberOrderOutput,
         http_method = "GET",
         http_path = "/phone-number-orders/{PhoneNumberOrderId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:getPhoneNumberSettings(input, options)
         output_schema = types.GetPhoneNumberSettingsOutput,
         http_method = "GET",
         http_path = "/settings/phone-number",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:getProxySession(input, options)
         output_schema = types.GetProxySessionOutput,
         http_method = "GET",
         http_path = "/voice-connectors/{VoiceConnectorId}/proxy-sessions/{ProxySessionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:getSipMediaApplication(input, options)
         output_schema = types.GetSipMediaApplicationOutput,
         http_method = "GET",
         http_path = "/sip-media-applications/{SipMediaApplicationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:getSipMediaApplicationAlexaSkillConfiguration(input, options)
         output_schema = types.GetSipMediaApplicationAlexaSkillConfigurationOutput,
         http_method = "GET",
         http_path = "/sip-media-applications/{SipMediaApplicationId}/alexa-skill-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:getSipMediaApplicationLoggingConfiguration(input, options)
         output_schema = types.GetSipMediaApplicationLoggingConfigurationOutput,
         http_method = "GET",
         http_path = "/sip-media-applications/{SipMediaApplicationId}/logging-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:getSipRule(input, options)
         output_schema = types.GetSipRuleOutput,
         http_method = "GET",
         http_path = "/sip-rules/{SipRuleId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:getSpeakerSearchTask(input, options)
         output_schema = types.GetSpeakerSearchTaskOutput,
         http_method = "GET",
         http_path = "/voice-connectors/{VoiceConnectorId}/speaker-search-tasks/{SpeakerSearchTaskId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:getVoiceConnector(input, options)
         output_schema = types.GetVoiceConnectorOutput,
         http_method = "GET",
         http_path = "/voice-connectors/{VoiceConnectorId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:getVoiceConnectorEmergencyCallingConfiguration(input, options)
         output_schema = types.GetVoiceConnectorEmergencyCallingConfigurationOutput,
         http_method = "GET",
         http_path = "/voice-connectors/{VoiceConnectorId}/emergency-calling-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:getVoiceConnectorExternalSystemsConfiguration(input, options)
         output_schema = types.GetVoiceConnectorExternalSystemsConfigurationOutput,
         http_method = "GET",
         http_path = "/voice-connectors/{VoiceConnectorId}/external-systems-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:getVoiceConnectorGroup(input, options)
         output_schema = types.GetVoiceConnectorGroupOutput,
         http_method = "GET",
         http_path = "/voice-connector-groups/{VoiceConnectorGroupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:getVoiceConnectorLoggingConfiguration(input, options)
         output_schema = types.GetVoiceConnectorLoggingConfigurationOutput,
         http_method = "GET",
         http_path = "/voice-connectors/{VoiceConnectorId}/logging-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:getVoiceConnectorOrigination(input, options)
         output_schema = types.GetVoiceConnectorOriginationOutput,
         http_method = "GET",
         http_path = "/voice-connectors/{VoiceConnectorId}/origination",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:getVoiceConnectorProxy(input, options)
         output_schema = types.GetVoiceConnectorProxyOutput,
         http_method = "GET",
         http_path = "/voice-connectors/{VoiceConnectorId}/programmable-numbers/proxy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:getVoiceConnectorStreamingConfiguration(input, options)
         output_schema = types.GetVoiceConnectorStreamingConfigurationOutput,
         http_method = "GET",
         http_path = "/voice-connectors/{VoiceConnectorId}/streaming-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:getVoiceConnectorTermination(input, options)
         output_schema = types.GetVoiceConnectorTerminationOutput,
         http_method = "GET",
         http_path = "/voice-connectors/{VoiceConnectorId}/termination",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:getVoiceConnectorTerminationHealth(input, options)
         output_schema = types.GetVoiceConnectorTerminationHealthOutput,
         http_method = "GET",
         http_path = "/voice-connectors/{VoiceConnectorId}/termination/health",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:getVoiceProfile(input, options)
         output_schema = types.GetVoiceProfileOutput,
         http_method = "GET",
         http_path = "/voice-profiles/{VoiceProfileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:getVoiceProfileDomain(input, options)
         output_schema = types.GetVoiceProfileDomainOutput,
         http_method = "GET",
         http_path = "/voice-profile-domains/{VoiceProfileDomainId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:getVoiceToneAnalysisTask(input, options)
         output_schema = types.GetVoiceToneAnalysisTaskOutput,
         http_method = "GET",
         http_path = "/voice-connectors/{VoiceConnectorId}/voice-tone-analysis-tasks/{VoiceToneAnalysisTaskId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:listAvailableVoiceConnectorRegions(input, options)
         output_schema = types.ListAvailableVoiceConnectorRegionsOutput,
         http_method = "GET",
         http_path = "/voice-connector-regions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:listPhoneNumberOrders(input, options)
         output_schema = types.ListPhoneNumberOrdersOutput,
         http_method = "GET",
         http_path = "/phone-number-orders",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:listPhoneNumbers(input, options)
         output_schema = types.ListPhoneNumbersOutput,
         http_method = "GET",
         http_path = "/phone-numbers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:listProxySessions(input, options)
         output_schema = types.ListProxySessionsOutput,
         http_method = "GET",
         http_path = "/voice-connectors/{VoiceConnectorId}/proxy-sessions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:listSipMediaApplications(input, options)
         output_schema = types.ListSipMediaApplicationsOutput,
         http_method = "GET",
         http_path = "/sip-media-applications",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:listSipRules(input, options)
         output_schema = types.ListSipRulesOutput,
         http_method = "GET",
         http_path = "/sip-rules",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:listSupportedPhoneNumberCountries(input, options)
         output_schema = types.ListSupportedPhoneNumberCountriesOutput,
         http_method = "GET",
         http_path = "/phone-number-countries",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:listVoiceConnectorGroups(input, options)
         output_schema = types.ListVoiceConnectorGroupsOutput,
         http_method = "GET",
         http_path = "/voice-connector-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:listVoiceConnectors(input, options)
         output_schema = types.ListVoiceConnectorsOutput,
         http_method = "GET",
         http_path = "/voice-connectors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:listVoiceConnectorTerminationCredentials(input, options)
         output_schema = types.ListVoiceConnectorTerminationCredentialsOutput,
         http_method = "GET",
         http_path = "/voice-connectors/{VoiceConnectorId}/termination/credentials",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:listVoiceProfileDomains(input, options)
         output_schema = types.ListVoiceProfileDomainsOutput,
         http_method = "GET",
         http_path = "/voice-profile-domains",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:listVoiceProfiles(input, options)
         output_schema = types.ListVoiceProfilesOutput,
         http_method = "GET",
         http_path = "/voice-profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:putSipMediaApplicationAlexaSkillConfiguration(input, options)
         output_schema = types.PutSipMediaApplicationAlexaSkillConfigurationOutput,
         http_method = "PUT",
         http_path = "/sip-media-applications/{SipMediaApplicationId}/alexa-skill-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:putSipMediaApplicationLoggingConfiguration(input, options)
         output_schema = types.PutSipMediaApplicationLoggingConfigurationOutput,
         http_method = "PUT",
         http_path = "/sip-media-applications/{SipMediaApplicationId}/logging-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:putVoiceConnectorEmergencyCallingConfiguration(input, options)
         output_schema = types.PutVoiceConnectorEmergencyCallingConfigurationOutput,
         http_method = "PUT",
         http_path = "/voice-connectors/{VoiceConnectorId}/emergency-calling-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:putVoiceConnectorExternalSystemsConfiguration(input, options)
         output_schema = types.PutVoiceConnectorExternalSystemsConfigurationOutput,
         http_method = "PUT",
         http_path = "/voice-connectors/{VoiceConnectorId}/external-systems-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:putVoiceConnectorLoggingConfiguration(input, options)
         output_schema = types.PutVoiceConnectorLoggingConfigurationOutput,
         http_method = "PUT",
         http_path = "/voice-connectors/{VoiceConnectorId}/logging-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:putVoiceConnectorOrigination(input, options)
         output_schema = types.PutVoiceConnectorOriginationOutput,
         http_method = "PUT",
         http_path = "/voice-connectors/{VoiceConnectorId}/origination",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:putVoiceConnectorProxy(input, options)
         output_schema = types.PutVoiceConnectorProxyOutput,
         http_method = "PUT",
         http_path = "/voice-connectors/{VoiceConnectorId}/programmable-numbers/proxy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:putVoiceConnectorStreamingConfiguration(input, options)
         output_schema = types.PutVoiceConnectorStreamingConfigurationOutput,
         http_method = "PUT",
         http_path = "/voice-connectors/{VoiceConnectorId}/streaming-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:putVoiceConnectorTermination(input, options)
         output_schema = types.PutVoiceConnectorTerminationOutput,
         http_method = "PUT",
         http_path = "/voice-connectors/{VoiceConnectorId}/termination",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:putVoiceConnectorTerminationCredentials(input, options)
         output_schema = types.PutVoiceConnectorTerminationCredentialsOutput,
         http_method = "POST",
         http_path = "/voice-connectors/{VoiceConnectorId}/termination/credentials?operation=put",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:restorePhoneNumber(input, options)
         output_schema = types.RestorePhoneNumberOutput,
         http_method = "POST",
         http_path = "/phone-numbers/{PhoneNumberId}?operation=restore",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:searchAvailablePhoneNumbers(input, options)
         output_schema = types.SearchAvailablePhoneNumbersOutput,
         http_method = "GET",
         http_path = "/search?type=phone-numbers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:startSpeakerSearchTask(input, options)
         output_schema = types.StartSpeakerSearchTaskOutput,
         http_method = "POST",
         http_path = "/voice-connectors/{VoiceConnectorId}/speaker-search-tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:startVoiceToneAnalysisTask(input, options)
         output_schema = types.StartVoiceToneAnalysisTaskOutput,
         http_method = "POST",
         http_path = "/voice-connectors/{VoiceConnectorId}/voice-tone-analysis-tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:stopSpeakerSearchTask(input, options)
         output_schema = types.StopSpeakerSearchTaskOutput,
         http_method = "POST",
         http_path = "/voice-connectors/{VoiceConnectorId}/speaker-search-tasks/{SpeakerSearchTaskId}?operation=stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:stopVoiceToneAnalysisTask(input, options)
         output_schema = types.StopVoiceToneAnalysisTaskOutput,
         http_method = "POST",
         http_path = "/voice-connectors/{VoiceConnectorId}/voice-tone-analysis-tasks/{VoiceToneAnalysisTaskId}?operation=stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags?operation=tag-resource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/tags?operation=untag-resource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:updateGlobalSettings(input, options)
         output_schema = types.UpdateGlobalSettingsOutput,
         http_method = "PUT",
         http_path = "/settings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -890,6 +1158,9 @@ function Client:updatePhoneNumber(input, options)
         output_schema = types.UpdatePhoneNumberOutput,
         http_method = "POST",
         http_path = "/phone-numbers/{PhoneNumberId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -900,6 +1171,9 @@ function Client:updatePhoneNumberSettings(input, options)
         output_schema = types.UpdatePhoneNumberSettingsOutput,
         http_method = "PUT",
         http_path = "/settings/phone-number",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -910,6 +1184,9 @@ function Client:updateProxySession(input, options)
         output_schema = types.UpdateProxySessionOutput,
         http_method = "POST",
         http_path = "/voice-connectors/{VoiceConnectorId}/proxy-sessions/{ProxySessionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -920,6 +1197,9 @@ function Client:updateSipMediaApplication(input, options)
         output_schema = types.UpdateSipMediaApplicationOutput,
         http_method = "PUT",
         http_path = "/sip-media-applications/{SipMediaApplicationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -930,6 +1210,9 @@ function Client:updateSipMediaApplicationCall(input, options)
         output_schema = types.UpdateSipMediaApplicationCallOutput,
         http_method = "POST",
         http_path = "/sip-media-applications/{SipMediaApplicationId}/calls/{TransactionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -940,6 +1223,9 @@ function Client:updateSipRule(input, options)
         output_schema = types.UpdateSipRuleOutput,
         http_method = "PUT",
         http_path = "/sip-rules/{SipRuleId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -950,6 +1236,9 @@ function Client:updateVoiceConnector(input, options)
         output_schema = types.UpdateVoiceConnectorOutput,
         http_method = "PUT",
         http_path = "/voice-connectors/{VoiceConnectorId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -960,6 +1249,9 @@ function Client:updateVoiceConnectorGroup(input, options)
         output_schema = types.UpdateVoiceConnectorGroupOutput,
         http_method = "PUT",
         http_path = "/voice-connector-groups/{VoiceConnectorGroupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -970,6 +1262,9 @@ function Client:updateVoiceProfile(input, options)
         output_schema = types.UpdateVoiceProfileOutput,
         http_method = "PUT",
         http_path = "/voice-profiles/{VoiceProfileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -980,6 +1275,9 @@ function Client:updateVoiceProfileDomain(input, options)
         output_schema = types.UpdateVoiceProfileDomainOutput,
         http_method = "PUT",
         http_path = "/voice-profile-domains/{VoiceProfileDomainId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -990,6 +1288,9 @@ function Client:validateE911Address(input, options)
         output_schema = types.ValidateE911AddressOutput,
         http_method = "POST",
         http_path = "/emergency-calling/address",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

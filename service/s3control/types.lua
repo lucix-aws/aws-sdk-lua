@@ -1857,6 +1857,7 @@ M.CreateJobInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1937,6 +1938,7 @@ M.CreateMultiRegionAccessPointOperationInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -2464,6 +2466,7 @@ M.DeleteMultiRegionAccessPointOperationInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -5660,6 +5663,7 @@ M.PutMultiRegionAccessPointPolicyOperationInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },

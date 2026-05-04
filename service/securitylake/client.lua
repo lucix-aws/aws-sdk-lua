@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "SecurityLake"
-    cfg.signing_name = "securitylake"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "securitylake", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createAwsLogSource(input, options)
         output_schema = types.CreateAwsLogSourceOutput,
         http_method = "POST",
         http_path = "/v1/datalake/logsources/aws",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createCustomLogSource(input, options)
         output_schema = types.CreateCustomLogSourceOutput,
         http_method = "POST",
         http_path = "/v1/datalake/logsources/custom",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createDataLake(input, options)
         output_schema = types.CreateDataLakeOutput,
         http_method = "POST",
         http_path = "/v1/datalake",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createDataLakeExceptionSubscription(input, options)
         output_schema = types.CreateDataLakeExceptionSubscriptionOutput,
         http_method = "POST",
         http_path = "/v1/datalake/exceptions/subscription",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createDataLakeOrganizationConfiguration(input, options)
         output_schema = types.CreateDataLakeOrganizationConfigurationOutput,
         http_method = "POST",
         http_path = "/v1/datalake/organization/configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createSubscriber(input, options)
         output_schema = types.CreateSubscriberOutput,
         http_method = "POST",
         http_path = "/v1/subscribers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createSubscriberNotification(input, options)
         output_schema = types.CreateSubscriberNotificationOutput,
         http_method = "POST",
         http_path = "/v1/subscribers/{subscriberId}/notification",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteAwsLogSource(input, options)
         output_schema = types.DeleteAwsLogSourceOutput,
         http_method = "POST",
         http_path = "/v1/datalake/logsources/aws/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteCustomLogSource(input, options)
         output_schema = types.DeleteCustomLogSourceOutput,
         http_method = "DELETE",
         http_path = "/v1/datalake/logsources/custom/{sourceName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteDataLake(input, options)
         output_schema = types.DeleteDataLakeOutput,
         http_method = "POST",
         http_path = "/v1/datalake/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteDataLakeExceptionSubscription(input, options)
         output_schema = types.DeleteDataLakeExceptionSubscriptionOutput,
         http_method = "DELETE",
         http_path = "/v1/datalake/exceptions/subscription",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteDataLakeOrganizationConfiguration(input, options)
         output_schema = types.DeleteDataLakeOrganizationConfigurationOutput,
         http_method = "POST",
         http_path = "/v1/datalake/organization/configuration/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteSubscriber(input, options)
         output_schema = types.DeleteSubscriberOutput,
         http_method = "DELETE",
         http_path = "/v1/subscribers/{subscriberId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteSubscriberNotification(input, options)
         output_schema = types.DeleteSubscriberNotificationOutput,
         http_method = "DELETE",
         http_path = "/v1/subscribers/{subscriberId}/notification",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deregisterDataLakeDelegatedAdministrator(input, options)
         output_schema = types.DeregisterDataLakeDelegatedAdministratorOutput,
         http_method = "DELETE",
         http_path = "/v1/datalake/delegate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getDataLakeExceptionSubscription(input, options)
         output_schema = types.GetDataLakeExceptionSubscriptionOutput,
         http_method = "GET",
         http_path = "/v1/datalake/exceptions/subscription",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getDataLakeOrganizationConfiguration(input, options)
         output_schema = types.GetDataLakeOrganizationConfigurationOutput,
         http_method = "GET",
         http_path = "/v1/datalake/organization/configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getDataLakeSources(input, options)
         output_schema = types.GetDataLakeSourcesOutput,
         http_method = "POST",
         http_path = "/v1/datalake/sources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getSubscriber(input, options)
         output_schema = types.GetSubscriberOutput,
         http_method = "GET",
         http_path = "/v1/subscribers/{subscriberId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listDataLakeExceptions(input, options)
         output_schema = types.ListDataLakeExceptionsOutput,
         http_method = "POST",
         http_path = "/v1/datalake/exceptions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listDataLakes(input, options)
         output_schema = types.ListDataLakesOutput,
         http_method = "GET",
         http_path = "/v1/datalakes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listLogSources(input, options)
         output_schema = types.ListLogSourcesOutput,
         http_method = "POST",
         http_path = "/v1/datalake/logsources/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listSubscribers(input, options)
         output_schema = types.ListSubscribersOutput,
         http_method = "GET",
         http_path = "/v1/subscribers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/v1/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:registerDataLakeDelegatedAdministrator(input, options)
         output_schema = types.RegisterDataLakeDelegatedAdministratorOutput,
         http_method = "POST",
         http_path = "/v1/datalake/delegate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/v1/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/v1/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:updateDataLake(input, options)
         output_schema = types.UpdateDataLakeOutput,
         http_method = "PUT",
         http_path = "/v1/datalake",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:updateDataLakeExceptionSubscription(input, options)
         output_schema = types.UpdateDataLakeExceptionSubscriptionOutput,
         http_method = "PUT",
         http_path = "/v1/datalake/exceptions/subscription",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:updateSubscriber(input, options)
         output_schema = types.UpdateSubscriberOutput,
         http_method = "PUT",
         http_path = "/v1/subscribers/{subscriberId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:updateSubscriberNotification(input, options)
         output_schema = types.UpdateSubscriberNotificationOutput,
         http_method = "PUT",
         http_path = "/v1/subscribers/{subscriberId}/notification",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

@@ -256,6 +256,7 @@ M.CreateKxChangesetInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -578,6 +579,9 @@ M.CreateKxClusterInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         environmentId = {
             type = "string",
@@ -773,6 +777,7 @@ M.CreateKxDatabaseInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -875,6 +880,7 @@ M.CreateKxDataviewInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -966,6 +972,9 @@ M.CreateKxEnvironmentInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1019,6 +1028,7 @@ M.CreateKxScalingGroupInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1120,6 +1130,9 @@ M.CreateKxUserInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1169,6 +1182,9 @@ M.CreateKxVolumeInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         environmentId = {
             type = "string",
@@ -1302,6 +1318,7 @@ M.DeleteKxClusterInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -1363,6 +1380,7 @@ M.DeleteKxDatabaseInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1401,6 +1419,7 @@ M.DeleteKxDataviewInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1425,6 +1444,7 @@ M.DeleteKxEnvironmentInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -1455,6 +1475,7 @@ M.DeleteKxScalingGroupInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -1485,6 +1506,7 @@ M.DeleteKxUserInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -1515,6 +1537,7 @@ M.DeleteKxVolumeInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -3179,6 +3202,9 @@ M.UpdateKxClusterCodeConfigurationInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         code = setmetatable({ traits = {
             required = true,
@@ -3234,6 +3260,9 @@ M.UpdateKxClusterDatabasesInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         databases = {
             type = "list",
@@ -3273,6 +3302,7 @@ M.UpdateKxDatabaseInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -3334,6 +3364,7 @@ M.UpdateKxDataviewInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -3414,6 +3445,9 @@ M.UpdateKxEnvironmentInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3489,6 +3523,9 @@ M.UpdateKxEnvironmentNetworkInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3572,6 +3609,9 @@ M.UpdateKxUserInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3616,6 +3656,9 @@ M.UpdateKxVolumeInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         nas1Configuration = M.KxNAS1Configuration,
     },

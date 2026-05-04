@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "CapstoneControlPlaneService"
-    cfg.signing_name = "devops-guru"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "devops-guru", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:addNotificationChannel(input, options)
         output_schema = types.AddNotificationChannelOutput,
         http_method = "PUT",
         http_path = "/channels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:deleteInsight(input, options)
         output_schema = types.DeleteInsightOutput,
         http_method = "DELETE",
         http_path = "/insights/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:describeAccountHealth(input, options)
         output_schema = types.DescribeAccountHealthOutput,
         http_method = "GET",
         http_path = "/accounts/health",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:describeAccountOverview(input, options)
         output_schema = types.DescribeAccountOverviewOutput,
         http_method = "POST",
         http_path = "/accounts/overview",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:describeAnomaly(input, options)
         output_schema = types.DescribeAnomalyOutput,
         http_method = "GET",
         http_path = "/anomalies/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:describeEventSourcesConfig(input, options)
         output_schema = types.DescribeEventSourcesConfigOutput,
         http_method = "POST",
         http_path = "/event-sources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:describeFeedback(input, options)
         output_schema = types.DescribeFeedbackOutput,
         http_method = "POST",
         http_path = "/feedback",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:describeInsight(input, options)
         output_schema = types.DescribeInsightOutput,
         http_method = "GET",
         http_path = "/insights/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:describeOrganizationHealth(input, options)
         output_schema = types.DescribeOrganizationHealthOutput,
         http_method = "POST",
         http_path = "/organization/health",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:describeOrganizationOverview(input, options)
         output_schema = types.DescribeOrganizationOverviewOutput,
         http_method = "POST",
         http_path = "/organization/overview",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:describeOrganizationResourceCollectionHealth(input, options)
         output_schema = types.DescribeOrganizationResourceCollectionHealthOutput,
         http_method = "POST",
         http_path = "/organization/health/resource-collection",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:describeResourceCollectionHealth(input, options)
         output_schema = types.DescribeResourceCollectionHealthOutput,
         http_method = "GET",
         http_path = "/accounts/health/resource-collection/{ResourceCollectionType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:describeServiceIntegration(input, options)
         output_schema = types.DescribeServiceIntegrationOutput,
         http_method = "GET",
         http_path = "/service-integrations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getCostEstimation(input, options)
         output_schema = types.GetCostEstimationOutput,
         http_method = "GET",
         http_path = "/cost-estimation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getResourceCollection(input, options)
         output_schema = types.GetResourceCollectionOutput,
         http_method = "GET",
         http_path = "/resource-collections/{ResourceCollectionType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listAnomaliesForInsight(input, options)
         output_schema = types.ListAnomaliesForInsightOutput,
         http_method = "POST",
         http_path = "/anomalies/insight/{InsightId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listAnomalousLogGroups(input, options)
         output_schema = types.ListAnomalousLogGroupsOutput,
         http_method = "POST",
         http_path = "/list-log-anomalies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listEvents(input, options)
         output_schema = types.ListEventsOutput,
         http_method = "POST",
         http_path = "/events",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listInsights(input, options)
         output_schema = types.ListInsightsOutput,
         http_method = "POST",
         http_path = "/insights",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listMonitoredResources(input, options)
         output_schema = types.ListMonitoredResourcesOutput,
         http_method = "POST",
         http_path = "/monitoredResources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listNotificationChannels(input, options)
         output_schema = types.ListNotificationChannelsOutput,
         http_method = "POST",
         http_path = "/channels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listOrganizationInsights(input, options)
         output_schema = types.ListOrganizationInsightsOutput,
         http_method = "POST",
         http_path = "/organization/insights",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listRecommendations(input, options)
         output_schema = types.ListRecommendationsOutput,
         http_method = "POST",
         http_path = "/recommendations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:putFeedback(input, options)
         output_schema = types.PutFeedbackOutput,
         http_method = "PUT",
         http_path = "/feedback",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:removeNotificationChannel(input, options)
         output_schema = types.RemoveNotificationChannelOutput,
         http_method = "DELETE",
         http_path = "/channels/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:searchInsights(input, options)
         output_schema = types.SearchInsightsOutput,
         http_method = "POST",
         http_path = "/insights/search",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:searchOrganizationInsights(input, options)
         output_schema = types.SearchOrganizationInsightsOutput,
         http_method = "POST",
         http_path = "/organization/insights/search",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:startCostEstimation(input, options)
         output_schema = types.StartCostEstimationOutput,
         http_method = "PUT",
         http_path = "/cost-estimation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:updateEventSourcesConfig(input, options)
         output_schema = types.UpdateEventSourcesConfigOutput,
         http_method = "PUT",
         http_path = "/event-sources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:updateResourceCollection(input, options)
         output_schema = types.UpdateResourceCollectionOutput,
         http_method = "PUT",
         http_path = "/resource-collections",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:updateServiceIntegration(input, options)
         output_schema = types.UpdateServiceIntegrationOutput,
         http_method = "PUT",
         http_path = "/service-integrations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

@@ -1,0 +1,44 @@
+local record M
+    pages_list_analysis_templates: function(client: table, input: table): function(): table, table
+    items_list_analysis_templates: function(client: table, input: table): function(): any
+    pages_list_collaboration_analysis_templates: function(client: table, input: table): function(): table, table
+    items_list_collaboration_analysis_templates: function(client: table, input: table): function(): any
+    pages_list_collaboration_change_requests: function(client: table, input: table): function(): table, table
+    items_list_collaboration_change_requests: function(client: table, input: table): function(): any
+    pages_list_collaboration_configured_audience_model_associations: function(client: table, input: table): function(): table, table
+    items_list_collaboration_configured_audience_model_associations: function(client: table, input: table): function(): any
+    pages_list_collaboration_id_namespace_associations: function(client: table, input: table): function(): table, table
+    items_list_collaboration_id_namespace_associations: function(client: table, input: table): function(): any
+    pages_list_collaboration_privacy_budget_templates: function(client: table, input: table): function(): table, table
+    items_list_collaboration_privacy_budget_templates: function(client: table, input: table): function(): any
+    pages_list_collaboration_privacy_budgets: function(client: table, input: table): function(): table, table
+    items_list_collaboration_privacy_budgets: function(client: table, input: table): function(): any
+    pages_list_collaborations: function(client: table, input: table): function(): table, table
+    items_list_collaborations: function(client: table, input: table): function(): any
+    pages_list_configured_audience_model_associations: function(client: table, input: table): function(): table, table
+    items_list_configured_audience_model_associations: function(client: table, input: table): function(): any
+    pages_list_configured_table_associations: function(client: table, input: table): function(): table, table
+    items_list_configured_table_associations: function(client: table, input: table): function(): any
+    pages_list_configured_tables: function(client: table, input: table): function(): table, table
+    items_list_configured_tables: function(client: table, input: table): function(): any
+    pages_list_id_mapping_tables: function(client: table, input: table): function(): table, table
+    items_list_id_mapping_tables: function(client: table, input: table): function(): any
+    pages_list_id_namespace_associations: function(client: table, input: table): function(): table, table
+    items_list_id_namespace_associations: function(client: table, input: table): function(): any
+    pages_list_members: function(client: table, input: table): function(): table, table
+    items_list_members: function(client: table, input: table): function(): any
+    pages_list_memberships: function(client: table, input: table): function(): table, table
+    items_list_memberships: function(client: table, input: table): function(): any
+    pages_list_privacy_budget_templates: function(client: table, input: table): function(): table, table
+    items_list_privacy_budget_templates: function(client: table, input: table): function(): any
+    pages_list_privacy_budgets: function(client: table, input: table): function(): table, table
+    items_list_privacy_budgets: function(client: table, input: table): function(): any
+    pages_list_protected_jobs: function(client: table, input: table): function(): table, table
+    items_list_protected_jobs: function(client: table, input: table): function(): any
+    pages_list_protected_queries: function(client: table, input: table): function(): table, table
+    items_list_protected_queries: function(client: table, input: table): function(): any
+    pages_list_schemas: function(client: table, input: table): function(): table, table
+    items_list_schemas: function(client: table, input: table): function(): any
+end
+
+return M

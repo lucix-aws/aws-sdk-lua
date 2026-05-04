@@ -1,0 +1,10 @@
+local record M
+    pages_list_gateways: function(client: table, input: table): function(): table, table
+    items_list_gateways: function(client: table, input: table): function(): any
+    pages_list_hypervisors: function(client: table, input: table): function(): table, table
+    items_list_hypervisors: function(client: table, input: table): function(): any
+    pages_list_virtual_machines: function(client: table, input: table): function(): table, table
+    items_list_virtual_machines: function(client: table, input: table): function(): any
+end
+
+return M

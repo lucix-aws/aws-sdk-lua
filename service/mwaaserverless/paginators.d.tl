@@ -1,0 +1,12 @@
+local record M
+    pages_list_task_instances: function(client: table, input: table): function(): table, table
+    items_list_task_instances: function(client: table, input: table): function(): any
+    pages_list_workflow_runs: function(client: table, input: table): function(): table, table
+    items_list_workflow_runs: function(client: table, input: table): function(): any
+    pages_list_workflow_versions: function(client: table, input: table): function(): table, table
+    items_list_workflow_versions: function(client: table, input: table): function(): any
+    pages_list_workflows: function(client: table, input: table): function(): table, table
+    items_list_workflows: function(client: table, input: table): function(): any
+end
+
+return M

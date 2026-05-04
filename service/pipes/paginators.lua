@@ -1,0 +1,23 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listPipes.
+function M.pages_list_pipes(client, input)
+    return paginator.pages(client, "listPipes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Pipes",
+    })
+end
+
+--- Returns an item iterator for listPipes.
+function M.items_list_pipes(client, input)
+    return paginator.items(client, "listPipes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Pipes",
+    })
+end
+
+return M

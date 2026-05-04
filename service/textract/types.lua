@@ -466,6 +466,9 @@ M.HumanLoopActivationOutput = {
         },
         HumanLoopActivationConditionsEvaluationResults = {
             type = "string",
+            traits = {
+                media_type = "application/json",
+            },
         },
     },
 }
@@ -855,6 +858,9 @@ M.CreateAdapterInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Description = {
             type = "string",
@@ -964,6 +970,9 @@ M.CreateAdapterVersionInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DatasetConfig = setmetatable({ traits = {
             required = true,

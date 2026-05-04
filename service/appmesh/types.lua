@@ -237,6 +237,9 @@ M.CreateMeshInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -502,6 +505,9 @@ M.UpdateMeshInput = {
         spec = M.MeshSpec,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -923,6 +929,9 @@ M.CreateVirtualGatewayInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         meshOwner = {
             type = "string",
@@ -1411,6 +1420,9 @@ M.CreateGatewayRouteInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         meshOwner = {
             type = "string",
@@ -1711,6 +1723,9 @@ M.UpdateGatewayRouteInput = {
         } }, { __index = M.GatewayRouteSpec }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         meshOwner = {
             type = "string",
@@ -1854,6 +1869,9 @@ M.UpdateVirtualGatewayInput = {
         } }, { __index = M.VirtualGatewaySpec }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         meshOwner = {
             type = "string",
@@ -2425,6 +2443,9 @@ M.CreateVirtualNodeInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         meshOwner = {
             type = "string",
@@ -2685,6 +2706,9 @@ M.UpdateVirtualNodeInput = {
         } }, { __index = M.VirtualNodeSpec }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         meshOwner = {
             type = "string",
@@ -2749,6 +2773,9 @@ M.CreateVirtualRouterInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         meshOwner = {
             type = "string",
@@ -3305,6 +3332,9 @@ M.CreateRouteInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         meshOwner = {
             type = "string",
@@ -3605,6 +3635,9 @@ M.UpdateRouteInput = {
         } }, { __index = M.RouteSpec }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         meshOwner = {
             type = "string",
@@ -3647,6 +3680,9 @@ M.UpdateVirtualRouterInput = {
         } }, { __index = M.VirtualRouterSpec }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         meshOwner = {
             type = "string",
@@ -3731,6 +3767,9 @@ M.CreateVirtualServiceInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         meshOwner = {
             type = "string",
@@ -3991,6 +4030,9 @@ M.UpdateVirtualServiceInput = {
         } }, { __index = M.VirtualServiceSpec }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         meshOwner = {
             type = "string",

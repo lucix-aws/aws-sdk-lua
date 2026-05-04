@@ -1,0 +1,157 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for getConsolidatedReport.
+function M.pages_get_consolidated_report(client, input)
+    return paginator.pages(client, "getConsolidatedReport", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listAnswers.
+function M.pages_list_answers(client, input)
+    return paginator.pages(client, "listAnswers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listCheckDetails.
+function M.pages_list_check_details(client, input)
+    return paginator.pages(client, "listCheckDetails", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listCheckSummaries.
+function M.pages_list_check_summaries(client, input)
+    return paginator.pages(client, "listCheckSummaries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listLensReviewImprovements.
+function M.pages_list_lens_review_improvements(client, input)
+    return paginator.pages(client, "listLensReviewImprovements", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listLensReviews.
+function M.pages_list_lens_reviews(client, input)
+    return paginator.pages(client, "listLensReviews", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listLensShares.
+function M.pages_list_lens_shares(client, input)
+    return paginator.pages(client, "listLensShares", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listLenses.
+function M.pages_list_lenses(client, input)
+    return paginator.pages(client, "listLenses", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listMilestones.
+function M.pages_list_milestones(client, input)
+    return paginator.pages(client, "listMilestones", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listNotifications.
+function M.pages_list_notifications(client, input)
+    return paginator.pages(client, "listNotifications", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listProfileNotifications.
+function M.pages_list_profile_notifications(client, input)
+    return paginator.pages(client, "listProfileNotifications", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listProfileShares.
+function M.pages_list_profile_shares(client, input)
+    return paginator.pages(client, "listProfileShares", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listProfiles.
+function M.pages_list_profiles(client, input)
+    return paginator.pages(client, "listProfiles", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listReviewTemplateAnswers.
+function M.pages_list_review_template_answers(client, input)
+    return paginator.pages(client, "listReviewTemplateAnswers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listReviewTemplates.
+function M.pages_list_review_templates(client, input)
+    return paginator.pages(client, "listReviewTemplates", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listShareInvitations.
+function M.pages_list_share_invitations(client, input)
+    return paginator.pages(client, "listShareInvitations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listTemplateShares.
+function M.pages_list_template_shares(client, input)
+    return paginator.pages(client, "listTemplateShares", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listWorkloadShares.
+function M.pages_list_workload_shares(client, input)
+    return paginator.pages(client, "listWorkloadShares", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listWorkloads.
+function M.pages_list_workloads(client, input)
+    return paginator.pages(client, "listWorkloads", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+return M

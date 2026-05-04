@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "SimpleEmailService_v2"
-    cfg.signing_name = "ses"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ses", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:batchGetMetricData(input, options)
         output_schema = types.BatchGetMetricDataOutput,
         http_method = "POST",
         http_path = "/v2/email/metrics/batch",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:cancelExportJob(input, options)
         output_schema = types.CancelExportJobOutput,
         http_method = "PUT",
         http_path = "/v2/email/export-jobs/{JobId}/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createConfigurationSet(input, options)
         output_schema = types.CreateConfigurationSetOutput,
         http_method = "POST",
         http_path = "/v2/email/configuration-sets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createConfigurationSetEventDestination(input, options)
         output_schema = types.CreateConfigurationSetEventDestinationOutput,
         http_method = "POST",
         http_path = "/v2/email/configuration-sets/{ConfigurationSetName}/event-destinations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createContact(input, options)
         output_schema = types.CreateContactOutput,
         http_method = "POST",
         http_path = "/v2/email/contact-lists/{ContactListName}/contacts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createContactList(input, options)
         output_schema = types.CreateContactListOutput,
         http_method = "POST",
         http_path = "/v2/email/contact-lists",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createCustomVerificationEmailTemplate(input, options)
         output_schema = types.CreateCustomVerificationEmailTemplateOutput,
         http_method = "POST",
         http_path = "/v2/email/custom-verification-email-templates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createDedicatedIpPool(input, options)
         output_schema = types.CreateDedicatedIpPoolOutput,
         http_method = "POST",
         http_path = "/v2/email/dedicated-ip-pools",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createDeliverabilityTestReport(input, options)
         output_schema = types.CreateDeliverabilityTestReportOutput,
         http_method = "POST",
         http_path = "/v2/email/deliverability-dashboard/test",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createEmailIdentity(input, options)
         output_schema = types.CreateEmailIdentityOutput,
         http_method = "POST",
         http_path = "/v2/email/identities",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createEmailIdentityPolicy(input, options)
         output_schema = types.CreateEmailIdentityPolicyOutput,
         http_method = "POST",
         http_path = "/v2/email/identities/{EmailIdentity}/policies/{PolicyName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createEmailTemplate(input, options)
         output_schema = types.CreateEmailTemplateOutput,
         http_method = "POST",
         http_path = "/v2/email/templates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createExportJob(input, options)
         output_schema = types.CreateExportJobOutput,
         http_method = "POST",
         http_path = "/v2/email/export-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:createImportJob(input, options)
         output_schema = types.CreateImportJobOutput,
         http_method = "POST",
         http_path = "/v2/email/import-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:createMultiRegionEndpoint(input, options)
         output_schema = types.CreateMultiRegionEndpointOutput,
         http_method = "POST",
         http_path = "/v2/email/multi-region-endpoints",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:createTenant(input, options)
         output_schema = types.CreateTenantOutput,
         http_method = "POST",
         http_path = "/v2/email/tenants",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:createTenantResourceAssociation(input, options)
         output_schema = types.CreateTenantResourceAssociationOutput,
         http_method = "POST",
         http_path = "/v2/email/tenants/resources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteConfigurationSet(input, options)
         output_schema = types.DeleteConfigurationSetOutput,
         http_method = "DELETE",
         http_path = "/v2/email/configuration-sets/{ConfigurationSetName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteConfigurationSetEventDestination(input, options)
         output_schema = types.DeleteConfigurationSetEventDestinationOutput,
         http_method = "DELETE",
         http_path = "/v2/email/configuration-sets/{ConfigurationSetName}/event-destinations/{EventDestinationName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deleteContact(input, options)
         output_schema = types.DeleteContactOutput,
         http_method = "DELETE",
         http_path = "/v2/email/contact-lists/{ContactListName}/contacts/{EmailAddress}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deleteContactList(input, options)
         output_schema = types.DeleteContactListOutput,
         http_method = "DELETE",
         http_path = "/v2/email/contact-lists/{ContactListName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:deleteCustomVerificationEmailTemplate(input, options)
         output_schema = types.DeleteCustomVerificationEmailTemplateOutput,
         http_method = "DELETE",
         http_path = "/v2/email/custom-verification-email-templates/{TemplateName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:deleteDedicatedIpPool(input, options)
         output_schema = types.DeleteDedicatedIpPoolOutput,
         http_method = "DELETE",
         http_path = "/v2/email/dedicated-ip-pools/{PoolName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:deleteEmailIdentity(input, options)
         output_schema = types.DeleteEmailIdentityOutput,
         http_method = "DELETE",
         http_path = "/v2/email/identities/{EmailIdentity}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:deleteEmailIdentityPolicy(input, options)
         output_schema = types.DeleteEmailIdentityPolicyOutput,
         http_method = "DELETE",
         http_path = "/v2/email/identities/{EmailIdentity}/policies/{PolicyName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:deleteEmailTemplate(input, options)
         output_schema = types.DeleteEmailTemplateOutput,
         http_method = "DELETE",
         http_path = "/v2/email/templates/{TemplateName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:deleteMultiRegionEndpoint(input, options)
         output_schema = types.DeleteMultiRegionEndpointOutput,
         http_method = "DELETE",
         http_path = "/v2/email/multi-region-endpoints/{EndpointName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:deleteSuppressedDestination(input, options)
         output_schema = types.DeleteSuppressedDestinationOutput,
         http_method = "DELETE",
         http_path = "/v2/email/suppression/addresses/{EmailAddress}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:deleteTenant(input, options)
         output_schema = types.DeleteTenantOutput,
         http_method = "POST",
         http_path = "/v2/email/tenants/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:deleteTenantResourceAssociation(input, options)
         output_schema = types.DeleteTenantResourceAssociationOutput,
         http_method = "POST",
         http_path = "/v2/email/tenants/resources/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:getAccount(input, options)
         output_schema = types.GetAccountOutput,
         http_method = "GET",
         http_path = "/v2/email/account",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:getBlacklistReports(input, options)
         output_schema = types.GetBlacklistReportsOutput,
         http_method = "GET",
         http_path = "/v2/email/deliverability-dashboard/blacklist-report",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:getConfigurationSet(input, options)
         output_schema = types.GetConfigurationSetOutput,
         http_method = "GET",
         http_path = "/v2/email/configuration-sets/{ConfigurationSetName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:getConfigurationSetEventDestinations(input, options)
         output_schema = types.GetConfigurationSetEventDestinationsOutput,
         http_method = "GET",
         http_path = "/v2/email/configuration-sets/{ConfigurationSetName}/event-destinations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:getContact(input, options)
         output_schema = types.GetContactOutput,
         http_method = "GET",
         http_path = "/v2/email/contact-lists/{ContactListName}/contacts/{EmailAddress}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:getContactList(input, options)
         output_schema = types.GetContactListOutput,
         http_method = "GET",
         http_path = "/v2/email/contact-lists/{ContactListName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:getCustomVerificationEmailTemplate(input, options)
         output_schema = types.GetCustomVerificationEmailTemplateOutput,
         http_method = "GET",
         http_path = "/v2/email/custom-verification-email-templates/{TemplateName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:getDedicatedIp(input, options)
         output_schema = types.GetDedicatedIpOutput,
         http_method = "GET",
         http_path = "/v2/email/dedicated-ips/{Ip}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:getDedicatedIpPool(input, options)
         output_schema = types.GetDedicatedIpPoolOutput,
         http_method = "GET",
         http_path = "/v2/email/dedicated-ip-pools/{PoolName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:getDedicatedIps(input, options)
         output_schema = types.GetDedicatedIpsOutput,
         http_method = "GET",
         http_path = "/v2/email/dedicated-ips",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:getDeliverabilityDashboardOptions(input, options)
         output_schema = types.GetDeliverabilityDashboardOptionsOutput,
         http_method = "GET",
         http_path = "/v2/email/deliverability-dashboard",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:getDeliverabilityTestReport(input, options)
         output_schema = types.GetDeliverabilityTestReportOutput,
         http_method = "GET",
         http_path = "/v2/email/deliverability-dashboard/test-reports/{ReportId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:getDomainDeliverabilityCampaign(input, options)
         output_schema = types.GetDomainDeliverabilityCampaignOutput,
         http_method = "GET",
         http_path = "/v2/email/deliverability-dashboard/campaigns/{CampaignId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:getDomainStatisticsReport(input, options)
         output_schema = types.GetDomainStatisticsReportOutput,
         http_method = "GET",
         http_path = "/v2/email/deliverability-dashboard/statistics-report/{Domain}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:getEmailAddressInsights(input, options)
         output_schema = types.GetEmailAddressInsightsOutput,
         http_method = "POST",
         http_path = "/v2/email/email-address-insights",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:getEmailIdentity(input, options)
         output_schema = types.GetEmailIdentityOutput,
         http_method = "GET",
         http_path = "/v2/email/identities/{EmailIdentity}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:getEmailIdentityPolicies(input, options)
         output_schema = types.GetEmailIdentityPoliciesOutput,
         http_method = "GET",
         http_path = "/v2/email/identities/{EmailIdentity}/policies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:getEmailTemplate(input, options)
         output_schema = types.GetEmailTemplateOutput,
         http_method = "GET",
         http_path = "/v2/email/templates/{TemplateName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:getExportJob(input, options)
         output_schema = types.GetExportJobOutput,
         http_method = "GET",
         http_path = "/v2/email/export-jobs/{JobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:getImportJob(input, options)
         output_schema = types.GetImportJobOutput,
         http_method = "GET",
         http_path = "/v2/email/import-jobs/{JobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:getMessageInsights(input, options)
         output_schema = types.GetMessageInsightsOutput,
         http_method = "GET",
         http_path = "/v2/email/insights/{MessageId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:getMultiRegionEndpoint(input, options)
         output_schema = types.GetMultiRegionEndpointOutput,
         http_method = "GET",
         http_path = "/v2/email/multi-region-endpoints/{EndpointName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:getReputationEntity(input, options)
         output_schema = types.GetReputationEntityOutput,
         http_method = "GET",
         http_path = "/v2/email/reputation/entities/{ReputationEntityType}/{ReputationEntityReference}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:getSuppressedDestination(input, options)
         output_schema = types.GetSuppressedDestinationOutput,
         http_method = "GET",
         http_path = "/v2/email/suppression/addresses/{EmailAddress}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:getTenant(input, options)
         output_schema = types.GetTenantOutput,
         http_method = "POST",
         http_path = "/v2/email/tenants/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:listConfigurationSets(input, options)
         output_schema = types.ListConfigurationSetsOutput,
         http_method = "GET",
         http_path = "/v2/email/configuration-sets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:listContactLists(input, options)
         output_schema = types.ListContactListsOutput,
         http_method = "GET",
         http_path = "/v2/email/contact-lists",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:listContacts(input, options)
         output_schema = types.ListContactsOutput,
         http_method = "POST",
         http_path = "/v2/email/contact-lists/{ContactListName}/contacts/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:listCustomVerificationEmailTemplates(input, options)
         output_schema = types.ListCustomVerificationEmailTemplatesOutput,
         http_method = "GET",
         http_path = "/v2/email/custom-verification-email-templates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:listDedicatedIpPools(input, options)
         output_schema = types.ListDedicatedIpPoolsOutput,
         http_method = "GET",
         http_path = "/v2/email/dedicated-ip-pools",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:listDeliverabilityTestReports(input, options)
         output_schema = types.ListDeliverabilityTestReportsOutput,
         http_method = "GET",
         http_path = "/v2/email/deliverability-dashboard/test-reports",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:listDomainDeliverabilityCampaigns(input, options)
         output_schema = types.ListDomainDeliverabilityCampaignsOutput,
         http_method = "GET",
         http_path = "/v2/email/deliverability-dashboard/domains/{SubscribedDomain}/campaigns",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:listEmailIdentities(input, options)
         output_schema = types.ListEmailIdentitiesOutput,
         http_method = "GET",
         http_path = "/v2/email/identities",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:listEmailTemplates(input, options)
         output_schema = types.ListEmailTemplatesOutput,
         http_method = "GET",
         http_path = "/v2/email/templates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:listExportJobs(input, options)
         output_schema = types.ListExportJobsOutput,
         http_method = "POST",
         http_path = "/v2/email/list-export-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:listImportJobs(input, options)
         output_schema = types.ListImportJobsOutput,
         http_method = "POST",
         http_path = "/v2/email/import-jobs/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:listMultiRegionEndpoints(input, options)
         output_schema = types.ListMultiRegionEndpointsOutput,
         http_method = "GET",
         http_path = "/v2/email/multi-region-endpoints",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:listRecommendations(input, options)
         output_schema = types.ListRecommendationsOutput,
         http_method = "POST",
         http_path = "/v2/email/vdm/recommendations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:listReputationEntities(input, options)
         output_schema = types.ListReputationEntitiesOutput,
         http_method = "POST",
         http_path = "/v2/email/reputation/entities",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:listResourceTenants(input, options)
         output_schema = types.ListResourceTenantsOutput,
         http_method = "POST",
         http_path = "/v2/email/resources/tenants/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:listSuppressedDestinations(input, options)
         output_schema = types.ListSuppressedDestinationsOutput,
         http_method = "GET",
         http_path = "/v2/email/suppression/addresses",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/v2/email/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:listTenantResources(input, options)
         output_schema = types.ListTenantResourcesOutput,
         http_method = "POST",
         http_path = "/v2/email/tenants/resources/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:listTenants(input, options)
         output_schema = types.ListTenantsOutput,
         http_method = "POST",
         http_path = "/v2/email/tenants/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:putAccountDedicatedIpWarmupAttributes(input, options)
         output_schema = types.PutAccountDedicatedIpWarmupAttributesOutput,
         http_method = "PUT",
         http_path = "/v2/email/account/dedicated-ips/warmup",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:putAccountDetails(input, options)
         output_schema = types.PutAccountDetailsOutput,
         http_method = "POST",
         http_path = "/v2/email/account/details",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:putAccountSendingAttributes(input, options)
         output_schema = types.PutAccountSendingAttributesOutput,
         http_method = "PUT",
         http_path = "/v2/email/account/sending",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:putAccountSuppressionAttributes(input, options)
         output_schema = types.PutAccountSuppressionAttributesOutput,
         http_method = "PUT",
         http_path = "/v2/email/account/suppression",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:putAccountVdmAttributes(input, options)
         output_schema = types.PutAccountVdmAttributesOutput,
         http_method = "PUT",
         http_path = "/v2/email/account/vdm",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:putConfigurationSetArchivingOptions(input, options)
         output_schema = types.PutConfigurationSetArchivingOptionsOutput,
         http_method = "PUT",
         http_path = "/v2/email/configuration-sets/{ConfigurationSetName}/archiving-options",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:putConfigurationSetDeliveryOptions(input, options)
         output_schema = types.PutConfigurationSetDeliveryOptionsOutput,
         http_method = "PUT",
         http_path = "/v2/email/configuration-sets/{ConfigurationSetName}/delivery-options",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:putConfigurationSetReputationOptions(input, options)
         output_schema = types.PutConfigurationSetReputationOptionsOutput,
         http_method = "PUT",
         http_path = "/v2/email/configuration-sets/{ConfigurationSetName}/reputation-options",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:putConfigurationSetSendingOptions(input, options)
         output_schema = types.PutConfigurationSetSendingOptionsOutput,
         http_method = "PUT",
         http_path = "/v2/email/configuration-sets/{ConfigurationSetName}/sending",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:putConfigurationSetSuppressionOptions(input, options)
         output_schema = types.PutConfigurationSetSuppressionOptionsOutput,
         http_method = "PUT",
         http_path = "/v2/email/configuration-sets/{ConfigurationSetName}/suppression-options",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:putConfigurationSetTrackingOptions(input, options)
         output_schema = types.PutConfigurationSetTrackingOptionsOutput,
         http_method = "PUT",
         http_path = "/v2/email/configuration-sets/{ConfigurationSetName}/tracking-options",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -890,6 +1158,9 @@ function Client:putConfigurationSetVdmOptions(input, options)
         output_schema = types.PutConfigurationSetVdmOptionsOutput,
         http_method = "PUT",
         http_path = "/v2/email/configuration-sets/{ConfigurationSetName}/vdm-options",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -900,6 +1171,9 @@ function Client:putDedicatedIpInPool(input, options)
         output_schema = types.PutDedicatedIpInPoolOutput,
         http_method = "PUT",
         http_path = "/v2/email/dedicated-ips/{Ip}/pool",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -910,6 +1184,9 @@ function Client:putDedicatedIpPoolScalingAttributes(input, options)
         output_schema = types.PutDedicatedIpPoolScalingAttributesOutput,
         http_method = "PUT",
         http_path = "/v2/email/dedicated-ip-pools/{PoolName}/scaling",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -920,6 +1197,9 @@ function Client:putDedicatedIpWarmupAttributes(input, options)
         output_schema = types.PutDedicatedIpWarmupAttributesOutput,
         http_method = "PUT",
         http_path = "/v2/email/dedicated-ips/{Ip}/warmup",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -930,6 +1210,9 @@ function Client:putDeliverabilityDashboardOption(input, options)
         output_schema = types.PutDeliverabilityDashboardOptionOutput,
         http_method = "PUT",
         http_path = "/v2/email/deliverability-dashboard",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -940,6 +1223,9 @@ function Client:putEmailIdentityConfigurationSetAttributes(input, options)
         output_schema = types.PutEmailIdentityConfigurationSetAttributesOutput,
         http_method = "PUT",
         http_path = "/v2/email/identities/{EmailIdentity}/configuration-set",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -950,6 +1236,9 @@ function Client:putEmailIdentityDkimAttributes(input, options)
         output_schema = types.PutEmailIdentityDkimAttributesOutput,
         http_method = "PUT",
         http_path = "/v2/email/identities/{EmailIdentity}/dkim",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -960,6 +1249,9 @@ function Client:putEmailIdentityDkimSigningAttributes(input, options)
         output_schema = types.PutEmailIdentityDkimSigningAttributesOutput,
         http_method = "PUT",
         http_path = "/v2/email/identities/{EmailIdentity}/dkim/signing",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -970,6 +1262,9 @@ function Client:putEmailIdentityFeedbackAttributes(input, options)
         output_schema = types.PutEmailIdentityFeedbackAttributesOutput,
         http_method = "PUT",
         http_path = "/v2/email/identities/{EmailIdentity}/feedback",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -980,6 +1275,9 @@ function Client:putEmailIdentityMailFromAttributes(input, options)
         output_schema = types.PutEmailIdentityMailFromAttributesOutput,
         http_method = "PUT",
         http_path = "/v2/email/identities/{EmailIdentity}/mail-from",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -990,6 +1288,9 @@ function Client:putSuppressedDestination(input, options)
         output_schema = types.PutSuppressedDestinationOutput,
         http_method = "PUT",
         http_path = "/v2/email/suppression/addresses",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1000,6 +1301,9 @@ function Client:sendBulkEmail(input, options)
         output_schema = types.SendBulkEmailOutput,
         http_method = "POST",
         http_path = "/v2/email/outbound-bulk-emails",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             EndpointId = "EndpointId",
         },
@@ -1013,6 +1317,9 @@ function Client:sendCustomVerificationEmail(input, options)
         output_schema = types.SendCustomVerificationEmailOutput,
         http_method = "POST",
         http_path = "/v2/email/outbound-custom-verification-emails",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1023,6 +1330,9 @@ function Client:sendEmail(input, options)
         output_schema = types.SendEmailOutput,
         http_method = "POST",
         http_path = "/v2/email/outbound-emails",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
         context_params = {
             EndpointId = "EndpointId",
         },
@@ -1036,6 +1346,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/v2/email/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1046,6 +1359,9 @@ function Client:testRenderEmailTemplate(input, options)
         output_schema = types.TestRenderEmailTemplateOutput,
         http_method = "POST",
         http_path = "/v2/email/templates/{TemplateName}/render",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1056,6 +1372,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/v2/email/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1066,6 +1385,9 @@ function Client:updateConfigurationSetEventDestination(input, options)
         output_schema = types.UpdateConfigurationSetEventDestinationOutput,
         http_method = "PUT",
         http_path = "/v2/email/configuration-sets/{ConfigurationSetName}/event-destinations/{EventDestinationName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1076,6 +1398,9 @@ function Client:updateContact(input, options)
         output_schema = types.UpdateContactOutput,
         http_method = "PUT",
         http_path = "/v2/email/contact-lists/{ContactListName}/contacts/{EmailAddress}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1086,6 +1411,9 @@ function Client:updateContactList(input, options)
         output_schema = types.UpdateContactListOutput,
         http_method = "PUT",
         http_path = "/v2/email/contact-lists/{ContactListName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1096,6 +1424,9 @@ function Client:updateCustomVerificationEmailTemplate(input, options)
         output_schema = types.UpdateCustomVerificationEmailTemplateOutput,
         http_method = "PUT",
         http_path = "/v2/email/custom-verification-email-templates/{TemplateName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1106,6 +1437,9 @@ function Client:updateEmailIdentityPolicy(input, options)
         output_schema = types.UpdateEmailIdentityPolicyOutput,
         http_method = "PUT",
         http_path = "/v2/email/identities/{EmailIdentity}/policies/{PolicyName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1116,6 +1450,9 @@ function Client:updateEmailTemplate(input, options)
         output_schema = types.UpdateEmailTemplateOutput,
         http_method = "PUT",
         http_path = "/v2/email/templates/{TemplateName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1126,6 +1463,9 @@ function Client:updateReputationEntityCustomerManagedStatus(input, options)
         output_schema = types.UpdateReputationEntityCustomerManagedStatusOutput,
         http_method = "PUT",
         http_path = "/v2/email/reputation/entities/{ReputationEntityType}/{ReputationEntityReference}/customer-managed-status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1136,6 +1476,9 @@ function Client:updateReputationEntityPolicy(input, options)
         output_schema = types.UpdateReputationEntityPolicyOutput,
         http_method = "PUT",
         http_path = "/v2/email/reputation/entities/{ReputationEntityType}/{ReputationEntityReference}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

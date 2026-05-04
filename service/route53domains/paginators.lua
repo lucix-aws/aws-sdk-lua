@@ -1,0 +1,77 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listDomains.
+function M.pages_list_domains(client, input)
+    return paginator.pages(client, "listDomains", input, {
+        input_token = "Marker",
+        output_token = "NextPageMarker",
+        items = "Domains",
+    })
+end
+
+--- Returns an item iterator for listDomains.
+function M.items_list_domains(client, input)
+    return paginator.items(client, "listDomains", input, {
+        input_token = "Marker",
+        output_token = "NextPageMarker",
+        items = "Domains",
+    })
+end
+
+--- Returns a page iterator for listOperations.
+function M.pages_list_operations(client, input)
+    return paginator.pages(client, "listOperations", input, {
+        input_token = "Marker",
+        output_token = "NextPageMarker",
+        items = "Operations",
+    })
+end
+
+--- Returns an item iterator for listOperations.
+function M.items_list_operations(client, input)
+    return paginator.items(client, "listOperations", input, {
+        input_token = "Marker",
+        output_token = "NextPageMarker",
+        items = "Operations",
+    })
+end
+
+--- Returns a page iterator for listPrices.
+function M.pages_list_prices(client, input)
+    return paginator.pages(client, "listPrices", input, {
+        input_token = "Marker",
+        output_token = "NextPageMarker",
+        items = "Prices",
+    })
+end
+
+--- Returns an item iterator for listPrices.
+function M.items_list_prices(client, input)
+    return paginator.items(client, "listPrices", input, {
+        input_token = "Marker",
+        output_token = "NextPageMarker",
+        items = "Prices",
+    })
+end
+
+--- Returns a page iterator for viewBilling.
+function M.pages_view_billing(client, input)
+    return paginator.pages(client, "viewBilling", input, {
+        input_token = "Marker",
+        output_token = "NextPageMarker",
+        items = "BillingRecords",
+    })
+end
+
+--- Returns an item iterator for viewBilling.
+function M.items_view_billing(client, input)
+    return paginator.items(client, "viewBilling", input, {
+        input_token = "Marker",
+        output_token = "NextPageMarker",
+        items = "BillingRecords",
+    })
+end
+
+return M

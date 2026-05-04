@@ -1402,6 +1402,9 @@ M.StartPatientInsightsJobInput = {
         } }, { __index = M.OutputDataConfig }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

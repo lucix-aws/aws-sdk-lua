@@ -1559,6 +1559,9 @@ M.GetQueryStatisticsOutput = {
         PlanningStatistics = M.PlanningStatistics,
         QuerySubmissionTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }

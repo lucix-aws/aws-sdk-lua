@@ -1,0 +1,85 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listAssignmentsForHIT.
+function M.pages_list_assignments_for_h_i_t(client, input)
+    return paginator.pages(client, "listAssignmentsForHIT", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listBonusPayments.
+function M.pages_list_bonus_payments(client, input)
+    return paginator.pages(client, "listBonusPayments", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listHITs.
+function M.pages_list_h_i_ts(client, input)
+    return paginator.pages(client, "listHITs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listHITsForQualificationType.
+function M.pages_list_h_i_ts_for_qualification_type(client, input)
+    return paginator.pages(client, "listHITsForQualificationType", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listQualificationRequests.
+function M.pages_list_qualification_requests(client, input)
+    return paginator.pages(client, "listQualificationRequests", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listQualificationTypes.
+function M.pages_list_qualification_types(client, input)
+    return paginator.pages(client, "listQualificationTypes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listReviewPolicyResultsForHIT.
+function M.pages_list_review_policy_results_for_h_i_t(client, input)
+    return paginator.pages(client, "listReviewPolicyResultsForHIT", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listReviewableHITs.
+function M.pages_list_reviewable_h_i_ts(client, input)
+    return paginator.pages(client, "listReviewableHITs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listWorkerBlocks.
+function M.pages_list_worker_blocks(client, input)
+    return paginator.pages(client, "listWorkerBlocks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listWorkersWithQualificationType.
+function M.pages_list_workers_with_qualification_type(client, input)
+    return paginator.pages(client, "listWorkersWithQualificationType", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+return M

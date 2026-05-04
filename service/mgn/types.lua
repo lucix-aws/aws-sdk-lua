@@ -1194,6 +1194,9 @@ M.StartImportInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         s3BucketSource = setmetatable({ traits = {
             required = true,
@@ -6617,6 +6620,9 @@ M.StartImportFileEnrichmentInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         s3BucketSource = setmetatable({ traits = {
             required = true,

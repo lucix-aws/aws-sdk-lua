@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "SecurityHubAPIService"
-    cfg.signing_name = "securityhub"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "securityhub", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:acceptAdministratorInvitation(input, options)
         output_schema = types.AcceptAdministratorInvitationOutput,
         http_method = "POST",
         http_path = "/administrator",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:acceptInvitation(input, options)
         output_schema = types.AcceptInvitationOutput,
         http_method = "POST",
         http_path = "/master",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchDeleteAutomationRules(input, options)
         output_schema = types.BatchDeleteAutomationRulesOutput,
         http_method = "POST",
         http_path = "/automationrules/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:batchDisableStandards(input, options)
         output_schema = types.BatchDisableStandardsOutput,
         http_method = "POST",
         http_path = "/standards/deregister",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:batchEnableStandards(input, options)
         output_schema = types.BatchEnableStandardsOutput,
         http_method = "POST",
         http_path = "/standards/register",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:batchGetAutomationRules(input, options)
         output_schema = types.BatchGetAutomationRulesOutput,
         http_method = "POST",
         http_path = "/automationrules/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:batchGetConfigurationPolicyAssociations(input, options)
         output_schema = types.BatchGetConfigurationPolicyAssociationsOutput,
         http_method = "POST",
         http_path = "/configurationPolicyAssociation/batchget",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:batchGetSecurityControls(input, options)
         output_schema = types.BatchGetSecurityControlsOutput,
         http_method = "POST",
         http_path = "/securityControls/batchGet",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:batchGetStandardsControlAssociations(input, options)
         output_schema = types.BatchGetStandardsControlAssociationsOutput,
         http_method = "POST",
         http_path = "/associations/batchGet",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:batchImportFindings(input, options)
         output_schema = types.BatchImportFindingsOutput,
         http_method = "POST",
         http_path = "/findings/import",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:batchUpdateAutomationRules(input, options)
         output_schema = types.BatchUpdateAutomationRulesOutput,
         http_method = "PATCH",
         http_path = "/automationrules/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:batchUpdateFindings(input, options)
         output_schema = types.BatchUpdateFindingsOutput,
         http_method = "PATCH",
         http_path = "/findings/batchupdate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:batchUpdateFindingsV2(input, options)
         output_schema = types.BatchUpdateFindingsV2Output,
         http_method = "PATCH",
         http_path = "/findingsv2/batchupdatev2",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:batchUpdateStandardsControlAssociations(input, options)
         output_schema = types.BatchUpdateStandardsControlAssociationsOutput,
         http_method = "PATCH",
         http_path = "/associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:createActionTarget(input, options)
         output_schema = types.CreateActionTargetOutput,
         http_method = "POST",
         http_path = "/actionTargets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:createAggregatorV2(input, options)
         output_schema = types.CreateAggregatorV2Output,
         http_method = "POST",
         http_path = "/aggregatorv2/create",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:createAutomationRule(input, options)
         output_schema = types.CreateAutomationRuleOutput,
         http_method = "POST",
         http_path = "/automationrules/create",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:createAutomationRuleV2(input, options)
         output_schema = types.CreateAutomationRuleV2Output,
         http_method = "POST",
         http_path = "/automationrulesv2/create",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:createConfigurationPolicy(input, options)
         output_schema = types.CreateConfigurationPolicyOutput,
         http_method = "POST",
         http_path = "/configurationPolicy/create",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:createConnectorV2(input, options)
         output_schema = types.CreateConnectorV2Output,
         http_method = "POST",
         http_path = "/connectorsv2",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:createFindingAggregator(input, options)
         output_schema = types.CreateFindingAggregatorOutput,
         http_method = "POST",
         http_path = "/findingAggregator/create",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:createInsight(input, options)
         output_schema = types.CreateInsightOutput,
         http_method = "POST",
         http_path = "/insights",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:createMembers(input, options)
         output_schema = types.CreateMembersOutput,
         http_method = "POST",
         http_path = "/members",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:createTicketV2(input, options)
         output_schema = types.CreateTicketV2Output,
         http_method = "POST",
         http_path = "/ticketsv2",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:declineInvitations(input, options)
         output_schema = types.DeclineInvitationsOutput,
         http_method = "POST",
         http_path = "/invitations/decline",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:deleteActionTarget(input, options)
         output_schema = types.DeleteActionTargetOutput,
         http_method = "DELETE",
         http_path = "/actionTargets/{ActionTargetArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:deleteAggregatorV2(input, options)
         output_schema = types.DeleteAggregatorV2Output,
         http_method = "DELETE",
         http_path = "/aggregatorv2/delete/{AggregatorV2Arn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:deleteAutomationRuleV2(input, options)
         output_schema = types.DeleteAutomationRuleV2Output,
         http_method = "DELETE",
         http_path = "/automationrulesv2/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:deleteConfigurationPolicy(input, options)
         output_schema = types.DeleteConfigurationPolicyOutput,
         http_method = "DELETE",
         http_path = "/configurationPolicy/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:deleteConnectorV2(input, options)
         output_schema = types.DeleteConnectorV2Output,
         http_method = "DELETE",
         http_path = "/connectorsv2/{ConnectorId+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:deleteFindingAggregator(input, options)
         output_schema = types.DeleteFindingAggregatorOutput,
         http_method = "DELETE",
         http_path = "/findingAggregator/delete/{FindingAggregatorArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:deleteInsight(input, options)
         output_schema = types.DeleteInsightOutput,
         http_method = "DELETE",
         http_path = "/insights/{InsightArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:deleteInvitations(input, options)
         output_schema = types.DeleteInvitationsOutput,
         http_method = "POST",
         http_path = "/invitations/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:deleteMembers(input, options)
         output_schema = types.DeleteMembersOutput,
         http_method = "POST",
         http_path = "/members/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:describeActionTargets(input, options)
         output_schema = types.DescribeActionTargetsOutput,
         http_method = "POST",
         http_path = "/actionTargets/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:describeHub(input, options)
         output_schema = types.DescribeHubOutput,
         http_method = "GET",
         http_path = "/accounts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:describeOrganizationConfiguration(input, options)
         output_schema = types.DescribeOrganizationConfigurationOutput,
         http_method = "GET",
         http_path = "/organization/configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:describeProducts(input, options)
         output_schema = types.DescribeProductsOutput,
         http_method = "GET",
         http_path = "/products",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:describeProductsV2(input, options)
         output_schema = types.DescribeProductsV2Output,
         http_method = "GET",
         http_path = "/productsV2",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:describeSecurityHubV2(input, options)
         output_schema = types.DescribeSecurityHubV2Output,
         http_method = "GET",
         http_path = "/hubv2",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:describeStandards(input, options)
         output_schema = types.DescribeStandardsOutput,
         http_method = "GET",
         http_path = "/standards",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:describeStandardsControls(input, options)
         output_schema = types.DescribeStandardsControlsOutput,
         http_method = "GET",
         http_path = "/standards/controls/{StandardsSubscriptionArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:disableImportFindingsForProduct(input, options)
         output_schema = types.DisableImportFindingsForProductOutput,
         http_method = "DELETE",
         http_path = "/productSubscriptions/{ProductSubscriptionArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:disableOrganizationAdminAccount(input, options)
         output_schema = types.DisableOrganizationAdminAccountOutput,
         http_method = "POST",
         http_path = "/organization/admin/disable",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:disableSecurityHub(input, options)
         output_schema = types.DisableSecurityHubOutput,
         http_method = "DELETE",
         http_path = "/accounts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:disableSecurityHubV2(input, options)
         output_schema = types.DisableSecurityHubV2Output,
         http_method = "DELETE",
         http_path = "/hubv2",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:disassociateFromAdministratorAccount(input, options)
         output_schema = types.DisassociateFromAdministratorAccountOutput,
         http_method = "POST",
         http_path = "/administrator/disassociate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:disassociateFromMasterAccount(input, options)
         output_schema = types.DisassociateFromMasterAccountOutput,
         http_method = "POST",
         http_path = "/master/disassociate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:disassociateMembers(input, options)
         output_schema = types.DisassociateMembersOutput,
         http_method = "POST",
         http_path = "/members/disassociate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:enableImportFindingsForProduct(input, options)
         output_schema = types.EnableImportFindingsForProductOutput,
         http_method = "POST",
         http_path = "/productSubscriptions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:enableOrganizationAdminAccount(input, options)
         output_schema = types.EnableOrganizationAdminAccountOutput,
         http_method = "POST",
         http_path = "/organization/admin/enable",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:enableSecurityHub(input, options)
         output_schema = types.EnableSecurityHubOutput,
         http_method = "POST",
         http_path = "/accounts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:enableSecurityHubV2(input, options)
         output_schema = types.EnableSecurityHubV2Output,
         http_method = "POST",
         http_path = "/hubv2",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:getAdministratorAccount(input, options)
         output_schema = types.GetAdministratorAccountOutput,
         http_method = "GET",
         http_path = "/administrator",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:getAggregatorV2(input, options)
         output_schema = types.GetAggregatorV2Output,
         http_method = "GET",
         http_path = "/aggregatorv2/get/{AggregatorV2Arn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:getAutomationRuleV2(input, options)
         output_schema = types.GetAutomationRuleV2Output,
         http_method = "GET",
         http_path = "/automationrulesv2/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:getConfigurationPolicy(input, options)
         output_schema = types.GetConfigurationPolicyOutput,
         http_method = "GET",
         http_path = "/configurationPolicy/get/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:getConfigurationPolicyAssociation(input, options)
         output_schema = types.GetConfigurationPolicyAssociationOutput,
         http_method = "POST",
         http_path = "/configurationPolicyAssociation/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:getConnectorV2(input, options)
         output_schema = types.GetConnectorV2Output,
         http_method = "GET",
         http_path = "/connectorsv2/{ConnectorId+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:getEnabledStandards(input, options)
         output_schema = types.GetEnabledStandardsOutput,
         http_method = "POST",
         http_path = "/standards/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:getFindingAggregator(input, options)
         output_schema = types.GetFindingAggregatorOutput,
         http_method = "GET",
         http_path = "/findingAggregator/get/{FindingAggregatorArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:getFindingHistory(input, options)
         output_schema = types.GetFindingHistoryOutput,
         http_method = "POST",
         http_path = "/findingHistory/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:getFindings(input, options)
         output_schema = types.GetFindingsOutput,
         http_method = "POST",
         http_path = "/findings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:getFindingStatisticsV2(input, options)
         output_schema = types.GetFindingStatisticsV2Output,
         http_method = "POST",
         http_path = "/findingsv2/statistics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:getFindingsTrendsV2(input, options)
         output_schema = types.GetFindingsTrendsV2Output,
         http_method = "POST",
         http_path = "/findingsTrendsv2",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:getFindingsV2(input, options)
         output_schema = types.GetFindingsV2Output,
         http_method = "POST",
         http_path = "/findingsv2",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:getInsightResults(input, options)
         output_schema = types.GetInsightResultsOutput,
         http_method = "GET",
         http_path = "/insights/results/{InsightArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:getInsights(input, options)
         output_schema = types.GetInsightsOutput,
         http_method = "POST",
         http_path = "/insights/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:getInvitationsCount(input, options)
         output_schema = types.GetInvitationsCountOutput,
         http_method = "GET",
         http_path = "/invitations/count",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:getMasterAccount(input, options)
         output_schema = types.GetMasterAccountOutput,
         http_method = "GET",
         http_path = "/master",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:getMembers(input, options)
         output_schema = types.GetMembersOutput,
         http_method = "POST",
         http_path = "/members/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:getResourcesStatisticsV2(input, options)
         output_schema = types.GetResourcesStatisticsV2Output,
         http_method = "POST",
         http_path = "/resourcesv2/statistics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:getResourcesTrendsV2(input, options)
         output_schema = types.GetResourcesTrendsV2Output,
         http_method = "POST",
         http_path = "/resourcesTrendsv2",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:getResourcesV2(input, options)
         output_schema = types.GetResourcesV2Output,
         http_method = "POST",
         http_path = "/resourcesv2",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:getSecurityControlDefinition(input, options)
         output_schema = types.GetSecurityControlDefinitionOutput,
         http_method = "GET",
         http_path = "/securityControl/definition",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:inviteMembers(input, options)
         output_schema = types.InviteMembersOutput,
         http_method = "POST",
         http_path = "/members/invite",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:listAggregatorsV2(input, options)
         output_schema = types.ListAggregatorsV2Output,
         http_method = "GET",
         http_path = "/aggregatorv2/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:listAutomationRules(input, options)
         output_schema = types.ListAutomationRulesOutput,
         http_method = "GET",
         http_path = "/automationrules/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:listAutomationRulesV2(input, options)
         output_schema = types.ListAutomationRulesV2Output,
         http_method = "GET",
         http_path = "/automationrulesv2/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:listConfigurationPolicies(input, options)
         output_schema = types.ListConfigurationPoliciesOutput,
         http_method = "GET",
         http_path = "/configurationPolicy/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:listConfigurationPolicyAssociations(input, options)
         output_schema = types.ListConfigurationPolicyAssociationsOutput,
         http_method = "POST",
         http_path = "/configurationPolicyAssociation/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:listConnectorsV2(input, options)
         output_schema = types.ListConnectorsV2Output,
         http_method = "GET",
         http_path = "/connectorsv2",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:listEnabledProductsForImport(input, options)
         output_schema = types.ListEnabledProductsForImportOutput,
         http_method = "GET",
         http_path = "/productSubscriptions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:listFindingAggregators(input, options)
         output_schema = types.ListFindingAggregatorsOutput,
         http_method = "GET",
         http_path = "/findingAggregator/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:listInvitations(input, options)
         output_schema = types.ListInvitationsOutput,
         http_method = "GET",
         http_path = "/invitations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -890,6 +1158,9 @@ function Client:listMembers(input, options)
         output_schema = types.ListMembersOutput,
         http_method = "GET",
         http_path = "/members",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -900,6 +1171,9 @@ function Client:listOrganizationAdminAccounts(input, options)
         output_schema = types.ListOrganizationAdminAccountsOutput,
         http_method = "GET",
         http_path = "/organization/admin",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -910,6 +1184,9 @@ function Client:listSecurityControlDefinitions(input, options)
         output_schema = types.ListSecurityControlDefinitionsOutput,
         http_method = "GET",
         http_path = "/securityControls/definitions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -920,6 +1197,9 @@ function Client:listStandardsControlAssociations(input, options)
         output_schema = types.ListStandardsControlAssociationsOutput,
         http_method = "GET",
         http_path = "/associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -930,6 +1210,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -940,6 +1223,9 @@ function Client:registerConnectorV2(input, options)
         output_schema = types.RegisterConnectorV2Output,
         http_method = "POST",
         http_path = "/connectorsv2/register",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -950,6 +1236,9 @@ function Client:startConfigurationPolicyAssociation(input, options)
         output_schema = types.StartConfigurationPolicyAssociationOutput,
         http_method = "POST",
         http_path = "/configurationPolicyAssociation/associate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -960,6 +1249,9 @@ function Client:startConfigurationPolicyDisassociation(input, options)
         output_schema = types.StartConfigurationPolicyDisassociationOutput,
         http_method = "POST",
         http_path = "/configurationPolicyAssociation/disassociate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -970,6 +1262,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -980,6 +1275,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -990,6 +1288,9 @@ function Client:updateActionTarget(input, options)
         output_schema = types.UpdateActionTargetOutput,
         http_method = "PATCH",
         http_path = "/actionTargets/{ActionTargetArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1000,6 +1301,9 @@ function Client:updateAggregatorV2(input, options)
         output_schema = types.UpdateAggregatorV2Output,
         http_method = "PATCH",
         http_path = "/aggregatorv2/update/{AggregatorV2Arn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1010,6 +1314,9 @@ function Client:updateAutomationRuleV2(input, options)
         output_schema = types.UpdateAutomationRuleV2Output,
         http_method = "PATCH",
         http_path = "/automationrulesv2/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1020,6 +1327,9 @@ function Client:updateConfigurationPolicy(input, options)
         output_schema = types.UpdateConfigurationPolicyOutput,
         http_method = "PATCH",
         http_path = "/configurationPolicy/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1030,6 +1340,9 @@ function Client:updateConnectorV2(input, options)
         output_schema = types.UpdateConnectorV2Output,
         http_method = "PATCH",
         http_path = "/connectorsv2/{ConnectorId+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1040,6 +1353,9 @@ function Client:updateFindingAggregator(input, options)
         output_schema = types.UpdateFindingAggregatorOutput,
         http_method = "PATCH",
         http_path = "/findingAggregator/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1050,6 +1366,9 @@ function Client:updateFindings(input, options)
         output_schema = types.UpdateFindingsOutput,
         http_method = "PATCH",
         http_path = "/findings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1060,6 +1379,9 @@ function Client:updateInsight(input, options)
         output_schema = types.UpdateInsightOutput,
         http_method = "PATCH",
         http_path = "/insights/{InsightArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1070,6 +1392,9 @@ function Client:updateOrganizationConfiguration(input, options)
         output_schema = types.UpdateOrganizationConfigurationOutput,
         http_method = "POST",
         http_path = "/organization/configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1080,6 +1405,9 @@ function Client:updateSecurityControl(input, options)
         output_schema = types.UpdateSecurityControlOutput,
         http_method = "PATCH",
         http_path = "/securityControl/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1090,6 +1418,9 @@ function Client:updateSecurityHubConfiguration(input, options)
         output_schema = types.UpdateSecurityHubConfigurationOutput,
         http_method = "PATCH",
         http_path = "/accounts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1100,6 +1431,9 @@ function Client:updateStandardsControl(input, options)
         output_schema = types.UpdateStandardsControlOutput,
         http_method = "PATCH",
         http_path = "/standards/control/{StandardsControlArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

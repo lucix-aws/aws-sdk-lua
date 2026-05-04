@@ -676,9 +676,9 @@ local type BenefitApplicationStatus = "PENDING_SUBMISSION" | "IN_REVIEW" | "ACTI
 
 local type FulfillmentType = "CREDITS" | "CASH" | "ACCESS"
 
-local type BenefitStatus = "ACTIVE" | "INACTIVE"
-
 local type BenefitAllocationStatus = "ACTIVE" | "INACTIVE" | "FULFILLED"
+
+local type BenefitStatus = "ACTIVE" | "INACTIVE"
 
 local record M
     AmendBenefitApplicationInput: AmendBenefitApplicationInput

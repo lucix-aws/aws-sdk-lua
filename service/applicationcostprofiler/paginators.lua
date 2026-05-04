@@ -1,0 +1,23 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listReportDefinitions.
+function M.pages_list_report_definitions(client, input)
+    return paginator.pages(client, "listReportDefinitions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "reportDefinitions",
+    })
+end
+
+--- Returns an item iterator for listReportDefinitions.
+function M.items_list_report_definitions(client, input)
+    return paginator.items(client, "listReportDefinitions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "reportDefinitions",
+    })
+end
+
+return M

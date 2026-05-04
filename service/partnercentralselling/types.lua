@@ -1036,6 +1036,7 @@ M.ProfileNextStepsHistory = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1381,6 +1382,9 @@ M.LeadInteraction = {
         },
         InteractionDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         CustomerAction = {
             type = "string",
@@ -1450,6 +1454,7 @@ M.CreateEngagementContextInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1476,6 +1481,9 @@ M.CreateEngagementContextOutput = {
         },
         EngagementLastModifiedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ContextId = {
             type = "string",
@@ -1521,6 +1529,7 @@ M.CreateEngagementInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1554,6 +1563,9 @@ M.CreateEngagementOutput = {
         },
         ModifiedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1593,6 +1605,9 @@ M.GetEngagementOutput = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         CreatedBy = {
             type = "string",
@@ -1602,6 +1617,9 @@ M.GetEngagementOutput = {
         },
         ModifiedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ModifiedBy = {
             type = "string",
@@ -1754,6 +1772,9 @@ M.EngagementSummary = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         CreatedBy = {
             type = "string",
@@ -1763,6 +1784,9 @@ M.EngagementSummary = {
         },
         ModifiedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ModifiedBy = {
             type = "string",
@@ -1889,6 +1913,9 @@ M.ListEngagementByAcceptingInvitationTaskSummary = {
         },
         StartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         TaskStatus = {
             type = "string",
@@ -1954,6 +1981,7 @@ M.StartEngagementByAcceptingInvitationTaskInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1981,6 +2009,9 @@ M.StartEngagementByAcceptingInvitationTaskOutput = {
         },
         StartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         TaskStatus = {
             type = "string",
@@ -2049,6 +2080,9 @@ M.ListEngagementFromOpportunityTaskSummary = {
         },
         StartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         TaskStatus = {
             type = "string",
@@ -2114,6 +2148,7 @@ M.StartEngagementFromOpportunityTaskInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -2144,6 +2179,9 @@ M.StartEngagementFromOpportunityTaskOutput = {
         },
         StartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         TaskStatus = {
             type = "string",
@@ -2379,6 +2417,7 @@ M.CreateEngagementInvitationInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -2480,9 +2519,15 @@ M.GetEngagementInvitationOutput = {
         },
         InvitationDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ExpirationDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         SenderAwsAccountId = {
             type = "string",
@@ -2608,9 +2653,15 @@ M.EngagementInvitationSummary = {
         },
         InvitationDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ExpirationDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         SenderAwsAccountId = {
             type = "string",
@@ -2767,6 +2818,7 @@ M.NextStepsHistory = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -3040,6 +3092,7 @@ M.CreateOpportunityInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -3072,6 +3125,9 @@ M.CreateOpportunityOutput = {
         },
         LastModifiedDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -3243,12 +3299,14 @@ M.GetOpportunityOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         CreatedDate = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         RelatedEntityIdentifiers = setmetatable({ traits = {
@@ -3267,9 +3325,15 @@ M.CreatedDateFilter = {
     members = {
         AfterCreatedDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         BeforeCreatedDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -3279,9 +3343,15 @@ M.LastModifiedDate = {
     members = {
         AfterLastModifiedDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         BeforeLastModifiedDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -3433,9 +3503,15 @@ M.OpportunitySummary = {
         },
         LastModifiedDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         CreatedDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         LifeCycle = M.LifeCycleSummary,
         Customer = M.CustomerSummary,
@@ -3520,6 +3596,7 @@ M.UpdateOpportunityInput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Identifier = {
@@ -3545,6 +3622,7 @@ M.UpdateOpportunityOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -3600,6 +3678,9 @@ M.ListOpportunityFromEngagementTaskSummary = {
         },
         StartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         TaskStatus = {
             type = "string",
@@ -3650,6 +3731,7 @@ M.StartOpportunityFromEngagementTaskInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -3683,6 +3765,9 @@ M.StartOpportunityFromEngagementTaskOutput = {
         },
         StartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         TaskStatus = {
             type = "string",
@@ -3778,6 +3863,7 @@ M.CreateResourceSnapshotInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -3923,6 +4009,9 @@ M.GetResourceSnapshotOutput = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         EngagementId = {
             type = "string",
@@ -4111,6 +4200,7 @@ M.CreateResourceSnapshotJobInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -4234,12 +4324,18 @@ M.GetResourceSnapshotJobOutput = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Status = {
             type = "string",
         },
         LastSuccessfulExecutionDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         LastFailure = {
             type = "string",
@@ -4472,6 +4568,7 @@ M.SolutionBase = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -4588,6 +4685,7 @@ M.UpdateEngagementContextInput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Type = {
@@ -4621,6 +4719,7 @@ M.UpdateEngagementContextOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         ContextId = {

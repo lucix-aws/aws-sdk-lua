@@ -1,0 +1,26 @@
+local record M
+    pages_get_finding_recommendation: function(client: table, input: table): function(): table, table
+    items_get_finding_recommendation: function(client: table, input: table): function(): any
+    pages_get_finding_v2: function(client: table, input: table): function(): table, table
+    items_get_finding_v2: function(client: table, input: table): function(): any
+    pages_list_access_preview_findings: function(client: table, input: table): function(): table, table
+    items_list_access_preview_findings: function(client: table, input: table): function(): any
+    pages_list_access_previews: function(client: table, input: table): function(): table, table
+    items_list_access_previews: function(client: table, input: table): function(): any
+    pages_list_analyzed_resources: function(client: table, input: table): function(): table, table
+    items_list_analyzed_resources: function(client: table, input: table): function(): any
+    pages_list_analyzers: function(client: table, input: table): function(): table, table
+    items_list_analyzers: function(client: table, input: table): function(): any
+    pages_list_archive_rules: function(client: table, input: table): function(): table, table
+    items_list_archive_rules: function(client: table, input: table): function(): any
+    pages_list_findings: function(client: table, input: table): function(): table, table
+    items_list_findings: function(client: table, input: table): function(): any
+    pages_list_findings_v2: function(client: table, input: table): function(): table, table
+    items_list_findings_v2: function(client: table, input: table): function(): any
+    pages_list_policy_generations: function(client: table, input: table): function(): table, table
+    items_list_policy_generations: function(client: table, input: table): function(): any
+    pages_validate_policy: function(client: table, input: table): function(): table, table
+    items_validate_policy: function(client: table, input: table): function(): any
+end
+
+return M

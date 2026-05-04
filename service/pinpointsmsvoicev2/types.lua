@@ -98,6 +98,9 @@ M.AssociateOriginationIdentityInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -805,6 +808,9 @@ M.CreateConfigurationSetInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -855,6 +861,9 @@ M.CreateEventDestinationInput = {
         SnsDestination = M.SnsDestination,
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -920,6 +929,9 @@ M.CreateNotifyConfigurationInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",
@@ -1047,6 +1059,9 @@ M.CreateOptOutListInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1097,6 +1112,9 @@ M.CreatePoolInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1170,6 +1188,9 @@ M.CreateProtectConfigurationInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DeletionProtectionEnabled = {
             type = "boolean",
@@ -1238,6 +1259,9 @@ M.CreateRcsAgentInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1330,6 +1354,9 @@ M.CreateRegistrationInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1479,6 +1506,9 @@ M.CreateRegistrationAttachmentInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1633,6 +1663,9 @@ M.CreateVerifiedDestinationNumberInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -5119,6 +5152,9 @@ M.DisassociateOriginationIdentityInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -5907,6 +5943,9 @@ M.PutProtectConfigurationRuleSetNumberOverrideInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ProtectConfigurationId = {
             type = "string",
@@ -6269,6 +6308,9 @@ M.RequestPhoneNumberInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -6381,6 +6423,9 @@ M.RequestSenderIdInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

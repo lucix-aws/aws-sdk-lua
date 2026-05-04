@@ -1,0 +1,22 @@
+local record M
+    pages_admin_list_groups_for_user: function(client: table, input: table): function(): table, table
+    items_admin_list_groups_for_user: function(client: table, input: table): function(): any
+    pages_admin_list_user_auth_events: function(client: table, input: table): function(): table, table
+    items_admin_list_user_auth_events: function(client: table, input: table): function(): any
+    pages_list_groups: function(client: table, input: table): function(): table, table
+    items_list_groups: function(client: table, input: table): function(): any
+    pages_list_identity_providers: function(client: table, input: table): function(): table, table
+    items_list_identity_providers: function(client: table, input: table): function(): any
+    pages_list_resource_servers: function(client: table, input: table): function(): table, table
+    items_list_resource_servers: function(client: table, input: table): function(): any
+    pages_list_user_pool_clients: function(client: table, input: table): function(): table, table
+    items_list_user_pool_clients: function(client: table, input: table): function(): any
+    pages_list_user_pools: function(client: table, input: table): function(): table, table
+    items_list_user_pools: function(client: table, input: table): function(): any
+    pages_list_users: function(client: table, input: table): function(): table, table
+    items_list_users: function(client: table, input: table): function(): any
+    pages_list_users_in_group: function(client: table, input: table): function(): table, table
+    items_list_users_in_group: function(client: table, input: table): function(): any
+end
+
+return M

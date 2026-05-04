@@ -308,9 +308,15 @@ M.BenefitAllocationSummary = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ExpiresAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ApplicableBenefitIds = {
             type = "list",
@@ -362,9 +368,15 @@ M.BenefitApplicationSummary = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         BenefitApplicationDetails = {
             type = "map",
@@ -571,6 +583,9 @@ M.IssuanceDetail = {
         IssuanceAmount = M.MonetaryValue,
         IssuedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -735,12 +750,14 @@ M.CreditCode = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         ExpiresAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -853,6 +870,9 @@ M.FileDetail = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -978,15 +998,27 @@ M.GetBenefitAllocationOutput = {
         FulfillmentDetail = M.FulfillmentDetails,
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         StartsAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ExpiresAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1059,9 +1091,15 @@ M.GetBenefitApplicationOutput = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Revision = {
             type = "string",

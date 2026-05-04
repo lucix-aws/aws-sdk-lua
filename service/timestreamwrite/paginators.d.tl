@@ -1,0 +1,7 @@
+local record M
+    pages_list_batch_load_tasks: function(client: table, input: table): function(): table, table
+    pages_list_databases: function(client: table, input: table): function(): table, table
+    pages_list_tables: function(client: table, input: table): function(): table, table
+end
+
+return M

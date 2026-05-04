@@ -1129,6 +1129,9 @@ M.CreateApplicationInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         name = {
             type = "string",

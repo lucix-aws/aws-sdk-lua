@@ -1,0 +1,113 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listApplicationRevisions.
+function M.pages_list_application_revisions(client, input)
+    return paginator.pages(client, "listApplicationRevisions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "revisions",
+    })
+end
+
+--- Returns an item iterator for listApplicationRevisions.
+function M.items_list_application_revisions(client, input)
+    return paginator.items(client, "listApplicationRevisions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "revisions",
+    })
+end
+
+--- Returns a page iterator for listApplications.
+function M.pages_list_applications(client, input)
+    return paginator.pages(client, "listApplications", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "applications",
+    })
+end
+
+--- Returns an item iterator for listApplications.
+function M.items_list_applications(client, input)
+    return paginator.items(client, "listApplications", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "applications",
+    })
+end
+
+--- Returns a page iterator for listDeploymentConfigs.
+function M.pages_list_deployment_configs(client, input)
+    return paginator.pages(client, "listDeploymentConfigs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "deploymentConfigsList",
+    })
+end
+
+--- Returns an item iterator for listDeploymentConfigs.
+function M.items_list_deployment_configs(client, input)
+    return paginator.items(client, "listDeploymentConfigs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "deploymentConfigsList",
+    })
+end
+
+--- Returns a page iterator for listDeploymentGroups.
+function M.pages_list_deployment_groups(client, input)
+    return paginator.pages(client, "listDeploymentGroups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "deploymentGroups",
+    })
+end
+
+--- Returns an item iterator for listDeploymentGroups.
+function M.items_list_deployment_groups(client, input)
+    return paginator.items(client, "listDeploymentGroups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "deploymentGroups",
+    })
+end
+
+--- Returns a page iterator for listDeploymentInstances.
+function M.pages_list_deployment_instances(client, input)
+    return paginator.pages(client, "listDeploymentInstances", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "instancesList",
+    })
+end
+
+--- Returns an item iterator for listDeploymentInstances.
+function M.items_list_deployment_instances(client, input)
+    return paginator.items(client, "listDeploymentInstances", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "instancesList",
+    })
+end
+
+--- Returns a page iterator for listDeployments.
+function M.pages_list_deployments(client, input)
+    return paginator.pages(client, "listDeployments", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "deployments",
+    })
+end
+
+--- Returns an item iterator for listDeployments.
+function M.items_list_deployments(client, input)
+    return paginator.items(client, "listDeployments", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "deployments",
+    })
+end
+
+return M

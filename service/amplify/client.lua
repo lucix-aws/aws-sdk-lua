@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "Amplify"
-    cfg.signing_name = "amplify"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "amplify", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createApp(input, options)
         output_schema = types.CreateAppOutput,
         http_method = "POST",
         http_path = "/apps",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createBackendEnvironment(input, options)
         output_schema = types.CreateBackendEnvironmentOutput,
         http_method = "POST",
         http_path = "/apps/{appId}/backendenvironments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createBranch(input, options)
         output_schema = types.CreateBranchOutput,
         http_method = "POST",
         http_path = "/apps/{appId}/branches",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createDeployment(input, options)
         output_schema = types.CreateDeploymentOutput,
         http_method = "POST",
         http_path = "/apps/{appId}/branches/{branchName}/deployments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createDomainAssociation(input, options)
         output_schema = types.CreateDomainAssociationOutput,
         http_method = "POST",
         http_path = "/apps/{appId}/domains",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createWebhook(input, options)
         output_schema = types.CreateWebhookOutput,
         http_method = "POST",
         http_path = "/apps/{appId}/webhooks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteApp(input, options)
         output_schema = types.DeleteAppOutput,
         http_method = "DELETE",
         http_path = "/apps/{appId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteBackendEnvironment(input, options)
         output_schema = types.DeleteBackendEnvironmentOutput,
         http_method = "DELETE",
         http_path = "/apps/{appId}/backendenvironments/{environmentName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteBranch(input, options)
         output_schema = types.DeleteBranchOutput,
         http_method = "DELETE",
         http_path = "/apps/{appId}/branches/{branchName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteDomainAssociation(input, options)
         output_schema = types.DeleteDomainAssociationOutput,
         http_method = "DELETE",
         http_path = "/apps/{appId}/domains/{domainName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteJob(input, options)
         output_schema = types.DeleteJobOutput,
         http_method = "DELETE",
         http_path = "/apps/{appId}/branches/{branchName}/jobs/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteWebhook(input, options)
         output_schema = types.DeleteWebhookOutput,
         http_method = "DELETE",
         http_path = "/webhooks/{webhookId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:generateAccessLogs(input, options)
         output_schema = types.GenerateAccessLogsOutput,
         http_method = "POST",
         http_path = "/apps/{appId}/accesslogs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getApp(input, options)
         output_schema = types.GetAppOutput,
         http_method = "GET",
         http_path = "/apps/{appId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getArtifactUrl(input, options)
         output_schema = types.GetArtifactUrlOutput,
         http_method = "GET",
         http_path = "/artifacts/{artifactId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getBackendEnvironment(input, options)
         output_schema = types.GetBackendEnvironmentOutput,
         http_method = "GET",
         http_path = "/apps/{appId}/backendenvironments/{environmentName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getBranch(input, options)
         output_schema = types.GetBranchOutput,
         http_method = "GET",
         http_path = "/apps/{appId}/branches/{branchName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getDomainAssociation(input, options)
         output_schema = types.GetDomainAssociationOutput,
         http_method = "GET",
         http_path = "/apps/{appId}/domains/{domainName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getJob(input, options)
         output_schema = types.GetJobOutput,
         http_method = "GET",
         http_path = "/apps/{appId}/branches/{branchName}/jobs/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:getWebhook(input, options)
         output_schema = types.GetWebhookOutput,
         http_method = "GET",
         http_path = "/webhooks/{webhookId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listApps(input, options)
         output_schema = types.ListAppsOutput,
         http_method = "GET",
         http_path = "/apps",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listArtifacts(input, options)
         output_schema = types.ListArtifactsOutput,
         http_method = "GET",
         http_path = "/apps/{appId}/branches/{branchName}/jobs/{jobId}/artifacts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listBackendEnvironments(input, options)
         output_schema = types.ListBackendEnvironmentsOutput,
         http_method = "GET",
         http_path = "/apps/{appId}/backendenvironments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listBranches(input, options)
         output_schema = types.ListBranchesOutput,
         http_method = "GET",
         http_path = "/apps/{appId}/branches",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listDomainAssociations(input, options)
         output_schema = types.ListDomainAssociationsOutput,
         http_method = "GET",
         http_path = "/apps/{appId}/domains",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listJobs(input, options)
         output_schema = types.ListJobsOutput,
         http_method = "GET",
         http_path = "/apps/{appId}/branches/{branchName}/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:listWebhooks(input, options)
         output_schema = types.ListWebhooksOutput,
         http_method = "GET",
         http_path = "/apps/{appId}/webhooks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:startDeployment(input, options)
         output_schema = types.StartDeploymentOutput,
         http_method = "POST",
         http_path = "/apps/{appId}/branches/{branchName}/deployments/start",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:startJob(input, options)
         output_schema = types.StartJobOutput,
         http_method = "POST",
         http_path = "/apps/{appId}/branches/{branchName}/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:stopJob(input, options)
         output_schema = types.StopJobOutput,
         http_method = "DELETE",
         http_path = "/apps/{appId}/branches/{branchName}/jobs/{jobId}/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:updateApp(input, options)
         output_schema = types.UpdateAppOutput,
         http_method = "POST",
         http_path = "/apps/{appId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:updateBranch(input, options)
         output_schema = types.UpdateBranchOutput,
         http_method = "POST",
         http_path = "/apps/{appId}/branches/{branchName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:updateDomainAssociation(input, options)
         output_schema = types.UpdateDomainAssociationOutput,
         http_method = "POST",
         http_path = "/apps/{appId}/domains/{domainName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:updateWebhook(input, options)
         output_schema = types.UpdateWebhookOutput,
         http_method = "POST",
         http_path = "/webhooks/{webhookId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

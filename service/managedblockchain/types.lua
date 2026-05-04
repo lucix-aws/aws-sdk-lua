@@ -45,6 +45,9 @@ M.Accessor = {
         },
         CreationDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Arn = {
             type = "string",
@@ -74,6 +77,9 @@ M.AccessorSummary = {
         },
         CreationDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Arn = {
             type = "string",
@@ -110,6 +116,7 @@ M.CreateAccessorInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -286,6 +293,7 @@ M.CreateMemberInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -382,6 +390,7 @@ M.CreateNetworkInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -478,6 +487,7 @@ M.CreateNodeInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -555,6 +565,7 @@ M.CreateProposalInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -756,6 +767,9 @@ M.Member = {
         },
         CreationDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Tags = {
             type = "map",
@@ -856,6 +870,9 @@ M.Network = {
         },
         CreationDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Tags = {
             type = "map",
@@ -973,6 +990,9 @@ M.Node = {
         },
         CreationDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Tags = {
             type = "map",
@@ -1047,9 +1067,15 @@ M.Proposal = {
         },
         CreationDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ExpirationDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         YesVoteCount = {
             type = "integer",
@@ -1111,6 +1137,9 @@ M.NetworkSummary = {
         },
         CreationDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Arn = {
             type = "string",
@@ -1134,9 +1163,15 @@ M.Invitation = {
         },
         CreationDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ExpirationDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Status = {
             type = "string",
@@ -1276,6 +1311,9 @@ M.MemberSummary = {
         },
         CreationDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         IsOwned = {
             type = "boolean",
@@ -1396,6 +1434,9 @@ M.NodeSummary = {
         },
         CreationDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         AvailabilityZone = {
             type = "string",
@@ -1467,9 +1508,15 @@ M.ProposalSummary = {
         },
         CreationDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ExpirationDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Arn = {
             type = "string",

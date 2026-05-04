@@ -488,12 +488,14 @@ M.Schedule = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         endTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         refreshFrequency = {
@@ -1713,6 +1715,7 @@ M.OutboundRequest = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         channelSubtypeParameters = setmetatable({ traits = {
@@ -1806,6 +1809,9 @@ M.ProfileOutboundRequest = {
         },
         expirationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }

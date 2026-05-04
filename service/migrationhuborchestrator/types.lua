@@ -613,6 +613,9 @@ M.CreateTemplateInput = {
         } }, { __index = M.TemplateSource }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -822,6 +825,9 @@ M.UpdateTemplateInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

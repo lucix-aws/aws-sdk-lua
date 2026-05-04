@@ -228,6 +228,9 @@ M.CreateAgentRuntimeEndpointInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -283,6 +286,7 @@ M.CreateAgentRuntimeEndpointOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -398,6 +402,7 @@ M.DeleteAgentRuntimeEndpointInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -475,12 +480,14 @@ M.GetAgentRuntimeEndpointOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         failureReason = {
@@ -572,12 +579,14 @@ M.AgentRuntimeEndpoint = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -624,6 +633,9 @@ M.UpdateAgentRuntimeEndpointInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -659,12 +671,14 @@ M.UpdateAgentRuntimeEndpointOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1044,6 +1058,9 @@ M.CreateAgentRuntimeInput = {
         } }, { __index = M.NetworkConfiguration }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         description = {
             type = "string",
@@ -1116,6 +1133,7 @@ M.CreateAgentRuntimeOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -1141,6 +1159,7 @@ M.DeleteAgentRuntimeInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -1223,12 +1242,14 @@ M.GetAgentRuntimeOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         roleArn = {
@@ -1328,6 +1349,7 @@ M.AgentRuntime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -1437,6 +1459,9 @@ M.UpdateAgentRuntimeInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1467,12 +1492,14 @@ M.UpdateAgentRuntimeOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -1802,6 +1829,9 @@ M.CreateBrowserProfileInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -1837,6 +1867,7 @@ M.CreateBrowserProfileOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -1862,6 +1893,7 @@ M.DeleteBrowserProfileInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -1892,10 +1924,14 @@ M.DeleteBrowserProfileOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastSavedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1947,16 +1983,21 @@ M.GetBrowserProfileOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastSavedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastSavedBrowserSessionId = {
             type = "string",
@@ -2022,16 +2063,21 @@ M.BrowserProfileSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastSavedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastSavedBrowserSessionId = {
             type = "string",
@@ -2185,6 +2231,9 @@ M.CreateBrowserInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -2222,6 +2271,7 @@ M.CreateBrowserOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -2247,6 +2297,7 @@ M.DeleteBrowserInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -2271,6 +2322,7 @@ M.DeleteBrowserOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2355,12 +2407,14 @@ M.GetBrowserOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2426,10 +2480,14 @@ M.BrowserSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2494,6 +2552,9 @@ M.CreateCodeInterpreterInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -2531,6 +2592,7 @@ M.CreateCodeInterpreterOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -2556,6 +2618,7 @@ M.DeleteCodeInterpreterInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -2580,6 +2643,7 @@ M.DeleteCodeInterpreterOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2645,12 +2709,14 @@ M.GetCodeInterpreterOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2711,10 +2777,14 @@ M.CodeInterpreterSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2767,6 +2837,9 @@ M.CreateConfigurationBundleInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         bundleName = {
             type = "string",
@@ -3189,6 +3262,9 @@ M.UpdateConfigurationBundleInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         bundleId = {
             type = "string",
@@ -3426,6 +3502,9 @@ M.CreateEvaluatorInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         evaluatorName = {
             type = "string",
@@ -3721,6 +3800,9 @@ M.UpdateEvaluatorInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         evaluatorId = {
             type = "string",
@@ -3904,6 +3986,9 @@ M.CreateGatewayInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         roleArn = {
             type = "string",
@@ -3975,12 +4060,14 @@ M.CreateGatewayOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -4104,12 +4191,14 @@ M.GetGatewayOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -4209,12 +4298,14 @@ M.GatewaySummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         authorizerType = {
@@ -4323,12 +4414,14 @@ M.UpdateGatewayOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -4455,6 +4548,9 @@ M.CreateGatewayRuleInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         priority = {
             type = "integer",
@@ -4537,6 +4633,7 @@ M.CreateGatewayRuleOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -4646,6 +4743,7 @@ M.GetGatewayRuleOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -4657,6 +4755,9 @@ M.GetGatewayRuleOutput = {
         system = M.SystemManagedBlock,
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -4725,6 +4826,7 @@ M.GatewayRuleDetail = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -4736,6 +4838,9 @@ M.GatewayRuleDetail = {
         system = M.SystemManagedBlock,
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -4829,6 +4934,7 @@ M.UpdateGatewayRuleOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -4840,6 +4946,9 @@ M.UpdateGatewayRuleOutput = {
         system = M.SystemManagedBlock,
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -5330,12 +5439,14 @@ M.TargetSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         resourcePriority = {
@@ -5804,6 +5915,9 @@ M.CreateHarnessInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         executionRoleArn = {
             type = "string",
@@ -5943,12 +6057,14 @@ M.Harness = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         model = setmetatable({ traits = {
@@ -6034,6 +6150,7 @@ M.DeleteHarnessInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -6117,12 +6234,14 @@ M.HarnessSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -6177,6 +6296,9 @@ M.UpdateHarnessInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         executionRoleArn = {
             type = "string",
@@ -6870,6 +6992,9 @@ M.CreateMemoryInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         name = {
             type = "string",
@@ -7399,6 +7524,7 @@ M.DeleteMemoryInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
         memoryId = {
@@ -7662,6 +7788,9 @@ M.UpdateMemoryInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         memoryId = {
             type = "string",
@@ -8543,6 +8672,9 @@ M.CreateOnlineEvaluationConfigInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         onlineEvaluationConfigName = {
             type = "string",
@@ -8876,6 +9008,9 @@ M.UpdateOnlineEvaluationConfigInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         onlineEvaluationConfigId = {
             type = "string",
@@ -8955,6 +9090,9 @@ M.CreatePolicyEngineInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         encryptionKeyArn = {
             type = "string",
@@ -8999,12 +9137,14 @@ M.CreatePolicyEngineOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         policyEngineArn = {
@@ -9067,12 +9207,14 @@ M.DeletePolicyEngineOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         policyEngineArn = {
@@ -9135,12 +9277,14 @@ M.GetPolicyEngineOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         policyEngineArn = {
@@ -9208,12 +9352,14 @@ M.PolicyEngine = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         policyEngineArn = {
@@ -9302,12 +9448,14 @@ M.UpdatePolicyEngineOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         policyEngineArn = {
@@ -9405,12 +9553,14 @@ M.GetPolicyGenerationOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -9622,12 +9772,14 @@ M.PolicyGeneration = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -9698,6 +9850,9 @@ M.StartPolicyGenerationInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -9736,12 +9891,14 @@ M.StartPolicyGenerationOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -9798,6 +9955,9 @@ M.CreatePolicyInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -9843,12 +10003,14 @@ M.CreatePolicyOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         policyArn = {
@@ -9924,12 +10086,14 @@ M.DeletePolicyOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         policyArn = {
@@ -10005,12 +10169,14 @@ M.GetPolicyOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         policyArn = {
@@ -10097,12 +10263,14 @@ M.Policy = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         policyArn = {
@@ -10202,12 +10370,14 @@ M.UpdatePolicyOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         policyArn = {
@@ -10454,6 +10624,9 @@ M.CreateRegistryRecordInput = {
         synchronizationConfiguration = M.SynchronizationConfiguration,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -10584,12 +10757,14 @@ M.GetRegistryRecordOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         statusReason = {
@@ -10697,12 +10872,14 @@ M.RegistryRecordSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -10775,6 +10952,7 @@ M.SubmitRegistryRecordForApprovalOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -10973,12 +11151,14 @@ M.UpdateRegistryRecordOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         statusReason = {
@@ -11060,6 +11240,7 @@ M.UpdateRegistryRecordStatusOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -11100,6 +11281,9 @@ M.CreateRegistryInput = {
         authorizerConfiguration = M.AuthorizerConfiguration,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         approvalConfiguration = M.ApprovalConfiguration,
     },
@@ -11207,12 +11391,14 @@ M.GetRegistryOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -11282,12 +11468,14 @@ M.RegistrySummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -11377,12 +11565,14 @@ M.UpdateRegistryOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -11801,6 +11991,9 @@ M.CreateGatewayTargetInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         targetConfiguration = setmetatable({ traits = {
             required = true,
@@ -11833,12 +12026,14 @@ M.CreateGatewayTargetOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -11872,6 +12067,9 @@ M.CreateGatewayTargetOutput = {
         },
         lastSynchronizedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         metadataConfiguration = M.MetadataConfiguration,
         privateEndpoint = M.PrivateEndpoint,
@@ -11905,12 +12103,14 @@ M.GatewayTarget = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -11944,6 +12144,9 @@ M.GatewayTarget = {
         },
         lastSynchronizedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         metadataConfiguration = M.MetadataConfiguration,
         privateEndpoint = M.PrivateEndpoint,
@@ -11977,12 +12180,14 @@ M.GetGatewayTargetOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -12016,6 +12221,9 @@ M.GetGatewayTargetOutput = {
         },
         lastSynchronizedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         metadataConfiguration = M.MetadataConfiguration,
         privateEndpoint = M.PrivateEndpoint,
@@ -12087,12 +12295,14 @@ M.UpdateGatewayTargetOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -12126,6 +12336,9 @@ M.UpdateGatewayTargetOutput = {
         },
         lastSynchronizedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         metadataConfiguration = M.MetadataConfiguration,
         privateEndpoint = M.PrivateEndpoint,

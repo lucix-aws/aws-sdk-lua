@@ -3095,35 +3095,35 @@ local record TooManyRequestsException
     Message: string
 end
 
-local type AuthorizationType = "NONE" | "AWS_IAM" | "CUSTOM" | "JWT"
-
-local type AuthorizerType = "REQUEST" | "JWT"
-
-local type DeploymentStatus = "PENDING" | "FAILED" | "DEPLOYED"
-
 local type PassthroughBehavior = "WHEN_NO_MATCH" | "NEVER" | "WHEN_NO_TEMPLATES"
-
-local type Status = "AVAILABLE" | "IN_PROGRESS" | "FAILED"
-
-local type IpAddressType = "ipv4" | "dualstack"
-
-local type PublishStatus = "PUBLISHED" | "PUBLISH_IN_PROGRESS" | "PUBLISH_FAILED" | "DISABLE_IN_PROGRESS" | "DISABLE_FAILED" | "DISABLED"
-
-local type RoutingMode = "API_MAPPING_ONLY" | "ROUTING_RULE_ONLY" | "ROUTING_RULE_THEN_API_MAPPING"
-
-local type ConnectionType = "INTERNET" | "VPC_LINK"
-
-local type VpcLinkStatus = "PENDING" | "AVAILABLE" | "DELETING" | "FAILED" | "INACTIVE"
 
 local type ContentHandlingStrategy = "CONVERT_TO_BINARY" | "CONVERT_TO_TEXT"
 
-local type ProtocolType = "WEBSOCKET" | "HTTP"
+local type DeploymentStatus = "PENDING" | "FAILED" | "DEPLOYED"
+
+local type AuthorizerType = "REQUEST" | "JWT"
+
+local type RoutingMode = "API_MAPPING_ONLY" | "ROUTING_RULE_ONLY" | "ROUTING_RULE_THEN_API_MAPPING"
+
+local type Status = "AVAILABLE" | "IN_PROGRESS" | "FAILED"
+
+local type ConnectionType = "INTERNET" | "VPC_LINK"
+
+local type VpcLinkVersion = "V2"
+
+local type PublishStatus = "PUBLISHED" | "PUBLISH_IN_PROGRESS" | "PUBLISH_FAILED" | "DISABLE_IN_PROGRESS" | "DISABLE_FAILED" | "DISABLED"
 
 local type IntegrationType = "AWS" | "HTTP" | "MOCK" | "HTTP_PROXY" | "AWS_PROXY"
 
+local type IpAddressType = "ipv4" | "dualstack"
+
+local type VpcLinkStatus = "PENDING" | "AVAILABLE" | "DELETING" | "FAILED" | "INACTIVE"
+
+local type AuthorizationType = "NONE" | "AWS_IAM" | "CUSTOM" | "JWT"
+
 local type TryItState = "ENABLED" | "DISABLED"
 
-local type VpcLinkVersion = "V2"
+local type ProtocolType = "WEBSOCKET" | "HTTP"
 
 local record M
     CreateApiInput: CreateApiInput

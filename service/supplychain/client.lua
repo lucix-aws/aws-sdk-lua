@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "GalaxyPublicAPIGateway"
-    cfg.signing_name = "scn"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "scn", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createBillOfMaterialsImportJob(input, options)
         output_schema = types.CreateBillOfMaterialsImportJobOutput,
         http_method = "POST",
         http_path = "/api/configuration/instances/{instanceId}/bill-of-materials-import-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createDataIntegrationFlow(input, options)
         output_schema = types.CreateDataIntegrationFlowOutput,
         http_method = "PUT",
         http_path = "/api/data-integration/instance/{instanceId}/data-integration-flows/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createDataLakeDataset(input, options)
         output_schema = types.CreateDataLakeDatasetOutput,
         http_method = "PUT",
         http_path = "/api/datalake/instance/{instanceId}/namespaces/{namespace}/datasets/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createDataLakeNamespace(input, options)
         output_schema = types.CreateDataLakeNamespaceOutput,
         http_method = "PUT",
         http_path = "/api/datalake/instance/{instanceId}/namespaces/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createInstance(input, options)
         output_schema = types.CreateInstanceOutput,
         http_method = "POST",
         http_path = "/api/instance",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteDataIntegrationFlow(input, options)
         output_schema = types.DeleteDataIntegrationFlowOutput,
         http_method = "DELETE",
         http_path = "/api/data-integration/instance/{instanceId}/data-integration-flows/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteDataLakeDataset(input, options)
         output_schema = types.DeleteDataLakeDatasetOutput,
         http_method = "DELETE",
         http_path = "/api/datalake/instance/{instanceId}/namespaces/{namespace}/datasets/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteDataLakeNamespace(input, options)
         output_schema = types.DeleteDataLakeNamespaceOutput,
         http_method = "DELETE",
         http_path = "/api/datalake/instance/{instanceId}/namespaces/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteInstance(input, options)
         output_schema = types.DeleteInstanceOutput,
         http_method = "DELETE",
         http_path = "/api/instance/{instanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:getBillOfMaterialsImportJob(input, options)
         output_schema = types.GetBillOfMaterialsImportJobOutput,
         http_method = "GET",
         http_path = "/api/configuration/instances/{instanceId}/bill-of-materials-import-jobs/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getDataIntegrationEvent(input, options)
         output_schema = types.GetDataIntegrationEventOutput,
         http_method = "GET",
         http_path = "/api-data/data-integration/instance/{instanceId}/data-integration-events/{eventId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getDataIntegrationFlow(input, options)
         output_schema = types.GetDataIntegrationFlowOutput,
         http_method = "GET",
         http_path = "/api/data-integration/instance/{instanceId}/data-integration-flows/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getDataIntegrationFlowExecution(input, options)
         output_schema = types.GetDataIntegrationFlowExecutionOutput,
         http_method = "GET",
         http_path = "/api-data/data-integration/instance/{instanceId}/data-integration-flows/{flowName}/executions/{executionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getDataLakeDataset(input, options)
         output_schema = types.GetDataLakeDatasetOutput,
         http_method = "GET",
         http_path = "/api/datalake/instance/{instanceId}/namespaces/{namespace}/datasets/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getDataLakeNamespace(input, options)
         output_schema = types.GetDataLakeNamespaceOutput,
         http_method = "GET",
         http_path = "/api/datalake/instance/{instanceId}/namespaces/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getInstance(input, options)
         output_schema = types.GetInstanceOutput,
         http_method = "GET",
         http_path = "/api/instance/{instanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listDataIntegrationEvents(input, options)
         output_schema = types.ListDataIntegrationEventsOutput,
         http_method = "GET",
         http_path = "/api-data/data-integration/instance/{instanceId}/data-integration-events",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listDataIntegrationFlowExecutions(input, options)
         output_schema = types.ListDataIntegrationFlowExecutionsOutput,
         http_method = "GET",
         http_path = "/api-data/data-integration/instance/{instanceId}/data-integration-flows/{flowName}/executions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listDataIntegrationFlows(input, options)
         output_schema = types.ListDataIntegrationFlowsOutput,
         http_method = "GET",
         http_path = "/api/data-integration/instance/{instanceId}/data-integration-flows",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listDataLakeDatasets(input, options)
         output_schema = types.ListDataLakeDatasetsOutput,
         http_method = "GET",
         http_path = "/api/datalake/instance/{instanceId}/namespaces/{namespace}/datasets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listDataLakeNamespaces(input, options)
         output_schema = types.ListDataLakeNamespacesOutput,
         http_method = "GET",
         http_path = "/api/datalake/instance/{instanceId}/namespaces",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listInstances(input, options)
         output_schema = types.ListInstancesOutput,
         http_method = "GET",
         http_path = "/api/instance",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/api/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:sendDataIntegrationEvent(input, options)
         output_schema = types.SendDataIntegrationEventOutput,
         http_method = "POST",
         http_path = "/api-data/data-integration/instance/{instanceId}/data-integration-events",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/api/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/api/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:updateDataIntegrationFlow(input, options)
         output_schema = types.UpdateDataIntegrationFlowOutput,
         http_method = "PATCH",
         http_path = "/api/data-integration/instance/{instanceId}/data-integration-flows/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:updateDataLakeDataset(input, options)
         output_schema = types.UpdateDataLakeDatasetOutput,
         http_method = "PATCH",
         http_path = "/api/datalake/instance/{instanceId}/namespaces/{namespace}/datasets/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:updateDataLakeNamespace(input, options)
         output_schema = types.UpdateDataLakeNamespaceOutput,
         http_method = "PATCH",
         http_path = "/api/datalake/instance/{instanceId}/namespaces/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:updateInstance(input, options)
         output_schema = types.UpdateInstanceOutput,
         http_method = "PATCH",
         http_path = "/api/instance/{instanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

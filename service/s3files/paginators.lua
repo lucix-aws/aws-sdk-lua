@@ -1,0 +1,77 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listAccessPoints.
+function M.pages_list_access_points(client, input)
+    return paginator.pages(client, "listAccessPoints", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "accessPoints",
+    })
+end
+
+--- Returns an item iterator for listAccessPoints.
+function M.items_list_access_points(client, input)
+    return paginator.items(client, "listAccessPoints", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "accessPoints",
+    })
+end
+
+--- Returns a page iterator for listFileSystems.
+function M.pages_list_file_systems(client, input)
+    return paginator.pages(client, "listFileSystems", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "fileSystems",
+    })
+end
+
+--- Returns an item iterator for listFileSystems.
+function M.items_list_file_systems(client, input)
+    return paginator.items(client, "listFileSystems", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "fileSystems",
+    })
+end
+
+--- Returns a page iterator for listMountTargets.
+function M.pages_list_mount_targets(client, input)
+    return paginator.pages(client, "listMountTargets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "mountTargets",
+    })
+end
+
+--- Returns an item iterator for listMountTargets.
+function M.items_list_mount_targets(client, input)
+    return paginator.items(client, "listMountTargets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "mountTargets",
+    })
+end
+
+--- Returns a page iterator for listTagsForResource.
+function M.pages_list_tags_for_resource(client, input)
+    return paginator.pages(client, "listTagsForResource", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "tags",
+    })
+end
+
+--- Returns an item iterator for listTagsForResource.
+function M.items_list_tags_for_resource(client, input)
+    return paginator.items(client, "listTagsForResource", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "tags",
+    })
+end
+
+return M

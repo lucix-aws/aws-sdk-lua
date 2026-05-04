@@ -292,9 +292,15 @@ M.CustomerAgreementSummary = {
         },
         effectiveStart = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         effectiveEnd = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         state = {
             type = "string",
@@ -412,18 +418,33 @@ M.ReportDetail = {
         },
         periodStart = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         periodEnd = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastModifiedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         deletedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         state = {
             type = "string",
@@ -546,9 +567,15 @@ M.ReportSummary = {
         },
         periodStart = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         periodEnd = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         series = {
             type = "string",

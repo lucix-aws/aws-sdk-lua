@@ -401,6 +401,9 @@ M.ExportEarthObservationJobInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ExecutionRoleArn = {
             type = "string",
@@ -1089,6 +1092,7 @@ M.GetTileOutput = {
             traits = {
                 default = "",
                 http_payload = true,
+                media_type = "application/x-binary",
             },
         },
     },
@@ -1240,6 +1244,9 @@ M.StartEarthObservationJobInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         KmsKeyId = {
             type = "string",
@@ -1370,6 +1377,9 @@ M.ExportVectorEnrichmentJobInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ExecutionRoleArn = {
             type = "string",
@@ -2030,6 +2040,9 @@ M.StartVectorEnrichmentJobInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         KmsKeyId = {
             type = "string",

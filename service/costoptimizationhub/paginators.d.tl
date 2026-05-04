@@ -1,0 +1,12 @@
+local record M
+    pages_list_efficiency_metrics: function(client: table, input: table): function(): table, table
+    items_list_efficiency_metrics: function(client: table, input: table): function(): any
+    pages_list_enrollment_statuses: function(client: table, input: table): function(): table, table
+    items_list_enrollment_statuses: function(client: table, input: table): function(): any
+    pages_list_recommendation_summaries: function(client: table, input: table): function(): table, table
+    items_list_recommendation_summaries: function(client: table, input: table): function(): any
+    pages_list_recommendations: function(client: table, input: table): function(): table, table
+    items_list_recommendations: function(client: table, input: table): function(): any
+end
+
+return M

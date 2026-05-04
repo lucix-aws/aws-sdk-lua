@@ -1,0 +1,40 @@
+local record M
+    pages_list_automated_reasoning_policies: function(client: table, input: table): function(): table, table
+    items_list_automated_reasoning_policies: function(client: table, input: table): function(): any
+    pages_list_automated_reasoning_policy_build_workflows: function(client: table, input: table): function(): table, table
+    items_list_automated_reasoning_policy_build_workflows: function(client: table, input: table): function(): any
+    pages_list_automated_reasoning_policy_test_cases: function(client: table, input: table): function(): table, table
+    items_list_automated_reasoning_policy_test_cases: function(client: table, input: table): function(): any
+    pages_list_automated_reasoning_policy_test_results: function(client: table, input: table): function(): table, table
+    items_list_automated_reasoning_policy_test_results: function(client: table, input: table): function(): any
+    pages_list_custom_model_deployments: function(client: table, input: table): function(): table, table
+    items_list_custom_model_deployments: function(client: table, input: table): function(): any
+    pages_list_custom_models: function(client: table, input: table): function(): table, table
+    items_list_custom_models: function(client: table, input: table): function(): any
+    pages_list_enforced_guardrails_configuration: function(client: table, input: table): function(): table, table
+    items_list_enforced_guardrails_configuration: function(client: table, input: table): function(): any
+    pages_list_evaluation_jobs: function(client: table, input: table): function(): table, table
+    items_list_evaluation_jobs: function(client: table, input: table): function(): any
+    pages_list_guardrails: function(client: table, input: table): function(): table, table
+    items_list_guardrails: function(client: table, input: table): function(): any
+    pages_list_imported_models: function(client: table, input: table): function(): table, table
+    items_list_imported_models: function(client: table, input: table): function(): any
+    pages_list_inference_profiles: function(client: table, input: table): function(): table, table
+    items_list_inference_profiles: function(client: table, input: table): function(): any
+    pages_list_marketplace_model_endpoints: function(client: table, input: table): function(): table, table
+    items_list_marketplace_model_endpoints: function(client: table, input: table): function(): any
+    pages_list_model_copy_jobs: function(client: table, input: table): function(): table, table
+    items_list_model_copy_jobs: function(client: table, input: table): function(): any
+    pages_list_model_customization_jobs: function(client: table, input: table): function(): table, table
+    items_list_model_customization_jobs: function(client: table, input: table): function(): any
+    pages_list_model_import_jobs: function(client: table, input: table): function(): table, table
+    items_list_model_import_jobs: function(client: table, input: table): function(): any
+    pages_list_model_invocation_jobs: function(client: table, input: table): function(): table, table
+    items_list_model_invocation_jobs: function(client: table, input: table): function(): any
+    pages_list_prompt_routers: function(client: table, input: table): function(): table, table
+    items_list_prompt_routers: function(client: table, input: table): function(): any
+    pages_list_provisioned_model_throughputs: function(client: table, input: table): function(): table, table
+    items_list_provisioned_model_throughputs: function(client: table, input: table): function(): any
+end
+
+return M

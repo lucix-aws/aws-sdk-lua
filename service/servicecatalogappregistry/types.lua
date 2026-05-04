@@ -17,9 +17,15 @@ M.Application = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastUpdateTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         tags = {
             type = "map",
@@ -51,9 +57,15 @@ M.ApplicationSummary = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastUpdateTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -289,9 +301,15 @@ M.AttributeGroup = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastUpdateTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         tags = {
             type = "map",
@@ -336,9 +354,15 @@ M.AttributeGroupSummary = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastUpdateTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         createdBy = {
             type = "string",
@@ -366,6 +390,7 @@ M.CreateApplicationInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -405,6 +430,7 @@ M.CreateAttributeGroupInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -591,9 +617,15 @@ M.GetApplicationOutput = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastUpdateTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         associatedResourceCount = {
             type = "integer",
@@ -686,6 +718,9 @@ M.Resource = {
         },
         associationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         integrations = M.ResourceIntegrations,
     },
@@ -736,9 +771,15 @@ M.GetAttributeGroupOutput = {
         },
         creationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastUpdateTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         tags = {
             type = "map",

@@ -1,0 +1,8 @@
+local record M
+    pages_list_connections: function(client: table, input: table): function(): table, table
+    pages_list_hosts: function(client: table, input: table): function(): table, table
+    pages_list_repository_links: function(client: table, input: table): function(): table, table
+    pages_list_sync_configurations: function(client: table, input: table): function(): table, table
+end
+
+return M

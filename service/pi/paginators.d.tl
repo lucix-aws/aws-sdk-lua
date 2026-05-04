@@ -1,0 +1,9 @@
+local record M
+    pages_describe_dimension_keys: function(client: table, input: table): function(): table, table
+    pages_get_resource_metrics: function(client: table, input: table): function(): table, table
+    pages_list_available_resource_dimensions: function(client: table, input: table): function(): table, table
+    pages_list_available_resource_metrics: function(client: table, input: table): function(): table, table
+    pages_list_performance_analysis_reports: function(client: table, input: table): function(): table, table
+end
+
+return M

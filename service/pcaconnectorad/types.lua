@@ -382,6 +382,9 @@ M.CreateConnectorInput = {
         } }, { __index = M.VpcInformation }),
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "map",
@@ -601,6 +604,9 @@ M.CreateDirectoryRegistrationInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "map",
@@ -638,6 +644,9 @@ M.CreateServicePrincipalNameInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1239,6 +1248,9 @@ M.CreateTemplateInput = {
         } }, { __index = M.TemplateDefinition }),
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "map",
@@ -1284,6 +1296,9 @@ M.CreateTemplateGroupAccessControlEntryInput = {
         } }, { __index = M.AccessRights }),
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

@@ -697,6 +697,9 @@ M.AssociateEncryptionConfigInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -973,6 +976,9 @@ M.AssociateIdentityProviderConfigInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1025,6 +1031,9 @@ M.CreateAccessEntryInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         username = {
             type = "string",
@@ -1094,6 +1103,9 @@ M.CreateAddonInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -1153,6 +1165,9 @@ M.CreateCapabilityInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         type = {
             type = "string",
@@ -1529,6 +1544,9 @@ M.CreateClusterInput = {
         logging = M.Logging,
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -1947,6 +1965,9 @@ M.CreateEksAnywhereSubscriptionInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -2074,6 +2095,9 @@ M.CreateFargateProfileInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -2392,6 +2416,9 @@ M.CreateNodegroupInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         launchTemplate = M.LaunchTemplateSpecification,
         updateConfig = M.NodegroupUpdateConfig,
@@ -2606,6 +2633,9 @@ M.CreatePodIdentityAssociationInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -3718,6 +3748,9 @@ M.DisassociateIdentityProviderConfigInput = {
         } }, { __index = M.IdentityProviderConfig }),
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -4454,6 +4487,9 @@ M.RegisterClusterInput = {
         } }, { __index = M.ConnectorConfigRequest }),
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -4578,6 +4614,9 @@ M.UpdateAccessEntryInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         username = {
             type = "string",
@@ -4620,6 +4659,9 @@ M.UpdateAddonInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         configurationValues = {
             type = "string",
@@ -4690,6 +4732,9 @@ M.UpdateCapabilityInput = {
         configuration = M.UpdateCapabilityConfiguration,
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         deletePropagationPolicy = {
             type = "string",
@@ -4727,6 +4772,9 @@ M.UpdateClusterConfigInput = {
         logging = M.Logging,
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         accessConfig = M.UpdateAccessConfigRequest,
         upgradePolicy = M.UpgradePolicyRequest,
@@ -4780,6 +4828,9 @@ M.UpdateClusterVersionInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         force = {
             type = "boolean",
@@ -4816,6 +4867,9 @@ M.UpdateEksAnywhereSubscriptionInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -4881,6 +4935,9 @@ M.UpdateNodegroupConfigInput = {
         warmPoolConfig = M.WarmPoolConfig,
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -4924,6 +4981,9 @@ M.UpdateNodegroupVersionInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -4957,6 +5017,9 @@ M.UpdatePodIdentityAssociationInput = {
         },
         clientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         disableSessionTags = {
             type = "boolean",

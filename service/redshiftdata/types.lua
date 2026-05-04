@@ -99,6 +99,9 @@ M.BatchExecuteStatementInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ResultFormat = {
             type = "string",
@@ -585,6 +588,9 @@ M.ExecuteStatementInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ResultFormat = {
             type = "string",

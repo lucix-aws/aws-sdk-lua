@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "DataExchange"
-    cfg.signing_name = "dataexchange"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "dataexchange", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:acceptDataGrant(input, options)
         output_schema = types.AcceptDataGrantOutput,
         http_method = "POST",
         http_path = "/v1/data-grants/{DataGrantArn}/accept",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:cancelJob(input, options)
         output_schema = types.CancelJobOutput,
         http_method = "DELETE",
         http_path = "/v1/jobs/{JobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createDataGrant(input, options)
         output_schema = types.CreateDataGrantOutput,
         http_method = "POST",
         http_path = "/v1/data-grants",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createDataSet(input, options)
         output_schema = types.CreateDataSetOutput,
         http_method = "POST",
         http_path = "/v1/data-sets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createEventAction(input, options)
         output_schema = types.CreateEventActionOutput,
         http_method = "POST",
         http_path = "/v1/event-actions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createJob(input, options)
         output_schema = types.CreateJobOutput,
         http_method = "POST",
         http_path = "/v1/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createRevision(input, options)
         output_schema = types.CreateRevisionOutput,
         http_method = "POST",
         http_path = "/v1/data-sets/{DataSetId}/revisions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteAsset(input, options)
         output_schema = types.DeleteAssetOutput,
         http_method = "DELETE",
         http_path = "/v1/data-sets/{DataSetId}/revisions/{RevisionId}/assets/{AssetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteDataGrant(input, options)
         output_schema = types.DeleteDataGrantOutput,
         http_method = "DELETE",
         http_path = "/v1/data-grants/{DataGrantId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteDataSet(input, options)
         output_schema = types.DeleteDataSetOutput,
         http_method = "DELETE",
         http_path = "/v1/data-sets/{DataSetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteEventAction(input, options)
         output_schema = types.DeleteEventActionOutput,
         http_method = "DELETE",
         http_path = "/v1/event-actions/{EventActionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteRevision(input, options)
         output_schema = types.DeleteRevisionOutput,
         http_method = "DELETE",
         http_path = "/v1/data-sets/{DataSetId}/revisions/{RevisionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getAsset(input, options)
         output_schema = types.GetAssetOutput,
         http_method = "GET",
         http_path = "/v1/data-sets/{DataSetId}/revisions/{RevisionId}/assets/{AssetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getDataGrant(input, options)
         output_schema = types.GetDataGrantOutput,
         http_method = "GET",
         http_path = "/v1/data-grants/{DataGrantId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getDataSet(input, options)
         output_schema = types.GetDataSetOutput,
         http_method = "GET",
         http_path = "/v1/data-sets/{DataSetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getEventAction(input, options)
         output_schema = types.GetEventActionOutput,
         http_method = "GET",
         http_path = "/v1/event-actions/{EventActionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getJob(input, options)
         output_schema = types.GetJobOutput,
         http_method = "GET",
         http_path = "/v1/jobs/{JobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getReceivedDataGrant(input, options)
         output_schema = types.GetReceivedDataGrantOutput,
         http_method = "GET",
         http_path = "/v1/received-data-grants/{DataGrantArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getRevision(input, options)
         output_schema = types.GetRevisionOutput,
         http_method = "GET",
         http_path = "/v1/data-sets/{DataSetId}/revisions/{RevisionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listDataGrants(input, options)
         output_schema = types.ListDataGrantsOutput,
         http_method = "GET",
         http_path = "/v1/data-grants",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listDataSetRevisions(input, options)
         output_schema = types.ListDataSetRevisionsOutput,
         http_method = "GET",
         http_path = "/v1/data-sets/{DataSetId}/revisions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listDataSets(input, options)
         output_schema = types.ListDataSetsOutput,
         http_method = "GET",
         http_path = "/v1/data-sets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listEventActions(input, options)
         output_schema = types.ListEventActionsOutput,
         http_method = "GET",
         http_path = "/v1/event-actions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listJobs(input, options)
         output_schema = types.ListJobsOutput,
         http_method = "GET",
         http_path = "/v1/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listReceivedDataGrants(input, options)
         output_schema = types.ListReceivedDataGrantsOutput,
         http_method = "GET",
         http_path = "/v1/received-data-grants",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listRevisionAssets(input, options)
         output_schema = types.ListRevisionAssetsOutput,
         http_method = "GET",
         http_path = "/v1/data-sets/{DataSetId}/revisions/{RevisionId}/assets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:revokeRevision(input, options)
         output_schema = types.RevokeRevisionOutput,
         http_method = "POST",
         http_path = "/v1/data-sets/{DataSetId}/revisions/{RevisionId}/revoke",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:sendApiAsset(input, options)
         output_schema = types.SendApiAssetOutput,
         http_method = "POST",
         http_path = "/v1",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:sendDataSetNotification(input, options)
         output_schema = types.SendDataSetNotificationOutput,
         http_method = "POST",
         http_path = "/v1/data-sets/{DataSetId}/notification",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:startJob(input, options)
         output_schema = types.StartJobOutput,
         http_method = "PATCH",
         http_path = "/v1/jobs/{JobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:updateAsset(input, options)
         output_schema = types.UpdateAssetOutput,
         http_method = "PATCH",
         http_path = "/v1/data-sets/{DataSetId}/revisions/{RevisionId}/assets/{AssetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:updateDataSet(input, options)
         output_schema = types.UpdateDataSetOutput,
         http_method = "PATCH",
         http_path = "/v1/data-sets/{DataSetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:updateEventAction(input, options)
         output_schema = types.UpdateEventActionOutput,
         http_method = "PATCH",
         http_path = "/v1/event-actions/{EventActionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:updateRevision(input, options)
         output_schema = types.UpdateRevisionOutput,
         http_method = "PATCH",
         http_path = "/v1/data-sets/{DataSetId}/revisions/{RevisionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

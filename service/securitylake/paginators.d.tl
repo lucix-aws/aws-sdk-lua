@@ -1,0 +1,12 @@
+local record M
+    pages_get_data_lake_sources: function(client: table, input: table): function(): table, table
+    items_get_data_lake_sources: function(client: table, input: table): function(): any
+    pages_list_data_lake_exceptions: function(client: table, input: table): function(): table, table
+    items_list_data_lake_exceptions: function(client: table, input: table): function(): any
+    pages_list_log_sources: function(client: table, input: table): function(): table, table
+    items_list_log_sources: function(client: table, input: table): function(): any
+    pages_list_subscribers: function(client: table, input: table): function(): table, table
+    items_list_subscribers: function(client: table, input: table): function(): any
+end
+
+return M

@@ -783,9 +783,15 @@ M.LifecyclePolicy = {
         },
         DateCreated = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         DateModified = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         PolicyDetails = M.PolicyDetails,
         Tags = {

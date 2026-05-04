@@ -665,6 +665,9 @@ M.ParticipantToken = {
         },
         expirationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1158,9 +1161,15 @@ M.Destination = {
         },
         startTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         configuration = setmetatable({ traits = {
             required = true,
@@ -1326,9 +1335,15 @@ M.Composition = {
         },
         startTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1448,6 +1463,9 @@ M.Participant = {
         },
         firstJoinTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         attributes = {
             type = "map",
@@ -1608,9 +1626,15 @@ M.StageSession = {
         },
         startTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1703,9 +1727,15 @@ M.DestinationSummary = {
         },
         startTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1745,9 +1775,15 @@ M.CompositionSummary = {
         },
         startTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1977,6 +2013,9 @@ M.ExchangedParticipantToken = {
         },
         expirationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1992,6 +2031,9 @@ M.Event = {
         },
         eventTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         remoteParticipantId = {
             type = "string",
@@ -2175,6 +2217,9 @@ M.ParticipantSummary = {
         },
         firstJoinTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         published = {
             type = "boolean",
@@ -2347,9 +2392,15 @@ M.StageSessionSummary = {
         },
         startTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2457,6 +2508,9 @@ M.StartCompositionInput = {
         },
         idempotencyToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         layout = M.LayoutConfiguration,
         destinations = {

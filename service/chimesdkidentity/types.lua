@@ -430,6 +430,7 @@ M.CreateAppInstanceInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -574,6 +575,7 @@ M.CreateAppInstanceBotInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -623,6 +625,7 @@ M.CreateAppInstanceUserInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1188,6 +1191,7 @@ M.RegisterAppInstanceUserEndpointInput = {
         ClientRequestToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },

@@ -1257,6 +1257,7 @@ M.ApplicationDateRangeKpiResponse = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         KpiName = {
@@ -1275,6 +1276,7 @@ M.ApplicationDateRangeKpiResponse = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1612,6 +1614,7 @@ M.CampaignDateRangeKpiResponse = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         KpiName = {
@@ -1630,6 +1633,7 @@ M.CampaignDateRangeKpiResponse = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -3029,9 +3033,15 @@ M.JourneySchedule = {
     members = {
         EndTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         StartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Timezone = {
             type = "string",
@@ -5594,6 +5604,7 @@ M.GetApplicationDateRangeKpiInput = {
             type = "timestamp",
             traits = {
                 http_query = "end-time",
+                timestamp_format = "date-time",
             },
         },
         KpiName = {
@@ -5619,6 +5630,7 @@ M.GetApplicationDateRangeKpiInput = {
             type = "timestamp",
             traits = {
                 http_query = "start-time",
+                timestamp_format = "date-time",
             },
         },
     },
@@ -5801,6 +5813,7 @@ M.GetCampaignDateRangeKpiInput = {
             type = "timestamp",
             traits = {
                 http_query = "end-time",
+                timestamp_format = "date-time",
             },
         },
         KpiName = {
@@ -5826,6 +5839,7 @@ M.GetCampaignDateRangeKpiInput = {
             type = "timestamp",
             traits = {
                 http_query = "start-time",
+                timestamp_format = "date-time",
             },
         },
     },
@@ -6479,6 +6493,7 @@ M.GetJourneyDateRangeKpiInput = {
             type = "timestamp",
             traits = {
                 http_query = "end-time",
+                timestamp_format = "date-time",
             },
         },
         JourneyId = {
@@ -6511,6 +6526,7 @@ M.GetJourneyDateRangeKpiInput = {
             type = "timestamp",
             traits = {
                 http_query = "start-time",
+                timestamp_format = "date-time",
             },
         },
     },
@@ -6529,6 +6545,7 @@ M.JourneyDateRangeKpiResponse = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         JourneyId = {
@@ -6553,6 +6570,7 @@ M.JourneyDateRangeKpiResponse = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },

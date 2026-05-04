@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "Parrot_v1"
-    cfg.signing_name = "polly"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "polly", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:deleteLexicon(input, options)
         output_schema = types.DeleteLexiconOutput,
         http_method = "DELETE",
         http_path = "/v1/lexicons/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:describeVoices(input, options)
         output_schema = types.DescribeVoicesOutput,
         http_method = "GET",
         http_path = "/v1/voices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:getLexicon(input, options)
         output_schema = types.GetLexiconOutput,
         http_method = "GET",
         http_path = "/v1/lexicons/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:getSpeechSynthesisTask(input, options)
         output_schema = types.GetSpeechSynthesisTaskOutput,
         http_method = "GET",
         http_path = "/v1/synthesisTasks/{TaskId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:listLexicons(input, options)
         output_schema = types.ListLexiconsOutput,
         http_method = "GET",
         http_path = "/v1/lexicons",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:listSpeechSynthesisTasks(input, options)
         output_schema = types.ListSpeechSynthesisTasksOutput,
         http_method = "GET",
         http_path = "/v1/synthesisTasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:putLexicon(input, options)
         output_schema = types.PutLexiconOutput,
         http_method = "PUT",
         http_path = "/v1/lexicons/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:startSpeechSynthesisStream(input, options)
         output_schema = types.StartSpeechSynthesisStreamOutput,
         http_method = "POST",
         http_path = "/v1/synthesisStream",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:startSpeechSynthesisTask(input, options)
         output_schema = types.StartSpeechSynthesisTaskOutput,
         http_method = "POST",
         http_path = "/v1/synthesisTasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:synthesizeSpeech(input, options)
         output_schema = types.SynthesizeSpeechOutput,
         http_method = "POST",
         http_path = "/v1/speech",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

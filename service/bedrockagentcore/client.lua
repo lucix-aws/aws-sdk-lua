@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonBedrockAgentCore"
-    cfg.signing_name = "bedrock-agentcore"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "bedrock-agentcore", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:batchCreateMemoryRecords(input, options)
         output_schema = types.BatchCreateMemoryRecordsOutput,
         http_method = "POST",
         http_path = "/memories/{memoryId}/memoryRecords/batchCreate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchDeleteMemoryRecords(input, options)
         output_schema = types.BatchDeleteMemoryRecordsOutput,
         http_method = "POST",
         http_path = "/memories/{memoryId}/memoryRecords/batchDelete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchUpdateMemoryRecords(input, options)
         output_schema = types.BatchUpdateMemoryRecordsOutput,
         http_method = "POST",
         http_path = "/memories/{memoryId}/memoryRecords/batchUpdate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:completeResourceTokenAuth(input, options)
         output_schema = types.CompleteResourceTokenAuthOutput,
         http_method = "POST",
         http_path = "/identities/CompleteResourceTokenAuth",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createABTest(input, options)
         output_schema = types.CreateABTestOutput,
         http_method = "POST",
         http_path = "/ab-tests",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createEvent(input, options)
         output_schema = types.CreateEventOutput,
         http_method = "POST",
         http_path = "/memories/{memoryId}/events",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteABTest(input, options)
         output_schema = types.DeleteABTestOutput,
         http_method = "DELETE",
         http_path = "/ab-tests/{abTestId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteBatchEvaluation(input, options)
         output_schema = types.DeleteBatchEvaluationOutput,
         http_method = "DELETE",
         http_path = "/evaluations/batch-evaluate/{batchEvaluationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteEvent(input, options)
         output_schema = types.DeleteEventOutput,
         http_method = "DELETE",
         http_path = "/memories/{memoryId}/actor/{actorId}/sessions/{sessionId}/events/{eventId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteMemoryRecord(input, options)
         output_schema = types.DeleteMemoryRecordOutput,
         http_method = "DELETE",
         http_path = "/memories/{memoryId}/memoryRecords/{memoryRecordId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteRecommendation(input, options)
         output_schema = types.DeleteRecommendationOutput,
         http_method = "DELETE",
         http_path = "/recommendations/{recommendationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:evaluate(input, options)
         output_schema = types.EvaluateOutput,
         http_method = "POST",
         http_path = "/evaluations/evaluate/{evaluatorId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getABTest(input, options)
         output_schema = types.GetABTestOutput,
         http_method = "GET",
         http_path = "/ab-tests/{abTestId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getAgentCard(input, options)
         output_schema = types.GetAgentCardOutput,
         http_method = "GET",
         http_path = "/runtimes/{agentRuntimeArn}/invocations/.well-known/agent-card.json",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getBatchEvaluation(input, options)
         output_schema = types.GetBatchEvaluationOutput,
         http_method = "GET",
         http_path = "/evaluations/batch-evaluate/{batchEvaluationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getBrowserSession(input, options)
         output_schema = types.GetBrowserSessionOutput,
         http_method = "GET",
         http_path = "/browsers/{browserIdentifier}/sessions/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getCodeInterpreterSession(input, options)
         output_schema = types.GetCodeInterpreterSessionOutput,
         http_method = "GET",
         http_path = "/code-interpreters/{codeInterpreterIdentifier}/sessions/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getEvent(input, options)
         output_schema = types.GetEventOutput,
         http_method = "GET",
         http_path = "/memories/{memoryId}/actor/{actorId}/sessions/{sessionId}/events/{eventId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getMemoryRecord(input, options)
         output_schema = types.GetMemoryRecordOutput,
         http_method = "GET",
         http_path = "/memories/{memoryId}/memoryRecord/{memoryRecordId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:getRecommendation(input, options)
         output_schema = types.GetRecommendationOutput,
         http_method = "GET",
         http_path = "/recommendations/{recommendationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:getResourceApiKey(input, options)
         output_schema = types.GetResourceApiKeyOutput,
         http_method = "POST",
         http_path = "/identities/api-key",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:getResourceOauth2Token(input, options)
         output_schema = types.GetResourceOauth2TokenOutput,
         http_method = "POST",
         http_path = "/identities/oauth2/token",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:getWorkloadAccessToken(input, options)
         output_schema = types.GetWorkloadAccessTokenOutput,
         http_method = "POST",
         http_path = "/identities/GetWorkloadAccessToken",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:getWorkloadAccessTokenForJWT(input, options)
         output_schema = types.GetWorkloadAccessTokenForJWTOutput,
         http_method = "POST",
         http_path = "/identities/GetWorkloadAccessTokenForJWT",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:getWorkloadAccessTokenForUserId(input, options)
         output_schema = types.GetWorkloadAccessTokenForUserIdOutput,
         http_method = "POST",
         http_path = "/identities/GetWorkloadAccessTokenForUserId",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:invokeAgentRuntime(input, options)
         output_schema = types.InvokeAgentRuntimeOutput,
         http_method = "POST",
         http_path = "/runtimes/{agentRuntimeArn}/invocations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:invokeAgentRuntimeCommand(input, options)
         output_schema = types.InvokeAgentRuntimeCommandOutput,
         http_method = "POST",
         http_path = "/runtimes/{agentRuntimeArn}/commands",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:invokeBrowser(input, options)
         output_schema = types.InvokeBrowserOutput,
         http_method = "POST",
         http_path = "/browsers/{browserIdentifier}/sessions/invoke",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:invokeCodeInterpreter(input, options)
         output_schema = types.InvokeCodeInterpreterOutput,
         http_method = "POST",
         http_path = "/code-interpreters/{codeInterpreterIdentifier}/tools/invoke",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:invokeHarness(input, options)
         output_schema = types.InvokeHarnessOutput,
         http_method = "POST",
         http_path = "/harnesses/invoke",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:listABTests(input, options)
         output_schema = types.ListABTestsOutput,
         http_method = "GET",
         http_path = "/ab-tests",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:listActors(input, options)
         output_schema = types.ListActorsOutput,
         http_method = "POST",
         http_path = "/memories/{memoryId}/actors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:listBatchEvaluations(input, options)
         output_schema = types.ListBatchEvaluationsOutput,
         http_method = "GET",
         http_path = "/evaluations/batch-evaluate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:listBrowserSessions(input, options)
         output_schema = types.ListBrowserSessionsOutput,
         http_method = "POST",
         http_path = "/browsers/{browserIdentifier}/sessions/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:listCodeInterpreterSessions(input, options)
         output_schema = types.ListCodeInterpreterSessionsOutput,
         http_method = "POST",
         http_path = "/code-interpreters/{codeInterpreterIdentifier}/sessions/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:listEvents(input, options)
         output_schema = types.ListEventsOutput,
         http_method = "POST",
         http_path = "/memories/{memoryId}/actor/{actorId}/sessions/{sessionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:listMemoryExtractionJobs(input, options)
         output_schema = types.ListMemoryExtractionJobsOutput,
         http_method = "POST",
         http_path = "/memories/{memoryId}/extractionJobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:listMemoryRecords(input, options)
         output_schema = types.ListMemoryRecordsOutput,
         http_method = "POST",
         http_path = "/memories/{memoryId}/memoryRecords",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:listRecommendations(input, options)
         output_schema = types.ListRecommendationsOutput,
         http_method = "GET",
         http_path = "/recommendations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:listSessions(input, options)
         output_schema = types.ListSessionsOutput,
         http_method = "POST",
         http_path = "/memories/{memoryId}/actor/{actorId}/sessions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:retrieveMemoryRecords(input, options)
         output_schema = types.RetrieveMemoryRecordsOutput,
         http_method = "POST",
         http_path = "/memories/{memoryId}/retrieve",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:saveBrowserSessionProfile(input, options)
         output_schema = types.SaveBrowserSessionProfileOutput,
         http_method = "PUT",
         http_path = "/browser-profiles/{profileIdentifier}/save",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:searchRegistryRecords(input, options)
         output_schema = types.SearchRegistryRecordsOutput,
         http_method = "POST",
         http_path = "/registry-records/search",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:startBatchEvaluation(input, options)
         output_schema = types.StartBatchEvaluationOutput,
         http_method = "POST",
         http_path = "/evaluations/batch-evaluate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:startBrowserSession(input, options)
         output_schema = types.StartBrowserSessionOutput,
         http_method = "PUT",
         http_path = "/browsers/{browserIdentifier}/sessions/start",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:startCodeInterpreterSession(input, options)
         output_schema = types.StartCodeInterpreterSessionOutput,
         http_method = "PUT",
         http_path = "/code-interpreters/{codeInterpreterIdentifier}/sessions/start",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:startMemoryExtractionJob(input, options)
         output_schema = types.StartMemoryExtractionJobOutput,
         http_method = "POST",
         http_path = "/memories/{memoryId}/extractionJobs/start",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:startRecommendation(input, options)
         output_schema = types.StartRecommendationOutput,
         http_method = "POST",
         http_path = "/recommendations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:stopBatchEvaluation(input, options)
         output_schema = types.StopBatchEvaluationOutput,
         http_method = "POST",
         http_path = "/evaluations/batch-evaluate/{batchEvaluationId}/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:stopBrowserSession(input, options)
         output_schema = types.StopBrowserSessionOutput,
         http_method = "PUT",
         http_path = "/browsers/{browserIdentifier}/sessions/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:stopCodeInterpreterSession(input, options)
         output_schema = types.StopCodeInterpreterSessionOutput,
         http_method = "PUT",
         http_path = "/code-interpreters/{codeInterpreterIdentifier}/sessions/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:stopRuntimeSession(input, options)
         output_schema = types.StopRuntimeSessionOutput,
         http_method = "POST",
         http_path = "/runtimes/{agentRuntimeArn}/stopruntimesession",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:updateABTest(input, options)
         output_schema = types.UpdateABTestOutput,
         http_method = "PUT",
         http_path = "/ab-tests/{abTestId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:updateBrowserStream(input, options)
         output_schema = types.UpdateBrowserStreamOutput,
         http_method = "PUT",
         http_path = "/browsers/{browserIdentifier}/sessions/streams/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

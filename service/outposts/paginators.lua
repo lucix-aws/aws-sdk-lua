@@ -1,0 +1,203 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for getOutpostBillingInformation.
+function M.pages_get_outpost_billing_information(client, input)
+    return paginator.pages(client, "getOutpostBillingInformation", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Subscriptions",
+    })
+end
+
+--- Returns an item iterator for getOutpostBillingInformation.
+function M.items_get_outpost_billing_information(client, input)
+    return paginator.items(client, "getOutpostBillingInformation", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Subscriptions",
+    })
+end
+
+--- Returns a page iterator for getOutpostInstanceTypes.
+function M.pages_get_outpost_instance_types(client, input)
+    return paginator.pages(client, "getOutpostInstanceTypes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InstanceTypes",
+    })
+end
+
+--- Returns an item iterator for getOutpostInstanceTypes.
+function M.items_get_outpost_instance_types(client, input)
+    return paginator.items(client, "getOutpostInstanceTypes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InstanceTypes",
+    })
+end
+
+--- Returns a page iterator for getOutpostSupportedInstanceTypes.
+function M.pages_get_outpost_supported_instance_types(client, input)
+    return paginator.pages(client, "getOutpostSupportedInstanceTypes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InstanceTypes",
+    })
+end
+
+--- Returns an item iterator for getOutpostSupportedInstanceTypes.
+function M.items_get_outpost_supported_instance_types(client, input)
+    return paginator.items(client, "getOutpostSupportedInstanceTypes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InstanceTypes",
+    })
+end
+
+--- Returns a page iterator for listAssetInstances.
+function M.pages_list_asset_instances(client, input)
+    return paginator.pages(client, "listAssetInstances", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AssetInstances",
+    })
+end
+
+--- Returns an item iterator for listAssetInstances.
+function M.items_list_asset_instances(client, input)
+    return paginator.items(client, "listAssetInstances", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AssetInstances",
+    })
+end
+
+--- Returns a page iterator for listAssets.
+function M.pages_list_assets(client, input)
+    return paginator.pages(client, "listAssets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Assets",
+    })
+end
+
+--- Returns an item iterator for listAssets.
+function M.items_list_assets(client, input)
+    return paginator.items(client, "listAssets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Assets",
+    })
+end
+
+--- Returns a page iterator for listBlockingInstancesForCapacityTask.
+function M.pages_list_blocking_instances_for_capacity_task(client, input)
+    return paginator.pages(client, "listBlockingInstancesForCapacityTask", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BlockingInstances",
+    })
+end
+
+--- Returns an item iterator for listBlockingInstancesForCapacityTask.
+function M.items_list_blocking_instances_for_capacity_task(client, input)
+    return paginator.items(client, "listBlockingInstancesForCapacityTask", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BlockingInstances",
+    })
+end
+
+--- Returns a page iterator for listCapacityTasks.
+function M.pages_list_capacity_tasks(client, input)
+    return paginator.pages(client, "listCapacityTasks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityTasks",
+    })
+end
+
+--- Returns an item iterator for listCapacityTasks.
+function M.items_list_capacity_tasks(client, input)
+    return paginator.items(client, "listCapacityTasks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityTasks",
+    })
+end
+
+--- Returns a page iterator for listCatalogItems.
+function M.pages_list_catalog_items(client, input)
+    return paginator.pages(client, "listCatalogItems", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CatalogItems",
+    })
+end
+
+--- Returns an item iterator for listCatalogItems.
+function M.items_list_catalog_items(client, input)
+    return paginator.items(client, "listCatalogItems", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CatalogItems",
+    })
+end
+
+--- Returns a page iterator for listOrders.
+function M.pages_list_orders(client, input)
+    return paginator.pages(client, "listOrders", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Orders",
+    })
+end
+
+--- Returns an item iterator for listOrders.
+function M.items_list_orders(client, input)
+    return paginator.items(client, "listOrders", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Orders",
+    })
+end
+
+--- Returns a page iterator for listOutposts.
+function M.pages_list_outposts(client, input)
+    return paginator.pages(client, "listOutposts", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Outposts",
+    })
+end
+
+--- Returns an item iterator for listOutposts.
+function M.items_list_outposts(client, input)
+    return paginator.items(client, "listOutposts", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Outposts",
+    })
+end
+
+--- Returns a page iterator for listSites.
+function M.pages_list_sites(client, input)
+    return paginator.pages(client, "listSites", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Sites",
+    })
+end
+
+--- Returns an item iterator for listSites.
+function M.items_list_sites(client, input)
+    return paginator.items(client, "listSites", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Sites",
+    })
+end
+
+return M

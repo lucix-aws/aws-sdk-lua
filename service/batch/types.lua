@@ -4291,6 +4291,9 @@ M.SubmitServiceJobInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -4533,6 +4536,9 @@ M.UpdateConsumableResourceInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

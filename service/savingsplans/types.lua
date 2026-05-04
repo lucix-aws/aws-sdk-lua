@@ -23,6 +23,9 @@ M.CreateSavingsPlanInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -777,6 +780,9 @@ M.ReturnSavingsPlanInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

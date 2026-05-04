@@ -36,6 +36,7 @@ M.AllowListSummary = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         description = {
@@ -60,6 +61,7 @@ M.AllowListSummary = {
             type = "timestamp",
             traits = {
                 json_name = "updatedAt",
+                timestamp_format = "date-time",
             },
         },
     },
@@ -142,6 +144,7 @@ M.BatchGetCustomDataIdentifierSummary = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         deleted = {
@@ -224,6 +227,7 @@ M.JobDetails = {
             type = "timestamp",
             traits = {
                 json_name = "lastJobRunTime",
+                timestamp_format = "date-time",
             },
         },
     },
@@ -518,6 +522,7 @@ M.BucketMetadata = {
             type = "timestamp",
             traits = {
                 json_name = "bucketCreatedAt",
+                timestamp_format = "date-time",
             },
         },
         bucketName = {
@@ -557,12 +562,14 @@ M.BucketMetadata = {
             type = "timestamp",
             traits = {
                 json_name = "lastAutomatedDiscoveryTime",
+                timestamp_format = "date-time",
             },
         },
         lastUpdated = {
             type = "timestamp",
             traits = {
                 json_name = "lastUpdated",
+                timestamp_format = "date-time",
             },
         },
         objectCount = {
@@ -758,6 +765,7 @@ M.CustomDataIdentifierSummary = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         description = {
@@ -1192,12 +1200,14 @@ M.ApiCallDetails = {
             type = "timestamp",
             traits = {
                 json_name = "firstSeen",
+                timestamp_format = "date-time",
             },
         },
         lastSeen = {
             type = "timestamp",
             traits = {
                 json_name = "lastSeen",
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1339,6 +1349,7 @@ M.SessionContextAttributes = {
             type = "timestamp",
             traits = {
                 json_name = "creationDate",
+                timestamp_format = "date-time",
             },
         },
         mfaAuthenticated = {
@@ -1677,6 +1688,7 @@ M.S3Bucket = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         defaultServerSideEncryption = setmetatable({ traits = {
@@ -1747,6 +1759,7 @@ M.S3Object = {
             type = "timestamp",
             traits = {
                 json_name = "lastModified",
+                timestamp_format = "date-time",
             },
         },
         path = {
@@ -1876,6 +1889,7 @@ M.Finding = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         description = {
@@ -1939,6 +1953,7 @@ M.Finding = {
             type = "timestamp",
             traits = {
                 json_name = "updatedAt",
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2037,6 +2052,7 @@ M.Invitation = {
             type = "timestamp",
             traits = {
                 json_name = "invitedAt",
+                timestamp_format = "date-time",
             },
         },
         relationshipStatus = {
@@ -2229,6 +2245,7 @@ M.UserPausedDetails = {
             type = "timestamp",
             traits = {
                 json_name = "jobExpiresAt",
+                timestamp_format = "date-time",
             },
         },
         jobImminentExpirationHealthEventArn = {
@@ -2241,6 +2258,7 @@ M.UserPausedDetails = {
             type = "timestamp",
             traits = {
                 json_name = "jobPausedAt",
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2263,6 +2281,7 @@ M.JobSummary = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         jobId = {
@@ -2400,6 +2419,7 @@ M.MatchingBucket = {
             type = "timestamp",
             traits = {
                 json_name = "lastAutomatedDiscoveryTime",
+                timestamp_format = "date-time",
             },
         },
         objectCount = {
@@ -2478,6 +2498,7 @@ M.Member = {
             type = "timestamp",
             traits = {
                 json_name = "invitedAt",
+                timestamp_format = "date-time",
             },
         },
         masterAccountId = {
@@ -2504,6 +2525,7 @@ M.Member = {
             type = "timestamp",
             traits = {
                 json_name = "updatedAt",
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2780,12 +2802,14 @@ M.UsageRecord = {
             type = "timestamp",
             traits = {
                 json_name = "automatedDiscoveryFreeTrialStartDate",
+                timestamp_format = "date-time",
             },
         },
         freeTrialStartDate = {
             type = "timestamp",
             traits = {
                 json_name = "freeTrialStartDate",
+                timestamp_format = "date-time",
             },
         },
         usage = {
@@ -3432,6 +3456,7 @@ M.CreateAllowListInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "clientToken",
                 required = true,
             },
@@ -3600,6 +3625,7 @@ M.CreateClassificationJobInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "clientToken",
                 required = true,
             },
@@ -3724,6 +3750,7 @@ M.CreateCustomDataIdentifierInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "clientToken",
             },
         },
@@ -3875,6 +3902,7 @@ M.CreateFindingsFilterInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "clientToken",
             },
         },
@@ -4236,6 +4264,7 @@ M.DescribeClassificationJobOutput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "clientToken",
             },
         },
@@ -4243,6 +4272,7 @@ M.DescribeClassificationJobOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         customDataIdentifierIds = {
@@ -4295,6 +4325,7 @@ M.DescribeClassificationJobOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastRunTime",
+                timestamp_format = "date-time",
             },
         },
         managedDataIdentifierIds = {
@@ -4442,6 +4473,7 @@ M.EnableMacieInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "clientToken",
             },
         },
@@ -4477,6 +4509,7 @@ M.EnableOrganizationAdminAccountInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "clientToken",
             },
         },
@@ -4549,6 +4582,7 @@ M.GetAllowListOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         criteria = setmetatable({ traits = {
@@ -4587,6 +4621,7 @@ M.GetAllowListOutput = {
             type = "timestamp",
             traits = {
                 json_name = "updatedAt",
+                timestamp_format = "date-time",
             },
         },
     },
@@ -4615,18 +4650,21 @@ M.GetAutomatedDiscoveryConfigurationOutput = {
             type = "timestamp",
             traits = {
                 json_name = "disabledAt",
+                timestamp_format = "date-time",
             },
         },
         firstEnabledAt = {
             type = "timestamp",
             traits = {
                 json_name = "firstEnabledAt",
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedAt = {
             type = "timestamp",
             traits = {
                 json_name = "lastUpdatedAt",
+                timestamp_format = "date-time",
             },
         },
         sensitivityInspectionTemplateId = {
@@ -4696,6 +4734,7 @@ M.GetBucketStatisticsOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastUpdated",
+                timestamp_format = "date-time",
             },
         },
         objectCount = {
@@ -4822,6 +4861,7 @@ M.GetCustomDataIdentifierOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         deleted = {
@@ -5111,6 +5151,7 @@ M.GetMacieSessionOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         findingPublishingFrequency = {
@@ -5135,6 +5176,7 @@ M.GetMacieSessionOutput = {
             type = "timestamp",
             traits = {
                 json_name = "updatedAt",
+                timestamp_format = "date-time",
             },
         },
     },
@@ -5197,6 +5239,7 @@ M.GetMemberOutput = {
             type = "timestamp",
             traits = {
                 json_name = "invitedAt",
+                timestamp_format = "date-time",
             },
         },
         masterAccountId = {
@@ -5223,6 +5266,7 @@ M.GetMemberOutput = {
             type = "timestamp",
             traits = {
                 json_name = "updatedAt",
+                timestamp_format = "date-time",
             },
         },
     },
@@ -5308,6 +5352,7 @@ M.GetResourceProfileOutput = {
             type = "timestamp",
             traits = {
                 json_name = "profileUpdatedAt",
+                timestamp_format = "date-time",
             },
         },
         sensitivityScore = {
@@ -6334,6 +6379,7 @@ M.PutFindingsPublicationConfigurationInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "clientToken",
             },
         },
@@ -6701,6 +6747,7 @@ M.UpdateFindingsFilterInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "clientToken",
             },
         },

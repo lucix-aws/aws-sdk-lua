@@ -1,0 +1,23 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listEnvironments.
+function M.pages_list_environments(client, input)
+    return paginator.pages(client, "listEnvironments", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Environments",
+    })
+end
+
+--- Returns an item iterator for listEnvironments.
+function M.items_list_environments(client, input)
+    return paginator.items(client, "listEnvironments", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Environments",
+    })
+end
+
+return M

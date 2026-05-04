@@ -1,0 +1,23 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listRoutingControls.
+function M.pages_list_routing_controls(client, input)
+    return paginator.pages(client, "listRoutingControls", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RoutingControls",
+    })
+end
+
+--- Returns an item iterator for listRoutingControls.
+function M.items_list_routing_controls(client, input)
+    return paginator.items(client, "listRoutingControls", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RoutingControls",
+    })
+end
+
+return M

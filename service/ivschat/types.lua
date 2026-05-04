@@ -57,9 +57,15 @@ M.CreateChatTokenOutput = {
         },
         tokenExpirationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         sessionExpirationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -255,9 +261,15 @@ M.CreateLoggingConfigurationOutput = {
         },
         createTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updateTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         name = {
             type = "string",
@@ -362,9 +374,15 @@ M.CreateRoomOutput = {
         },
         createTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updateTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         maximumMessageRatePerSecond = {
             type = "integer",
@@ -537,9 +555,15 @@ M.GetLoggingConfigurationOutput = {
         },
         createTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updateTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         name = {
             type = "string",
@@ -582,9 +606,15 @@ M.GetRoomOutput = {
         },
         createTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updateTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         maximumMessageRatePerSecond = {
             type = "integer",
@@ -628,9 +658,15 @@ M.LoggingConfigurationSummary = {
         },
         createTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updateTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         name = {
             type = "string",
@@ -699,9 +735,15 @@ M.RoomSummary = {
         messageReviewHandler = M.MessageReviewHandler,
         createTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updateTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         tags = {
             type = "map",
@@ -884,9 +926,15 @@ M.UpdateLoggingConfigurationOutput = {
         },
         createTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updateTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         name = {
             type = "string",
@@ -943,9 +991,15 @@ M.UpdateRoomOutput = {
         },
         createTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updateTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         maximumMessageRatePerSecond = {
             type = "integer",

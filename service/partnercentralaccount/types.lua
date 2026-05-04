@@ -18,6 +18,7 @@ M.AcceptConnectionInvitationInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -98,6 +99,7 @@ M.ConnectionTypeDetail = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         InviterEmail = {
@@ -120,6 +122,9 @@ M.ConnectionTypeDetail = {
         },
         CanceledAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         CanceledBy = {
             type = "string",
@@ -161,6 +166,7 @@ M.Connection = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         ConnectionTypes = {
@@ -482,6 +488,9 @@ M.AssociateAwsTrainingCertificationEmailDomainInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Email = {
             type = "string",
@@ -540,6 +549,9 @@ M.BusinessVerificationResponse = {
         },
         CompletionUrlExpiresAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -574,6 +586,7 @@ M.CancelConnectionInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -611,6 +624,7 @@ M.CancelConnectionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         ConnectionTypes = {
@@ -642,6 +656,7 @@ M.CancelConnectionInvitationInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -695,16 +710,21 @@ M.CancelConnectionInvitationOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         ExpiresAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         OtherParticipantIdentifier = {
             type = "string",
@@ -762,6 +782,9 @@ M.CancelProfileUpdateTaskInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         TaskId = {
             type = "string",
@@ -987,6 +1010,7 @@ M.CancelProfileUpdateTaskOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Status = {
@@ -997,6 +1021,9 @@ M.CancelProfileUpdateTaskOutput = {
         },
         EndedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ErrorDetailList = {
             type = "list",
@@ -1017,6 +1044,7 @@ M.CreateConnectionInvitationInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1087,16 +1115,21 @@ M.CreateConnectionInvitationOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         ExpiresAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         OtherParticipantIdentifier = {
             type = "string",
@@ -1189,16 +1222,21 @@ M.GetConnectionInvitationOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         ExpiresAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         OtherParticipantIdentifier = {
             type = "string",
@@ -1307,16 +1345,21 @@ M.ConnectionInvitationSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         ExpiresAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         OtherParticipantIdentifier = {
             type = "string",
@@ -1373,6 +1416,7 @@ M.RejectConnectionInvitationInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1416,16 +1460,21 @@ M.RejectConnectionInvitationOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         UpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         ExpiresAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         OtherParticipantIdentifier = {
             type = "string",
@@ -1507,6 +1556,7 @@ M.GetConnectionPreferencesOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Revision = {
@@ -1575,6 +1625,7 @@ M.UpdateConnectionPreferencesOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Revision = {
@@ -1635,6 +1686,7 @@ M.GetConnectionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         ConnectionTypes = {
@@ -1722,6 +1774,7 @@ M.ConnectionSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         ConnectionTypes = {
@@ -1780,6 +1833,9 @@ M.CreatePartnerInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         LegalName = {
             type = "string",
@@ -1822,6 +1878,7 @@ M.PartnerDomain = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1914,6 +1971,7 @@ M.CreatePartnerOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Profile = setmetatable({ traits = {
@@ -1946,6 +2004,9 @@ M.DisassociateAwsTrainingCertificationEmailDomainInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DomainName = {
             type = "string",
@@ -2054,6 +2115,7 @@ M.GetPartnerOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Profile = setmetatable({ traits = {
@@ -2118,6 +2180,7 @@ M.GetProfileUpdateTaskOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Status = {
@@ -2128,6 +2191,9 @@ M.GetProfileUpdateTaskOutput = {
         },
         EndedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ErrorDetailList = {
             type = "list",
@@ -2225,6 +2291,7 @@ M.RegistrantVerificationResponse = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2271,10 +2338,14 @@ M.GetVerificationOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         CompletedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2325,6 +2396,7 @@ M.PartnerSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2502,6 +2574,9 @@ M.StartProfileUpdateTaskInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         TaskDetails = setmetatable({ traits = {
             required = true,
@@ -2543,6 +2618,7 @@ M.StartProfileUpdateTaskOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Status = {
@@ -2553,6 +2629,9 @@ M.StartProfileUpdateTaskOutput = {
         },
         EndedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ErrorDetailList = {
             type = "list",
@@ -2600,6 +2679,9 @@ M.StartVerificationInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         VerificationDetails = M.VerificationDetails,
     },
@@ -2630,10 +2712,14 @@ M.StartVerificationOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         CompletedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }

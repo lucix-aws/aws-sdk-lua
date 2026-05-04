@@ -1,0 +1,77 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listConnectorOperations.
+function M.pages_list_connector_operations(client, input)
+    return paginator.pages(client, "listConnectorOperations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "connectorOperations",
+    })
+end
+
+--- Returns an item iterator for listConnectorOperations.
+function M.items_list_connector_operations(client, input)
+    return paginator.items(client, "listConnectorOperations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "connectorOperations",
+    })
+end
+
+--- Returns a page iterator for listConnectors.
+function M.pages_list_connectors(client, input)
+    return paginator.pages(client, "listConnectors", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "connectors",
+    })
+end
+
+--- Returns an item iterator for listConnectors.
+function M.items_list_connectors(client, input)
+    return paginator.items(client, "listConnectors", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "connectors",
+    })
+end
+
+--- Returns a page iterator for listCustomPlugins.
+function M.pages_list_custom_plugins(client, input)
+    return paginator.pages(client, "listCustomPlugins", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "customPlugins",
+    })
+end
+
+--- Returns an item iterator for listCustomPlugins.
+function M.items_list_custom_plugins(client, input)
+    return paginator.items(client, "listCustomPlugins", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "customPlugins",
+    })
+end
+
+--- Returns a page iterator for listWorkerConfigurations.
+function M.pages_list_worker_configurations(client, input)
+    return paginator.pages(client, "listWorkerConfigurations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "workerConfigurations",
+    })
+end
+
+--- Returns an item iterator for listWorkerConfigurations.
+function M.items_list_worker_configurations(client, input)
+    return paginator.items(client, "listWorkerConfigurations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "workerConfigurations",
+    })
+end
+
+return M

@@ -1,0 +1,16 @@
+local record M
+    pages_list_data_integration_events: function(client: table, input: table): function(): table, table
+    items_list_data_integration_events: function(client: table, input: table): function(): any
+    pages_list_data_integration_flow_executions: function(client: table, input: table): function(): table, table
+    items_list_data_integration_flow_executions: function(client: table, input: table): function(): any
+    pages_list_data_integration_flows: function(client: table, input: table): function(): table, table
+    items_list_data_integration_flows: function(client: table, input: table): function(): any
+    pages_list_data_lake_datasets: function(client: table, input: table): function(): table, table
+    items_list_data_lake_datasets: function(client: table, input: table): function(): any
+    pages_list_data_lake_namespaces: function(client: table, input: table): function(): table, table
+    items_list_data_lake_namespaces: function(client: table, input: table): function(): any
+    pages_list_instances: function(client: table, input: table): function(): table, table
+    items_list_instances: function(client: table, input: table): function(): any
+end
+
+return M

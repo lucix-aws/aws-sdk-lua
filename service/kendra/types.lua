@@ -1108,6 +1108,9 @@ M.CreateAccessControlConfigurationInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2699,6 +2702,9 @@ M.CreateDataSourceInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         LanguageCode = {
             type = "string",
@@ -2780,6 +2786,9 @@ M.CreateExperienceInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2838,6 +2847,9 @@ M.CreateFaqInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         LanguageCode = {
             type = "string",
@@ -3097,6 +3109,9 @@ M.CreateIndexInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",
@@ -3145,6 +3160,9 @@ M.CreateQuerySuggestionsBlockListInput = {
         } }, { __index = M.S3Path }),
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         RoleArn = {
             type = "string",
@@ -3201,6 +3219,9 @@ M.CreateThesaurusInput = {
         } }, { __index = M.S3Path }),
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

@@ -77,6 +77,9 @@ M.DeleteConnectionRecordingPreferencesInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -177,6 +180,9 @@ M.UpdateConnectionRecordingPreferencesInput = {
         } }, { __index = M.ConnectionRecordingPreferences }),
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

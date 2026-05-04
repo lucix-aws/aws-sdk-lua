@@ -1,0 +1,59 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for getFindings.
+function M.pages_get_findings(client, input)
+    return paginator.pages(client, "getFindings", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "findings",
+    })
+end
+
+--- Returns an item iterator for getFindings.
+function M.items_get_findings(client, input)
+    return paginator.items(client, "getFindings", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "findings",
+    })
+end
+
+--- Returns a page iterator for listFindingsMetrics.
+function M.pages_list_findings_metrics(client, input)
+    return paginator.pages(client, "listFindingsMetrics", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "findingsMetrics",
+    })
+end
+
+--- Returns an item iterator for listFindingsMetrics.
+function M.items_list_findings_metrics(client, input)
+    return paginator.items(client, "listFindingsMetrics", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "findingsMetrics",
+    })
+end
+
+--- Returns a page iterator for listScans.
+function M.pages_list_scans(client, input)
+    return paginator.pages(client, "listScans", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "summaries",
+    })
+end
+
+--- Returns an item iterator for listScans.
+function M.items_list_scans(client, input)
+    return paginator.items(client, "listScans", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "summaries",
+    })
+end
+
+return M

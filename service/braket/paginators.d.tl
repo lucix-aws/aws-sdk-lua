@@ -1,0 +1,12 @@
+local record M
+    pages_search_devices: function(client: table, input: table): function(): table, table
+    items_search_devices: function(client: table, input: table): function(): any
+    pages_search_jobs: function(client: table, input: table): function(): table, table
+    items_search_jobs: function(client: table, input: table): function(): any
+    pages_search_quantum_tasks: function(client: table, input: table): function(): table, table
+    items_search_quantum_tasks: function(client: table, input: table): function(): any
+    pages_search_spending_limits: function(client: table, input: table): function(): table, table
+    items_search_spending_limits: function(client: table, input: table): function(): any
+end
+
+return M

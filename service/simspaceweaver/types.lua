@@ -569,6 +569,9 @@ M.StartAppInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Simulation = {
             type = "string",
@@ -631,6 +634,9 @@ M.StartSimulationInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Name = {
             type = "string",

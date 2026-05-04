@@ -1,0 +1,12 @@
+local record M
+    pages_list_search_job_backups: function(client: table, input: table): function(): table, table
+    items_list_search_job_backups: function(client: table, input: table): function(): any
+    pages_list_search_job_results: function(client: table, input: table): function(): table, table
+    items_list_search_job_results: function(client: table, input: table): function(): any
+    pages_list_search_jobs: function(client: table, input: table): function(): table, table
+    items_list_search_jobs: function(client: table, input: table): function(): any
+    pages_list_search_result_export_jobs: function(client: table, input: table): function(): table, table
+    items_list_search_result_export_jobs: function(client: table, input: table): function(): any
+end
+
+return M

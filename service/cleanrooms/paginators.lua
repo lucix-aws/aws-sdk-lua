@@ -1,0 +1,365 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listAnalysisTemplates.
+function M.pages_list_analysis_templates(client, input)
+    return paginator.pages(client, "listAnalysisTemplates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "analysisTemplateSummaries",
+    })
+end
+
+--- Returns an item iterator for listAnalysisTemplates.
+function M.items_list_analysis_templates(client, input)
+    return paginator.items(client, "listAnalysisTemplates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "analysisTemplateSummaries",
+    })
+end
+
+--- Returns a page iterator for listCollaborationAnalysisTemplates.
+function M.pages_list_collaboration_analysis_templates(client, input)
+    return paginator.pages(client, "listCollaborationAnalysisTemplates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "collaborationAnalysisTemplateSummaries",
+    })
+end
+
+--- Returns an item iterator for listCollaborationAnalysisTemplates.
+function M.items_list_collaboration_analysis_templates(client, input)
+    return paginator.items(client, "listCollaborationAnalysisTemplates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "collaborationAnalysisTemplateSummaries",
+    })
+end
+
+--- Returns a page iterator for listCollaborationChangeRequests.
+function M.pages_list_collaboration_change_requests(client, input)
+    return paginator.pages(client, "listCollaborationChangeRequests", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "collaborationChangeRequestSummaries",
+    })
+end
+
+--- Returns an item iterator for listCollaborationChangeRequests.
+function M.items_list_collaboration_change_requests(client, input)
+    return paginator.items(client, "listCollaborationChangeRequests", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "collaborationChangeRequestSummaries",
+    })
+end
+
+--- Returns a page iterator for listCollaborationConfiguredAudienceModelAssociations.
+function M.pages_list_collaboration_configured_audience_model_associations(client, input)
+    return paginator.pages(client, "listCollaborationConfiguredAudienceModelAssociations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "collaborationConfiguredAudienceModelAssociationSummaries",
+    })
+end
+
+--- Returns an item iterator for listCollaborationConfiguredAudienceModelAssociations.
+function M.items_list_collaboration_configured_audience_model_associations(client, input)
+    return paginator.items(client, "listCollaborationConfiguredAudienceModelAssociations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "collaborationConfiguredAudienceModelAssociationSummaries",
+    })
+end
+
+--- Returns a page iterator for listCollaborationIdNamespaceAssociations.
+function M.pages_list_collaboration_id_namespace_associations(client, input)
+    return paginator.pages(client, "listCollaborationIdNamespaceAssociations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "collaborationIdNamespaceAssociationSummaries",
+    })
+end
+
+--- Returns an item iterator for listCollaborationIdNamespaceAssociations.
+function M.items_list_collaboration_id_namespace_associations(client, input)
+    return paginator.items(client, "listCollaborationIdNamespaceAssociations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "collaborationIdNamespaceAssociationSummaries",
+    })
+end
+
+--- Returns a page iterator for listCollaborationPrivacyBudgetTemplates.
+function M.pages_list_collaboration_privacy_budget_templates(client, input)
+    return paginator.pages(client, "listCollaborationPrivacyBudgetTemplates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "collaborationPrivacyBudgetTemplateSummaries",
+    })
+end
+
+--- Returns an item iterator for listCollaborationPrivacyBudgetTemplates.
+function M.items_list_collaboration_privacy_budget_templates(client, input)
+    return paginator.items(client, "listCollaborationPrivacyBudgetTemplates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "collaborationPrivacyBudgetTemplateSummaries",
+    })
+end
+
+--- Returns a page iterator for listCollaborationPrivacyBudgets.
+function M.pages_list_collaboration_privacy_budgets(client, input)
+    return paginator.pages(client, "listCollaborationPrivacyBudgets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "collaborationPrivacyBudgetSummaries",
+    })
+end
+
+--- Returns an item iterator for listCollaborationPrivacyBudgets.
+function M.items_list_collaboration_privacy_budgets(client, input)
+    return paginator.items(client, "listCollaborationPrivacyBudgets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "collaborationPrivacyBudgetSummaries",
+    })
+end
+
+--- Returns a page iterator for listCollaborations.
+function M.pages_list_collaborations(client, input)
+    return paginator.pages(client, "listCollaborations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "collaborationList",
+    })
+end
+
+--- Returns an item iterator for listCollaborations.
+function M.items_list_collaborations(client, input)
+    return paginator.items(client, "listCollaborations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "collaborationList",
+    })
+end
+
+--- Returns a page iterator for listConfiguredAudienceModelAssociations.
+function M.pages_list_configured_audience_model_associations(client, input)
+    return paginator.pages(client, "listConfiguredAudienceModelAssociations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "configuredAudienceModelAssociationSummaries",
+    })
+end
+
+--- Returns an item iterator for listConfiguredAudienceModelAssociations.
+function M.items_list_configured_audience_model_associations(client, input)
+    return paginator.items(client, "listConfiguredAudienceModelAssociations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "configuredAudienceModelAssociationSummaries",
+    })
+end
+
+--- Returns a page iterator for listConfiguredTableAssociations.
+function M.pages_list_configured_table_associations(client, input)
+    return paginator.pages(client, "listConfiguredTableAssociations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "configuredTableAssociationSummaries",
+    })
+end
+
+--- Returns an item iterator for listConfiguredTableAssociations.
+function M.items_list_configured_table_associations(client, input)
+    return paginator.items(client, "listConfiguredTableAssociations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "configuredTableAssociationSummaries",
+    })
+end
+
+--- Returns a page iterator for listConfiguredTables.
+function M.pages_list_configured_tables(client, input)
+    return paginator.pages(client, "listConfiguredTables", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "configuredTableSummaries",
+    })
+end
+
+--- Returns an item iterator for listConfiguredTables.
+function M.items_list_configured_tables(client, input)
+    return paginator.items(client, "listConfiguredTables", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "configuredTableSummaries",
+    })
+end
+
+--- Returns a page iterator for listIdMappingTables.
+function M.pages_list_id_mapping_tables(client, input)
+    return paginator.pages(client, "listIdMappingTables", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "idMappingTableSummaries",
+    })
+end
+
+--- Returns an item iterator for listIdMappingTables.
+function M.items_list_id_mapping_tables(client, input)
+    return paginator.items(client, "listIdMappingTables", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "idMappingTableSummaries",
+    })
+end
+
+--- Returns a page iterator for listIdNamespaceAssociations.
+function M.pages_list_id_namespace_associations(client, input)
+    return paginator.pages(client, "listIdNamespaceAssociations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "idNamespaceAssociationSummaries",
+    })
+end
+
+--- Returns an item iterator for listIdNamespaceAssociations.
+function M.items_list_id_namespace_associations(client, input)
+    return paginator.items(client, "listIdNamespaceAssociations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "idNamespaceAssociationSummaries",
+    })
+end
+
+--- Returns a page iterator for listMembers.
+function M.pages_list_members(client, input)
+    return paginator.pages(client, "listMembers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "memberSummaries",
+    })
+end
+
+--- Returns an item iterator for listMembers.
+function M.items_list_members(client, input)
+    return paginator.items(client, "listMembers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "memberSummaries",
+    })
+end
+
+--- Returns a page iterator for listMemberships.
+function M.pages_list_memberships(client, input)
+    return paginator.pages(client, "listMemberships", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "membershipSummaries",
+    })
+end
+
+--- Returns an item iterator for listMemberships.
+function M.items_list_memberships(client, input)
+    return paginator.items(client, "listMemberships", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "membershipSummaries",
+    })
+end
+
+--- Returns a page iterator for listPrivacyBudgetTemplates.
+function M.pages_list_privacy_budget_templates(client, input)
+    return paginator.pages(client, "listPrivacyBudgetTemplates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "privacyBudgetTemplateSummaries",
+    })
+end
+
+--- Returns an item iterator for listPrivacyBudgetTemplates.
+function M.items_list_privacy_budget_templates(client, input)
+    return paginator.items(client, "listPrivacyBudgetTemplates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "privacyBudgetTemplateSummaries",
+    })
+end
+
+--- Returns a page iterator for listPrivacyBudgets.
+function M.pages_list_privacy_budgets(client, input)
+    return paginator.pages(client, "listPrivacyBudgets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "privacyBudgetSummaries",
+    })
+end
+
+--- Returns an item iterator for listPrivacyBudgets.
+function M.items_list_privacy_budgets(client, input)
+    return paginator.items(client, "listPrivacyBudgets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "privacyBudgetSummaries",
+    })
+end
+
+--- Returns a page iterator for listProtectedJobs.
+function M.pages_list_protected_jobs(client, input)
+    return paginator.pages(client, "listProtectedJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "protectedJobs",
+    })
+end
+
+--- Returns an item iterator for listProtectedJobs.
+function M.items_list_protected_jobs(client, input)
+    return paginator.items(client, "listProtectedJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "protectedJobs",
+    })
+end
+
+--- Returns a page iterator for listProtectedQueries.
+function M.pages_list_protected_queries(client, input)
+    return paginator.pages(client, "listProtectedQueries", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "protectedQueries",
+    })
+end
+
+--- Returns an item iterator for listProtectedQueries.
+function M.items_list_protected_queries(client, input)
+    return paginator.items(client, "listProtectedQueries", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "protectedQueries",
+    })
+end
+
+--- Returns a page iterator for listSchemas.
+function M.pages_list_schemas(client, input)
+    return paginator.pages(client, "listSchemas", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "schemaSummaries",
+    })
+end
+
+--- Returns an item iterator for listSchemas.
+function M.items_list_schemas(client, input)
+    return paginator.items(client, "listSchemas", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "schemaSummaries",
+    })
+end
+
+return M

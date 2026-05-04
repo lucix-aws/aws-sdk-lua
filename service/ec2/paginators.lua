@@ -1,0 +1,3029 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for describeAddressTransfers.
+function M.pages_describe_address_transfers(client, input)
+    return paginator.pages(client, "describeAddressTransfers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AddressTransfers",
+    })
+end
+
+--- Returns an item iterator for describeAddressTransfers.
+function M.items_describe_address_transfers(client, input)
+    return paginator.items(client, "describeAddressTransfers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AddressTransfers",
+    })
+end
+
+--- Returns a page iterator for describeAddressesAttribute.
+function M.pages_describe_addresses_attribute(client, input)
+    return paginator.pages(client, "describeAddressesAttribute", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Addresses",
+    })
+end
+
+--- Returns an item iterator for describeAddressesAttribute.
+function M.items_describe_addresses_attribute(client, input)
+    return paginator.items(client, "describeAddressesAttribute", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Addresses",
+    })
+end
+
+--- Returns a page iterator for describeAwsNetworkPerformanceMetricSubscriptions.
+function M.pages_describe_aws_network_performance_metric_subscriptions(client, input)
+    return paginator.pages(client, "describeAwsNetworkPerformanceMetricSubscriptions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Subscriptions",
+    })
+end
+
+--- Returns an item iterator for describeAwsNetworkPerformanceMetricSubscriptions.
+function M.items_describe_aws_network_performance_metric_subscriptions(client, input)
+    return paginator.items(client, "describeAwsNetworkPerformanceMetricSubscriptions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Subscriptions",
+    })
+end
+
+--- Returns a page iterator for describeByoipCidrs.
+function M.pages_describe_byoip_cidrs(client, input)
+    return paginator.pages(client, "describeByoipCidrs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ByoipCidrs",
+    })
+end
+
+--- Returns an item iterator for describeByoipCidrs.
+function M.items_describe_byoip_cidrs(client, input)
+    return paginator.items(client, "describeByoipCidrs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ByoipCidrs",
+    })
+end
+
+--- Returns a page iterator for describeCapacityBlockExtensionHistory.
+function M.pages_describe_capacity_block_extension_history(client, input)
+    return paginator.pages(client, "describeCapacityBlockExtensionHistory", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityBlockExtensions",
+    })
+end
+
+--- Returns an item iterator for describeCapacityBlockExtensionHistory.
+function M.items_describe_capacity_block_extension_history(client, input)
+    return paginator.items(client, "describeCapacityBlockExtensionHistory", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityBlockExtensions",
+    })
+end
+
+--- Returns a page iterator for describeCapacityBlockExtensionOfferings.
+function M.pages_describe_capacity_block_extension_offerings(client, input)
+    return paginator.pages(client, "describeCapacityBlockExtensionOfferings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityBlockExtensionOfferings",
+    })
+end
+
+--- Returns an item iterator for describeCapacityBlockExtensionOfferings.
+function M.items_describe_capacity_block_extension_offerings(client, input)
+    return paginator.items(client, "describeCapacityBlockExtensionOfferings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityBlockExtensionOfferings",
+    })
+end
+
+--- Returns a page iterator for describeCapacityBlockOfferings.
+function M.pages_describe_capacity_block_offerings(client, input)
+    return paginator.pages(client, "describeCapacityBlockOfferings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityBlockOfferings",
+    })
+end
+
+--- Returns an item iterator for describeCapacityBlockOfferings.
+function M.items_describe_capacity_block_offerings(client, input)
+    return paginator.items(client, "describeCapacityBlockOfferings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityBlockOfferings",
+    })
+end
+
+--- Returns a page iterator for describeCapacityBlockStatus.
+function M.pages_describe_capacity_block_status(client, input)
+    return paginator.pages(client, "describeCapacityBlockStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityBlockStatuses",
+    })
+end
+
+--- Returns an item iterator for describeCapacityBlockStatus.
+function M.items_describe_capacity_block_status(client, input)
+    return paginator.items(client, "describeCapacityBlockStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityBlockStatuses",
+    })
+end
+
+--- Returns a page iterator for describeCapacityBlocks.
+function M.pages_describe_capacity_blocks(client, input)
+    return paginator.pages(client, "describeCapacityBlocks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityBlocks",
+    })
+end
+
+--- Returns an item iterator for describeCapacityBlocks.
+function M.items_describe_capacity_blocks(client, input)
+    return paginator.items(client, "describeCapacityBlocks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityBlocks",
+    })
+end
+
+--- Returns a page iterator for describeCapacityManagerDataExports.
+function M.pages_describe_capacity_manager_data_exports(client, input)
+    return paginator.pages(client, "describeCapacityManagerDataExports", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityManagerDataExports",
+    })
+end
+
+--- Returns an item iterator for describeCapacityManagerDataExports.
+function M.items_describe_capacity_manager_data_exports(client, input)
+    return paginator.items(client, "describeCapacityManagerDataExports", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityManagerDataExports",
+    })
+end
+
+--- Returns a page iterator for describeCapacityReservationBillingRequests.
+function M.pages_describe_capacity_reservation_billing_requests(client, input)
+    return paginator.pages(client, "describeCapacityReservationBillingRequests", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityReservationBillingRequests",
+    })
+end
+
+--- Returns an item iterator for describeCapacityReservationBillingRequests.
+function M.items_describe_capacity_reservation_billing_requests(client, input)
+    return paginator.items(client, "describeCapacityReservationBillingRequests", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityReservationBillingRequests",
+    })
+end
+
+--- Returns a page iterator for describeCapacityReservationFleets.
+function M.pages_describe_capacity_reservation_fleets(client, input)
+    return paginator.pages(client, "describeCapacityReservationFleets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityReservationFleets",
+    })
+end
+
+--- Returns an item iterator for describeCapacityReservationFleets.
+function M.items_describe_capacity_reservation_fleets(client, input)
+    return paginator.items(client, "describeCapacityReservationFleets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityReservationFleets",
+    })
+end
+
+--- Returns a page iterator for describeCapacityReservations.
+function M.pages_describe_capacity_reservations(client, input)
+    return paginator.pages(client, "describeCapacityReservations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityReservations",
+    })
+end
+
+--- Returns an item iterator for describeCapacityReservations.
+function M.items_describe_capacity_reservations(client, input)
+    return paginator.items(client, "describeCapacityReservations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityReservations",
+    })
+end
+
+--- Returns a page iterator for describeCarrierGateways.
+function M.pages_describe_carrier_gateways(client, input)
+    return paginator.pages(client, "describeCarrierGateways", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CarrierGateways",
+    })
+end
+
+--- Returns an item iterator for describeCarrierGateways.
+function M.items_describe_carrier_gateways(client, input)
+    return paginator.items(client, "describeCarrierGateways", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CarrierGateways",
+    })
+end
+
+--- Returns a page iterator for describeClassicLinkInstances.
+function M.pages_describe_classic_link_instances(client, input)
+    return paginator.pages(client, "describeClassicLinkInstances", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Instances",
+    })
+end
+
+--- Returns an item iterator for describeClassicLinkInstances.
+function M.items_describe_classic_link_instances(client, input)
+    return paginator.items(client, "describeClassicLinkInstances", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Instances",
+    })
+end
+
+--- Returns a page iterator for describeClientVpnAuthorizationRules.
+function M.pages_describe_client_vpn_authorization_rules(client, input)
+    return paginator.pages(client, "describeClientVpnAuthorizationRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AuthorizationRules",
+    })
+end
+
+--- Returns an item iterator for describeClientVpnAuthorizationRules.
+function M.items_describe_client_vpn_authorization_rules(client, input)
+    return paginator.items(client, "describeClientVpnAuthorizationRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AuthorizationRules",
+    })
+end
+
+--- Returns a page iterator for describeClientVpnConnections.
+function M.pages_describe_client_vpn_connections(client, input)
+    return paginator.pages(client, "describeClientVpnConnections", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Connections",
+    })
+end
+
+--- Returns an item iterator for describeClientVpnConnections.
+function M.items_describe_client_vpn_connections(client, input)
+    return paginator.items(client, "describeClientVpnConnections", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Connections",
+    })
+end
+
+--- Returns a page iterator for describeClientVpnEndpoints.
+function M.pages_describe_client_vpn_endpoints(client, input)
+    return paginator.pages(client, "describeClientVpnEndpoints", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ClientVpnEndpoints",
+    })
+end
+
+--- Returns an item iterator for describeClientVpnEndpoints.
+function M.items_describe_client_vpn_endpoints(client, input)
+    return paginator.items(client, "describeClientVpnEndpoints", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ClientVpnEndpoints",
+    })
+end
+
+--- Returns a page iterator for describeClientVpnRoutes.
+function M.pages_describe_client_vpn_routes(client, input)
+    return paginator.pages(client, "describeClientVpnRoutes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Routes",
+    })
+end
+
+--- Returns an item iterator for describeClientVpnRoutes.
+function M.items_describe_client_vpn_routes(client, input)
+    return paginator.items(client, "describeClientVpnRoutes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Routes",
+    })
+end
+
+--- Returns a page iterator for describeClientVpnTargetNetworks.
+function M.pages_describe_client_vpn_target_networks(client, input)
+    return paginator.pages(client, "describeClientVpnTargetNetworks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ClientVpnTargetNetworks",
+    })
+end
+
+--- Returns an item iterator for describeClientVpnTargetNetworks.
+function M.items_describe_client_vpn_target_networks(client, input)
+    return paginator.items(client, "describeClientVpnTargetNetworks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ClientVpnTargetNetworks",
+    })
+end
+
+--- Returns a page iterator for describeCoipPools.
+function M.pages_describe_coip_pools(client, input)
+    return paginator.pages(client, "describeCoipPools", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CoipPools",
+    })
+end
+
+--- Returns an item iterator for describeCoipPools.
+function M.items_describe_coip_pools(client, input)
+    return paginator.items(client, "describeCoipPools", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CoipPools",
+    })
+end
+
+--- Returns a page iterator for describeDhcpOptions.
+function M.pages_describe_dhcp_options(client, input)
+    return paginator.pages(client, "describeDhcpOptions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DhcpOptions",
+    })
+end
+
+--- Returns an item iterator for describeDhcpOptions.
+function M.items_describe_dhcp_options(client, input)
+    return paginator.items(client, "describeDhcpOptions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DhcpOptions",
+    })
+end
+
+--- Returns a page iterator for describeEgressOnlyInternetGateways.
+function M.pages_describe_egress_only_internet_gateways(client, input)
+    return paginator.pages(client, "describeEgressOnlyInternetGateways", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "EgressOnlyInternetGateways",
+    })
+end
+
+--- Returns an item iterator for describeEgressOnlyInternetGateways.
+function M.items_describe_egress_only_internet_gateways(client, input)
+    return paginator.items(client, "describeEgressOnlyInternetGateways", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "EgressOnlyInternetGateways",
+    })
+end
+
+--- Returns a page iterator for describeExportImageTasks.
+function M.pages_describe_export_image_tasks(client, input)
+    return paginator.pages(client, "describeExportImageTasks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ExportImageTasks",
+    })
+end
+
+--- Returns an item iterator for describeExportImageTasks.
+function M.items_describe_export_image_tasks(client, input)
+    return paginator.items(client, "describeExportImageTasks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ExportImageTasks",
+    })
+end
+
+--- Returns a page iterator for describeFastLaunchImages.
+function M.pages_describe_fast_launch_images(client, input)
+    return paginator.pages(client, "describeFastLaunchImages", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FastLaunchImages",
+    })
+end
+
+--- Returns an item iterator for describeFastLaunchImages.
+function M.items_describe_fast_launch_images(client, input)
+    return paginator.items(client, "describeFastLaunchImages", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FastLaunchImages",
+    })
+end
+
+--- Returns a page iterator for describeFastSnapshotRestores.
+function M.pages_describe_fast_snapshot_restores(client, input)
+    return paginator.pages(client, "describeFastSnapshotRestores", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FastSnapshotRestores",
+    })
+end
+
+--- Returns an item iterator for describeFastSnapshotRestores.
+function M.items_describe_fast_snapshot_restores(client, input)
+    return paginator.items(client, "describeFastSnapshotRestores", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FastSnapshotRestores",
+    })
+end
+
+--- Returns a page iterator for describeFleets.
+function M.pages_describe_fleets(client, input)
+    return paginator.pages(client, "describeFleets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Fleets",
+    })
+end
+
+--- Returns an item iterator for describeFleets.
+function M.items_describe_fleets(client, input)
+    return paginator.items(client, "describeFleets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Fleets",
+    })
+end
+
+--- Returns a page iterator for describeFlowLogs.
+function M.pages_describe_flow_logs(client, input)
+    return paginator.pages(client, "describeFlowLogs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FlowLogs",
+    })
+end
+
+--- Returns an item iterator for describeFlowLogs.
+function M.items_describe_flow_logs(client, input)
+    return paginator.items(client, "describeFlowLogs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FlowLogs",
+    })
+end
+
+--- Returns a page iterator for describeFpgaImages.
+function M.pages_describe_fpga_images(client, input)
+    return paginator.pages(client, "describeFpgaImages", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FpgaImages",
+    })
+end
+
+--- Returns an item iterator for describeFpgaImages.
+function M.items_describe_fpga_images(client, input)
+    return paginator.items(client, "describeFpgaImages", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FpgaImages",
+    })
+end
+
+--- Returns a page iterator for describeHostReservationOfferings.
+function M.pages_describe_host_reservation_offerings(client, input)
+    return paginator.pages(client, "describeHostReservationOfferings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "OfferingSet",
+    })
+end
+
+--- Returns an item iterator for describeHostReservationOfferings.
+function M.items_describe_host_reservation_offerings(client, input)
+    return paginator.items(client, "describeHostReservationOfferings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "OfferingSet",
+    })
+end
+
+--- Returns a page iterator for describeHostReservations.
+function M.pages_describe_host_reservations(client, input)
+    return paginator.pages(client, "describeHostReservations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "HostReservationSet",
+    })
+end
+
+--- Returns an item iterator for describeHostReservations.
+function M.items_describe_host_reservations(client, input)
+    return paginator.items(client, "describeHostReservations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "HostReservationSet",
+    })
+end
+
+--- Returns a page iterator for describeHosts.
+function M.pages_describe_hosts(client, input)
+    return paginator.pages(client, "describeHosts", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Hosts",
+    })
+end
+
+--- Returns an item iterator for describeHosts.
+function M.items_describe_hosts(client, input)
+    return paginator.items(client, "describeHosts", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Hosts",
+    })
+end
+
+--- Returns a page iterator for describeIamInstanceProfileAssociations.
+function M.pages_describe_iam_instance_profile_associations(client, input)
+    return paginator.pages(client, "describeIamInstanceProfileAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IamInstanceProfileAssociations",
+    })
+end
+
+--- Returns an item iterator for describeIamInstanceProfileAssociations.
+function M.items_describe_iam_instance_profile_associations(client, input)
+    return paginator.items(client, "describeIamInstanceProfileAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IamInstanceProfileAssociations",
+    })
+end
+
+--- Returns a page iterator for describeImageReferences.
+function M.pages_describe_image_references(client, input)
+    return paginator.pages(client, "describeImageReferences", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ImageReferences",
+    })
+end
+
+--- Returns an item iterator for describeImageReferences.
+function M.items_describe_image_references(client, input)
+    return paginator.items(client, "describeImageReferences", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ImageReferences",
+    })
+end
+
+--- Returns a page iterator for describeImageUsageReportEntries.
+function M.pages_describe_image_usage_report_entries(client, input)
+    return paginator.pages(client, "describeImageUsageReportEntries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ImageUsageReportEntries",
+    })
+end
+
+--- Returns an item iterator for describeImageUsageReportEntries.
+function M.items_describe_image_usage_report_entries(client, input)
+    return paginator.items(client, "describeImageUsageReportEntries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ImageUsageReportEntries",
+    })
+end
+
+--- Returns a page iterator for describeImageUsageReports.
+function M.pages_describe_image_usage_reports(client, input)
+    return paginator.pages(client, "describeImageUsageReports", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ImageUsageReports",
+    })
+end
+
+--- Returns an item iterator for describeImageUsageReports.
+function M.items_describe_image_usage_reports(client, input)
+    return paginator.items(client, "describeImageUsageReports", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ImageUsageReports",
+    })
+end
+
+--- Returns a page iterator for describeImages.
+function M.pages_describe_images(client, input)
+    return paginator.pages(client, "describeImages", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Images",
+    })
+end
+
+--- Returns an item iterator for describeImages.
+function M.items_describe_images(client, input)
+    return paginator.items(client, "describeImages", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Images",
+    })
+end
+
+--- Returns a page iterator for describeImportImageTasks.
+function M.pages_describe_import_image_tasks(client, input)
+    return paginator.pages(client, "describeImportImageTasks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ImportImageTasks",
+    })
+end
+
+--- Returns an item iterator for describeImportImageTasks.
+function M.items_describe_import_image_tasks(client, input)
+    return paginator.items(client, "describeImportImageTasks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ImportImageTasks",
+    })
+end
+
+--- Returns a page iterator for describeImportSnapshotTasks.
+function M.pages_describe_import_snapshot_tasks(client, input)
+    return paginator.pages(client, "describeImportSnapshotTasks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ImportSnapshotTasks",
+    })
+end
+
+--- Returns an item iterator for describeImportSnapshotTasks.
+function M.items_describe_import_snapshot_tasks(client, input)
+    return paginator.items(client, "describeImportSnapshotTasks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ImportSnapshotTasks",
+    })
+end
+
+--- Returns a page iterator for describeInstanceConnectEndpoints.
+function M.pages_describe_instance_connect_endpoints(client, input)
+    return paginator.pages(client, "describeInstanceConnectEndpoints", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InstanceConnectEndpoints",
+    })
+end
+
+--- Returns an item iterator for describeInstanceConnectEndpoints.
+function M.items_describe_instance_connect_endpoints(client, input)
+    return paginator.items(client, "describeInstanceConnectEndpoints", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InstanceConnectEndpoints",
+    })
+end
+
+--- Returns a page iterator for describeInstanceCreditSpecifications.
+function M.pages_describe_instance_credit_specifications(client, input)
+    return paginator.pages(client, "describeInstanceCreditSpecifications", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InstanceCreditSpecifications",
+    })
+end
+
+--- Returns an item iterator for describeInstanceCreditSpecifications.
+function M.items_describe_instance_credit_specifications(client, input)
+    return paginator.items(client, "describeInstanceCreditSpecifications", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InstanceCreditSpecifications",
+    })
+end
+
+--- Returns a page iterator for describeInstanceEventWindows.
+function M.pages_describe_instance_event_windows(client, input)
+    return paginator.pages(client, "describeInstanceEventWindows", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InstanceEventWindows",
+    })
+end
+
+--- Returns an item iterator for describeInstanceEventWindows.
+function M.items_describe_instance_event_windows(client, input)
+    return paginator.items(client, "describeInstanceEventWindows", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InstanceEventWindows",
+    })
+end
+
+--- Returns a page iterator for describeInstanceImageMetadata.
+function M.pages_describe_instance_image_metadata(client, input)
+    return paginator.pages(client, "describeInstanceImageMetadata", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InstanceImageMetadata",
+    })
+end
+
+--- Returns an item iterator for describeInstanceImageMetadata.
+function M.items_describe_instance_image_metadata(client, input)
+    return paginator.items(client, "describeInstanceImageMetadata", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InstanceImageMetadata",
+    })
+end
+
+--- Returns a page iterator for describeInstanceStatus.
+function M.pages_describe_instance_status(client, input)
+    return paginator.pages(client, "describeInstanceStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InstanceStatuses",
+    })
+end
+
+--- Returns an item iterator for describeInstanceStatus.
+function M.items_describe_instance_status(client, input)
+    return paginator.items(client, "describeInstanceStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InstanceStatuses",
+    })
+end
+
+--- Returns a page iterator for describeInstanceTopology.
+function M.pages_describe_instance_topology(client, input)
+    return paginator.pages(client, "describeInstanceTopology", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Instances",
+    })
+end
+
+--- Returns an item iterator for describeInstanceTopology.
+function M.items_describe_instance_topology(client, input)
+    return paginator.items(client, "describeInstanceTopology", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Instances",
+    })
+end
+
+--- Returns a page iterator for describeInstanceTypeOfferings.
+function M.pages_describe_instance_type_offerings(client, input)
+    return paginator.pages(client, "describeInstanceTypeOfferings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InstanceTypeOfferings",
+    })
+end
+
+--- Returns an item iterator for describeInstanceTypeOfferings.
+function M.items_describe_instance_type_offerings(client, input)
+    return paginator.items(client, "describeInstanceTypeOfferings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InstanceTypeOfferings",
+    })
+end
+
+--- Returns a page iterator for describeInstanceTypes.
+function M.pages_describe_instance_types(client, input)
+    return paginator.pages(client, "describeInstanceTypes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InstanceTypes",
+    })
+end
+
+--- Returns an item iterator for describeInstanceTypes.
+function M.items_describe_instance_types(client, input)
+    return paginator.items(client, "describeInstanceTypes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InstanceTypes",
+    })
+end
+
+--- Returns a page iterator for describeInstances.
+function M.pages_describe_instances(client, input)
+    return paginator.pages(client, "describeInstances", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Reservations",
+    })
+end
+
+--- Returns an item iterator for describeInstances.
+function M.items_describe_instances(client, input)
+    return paginator.items(client, "describeInstances", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Reservations",
+    })
+end
+
+--- Returns a page iterator for describeInternetGateways.
+function M.pages_describe_internet_gateways(client, input)
+    return paginator.pages(client, "describeInternetGateways", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InternetGateways",
+    })
+end
+
+--- Returns an item iterator for describeInternetGateways.
+function M.items_describe_internet_gateways(client, input)
+    return paginator.items(client, "describeInternetGateways", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InternetGateways",
+    })
+end
+
+--- Returns a page iterator for describeIpamPools.
+function M.pages_describe_ipam_pools(client, input)
+    return paginator.pages(client, "describeIpamPools", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamPools",
+    })
+end
+
+--- Returns an item iterator for describeIpamPools.
+function M.items_describe_ipam_pools(client, input)
+    return paginator.items(client, "describeIpamPools", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamPools",
+    })
+end
+
+--- Returns a page iterator for describeIpamPrefixListResolverTargets.
+function M.pages_describe_ipam_prefix_list_resolver_targets(client, input)
+    return paginator.pages(client, "describeIpamPrefixListResolverTargets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamPrefixListResolverTargets",
+    })
+end
+
+--- Returns an item iterator for describeIpamPrefixListResolverTargets.
+function M.items_describe_ipam_prefix_list_resolver_targets(client, input)
+    return paginator.items(client, "describeIpamPrefixListResolverTargets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamPrefixListResolverTargets",
+    })
+end
+
+--- Returns a page iterator for describeIpamPrefixListResolvers.
+function M.pages_describe_ipam_prefix_list_resolvers(client, input)
+    return paginator.pages(client, "describeIpamPrefixListResolvers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamPrefixListResolvers",
+    })
+end
+
+--- Returns an item iterator for describeIpamPrefixListResolvers.
+function M.items_describe_ipam_prefix_list_resolvers(client, input)
+    return paginator.items(client, "describeIpamPrefixListResolvers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamPrefixListResolvers",
+    })
+end
+
+--- Returns a page iterator for describeIpamResourceDiscoveries.
+function M.pages_describe_ipam_resource_discoveries(client, input)
+    return paginator.pages(client, "describeIpamResourceDiscoveries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamResourceDiscoveries",
+    })
+end
+
+--- Returns an item iterator for describeIpamResourceDiscoveries.
+function M.items_describe_ipam_resource_discoveries(client, input)
+    return paginator.items(client, "describeIpamResourceDiscoveries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamResourceDiscoveries",
+    })
+end
+
+--- Returns a page iterator for describeIpamResourceDiscoveryAssociations.
+function M.pages_describe_ipam_resource_discovery_associations(client, input)
+    return paginator.pages(client, "describeIpamResourceDiscoveryAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamResourceDiscoveryAssociations",
+    })
+end
+
+--- Returns an item iterator for describeIpamResourceDiscoveryAssociations.
+function M.items_describe_ipam_resource_discovery_associations(client, input)
+    return paginator.items(client, "describeIpamResourceDiscoveryAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamResourceDiscoveryAssociations",
+    })
+end
+
+--- Returns a page iterator for describeIpamScopes.
+function M.pages_describe_ipam_scopes(client, input)
+    return paginator.pages(client, "describeIpamScopes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamScopes",
+    })
+end
+
+--- Returns an item iterator for describeIpamScopes.
+function M.items_describe_ipam_scopes(client, input)
+    return paginator.items(client, "describeIpamScopes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamScopes",
+    })
+end
+
+--- Returns a page iterator for describeIpams.
+function M.pages_describe_ipams(client, input)
+    return paginator.pages(client, "describeIpams", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Ipams",
+    })
+end
+
+--- Returns an item iterator for describeIpams.
+function M.items_describe_ipams(client, input)
+    return paginator.items(client, "describeIpams", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Ipams",
+    })
+end
+
+--- Returns a page iterator for describeIpv6Pools.
+function M.pages_describe_ipv6_pools(client, input)
+    return paginator.pages(client, "describeIpv6Pools", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Ipv6Pools",
+    })
+end
+
+--- Returns an item iterator for describeIpv6Pools.
+function M.items_describe_ipv6_pools(client, input)
+    return paginator.items(client, "describeIpv6Pools", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Ipv6Pools",
+    })
+end
+
+--- Returns a page iterator for describeLaunchTemplateVersions.
+function M.pages_describe_launch_template_versions(client, input)
+    return paginator.pages(client, "describeLaunchTemplateVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LaunchTemplateVersions",
+    })
+end
+
+--- Returns an item iterator for describeLaunchTemplateVersions.
+function M.items_describe_launch_template_versions(client, input)
+    return paginator.items(client, "describeLaunchTemplateVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LaunchTemplateVersions",
+    })
+end
+
+--- Returns a page iterator for describeLaunchTemplates.
+function M.pages_describe_launch_templates(client, input)
+    return paginator.pages(client, "describeLaunchTemplates", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LaunchTemplates",
+    })
+end
+
+--- Returns an item iterator for describeLaunchTemplates.
+function M.items_describe_launch_templates(client, input)
+    return paginator.items(client, "describeLaunchTemplates", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LaunchTemplates",
+    })
+end
+
+--- Returns a page iterator for describeLocalGatewayRouteTableVirtualInterfaceGroupAssociations.
+function M.pages_describe_local_gateway_route_table_virtual_interface_group_associations(client, input)
+    return paginator.pages(client, "describeLocalGatewayRouteTableVirtualInterfaceGroupAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LocalGatewayRouteTableVirtualInterfaceGroupAssociations",
+    })
+end
+
+--- Returns an item iterator for describeLocalGatewayRouteTableVirtualInterfaceGroupAssociations.
+function M.items_describe_local_gateway_route_table_virtual_interface_group_associations(client, input)
+    return paginator.items(client, "describeLocalGatewayRouteTableVirtualInterfaceGroupAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LocalGatewayRouteTableVirtualInterfaceGroupAssociations",
+    })
+end
+
+--- Returns a page iterator for describeLocalGatewayRouteTableVpcAssociations.
+function M.pages_describe_local_gateway_route_table_vpc_associations(client, input)
+    return paginator.pages(client, "describeLocalGatewayRouteTableVpcAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LocalGatewayRouteTableVpcAssociations",
+    })
+end
+
+--- Returns an item iterator for describeLocalGatewayRouteTableVpcAssociations.
+function M.items_describe_local_gateway_route_table_vpc_associations(client, input)
+    return paginator.items(client, "describeLocalGatewayRouteTableVpcAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LocalGatewayRouteTableVpcAssociations",
+    })
+end
+
+--- Returns a page iterator for describeLocalGatewayRouteTables.
+function M.pages_describe_local_gateway_route_tables(client, input)
+    return paginator.pages(client, "describeLocalGatewayRouteTables", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LocalGatewayRouteTables",
+    })
+end
+
+--- Returns an item iterator for describeLocalGatewayRouteTables.
+function M.items_describe_local_gateway_route_tables(client, input)
+    return paginator.items(client, "describeLocalGatewayRouteTables", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LocalGatewayRouteTables",
+    })
+end
+
+--- Returns a page iterator for describeLocalGatewayVirtualInterfaceGroups.
+function M.pages_describe_local_gateway_virtual_interface_groups(client, input)
+    return paginator.pages(client, "describeLocalGatewayVirtualInterfaceGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LocalGatewayVirtualInterfaceGroups",
+    })
+end
+
+--- Returns an item iterator for describeLocalGatewayVirtualInterfaceGroups.
+function M.items_describe_local_gateway_virtual_interface_groups(client, input)
+    return paginator.items(client, "describeLocalGatewayVirtualInterfaceGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LocalGatewayVirtualInterfaceGroups",
+    })
+end
+
+--- Returns a page iterator for describeLocalGatewayVirtualInterfaces.
+function M.pages_describe_local_gateway_virtual_interfaces(client, input)
+    return paginator.pages(client, "describeLocalGatewayVirtualInterfaces", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LocalGatewayVirtualInterfaces",
+    })
+end
+
+--- Returns an item iterator for describeLocalGatewayVirtualInterfaces.
+function M.items_describe_local_gateway_virtual_interfaces(client, input)
+    return paginator.items(client, "describeLocalGatewayVirtualInterfaces", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LocalGatewayVirtualInterfaces",
+    })
+end
+
+--- Returns a page iterator for describeLocalGateways.
+function M.pages_describe_local_gateways(client, input)
+    return paginator.pages(client, "describeLocalGateways", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LocalGateways",
+    })
+end
+
+--- Returns an item iterator for describeLocalGateways.
+function M.items_describe_local_gateways(client, input)
+    return paginator.items(client, "describeLocalGateways", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LocalGateways",
+    })
+end
+
+--- Returns a page iterator for describeMacHosts.
+function M.pages_describe_mac_hosts(client, input)
+    return paginator.pages(client, "describeMacHosts", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MacHosts",
+    })
+end
+
+--- Returns an item iterator for describeMacHosts.
+function M.items_describe_mac_hosts(client, input)
+    return paginator.items(client, "describeMacHosts", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MacHosts",
+    })
+end
+
+--- Returns a page iterator for describeMacModificationTasks.
+function M.pages_describe_mac_modification_tasks(client, input)
+    return paginator.pages(client, "describeMacModificationTasks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MacModificationTasks",
+    })
+end
+
+--- Returns an item iterator for describeMacModificationTasks.
+function M.items_describe_mac_modification_tasks(client, input)
+    return paginator.items(client, "describeMacModificationTasks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MacModificationTasks",
+    })
+end
+
+--- Returns a page iterator for describeManagedPrefixLists.
+function M.pages_describe_managed_prefix_lists(client, input)
+    return paginator.pages(client, "describeManagedPrefixLists", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "PrefixLists",
+    })
+end
+
+--- Returns an item iterator for describeManagedPrefixLists.
+function M.items_describe_managed_prefix_lists(client, input)
+    return paginator.items(client, "describeManagedPrefixLists", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "PrefixLists",
+    })
+end
+
+--- Returns a page iterator for describeMovingAddresses.
+function M.pages_describe_moving_addresses(client, input)
+    return paginator.pages(client, "describeMovingAddresses", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MovingAddressStatuses",
+    })
+end
+
+--- Returns an item iterator for describeMovingAddresses.
+function M.items_describe_moving_addresses(client, input)
+    return paginator.items(client, "describeMovingAddresses", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MovingAddressStatuses",
+    })
+end
+
+--- Returns a page iterator for describeNatGateways.
+function M.pages_describe_nat_gateways(client, input)
+    return paginator.pages(client, "describeNatGateways", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NatGateways",
+    })
+end
+
+--- Returns an item iterator for describeNatGateways.
+function M.items_describe_nat_gateways(client, input)
+    return paginator.items(client, "describeNatGateways", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NatGateways",
+    })
+end
+
+--- Returns a page iterator for describeNetworkAcls.
+function M.pages_describe_network_acls(client, input)
+    return paginator.pages(client, "describeNetworkAcls", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NetworkAcls",
+    })
+end
+
+--- Returns an item iterator for describeNetworkAcls.
+function M.items_describe_network_acls(client, input)
+    return paginator.items(client, "describeNetworkAcls", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NetworkAcls",
+    })
+end
+
+--- Returns a page iterator for describeNetworkInsightsAccessScopeAnalyses.
+function M.pages_describe_network_insights_access_scope_analyses(client, input)
+    return paginator.pages(client, "describeNetworkInsightsAccessScopeAnalyses", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NetworkInsightsAccessScopeAnalyses",
+    })
+end
+
+--- Returns an item iterator for describeNetworkInsightsAccessScopeAnalyses.
+function M.items_describe_network_insights_access_scope_analyses(client, input)
+    return paginator.items(client, "describeNetworkInsightsAccessScopeAnalyses", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NetworkInsightsAccessScopeAnalyses",
+    })
+end
+
+--- Returns a page iterator for describeNetworkInsightsAccessScopes.
+function M.pages_describe_network_insights_access_scopes(client, input)
+    return paginator.pages(client, "describeNetworkInsightsAccessScopes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NetworkInsightsAccessScopes",
+    })
+end
+
+--- Returns an item iterator for describeNetworkInsightsAccessScopes.
+function M.items_describe_network_insights_access_scopes(client, input)
+    return paginator.items(client, "describeNetworkInsightsAccessScopes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NetworkInsightsAccessScopes",
+    })
+end
+
+--- Returns a page iterator for describeNetworkInsightsAnalyses.
+function M.pages_describe_network_insights_analyses(client, input)
+    return paginator.pages(client, "describeNetworkInsightsAnalyses", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NetworkInsightsAnalyses",
+    })
+end
+
+--- Returns an item iterator for describeNetworkInsightsAnalyses.
+function M.items_describe_network_insights_analyses(client, input)
+    return paginator.items(client, "describeNetworkInsightsAnalyses", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NetworkInsightsAnalyses",
+    })
+end
+
+--- Returns a page iterator for describeNetworkInsightsPaths.
+function M.pages_describe_network_insights_paths(client, input)
+    return paginator.pages(client, "describeNetworkInsightsPaths", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NetworkInsightsPaths",
+    })
+end
+
+--- Returns an item iterator for describeNetworkInsightsPaths.
+function M.items_describe_network_insights_paths(client, input)
+    return paginator.items(client, "describeNetworkInsightsPaths", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NetworkInsightsPaths",
+    })
+end
+
+--- Returns a page iterator for describeNetworkInterfacePermissions.
+function M.pages_describe_network_interface_permissions(client, input)
+    return paginator.pages(client, "describeNetworkInterfacePermissions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NetworkInterfacePermissions",
+    })
+end
+
+--- Returns an item iterator for describeNetworkInterfacePermissions.
+function M.items_describe_network_interface_permissions(client, input)
+    return paginator.items(client, "describeNetworkInterfacePermissions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NetworkInterfacePermissions",
+    })
+end
+
+--- Returns a page iterator for describeNetworkInterfaces.
+function M.pages_describe_network_interfaces(client, input)
+    return paginator.pages(client, "describeNetworkInterfaces", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NetworkInterfaces",
+    })
+end
+
+--- Returns an item iterator for describeNetworkInterfaces.
+function M.items_describe_network_interfaces(client, input)
+    return paginator.items(client, "describeNetworkInterfaces", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NetworkInterfaces",
+    })
+end
+
+--- Returns a page iterator for describePrefixLists.
+function M.pages_describe_prefix_lists(client, input)
+    return paginator.pages(client, "describePrefixLists", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "PrefixLists",
+    })
+end
+
+--- Returns an item iterator for describePrefixLists.
+function M.items_describe_prefix_lists(client, input)
+    return paginator.items(client, "describePrefixLists", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "PrefixLists",
+    })
+end
+
+--- Returns a page iterator for describePrincipalIdFormat.
+function M.pages_describe_principal_id_format(client, input)
+    return paginator.pages(client, "describePrincipalIdFormat", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Principals",
+    })
+end
+
+--- Returns an item iterator for describePrincipalIdFormat.
+function M.items_describe_principal_id_format(client, input)
+    return paginator.items(client, "describePrincipalIdFormat", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Principals",
+    })
+end
+
+--- Returns a page iterator for describePublicIpv4Pools.
+function M.pages_describe_public_ipv4_pools(client, input)
+    return paginator.pages(client, "describePublicIpv4Pools", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "PublicIpv4Pools",
+    })
+end
+
+--- Returns an item iterator for describePublicIpv4Pools.
+function M.items_describe_public_ipv4_pools(client, input)
+    return paginator.items(client, "describePublicIpv4Pools", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "PublicIpv4Pools",
+    })
+end
+
+--- Returns a page iterator for describeReplaceRootVolumeTasks.
+function M.pages_describe_replace_root_volume_tasks(client, input)
+    return paginator.pages(client, "describeReplaceRootVolumeTasks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ReplaceRootVolumeTasks",
+    })
+end
+
+--- Returns an item iterator for describeReplaceRootVolumeTasks.
+function M.items_describe_replace_root_volume_tasks(client, input)
+    return paginator.items(client, "describeReplaceRootVolumeTasks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ReplaceRootVolumeTasks",
+    })
+end
+
+--- Returns a page iterator for describeReservedInstancesModifications.
+function M.pages_describe_reserved_instances_modifications(client, input)
+    return paginator.pages(client, "describeReservedInstancesModifications", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ReservedInstancesModifications",
+    })
+end
+
+--- Returns an item iterator for describeReservedInstancesModifications.
+function M.items_describe_reserved_instances_modifications(client, input)
+    return paginator.items(client, "describeReservedInstancesModifications", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ReservedInstancesModifications",
+    })
+end
+
+--- Returns a page iterator for describeReservedInstancesOfferings.
+function M.pages_describe_reserved_instances_offerings(client, input)
+    return paginator.pages(client, "describeReservedInstancesOfferings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ReservedInstancesOfferings",
+    })
+end
+
+--- Returns an item iterator for describeReservedInstancesOfferings.
+function M.items_describe_reserved_instances_offerings(client, input)
+    return paginator.items(client, "describeReservedInstancesOfferings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ReservedInstancesOfferings",
+    })
+end
+
+--- Returns a page iterator for describeRouteServerEndpoints.
+function M.pages_describe_route_server_endpoints(client, input)
+    return paginator.pages(client, "describeRouteServerEndpoints", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RouteServerEndpoints",
+    })
+end
+
+--- Returns an item iterator for describeRouteServerEndpoints.
+function M.items_describe_route_server_endpoints(client, input)
+    return paginator.items(client, "describeRouteServerEndpoints", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RouteServerEndpoints",
+    })
+end
+
+--- Returns a page iterator for describeRouteServerPeers.
+function M.pages_describe_route_server_peers(client, input)
+    return paginator.pages(client, "describeRouteServerPeers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RouteServerPeers",
+    })
+end
+
+--- Returns an item iterator for describeRouteServerPeers.
+function M.items_describe_route_server_peers(client, input)
+    return paginator.items(client, "describeRouteServerPeers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RouteServerPeers",
+    })
+end
+
+--- Returns a page iterator for describeRouteServers.
+function M.pages_describe_route_servers(client, input)
+    return paginator.pages(client, "describeRouteServers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RouteServers",
+    })
+end
+
+--- Returns an item iterator for describeRouteServers.
+function M.items_describe_route_servers(client, input)
+    return paginator.items(client, "describeRouteServers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RouteServers",
+    })
+end
+
+--- Returns a page iterator for describeRouteTables.
+function M.pages_describe_route_tables(client, input)
+    return paginator.pages(client, "describeRouteTables", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RouteTables",
+    })
+end
+
+--- Returns an item iterator for describeRouteTables.
+function M.items_describe_route_tables(client, input)
+    return paginator.items(client, "describeRouteTables", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RouteTables",
+    })
+end
+
+--- Returns a page iterator for describeScheduledInstanceAvailability.
+function M.pages_describe_scheduled_instance_availability(client, input)
+    return paginator.pages(client, "describeScheduledInstanceAvailability", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ScheduledInstanceAvailabilitySet",
+    })
+end
+
+--- Returns an item iterator for describeScheduledInstanceAvailability.
+function M.items_describe_scheduled_instance_availability(client, input)
+    return paginator.items(client, "describeScheduledInstanceAvailability", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ScheduledInstanceAvailabilitySet",
+    })
+end
+
+--- Returns a page iterator for describeScheduledInstances.
+function M.pages_describe_scheduled_instances(client, input)
+    return paginator.pages(client, "describeScheduledInstances", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ScheduledInstanceSet",
+    })
+end
+
+--- Returns an item iterator for describeScheduledInstances.
+function M.items_describe_scheduled_instances(client, input)
+    return paginator.items(client, "describeScheduledInstances", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ScheduledInstanceSet",
+    })
+end
+
+--- Returns a page iterator for describeSecondaryInterfaces.
+function M.pages_describe_secondary_interfaces(client, input)
+    return paginator.pages(client, "describeSecondaryInterfaces", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SecondaryInterfaces",
+    })
+end
+
+--- Returns an item iterator for describeSecondaryInterfaces.
+function M.items_describe_secondary_interfaces(client, input)
+    return paginator.items(client, "describeSecondaryInterfaces", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SecondaryInterfaces",
+    })
+end
+
+--- Returns a page iterator for describeSecondaryNetworks.
+function M.pages_describe_secondary_networks(client, input)
+    return paginator.pages(client, "describeSecondaryNetworks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SecondaryNetworks",
+    })
+end
+
+--- Returns an item iterator for describeSecondaryNetworks.
+function M.items_describe_secondary_networks(client, input)
+    return paginator.items(client, "describeSecondaryNetworks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SecondaryNetworks",
+    })
+end
+
+--- Returns a page iterator for describeSecondarySubnets.
+function M.pages_describe_secondary_subnets(client, input)
+    return paginator.pages(client, "describeSecondarySubnets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SecondarySubnets",
+    })
+end
+
+--- Returns an item iterator for describeSecondarySubnets.
+function M.items_describe_secondary_subnets(client, input)
+    return paginator.items(client, "describeSecondarySubnets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SecondarySubnets",
+    })
+end
+
+--- Returns a page iterator for describeSecurityGroupRules.
+function M.pages_describe_security_group_rules(client, input)
+    return paginator.pages(client, "describeSecurityGroupRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SecurityGroupRules",
+    })
+end
+
+--- Returns an item iterator for describeSecurityGroupRules.
+function M.items_describe_security_group_rules(client, input)
+    return paginator.items(client, "describeSecurityGroupRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SecurityGroupRules",
+    })
+end
+
+--- Returns a page iterator for describeSecurityGroupVpcAssociations.
+function M.pages_describe_security_group_vpc_associations(client, input)
+    return paginator.pages(client, "describeSecurityGroupVpcAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SecurityGroupVpcAssociations",
+    })
+end
+
+--- Returns an item iterator for describeSecurityGroupVpcAssociations.
+function M.items_describe_security_group_vpc_associations(client, input)
+    return paginator.items(client, "describeSecurityGroupVpcAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SecurityGroupVpcAssociations",
+    })
+end
+
+--- Returns a page iterator for describeSecurityGroups.
+function M.pages_describe_security_groups(client, input)
+    return paginator.pages(client, "describeSecurityGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SecurityGroups",
+    })
+end
+
+--- Returns an item iterator for describeSecurityGroups.
+function M.items_describe_security_groups(client, input)
+    return paginator.items(client, "describeSecurityGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SecurityGroups",
+    })
+end
+
+--- Returns a page iterator for describeSnapshotTierStatus.
+function M.pages_describe_snapshot_tier_status(client, input)
+    return paginator.pages(client, "describeSnapshotTierStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SnapshotTierStatuses",
+    })
+end
+
+--- Returns an item iterator for describeSnapshotTierStatus.
+function M.items_describe_snapshot_tier_status(client, input)
+    return paginator.items(client, "describeSnapshotTierStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SnapshotTierStatuses",
+    })
+end
+
+--- Returns a page iterator for describeSnapshots.
+function M.pages_describe_snapshots(client, input)
+    return paginator.pages(client, "describeSnapshots", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Snapshots",
+    })
+end
+
+--- Returns an item iterator for describeSnapshots.
+function M.items_describe_snapshots(client, input)
+    return paginator.items(client, "describeSnapshots", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Snapshots",
+    })
+end
+
+--- Returns a page iterator for describeSpotFleetRequests.
+function M.pages_describe_spot_fleet_requests(client, input)
+    return paginator.pages(client, "describeSpotFleetRequests", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SpotFleetRequestConfigs",
+    })
+end
+
+--- Returns an item iterator for describeSpotFleetRequests.
+function M.items_describe_spot_fleet_requests(client, input)
+    return paginator.items(client, "describeSpotFleetRequests", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SpotFleetRequestConfigs",
+    })
+end
+
+--- Returns a page iterator for describeSpotInstanceRequests.
+function M.pages_describe_spot_instance_requests(client, input)
+    return paginator.pages(client, "describeSpotInstanceRequests", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SpotInstanceRequests",
+    })
+end
+
+--- Returns an item iterator for describeSpotInstanceRequests.
+function M.items_describe_spot_instance_requests(client, input)
+    return paginator.items(client, "describeSpotInstanceRequests", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SpotInstanceRequests",
+    })
+end
+
+--- Returns a page iterator for describeSpotPriceHistory.
+function M.pages_describe_spot_price_history(client, input)
+    return paginator.pages(client, "describeSpotPriceHistory", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SpotPriceHistory",
+    })
+end
+
+--- Returns an item iterator for describeSpotPriceHistory.
+function M.items_describe_spot_price_history(client, input)
+    return paginator.items(client, "describeSpotPriceHistory", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SpotPriceHistory",
+    })
+end
+
+--- Returns a page iterator for describeStaleSecurityGroups.
+function M.pages_describe_stale_security_groups(client, input)
+    return paginator.pages(client, "describeStaleSecurityGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "StaleSecurityGroupSet",
+    })
+end
+
+--- Returns an item iterator for describeStaleSecurityGroups.
+function M.items_describe_stale_security_groups(client, input)
+    return paginator.items(client, "describeStaleSecurityGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "StaleSecurityGroupSet",
+    })
+end
+
+--- Returns a page iterator for describeStoreImageTasks.
+function M.pages_describe_store_image_tasks(client, input)
+    return paginator.pages(client, "describeStoreImageTasks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "StoreImageTaskResults",
+    })
+end
+
+--- Returns an item iterator for describeStoreImageTasks.
+function M.items_describe_store_image_tasks(client, input)
+    return paginator.items(client, "describeStoreImageTasks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "StoreImageTaskResults",
+    })
+end
+
+--- Returns a page iterator for describeSubnets.
+function M.pages_describe_subnets(client, input)
+    return paginator.pages(client, "describeSubnets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Subnets",
+    })
+end
+
+--- Returns an item iterator for describeSubnets.
+function M.items_describe_subnets(client, input)
+    return paginator.items(client, "describeSubnets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Subnets",
+    })
+end
+
+--- Returns a page iterator for describeTags.
+function M.pages_describe_tags(client, input)
+    return paginator.pages(client, "describeTags", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Tags",
+    })
+end
+
+--- Returns an item iterator for describeTags.
+function M.items_describe_tags(client, input)
+    return paginator.items(client, "describeTags", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Tags",
+    })
+end
+
+--- Returns a page iterator for describeTrafficMirrorFilters.
+function M.pages_describe_traffic_mirror_filters(client, input)
+    return paginator.pages(client, "describeTrafficMirrorFilters", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TrafficMirrorFilters",
+    })
+end
+
+--- Returns an item iterator for describeTrafficMirrorFilters.
+function M.items_describe_traffic_mirror_filters(client, input)
+    return paginator.items(client, "describeTrafficMirrorFilters", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TrafficMirrorFilters",
+    })
+end
+
+--- Returns a page iterator for describeTrafficMirrorSessions.
+function M.pages_describe_traffic_mirror_sessions(client, input)
+    return paginator.pages(client, "describeTrafficMirrorSessions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TrafficMirrorSessions",
+    })
+end
+
+--- Returns an item iterator for describeTrafficMirrorSessions.
+function M.items_describe_traffic_mirror_sessions(client, input)
+    return paginator.items(client, "describeTrafficMirrorSessions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TrafficMirrorSessions",
+    })
+end
+
+--- Returns a page iterator for describeTrafficMirrorTargets.
+function M.pages_describe_traffic_mirror_targets(client, input)
+    return paginator.pages(client, "describeTrafficMirrorTargets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TrafficMirrorTargets",
+    })
+end
+
+--- Returns an item iterator for describeTrafficMirrorTargets.
+function M.items_describe_traffic_mirror_targets(client, input)
+    return paginator.items(client, "describeTrafficMirrorTargets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TrafficMirrorTargets",
+    })
+end
+
+--- Returns a page iterator for describeTransitGatewayAttachments.
+function M.pages_describe_transit_gateway_attachments(client, input)
+    return paginator.pages(client, "describeTransitGatewayAttachments", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayAttachments",
+    })
+end
+
+--- Returns an item iterator for describeTransitGatewayAttachments.
+function M.items_describe_transit_gateway_attachments(client, input)
+    return paginator.items(client, "describeTransitGatewayAttachments", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayAttachments",
+    })
+end
+
+--- Returns a page iterator for describeTransitGatewayConnectPeers.
+function M.pages_describe_transit_gateway_connect_peers(client, input)
+    return paginator.pages(client, "describeTransitGatewayConnectPeers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayConnectPeers",
+    })
+end
+
+--- Returns an item iterator for describeTransitGatewayConnectPeers.
+function M.items_describe_transit_gateway_connect_peers(client, input)
+    return paginator.items(client, "describeTransitGatewayConnectPeers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayConnectPeers",
+    })
+end
+
+--- Returns a page iterator for describeTransitGatewayConnects.
+function M.pages_describe_transit_gateway_connects(client, input)
+    return paginator.pages(client, "describeTransitGatewayConnects", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayConnects",
+    })
+end
+
+--- Returns an item iterator for describeTransitGatewayConnects.
+function M.items_describe_transit_gateway_connects(client, input)
+    return paginator.items(client, "describeTransitGatewayConnects", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayConnects",
+    })
+end
+
+--- Returns a page iterator for describeTransitGatewayMulticastDomains.
+function M.pages_describe_transit_gateway_multicast_domains(client, input)
+    return paginator.pages(client, "describeTransitGatewayMulticastDomains", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayMulticastDomains",
+    })
+end
+
+--- Returns an item iterator for describeTransitGatewayMulticastDomains.
+function M.items_describe_transit_gateway_multicast_domains(client, input)
+    return paginator.items(client, "describeTransitGatewayMulticastDomains", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayMulticastDomains",
+    })
+end
+
+--- Returns a page iterator for describeTransitGatewayPeeringAttachments.
+function M.pages_describe_transit_gateway_peering_attachments(client, input)
+    return paginator.pages(client, "describeTransitGatewayPeeringAttachments", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayPeeringAttachments",
+    })
+end
+
+--- Returns an item iterator for describeTransitGatewayPeeringAttachments.
+function M.items_describe_transit_gateway_peering_attachments(client, input)
+    return paginator.items(client, "describeTransitGatewayPeeringAttachments", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayPeeringAttachments",
+    })
+end
+
+--- Returns a page iterator for describeTransitGatewayPolicyTables.
+function M.pages_describe_transit_gateway_policy_tables(client, input)
+    return paginator.pages(client, "describeTransitGatewayPolicyTables", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayPolicyTables",
+    })
+end
+
+--- Returns an item iterator for describeTransitGatewayPolicyTables.
+function M.items_describe_transit_gateway_policy_tables(client, input)
+    return paginator.items(client, "describeTransitGatewayPolicyTables", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayPolicyTables",
+    })
+end
+
+--- Returns a page iterator for describeTransitGatewayRouteTableAnnouncements.
+function M.pages_describe_transit_gateway_route_table_announcements(client, input)
+    return paginator.pages(client, "describeTransitGatewayRouteTableAnnouncements", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayRouteTableAnnouncements",
+    })
+end
+
+--- Returns an item iterator for describeTransitGatewayRouteTableAnnouncements.
+function M.items_describe_transit_gateway_route_table_announcements(client, input)
+    return paginator.items(client, "describeTransitGatewayRouteTableAnnouncements", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayRouteTableAnnouncements",
+    })
+end
+
+--- Returns a page iterator for describeTransitGatewayRouteTables.
+function M.pages_describe_transit_gateway_route_tables(client, input)
+    return paginator.pages(client, "describeTransitGatewayRouteTables", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayRouteTables",
+    })
+end
+
+--- Returns an item iterator for describeTransitGatewayRouteTables.
+function M.items_describe_transit_gateway_route_tables(client, input)
+    return paginator.items(client, "describeTransitGatewayRouteTables", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayRouteTables",
+    })
+end
+
+--- Returns a page iterator for describeTransitGatewayVpcAttachments.
+function M.pages_describe_transit_gateway_vpc_attachments(client, input)
+    return paginator.pages(client, "describeTransitGatewayVpcAttachments", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayVpcAttachments",
+    })
+end
+
+--- Returns an item iterator for describeTransitGatewayVpcAttachments.
+function M.items_describe_transit_gateway_vpc_attachments(client, input)
+    return paginator.items(client, "describeTransitGatewayVpcAttachments", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayVpcAttachments",
+    })
+end
+
+--- Returns a page iterator for describeTransitGateways.
+function M.pages_describe_transit_gateways(client, input)
+    return paginator.pages(client, "describeTransitGateways", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGateways",
+    })
+end
+
+--- Returns an item iterator for describeTransitGateways.
+function M.items_describe_transit_gateways(client, input)
+    return paginator.items(client, "describeTransitGateways", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGateways",
+    })
+end
+
+--- Returns a page iterator for describeTrunkInterfaceAssociations.
+function M.pages_describe_trunk_interface_associations(client, input)
+    return paginator.pages(client, "describeTrunkInterfaceAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InterfaceAssociations",
+    })
+end
+
+--- Returns an item iterator for describeTrunkInterfaceAssociations.
+function M.items_describe_trunk_interface_associations(client, input)
+    return paginator.items(client, "describeTrunkInterfaceAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InterfaceAssociations",
+    })
+end
+
+--- Returns a page iterator for describeVerifiedAccessEndpoints.
+function M.pages_describe_verified_access_endpoints(client, input)
+    return paginator.pages(client, "describeVerifiedAccessEndpoints", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VerifiedAccessEndpoints",
+    })
+end
+
+--- Returns an item iterator for describeVerifiedAccessEndpoints.
+function M.items_describe_verified_access_endpoints(client, input)
+    return paginator.items(client, "describeVerifiedAccessEndpoints", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VerifiedAccessEndpoints",
+    })
+end
+
+--- Returns a page iterator for describeVerifiedAccessGroups.
+function M.pages_describe_verified_access_groups(client, input)
+    return paginator.pages(client, "describeVerifiedAccessGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VerifiedAccessGroups",
+    })
+end
+
+--- Returns an item iterator for describeVerifiedAccessGroups.
+function M.items_describe_verified_access_groups(client, input)
+    return paginator.items(client, "describeVerifiedAccessGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VerifiedAccessGroups",
+    })
+end
+
+--- Returns a page iterator for describeVerifiedAccessInstanceLoggingConfigurations.
+function M.pages_describe_verified_access_instance_logging_configurations(client, input)
+    return paginator.pages(client, "describeVerifiedAccessInstanceLoggingConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LoggingConfigurations",
+    })
+end
+
+--- Returns an item iterator for describeVerifiedAccessInstanceLoggingConfigurations.
+function M.items_describe_verified_access_instance_logging_configurations(client, input)
+    return paginator.items(client, "describeVerifiedAccessInstanceLoggingConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LoggingConfigurations",
+    })
+end
+
+--- Returns a page iterator for describeVerifiedAccessInstances.
+function M.pages_describe_verified_access_instances(client, input)
+    return paginator.pages(client, "describeVerifiedAccessInstances", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VerifiedAccessInstances",
+    })
+end
+
+--- Returns an item iterator for describeVerifiedAccessInstances.
+function M.items_describe_verified_access_instances(client, input)
+    return paginator.items(client, "describeVerifiedAccessInstances", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VerifiedAccessInstances",
+    })
+end
+
+--- Returns a page iterator for describeVerifiedAccessTrustProviders.
+function M.pages_describe_verified_access_trust_providers(client, input)
+    return paginator.pages(client, "describeVerifiedAccessTrustProviders", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VerifiedAccessTrustProviders",
+    })
+end
+
+--- Returns an item iterator for describeVerifiedAccessTrustProviders.
+function M.items_describe_verified_access_trust_providers(client, input)
+    return paginator.items(client, "describeVerifiedAccessTrustProviders", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VerifiedAccessTrustProviders",
+    })
+end
+
+--- Returns a page iterator for describeVolumeStatus.
+function M.pages_describe_volume_status(client, input)
+    return paginator.pages(client, "describeVolumeStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VolumeStatuses",
+    })
+end
+
+--- Returns an item iterator for describeVolumeStatus.
+function M.items_describe_volume_status(client, input)
+    return paginator.items(client, "describeVolumeStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VolumeStatuses",
+    })
+end
+
+--- Returns a page iterator for describeVolumes.
+function M.pages_describe_volumes(client, input)
+    return paginator.pages(client, "describeVolumes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Volumes",
+    })
+end
+
+--- Returns an item iterator for describeVolumes.
+function M.items_describe_volumes(client, input)
+    return paginator.items(client, "describeVolumes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Volumes",
+    })
+end
+
+--- Returns a page iterator for describeVolumesModifications.
+function M.pages_describe_volumes_modifications(client, input)
+    return paginator.pages(client, "describeVolumesModifications", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VolumesModifications",
+    })
+end
+
+--- Returns an item iterator for describeVolumesModifications.
+function M.items_describe_volumes_modifications(client, input)
+    return paginator.items(client, "describeVolumesModifications", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VolumesModifications",
+    })
+end
+
+--- Returns a page iterator for describeVpcClassicLinkDnsSupport.
+function M.pages_describe_vpc_classic_link_dns_support(client, input)
+    return paginator.pages(client, "describeVpcClassicLinkDnsSupport", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Vpcs",
+    })
+end
+
+--- Returns an item iterator for describeVpcClassicLinkDnsSupport.
+function M.items_describe_vpc_classic_link_dns_support(client, input)
+    return paginator.items(client, "describeVpcClassicLinkDnsSupport", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Vpcs",
+    })
+end
+
+--- Returns a page iterator for describeVpcEndpointConnectionNotifications.
+function M.pages_describe_vpc_endpoint_connection_notifications(client, input)
+    return paginator.pages(client, "describeVpcEndpointConnectionNotifications", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConnectionNotificationSet",
+    })
+end
+
+--- Returns an item iterator for describeVpcEndpointConnectionNotifications.
+function M.items_describe_vpc_endpoint_connection_notifications(client, input)
+    return paginator.items(client, "describeVpcEndpointConnectionNotifications", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConnectionNotificationSet",
+    })
+end
+
+--- Returns a page iterator for describeVpcEndpointConnections.
+function M.pages_describe_vpc_endpoint_connections(client, input)
+    return paginator.pages(client, "describeVpcEndpointConnections", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VpcEndpointConnections",
+    })
+end
+
+--- Returns an item iterator for describeVpcEndpointConnections.
+function M.items_describe_vpc_endpoint_connections(client, input)
+    return paginator.items(client, "describeVpcEndpointConnections", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VpcEndpointConnections",
+    })
+end
+
+--- Returns a page iterator for describeVpcEndpointServiceConfigurations.
+function M.pages_describe_vpc_endpoint_service_configurations(client, input)
+    return paginator.pages(client, "describeVpcEndpointServiceConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ServiceConfigurations",
+    })
+end
+
+--- Returns an item iterator for describeVpcEndpointServiceConfigurations.
+function M.items_describe_vpc_endpoint_service_configurations(client, input)
+    return paginator.items(client, "describeVpcEndpointServiceConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ServiceConfigurations",
+    })
+end
+
+--- Returns a page iterator for describeVpcEndpointServicePermissions.
+function M.pages_describe_vpc_endpoint_service_permissions(client, input)
+    return paginator.pages(client, "describeVpcEndpointServicePermissions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AllowedPrincipals",
+    })
+end
+
+--- Returns an item iterator for describeVpcEndpointServicePermissions.
+function M.items_describe_vpc_endpoint_service_permissions(client, input)
+    return paginator.items(client, "describeVpcEndpointServicePermissions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AllowedPrincipals",
+    })
+end
+
+--- Returns a page iterator for describeVpcEndpoints.
+function M.pages_describe_vpc_endpoints(client, input)
+    return paginator.pages(client, "describeVpcEndpoints", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VpcEndpoints",
+    })
+end
+
+--- Returns an item iterator for describeVpcEndpoints.
+function M.items_describe_vpc_endpoints(client, input)
+    return paginator.items(client, "describeVpcEndpoints", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VpcEndpoints",
+    })
+end
+
+--- Returns a page iterator for describeVpcPeeringConnections.
+function M.pages_describe_vpc_peering_connections(client, input)
+    return paginator.pages(client, "describeVpcPeeringConnections", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VpcPeeringConnections",
+    })
+end
+
+--- Returns an item iterator for describeVpcPeeringConnections.
+function M.items_describe_vpc_peering_connections(client, input)
+    return paginator.items(client, "describeVpcPeeringConnections", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VpcPeeringConnections",
+    })
+end
+
+--- Returns a page iterator for describeVpcs.
+function M.pages_describe_vpcs(client, input)
+    return paginator.pages(client, "describeVpcs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Vpcs",
+    })
+end
+
+--- Returns an item iterator for describeVpcs.
+function M.items_describe_vpcs(client, input)
+    return paginator.items(client, "describeVpcs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Vpcs",
+    })
+end
+
+--- Returns a page iterator for describeVpnConcentrators.
+function M.pages_describe_vpn_concentrators(client, input)
+    return paginator.pages(client, "describeVpnConcentrators", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VpnConcentrators",
+    })
+end
+
+--- Returns an item iterator for describeVpnConcentrators.
+function M.items_describe_vpn_concentrators(client, input)
+    return paginator.items(client, "describeVpnConcentrators", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VpnConcentrators",
+    })
+end
+
+--- Returns a page iterator for getAssociatedIpv6PoolCidrs.
+function M.pages_get_associated_ipv6_pool_cidrs(client, input)
+    return paginator.pages(client, "getAssociatedIpv6PoolCidrs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Ipv6CidrAssociations",
+    })
+end
+
+--- Returns an item iterator for getAssociatedIpv6PoolCidrs.
+function M.items_get_associated_ipv6_pool_cidrs(client, input)
+    return paginator.items(client, "getAssociatedIpv6PoolCidrs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Ipv6CidrAssociations",
+    })
+end
+
+--- Returns a page iterator for getAwsNetworkPerformanceData.
+function M.pages_get_aws_network_performance_data(client, input)
+    return paginator.pages(client, "getAwsNetworkPerformanceData", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DataResponses",
+    })
+end
+
+--- Returns an item iterator for getAwsNetworkPerformanceData.
+function M.items_get_aws_network_performance_data(client, input)
+    return paginator.items(client, "getAwsNetworkPerformanceData", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DataResponses",
+    })
+end
+
+--- Returns a page iterator for getCapacityManagerMetricData.
+function M.pages_get_capacity_manager_metric_data(client, input)
+    return paginator.pages(client, "getCapacityManagerMetricData", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MetricDataResults",
+    })
+end
+
+--- Returns an item iterator for getCapacityManagerMetricData.
+function M.items_get_capacity_manager_metric_data(client, input)
+    return paginator.items(client, "getCapacityManagerMetricData", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MetricDataResults",
+    })
+end
+
+--- Returns a page iterator for getCapacityManagerMetricDimensions.
+function M.pages_get_capacity_manager_metric_dimensions(client, input)
+    return paginator.pages(client, "getCapacityManagerMetricDimensions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MetricDimensionResults",
+    })
+end
+
+--- Returns an item iterator for getCapacityManagerMetricDimensions.
+function M.items_get_capacity_manager_metric_dimensions(client, input)
+    return paginator.items(client, "getCapacityManagerMetricDimensions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MetricDimensionResults",
+    })
+end
+
+--- Returns a page iterator for getCapacityManagerMonitoredTagKeys.
+function M.pages_get_capacity_manager_monitored_tag_keys(client, input)
+    return paginator.pages(client, "getCapacityManagerMonitoredTagKeys", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityManagerTagKeys",
+    })
+end
+
+--- Returns an item iterator for getCapacityManagerMonitoredTagKeys.
+function M.items_get_capacity_manager_monitored_tag_keys(client, input)
+    return paginator.items(client, "getCapacityManagerMonitoredTagKeys", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityManagerTagKeys",
+    })
+end
+
+--- Returns a page iterator for getGroupsForCapacityReservation.
+function M.pages_get_groups_for_capacity_reservation(client, input)
+    return paginator.pages(client, "getGroupsForCapacityReservation", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityReservationGroups",
+    })
+end
+
+--- Returns an item iterator for getGroupsForCapacityReservation.
+function M.items_get_groups_for_capacity_reservation(client, input)
+    return paginator.items(client, "getGroupsForCapacityReservation", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityReservationGroups",
+    })
+end
+
+--- Returns a page iterator for getInstanceTypesFromInstanceRequirements.
+function M.pages_get_instance_types_from_instance_requirements(client, input)
+    return paginator.pages(client, "getInstanceTypesFromInstanceRequirements", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InstanceTypes",
+    })
+end
+
+--- Returns an item iterator for getInstanceTypesFromInstanceRequirements.
+function M.items_get_instance_types_from_instance_requirements(client, input)
+    return paginator.items(client, "getInstanceTypesFromInstanceRequirements", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InstanceTypes",
+    })
+end
+
+--- Returns a page iterator for getIpamAddressHistory.
+function M.pages_get_ipam_address_history(client, input)
+    return paginator.pages(client, "getIpamAddressHistory", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "HistoryRecords",
+    })
+end
+
+--- Returns an item iterator for getIpamAddressHistory.
+function M.items_get_ipam_address_history(client, input)
+    return paginator.items(client, "getIpamAddressHistory", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "HistoryRecords",
+    })
+end
+
+--- Returns a page iterator for getIpamDiscoveredAccounts.
+function M.pages_get_ipam_discovered_accounts(client, input)
+    return paginator.pages(client, "getIpamDiscoveredAccounts", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamDiscoveredAccounts",
+    })
+end
+
+--- Returns an item iterator for getIpamDiscoveredAccounts.
+function M.items_get_ipam_discovered_accounts(client, input)
+    return paginator.items(client, "getIpamDiscoveredAccounts", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamDiscoveredAccounts",
+    })
+end
+
+--- Returns a page iterator for getIpamDiscoveredResourceCidrs.
+function M.pages_get_ipam_discovered_resource_cidrs(client, input)
+    return paginator.pages(client, "getIpamDiscoveredResourceCidrs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamDiscoveredResourceCidrs",
+    })
+end
+
+--- Returns an item iterator for getIpamDiscoveredResourceCidrs.
+function M.items_get_ipam_discovered_resource_cidrs(client, input)
+    return paginator.items(client, "getIpamDiscoveredResourceCidrs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamDiscoveredResourceCidrs",
+    })
+end
+
+--- Returns a page iterator for getIpamPoolAllocations.
+function M.pages_get_ipam_pool_allocations(client, input)
+    return paginator.pages(client, "getIpamPoolAllocations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamPoolAllocations",
+    })
+end
+
+--- Returns an item iterator for getIpamPoolAllocations.
+function M.items_get_ipam_pool_allocations(client, input)
+    return paginator.items(client, "getIpamPoolAllocations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamPoolAllocations",
+    })
+end
+
+--- Returns a page iterator for getIpamPoolCidrs.
+function M.pages_get_ipam_pool_cidrs(client, input)
+    return paginator.pages(client, "getIpamPoolCidrs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamPoolCidrs",
+    })
+end
+
+--- Returns an item iterator for getIpamPoolCidrs.
+function M.items_get_ipam_pool_cidrs(client, input)
+    return paginator.items(client, "getIpamPoolCidrs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamPoolCidrs",
+    })
+end
+
+--- Returns a page iterator for getIpamPrefixListResolverRules.
+function M.pages_get_ipam_prefix_list_resolver_rules(client, input)
+    return paginator.pages(client, "getIpamPrefixListResolverRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Rules",
+    })
+end
+
+--- Returns an item iterator for getIpamPrefixListResolverRules.
+function M.items_get_ipam_prefix_list_resolver_rules(client, input)
+    return paginator.items(client, "getIpamPrefixListResolverRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Rules",
+    })
+end
+
+--- Returns a page iterator for getIpamPrefixListResolverVersionEntries.
+function M.pages_get_ipam_prefix_list_resolver_version_entries(client, input)
+    return paginator.pages(client, "getIpamPrefixListResolverVersionEntries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Entries",
+    })
+end
+
+--- Returns an item iterator for getIpamPrefixListResolverVersionEntries.
+function M.items_get_ipam_prefix_list_resolver_version_entries(client, input)
+    return paginator.items(client, "getIpamPrefixListResolverVersionEntries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Entries",
+    })
+end
+
+--- Returns a page iterator for getIpamPrefixListResolverVersions.
+function M.pages_get_ipam_prefix_list_resolver_versions(client, input)
+    return paginator.pages(client, "getIpamPrefixListResolverVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamPrefixListResolverVersions",
+    })
+end
+
+--- Returns an item iterator for getIpamPrefixListResolverVersions.
+function M.items_get_ipam_prefix_list_resolver_versions(client, input)
+    return paginator.items(client, "getIpamPrefixListResolverVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamPrefixListResolverVersions",
+    })
+end
+
+--- Returns a page iterator for getIpamResourceCidrs.
+function M.pages_get_ipam_resource_cidrs(client, input)
+    return paginator.pages(client, "getIpamResourceCidrs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamResourceCidrs",
+    })
+end
+
+--- Returns an item iterator for getIpamResourceCidrs.
+function M.items_get_ipam_resource_cidrs(client, input)
+    return paginator.items(client, "getIpamResourceCidrs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamResourceCidrs",
+    })
+end
+
+--- Returns a page iterator for getManagedPrefixListAssociations.
+function M.pages_get_managed_prefix_list_associations(client, input)
+    return paginator.pages(client, "getManagedPrefixListAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "PrefixListAssociations",
+    })
+end
+
+--- Returns an item iterator for getManagedPrefixListAssociations.
+function M.items_get_managed_prefix_list_associations(client, input)
+    return paginator.items(client, "getManagedPrefixListAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "PrefixListAssociations",
+    })
+end
+
+--- Returns a page iterator for getManagedPrefixListEntries.
+function M.pages_get_managed_prefix_list_entries(client, input)
+    return paginator.pages(client, "getManagedPrefixListEntries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Entries",
+    })
+end
+
+--- Returns an item iterator for getManagedPrefixListEntries.
+function M.items_get_managed_prefix_list_entries(client, input)
+    return paginator.items(client, "getManagedPrefixListEntries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Entries",
+    })
+end
+
+--- Returns a page iterator for getNetworkInsightsAccessScopeAnalysisFindings.
+function M.pages_get_network_insights_access_scope_analysis_findings(client, input)
+    return paginator.pages(client, "getNetworkInsightsAccessScopeAnalysisFindings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AnalysisFindings",
+    })
+end
+
+--- Returns an item iterator for getNetworkInsightsAccessScopeAnalysisFindings.
+function M.items_get_network_insights_access_scope_analysis_findings(client, input)
+    return paginator.items(client, "getNetworkInsightsAccessScopeAnalysisFindings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AnalysisFindings",
+    })
+end
+
+--- Returns a page iterator for getSecurityGroupsForVpc.
+function M.pages_get_security_groups_for_vpc(client, input)
+    return paginator.pages(client, "getSecurityGroupsForVpc", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SecurityGroupForVpcs",
+    })
+end
+
+--- Returns an item iterator for getSecurityGroupsForVpc.
+function M.items_get_security_groups_for_vpc(client, input)
+    return paginator.items(client, "getSecurityGroupsForVpc", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SecurityGroupForVpcs",
+    })
+end
+
+--- Returns a page iterator for getSpotPlacementScores.
+function M.pages_get_spot_placement_scores(client, input)
+    return paginator.pages(client, "getSpotPlacementScores", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SpotPlacementScores",
+    })
+end
+
+--- Returns an item iterator for getSpotPlacementScores.
+function M.items_get_spot_placement_scores(client, input)
+    return paginator.items(client, "getSpotPlacementScores", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SpotPlacementScores",
+    })
+end
+
+--- Returns a page iterator for getTransitGatewayAttachmentPropagations.
+function M.pages_get_transit_gateway_attachment_propagations(client, input)
+    return paginator.pages(client, "getTransitGatewayAttachmentPropagations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayAttachmentPropagations",
+    })
+end
+
+--- Returns an item iterator for getTransitGatewayAttachmentPropagations.
+function M.items_get_transit_gateway_attachment_propagations(client, input)
+    return paginator.items(client, "getTransitGatewayAttachmentPropagations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayAttachmentPropagations",
+    })
+end
+
+--- Returns a page iterator for getTransitGatewayMulticastDomainAssociations.
+function M.pages_get_transit_gateway_multicast_domain_associations(client, input)
+    return paginator.pages(client, "getTransitGatewayMulticastDomainAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MulticastDomainAssociations",
+    })
+end
+
+--- Returns an item iterator for getTransitGatewayMulticastDomainAssociations.
+function M.items_get_transit_gateway_multicast_domain_associations(client, input)
+    return paginator.items(client, "getTransitGatewayMulticastDomainAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MulticastDomainAssociations",
+    })
+end
+
+--- Returns a page iterator for getTransitGatewayPolicyTableAssociations.
+function M.pages_get_transit_gateway_policy_table_associations(client, input)
+    return paginator.pages(client, "getTransitGatewayPolicyTableAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Associations",
+    })
+end
+
+--- Returns an item iterator for getTransitGatewayPolicyTableAssociations.
+function M.items_get_transit_gateway_policy_table_associations(client, input)
+    return paginator.items(client, "getTransitGatewayPolicyTableAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Associations",
+    })
+end
+
+--- Returns a page iterator for getTransitGatewayPrefixListReferences.
+function M.pages_get_transit_gateway_prefix_list_references(client, input)
+    return paginator.pages(client, "getTransitGatewayPrefixListReferences", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayPrefixListReferences",
+    })
+end
+
+--- Returns an item iterator for getTransitGatewayPrefixListReferences.
+function M.items_get_transit_gateway_prefix_list_references(client, input)
+    return paginator.items(client, "getTransitGatewayPrefixListReferences", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayPrefixListReferences",
+    })
+end
+
+--- Returns a page iterator for getTransitGatewayRouteTableAssociations.
+function M.pages_get_transit_gateway_route_table_associations(client, input)
+    return paginator.pages(client, "getTransitGatewayRouteTableAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Associations",
+    })
+end
+
+--- Returns an item iterator for getTransitGatewayRouteTableAssociations.
+function M.items_get_transit_gateway_route_table_associations(client, input)
+    return paginator.items(client, "getTransitGatewayRouteTableAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Associations",
+    })
+end
+
+--- Returns a page iterator for getTransitGatewayRouteTablePropagations.
+function M.pages_get_transit_gateway_route_table_propagations(client, input)
+    return paginator.pages(client, "getTransitGatewayRouteTablePropagations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayRouteTablePropagations",
+    })
+end
+
+--- Returns an item iterator for getTransitGatewayRouteTablePropagations.
+function M.items_get_transit_gateway_route_table_propagations(client, input)
+    return paginator.items(client, "getTransitGatewayRouteTablePropagations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayRouteTablePropagations",
+    })
+end
+
+--- Returns a page iterator for getVpnConnectionDeviceTypes.
+function M.pages_get_vpn_connection_device_types(client, input)
+    return paginator.pages(client, "getVpnConnectionDeviceTypes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VpnConnectionDeviceTypes",
+    })
+end
+
+--- Returns an item iterator for getVpnConnectionDeviceTypes.
+function M.items_get_vpn_connection_device_types(client, input)
+    return paginator.items(client, "getVpnConnectionDeviceTypes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "VpnConnectionDeviceTypes",
+    })
+end
+
+--- Returns a page iterator for listImagesInRecycleBin.
+function M.pages_list_images_in_recycle_bin(client, input)
+    return paginator.pages(client, "listImagesInRecycleBin", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Images",
+    })
+end
+
+--- Returns an item iterator for listImagesInRecycleBin.
+function M.items_list_images_in_recycle_bin(client, input)
+    return paginator.items(client, "listImagesInRecycleBin", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Images",
+    })
+end
+
+--- Returns a page iterator for listSnapshotsInRecycleBin.
+function M.pages_list_snapshots_in_recycle_bin(client, input)
+    return paginator.pages(client, "listSnapshotsInRecycleBin", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Snapshots",
+    })
+end
+
+--- Returns an item iterator for listSnapshotsInRecycleBin.
+function M.items_list_snapshots_in_recycle_bin(client, input)
+    return paginator.items(client, "listSnapshotsInRecycleBin", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Snapshots",
+    })
+end
+
+--- Returns a page iterator for searchLocalGatewayRoutes.
+function M.pages_search_local_gateway_routes(client, input)
+    return paginator.pages(client, "searchLocalGatewayRoutes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Routes",
+    })
+end
+
+--- Returns an item iterator for searchLocalGatewayRoutes.
+function M.items_search_local_gateway_routes(client, input)
+    return paginator.items(client, "searchLocalGatewayRoutes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Routes",
+    })
+end
+
+--- Returns a page iterator for searchTransitGatewayMulticastGroups.
+function M.pages_search_transit_gateway_multicast_groups(client, input)
+    return paginator.pages(client, "searchTransitGatewayMulticastGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MulticastGroups",
+    })
+end
+
+--- Returns an item iterator for searchTransitGatewayMulticastGroups.
+function M.items_search_transit_gateway_multicast_groups(client, input)
+    return paginator.items(client, "searchTransitGatewayMulticastGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MulticastGroups",
+    })
+end
+
+--- Returns a page iterator for searchTransitGatewayRoutes.
+function M.pages_search_transit_gateway_routes(client, input)
+    return paginator.pages(client, "searchTransitGatewayRoutes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Routes",
+    })
+end
+
+--- Returns an item iterator for searchTransitGatewayRoutes.
+function M.items_search_transit_gateway_routes(client, input)
+    return paginator.items(client, "searchTransitGatewayRoutes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Routes",
+    })
+end
+
+return M

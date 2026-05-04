@@ -409,6 +409,9 @@ M.CreateReplicationSetInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -548,6 +551,9 @@ M.CreateResponsePlanInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         name = {
             type = "string",
@@ -611,6 +617,9 @@ M.CreateTimelineEventInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         incidentRecordArn = {
             type = "string",
@@ -1702,6 +1711,9 @@ M.StartIncidentInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         responsePlanArn = {
             type = "string",
@@ -1802,6 +1814,9 @@ M.UpdateDeletionProtectionInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1815,6 +1830,9 @@ M.UpdateIncidentRecordInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         arn = {
             type = "string",
@@ -1851,6 +1869,9 @@ M.UpdateRelatedItemsInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         incidentRecordArn = {
             type = "string",
@@ -1894,6 +1915,9 @@ M.UpdateReplicationSetInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1907,6 +1931,9 @@ M.UpdateResponsePlanInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         arn = {
             type = "string",
@@ -1963,6 +1990,9 @@ M.UpdateTimelineEventInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         incidentRecordArn = {
             type = "string",

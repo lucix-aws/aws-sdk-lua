@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AppMesh"
-    cfg.signing_name = "appmesh"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "appmesh", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createGatewayRoute(input, options)
         output_schema = types.CreateGatewayRouteOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createMesh(input, options)
         output_schema = types.CreateMeshOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createRoute(input, options)
         output_schema = types.CreateRouteOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualRouter/{virtualRouterName}/routes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createVirtualGateway(input, options)
         output_schema = types.CreateVirtualGatewayOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualGateways",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createVirtualNode(input, options)
         output_schema = types.CreateVirtualNodeOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualNodes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createVirtualRouter(input, options)
         output_schema = types.CreateVirtualRouterOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualRouters",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createVirtualService(input, options)
         output_schema = types.CreateVirtualServiceOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualServices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteGatewayRoute(input, options)
         output_schema = types.DeleteGatewayRouteOutput,
         http_method = "DELETE",
         http_path = "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes/{gatewayRouteName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteMesh(input, options)
         output_schema = types.DeleteMeshOutput,
         http_method = "DELETE",
         http_path = "/v20190125/meshes/{meshName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteRoute(input, options)
         output_schema = types.DeleteRouteOutput,
         http_method = "DELETE",
         http_path = "/v20190125/meshes/{meshName}/virtualRouter/{virtualRouterName}/routes/{routeName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteVirtualGateway(input, options)
         output_schema = types.DeleteVirtualGatewayOutput,
         http_method = "DELETE",
         http_path = "/v20190125/meshes/{meshName}/virtualGateways/{virtualGatewayName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteVirtualNode(input, options)
         output_schema = types.DeleteVirtualNodeOutput,
         http_method = "DELETE",
         http_path = "/v20190125/meshes/{meshName}/virtualNodes/{virtualNodeName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteVirtualRouter(input, options)
         output_schema = types.DeleteVirtualRouterOutput,
         http_method = "DELETE",
         http_path = "/v20190125/meshes/{meshName}/virtualRouters/{virtualRouterName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteVirtualService(input, options)
         output_schema = types.DeleteVirtualServiceOutput,
         http_method = "DELETE",
         http_path = "/v20190125/meshes/{meshName}/virtualServices/{virtualServiceName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:describeGatewayRoute(input, options)
         output_schema = types.DescribeGatewayRouteOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes/{gatewayRouteName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:describeMesh(input, options)
         output_schema = types.DescribeMeshOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:describeRoute(input, options)
         output_schema = types.DescribeRouteOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualRouter/{virtualRouterName}/routes/{routeName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:describeVirtualGateway(input, options)
         output_schema = types.DescribeVirtualGatewayOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualGateways/{virtualGatewayName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:describeVirtualNode(input, options)
         output_schema = types.DescribeVirtualNodeOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualNodes/{virtualNodeName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:describeVirtualRouter(input, options)
         output_schema = types.DescribeVirtualRouterOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualRouters/{virtualRouterName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:describeVirtualService(input, options)
         output_schema = types.DescribeVirtualServiceOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualServices/{virtualServiceName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listGatewayRoutes(input, options)
         output_schema = types.ListGatewayRoutesOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listMeshes(input, options)
         output_schema = types.ListMeshesOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listRoutes(input, options)
         output_schema = types.ListRoutesOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualRouter/{virtualRouterName}/routes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/v20190125/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listVirtualGateways(input, options)
         output_schema = types.ListVirtualGatewaysOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualGateways",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:listVirtualNodes(input, options)
         output_schema = types.ListVirtualNodesOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualNodes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:listVirtualRouters(input, options)
         output_schema = types.ListVirtualRoutersOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualRouters",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listVirtualServices(input, options)
         output_schema = types.ListVirtualServicesOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualServices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "PUT",
         http_path = "/v20190125/tag",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "PUT",
         http_path = "/v20190125/untag",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:updateGatewayRoute(input, options)
         output_schema = types.UpdateGatewayRouteOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes/{gatewayRouteName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:updateMesh(input, options)
         output_schema = types.UpdateMeshOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:updateRoute(input, options)
         output_schema = types.UpdateRouteOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualRouter/{virtualRouterName}/routes/{routeName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:updateVirtualGateway(input, options)
         output_schema = types.UpdateVirtualGatewayOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualGateways/{virtualGatewayName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:updateVirtualNode(input, options)
         output_schema = types.UpdateVirtualNodeOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualNodes/{virtualNodeName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:updateVirtualRouter(input, options)
         output_schema = types.UpdateVirtualRouterOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualRouters/{virtualRouterName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:updateVirtualService(input, options)
         output_schema = types.UpdateVirtualServiceOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualServices/{virtualServiceName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

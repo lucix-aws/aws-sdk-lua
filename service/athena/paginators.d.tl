@@ -1,0 +1,23 @@
+local record M
+    pages_get_query_results: function(client: table, input: table): function(): table, table
+    pages_list_application_d_p_u_sizes: function(client: table, input: table): function(): table, table
+    pages_list_calculation_executions: function(client: table, input: table): function(): table, table
+    pages_list_capacity_reservations: function(client: table, input: table): function(): table, table
+    pages_list_data_catalogs: function(client: table, input: table): function(): table, table
+    items_list_data_catalogs: function(client: table, input: table): function(): any
+    pages_list_databases: function(client: table, input: table): function(): table, table
+    items_list_databases: function(client: table, input: table): function(): any
+    pages_list_engine_versions: function(client: table, input: table): function(): table, table
+    pages_list_executors: function(client: table, input: table): function(): table, table
+    pages_list_named_queries: function(client: table, input: table): function(): table, table
+    pages_list_prepared_statements: function(client: table, input: table): function(): table, table
+    pages_list_query_executions: function(client: table, input: table): function(): table, table
+    pages_list_sessions: function(client: table, input: table): function(): table, table
+    pages_list_table_metadata: function(client: table, input: table): function(): table, table
+    items_list_table_metadata: function(client: table, input: table): function(): any
+    pages_list_tags_for_resource: function(client: table, input: table): function(): table, table
+    items_list_tags_for_resource: function(client: table, input: table): function(): any
+    pages_list_work_groups: function(client: table, input: table): function(): table, table
+end
+
+return M

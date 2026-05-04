@@ -1,0 +1,57 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listAttacks.
+function M.pages_list_attacks(client, input)
+    return paginator.pages(client, "listAttacks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AttackSummaries",
+    })
+end
+
+--- Returns an item iterator for listAttacks.
+function M.items_list_attacks(client, input)
+    return paginator.items(client, "listAttacks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AttackSummaries",
+    })
+end
+
+--- Returns a page iterator for listProtectionGroups.
+function M.pages_list_protection_groups(client, input)
+    return paginator.pages(client, "listProtectionGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listProtections.
+function M.pages_list_protections(client, input)
+    return paginator.pages(client, "listProtections", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Protections",
+    })
+end
+
+--- Returns an item iterator for listProtections.
+function M.items_list_protections(client, input)
+    return paginator.items(client, "listProtections", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Protections",
+    })
+end
+
+--- Returns a page iterator for listResourcesInProtectionGroup.
+function M.pages_list_resources_in_protection_group(client, input)
+    return paginator.pages(client, "listResourcesInProtectionGroup", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+return M

@@ -1,0 +1,10 @@
+local record M
+    pages_list_namespaces: function(client: table, input: table): function(): table, table
+    items_list_namespaces: function(client: table, input: table): function(): any
+    pages_list_table_buckets: function(client: table, input: table): function(): table, table
+    items_list_table_buckets: function(client: table, input: table): function(): any
+    pages_list_tables: function(client: table, input: table): function(): table, table
+    items_list_tables: function(client: table, input: table): function(): any
+end
+
+return M

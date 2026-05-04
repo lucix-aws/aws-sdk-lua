@@ -1,0 +1,50 @@
+local record M
+    pages_describe_schedule: function(client: table, input: table): function(): table, table
+    items_describe_schedule: function(client: table, input: table): function(): any
+    pages_list_alerts: function(client: table, input: table): function(): table, table
+    items_list_alerts: function(client: table, input: table): function(): any
+    pages_list_channel_placement_groups: function(client: table, input: table): function(): table, table
+    items_list_channel_placement_groups: function(client: table, input: table): function(): any
+    pages_list_channels: function(client: table, input: table): function(): table, table
+    items_list_channels: function(client: table, input: table): function(): any
+    pages_list_cloud_watch_alarm_template_groups: function(client: table, input: table): function(): table, table
+    items_list_cloud_watch_alarm_template_groups: function(client: table, input: table): function(): any
+    pages_list_cloud_watch_alarm_templates: function(client: table, input: table): function(): table, table
+    items_list_cloud_watch_alarm_templates: function(client: table, input: table): function(): any
+    pages_list_cluster_alerts: function(client: table, input: table): function(): table, table
+    items_list_cluster_alerts: function(client: table, input: table): function(): any
+    pages_list_clusters: function(client: table, input: table): function(): table, table
+    items_list_clusters: function(client: table, input: table): function(): any
+    pages_list_event_bridge_rule_template_groups: function(client: table, input: table): function(): table, table
+    items_list_event_bridge_rule_template_groups: function(client: table, input: table): function(): any
+    pages_list_event_bridge_rule_templates: function(client: table, input: table): function(): table, table
+    items_list_event_bridge_rule_templates: function(client: table, input: table): function(): any
+    pages_list_input_device_transfers: function(client: table, input: table): function(): table, table
+    items_list_input_device_transfers: function(client: table, input: table): function(): any
+    pages_list_input_devices: function(client: table, input: table): function(): table, table
+    items_list_input_devices: function(client: table, input: table): function(): any
+    pages_list_input_security_groups: function(client: table, input: table): function(): table, table
+    items_list_input_security_groups: function(client: table, input: table): function(): any
+    pages_list_inputs: function(client: table, input: table): function(): table, table
+    items_list_inputs: function(client: table, input: table): function(): any
+    pages_list_multiplex_alerts: function(client: table, input: table): function(): table, table
+    items_list_multiplex_alerts: function(client: table, input: table): function(): any
+    pages_list_multiplex_programs: function(client: table, input: table): function(): table, table
+    items_list_multiplex_programs: function(client: table, input: table): function(): any
+    pages_list_multiplexes: function(client: table, input: table): function(): table, table
+    items_list_multiplexes: function(client: table, input: table): function(): any
+    pages_list_networks: function(client: table, input: table): function(): table, table
+    items_list_networks: function(client: table, input: table): function(): any
+    pages_list_nodes: function(client: table, input: table): function(): table, table
+    items_list_nodes: function(client: table, input: table): function(): any
+    pages_list_offerings: function(client: table, input: table): function(): table, table
+    items_list_offerings: function(client: table, input: table): function(): any
+    pages_list_reservations: function(client: table, input: table): function(): table, table
+    items_list_reservations: function(client: table, input: table): function(): any
+    pages_list_sdi_sources: function(client: table, input: table): function(): table, table
+    items_list_sdi_sources: function(client: table, input: table): function(): any
+    pages_list_signal_maps: function(client: table, input: table): function(): table, table
+    items_list_signal_maps: function(client: table, input: table): function(): any
+end
+
+return M

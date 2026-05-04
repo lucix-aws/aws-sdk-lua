@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSXRay"
-    cfg.signing_name = "xray"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "xray", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:batchGetTraces(input, options)
         output_schema = types.BatchGetTracesOutput,
         http_method = "POST",
         http_path = "/Traces",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:cancelTraceRetrieval(input, options)
         output_schema = types.CancelTraceRetrievalOutput,
         http_method = "POST",
         http_path = "/CancelTraceRetrieval",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createGroup(input, options)
         output_schema = types.CreateGroupOutput,
         http_method = "POST",
         http_path = "/CreateGroup",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createSamplingRule(input, options)
         output_schema = types.CreateSamplingRuleOutput,
         http_method = "POST",
         http_path = "/CreateSamplingRule",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteGroup(input, options)
         output_schema = types.DeleteGroupOutput,
         http_method = "POST",
         http_path = "/DeleteGroup",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteResourcePolicy(input, options)
         output_schema = types.DeleteResourcePolicyOutput,
         http_method = "POST",
         http_path = "/DeleteResourcePolicy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteSamplingRule(input, options)
         output_schema = types.DeleteSamplingRuleOutput,
         http_method = "POST",
         http_path = "/DeleteSamplingRule",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:getEncryptionConfig(input, options)
         output_schema = types.GetEncryptionConfigOutput,
         http_method = "POST",
         http_path = "/EncryptionConfig",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getGroup(input, options)
         output_schema = types.GetGroupOutput,
         http_method = "POST",
         http_path = "/GetGroup",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:getGroups(input, options)
         output_schema = types.GetGroupsOutput,
         http_method = "POST",
         http_path = "/Groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getIndexingRules(input, options)
         output_schema = types.GetIndexingRulesOutput,
         http_method = "POST",
         http_path = "/GetIndexingRules",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getInsight(input, options)
         output_schema = types.GetInsightOutput,
         http_method = "POST",
         http_path = "/Insight",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getInsightEvents(input, options)
         output_schema = types.GetInsightEventsOutput,
         http_method = "POST",
         http_path = "/InsightEvents",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getInsightImpactGraph(input, options)
         output_schema = types.GetInsightImpactGraphOutput,
         http_method = "POST",
         http_path = "/InsightImpactGraph",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getInsightSummaries(input, options)
         output_schema = types.GetInsightSummariesOutput,
         http_method = "POST",
         http_path = "/InsightSummaries",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getRetrievedTracesGraph(input, options)
         output_schema = types.GetRetrievedTracesGraphOutput,
         http_method = "POST",
         http_path = "/GetRetrievedTracesGraph",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getSamplingRules(input, options)
         output_schema = types.GetSamplingRulesOutput,
         http_method = "POST",
         http_path = "/GetSamplingRules",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getSamplingStatisticSummaries(input, options)
         output_schema = types.GetSamplingStatisticSummariesOutput,
         http_method = "POST",
         http_path = "/SamplingStatisticSummaries",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getSamplingTargets(input, options)
         output_schema = types.GetSamplingTargetsOutput,
         http_method = "POST",
         http_path = "/SamplingTargets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:getServiceGraph(input, options)
         output_schema = types.GetServiceGraphOutput,
         http_method = "POST",
         http_path = "/ServiceGraph",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:getTimeSeriesServiceStatistics(input, options)
         output_schema = types.GetTimeSeriesServiceStatisticsOutput,
         http_method = "POST",
         http_path = "/TimeSeriesServiceStatistics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:getTraceGraph(input, options)
         output_schema = types.GetTraceGraphOutput,
         http_method = "POST",
         http_path = "/TraceGraph",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:getTraceSegmentDestination(input, options)
         output_schema = types.GetTraceSegmentDestinationOutput,
         http_method = "POST",
         http_path = "/GetTraceSegmentDestination",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:getTraceSummaries(input, options)
         output_schema = types.GetTraceSummariesOutput,
         http_method = "POST",
         http_path = "/TraceSummaries",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listResourcePolicies(input, options)
         output_schema = types.ListResourcePoliciesOutput,
         http_method = "POST",
         http_path = "/ListResourcePolicies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listRetrievedTraces(input, options)
         output_schema = types.ListRetrievedTracesOutput,
         http_method = "POST",
         http_path = "/ListRetrievedTraces",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/ListTagsForResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:putEncryptionConfig(input, options)
         output_schema = types.PutEncryptionConfigOutput,
         http_method = "POST",
         http_path = "/PutEncryptionConfig",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:putResourcePolicy(input, options)
         output_schema = types.PutResourcePolicyOutput,
         http_method = "POST",
         http_path = "/PutResourcePolicy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:putTelemetryRecords(input, options)
         output_schema = types.PutTelemetryRecordsOutput,
         http_method = "POST",
         http_path = "/TelemetryRecords",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:putTraceSegments(input, options)
         output_schema = types.PutTraceSegmentsOutput,
         http_method = "POST",
         http_path = "/TraceSegments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:startTraceRetrieval(input, options)
         output_schema = types.StartTraceRetrievalOutput,
         http_method = "POST",
         http_path = "/StartTraceRetrieval",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/TagResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/UntagResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:updateGroup(input, options)
         output_schema = types.UpdateGroupOutput,
         http_method = "POST",
         http_path = "/UpdateGroup",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:updateIndexingRule(input, options)
         output_schema = types.UpdateIndexingRuleOutput,
         http_method = "POST",
         http_path = "/UpdateIndexingRule",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:updateSamplingRule(input, options)
         output_schema = types.UpdateSamplingRuleOutput,
         http_method = "POST",
         http_path = "/UpdateSamplingRule",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:updateTraceSegmentDestination(input, options)
         output_schema = types.UpdateTraceSegmentDestinationOutput,
         http_method = "POST",
         http_path = "/UpdateTraceSegmentDestination",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

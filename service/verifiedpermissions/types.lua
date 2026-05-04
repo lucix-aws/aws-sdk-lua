@@ -191,12 +191,14 @@ M.BatchGetPolicyOutputItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedDate = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         name = {
@@ -757,6 +759,9 @@ M.CreateIdentitySourceInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         policyStoreId = {
             type = "string",
@@ -780,6 +785,7 @@ M.CreateIdentitySourceOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         identitySourceId = {
@@ -792,6 +798,7 @@ M.CreateIdentitySourceOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         policyStoreId = {
@@ -873,6 +880,9 @@ M.CreatePolicyInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         policyStoreId = {
             type = "string",
@@ -925,12 +935,14 @@ M.CreatePolicyOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedDate = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         effect = {
@@ -995,6 +1007,9 @@ M.CreatePolicyStoreInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         validationSettings = setmetatable({ traits = {
             required = true,
@@ -1033,12 +1048,14 @@ M.CreatePolicyStoreOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedDate = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1087,6 +1104,7 @@ M.CreatePolicyStoreAliasOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1097,6 +1115,9 @@ M.CreatePolicyTemplateInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         policyStoreId = {
             type = "string",
@@ -1138,12 +1159,14 @@ M.CreatePolicyTemplateOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedDate = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1346,6 +1369,7 @@ M.GetIdentitySourceOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         details = M.IdentitySourceDetails,
@@ -1359,6 +1383,7 @@ M.GetIdentitySourceOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         policyStoreId = {
@@ -1429,12 +1454,14 @@ M.GetPolicyOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedDate = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         effect = {
@@ -1486,12 +1513,14 @@ M.GetPolicyStoreOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedDate = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         description = {
@@ -1549,6 +1578,7 @@ M.GetPolicyStoreAliasOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         state = {
@@ -1606,12 +1636,14 @@ M.GetPolicyTemplateOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedDate = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         name = {
@@ -1651,12 +1683,14 @@ M.GetSchemaOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedDate = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         namespaces = {
@@ -1723,6 +1757,7 @@ M.IdentitySourceItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         details = M.IdentitySourceItemDetails,
@@ -1736,6 +1771,7 @@ M.IdentitySourceItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         policyStoreId = {
@@ -1915,6 +1951,7 @@ M.UpdateIdentitySourceOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         identitySourceId = {
@@ -1927,6 +1964,7 @@ M.UpdateIdentitySourceOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         policyStoreId = {
@@ -2089,12 +2127,14 @@ M.PolicyItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedDate = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         effect = {
@@ -2172,6 +2212,7 @@ M.PolicyStoreAliasItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         state = {
@@ -2230,10 +2271,14 @@ M.PolicyStoreItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         description = {
             type = "string",
@@ -2297,12 +2342,14 @@ M.PolicyTemplateItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedDate = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         name = {
@@ -2425,12 +2472,14 @@ M.UpdatePolicyOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedDate = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         effect = {
@@ -2488,12 +2537,14 @@ M.UpdatePolicyTemplateOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedDate = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2543,12 +2594,14 @@ M.PutSchemaOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedDate = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2594,12 +2647,14 @@ M.UpdatePolicyStoreOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedDate = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },

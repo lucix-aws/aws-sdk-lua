@@ -1,0 +1,27 @@
+local record M
+    pages_list_alarm_recommendations: function(client: table, input: table): function(): table, table
+    pages_list_app_assessment_compliance_drifts: function(client: table, input: table): function(): table, table
+    pages_list_app_assessment_resource_drifts: function(client: table, input: table): function(): table, table
+    items_list_app_assessment_resource_drifts: function(client: table, input: table): function(): any
+    pages_list_app_assessments: function(client: table, input: table): function(): table, table
+    pages_list_app_component_compliances: function(client: table, input: table): function(): table, table
+    pages_list_app_component_recommendations: function(client: table, input: table): function(): table, table
+    pages_list_app_input_sources: function(client: table, input: table): function(): table, table
+    pages_list_app_version_app_components: function(client: table, input: table): function(): table, table
+    pages_list_app_version_resource_mappings: function(client: table, input: table): function(): table, table
+    pages_list_app_version_resources: function(client: table, input: table): function(): table, table
+    pages_list_app_versions: function(client: table, input: table): function(): table, table
+    pages_list_apps: function(client: table, input: table): function(): table, table
+    pages_list_metrics: function(client: table, input: table): function(): table, table
+    items_list_metrics: function(client: table, input: table): function(): any
+    pages_list_recommendation_templates: function(client: table, input: table): function(): table, table
+    pages_list_resiliency_policies: function(client: table, input: table): function(): table, table
+    pages_list_resource_grouping_recommendations: function(client: table, input: table): function(): table, table
+    items_list_resource_grouping_recommendations: function(client: table, input: table): function(): any
+    pages_list_sop_recommendations: function(client: table, input: table): function(): table, table
+    pages_list_suggested_resiliency_policies: function(client: table, input: table): function(): table, table
+    pages_list_test_recommendations: function(client: table, input: table): function(): table, table
+    pages_list_unsupported_app_version_resources: function(client: table, input: table): function(): table, table
+end
+
+return M

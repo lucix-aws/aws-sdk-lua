@@ -5455,41 +5455,41 @@ local record InvalidDBInstanceStateFault
     message: string
 end
 
-local type IntegrationStatus = "creating" | "active" | "modifying" | "failed" | "deleting" | "syncing" | "needs_attention"
-
 local type CustomEngineVersionStatus = "available" | "inactive" | "inactive-except-restore"
-
-local type ExportSourceType = "SNAPSHOT" | "CLUSTER"
-
-local type EngineFamily = "MYSQL" | "POSTGRESQL" | "SQLSERVER"
-
-local type AutomationMode = "full" | "all-paused"
 
 local type DatabaseInsightsMode = "standard" | "advanced"
 
-local type ClusterScalabilityType = "standard" | "limitless"
+local type AutomationMode = "full" | "all-paused"
 
-local type DefaultAuthScheme = "IAM_AUTH" | "NONE"
+local type IntegrationStatus = "creating" | "active" | "modifying" | "failed" | "deleting" | "syncing" | "needs_attention"
 
-local type MasterUserAuthenticationType = "password" | "iam-db-auth"
-
-local type ActivityStreamPolicyStatus = "locked" | "unlocked" | "locking-policy" | "unlocking-policy"
-
-local type ReplicaMode = "open-read-only" | "mounted"
-
-local type SourceType = "db-instance" | "db-parameter-group" | "db-security-group" | "db-snapshot" | "db-cluster" | "db-cluster-snapshot" | "custom-engine-version" | "db-proxy" | "blue-green-deployment" | "db-shard-group" | "zero-etl"
-
-local type AuditPolicyState = "locked" | "unlocked"
-
-local type ActivityStreamMode = "sync" | "async"
-
-local type EndpointNetworkType = "IPV4" | "IPV6" | "DUAL"
-
-local type ActivityStreamStatus = "stopped" | "starting" | "started" | "stopping"
+local type TargetConnectionNetworkType = "IPV4" | "IPV6"
 
 local type DBProxyEndpointTargetRole = "READ_WRITE" | "READ_ONLY"
 
-local type TargetConnectionNetworkType = "IPV4" | "IPV6"
+local type AuditPolicyState = "locked" | "unlocked"
+
+local type EndpointNetworkType = "IPV4" | "IPV6" | "DUAL"
+
+local type ExportSourceType = "SNAPSHOT" | "CLUSTER"
+
+local type ActivityStreamMode = "sync" | "async"
+
+local type ReplicaMode = "open-read-only" | "mounted"
+
+local type ActivityStreamStatus = "stopped" | "starting" | "started" | "stopping"
+
+local type SourceType = "db-instance" | "db-parameter-group" | "db-security-group" | "db-snapshot" | "db-cluster" | "db-cluster-snapshot" | "custom-engine-version" | "db-proxy" | "blue-green-deployment" | "db-shard-group" | "zero-etl"
+
+local type EngineFamily = "MYSQL" | "POSTGRESQL" | "SQLSERVER"
+
+local type ActivityStreamPolicyStatus = "locked" | "unlocked" | "locking-policy" | "unlocking-policy"
+
+local type ClusterScalabilityType = "standard" | "limitless"
+
+local type MasterUserAuthenticationType = "password" | "iam-db-auth"
+
+local type DefaultAuthScheme = "IAM_AUTH" | "NONE"
 
 local record M
     AddRoleToDBClusterInput: AddRoleToDBClusterInput

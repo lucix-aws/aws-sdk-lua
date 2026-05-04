@@ -308,6 +308,7 @@ M.ResourceResult = {
             traits = {
                 json_name = "lastCheckedTimestamp",
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Readiness = {
@@ -377,6 +378,7 @@ M.RuleResult = {
             traits = {
                 json_name = "lastCheckedTimestamp",
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Messages = {
@@ -888,6 +890,7 @@ M.GetArchitectureRecommendationsOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastAuditTimestamp",
+                timestamp_format = "date-time",
             },
         },
         NextToken = {

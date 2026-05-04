@@ -1815,23 +1815,23 @@ end
 
 local type FileExistsBehavior = "DISALLOW" | "OVERWRITE" | "RETAIN"
 
-local type OutdatedInstancesStrategy = "UPDATE" | "IGNORE"
+local type ComputePlatform = "Server" | "Lambda" | "ECS"
+
+local type DeploymentWaitType = "READY_WAIT" | "TERMINATION_WAIT"
+
+local type SortOrder = "ascending" | "descending"
+
+local type ApplicationRevisionSortBy = "registerTime" | "firstUsedTime" | "lastUsedTime"
 
 local type LifecycleEventStatus = "Pending" | "InProgress" | "Succeeded" | "Failed" | "Skipped" | "Unknown"
+
+local type ListStateFilterAction = "include" | "exclude" | "ignore"
 
 local type StopStatus = "Pending" | "Succeeded"
 
 local type RegistrationStatus = "Registered" | "Deregistered"
 
-local type ListStateFilterAction = "include" | "exclude" | "ignore"
-
-local type SortOrder = "ascending" | "descending"
-
-local type ComputePlatform = "Server" | "Lambda" | "ECS"
-
-local type DeploymentWaitType = "READY_WAIT" | "TERMINATION_WAIT"
-
-local type ApplicationRevisionSortBy = "registerTime" | "firstUsedTime" | "lastUsedTime"
+local type OutdatedInstancesStrategy = "UPDATE" | "IGNORE"
 
 local record M
     AddTagsToOnPremisesInstancesInput: AddTagsToOnPremisesInstancesInput

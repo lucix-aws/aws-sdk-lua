@@ -1,0 +1,16 @@
+local record M
+    pages_list_phone_number_orders: function(client: table, input: table): function(): table, table
+    pages_list_phone_numbers: function(client: table, input: table): function(): table, table
+    pages_list_proxy_sessions: function(client: table, input: table): function(): table, table
+    pages_list_sip_media_applications: function(client: table, input: table): function(): table, table
+    items_list_sip_media_applications: function(client: table, input: table): function(): any
+    pages_list_sip_rules: function(client: table, input: table): function(): table, table
+    items_list_sip_rules: function(client: table, input: table): function(): any
+    pages_list_voice_connector_groups: function(client: table, input: table): function(): table, table
+    pages_list_voice_connectors: function(client: table, input: table): function(): table, table
+    pages_list_voice_profile_domains: function(client: table, input: table): function(): table, table
+    pages_list_voice_profiles: function(client: table, input: table): function(): table, table
+    pages_search_available_phone_numbers: function(client: table, input: table): function(): table, table
+end
+
+return M

@@ -1,0 +1,47 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listCodeReviews.
+function M.pages_list_code_reviews(client, input)
+    return paginator.pages(client, "listCodeReviews", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listRecommendationFeedback.
+function M.pages_list_recommendation_feedback(client, input)
+    return paginator.pages(client, "listRecommendationFeedback", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listRecommendations.
+function M.pages_list_recommendations(client, input)
+    return paginator.pages(client, "listRecommendations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listRepositoryAssociations.
+function M.pages_list_repository_associations(client, input)
+    return paginator.pages(client, "listRepositoryAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RepositoryAssociationSummaries",
+    })
+end
+
+--- Returns an item iterator for listRepositoryAssociations.
+function M.items_list_repository_associations(client, input)
+    return paginator.items(client, "listRepositoryAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RepositoryAssociationSummaries",
+    })
+end
+
+return M

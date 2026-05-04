@@ -1,0 +1,12 @@
+local record M
+    pages_list_connector_operations: function(client: table, input: table): function(): table, table
+    items_list_connector_operations: function(client: table, input: table): function(): any
+    pages_list_connectors: function(client: table, input: table): function(): table, table
+    items_list_connectors: function(client: table, input: table): function(): any
+    pages_list_custom_plugins: function(client: table, input: table): function(): table, table
+    items_list_custom_plugins: function(client: table, input: table): function(): any
+    pages_list_worker_configurations: function(client: table, input: table): function(): table, table
+    items_list_worker_configurations: function(client: table, input: table): function(): any
+end
+
+return M

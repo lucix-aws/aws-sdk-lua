@@ -1,0 +1,131 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for describeTable.
+function M.pages_describe_table(client, input)
+    return paginator.pages(client, "describeTable", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ColumnList",
+    })
+end
+
+--- Returns an item iterator for describeTable.
+function M.items_describe_table(client, input)
+    return paginator.items(client, "describeTable", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ColumnList",
+    })
+end
+
+--- Returns a page iterator for getStatementResult.
+function M.pages_get_statement_result(client, input)
+    return paginator.pages(client, "getStatementResult", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Records",
+    })
+end
+
+--- Returns an item iterator for getStatementResult.
+function M.items_get_statement_result(client, input)
+    return paginator.items(client, "getStatementResult", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Records",
+    })
+end
+
+--- Returns a page iterator for getStatementResultV2.
+function M.pages_get_statement_result_v2(client, input)
+    return paginator.pages(client, "getStatementResultV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Records",
+    })
+end
+
+--- Returns an item iterator for getStatementResultV2.
+function M.items_get_statement_result_v2(client, input)
+    return paginator.items(client, "getStatementResultV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Records",
+    })
+end
+
+--- Returns a page iterator for listDatabases.
+function M.pages_list_databases(client, input)
+    return paginator.pages(client, "listDatabases", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Databases",
+    })
+end
+
+--- Returns an item iterator for listDatabases.
+function M.items_list_databases(client, input)
+    return paginator.items(client, "listDatabases", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Databases",
+    })
+end
+
+--- Returns a page iterator for listSchemas.
+function M.pages_list_schemas(client, input)
+    return paginator.pages(client, "listSchemas", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Schemas",
+    })
+end
+
+--- Returns an item iterator for listSchemas.
+function M.items_list_schemas(client, input)
+    return paginator.items(client, "listSchemas", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Schemas",
+    })
+end
+
+--- Returns a page iterator for listStatements.
+function M.pages_list_statements(client, input)
+    return paginator.pages(client, "listStatements", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Statements",
+    })
+end
+
+--- Returns an item iterator for listStatements.
+function M.items_list_statements(client, input)
+    return paginator.items(client, "listStatements", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Statements",
+    })
+end
+
+--- Returns a page iterator for listTables.
+function M.pages_list_tables(client, input)
+    return paginator.pages(client, "listTables", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Tables",
+    })
+end
+
+--- Returns an item iterator for listTables.
+function M.items_list_tables(client, input)
+    return paginator.items(client, "listTables", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Tables",
+    })
+end
+
+return M

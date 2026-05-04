@@ -1,0 +1,14 @@
+local record M
+    pages_list_identity_providers: function(client: table, input: table): function(): table, table
+    items_list_identity_providers: function(client: table, input: table): function(): any
+    pages_list_instances: function(client: table, input: table): function(): table, table
+    items_list_instances: function(client: table, input: table): function(): any
+    pages_list_license_server_endpoints: function(client: table, input: table): function(): table, table
+    items_list_license_server_endpoints: function(client: table, input: table): function(): any
+    pages_list_product_subscriptions: function(client: table, input: table): function(): table, table
+    items_list_product_subscriptions: function(client: table, input: table): function(): any
+    pages_list_user_associations: function(client: table, input: table): function(): table, table
+    items_list_user_associations: function(client: table, input: table): function(): any
+end
+
+return M

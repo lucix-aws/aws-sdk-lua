@@ -1,0 +1,23 @@
+local record M
+    pages_get_query_results: function(client: table, input: table): function(): table, table
+    pages_list_channels: function(client: table, input: table): function(): table, table
+    pages_list_event_data_stores: function(client: table, input: table): function(): table, table
+    pages_list_import_failures: function(client: table, input: table): function(): table, table
+    items_list_import_failures: function(client: table, input: table): function(): any
+    pages_list_imports: function(client: table, input: table): function(): table, table
+    items_list_imports: function(client: table, input: table): function(): any
+    pages_list_insights_data: function(client: table, input: table): function(): table, table
+    items_list_insights_data: function(client: table, input: table): function(): any
+    pages_list_insights_metric_data: function(client: table, input: table): function(): table, table
+    pages_list_public_keys: function(client: table, input: table): function(): table, table
+    items_list_public_keys: function(client: table, input: table): function(): any
+    pages_list_queries: function(client: table, input: table): function(): table, table
+    pages_list_tags: function(client: table, input: table): function(): table, table
+    items_list_tags: function(client: table, input: table): function(): any
+    pages_list_trails: function(client: table, input: table): function(): table, table
+    items_list_trails: function(client: table, input: table): function(): any
+    pages_lookup_events: function(client: table, input: table): function(): table, table
+    items_lookup_events: function(client: table, input: table): function(): any
+end
+
+return M

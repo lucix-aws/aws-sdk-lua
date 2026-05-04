@@ -565,6 +565,9 @@ M.CreateApplicationInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         attachmentsConfiguration = M.AttachmentsConfiguration,
         qAppsConfiguration = M.QAppsConfiguration,
@@ -1063,6 +1066,9 @@ M.CreateIndexInput = {
         capacityConfiguration = M.IndexCapacityConfiguration,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1300,6 +1306,9 @@ M.CreateDataSourceInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         documentEnrichmentConfiguration = M.DocumentEnrichmentConfiguration,
         mediaExtractionConfiguration = M.MediaExtractionConfiguration,
@@ -1943,6 +1952,9 @@ M.CreatePluginInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2333,6 +2345,9 @@ M.CreateRetrieverInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "list",
@@ -2674,6 +2689,9 @@ M.CreateWebExperienceInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         identityProviderConfiguration = M.IdentityProviderConfiguration,
         browserExtensionConfiguration = M.BrowserExtensionConfiguration,
@@ -4108,6 +4126,9 @@ M.CreateChatResponseConfigurationInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         responseConfigurations = {
             type = "map",
@@ -4175,6 +4196,9 @@ M.CreateSubscriptionInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -4233,6 +4257,9 @@ M.CreateUserInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -5926,6 +5953,9 @@ M.UpdateChatControlsConfigurationInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         responseScope = {
             type = "string",
@@ -5979,6 +6009,9 @@ M.UpdateChatResponseConfigurationInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -6146,6 +6179,9 @@ M.ChatSyncInput = {
         chatModeConfiguration = M.ChatModeConfiguration,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -6257,6 +6293,7 @@ M.ChatInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
         inputStream = setmetatable({ traits = {
@@ -6290,6 +6327,9 @@ M.CreateDataAccessorInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         displayName = {
             type = "string",

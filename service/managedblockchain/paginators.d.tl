@@ -1,0 +1,12 @@
+local record M
+    pages_list_accessors: function(client: table, input: table): function(): table, table
+    items_list_accessors: function(client: table, input: table): function(): any
+    pages_list_invitations: function(client: table, input: table): function(): table, table
+    pages_list_members: function(client: table, input: table): function(): table, table
+    pages_list_networks: function(client: table, input: table): function(): table, table
+    pages_list_nodes: function(client: table, input: table): function(): table, table
+    pages_list_proposal_votes: function(client: table, input: table): function(): table, table
+    pages_list_proposals: function(client: table, input: table): function(): table, table
+end
+
+return M

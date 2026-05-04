@@ -1,0 +1,121 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for describeAddresses.
+function M.pages_describe_addresses(client, input)
+    return paginator.pages(client, "describeAddresses", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Addresses",
+    })
+end
+
+--- Returns an item iterator for describeAddresses.
+function M.items_describe_addresses(client, input)
+    return paginator.items(client, "describeAddresses", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Addresses",
+    })
+end
+
+--- Returns a page iterator for listClusterJobs.
+function M.pages_list_cluster_jobs(client, input)
+    return paginator.pages(client, "listClusterJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "JobListEntries",
+    })
+end
+
+--- Returns an item iterator for listClusterJobs.
+function M.items_list_cluster_jobs(client, input)
+    return paginator.items(client, "listClusterJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "JobListEntries",
+    })
+end
+
+--- Returns a page iterator for listClusters.
+function M.pages_list_clusters(client, input)
+    return paginator.pages(client, "listClusters", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ClusterListEntries",
+    })
+end
+
+--- Returns an item iterator for listClusters.
+function M.items_list_clusters(client, input)
+    return paginator.items(client, "listClusters", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ClusterListEntries",
+    })
+end
+
+--- Returns a page iterator for listCompatibleImages.
+function M.pages_list_compatible_images(client, input)
+    return paginator.pages(client, "listCompatibleImages", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CompatibleImages",
+    })
+end
+
+--- Returns an item iterator for listCompatibleImages.
+function M.items_list_compatible_images(client, input)
+    return paginator.items(client, "listCompatibleImages", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CompatibleImages",
+    })
+end
+
+--- Returns a page iterator for listJobs.
+function M.pages_list_jobs(client, input)
+    return paginator.pages(client, "listJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "JobListEntries",
+    })
+end
+
+--- Returns an item iterator for listJobs.
+function M.items_list_jobs(client, input)
+    return paginator.items(client, "listJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "JobListEntries",
+    })
+end
+
+--- Returns a page iterator for listLongTermPricing.
+function M.pages_list_long_term_pricing(client, input)
+    return paginator.pages(client, "listLongTermPricing", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LongTermPricingEntries",
+    })
+end
+
+--- Returns an item iterator for listLongTermPricing.
+function M.items_list_long_term_pricing(client, input)
+    return paginator.items(client, "listLongTermPricing", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LongTermPricingEntries",
+    })
+end
+
+--- Returns a page iterator for listPickupLocations.
+function M.pages_list_pickup_locations(client, input)
+    return paginator.pages(client, "listPickupLocations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+return M

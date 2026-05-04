@@ -1,0 +1,41 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listChangeSets.
+function M.pages_list_change_sets(client, input)
+    return paginator.pages(client, "listChangeSets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ChangeSetSummaryList",
+    })
+end
+
+--- Returns an item iterator for listChangeSets.
+function M.items_list_change_sets(client, input)
+    return paginator.items(client, "listChangeSets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ChangeSetSummaryList",
+    })
+end
+
+--- Returns a page iterator for listEntities.
+function M.pages_list_entities(client, input)
+    return paginator.pages(client, "listEntities", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "EntitySummaryList",
+    })
+end
+
+--- Returns an item iterator for listEntities.
+function M.items_list_entities(client, input)
+    return paginator.items(client, "listEntities", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "EntitySummaryList",
+    })
+end
+
+return M

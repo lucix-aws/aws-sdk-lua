@@ -97,6 +97,7 @@ M.DescribeHumanLoopOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         FailureReason = {
@@ -145,12 +146,14 @@ M.ListHumanLoopsInput = {
             type = "timestamp",
             traits = {
                 http_query = "CreationTimeAfter",
+                timestamp_format = "date-time",
             },
         },
         CreationTimeBefore = {
             type = "timestamp",
             traits = {
                 http_query = "CreationTimeBefore",
+                timestamp_format = "date-time",
             },
         },
         FlowDefinitionArn = {
@@ -192,6 +195,9 @@ M.HumanLoopSummary = {
         },
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         FailureReason = {
             type = "string",

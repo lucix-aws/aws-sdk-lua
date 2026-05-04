@@ -1,0 +1,14 @@
+local record M
+    pages_list_export_tasks: function(client: table, input: table): function(): table, table
+    items_list_export_tasks: function(client: table, input: table): function(): any
+    pages_list_graph_snapshots: function(client: table, input: table): function(): table, table
+    items_list_graph_snapshots: function(client: table, input: table): function(): any
+    pages_list_graphs: function(client: table, input: table): function(): table, table
+    items_list_graphs: function(client: table, input: table): function(): any
+    pages_list_import_tasks: function(client: table, input: table): function(): table, table
+    items_list_import_tasks: function(client: table, input: table): function(): any
+    pages_list_private_graph_endpoints: function(client: table, input: table): function(): table, table
+    items_list_private_graph_endpoints: function(client: table, input: table): function(): any
+end
+
+return M

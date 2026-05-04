@@ -278,9 +278,9 @@ end
 
 local type ChecksumAggregationMethod = "LINEAR"
 
-local type ChecksumAlgorithm = "SHA256"
-
 local type Status = "completed" | "pending" | "error"
+
+local type ChecksumAlgorithm = "SHA256"
 
 local type SSEType = "sse-ebs" | "sse-kms" | "none"
 

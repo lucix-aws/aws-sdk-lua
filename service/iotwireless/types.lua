@@ -160,6 +160,9 @@ M.AssociateAwsAccountWithPartnerAccountInput = {
         } }, { __index = M.SidewalkAccountInfo }),
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",
@@ -1003,6 +1006,9 @@ M.CreateDestinationInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1109,6 +1115,9 @@ M.CreateDeviceProfileInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Sidewalk = M.SidewalkCreateDeviceProfile,
     },
@@ -1162,6 +1171,9 @@ M.CreateFuotaTaskInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         LoRaWAN = M.LoRaWANFuotaTask,
         FirmwareUpdateImage = {
@@ -1249,6 +1261,9 @@ M.CreateMulticastGroupInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         LoRaWAN = setmetatable({ traits = {
             required = true,
@@ -1330,6 +1345,9 @@ M.CreateNetworkAnalyzerConfigurationInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         MulticastGroups = {
             type = "list",
@@ -1405,6 +1423,9 @@ M.CreateServiceProfileInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1564,6 +1585,9 @@ M.CreateWirelessDeviceInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         LoRaWAN = M.LoRaWANDevice,
         Tags = {
@@ -1635,6 +1659,9 @@ M.CreateWirelessGatewayInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1749,6 +1776,9 @@ M.CreateWirelessGatewayTaskDefinitionInput = {
         Update = M.UpdateWirelessGatewayTaskCreate,
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",
@@ -2689,6 +2719,9 @@ M.LoRaWANFuotaTaskGetInfo = {
         },
         StartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -3115,6 +3148,9 @@ M.LoRaWANMulticastSession = {
         },
         SessionStartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         SessionTimeout = {
             type = "integer",
@@ -3852,6 +3888,9 @@ M.GetWirelessDeviceImportTaskOutput = {
         Sidewalk = M.SidewalkGetStartImportInfo,
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Status = {
             type = "string",
@@ -4205,6 +4244,9 @@ M.ImportedSidewalkDevice = {
         },
         LastUpdateTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -4793,6 +4835,9 @@ M.WirelessDeviceImportTask = {
         Sidewalk = M.SidewalkGetStartImportInfo,
         CreationTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Status = {
             type = "string",
@@ -5366,6 +5411,9 @@ M.LoRaWANStartFuotaTask = {
     members = {
         StartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -5429,6 +5477,9 @@ M.StartSingleWirelessDeviceImportTaskInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DeviceName = {
             type = "string",
@@ -5482,6 +5533,9 @@ M.StartWirelessDeviceImportTaskInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",

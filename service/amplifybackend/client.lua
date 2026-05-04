@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmplifyBackend"
-    cfg.signing_name = "amplifybackend"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "amplifybackend", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:cloneBackend(input, options)
         output_schema = types.CloneBackendOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/environments/{BackendEnvironmentName}/clone",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createBackend(input, options)
         output_schema = types.CreateBackendOutput,
         http_method = "POST",
         http_path = "/backend",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createBackendAPI(input, options)
         output_schema = types.CreateBackendAPIOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/api",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createBackendAuth(input, options)
         output_schema = types.CreateBackendAuthOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/auth",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createBackendConfig(input, options)
         output_schema = types.CreateBackendConfigOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createBackendStorage(input, options)
         output_schema = types.CreateBackendStorageOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/storage",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createToken(input, options)
         output_schema = types.CreateTokenOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/challenge",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteBackend(input, options)
         output_schema = types.DeleteBackendOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/environments/{BackendEnvironmentName}/remove",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteBackendAPI(input, options)
         output_schema = types.DeleteBackendAPIOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/api/{BackendEnvironmentName}/remove",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteBackendAuth(input, options)
         output_schema = types.DeleteBackendAuthOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/auth/{BackendEnvironmentName}/remove",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteBackendStorage(input, options)
         output_schema = types.DeleteBackendStorageOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/storage/{BackendEnvironmentName}/remove",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteToken(input, options)
         output_schema = types.DeleteTokenOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/challenge/{SessionId}/remove",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:generateBackendAPIModels(input, options)
         output_schema = types.GenerateBackendAPIModelsOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/api/{BackendEnvironmentName}/generateModels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getBackend(input, options)
         output_schema = types.GetBackendOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/details",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getBackendAPI(input, options)
         output_schema = types.GetBackendAPIOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/api/{BackendEnvironmentName}/details",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getBackendAPIModels(input, options)
         output_schema = types.GetBackendAPIModelsOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/api/{BackendEnvironmentName}/getModels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getBackendAuth(input, options)
         output_schema = types.GetBackendAuthOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/auth/{BackendEnvironmentName}/details",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getBackendJob(input, options)
         output_schema = types.GetBackendJobOutput,
         http_method = "GET",
         http_path = "/backend/{AppId}/job/{BackendEnvironmentName}/{JobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getBackendStorage(input, options)
         output_schema = types.GetBackendStorageOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/storage/{BackendEnvironmentName}/details",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:getToken(input, options)
         output_schema = types.GetTokenOutput,
         http_method = "GET",
         http_path = "/backend/{AppId}/challenge/{SessionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:importBackendAuth(input, options)
         output_schema = types.ImportBackendAuthOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/auth/{BackendEnvironmentName}/import",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:importBackendStorage(input, options)
         output_schema = types.ImportBackendStorageOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/storage/{BackendEnvironmentName}/import",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listBackendJobs(input, options)
         output_schema = types.ListBackendJobsOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/job/{BackendEnvironmentName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listS3Buckets(input, options)
         output_schema = types.ListS3BucketsOutput,
         http_method = "POST",
         http_path = "/s3Buckets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:removeAllBackends(input, options)
         output_schema = types.RemoveAllBackendsOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/remove",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:removeBackendConfig(input, options)
         output_schema = types.RemoveBackendConfigOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/config/remove",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:updateBackendAPI(input, options)
         output_schema = types.UpdateBackendAPIOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/api/{BackendEnvironmentName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:updateBackendAuth(input, options)
         output_schema = types.UpdateBackendAuthOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/auth/{BackendEnvironmentName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:updateBackendConfig(input, options)
         output_schema = types.UpdateBackendConfigOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/config/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:updateBackendJob(input, options)
         output_schema = types.UpdateBackendJobOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/job/{BackendEnvironmentName}/{JobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:updateBackendStorage(input, options)
         output_schema = types.UpdateBackendStorageOutput,
         http_method = "POST",
         http_path = "/backend/{AppId}/storage/{BackendEnvironmentName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

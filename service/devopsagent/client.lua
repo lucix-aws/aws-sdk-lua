@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "DevOpsAgent"
-    cfg.signing_name = "aidevops"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "aidevops", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateService(input, options)
         output_schema = types.AssociateServiceOutput,
         http_method = "POST",
         http_path = "/v1/agentspaces/{agentSpaceId}/associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createAgentSpace(input, options)
         output_schema = types.CreateAgentSpaceOutput,
         http_method = "POST",
         http_path = "/v1/agentspaces",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createBacklogTask(input, options)
         output_schema = types.CreateBacklogTaskOutput,
         http_method = "POST",
         http_path = "/backlog/agent-space/{agentSpaceId}/tasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createChat(input, options)
         output_schema = types.CreateChatOutput,
         http_method = "POST",
         http_path = "/agents/agent-space/{agentSpaceId}/chat/create",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createPrivateConnection(input, options)
         output_schema = types.CreatePrivateConnectionOutput,
         http_method = "POST",
         http_path = "/v1/private-connections",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteAgentSpace(input, options)
         output_schema = types.DeleteAgentSpaceOutput,
         http_method = "DELETE",
         http_path = "/v1/agentspaces/{agentSpaceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deletePrivateConnection(input, options)
         output_schema = types.DeletePrivateConnectionOutput,
         http_method = "DELETE",
         http_path = "/v1/private-connections/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deregisterService(input, options)
         output_schema = types.DeregisterServiceOutput,
         http_method = "DELETE",
         http_path = "/v1/services/{serviceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:describePrivateConnection(input, options)
         output_schema = types.DescribePrivateConnectionOutput,
         http_method = "GET",
         http_path = "/v1/private-connections/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:disableOperatorApp(input, options)
         output_schema = types.DisableOperatorAppOutput,
         http_method = "DELETE",
         http_path = "/v1/agentspaces/{agentSpaceId}/operator",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:disassociateService(input, options)
         output_schema = types.DisassociateServiceOutput,
         http_method = "DELETE",
         http_path = "/v1/agentspaces/{agentSpaceId}/associations/{associationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:enableOperatorApp(input, options)
         output_schema = types.EnableOperatorAppOutput,
         http_method = "POST",
         http_path = "/v1/agentspaces/{agentSpaceId}/operator",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getAccountUsage(input, options)
         output_schema = types.GetAccountUsageOutput,
         http_method = "GET",
         http_path = "/usage/account",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getAgentSpace(input, options)
         output_schema = types.GetAgentSpaceOutput,
         http_method = "GET",
         http_path = "/v1/agentspaces/{agentSpaceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getAssociation(input, options)
         output_schema = types.GetAssociationOutput,
         http_method = "GET",
         http_path = "/v1/agentspaces/{agentSpaceId}/associations/{associationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getBacklogTask(input, options)
         output_schema = types.GetBacklogTaskOutput,
         http_method = "GET",
         http_path = "/backlog/agent-space/{agentSpaceId}/tasks/{taskId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getOperatorApp(input, options)
         output_schema = types.GetOperatorAppOutput,
         http_method = "GET",
         http_path = "/v2/agentspaces/{agentSpaceId}/operator",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getRecommendation(input, options)
         output_schema = types.GetRecommendationOutput,
         http_method = "GET",
         http_path = "/backlog/agent-space/{agentSpaceId}/recommendations/{recommendationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getService(input, options)
         output_schema = types.GetServiceOutput,
         http_method = "GET",
         http_path = "/v1/services/{serviceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listAgentSpaces(input, options)
         output_schema = types.ListAgentSpacesOutput,
         http_method = "POST",
         http_path = "/v1/agentspaces/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listAssociations(input, options)
         output_schema = types.ListAssociationsOutput,
         http_method = "POST",
         http_path = "/v1/agentspaces/{agentSpaceId}/associations/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listBacklogTasks(input, options)
         output_schema = types.ListBacklogTasksOutput,
         http_method = "POST",
         http_path = "/backlog/agent-space/{agentSpaceId}/tasks/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listChats(input, options)
         output_schema = types.ListChatsOutput,
         http_method = "GET",
         http_path = "/agents/agent-space/{agentSpaceId}/chat/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listExecutions(input, options)
         output_schema = types.ListExecutionsOutput,
         http_method = "POST",
         http_path = "/journal/agent-space/{agentSpaceId}/executions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listGoals(input, options)
         output_schema = types.ListGoalsOutput,
         http_method = "POST",
         http_path = "/backlog/agent-space/{agentSpaceId}/goals/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listJournalRecords(input, options)
         output_schema = types.ListJournalRecordsOutput,
         http_method = "POST",
         http_path = "/journal/agent-space/{agentSpaceId}/journalRecords",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:listPendingMessages(input, options)
         output_schema = types.ListPendingMessagesOutput,
         http_method = "POST",
         http_path = "/agents/agent-space/{agentSpaceId}/pendingMessages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:listPrivateConnections(input, options)
         output_schema = types.ListPrivateConnectionsOutput,
         http_method = "GET",
         http_path = "/v1/private-connections",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listRecommendations(input, options)
         output_schema = types.ListRecommendationsOutput,
         http_method = "POST",
         http_path = "/backlog/agent-space/{agentSpaceId}/recommendations/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:listServices(input, options)
         output_schema = types.ListServicesOutput,
         http_method = "POST",
         http_path = "/v1/services/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:listWebhooks(input, options)
         output_schema = types.ListWebhooksOutput,
         http_method = "POST",
         http_path = "/v1/agentspaces/{agentSpaceId}/associations/{associationId}/webhooks/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:registerService(input, options)
         output_schema = types.RegisterServiceOutput,
         http_method = "POST",
         http_path = "/v1/register/{service}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:sendMessage(input, options)
         output_schema = types.SendMessageOutput,
         http_method = "POST",
         http_path = "/agents/agent-space/{agentSpaceId}/chat/sendMessage",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:updateAgentSpace(input, options)
         output_schema = types.UpdateAgentSpaceOutput,
         http_method = "PATCH",
         http_path = "/v1/agentspaces/{agentSpaceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:updateAssociation(input, options)
         output_schema = types.UpdateAssociationOutput,
         http_method = "PATCH",
         http_path = "/v1/agentspaces/{agentSpaceId}/associations/{associationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:updateBacklogTask(input, options)
         output_schema = types.UpdateBacklogTaskOutput,
         http_method = "PATCH",
         http_path = "/backlog/agent-space/{agentSpaceId}/tasks/{taskId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:updateGoal(input, options)
         output_schema = types.UpdateGoalOutput,
         http_method = "PATCH",
         http_path = "/backlog/agent-space/{agentSpaceId}/goals/{goalId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:updateOperatorAppIdpConfig(input, options)
         output_schema = types.UpdateOperatorAppIdpConfigOutput,
         http_method = "PATCH",
         http_path = "/v1/agentspaces/{agentSpaceId}/operator/idp",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:updatePrivateConnectionCertificate(input, options)
         output_schema = types.UpdatePrivateConnectionCertificateOutput,
         http_method = "POST",
         http_path = "/v1/private-connections/{name}/certificate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:updateRecommendation(input, options)
         output_schema = types.UpdateRecommendationOutput,
         http_method = "PATCH",
         http_path = "/backlog/agent-space/{agentSpaceId}/recommendations/{recommendationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:validateAwsAssociations(input, options)
         output_schema = types.ValidateAwsAssociationsOutput,
         http_method = "POST",
         http_path = "/v1/agentspaces/{agentSpaceId}/associations/validate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

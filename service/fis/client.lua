@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "FaultInjectionSimulator"
-    cfg.signing_name = "fis"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "fis", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createExperimentTemplate(input, options)
         output_schema = types.CreateExperimentTemplateOutput,
         http_method = "POST",
         http_path = "/experimentTemplates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createTargetAccountConfiguration(input, options)
         output_schema = types.CreateTargetAccountConfigurationOutput,
         http_method = "POST",
         http_path = "/experimentTemplates/{experimentTemplateId}/targetAccountConfigurations/{accountId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:deleteExperimentTemplate(input, options)
         output_schema = types.DeleteExperimentTemplateOutput,
         http_method = "DELETE",
         http_path = "/experimentTemplates/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:deleteTargetAccountConfiguration(input, options)
         output_schema = types.DeleteTargetAccountConfigurationOutput,
         http_method = "DELETE",
         http_path = "/experimentTemplates/{experimentTemplateId}/targetAccountConfigurations/{accountId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:getAction(input, options)
         output_schema = types.GetActionOutput,
         http_method = "GET",
         http_path = "/actions/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:getExperiment(input, options)
         output_schema = types.GetExperimentOutput,
         http_method = "GET",
         http_path = "/experiments/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:getExperimentTargetAccountConfiguration(input, options)
         output_schema = types.GetExperimentTargetAccountConfigurationOutput,
         http_method = "GET",
         http_path = "/experiments/{experimentId}/targetAccountConfigurations/{accountId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:getExperimentTemplate(input, options)
         output_schema = types.GetExperimentTemplateOutput,
         http_method = "GET",
         http_path = "/experimentTemplates/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getSafetyLever(input, options)
         output_schema = types.GetSafetyLeverOutput,
         http_method = "GET",
         http_path = "/safetyLevers/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:getTargetAccountConfiguration(input, options)
         output_schema = types.GetTargetAccountConfigurationOutput,
         http_method = "GET",
         http_path = "/experimentTemplates/{experimentTemplateId}/targetAccountConfigurations/{accountId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getTargetResourceType(input, options)
         output_schema = types.GetTargetResourceTypeOutput,
         http_method = "GET",
         http_path = "/targetResourceTypes/{resourceType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:listActions(input, options)
         output_schema = types.ListActionsOutput,
         http_method = "GET",
         http_path = "/actions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:listExperimentResolvedTargets(input, options)
         output_schema = types.ListExperimentResolvedTargetsOutput,
         http_method = "GET",
         http_path = "/experiments/{experimentId}/resolvedTargets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:listExperiments(input, options)
         output_schema = types.ListExperimentsOutput,
         http_method = "GET",
         http_path = "/experiments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:listExperimentTargetAccountConfigurations(input, options)
         output_schema = types.ListExperimentTargetAccountConfigurationsOutput,
         http_method = "GET",
         http_path = "/experiments/{experimentId}/targetAccountConfigurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listExperimentTemplates(input, options)
         output_schema = types.ListExperimentTemplatesOutput,
         http_method = "GET",
         http_path = "/experimentTemplates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listTargetAccountConfigurations(input, options)
         output_schema = types.ListTargetAccountConfigurationsOutput,
         http_method = "GET",
         http_path = "/experimentTemplates/{experimentTemplateId}/targetAccountConfigurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listTargetResourceTypes(input, options)
         output_schema = types.ListTargetResourceTypesOutput,
         http_method = "GET",
         http_path = "/targetResourceTypes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:startExperiment(input, options)
         output_schema = types.StartExperimentOutput,
         http_method = "POST",
         http_path = "/experiments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:stopExperiment(input, options)
         output_schema = types.StopExperimentOutput,
         http_method = "DELETE",
         http_path = "/experiments/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:updateExperimentTemplate(input, options)
         output_schema = types.UpdateExperimentTemplateOutput,
         http_method = "PATCH",
         http_path = "/experimentTemplates/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:updateSafetyLeverState(input, options)
         output_schema = types.UpdateSafetyLeverStateOutput,
         http_method = "PATCH",
         http_path = "/safetyLevers/{id}/state",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:updateTargetAccountConfiguration(input, options)
         output_schema = types.UpdateTargetAccountConfigurationOutput,
         http_method = "PATCH",
         http_path = "/experimentTemplates/{experimentTemplateId}/targetAccountConfigurations/{accountId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

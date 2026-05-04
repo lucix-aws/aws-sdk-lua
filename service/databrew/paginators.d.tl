@@ -1,0 +1,20 @@
+local record M
+    pages_list_datasets: function(client: table, input: table): function(): table, table
+    items_list_datasets: function(client: table, input: table): function(): any
+    pages_list_job_runs: function(client: table, input: table): function(): table, table
+    items_list_job_runs: function(client: table, input: table): function(): any
+    pages_list_jobs: function(client: table, input: table): function(): table, table
+    items_list_jobs: function(client: table, input: table): function(): any
+    pages_list_projects: function(client: table, input: table): function(): table, table
+    items_list_projects: function(client: table, input: table): function(): any
+    pages_list_recipe_versions: function(client: table, input: table): function(): table, table
+    items_list_recipe_versions: function(client: table, input: table): function(): any
+    pages_list_recipes: function(client: table, input: table): function(): table, table
+    items_list_recipes: function(client: table, input: table): function(): any
+    pages_list_rulesets: function(client: table, input: table): function(): table, table
+    items_list_rulesets: function(client: table, input: table): function(): any
+    pages_list_schedules: function(client: table, input: table): function(): table, table
+    items_list_schedules: function(client: table, input: table): function(): any
+end
+
+return M

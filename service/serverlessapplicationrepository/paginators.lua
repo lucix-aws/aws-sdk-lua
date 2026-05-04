@@ -1,0 +1,29 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listApplicationDependencies.
+function M.pages_list_application_dependencies(client, input)
+    return paginator.pages(client, "listApplicationDependencies", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listApplicationVersions.
+function M.pages_list_application_versions(client, input)
+    return paginator.pages(client, "listApplicationVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listApplications.
+function M.pages_list_applications(client, input)
+    return paginator.pages(client, "listApplications", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+return M

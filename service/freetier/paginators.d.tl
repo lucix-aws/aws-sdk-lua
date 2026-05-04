@@ -1,0 +1,8 @@
+local record M
+    pages_get_free_tier_usage: function(client: table, input: table): function(): table, table
+    items_get_free_tier_usage: function(client: table, input: table): function(): any
+    pages_list_account_activities: function(client: table, input: table): function(): table, table
+    items_list_account_activities: function(client: table, input: table): function(): any
+end
+
+return M

@@ -267,6 +267,7 @@ M.GetAgentCardInput = {
             type = "string",
             traits = {
                 http_header = "X-Amzn-Bedrock-AgentCore-Runtime-Session-Id",
+                idempotency_token = true,
             },
         },
         agentRuntimeArn = {
@@ -434,6 +435,7 @@ M.InvokeAgentRuntimeInput = {
             type = "string",
             traits = {
                 http_header = "X-Amzn-Bedrock-AgentCore-Runtime-Session-Id",
+                idempotency_token = true,
             },
         },
         mcpProtocolVersion = {
@@ -603,6 +605,7 @@ M.InvokeAgentRuntimeCommandInput = {
             type = "string",
             traits = {
                 http_header = "X-Amzn-Bedrock-AgentCore-Runtime-Session-Id",
+                idempotency_token = true,
             },
         },
         traceId = {
@@ -805,6 +808,9 @@ M.StopRuntimeSessionInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1007,6 +1013,9 @@ M.SaveBrowserSessionProfileInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1036,6 +1045,7 @@ M.SaveBrowserSessionProfileOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1315,6 +1325,7 @@ M.GetBrowserSessionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         viewPort = M.ViewPort,
@@ -1344,6 +1355,9 @@ M.GetBrowserSessionOutput = {
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1751,10 +1765,14 @@ M.BrowserSessionSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1823,6 +1841,9 @@ M.StartBrowserSessionInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1846,6 +1867,7 @@ M.StartBrowserSessionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         streams = M.BrowserSessionStream,
@@ -1883,6 +1905,9 @@ M.StopBrowserSessionInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1906,6 +1931,7 @@ M.StopBrowserSessionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1949,6 +1975,9 @@ M.UpdateBrowserStreamInput = {
         } }, { __index = M.StreamUpdate }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1975,6 +2004,7 @@ M.UpdateBrowserStreamOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2027,6 +2057,7 @@ M.GetCodeInterpreterSessionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         sessionTimeoutSeconds = {
@@ -2092,10 +2123,14 @@ M.CodeInterpreterSessionSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2153,6 +2188,9 @@ M.StartCodeInterpreterSessionInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2176,6 +2214,7 @@ M.StartCodeInterpreterSessionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2212,6 +2251,9 @@ M.StopCodeInterpreterSessionInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2235,6 +2277,7 @@ M.StopCodeInterpreterSessionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2380,6 +2423,9 @@ M.CreateABTestInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3686,6 +3732,9 @@ M.StartBatchEvaluationInput = {
         } }, { __index = M.DataSourceConfig }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         evaluationMetadata = M.EvaluationMetadata,
         description = {
@@ -3762,6 +3811,9 @@ M.StartRecommendationInput = {
         } }, { __index = M.RecommendationConfig }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3874,6 +3926,9 @@ M.UpdateABTestInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         name = {
             type = "string",
@@ -5196,6 +5251,9 @@ M.BatchCreateMemoryRecordsInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -5501,6 +5559,9 @@ M.CreateEventInput = {
         branch = M.Branch,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         metadata = {
             type = "map",
@@ -6386,6 +6447,9 @@ M.StartMemoryExtractionJobInput = {
         } }, { __index = M.ExtractionJob }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -6555,12 +6619,14 @@ M.RegistryRecordSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },

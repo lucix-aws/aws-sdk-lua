@@ -1,0 +1,8 @@
+local record M
+    pages_describe_cases: function(client: table, input: table): function(): table, table
+    items_describe_cases: function(client: table, input: table): function(): any
+    pages_describe_communications: function(client: table, input: table): function(): table, table
+    items_describe_communications: function(client: table, input: table): function(): any
+end
+
+return M

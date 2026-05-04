@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "RepostSpace"
-    cfg.signing_name = "repostspace"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "repostspace", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:batchAddChannelRoleToAccessors(input, options)
         output_schema = types.BatchAddChannelRoleToAccessorsOutput,
         http_method = "POST",
         http_path = "/spaces/{spaceId}/channels/{channelId}/roles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchAddRole(input, options)
         output_schema = types.BatchAddRoleOutput,
         http_method = "POST",
         http_path = "/spaces/{spaceId}/roles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchRemoveChannelRoleFromAccessors(input, options)
         output_schema = types.BatchRemoveChannelRoleFromAccessorsOutput,
         http_method = "PATCH",
         http_path = "/spaces/{spaceId}/channels/{channelId}/roles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:batchRemoveRole(input, options)
         output_schema = types.BatchRemoveRoleOutput,
         http_method = "PATCH",
         http_path = "/spaces/{spaceId}/roles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createChannel(input, options)
         output_schema = types.CreateChannelOutput,
         http_method = "POST",
         http_path = "/spaces/{spaceId}/channels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createSpace(input, options)
         output_schema = types.CreateSpaceOutput,
         http_method = "POST",
         http_path = "/spaces",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteSpace(input, options)
         output_schema = types.DeleteSpaceOutput,
         http_method = "DELETE",
         http_path = "/spaces/{spaceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deregisterAdmin(input, options)
         output_schema = types.DeregisterAdminOutput,
         http_method = "DELETE",
         http_path = "/spaces/{spaceId}/admins/{adminId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getChannel(input, options)
         output_schema = types.GetChannelOutput,
         http_method = "GET",
         http_path = "/spaces/{spaceId}/channels/{channelId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:getSpace(input, options)
         output_schema = types.GetSpaceOutput,
         http_method = "GET",
         http_path = "/spaces/{spaceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:listChannels(input, options)
         output_schema = types.ListChannelsOutput,
         http_method = "GET",
         http_path = "/spaces/{spaceId}/channels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:listSpaces(input, options)
         output_schema = types.ListSpacesOutput,
         http_method = "GET",
         http_path = "/spaces",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:registerAdmin(input, options)
         output_schema = types.RegisterAdminOutput,
         http_method = "POST",
         http_path = "/spaces/{spaceId}/admins/{adminId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:sendInvites(input, options)
         output_schema = types.SendInvitesOutput,
         http_method = "POST",
         http_path = "/spaces/{spaceId}/invite",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:updateChannel(input, options)
         output_schema = types.UpdateChannelOutput,
         http_method = "PUT",
         http_path = "/spaces/{spaceId}/channels/{channelId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:updateSpace(input, options)
         output_schema = types.UpdateSpaceOutput,
         http_method = "PUT",
         http_path = "/spaces/{spaceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

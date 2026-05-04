@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "KinesisVideo_20170930"
-    cfg.signing_name = "kinesisvideo"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "kinesisvideo", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createSignalingChannel(input, options)
         output_schema = types.CreateSignalingChannelOutput,
         http_method = "POST",
         http_path = "/createSignalingChannel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createStream(input, options)
         output_schema = types.CreateStreamOutput,
         http_method = "POST",
         http_path = "/createStream",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:deleteEdgeConfiguration(input, options)
         output_schema = types.DeleteEdgeConfigurationOutput,
         http_method = "POST",
         http_path = "/deleteEdgeConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:deleteSignalingChannel(input, options)
         output_schema = types.DeleteSignalingChannelOutput,
         http_method = "POST",
         http_path = "/deleteSignalingChannel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteStream(input, options)
         output_schema = types.DeleteStreamOutput,
         http_method = "POST",
         http_path = "/deleteStream",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:describeEdgeConfiguration(input, options)
         output_schema = types.DescribeEdgeConfigurationOutput,
         http_method = "POST",
         http_path = "/describeEdgeConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:describeImageGenerationConfiguration(input, options)
         output_schema = types.DescribeImageGenerationConfigurationOutput,
         http_method = "POST",
         http_path = "/describeImageGenerationConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:describeMappedResourceConfiguration(input, options)
         output_schema = types.DescribeMappedResourceConfigurationOutput,
         http_method = "POST",
         http_path = "/describeMappedResourceConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:describeMediaStorageConfiguration(input, options)
         output_schema = types.DescribeMediaStorageConfigurationOutput,
         http_method = "POST",
         http_path = "/describeMediaStorageConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:describeNotificationConfiguration(input, options)
         output_schema = types.DescribeNotificationConfigurationOutput,
         http_method = "POST",
         http_path = "/describeNotificationConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:describeSignalingChannel(input, options)
         output_schema = types.DescribeSignalingChannelOutput,
         http_method = "POST",
         http_path = "/describeSignalingChannel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:describeStream(input, options)
         output_schema = types.DescribeStreamOutput,
         http_method = "POST",
         http_path = "/describeStream",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:describeStreamStorageConfiguration(input, options)
         output_schema = types.DescribeStreamStorageConfigurationOutput,
         http_method = "POST",
         http_path = "/describeStreamStorageConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getDataEndpoint(input, options)
         output_schema = types.GetDataEndpointOutput,
         http_method = "POST",
         http_path = "/getDataEndpoint",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getSignalingChannelEndpoint(input, options)
         output_schema = types.GetSignalingChannelEndpointOutput,
         http_method = "POST",
         http_path = "/getSignalingChannelEndpoint",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listEdgeAgentConfigurations(input, options)
         output_schema = types.ListEdgeAgentConfigurationsOutput,
         http_method = "POST",
         http_path = "/listEdgeAgentConfigurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listSignalingChannels(input, options)
         output_schema = types.ListSignalingChannelsOutput,
         http_method = "POST",
         http_path = "/listSignalingChannels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listStreams(input, options)
         output_schema = types.ListStreamsOutput,
         http_method = "POST",
         http_path = "/listStreams",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/ListTagsForResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listTagsForStream(input, options)
         output_schema = types.ListTagsForStreamOutput,
         http_method = "POST",
         http_path = "/listTagsForStream",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:startEdgeConfigurationUpdate(input, options)
         output_schema = types.StartEdgeConfigurationUpdateOutput,
         http_method = "POST",
         http_path = "/startEdgeConfigurationUpdate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/TagResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:tagStream(input, options)
         output_schema = types.TagStreamOutput,
         http_method = "POST",
         http_path = "/tagStream",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/UntagResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:untagStream(input, options)
         output_schema = types.UntagStreamOutput,
         http_method = "POST",
         http_path = "/untagStream",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:updateDataRetention(input, options)
         output_schema = types.UpdateDataRetentionOutput,
         http_method = "POST",
         http_path = "/updateDataRetention",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:updateImageGenerationConfiguration(input, options)
         output_schema = types.UpdateImageGenerationConfigurationOutput,
         http_method = "POST",
         http_path = "/updateImageGenerationConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:updateMediaStorageConfiguration(input, options)
         output_schema = types.UpdateMediaStorageConfigurationOutput,
         http_method = "POST",
         http_path = "/updateMediaStorageConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:updateNotificationConfiguration(input, options)
         output_schema = types.UpdateNotificationConfigurationOutput,
         http_method = "POST",
         http_path = "/updateNotificationConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:updateSignalingChannel(input, options)
         output_schema = types.UpdateSignalingChannelOutput,
         http_method = "POST",
         http_path = "/updateSignalingChannel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:updateStream(input, options)
         output_schema = types.UpdateStreamOutput,
         http_method = "POST",
         http_path = "/updateStream",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:updateStreamStorageConfiguration(input, options)
         output_schema = types.UpdateStreamStorageConfigurationOutput,
         http_method = "POST",
         http_path = "/updateStreamStorageConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

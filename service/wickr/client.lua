@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "WickrAdminApi"
-    cfg.signing_name = "wickr"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "wickr", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:batchCreateUser(input, options)
         output_schema = types.BatchCreateUserOutput,
         http_method = "POST",
         http_path = "/networks/{networkId}/users",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchDeleteUser(input, options)
         output_schema = types.BatchDeleteUserOutput,
         http_method = "POST",
         http_path = "/networks/{networkId}/users/batch-delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchLookupUserUname(input, options)
         output_schema = types.BatchLookupUserUnameOutput,
         http_method = "POST",
         http_path = "/networks/{networkId}/users/uname-lookup",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:batchReinviteUser(input, options)
         output_schema = types.BatchReinviteUserOutput,
         http_method = "PATCH",
         http_path = "/networks/{networkId}/users/re-invite",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:batchResetDevicesForUser(input, options)
         output_schema = types.BatchResetDevicesForUserOutput,
         http_method = "PATCH",
         http_path = "/networks/{networkId}/users/{userId}/devices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:batchToggleUserSuspendStatus(input, options)
         output_schema = types.BatchToggleUserSuspendStatusOutput,
         http_method = "PATCH",
         http_path = "/networks/{networkId}/users/toggleSuspend",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createBot(input, options)
         output_schema = types.CreateBotOutput,
         http_method = "POST",
         http_path = "/networks/{networkId}/bots",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createDataRetentionBot(input, options)
         output_schema = types.CreateDataRetentionBotOutput,
         http_method = "POST",
         http_path = "/networks/{networkId}/data-retention-bots",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createDataRetentionBotChallenge(input, options)
         output_schema = types.CreateDataRetentionBotChallengeOutput,
         http_method = "POST",
         http_path = "/networks/{networkId}/data-retention-bots/challenge",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createNetwork(input, options)
         output_schema = types.CreateNetworkOutput,
         http_method = "POST",
         http_path = "/networks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createSecurityGroup(input, options)
         output_schema = types.CreateSecurityGroupOutput,
         http_method = "POST",
         http_path = "/networks/{networkId}/security-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteBot(input, options)
         output_schema = types.DeleteBotOutput,
         http_method = "DELETE",
         http_path = "/networks/{networkId}/bots/{botId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteDataRetentionBot(input, options)
         output_schema = types.DeleteDataRetentionBotOutput,
         http_method = "DELETE",
         http_path = "/networks/{networkId}/data-retention-bots",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteNetwork(input, options)
         output_schema = types.DeleteNetworkOutput,
         http_method = "DELETE",
         http_path = "/networks/{networkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteSecurityGroup(input, options)
         output_schema = types.DeleteSecurityGroupOutput,
         http_method = "DELETE",
         http_path = "/networks/{networkId}/security-groups/{groupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getBot(input, options)
         output_schema = types.GetBotOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/bots/{botId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getBotsCount(input, options)
         output_schema = types.GetBotsCountOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/bots/count",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getDataRetentionBot(input, options)
         output_schema = types.GetDataRetentionBotOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/data-retention-bots",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getGuestUserHistoryCount(input, options)
         output_schema = types.GetGuestUserHistoryCountOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/guest-users/count",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:getNetwork(input, options)
         output_schema = types.GetNetworkOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:getNetworkSettings(input, options)
         output_schema = types.GetNetworkSettingsOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/settings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:getOidcInfo(input, options)
         output_schema = types.GetOidcInfoOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/oidc",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:getOpentdfConfig(input, options)
         output_schema = types.GetOpentdfConfigOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/tdf",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:getSecurityGroup(input, options)
         output_schema = types.GetSecurityGroupOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/security-groups/{groupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:getUser(input, options)
         output_schema = types.GetUserOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/users/{userId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:getUsersCount(input, options)
         output_schema = types.GetUsersCountOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/users/count",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:listBlockedGuestUsers(input, options)
         output_schema = types.ListBlockedGuestUsersOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/guest-users/blocklist",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:listBots(input, options)
         output_schema = types.ListBotsOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/bots",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listDevicesForUser(input, options)
         output_schema = types.ListDevicesForUserOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/users/{userId}/devices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:listGuestUsers(input, options)
         output_schema = types.ListGuestUsersOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/guest-users",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:listNetworks(input, options)
         output_schema = types.ListNetworksOutput,
         http_method = "GET",
         http_path = "/networks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:listSecurityGroups(input, options)
         output_schema = types.ListSecurityGroupsOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/security-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:listSecurityGroupUsers(input, options)
         output_schema = types.ListSecurityGroupUsersOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/security-groups/{groupId}/users",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:listUsers(input, options)
         output_schema = types.ListUsersOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/users",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:registerOidcConfig(input, options)
         output_schema = types.RegisterOidcConfigOutput,
         http_method = "POST",
         http_path = "/networks/{networkId}/oidc/save",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:registerOidcConfigTest(input, options)
         output_schema = types.RegisterOidcConfigTestOutput,
         http_method = "POST",
         http_path = "/networks/{networkId}/oidc/test",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:registerOpentdfConfig(input, options)
         output_schema = types.RegisterOpentdfConfigOutput,
         http_method = "POST",
         http_path = "/networks/{networkId}/tdf",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:updateBot(input, options)
         output_schema = types.UpdateBotOutput,
         http_method = "PATCH",
         http_path = "/networks/{networkId}/bots/{botId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:updateDataRetention(input, options)
         output_schema = types.UpdateDataRetentionOutput,
         http_method = "PATCH",
         http_path = "/networks/{networkId}/data-retention-bots",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:updateGuestUser(input, options)
         output_schema = types.UpdateGuestUserOutput,
         http_method = "PATCH",
         http_path = "/networks/{networkId}/guest-users/{usernameHash}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:updateNetwork(input, options)
         output_schema = types.UpdateNetworkOutput,
         http_method = "PATCH",
         http_path = "/networks/{networkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:updateNetworkSettings(input, options)
         output_schema = types.UpdateNetworkSettingsOutput,
         http_method = "PATCH",
         http_path = "/networks/{networkId}/settings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:updateSecurityGroup(input, options)
         output_schema = types.UpdateSecurityGroupOutput,
         http_method = "PATCH",
         http_path = "/networks/{networkId}/security-groups/{groupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:updateUser(input, options)
         output_schema = types.UpdateUserOutput,
         http_method = "PATCH",
         http_path = "/networks/{networkId}/users",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

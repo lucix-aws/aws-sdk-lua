@@ -246,6 +246,9 @@ M.CreateDomainInput = {
         } }, { __index = M.ServerSideEncryptionConfiguration }),
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Tags = {
             type = "list",
@@ -350,6 +353,9 @@ M.CreateWatchlistInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1427,6 +1433,9 @@ M.StartFraudsterRegistrationJobInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         JobName = {
             type = "string",
@@ -1465,6 +1474,9 @@ M.StartSpeakerEnrollmentJobInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         JobName = {
             type = "string",

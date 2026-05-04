@@ -1,0 +1,16 @@
+local record M
+    pages_execute_query: function(client: table, input: table): function(): table, table
+    pages_get_property_value: function(client: table, input: table): function(): table, table
+    pages_get_property_value_history: function(client: table, input: table): function(): table, table
+    pages_list_component_types: function(client: table, input: table): function(): table, table
+    pages_list_components: function(client: table, input: table): function(): table, table
+    pages_list_entities: function(client: table, input: table): function(): table, table
+    pages_list_metadata_transfer_jobs: function(client: table, input: table): function(): table, table
+    pages_list_properties: function(client: table, input: table): function(): table, table
+    pages_list_scenes: function(client: table, input: table): function(): table, table
+    pages_list_sync_jobs: function(client: table, input: table): function(): table, table
+    pages_list_sync_resources: function(client: table, input: table): function(): table, table
+    pages_list_workspaces: function(client: table, input: table): function(): table, table
+end
+
+return M

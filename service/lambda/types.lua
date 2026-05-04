@@ -944,6 +944,9 @@ M.CheckpointDurableExecutionInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

@@ -1,0 +1,221 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for forecastGeofenceEvents.
+function M.pages_forecast_geofence_events(client, input)
+    return paginator.pages(client, "forecastGeofenceEvents", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ForecastedEvents",
+    })
+end
+
+--- Returns an item iterator for forecastGeofenceEvents.
+function M.items_forecast_geofence_events(client, input)
+    return paginator.items(client, "forecastGeofenceEvents", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ForecastedEvents",
+    })
+end
+
+--- Returns a page iterator for getDevicePositionHistory.
+function M.pages_get_device_position_history(client, input)
+    return paginator.pages(client, "getDevicePositionHistory", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DevicePositions",
+    })
+end
+
+--- Returns an item iterator for getDevicePositionHistory.
+function M.items_get_device_position_history(client, input)
+    return paginator.items(client, "getDevicePositionHistory", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DevicePositions",
+    })
+end
+
+--- Returns a page iterator for listDevicePositions.
+function M.pages_list_device_positions(client, input)
+    return paginator.pages(client, "listDevicePositions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Entries",
+    })
+end
+
+--- Returns an item iterator for listDevicePositions.
+function M.items_list_device_positions(client, input)
+    return paginator.items(client, "listDevicePositions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Entries",
+    })
+end
+
+--- Returns a page iterator for listGeofenceCollections.
+function M.pages_list_geofence_collections(client, input)
+    return paginator.pages(client, "listGeofenceCollections", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Entries",
+    })
+end
+
+--- Returns an item iterator for listGeofenceCollections.
+function M.items_list_geofence_collections(client, input)
+    return paginator.items(client, "listGeofenceCollections", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Entries",
+    })
+end
+
+--- Returns a page iterator for listGeofences.
+function M.pages_list_geofences(client, input)
+    return paginator.pages(client, "listGeofences", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Entries",
+    })
+end
+
+--- Returns an item iterator for listGeofences.
+function M.items_list_geofences(client, input)
+    return paginator.items(client, "listGeofences", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Entries",
+    })
+end
+
+--- Returns a page iterator for listJobs.
+function M.pages_list_jobs(client, input)
+    return paginator.pages(client, "listJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Entries",
+    })
+end
+
+--- Returns an item iterator for listJobs.
+function M.items_list_jobs(client, input)
+    return paginator.items(client, "listJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Entries",
+    })
+end
+
+--- Returns a page iterator for listKeys.
+function M.pages_list_keys(client, input)
+    return paginator.pages(client, "listKeys", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Entries",
+    })
+end
+
+--- Returns an item iterator for listKeys.
+function M.items_list_keys(client, input)
+    return paginator.items(client, "listKeys", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Entries",
+    })
+end
+
+--- Returns a page iterator for listMaps.
+function M.pages_list_maps(client, input)
+    return paginator.pages(client, "listMaps", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Entries",
+    })
+end
+
+--- Returns an item iterator for listMaps.
+function M.items_list_maps(client, input)
+    return paginator.items(client, "listMaps", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Entries",
+    })
+end
+
+--- Returns a page iterator for listPlaceIndexes.
+function M.pages_list_place_indexes(client, input)
+    return paginator.pages(client, "listPlaceIndexes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Entries",
+    })
+end
+
+--- Returns an item iterator for listPlaceIndexes.
+function M.items_list_place_indexes(client, input)
+    return paginator.items(client, "listPlaceIndexes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Entries",
+    })
+end
+
+--- Returns a page iterator for listRouteCalculators.
+function M.pages_list_route_calculators(client, input)
+    return paginator.pages(client, "listRouteCalculators", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Entries",
+    })
+end
+
+--- Returns an item iterator for listRouteCalculators.
+function M.items_list_route_calculators(client, input)
+    return paginator.items(client, "listRouteCalculators", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Entries",
+    })
+end
+
+--- Returns a page iterator for listTrackerConsumers.
+function M.pages_list_tracker_consumers(client, input)
+    return paginator.pages(client, "listTrackerConsumers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConsumerArns",
+    })
+end
+
+--- Returns an item iterator for listTrackerConsumers.
+function M.items_list_tracker_consumers(client, input)
+    return paginator.items(client, "listTrackerConsumers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConsumerArns",
+    })
+end
+
+--- Returns a page iterator for listTrackers.
+function M.pages_list_trackers(client, input)
+    return paginator.pages(client, "listTrackers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Entries",
+    })
+end
+
+--- Returns an item iterator for listTrackers.
+function M.items_list_trackers(client, input)
+    return paginator.items(client, "listTrackers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Entries",
+    })
+end
+
+return M

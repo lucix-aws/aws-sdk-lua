@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonOpenSearchService"
-    cfg.signing_name = "es"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "es", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:acceptInboundConnection(input, options)
         output_schema = types.AcceptInboundConnectionOutput,
         http_method = "PUT",
         http_path = "/2021-01-01/opensearch/cc/inboundConnection/{ConnectionId}/accept",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:addDataSource(input, options)
         output_schema = types.AddDataSourceOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/dataSource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:addDirectQueryDataSource(input, options)
         output_schema = types.AddDirectQueryDataSourceOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/directQueryDataSource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:addTags(input, options)
         output_schema = types.AddTagsOutput,
         http_method = "POST",
         http_path = "/2021-01-01/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:associatePackage(input, options)
         output_schema = types.AssociatePackageOutput,
         http_method = "POST",
         http_path = "/2021-01-01/packages/associate/{PackageID}/{DomainName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:associatePackages(input, options)
         output_schema = types.AssociatePackagesOutput,
         http_method = "POST",
         http_path = "/2021-01-01/packages/associateMultiple",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:authorizeVpcEndpointAccess(input, options)
         output_schema = types.AuthorizeVpcEndpointAccessOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/authorizeVpcEndpointAccess",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:cancelDomainConfigChange(input, options)
         output_schema = types.CancelDomainConfigChangeOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/config/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:cancelServiceSoftwareUpdate(input, options)
         output_schema = types.CancelServiceSoftwareUpdateOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/serviceSoftwareUpdate/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createApplication(input, options)
         output_schema = types.CreateApplicationOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/application",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createDomain(input, options)
         output_schema = types.CreateDomainOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/domain",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createIndex(input, options)
         output_schema = types.CreateIndexOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/index",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createOutboundConnection(input, options)
         output_schema = types.CreateOutboundConnectionOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/cc/outboundConnection",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:createPackage(input, options)
         output_schema = types.CreatePackageOutput,
         http_method = "POST",
         http_path = "/2021-01-01/packages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:createVpcEndpoint(input, options)
         output_schema = types.CreateVpcEndpointOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/vpcEndpoints",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteApplication(input, options)
         output_schema = types.DeleteApplicationOutput,
         http_method = "DELETE",
         http_path = "/2021-01-01/opensearch/application/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deleteDataSource(input, options)
         output_schema = types.DeleteDataSourceOutput,
         http_method = "DELETE",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/dataSource/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteDirectQueryDataSource(input, options)
         output_schema = types.DeleteDirectQueryDataSourceOutput,
         http_method = "DELETE",
         http_path = "/2021-01-01/opensearch/directQueryDataSource/{DataSourceName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteDomain(input, options)
         output_schema = types.DeleteDomainOutput,
         http_method = "DELETE",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deleteInboundConnection(input, options)
         output_schema = types.DeleteInboundConnectionOutput,
         http_method = "DELETE",
         http_path = "/2021-01-01/opensearch/cc/inboundConnection/{ConnectionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deleteIndex(input, options)
         output_schema = types.DeleteIndexOutput,
         http_method = "DELETE",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/index/{IndexName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:deleteOutboundConnection(input, options)
         output_schema = types.DeleteOutboundConnectionOutput,
         http_method = "DELETE",
         http_path = "/2021-01-01/opensearch/cc/outboundConnection/{ConnectionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:deletePackage(input, options)
         output_schema = types.DeletePackageOutput,
         http_method = "DELETE",
         http_path = "/2021-01-01/packages/{PackageID}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:deleteVpcEndpoint(input, options)
         output_schema = types.DeleteVpcEndpointOutput,
         http_method = "DELETE",
         http_path = "/2021-01-01/opensearch/vpcEndpoints/{VpcEndpointId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:deregisterCapability(input, options)
         output_schema = types.DeregisterCapabilityOutput,
         http_method = "DELETE",
         http_path = "/2021-01-01/opensearch/application/{applicationId}/capability/deregister/{capabilityName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:describeDomain(input, options)
         output_schema = types.DescribeDomainOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:describeDomainAutoTunes(input, options)
         output_schema = types.DescribeDomainAutoTunesOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/autoTunes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:describeDomainChangeProgress(input, options)
         output_schema = types.DescribeDomainChangeProgressOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/progress",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:describeDomainConfig(input, options)
         output_schema = types.DescribeDomainConfigOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:describeDomainHealth(input, options)
         output_schema = types.DescribeDomainHealthOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/health",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:describeDomainNodes(input, options)
         output_schema = types.DescribeDomainNodesOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/nodes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:describeDomains(input, options)
         output_schema = types.DescribeDomainsOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/domain-info",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:describeDryRunProgress(input, options)
         output_schema = types.DescribeDryRunProgressOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/dryRun",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:describeInboundConnections(input, options)
         output_schema = types.DescribeInboundConnectionsOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/cc/inboundConnection/search",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:describeInsightDetails(input, options)
         output_schema = types.DescribeInsightDetailsOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/insight-details",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:describeInstanceTypeLimits(input, options)
         output_schema = types.DescribeInstanceTypeLimitsOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/instanceTypeLimits/{EngineVersion}/{InstanceType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:describeOutboundConnections(input, options)
         output_schema = types.DescribeOutboundConnectionsOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/cc/outboundConnection/search",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:describePackages(input, options)
         output_schema = types.DescribePackagesOutput,
         http_method = "POST",
         http_path = "/2021-01-01/packages/describe",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:describeReservedInstanceOfferings(input, options)
         output_schema = types.DescribeReservedInstanceOfferingsOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/reservedInstanceOfferings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:describeReservedInstances(input, options)
         output_schema = types.DescribeReservedInstancesOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/reservedInstances",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:describeVpcEndpoints(input, options)
         output_schema = types.DescribeVpcEndpointsOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/vpcEndpoints/describe",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:dissociatePackage(input, options)
         output_schema = types.DissociatePackageOutput,
         http_method = "POST",
         http_path = "/2021-01-01/packages/dissociate/{PackageID}/{DomainName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:dissociatePackages(input, options)
         output_schema = types.DissociatePackagesOutput,
         http_method = "POST",
         http_path = "/2021-01-01/packages/dissociateMultiple",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:getApplication(input, options)
         output_schema = types.GetApplicationOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/application/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:getCapability(input, options)
         output_schema = types.GetCapabilityOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/application/{applicationId}/capability/{capabilityName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:getCompatibleVersions(input, options)
         output_schema = types.GetCompatibleVersionsOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/compatibleVersions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:getDataSource(input, options)
         output_schema = types.GetDataSourceOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/dataSource/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:getDefaultApplicationSetting(input, options)
         output_schema = types.GetDefaultApplicationSettingOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/defaultApplicationSetting",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:getDirectQueryDataSource(input, options)
         output_schema = types.GetDirectQueryDataSourceOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/directQueryDataSource/{DataSourceName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:getDomainMaintenanceStatus(input, options)
         output_schema = types.GetDomainMaintenanceStatusOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/domainMaintenance",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:getIndex(input, options)
         output_schema = types.GetIndexOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/index/{IndexName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:getPackageVersionHistory(input, options)
         output_schema = types.GetPackageVersionHistoryOutput,
         http_method = "GET",
         http_path = "/2021-01-01/packages/{PackageID}/history",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:getUpgradeHistory(input, options)
         output_schema = types.GetUpgradeHistoryOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/upgradeDomain/{DomainName}/history",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:getUpgradeStatus(input, options)
         output_schema = types.GetUpgradeStatusOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/upgradeDomain/{DomainName}/status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:listApplications(input, options)
         output_schema = types.ListApplicationsOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/list-applications",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:listDataSources(input, options)
         output_schema = types.ListDataSourcesOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/dataSource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:listDirectQueryDataSources(input, options)
         output_schema = types.ListDirectQueryDataSourcesOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/directQueryDataSource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:listDomainMaintenances(input, options)
         output_schema = types.ListDomainMaintenancesOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/domainMaintenances",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:listDomainNames(input, options)
         output_schema = types.ListDomainNamesOutput,
         http_method = "GET",
         http_path = "/2021-01-01/domain",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:listDomainsForPackage(input, options)
         output_schema = types.ListDomainsForPackageOutput,
         http_method = "GET",
         http_path = "/2021-01-01/packages/{PackageID}/domains",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:listInsights(input, options)
         output_schema = types.ListInsightsOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/insights",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:listInstanceTypeDetails(input, options)
         output_schema = types.ListInstanceTypeDetailsOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/instanceTypeDetails/{EngineVersion}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:listPackagesForDomain(input, options)
         output_schema = types.ListPackagesForDomainOutput,
         http_method = "GET",
         http_path = "/2021-01-01/domain/{DomainName}/packages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:listScheduledActions(input, options)
         output_schema = types.ListScheduledActionsOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/scheduledActions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:listTags(input, options)
         output_schema = types.ListTagsOutput,
         http_method = "GET",
         http_path = "/2021-01-01/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:listVersions(input, options)
         output_schema = types.ListVersionsOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:listVpcEndpointAccess(input, options)
         output_schema = types.ListVpcEndpointAccessOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/listVpcEndpointAccess",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:listVpcEndpoints(input, options)
         output_schema = types.ListVpcEndpointsOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/vpcEndpoints",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:listVpcEndpointsForDomain(input, options)
         output_schema = types.ListVpcEndpointsForDomainOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/vpcEndpoints",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:purchaseReservedInstanceOffering(input, options)
         output_schema = types.PurchaseReservedInstanceOfferingOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/purchaseReservedInstanceOffering",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:putDefaultApplicationSetting(input, options)
         output_schema = types.PutDefaultApplicationSettingOutput,
         http_method = "PUT",
         http_path = "/2021-01-01/opensearch/defaultApplicationSetting",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:registerCapability(input, options)
         output_schema = types.RegisterCapabilityOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/application/{applicationId}/capability/register",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:rejectInboundConnection(input, options)
         output_schema = types.RejectInboundConnectionOutput,
         http_method = "PUT",
         http_path = "/2021-01-01/opensearch/cc/inboundConnection/{ConnectionId}/reject",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:removeTags(input, options)
         output_schema = types.RemoveTagsOutput,
         http_method = "POST",
         http_path = "/2021-01-01/tags-removal",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:revokeVpcEndpointAccess(input, options)
         output_schema = types.RevokeVpcEndpointAccessOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/revokeVpcEndpointAccess",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:rollbackServiceSoftwareUpdate(input, options)
         output_schema = types.RollbackServiceSoftwareUpdateOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/serviceSoftwareUpdate/rollback",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:startDomainMaintenance(input, options)
         output_schema = types.StartDomainMaintenanceOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/domainMaintenance",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:startServiceSoftwareUpdate(input, options)
         output_schema = types.StartServiceSoftwareUpdateOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/serviceSoftwareUpdate/start",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:updateApplication(input, options)
         output_schema = types.UpdateApplicationOutput,
         http_method = "PUT",
         http_path = "/2021-01-01/opensearch/application/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:updateDataSource(input, options)
         output_schema = types.UpdateDataSourceOutput,
         http_method = "PUT",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/dataSource/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:updateDirectQueryDataSource(input, options)
         output_schema = types.UpdateDirectQueryDataSourceOutput,
         http_method = "PUT",
         http_path = "/2021-01-01/opensearch/directQueryDataSource/{DataSourceName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:updateDomainConfig(input, options)
         output_schema = types.UpdateDomainConfigOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:updateIndex(input, options)
         output_schema = types.UpdateIndexOutput,
         http_method = "PUT",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/index/{IndexName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:updatePackage(input, options)
         output_schema = types.UpdatePackageOutput,
         http_method = "POST",
         http_path = "/2021-01-01/packages/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:updatePackageScope(input, options)
         output_schema = types.UpdatePackageScopeOutput,
         http_method = "POST",
         http_path = "/2021-01-01/packages/updateScope",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -890,6 +1158,9 @@ function Client:updateScheduledAction(input, options)
         output_schema = types.UpdateScheduledActionOutput,
         http_method = "PUT",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/scheduledAction/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -900,6 +1171,9 @@ function Client:updateVpcEndpoint(input, options)
         output_schema = types.UpdateVpcEndpointOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/vpcEndpoints/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -910,6 +1184,9 @@ function Client:upgradeDomain(input, options)
         output_schema = types.UpgradeDomainOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/upgradeDomain",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

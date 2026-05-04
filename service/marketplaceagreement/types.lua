@@ -1621,6 +1621,9 @@ M.SendAgreementCancellationRequestInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         description = {
             type = "string",
@@ -1660,6 +1663,9 @@ M.SendAgreementPaymentRequestInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         agreementId = {
             type = "string",

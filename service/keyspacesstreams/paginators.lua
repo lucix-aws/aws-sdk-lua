@@ -1,0 +1,41 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for getStream.
+function M.pages_get_stream(client, input)
+    return paginator.pages(client, "getStream", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "shards",
+    })
+end
+
+--- Returns an item iterator for getStream.
+function M.items_get_stream(client, input)
+    return paginator.items(client, "getStream", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "shards",
+    })
+end
+
+--- Returns a page iterator for listStreams.
+function M.pages_list_streams(client, input)
+    return paginator.pages(client, "listStreams", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "streams",
+    })
+end
+
+--- Returns an item iterator for listStreams.
+function M.items_list_streams(client, input)
+    return paginator.items(client, "listStreams", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "streams",
+    })
+end
+
+return M

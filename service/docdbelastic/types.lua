@@ -438,6 +438,9 @@ M.CreateClusterInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         preferredMaintenanceWindow = {
             type = "string",
@@ -1104,6 +1107,9 @@ M.UpdateClusterInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         preferredMaintenanceWindow = {
             type = "string",

@@ -1358,6 +1358,9 @@ M.CoreNetworkPolicy = {
         },
         PolicyDocument = {
             type = "string",
+            traits = {
+                media_type = "application/json",
+            },
         },
     },
 }
@@ -1527,6 +1530,9 @@ M.CreateConnectAttachmentInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1612,6 +1618,9 @@ M.CreateConnectPeerInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         SubnetArn = {
             type = "string",
@@ -1647,6 +1656,9 @@ M.CreateCoreNetworkInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1681,6 +1693,9 @@ M.CreateCoreNetworkPrefixListAssociationInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1842,6 +1857,9 @@ M.CreateDirectConnectGatewayAttachmentInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2090,6 +2108,9 @@ M.CreateSiteToSiteVpnAttachmentInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2132,6 +2153,9 @@ M.CreateTransitGatewayPeeringInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2269,6 +2293,9 @@ M.CreateTransitGatewayRouteTableAttachmentInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2355,6 +2382,9 @@ M.CreateVpcAttachmentInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3932,6 +3962,9 @@ M.GetResourcePolicyOutput = {
     members = {
         PolicyDocument = {
             type = "string",
+            traits = {
+                media_type = "application/json",
+            },
         },
     },
 }
@@ -4815,6 +4848,9 @@ M.PutAttachmentRoutingPolicyLabelInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -4847,6 +4883,7 @@ M.PutCoreNetworkPolicyInput = {
         PolicyDocument = {
             type = "string",
             traits = {
+                media_type = "application/json",
                 required = true,
             },
         },
@@ -4858,6 +4895,9 @@ M.PutCoreNetworkPolicyInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -4875,6 +4915,7 @@ M.PutResourcePolicyInput = {
         PolicyDocument = {
             type = "string",
             traits = {
+                media_type = "application/json",
                 required = true,
             },
         },

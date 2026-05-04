@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "LicenseManagerUserSubscriptions"
-    cfg.signing_name = "license-manager-user-subscriptions"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "license-manager-user-subscriptions", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateUser(input, options)
         output_schema = types.AssociateUserOutput,
         http_method = "POST",
         http_path = "/user/AssociateUser",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createLicenseServerEndpoint(input, options)
         output_schema = types.CreateLicenseServerEndpointOutput,
         http_method = "POST",
         http_path = "/license-server/CreateLicenseServerEndpoint",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:deleteLicenseServerEndpoint(input, options)
         output_schema = types.DeleteLicenseServerEndpointOutput,
         http_method = "POST",
         http_path = "/license-server/DeleteLicenseServerEndpoint",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:deregisterIdentityProvider(input, options)
         output_schema = types.DeregisterIdentityProviderOutput,
         http_method = "POST",
         http_path = "/identity-provider/DeregisterIdentityProvider",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:disassociateUser(input, options)
         output_schema = types.DisassociateUserOutput,
         http_method = "POST",
         http_path = "/user/DisassociateUser",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:listIdentityProviders(input, options)
         output_schema = types.ListIdentityProvidersOutput,
         http_method = "POST",
         http_path = "/identity-provider/ListIdentityProviders",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:listInstances(input, options)
         output_schema = types.ListInstancesOutput,
         http_method = "POST",
         http_path = "/instance/ListInstances",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:listLicenseServerEndpoints(input, options)
         output_schema = types.ListLicenseServerEndpointsOutput,
         http_method = "POST",
         http_path = "/license-server/ListLicenseServerEndpoints",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:listProductSubscriptions(input, options)
         output_schema = types.ListProductSubscriptionsOutput,
         http_method = "POST",
         http_path = "/user/ListProductSubscriptions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:listUserAssociations(input, options)
         output_schema = types.ListUserAssociationsOutput,
         http_method = "POST",
         http_path = "/user/ListUserAssociations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:registerIdentityProvider(input, options)
         output_schema = types.RegisterIdentityProviderOutput,
         http_method = "POST",
         http_path = "/identity-provider/RegisterIdentityProvider",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:startProductSubscription(input, options)
         output_schema = types.StartProductSubscriptionOutput,
         http_method = "POST",
         http_path = "/user/StartProductSubscription",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:stopProductSubscription(input, options)
         output_schema = types.StopProductSubscriptionOutput,
         http_method = "POST",
         http_path = "/user/StopProductSubscription",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "PUT",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:updateIdentityProviderSettings(input, options)
         output_schema = types.UpdateIdentityProviderSettingsOutput,
         http_method = "POST",
         http_path = "/identity-provider/UpdateIdentityProviderSettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

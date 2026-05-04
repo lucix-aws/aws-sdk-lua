@@ -101,6 +101,9 @@ M.CreateCaseInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         performedBy = M.UserUnion,
         tags = {
@@ -408,6 +411,7 @@ M.AuditEvent = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         fields = {
@@ -813,6 +817,7 @@ M.ContactContent = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -863,10 +868,14 @@ M.SlaConfiguration = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         completionTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -911,6 +920,7 @@ M.SearchRelatedItemsResponseItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         content = setmetatable({ traits = {
@@ -1039,6 +1049,7 @@ M.UpdateRelatedItemOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         tags = {
@@ -1606,6 +1617,7 @@ M.GetDomainOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         domainStatus = {
@@ -1748,6 +1760,7 @@ M.SearchAllRelatedItemsResponseItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         content = setmetatable({ traits = {
@@ -1902,9 +1915,15 @@ M.GetFieldResponse = {
         },
         createdTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         attributes = M.FieldAttributes,
     },
@@ -2431,9 +2450,15 @@ M.GetLayoutOutput = {
         },
         createdTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2796,9 +2821,15 @@ M.GetTemplateOutput = {
         },
         createdTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         rules = {
             type = "list",
@@ -3243,9 +3274,15 @@ M.GetCaseRuleResponse = {
         },
         createdTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastModifiedTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         tags = {
             type = "map",

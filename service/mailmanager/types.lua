@@ -92,6 +92,9 @@ M.CreateAddonInstanceInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         AddonSubscriptionId = {
             type = "string",
@@ -242,6 +245,9 @@ M.CreateAddonSubscriptionInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         AddonName = {
             type = "string",
@@ -396,6 +402,9 @@ M.CreateAddressListInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         AddressListName = {
             type = "string",
@@ -705,6 +714,9 @@ M.CreateArchiveInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ArchiveName = {
             type = "string",
@@ -917,6 +929,9 @@ M.CreateAddressListImportJobInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         AddressListId = {
             type = "string",
@@ -1047,6 +1062,9 @@ M.CreateIngressPointInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         IngressPointName = {
             type = "string",
@@ -1115,6 +1133,9 @@ M.CreateRelayInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         RelayName = {
             type = "string",
@@ -1715,6 +1736,9 @@ M.CreateRuleSetInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         RuleSetName = {
             type = "string",
@@ -2015,6 +2039,9 @@ M.CreateTrafficPolicyInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         TrafficPolicyName = {
             type = "string",

@@ -1,0 +1,61 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listApplications.
+function M.pages_list_applications(client, input)
+    return paginator.pages(client, "listApplications", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listComponents.
+function M.pages_list_components(client, input)
+    return paginator.pages(client, "listComponents", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listConfigurationHistory.
+function M.pages_list_configuration_history(client, input)
+    return paginator.pages(client, "listConfigurationHistory", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listLogPatternSets.
+function M.pages_list_log_pattern_sets(client, input)
+    return paginator.pages(client, "listLogPatternSets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listLogPatterns.
+function M.pages_list_log_patterns(client, input)
+    return paginator.pages(client, "listLogPatterns", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listProblems.
+function M.pages_list_problems(client, input)
+    return paginator.pages(client, "listProblems", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listWorkloads.
+function M.pages_list_workloads(client, input)
+    return paginator.pages(client, "listWorkloads", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+return M

@@ -1,0 +1,14 @@
+local record M
+    pages_list_assignments_for_h_i_t: function(client: table, input: table): function(): table, table
+    pages_list_bonus_payments: function(client: table, input: table): function(): table, table
+    pages_list_h_i_ts: function(client: table, input: table): function(): table, table
+    pages_list_h_i_ts_for_qualification_type: function(client: table, input: table): function(): table, table
+    pages_list_qualification_requests: function(client: table, input: table): function(): table, table
+    pages_list_qualification_types: function(client: table, input: table): function(): table, table
+    pages_list_review_policy_results_for_h_i_t: function(client: table, input: table): function(): table, table
+    pages_list_reviewable_h_i_ts: function(client: table, input: table): function(): table, table
+    pages_list_worker_blocks: function(client: table, input: table): function(): table, table
+    pages_list_workers_with_qualification_type: function(client: table, input: table): function(): table, table
+end
+
+return M

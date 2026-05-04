@@ -1,0 +1,16 @@
+local record M
+    pages_list_baselines: function(client: table, input: table): function(): table, table
+    items_list_baselines: function(client: table, input: table): function(): any
+    pages_list_control_operations: function(client: table, input: table): function(): table, table
+    items_list_control_operations: function(client: table, input: table): function(): any
+    pages_list_enabled_baselines: function(client: table, input: table): function(): table, table
+    items_list_enabled_baselines: function(client: table, input: table): function(): any
+    pages_list_enabled_controls: function(client: table, input: table): function(): table, table
+    items_list_enabled_controls: function(client: table, input: table): function(): any
+    pages_list_landing_zone_operations: function(client: table, input: table): function(): table, table
+    items_list_landing_zone_operations: function(client: table, input: table): function(): any
+    pages_list_landing_zones: function(client: table, input: table): function(): table, table
+    items_list_landing_zones: function(client: table, input: table): function(): any
+end
+
+return M

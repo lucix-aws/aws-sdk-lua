@@ -1,0 +1,125 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for describeAlarmHistory.
+function M.pages_describe_alarm_history(client, input)
+    return paginator.pages(client, "describeAlarmHistory", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AlarmHistoryItems",
+    })
+end
+
+--- Returns an item iterator for describeAlarmHistory.
+function M.items_describe_alarm_history(client, input)
+    return paginator.items(client, "describeAlarmHistory", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AlarmHistoryItems",
+    })
+end
+
+--- Returns a page iterator for describeAlarms.
+function M.pages_describe_alarms(client, input)
+    return paginator.pages(client, "describeAlarms", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for describeAnomalyDetectors.
+function M.pages_describe_anomaly_detectors(client, input)
+    return paginator.pages(client, "describeAnomalyDetectors", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AnomalyDetectors",
+    })
+end
+
+--- Returns an item iterator for describeAnomalyDetectors.
+function M.items_describe_anomaly_detectors(client, input)
+    return paginator.items(client, "describeAnomalyDetectors", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AnomalyDetectors",
+    })
+end
+
+--- Returns a page iterator for describeInsightRules.
+function M.pages_describe_insight_rules(client, input)
+    return paginator.pages(client, "describeInsightRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for getMetricData.
+function M.pages_get_metric_data(client, input)
+    return paginator.pages(client, "getMetricData", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listAlarmMuteRules.
+function M.pages_list_alarm_mute_rules(client, input)
+    return paginator.pages(client, "listAlarmMuteRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AlarmMuteRuleSummaries",
+    })
+end
+
+--- Returns an item iterator for listAlarmMuteRules.
+function M.items_list_alarm_mute_rules(client, input)
+    return paginator.items(client, "listAlarmMuteRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AlarmMuteRuleSummaries",
+    })
+end
+
+--- Returns a page iterator for listDashboards.
+function M.pages_list_dashboards(client, input)
+    return paginator.pages(client, "listDashboards", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DashboardEntries",
+    })
+end
+
+--- Returns an item iterator for listDashboards.
+function M.items_list_dashboards(client, input)
+    return paginator.items(client, "listDashboards", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DashboardEntries",
+    })
+end
+
+--- Returns a page iterator for listManagedInsightRules.
+function M.pages_list_managed_insight_rules(client, input)
+    return paginator.pages(client, "listManagedInsightRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listMetricStreams.
+function M.pages_list_metric_streams(client, input)
+    return paginator.pages(client, "listMetricStreams", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listMetrics.
+function M.pages_list_metrics(client, input)
+    return paginator.pages(client, "listMetrics", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+return M

@@ -151,6 +151,9 @@ M.CreateAccessPointInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "list",
@@ -312,6 +315,9 @@ M.CreateFileSystemInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         kmsKeyId = {
             type = "string",

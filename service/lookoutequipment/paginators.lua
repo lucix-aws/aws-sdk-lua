@@ -1,0 +1,93 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listDataIngestionJobs.
+function M.pages_list_data_ingestion_jobs(client, input)
+    return paginator.pages(client, "listDataIngestionJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listDatasets.
+function M.pages_list_datasets(client, input)
+    return paginator.pages(client, "listDatasets", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listInferenceEvents.
+function M.pages_list_inference_events(client, input)
+    return paginator.pages(client, "listInferenceEvents", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listInferenceExecutions.
+function M.pages_list_inference_executions(client, input)
+    return paginator.pages(client, "listInferenceExecutions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listInferenceSchedulers.
+function M.pages_list_inference_schedulers(client, input)
+    return paginator.pages(client, "listInferenceSchedulers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listLabelGroups.
+function M.pages_list_label_groups(client, input)
+    return paginator.pages(client, "listLabelGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listLabels.
+function M.pages_list_labels(client, input)
+    return paginator.pages(client, "listLabels", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listModelVersions.
+function M.pages_list_model_versions(client, input)
+    return paginator.pages(client, "listModelVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listModels.
+function M.pages_list_models(client, input)
+    return paginator.pages(client, "listModels", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listRetrainingSchedulers.
+function M.pages_list_retraining_schedulers(client, input)
+    return paginator.pages(client, "listRetrainingSchedulers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listSensorStatistics.
+function M.pages_list_sensor_statistics(client, input)
+    return paginator.pages(client, "listSensorStatistics", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+return M

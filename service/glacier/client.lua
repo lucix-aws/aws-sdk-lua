@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "Glacier"
-    cfg.signing_name = "glacier"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "glacier", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:abortMultipartUpload(input, options)
         output_schema = types.AbortMultipartUploadOutput,
         http_method = "DELETE",
         http_path = "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:abortVaultLock(input, options)
         output_schema = types.AbortVaultLockOutput,
         http_method = "DELETE",
         http_path = "/{accountId}/vaults/{vaultName}/lock-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:addTagsToVault(input, options)
         output_schema = types.AddTagsToVaultOutput,
         http_method = "POST",
         http_path = "/{accountId}/vaults/{vaultName}/tags?operation=add",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:completeMultipartUpload(input, options)
         output_schema = types.CompleteMultipartUploadOutput,
         http_method = "POST",
         http_path = "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:completeVaultLock(input, options)
         output_schema = types.CompleteVaultLockOutput,
         http_method = "POST",
         http_path = "/{accountId}/vaults/{vaultName}/lock-policy/{lockId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createVault(input, options)
         output_schema = types.CreateVaultOutput,
         http_method = "PUT",
         http_path = "/{accountId}/vaults/{vaultName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteArchive(input, options)
         output_schema = types.DeleteArchiveOutput,
         http_method = "DELETE",
         http_path = "/{accountId}/vaults/{vaultName}/archives/{archiveId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteVault(input, options)
         output_schema = types.DeleteVaultOutput,
         http_method = "DELETE",
         http_path = "/{accountId}/vaults/{vaultName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteVaultAccessPolicy(input, options)
         output_schema = types.DeleteVaultAccessPolicyOutput,
         http_method = "DELETE",
         http_path = "/{accountId}/vaults/{vaultName}/access-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteVaultNotifications(input, options)
         output_schema = types.DeleteVaultNotificationsOutput,
         http_method = "DELETE",
         http_path = "/{accountId}/vaults/{vaultName}/notification-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:describeJob(input, options)
         output_schema = types.DescribeJobOutput,
         http_method = "GET",
         http_path = "/{accountId}/vaults/{vaultName}/jobs/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:describeVault(input, options)
         output_schema = types.DescribeVaultOperationOutput,
         http_method = "GET",
         http_path = "/{accountId}/vaults/{vaultName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getDataRetrievalPolicy(input, options)
         output_schema = types.GetDataRetrievalPolicyOutput,
         http_method = "GET",
         http_path = "/{accountId}/policies/data-retrieval",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getJobOutput(input, options)
         output_schema = types.GetJobOutputOutput,
         http_method = "GET",
         http_path = "/{accountId}/vaults/{vaultName}/jobs/{jobId}/output",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getVaultAccessPolicy(input, options)
         output_schema = types.GetVaultAccessPolicyOutput,
         http_method = "GET",
         http_path = "/{accountId}/vaults/{vaultName}/access-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getVaultLock(input, options)
         output_schema = types.GetVaultLockOutput,
         http_method = "GET",
         http_path = "/{accountId}/vaults/{vaultName}/lock-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getVaultNotifications(input, options)
         output_schema = types.GetVaultNotificationsOutput,
         http_method = "GET",
         http_path = "/{accountId}/vaults/{vaultName}/notification-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:initiateJob(input, options)
         output_schema = types.InitiateJobOutput,
         http_method = "POST",
         http_path = "/{accountId}/vaults/{vaultName}/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:initiateMultipartUpload(input, options)
         output_schema = types.InitiateMultipartUploadOutput,
         http_method = "POST",
         http_path = "/{accountId}/vaults/{vaultName}/multipart-uploads",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:initiateVaultLock(input, options)
         output_schema = types.InitiateVaultLockOutput,
         http_method = "POST",
         http_path = "/{accountId}/vaults/{vaultName}/lock-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listJobs(input, options)
         output_schema = types.ListJobsOutput,
         http_method = "GET",
         http_path = "/{accountId}/vaults/{vaultName}/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listMultipartUploads(input, options)
         output_schema = types.ListMultipartUploadsOutput,
         http_method = "GET",
         http_path = "/{accountId}/vaults/{vaultName}/multipart-uploads",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listParts(input, options)
         output_schema = types.ListPartsOutput,
         http_method = "GET",
         http_path = "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listProvisionedCapacity(input, options)
         output_schema = types.ListProvisionedCapacityOutput,
         http_method = "GET",
         http_path = "/{accountId}/provisioned-capacity",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listTagsForVault(input, options)
         output_schema = types.ListTagsForVaultOutput,
         http_method = "GET",
         http_path = "/{accountId}/vaults/{vaultName}/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listVaults(input, options)
         output_schema = types.ListVaultsOutput,
         http_method = "GET",
         http_path = "/{accountId}/vaults",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:purchaseProvisionedCapacity(input, options)
         output_schema = types.PurchaseProvisionedCapacityOutput,
         http_method = "POST",
         http_path = "/{accountId}/provisioned-capacity",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:removeTagsFromVault(input, options)
         output_schema = types.RemoveTagsFromVaultOutput,
         http_method = "POST",
         http_path = "/{accountId}/vaults/{vaultName}/tags?operation=remove",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:setDataRetrievalPolicy(input, options)
         output_schema = types.SetDataRetrievalPolicyOutput,
         http_method = "PUT",
         http_path = "/{accountId}/policies/data-retrieval",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:setVaultAccessPolicy(input, options)
         output_schema = types.SetVaultAccessPolicyOutput,
         http_method = "PUT",
         http_path = "/{accountId}/vaults/{vaultName}/access-policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:setVaultNotifications(input, options)
         output_schema = types.SetVaultNotificationsOutput,
         http_method = "PUT",
         http_path = "/{accountId}/vaults/{vaultName}/notification-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:uploadArchive(input, options)
         output_schema = types.UploadArchiveOutput,
         http_method = "POST",
         http_path = "/{accountId}/vaults/{vaultName}/archives",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:uploadMultipartPart(input, options)
         output_schema = types.UploadMultipartPartOutput,
         http_method = "PUT",
         http_path = "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

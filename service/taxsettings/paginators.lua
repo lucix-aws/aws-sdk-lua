@@ -1,0 +1,59 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listSupplementalTaxRegistrations.
+function M.pages_list_supplemental_tax_registrations(client, input)
+    return paginator.pages(client, "listSupplementalTaxRegistrations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "taxRegistrations",
+    })
+end
+
+--- Returns an item iterator for listSupplementalTaxRegistrations.
+function M.items_list_supplemental_tax_registrations(client, input)
+    return paginator.items(client, "listSupplementalTaxRegistrations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "taxRegistrations",
+    })
+end
+
+--- Returns a page iterator for listTaxExemptions.
+function M.pages_list_tax_exemptions(client, input)
+    return paginator.pages(client, "listTaxExemptions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "taxExemptionDetailsMap",
+    })
+end
+
+--- Returns an item iterator for listTaxExemptions.
+function M.items_list_tax_exemptions(client, input)
+    return paginator.items(client, "listTaxExemptions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "taxExemptionDetailsMap",
+    })
+end
+
+--- Returns a page iterator for listTaxRegistrations.
+function M.pages_list_tax_registrations(client, input)
+    return paginator.pages(client, "listTaxRegistrations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "accountDetails",
+    })
+end
+
+--- Returns an item iterator for listTaxRegistrations.
+function M.items_list_tax_registrations(client, input)
+    return paginator.items(client, "listTaxRegistrations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "accountDetails",
+    })
+end
+
+return M

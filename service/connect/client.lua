@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonConnectService"
-    cfg.signing_name = "connect"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "connect", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:activateEvaluationForm(input, options)
         output_schema = types.ActivateEvaluationFormOutput,
         http_method = "POST",
         http_path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}/activate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:associateAnalyticsDataSet(input, options)
         output_schema = types.AssociateAnalyticsDataSetOutput,
         http_method = "PUT",
         http_path = "/analytics-data/instance/{InstanceId}/association",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:associateApprovedOrigin(input, options)
         output_schema = types.AssociateApprovedOriginOutput,
         http_method = "PUT",
         http_path = "/instance/{InstanceId}/approved-origin",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:associateBot(input, options)
         output_schema = types.AssociateBotOutput,
         http_method = "PUT",
         http_path = "/instance/{InstanceId}/bot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:associateContactWithUser(input, options)
         output_schema = types.AssociateContactWithUserOutput,
         http_method = "POST",
         http_path = "/contacts/{InstanceId}/{ContactId}/associate-user",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:associateDefaultVocabulary(input, options)
         output_schema = types.AssociateDefaultVocabularyOutput,
         http_method = "PUT",
         http_path = "/default-vocabulary/{InstanceId}/{LanguageCode}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:associateEmailAddressAlias(input, options)
         output_schema = types.AssociateEmailAddressAliasOutput,
         http_method = "POST",
         http_path = "/email-addresses/{InstanceId}/{EmailAddressId}/associate-alias",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:associateFlow(input, options)
         output_schema = types.AssociateFlowOutput,
         http_method = "PUT",
         http_path = "/flow-associations/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:associateHoursOfOperations(input, options)
         output_schema = types.AssociateHoursOfOperationsOutput,
         http_method = "POST",
         http_path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/associate-hours",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:associateInstanceStorageConfig(input, options)
         output_schema = types.AssociateInstanceStorageConfigOutput,
         http_method = "PUT",
         http_path = "/instance/{InstanceId}/storage-config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:associateLambdaFunction(input, options)
         output_schema = types.AssociateLambdaFunctionOutput,
         http_method = "PUT",
         http_path = "/instance/{InstanceId}/lambda-function",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:associateLexBot(input, options)
         output_schema = types.AssociateLexBotOutput,
         http_method = "PUT",
         http_path = "/instance/{InstanceId}/lex-bot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:associatePhoneNumberContactFlow(input, options)
         output_schema = types.AssociatePhoneNumberContactFlowOutput,
         http_method = "PUT",
         http_path = "/phone-number/{PhoneNumberId}/contact-flow",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:associateQueueEmailAddresses(input, options)
         output_schema = types.AssociateQueueEmailAddressesOutput,
         http_method = "POST",
         http_path = "/queues/{InstanceId}/{QueueId}/associate-email-addresses",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:associateQueueQuickConnects(input, options)
         output_schema = types.AssociateQueueQuickConnectsOutput,
         http_method = "POST",
         http_path = "/queues/{InstanceId}/{QueueId}/associate-quick-connects",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:associateRoutingProfileQueues(input, options)
         output_schema = types.AssociateRoutingProfileQueuesOutput,
         http_method = "POST",
         http_path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/associate-queues",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:associateSecurityKey(input, options)
         output_schema = types.AssociateSecurityKeyOutput,
         http_method = "PUT",
         http_path = "/instance/{InstanceId}/security-key",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:associateSecurityProfiles(input, options)
         output_schema = types.AssociateSecurityProfilesOutput,
         http_method = "POST",
         http_path = "/associate-security-profiles/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:associateTrafficDistributionGroupUser(input, options)
         output_schema = types.AssociateTrafficDistributionGroupUserOutput,
         http_method = "PUT",
         http_path = "/traffic-distribution-group/{TrafficDistributionGroupId}/user",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:associateUserProficiencies(input, options)
         output_schema = types.AssociateUserProficienciesOutput,
         http_method = "POST",
         http_path = "/users/{InstanceId}/{UserId}/associate-proficiencies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:associateWorkspace(input, options)
         output_schema = types.AssociateWorkspaceOutput,
         http_method = "POST",
         http_path = "/workspaces/{InstanceId}/{WorkspaceId}/associate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:batchAssociateAnalyticsDataSet(input, options)
         output_schema = types.BatchAssociateAnalyticsDataSetOutput,
         http_method = "PUT",
         http_path = "/analytics-data/instance/{InstanceId}/associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:batchCreateDataTableValue(input, options)
         output_schema = types.BatchCreateDataTableValueOutput,
         http_method = "POST",
         http_path = "/data-tables/{InstanceId}/{DataTableId}/values/create",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:batchDeleteDataTableValue(input, options)
         output_schema = types.BatchDeleteDataTableValueOutput,
         http_method = "POST",
         http_path = "/data-tables/{InstanceId}/{DataTableId}/values/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:batchDescribeDataTableValue(input, options)
         output_schema = types.BatchDescribeDataTableValueOutput,
         http_method = "POST",
         http_path = "/data-tables/{InstanceId}/{DataTableId}/values/describe",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:batchDisassociateAnalyticsDataSet(input, options)
         output_schema = types.BatchDisassociateAnalyticsDataSetOutput,
         http_method = "POST",
         http_path = "/analytics-data/instance/{InstanceId}/associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:batchGetAttachedFileMetadata(input, options)
         output_schema = types.BatchGetAttachedFileMetadataOutput,
         http_method = "POST",
         http_path = "/attached-files/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:batchGetFlowAssociation(input, options)
         output_schema = types.BatchGetFlowAssociationOutput,
         http_method = "POST",
         http_path = "/flow-associations-batch/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:batchPutContact(input, options)
         output_schema = types.BatchPutContactOutput,
         http_method = "PUT",
         http_path = "/contact/batch/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:batchUpdateDataTableValue(input, options)
         output_schema = types.BatchUpdateDataTableValueOutput,
         http_method = "POST",
         http_path = "/data-tables/{InstanceId}/{DataTableId}/values/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:claimPhoneNumber(input, options)
         output_schema = types.ClaimPhoneNumberOutput,
         http_method = "POST",
         http_path = "/phone-number/claim",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:completeAttachedFileUpload(input, options)
         output_schema = types.CompleteAttachedFileUploadOutput,
         http_method = "POST",
         http_path = "/attached-files/{InstanceId}/{FileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:createAgentStatus(input, options)
         output_schema = types.CreateAgentStatusOutput,
         http_method = "PUT",
         http_path = "/agent-status/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:createContact(input, options)
         output_schema = types.CreateContactOutput,
         http_method = "PUT",
         http_path = "/contact/create-contact",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:createContactFlow(input, options)
         output_schema = types.CreateContactFlowOutput,
         http_method = "PUT",
         http_path = "/contact-flows/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:createContactFlowModule(input, options)
         output_schema = types.CreateContactFlowModuleOutput,
         http_method = "PUT",
         http_path = "/contact-flow-modules/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:createContactFlowModuleAlias(input, options)
         output_schema = types.CreateContactFlowModuleAliasOutput,
         http_method = "PUT",
         http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/alias",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:createContactFlowModuleVersion(input, options)
         output_schema = types.CreateContactFlowModuleVersionOutput,
         http_method = "PUT",
         http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/version",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:createContactFlowVersion(input, options)
         output_schema = types.CreateContactFlowVersionOutput,
         http_method = "PUT",
         http_path = "/contact-flows/{InstanceId}/{ContactFlowId}/version",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:createDataTable(input, options)
         output_schema = types.CreateDataTableOutput,
         http_method = "PUT",
         http_path = "/data-tables/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:createDataTableAttribute(input, options)
         output_schema = types.CreateDataTableAttributeOutput,
         http_method = "PUT",
         http_path = "/data-tables/{InstanceId}/{DataTableId}/attributes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:createEmailAddress(input, options)
         output_schema = types.CreateEmailAddressOutput,
         http_method = "PUT",
         http_path = "/email-addresses/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:createEvaluationForm(input, options)
         output_schema = types.CreateEvaluationFormOutput,
         http_method = "PUT",
         http_path = "/evaluation-forms/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:createHoursOfOperation(input, options)
         output_schema = types.CreateHoursOfOperationOutput,
         http_method = "PUT",
         http_path = "/hours-of-operations/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:createHoursOfOperationOverride(input, options)
         output_schema = types.CreateHoursOfOperationOverrideOutput,
         http_method = "PUT",
         http_path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/overrides",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:createInstance(input, options)
         output_schema = types.CreateInstanceOutput,
         http_method = "PUT",
         http_path = "/instance",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:createIntegrationAssociation(input, options)
         output_schema = types.CreateIntegrationAssociationOutput,
         http_method = "PUT",
         http_path = "/instance/{InstanceId}/integration-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:createNotification(input, options)
         output_schema = types.CreateNotificationOutput,
         http_method = "PUT",
         http_path = "/notifications/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:createParticipant(input, options)
         output_schema = types.CreateParticipantOutput,
         http_method = "POST",
         http_path = "/contact/create-participant",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:createPersistentContactAssociation(input, options)
         output_schema = types.CreatePersistentContactAssociationOutput,
         http_method = "POST",
         http_path = "/contact/persistent-contact-association/{InstanceId}/{InitialContactId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:createPredefinedAttribute(input, options)
         output_schema = types.CreatePredefinedAttributeOutput,
         http_method = "PUT",
         http_path = "/predefined-attributes/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:createPrompt(input, options)
         output_schema = types.CreatePromptOutput,
         http_method = "PUT",
         http_path = "/prompts/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:createPushNotificationRegistration(input, options)
         output_schema = types.CreatePushNotificationRegistrationOutput,
         http_method = "PUT",
         http_path = "/push-notification/{InstanceId}/registrations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:createQueue(input, options)
         output_schema = types.CreateQueueOutput,
         http_method = "PUT",
         http_path = "/queues/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:createQuickConnect(input, options)
         output_schema = types.CreateQuickConnectOutput,
         http_method = "PUT",
         http_path = "/quick-connects/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:createRoutingProfile(input, options)
         output_schema = types.CreateRoutingProfileOutput,
         http_method = "PUT",
         http_path = "/routing-profiles/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:createRule(input, options)
         output_schema = types.CreateRuleOutput,
         http_method = "POST",
         http_path = "/rules/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:createSecurityProfile(input, options)
         output_schema = types.CreateSecurityProfileOutput,
         http_method = "PUT",
         http_path = "/security-profiles/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:createTaskTemplate(input, options)
         output_schema = types.CreateTaskTemplateOutput,
         http_method = "PUT",
         http_path = "/instance/{InstanceId}/task/template",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:createTestCase(input, options)
         output_schema = types.CreateTestCaseOutput,
         http_method = "PUT",
         http_path = "/test-cases/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:createTrafficDistributionGroup(input, options)
         output_schema = types.CreateTrafficDistributionGroupOutput,
         http_method = "PUT",
         http_path = "/traffic-distribution-group",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:createUseCase(input, options)
         output_schema = types.CreateUseCaseOutput,
         http_method = "PUT",
         http_path = "/instance/{InstanceId}/integration-associations/{IntegrationAssociationId}/use-cases",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:createUser(input, options)
         output_schema = types.CreateUserOutput,
         http_method = "PUT",
         http_path = "/users/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:createUserHierarchyGroup(input, options)
         output_schema = types.CreateUserHierarchyGroupOutput,
         http_method = "PUT",
         http_path = "/user-hierarchy-groups/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:createView(input, options)
         output_schema = types.CreateViewOutput,
         http_method = "PUT",
         http_path = "/views/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:createViewVersion(input, options)
         output_schema = types.CreateViewVersionOutput,
         http_method = "PUT",
         http_path = "/views/{InstanceId}/{ViewId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:createVocabulary(input, options)
         output_schema = types.CreateVocabularyOutput,
         http_method = "POST",
         http_path = "/vocabulary/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:createWorkspace(input, options)
         output_schema = types.CreateWorkspaceOutput,
         http_method = "PUT",
         http_path = "/workspaces/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:createWorkspacePage(input, options)
         output_schema = types.CreateWorkspacePageOutput,
         http_method = "PUT",
         http_path = "/workspaces/{InstanceId}/{WorkspaceId}/pages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:deactivateEvaluationForm(input, options)
         output_schema = types.DeactivateEvaluationFormOutput,
         http_method = "POST",
         http_path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}/deactivate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:deleteAttachedFile(input, options)
         output_schema = types.DeleteAttachedFileOutput,
         http_method = "DELETE",
         http_path = "/attached-files/{InstanceId}/{FileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:deleteContactEvaluation(input, options)
         output_schema = types.DeleteContactEvaluationOutput,
         http_method = "DELETE",
         http_path = "/contact-evaluations/{InstanceId}/{EvaluationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:deleteContactFlow(input, options)
         output_schema = types.DeleteContactFlowOutput,
         http_method = "DELETE",
         http_path = "/contact-flows/{InstanceId}/{ContactFlowId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:deleteContactFlowModule(input, options)
         output_schema = types.DeleteContactFlowModuleOutput,
         http_method = "DELETE",
         http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:deleteContactFlowModuleAlias(input, options)
         output_schema = types.DeleteContactFlowModuleAliasOutput,
         http_method = "DELETE",
         http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/alias/{AliasId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:deleteContactFlowModuleVersion(input, options)
         output_schema = types.DeleteContactFlowModuleVersionOutput,
         http_method = "DELETE",
         http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/version/{ContactFlowModuleVersion}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:deleteContactFlowVersion(input, options)
         output_schema = types.DeleteContactFlowVersionOutput,
         http_method = "DELETE",
         http_path = "/contact-flows/{InstanceId}/{ContactFlowId}/version/{ContactFlowVersion}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:deleteDataTable(input, options)
         output_schema = types.DeleteDataTableOutput,
         http_method = "DELETE",
         http_path = "/data-tables/{InstanceId}/{DataTableId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:deleteDataTableAttribute(input, options)
         output_schema = types.DeleteDataTableAttributeOutput,
         http_method = "DELETE",
         http_path = "/data-tables/{InstanceId}/{DataTableId}/attributes/{AttributeName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:deleteEmailAddress(input, options)
         output_schema = types.DeleteEmailAddressOutput,
         http_method = "DELETE",
         http_path = "/email-addresses/{InstanceId}/{EmailAddressId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:deleteEvaluationForm(input, options)
         output_schema = types.DeleteEvaluationFormOutput,
         http_method = "DELETE",
         http_path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:deleteHoursOfOperation(input, options)
         output_schema = types.DeleteHoursOfOperationOutput,
         http_method = "DELETE",
         http_path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:deleteHoursOfOperationOverride(input, options)
         output_schema = types.DeleteHoursOfOperationOverrideOutput,
         http_method = "DELETE",
         http_path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/overrides/{HoursOfOperationOverrideId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:deleteInstance(input, options)
         output_schema = types.DeleteInstanceOutput,
         http_method = "DELETE",
         http_path = "/instance/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:deleteIntegrationAssociation(input, options)
         output_schema = types.DeleteIntegrationAssociationOutput,
         http_method = "DELETE",
         http_path = "/instance/{InstanceId}/integration-associations/{IntegrationAssociationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -890,6 +1158,9 @@ function Client:deleteNotification(input, options)
         output_schema = types.DeleteNotificationOutput,
         http_method = "DELETE",
         http_path = "/notifications/{InstanceId}/{NotificationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -900,6 +1171,9 @@ function Client:deletePredefinedAttribute(input, options)
         output_schema = types.DeletePredefinedAttributeOutput,
         http_method = "DELETE",
         http_path = "/predefined-attributes/{InstanceId}/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -910,6 +1184,9 @@ function Client:deletePrompt(input, options)
         output_schema = types.DeletePromptOutput,
         http_method = "DELETE",
         http_path = "/prompts/{InstanceId}/{PromptId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -920,6 +1197,9 @@ function Client:deletePushNotificationRegistration(input, options)
         output_schema = types.DeletePushNotificationRegistrationOutput,
         http_method = "DELETE",
         http_path = "/push-notification/{InstanceId}/registrations/{RegistrationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -930,6 +1210,9 @@ function Client:deleteQueue(input, options)
         output_schema = types.DeleteQueueOutput,
         http_method = "DELETE",
         http_path = "/queues/{InstanceId}/{QueueId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -940,6 +1223,9 @@ function Client:deleteQuickConnect(input, options)
         output_schema = types.DeleteQuickConnectOutput,
         http_method = "DELETE",
         http_path = "/quick-connects/{InstanceId}/{QuickConnectId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -950,6 +1236,9 @@ function Client:deleteRoutingProfile(input, options)
         output_schema = types.DeleteRoutingProfileOutput,
         http_method = "DELETE",
         http_path = "/routing-profiles/{InstanceId}/{RoutingProfileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -960,6 +1249,9 @@ function Client:deleteRule(input, options)
         output_schema = types.DeleteRuleOutput,
         http_method = "DELETE",
         http_path = "/rules/{InstanceId}/{RuleId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -970,6 +1262,9 @@ function Client:deleteSecurityProfile(input, options)
         output_schema = types.DeleteSecurityProfileOutput,
         http_method = "DELETE",
         http_path = "/security-profiles/{InstanceId}/{SecurityProfileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -980,6 +1275,9 @@ function Client:deleteTaskTemplate(input, options)
         output_schema = types.DeleteTaskTemplateOutput,
         http_method = "DELETE",
         http_path = "/instance/{InstanceId}/task/template/{TaskTemplateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -990,6 +1288,9 @@ function Client:deleteTestCase(input, options)
         output_schema = types.DeleteTestCaseOutput,
         http_method = "DELETE",
         http_path = "/test-cases/{InstanceId}/{TestCaseId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1000,6 +1301,9 @@ function Client:deleteTrafficDistributionGroup(input, options)
         output_schema = types.DeleteTrafficDistributionGroupOutput,
         http_method = "DELETE",
         http_path = "/traffic-distribution-group/{TrafficDistributionGroupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1010,6 +1314,9 @@ function Client:deleteUseCase(input, options)
         output_schema = types.DeleteUseCaseOutput,
         http_method = "DELETE",
         http_path = "/instance/{InstanceId}/integration-associations/{IntegrationAssociationId}/use-cases/{UseCaseId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1020,6 +1327,9 @@ function Client:deleteUser(input, options)
         output_schema = types.DeleteUserOutput,
         http_method = "DELETE",
         http_path = "/users/{InstanceId}/{UserId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1030,6 +1340,9 @@ function Client:deleteUserHierarchyGroup(input, options)
         output_schema = types.DeleteUserHierarchyGroupOutput,
         http_method = "DELETE",
         http_path = "/user-hierarchy-groups/{InstanceId}/{HierarchyGroupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1040,6 +1353,9 @@ function Client:deleteView(input, options)
         output_schema = types.DeleteViewOutput,
         http_method = "DELETE",
         http_path = "/views/{InstanceId}/{ViewId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1050,6 +1366,9 @@ function Client:deleteViewVersion(input, options)
         output_schema = types.DeleteViewVersionOutput,
         http_method = "DELETE",
         http_path = "/views/{InstanceId}/{ViewId}/versions/{ViewVersion}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1060,6 +1379,9 @@ function Client:deleteVocabulary(input, options)
         output_schema = types.DeleteVocabularyOutput,
         http_method = "POST",
         http_path = "/vocabulary-remove/{InstanceId}/{VocabularyId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1070,6 +1392,9 @@ function Client:deleteWorkspace(input, options)
         output_schema = types.DeleteWorkspaceOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{InstanceId}/{WorkspaceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1080,6 +1405,9 @@ function Client:deleteWorkspaceMedia(input, options)
         output_schema = types.DeleteWorkspaceMediaOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{InstanceId}/{WorkspaceId}/media",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1090,6 +1418,9 @@ function Client:deleteWorkspacePage(input, options)
         output_schema = types.DeleteWorkspacePageOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{InstanceId}/{WorkspaceId}/pages/{Page}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1100,6 +1431,9 @@ function Client:describeAgentStatus(input, options)
         output_schema = types.DescribeAgentStatusOutput,
         http_method = "GET",
         http_path = "/agent-status/{InstanceId}/{AgentStatusId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1110,6 +1444,9 @@ function Client:describeAttachedFilesConfiguration(input, options)
         output_schema = types.DescribeAttachedFilesConfigurationOutput,
         http_method = "GET",
         http_path = "/attached-files-configurations/{InstanceId}/{AttachmentScope}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1120,6 +1457,9 @@ function Client:describeAuthenticationProfile(input, options)
         output_schema = types.DescribeAuthenticationProfileOutput,
         http_method = "GET",
         http_path = "/authentication-profiles/{InstanceId}/{AuthenticationProfileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1130,6 +1470,9 @@ function Client:describeContact(input, options)
         output_schema = types.DescribeContactOutput,
         http_method = "GET",
         http_path = "/contacts/{InstanceId}/{ContactId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1140,6 +1483,9 @@ function Client:describeContactEvaluation(input, options)
         output_schema = types.DescribeContactEvaluationOutput,
         http_method = "GET",
         http_path = "/contact-evaluations/{InstanceId}/{EvaluationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1150,6 +1496,9 @@ function Client:describeContactFlow(input, options)
         output_schema = types.DescribeContactFlowOutput,
         http_method = "GET",
         http_path = "/contact-flows/{InstanceId}/{ContactFlowId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1160,6 +1509,9 @@ function Client:describeContactFlowModule(input, options)
         output_schema = types.DescribeContactFlowModuleOutput,
         http_method = "GET",
         http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1170,6 +1522,9 @@ function Client:describeContactFlowModuleAlias(input, options)
         output_schema = types.DescribeContactFlowModuleAliasOutput,
         http_method = "GET",
         http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/alias/{AliasId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1180,6 +1535,9 @@ function Client:describeDataTable(input, options)
         output_schema = types.DescribeDataTableOutput,
         http_method = "GET",
         http_path = "/data-tables/{InstanceId}/{DataTableId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1190,6 +1548,9 @@ function Client:describeDataTableAttribute(input, options)
         output_schema = types.DescribeDataTableAttributeOutput,
         http_method = "GET",
         http_path = "/data-tables/{InstanceId}/{DataTableId}/attributes/{AttributeName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1200,6 +1561,9 @@ function Client:describeEmailAddress(input, options)
         output_schema = types.DescribeEmailAddressOutput,
         http_method = "GET",
         http_path = "/email-addresses/{InstanceId}/{EmailAddressId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1210,6 +1574,9 @@ function Client:describeEvaluationForm(input, options)
         output_schema = types.DescribeEvaluationFormOutput,
         http_method = "GET",
         http_path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1220,6 +1587,9 @@ function Client:describeHoursOfOperation(input, options)
         output_schema = types.DescribeHoursOfOperationOutput,
         http_method = "GET",
         http_path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1230,6 +1600,9 @@ function Client:describeHoursOfOperationOverride(input, options)
         output_schema = types.DescribeHoursOfOperationOverrideOutput,
         http_method = "GET",
         http_path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/overrides/{HoursOfOperationOverrideId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1240,6 +1613,9 @@ function Client:describeInstance(input, options)
         output_schema = types.DescribeInstanceOutput,
         http_method = "GET",
         http_path = "/instance/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1250,6 +1626,9 @@ function Client:describeInstanceAttribute(input, options)
         output_schema = types.DescribeInstanceAttributeOutput,
         http_method = "GET",
         http_path = "/instance/{InstanceId}/attribute/{AttributeType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1260,6 +1639,9 @@ function Client:describeInstanceStorageConfig(input, options)
         output_schema = types.DescribeInstanceStorageConfigOutput,
         http_method = "GET",
         http_path = "/instance/{InstanceId}/storage-config/{AssociationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1270,6 +1652,9 @@ function Client:describeNotification(input, options)
         output_schema = types.DescribeNotificationOutput,
         http_method = "GET",
         http_path = "/notifications/{InstanceId}/{NotificationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1280,6 +1665,9 @@ function Client:describePhoneNumber(input, options)
         output_schema = types.DescribePhoneNumberOutput,
         http_method = "GET",
         http_path = "/phone-number/{PhoneNumberId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1290,6 +1678,9 @@ function Client:describePredefinedAttribute(input, options)
         output_schema = types.DescribePredefinedAttributeOutput,
         http_method = "GET",
         http_path = "/predefined-attributes/{InstanceId}/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1300,6 +1691,9 @@ function Client:describePrompt(input, options)
         output_schema = types.DescribePromptOutput,
         http_method = "GET",
         http_path = "/prompts/{InstanceId}/{PromptId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1310,6 +1704,9 @@ function Client:describeQueue(input, options)
         output_schema = types.DescribeQueueOutput,
         http_method = "GET",
         http_path = "/queues/{InstanceId}/{QueueId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1320,6 +1717,9 @@ function Client:describeQuickConnect(input, options)
         output_schema = types.DescribeQuickConnectOutput,
         http_method = "GET",
         http_path = "/quick-connects/{InstanceId}/{QuickConnectId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1330,6 +1730,9 @@ function Client:describeRoutingProfile(input, options)
         output_schema = types.DescribeRoutingProfileOutput,
         http_method = "GET",
         http_path = "/routing-profiles/{InstanceId}/{RoutingProfileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1340,6 +1743,9 @@ function Client:describeRule(input, options)
         output_schema = types.DescribeRuleOutput,
         http_method = "GET",
         http_path = "/rules/{InstanceId}/{RuleId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1350,6 +1756,9 @@ function Client:describeSecurityProfile(input, options)
         output_schema = types.DescribeSecurityProfileOutput,
         http_method = "GET",
         http_path = "/security-profiles/{InstanceId}/{SecurityProfileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1360,6 +1769,9 @@ function Client:describeTestCase(input, options)
         output_schema = types.DescribeTestCaseOutput,
         http_method = "GET",
         http_path = "/test-cases/{InstanceId}/{TestCaseId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1370,6 +1782,9 @@ function Client:describeTrafficDistributionGroup(input, options)
         output_schema = types.DescribeTrafficDistributionGroupOutput,
         http_method = "GET",
         http_path = "/traffic-distribution-group/{TrafficDistributionGroupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1380,6 +1795,9 @@ function Client:describeUser(input, options)
         output_schema = types.DescribeUserOutput,
         http_method = "GET",
         http_path = "/users/{InstanceId}/{UserId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1390,6 +1808,9 @@ function Client:describeUserHierarchyGroup(input, options)
         output_schema = types.DescribeUserHierarchyGroupOutput,
         http_method = "GET",
         http_path = "/user-hierarchy-groups/{InstanceId}/{HierarchyGroupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1400,6 +1821,9 @@ function Client:describeUserHierarchyStructure(input, options)
         output_schema = types.DescribeUserHierarchyStructureOutput,
         http_method = "GET",
         http_path = "/user-hierarchy-structure/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1410,6 +1834,9 @@ function Client:describeView(input, options)
         output_schema = types.DescribeViewOutput,
         http_method = "GET",
         http_path = "/views/{InstanceId}/{ViewId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1420,6 +1847,9 @@ function Client:describeVocabulary(input, options)
         output_schema = types.DescribeVocabularyOutput,
         http_method = "GET",
         http_path = "/vocabulary/{InstanceId}/{VocabularyId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1430,6 +1860,9 @@ function Client:describeWorkspace(input, options)
         output_schema = types.DescribeWorkspaceOutput,
         http_method = "GET",
         http_path = "/workspaces/{InstanceId}/{WorkspaceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1440,6 +1873,9 @@ function Client:disassociateAnalyticsDataSet(input, options)
         output_schema = types.DisassociateAnalyticsDataSetOutput,
         http_method = "POST",
         http_path = "/analytics-data/instance/{InstanceId}/association",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1450,6 +1886,9 @@ function Client:disassociateApprovedOrigin(input, options)
         output_schema = types.DisassociateApprovedOriginOutput,
         http_method = "DELETE",
         http_path = "/instance/{InstanceId}/approved-origin",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1460,6 +1899,9 @@ function Client:disassociateBot(input, options)
         output_schema = types.DisassociateBotOutput,
         http_method = "POST",
         http_path = "/instance/{InstanceId}/bot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1470,6 +1912,9 @@ function Client:disassociateEmailAddressAlias(input, options)
         output_schema = types.DisassociateEmailAddressAliasOutput,
         http_method = "POST",
         http_path = "/email-addresses/{InstanceId}/{EmailAddressId}/disassociate-alias",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1480,6 +1925,9 @@ function Client:disassociateFlow(input, options)
         output_schema = types.DisassociateFlowOutput,
         http_method = "DELETE",
         http_path = "/flow-associations/{InstanceId}/{ResourceId}/{ResourceType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1490,6 +1938,9 @@ function Client:disassociateHoursOfOperations(input, options)
         output_schema = types.DisassociateHoursOfOperationsOutput,
         http_method = "POST",
         http_path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/disassociate-hours",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1500,6 +1951,9 @@ function Client:disassociateInstanceStorageConfig(input, options)
         output_schema = types.DisassociateInstanceStorageConfigOutput,
         http_method = "DELETE",
         http_path = "/instance/{InstanceId}/storage-config/{AssociationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1510,6 +1964,9 @@ function Client:disassociateLambdaFunction(input, options)
         output_schema = types.DisassociateLambdaFunctionOutput,
         http_method = "DELETE",
         http_path = "/instance/{InstanceId}/lambda-function",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1520,6 +1977,9 @@ function Client:disassociateLexBot(input, options)
         output_schema = types.DisassociateLexBotOutput,
         http_method = "DELETE",
         http_path = "/instance/{InstanceId}/lex-bot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1530,6 +1990,9 @@ function Client:disassociatePhoneNumberContactFlow(input, options)
         output_schema = types.DisassociatePhoneNumberContactFlowOutput,
         http_method = "DELETE",
         http_path = "/phone-number/{PhoneNumberId}/contact-flow",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1540,6 +2003,9 @@ function Client:disassociateQueueEmailAddresses(input, options)
         output_schema = types.DisassociateQueueEmailAddressesOutput,
         http_method = "POST",
         http_path = "/queues/{InstanceId}/{QueueId}/disassociate-email-addresses",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1550,6 +2016,9 @@ function Client:disassociateQueueQuickConnects(input, options)
         output_schema = types.DisassociateQueueQuickConnectsOutput,
         http_method = "POST",
         http_path = "/queues/{InstanceId}/{QueueId}/disassociate-quick-connects",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1560,6 +2029,9 @@ function Client:disassociateRoutingProfileQueues(input, options)
         output_schema = types.DisassociateRoutingProfileQueuesOutput,
         http_method = "POST",
         http_path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/disassociate-queues",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1570,6 +2042,9 @@ function Client:disassociateSecurityKey(input, options)
         output_schema = types.DisassociateSecurityKeyOutput,
         http_method = "DELETE",
         http_path = "/instance/{InstanceId}/security-key/{AssociationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1580,6 +2055,9 @@ function Client:disassociateSecurityProfiles(input, options)
         output_schema = types.DisassociateSecurityProfilesOutput,
         http_method = "POST",
         http_path = "/disassociate-security-profiles/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1590,6 +2068,9 @@ function Client:disassociateTrafficDistributionGroupUser(input, options)
         output_schema = types.DisassociateTrafficDistributionGroupUserOutput,
         http_method = "DELETE",
         http_path = "/traffic-distribution-group/{TrafficDistributionGroupId}/user",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1600,6 +2081,9 @@ function Client:disassociateUserProficiencies(input, options)
         output_schema = types.DisassociateUserProficienciesOutput,
         http_method = "POST",
         http_path = "/users/{InstanceId}/{UserId}/disassociate-proficiencies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1610,6 +2094,9 @@ function Client:disassociateWorkspace(input, options)
         output_schema = types.DisassociateWorkspaceOutput,
         http_method = "POST",
         http_path = "/workspaces/{InstanceId}/{WorkspaceId}/disassociate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1620,6 +2107,9 @@ function Client:dismissUserContact(input, options)
         output_schema = types.DismissUserContactOutput,
         http_method = "POST",
         http_path = "/users/{InstanceId}/{UserId}/contact",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1630,6 +2120,9 @@ function Client:evaluateDataTableValues(input, options)
         output_schema = types.EvaluateDataTableValuesOutput,
         http_method = "POST",
         http_path = "/data-tables/{InstanceId}/{DataTableId}/values/evaluate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1640,6 +2133,9 @@ function Client:getAttachedFile(input, options)
         output_schema = types.GetAttachedFileOutput,
         http_method = "GET",
         http_path = "/attached-files/{InstanceId}/{FileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1650,6 +2146,9 @@ function Client:getContactAttributes(input, options)
         output_schema = types.GetContactAttributesOutput,
         http_method = "GET",
         http_path = "/contact/attributes/{InstanceId}/{InitialContactId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1660,6 +2159,9 @@ function Client:getContactMetrics(input, options)
         output_schema = types.GetContactMetricsOutput,
         http_method = "POST",
         http_path = "/metrics/contact",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1670,6 +2172,9 @@ function Client:getCurrentMetricData(input, options)
         output_schema = types.GetCurrentMetricDataOutput,
         http_method = "POST",
         http_path = "/metrics/current/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1680,6 +2185,9 @@ function Client:getCurrentUserData(input, options)
         output_schema = types.GetCurrentUserDataOutput,
         http_method = "POST",
         http_path = "/metrics/userdata/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1690,6 +2198,9 @@ function Client:getEffectiveHoursOfOperations(input, options)
         output_schema = types.GetEffectiveHoursOfOperationsOutput,
         http_method = "GET",
         http_path = "/effective-hours-of-operations/{InstanceId}/{HoursOfOperationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1700,6 +2211,9 @@ function Client:getFederationToken(input, options)
         output_schema = types.GetFederationTokenOutput,
         http_method = "GET",
         http_path = "/user/federate/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1710,6 +2224,9 @@ function Client:getFlowAssociation(input, options)
         output_schema = types.GetFlowAssociationOutput,
         http_method = "GET",
         http_path = "/flow-associations/{InstanceId}/{ResourceId}/{ResourceType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1720,6 +2237,9 @@ function Client:getMetricData(input, options)
         output_schema = types.GetMetricDataOutput,
         http_method = "POST",
         http_path = "/metrics/historical/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1730,6 +2250,9 @@ function Client:getMetricDataV2(input, options)
         output_schema = types.GetMetricDataV2Output,
         http_method = "POST",
         http_path = "/metrics/data",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1740,6 +2263,9 @@ function Client:getPromptFile(input, options)
         output_schema = types.GetPromptFileOutput,
         http_method = "GET",
         http_path = "/prompts/{InstanceId}/{PromptId}/file",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1750,6 +2276,9 @@ function Client:getTaskTemplate(input, options)
         output_schema = types.GetTaskTemplateOutput,
         http_method = "GET",
         http_path = "/instance/{InstanceId}/task/template/{TaskTemplateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1760,6 +2289,9 @@ function Client:getTestCaseExecutionSummary(input, options)
         output_schema = types.GetTestCaseExecutionSummaryOutput,
         http_method = "GET",
         http_path = "/test-cases/{InstanceId}/{TestCaseId}/{TestCaseExecutionId}/summary",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1770,6 +2302,9 @@ function Client:getTrafficDistribution(input, options)
         output_schema = types.GetTrafficDistributionOutput,
         http_method = "GET",
         http_path = "/traffic-distribution/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1780,6 +2315,9 @@ function Client:importPhoneNumber(input, options)
         output_schema = types.ImportPhoneNumberOutput,
         http_method = "POST",
         http_path = "/phone-number/import",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1790,6 +2328,9 @@ function Client:importWorkspaceMedia(input, options)
         output_schema = types.ImportWorkspaceMediaOutput,
         http_method = "POST",
         http_path = "/workspaces/{InstanceId}/{WorkspaceId}/media",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1800,6 +2341,9 @@ function Client:listAgentStatuses(input, options)
         output_schema = types.ListAgentStatusesOutput,
         http_method = "GET",
         http_path = "/agent-status/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1810,6 +2354,9 @@ function Client:listAnalyticsDataAssociations(input, options)
         output_schema = types.ListAnalyticsDataAssociationsOutput,
         http_method = "GET",
         http_path = "/analytics-data/instance/{InstanceId}/association",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1820,6 +2367,9 @@ function Client:listAnalyticsDataLakeDataSets(input, options)
         output_schema = types.ListAnalyticsDataLakeDataSetsOutput,
         http_method = "GET",
         http_path = "/analytics-data/instance/{InstanceId}/datasets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1830,6 +2380,9 @@ function Client:listApprovedOrigins(input, options)
         output_schema = types.ListApprovedOriginsOutput,
         http_method = "GET",
         http_path = "/instance/{InstanceId}/approved-origins",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1840,6 +2393,9 @@ function Client:listAssociatedContacts(input, options)
         output_schema = types.ListAssociatedContactsOutput,
         http_method = "GET",
         http_path = "/contact/associated/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1850,6 +2406,9 @@ function Client:listAttachedFilesConfigurations(input, options)
         output_schema = types.ListAttachedFilesConfigurationsOutput,
         http_method = "GET",
         http_path = "/attached-files-configurations/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1860,6 +2419,9 @@ function Client:listAuthenticationProfiles(input, options)
         output_schema = types.ListAuthenticationProfilesOutput,
         http_method = "GET",
         http_path = "/authentication-profiles-summary/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1870,6 +2432,9 @@ function Client:listBots(input, options)
         output_schema = types.ListBotsOutput,
         http_method = "GET",
         http_path = "/instance/{InstanceId}/bots",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1880,6 +2445,9 @@ function Client:listChildHoursOfOperations(input, options)
         output_schema = types.ListChildHoursOfOperationsOutput,
         http_method = "GET",
         http_path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/hours",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1890,6 +2458,9 @@ function Client:listContactEvaluations(input, options)
         output_schema = types.ListContactEvaluationsOutput,
         http_method = "GET",
         http_path = "/contact-evaluations/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1900,6 +2471,9 @@ function Client:listContactFlowModuleAliases(input, options)
         output_schema = types.ListContactFlowModuleAliasesOutput,
         http_method = "GET",
         http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/aliases",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1910,6 +2484,9 @@ function Client:listContactFlowModules(input, options)
         output_schema = types.ListContactFlowModulesOutput,
         http_method = "GET",
         http_path = "/contact-flow-modules-summary/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1920,6 +2497,9 @@ function Client:listContactFlowModuleVersions(input, options)
         output_schema = types.ListContactFlowModuleVersionsOutput,
         http_method = "GET",
         http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1930,6 +2510,9 @@ function Client:listContactFlows(input, options)
         output_schema = types.ListContactFlowsOutput,
         http_method = "GET",
         http_path = "/contact-flows-summary/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1940,6 +2523,9 @@ function Client:listContactFlowVersions(input, options)
         output_schema = types.ListContactFlowVersionsOutput,
         http_method = "GET",
         http_path = "/contact-flows/{InstanceId}/{ContactFlowId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1950,6 +2536,9 @@ function Client:listContactReferences(input, options)
         output_schema = types.ListContactReferencesOutput,
         http_method = "GET",
         http_path = "/contact/references/{InstanceId}/{ContactId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1960,6 +2549,9 @@ function Client:listDataTableAttributes(input, options)
         output_schema = types.ListDataTableAttributesOutput,
         http_method = "POST",
         http_path = "/data-tables/{InstanceId}/{DataTableId}/attributes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1970,6 +2562,9 @@ function Client:listDataTablePrimaryValues(input, options)
         output_schema = types.ListDataTablePrimaryValuesOutput,
         http_method = "POST",
         http_path = "/data-tables/{InstanceId}/{DataTableId}/values/list-primary",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1980,6 +2575,9 @@ function Client:listDataTables(input, options)
         output_schema = types.ListDataTablesOutput,
         http_method = "GET",
         http_path = "/data-tables/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1990,6 +2588,9 @@ function Client:listDataTableValues(input, options)
         output_schema = types.ListDataTableValuesOutput,
         http_method = "POST",
         http_path = "/data-tables/{InstanceId}/{DataTableId}/values/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2000,6 +2601,9 @@ function Client:listDefaultVocabularies(input, options)
         output_schema = types.ListDefaultVocabulariesOutput,
         http_method = "POST",
         http_path = "/default-vocabulary-summary/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2010,6 +2614,9 @@ function Client:listEntitySecurityProfiles(input, options)
         output_schema = types.ListEntitySecurityProfilesOutput,
         http_method = "POST",
         http_path = "/entity-security-profiles-summary/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2020,6 +2627,9 @@ function Client:listEvaluationForms(input, options)
         output_schema = types.ListEvaluationFormsOutput,
         http_method = "GET",
         http_path = "/evaluation-forms/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2030,6 +2640,9 @@ function Client:listEvaluationFormVersions(input, options)
         output_schema = types.ListEvaluationFormVersionsOutput,
         http_method = "GET",
         http_path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2040,6 +2653,9 @@ function Client:listFlowAssociations(input, options)
         output_schema = types.ListFlowAssociationsOutput,
         http_method = "GET",
         http_path = "/flow-associations-summary/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2050,6 +2666,9 @@ function Client:listHoursOfOperationOverrides(input, options)
         output_schema = types.ListHoursOfOperationOverridesOutput,
         http_method = "GET",
         http_path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/overrides",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2060,6 +2679,9 @@ function Client:listHoursOfOperations(input, options)
         output_schema = types.ListHoursOfOperationsOutput,
         http_method = "GET",
         http_path = "/hours-of-operations-summary/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2070,6 +2692,9 @@ function Client:listInstanceAttributes(input, options)
         output_schema = types.ListInstanceAttributesOutput,
         http_method = "GET",
         http_path = "/instance/{InstanceId}/attributes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2080,6 +2705,9 @@ function Client:listInstances(input, options)
         output_schema = types.ListInstancesOutput,
         http_method = "GET",
         http_path = "/instance",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2090,6 +2718,9 @@ function Client:listInstanceStorageConfigs(input, options)
         output_schema = types.ListInstanceStorageConfigsOutput,
         http_method = "GET",
         http_path = "/instance/{InstanceId}/storage-configs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2100,6 +2731,9 @@ function Client:listIntegrationAssociations(input, options)
         output_schema = types.ListIntegrationAssociationsOutput,
         http_method = "GET",
         http_path = "/instance/{InstanceId}/integration-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2110,6 +2744,9 @@ function Client:listLambdaFunctions(input, options)
         output_schema = types.ListLambdaFunctionsOutput,
         http_method = "GET",
         http_path = "/instance/{InstanceId}/lambda-functions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2120,6 +2757,9 @@ function Client:listLexBots(input, options)
         output_schema = types.ListLexBotsOutput,
         http_method = "GET",
         http_path = "/instance/{InstanceId}/lex-bots",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2130,6 +2770,9 @@ function Client:listNotifications(input, options)
         output_schema = types.ListNotificationsOutput,
         http_method = "GET",
         http_path = "/notifications/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2140,6 +2783,9 @@ function Client:listPhoneNumbers(input, options)
         output_schema = types.ListPhoneNumbersOutput,
         http_method = "GET",
         http_path = "/phone-numbers-summary/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2150,6 +2796,9 @@ function Client:listPhoneNumbersV2(input, options)
         output_schema = types.ListPhoneNumbersV2Output,
         http_method = "POST",
         http_path = "/phone-number/list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2160,6 +2809,9 @@ function Client:listPredefinedAttributes(input, options)
         output_schema = types.ListPredefinedAttributesOutput,
         http_method = "GET",
         http_path = "/predefined-attributes/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2170,6 +2822,9 @@ function Client:listPrompts(input, options)
         output_schema = types.ListPromptsOutput,
         http_method = "GET",
         http_path = "/prompts-summary/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2180,6 +2835,9 @@ function Client:listQueueEmailAddresses(input, options)
         output_schema = types.ListQueueEmailAddressesOutput,
         http_method = "GET",
         http_path = "/queues/{InstanceId}/{QueueId}/email-addresses",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2190,6 +2848,9 @@ function Client:listQueueQuickConnects(input, options)
         output_schema = types.ListQueueQuickConnectsOutput,
         http_method = "GET",
         http_path = "/queues/{InstanceId}/{QueueId}/quick-connects",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2200,6 +2861,9 @@ function Client:listQueues(input, options)
         output_schema = types.ListQueuesOutput,
         http_method = "GET",
         http_path = "/queues-summary/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2210,6 +2874,9 @@ function Client:listQuickConnects(input, options)
         output_schema = types.ListQuickConnectsOutput,
         http_method = "GET",
         http_path = "/quick-connects/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2220,6 +2887,9 @@ function Client:listRealtimeContactAnalysisSegmentsV2(input, options)
         output_schema = types.ListRealtimeContactAnalysisSegmentsV2Output,
         http_method = "POST",
         http_path = "/contact/list-real-time-analysis-segments-v2/{InstanceId}/{ContactId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2230,6 +2900,9 @@ function Client:listRoutingProfileManualAssignmentQueues(input, options)
         output_schema = types.ListRoutingProfileManualAssignmentQueuesOutput,
         http_method = "GET",
         http_path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/manual-assignment-queues",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2240,6 +2913,9 @@ function Client:listRoutingProfileQueues(input, options)
         output_schema = types.ListRoutingProfileQueuesOutput,
         http_method = "GET",
         http_path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/queues",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2250,6 +2926,9 @@ function Client:listRoutingProfiles(input, options)
         output_schema = types.ListRoutingProfilesOutput,
         http_method = "GET",
         http_path = "/routing-profiles-summary/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2260,6 +2939,9 @@ function Client:listRules(input, options)
         output_schema = types.ListRulesOutput,
         http_method = "GET",
         http_path = "/rules/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2270,6 +2952,9 @@ function Client:listSecurityKeys(input, options)
         output_schema = types.ListSecurityKeysOutput,
         http_method = "GET",
         http_path = "/instance/{InstanceId}/security-keys",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2280,6 +2965,9 @@ function Client:listSecurityProfileApplications(input, options)
         output_schema = types.ListSecurityProfileApplicationsOutput,
         http_method = "GET",
         http_path = "/security-profiles-applications/{InstanceId}/{SecurityProfileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2290,6 +2978,9 @@ function Client:listSecurityProfileFlowModules(input, options)
         output_schema = types.ListSecurityProfileFlowModulesOutput,
         http_method = "GET",
         http_path = "/security-profiles-flow-modules/{InstanceId}/{SecurityProfileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2300,6 +2991,9 @@ function Client:listSecurityProfilePermissions(input, options)
         output_schema = types.ListSecurityProfilePermissionsOutput,
         http_method = "GET",
         http_path = "/security-profiles-permissions/{InstanceId}/{SecurityProfileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2310,6 +3004,9 @@ function Client:listSecurityProfiles(input, options)
         output_schema = types.ListSecurityProfilesOutput,
         http_method = "GET",
         http_path = "/security-profiles-summary/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2320,6 +3017,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2330,6 +3030,9 @@ function Client:listTaskTemplates(input, options)
         output_schema = types.ListTaskTemplatesOutput,
         http_method = "GET",
         http_path = "/instance/{InstanceId}/task/template",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2340,6 +3043,9 @@ function Client:listTestCaseExecutionRecords(input, options)
         output_schema = types.ListTestCaseExecutionRecordsOutput,
         http_method = "GET",
         http_path = "/test-cases/{InstanceId}/{TestCaseId}/{TestCaseExecutionId}/records",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2350,6 +3056,9 @@ function Client:listTestCaseExecutions(input, options)
         output_schema = types.ListTestCaseExecutionsOutput,
         http_method = "GET",
         http_path = "/test-case-executions/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2360,6 +3069,9 @@ function Client:listTestCases(input, options)
         output_schema = types.ListTestCasesOutput,
         http_method = "GET",
         http_path = "/test-cases-summary/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2370,6 +3082,9 @@ function Client:listTrafficDistributionGroups(input, options)
         output_schema = types.ListTrafficDistributionGroupsOutput,
         http_method = "GET",
         http_path = "/traffic-distribution-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2380,6 +3095,9 @@ function Client:listTrafficDistributionGroupUsers(input, options)
         output_schema = types.ListTrafficDistributionGroupUsersOutput,
         http_method = "GET",
         http_path = "/traffic-distribution-group/{TrafficDistributionGroupId}/user",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2390,6 +3108,9 @@ function Client:listUseCases(input, options)
         output_schema = types.ListUseCasesOutput,
         http_method = "GET",
         http_path = "/instance/{InstanceId}/integration-associations/{IntegrationAssociationId}/use-cases",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2400,6 +3121,9 @@ function Client:listUserHierarchyGroups(input, options)
         output_schema = types.ListUserHierarchyGroupsOutput,
         http_method = "GET",
         http_path = "/user-hierarchy-groups-summary/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2410,6 +3134,9 @@ function Client:listUserNotifications(input, options)
         output_schema = types.ListUserNotificationsOutput,
         http_method = "GET",
         http_path = "/users/{InstanceId}/{UserId}/notifications",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2420,6 +3147,9 @@ function Client:listUserProficiencies(input, options)
         output_schema = types.ListUserProficienciesOutput,
         http_method = "GET",
         http_path = "/users/{InstanceId}/{UserId}/proficiencies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2430,6 +3160,9 @@ function Client:listUsers(input, options)
         output_schema = types.ListUsersOutput,
         http_method = "GET",
         http_path = "/users-summary/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2440,6 +3173,9 @@ function Client:listViews(input, options)
         output_schema = types.ListViewsOutput,
         http_method = "GET",
         http_path = "/views/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2450,6 +3186,9 @@ function Client:listViewVersions(input, options)
         output_schema = types.ListViewVersionsOutput,
         http_method = "GET",
         http_path = "/views/{InstanceId}/{ViewId}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2460,6 +3199,9 @@ function Client:listWorkspaceMedia(input, options)
         output_schema = types.ListWorkspaceMediaOutput,
         http_method = "GET",
         http_path = "/workspaces/{InstanceId}/{WorkspaceId}/media",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2470,6 +3212,9 @@ function Client:listWorkspacePages(input, options)
         output_schema = types.ListWorkspacePagesOutput,
         http_method = "GET",
         http_path = "/workspaces/{InstanceId}/{WorkspaceId}/pages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2480,6 +3225,9 @@ function Client:listWorkspaces(input, options)
         output_schema = types.ListWorkspacesOutput,
         http_method = "GET",
         http_path = "/workspaces/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2490,6 +3238,9 @@ function Client:monitorContact(input, options)
         output_schema = types.MonitorContactOutput,
         http_method = "POST",
         http_path = "/contact/monitor",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2500,6 +3251,9 @@ function Client:pauseContact(input, options)
         output_schema = types.PauseContactOutput,
         http_method = "POST",
         http_path = "/contact/pause",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2510,6 +3264,9 @@ function Client:putUserStatus(input, options)
         output_schema = types.PutUserStatusOutput,
         http_method = "PUT",
         http_path = "/users/{InstanceId}/{UserId}/status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2520,6 +3277,9 @@ function Client:releasePhoneNumber(input, options)
         output_schema = types.ReleasePhoneNumberOutput,
         http_method = "DELETE",
         http_path = "/phone-number/{PhoneNumberId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2530,6 +3290,9 @@ function Client:replicateInstance(input, options)
         output_schema = types.ReplicateInstanceOutput,
         http_method = "POST",
         http_path = "/instance/{InstanceId}/replicate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2540,6 +3303,9 @@ function Client:resumeContact(input, options)
         output_schema = types.ResumeContactOutput,
         http_method = "POST",
         http_path = "/contact/resume",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2550,6 +3316,9 @@ function Client:resumeContactRecording(input, options)
         output_schema = types.ResumeContactRecordingOutput,
         http_method = "POST",
         http_path = "/contact/resume-recording",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2560,6 +3329,9 @@ function Client:searchAgentStatuses(input, options)
         output_schema = types.SearchAgentStatusesOutput,
         http_method = "POST",
         http_path = "/search-agent-statuses",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2570,6 +3342,9 @@ function Client:searchAvailablePhoneNumbers(input, options)
         output_schema = types.SearchAvailablePhoneNumbersOutput,
         http_method = "POST",
         http_path = "/phone-number/search-available",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2580,6 +3355,9 @@ function Client:searchContactEvaluations(input, options)
         output_schema = types.SearchContactEvaluationsOutput,
         http_method = "POST",
         http_path = "/search-contact-evaluations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2590,6 +3368,9 @@ function Client:searchContactFlowModules(input, options)
         output_schema = types.SearchContactFlowModulesOutput,
         http_method = "POST",
         http_path = "/search-contact-flow-modules",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2600,6 +3381,9 @@ function Client:searchContactFlows(input, options)
         output_schema = types.SearchContactFlowsOutput,
         http_method = "POST",
         http_path = "/search-contact-flows",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2610,6 +3394,9 @@ function Client:searchContacts(input, options)
         output_schema = types.SearchContactsOutput,
         http_method = "POST",
         http_path = "/search-contacts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2620,6 +3407,9 @@ function Client:searchDataTables(input, options)
         output_schema = types.SearchDataTablesOutput,
         http_method = "POST",
         http_path = "/search-data-tables",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2630,6 +3420,9 @@ function Client:searchEmailAddresses(input, options)
         output_schema = types.SearchEmailAddressesOutput,
         http_method = "POST",
         http_path = "/search-email-addresses",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2640,6 +3433,9 @@ function Client:searchEvaluationForms(input, options)
         output_schema = types.SearchEvaluationFormsOutput,
         http_method = "POST",
         http_path = "/search-evaluation-forms",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2650,6 +3446,9 @@ function Client:searchHoursOfOperationOverrides(input, options)
         output_schema = types.SearchHoursOfOperationOverridesOutput,
         http_method = "POST",
         http_path = "/search-hours-of-operation-overrides",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2660,6 +3459,9 @@ function Client:searchHoursOfOperations(input, options)
         output_schema = types.SearchHoursOfOperationsOutput,
         http_method = "POST",
         http_path = "/search-hours-of-operations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2670,6 +3472,9 @@ function Client:searchNotifications(input, options)
         output_schema = types.SearchNotificationsOutput,
         http_method = "POST",
         http_path = "/search-notifications",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2680,6 +3485,9 @@ function Client:searchPredefinedAttributes(input, options)
         output_schema = types.SearchPredefinedAttributesOutput,
         http_method = "POST",
         http_path = "/search-predefined-attributes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2690,6 +3498,9 @@ function Client:searchPrompts(input, options)
         output_schema = types.SearchPromptsOutput,
         http_method = "POST",
         http_path = "/search-prompts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2700,6 +3511,9 @@ function Client:searchQueues(input, options)
         output_schema = types.SearchQueuesOutput,
         http_method = "POST",
         http_path = "/search-queues",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2710,6 +3524,9 @@ function Client:searchQuickConnects(input, options)
         output_schema = types.SearchQuickConnectsOutput,
         http_method = "POST",
         http_path = "/search-quick-connects",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2720,6 +3537,9 @@ function Client:searchResourceTags(input, options)
         output_schema = types.SearchResourceTagsOutput,
         http_method = "POST",
         http_path = "/search-resource-tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2730,6 +3550,9 @@ function Client:searchRoutingProfiles(input, options)
         output_schema = types.SearchRoutingProfilesOutput,
         http_method = "POST",
         http_path = "/search-routing-profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2740,6 +3563,9 @@ function Client:searchSecurityProfiles(input, options)
         output_schema = types.SearchSecurityProfilesOutput,
         http_method = "POST",
         http_path = "/search-security-profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2750,6 +3576,9 @@ function Client:searchTestCases(input, options)
         output_schema = types.SearchTestCasesOutput,
         http_method = "POST",
         http_path = "/search-test-cases",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2760,6 +3589,9 @@ function Client:searchUserHierarchyGroups(input, options)
         output_schema = types.SearchUserHierarchyGroupsOutput,
         http_method = "POST",
         http_path = "/search-user-hierarchy-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2770,6 +3602,9 @@ function Client:searchUsers(input, options)
         output_schema = types.SearchUsersOutput,
         http_method = "POST",
         http_path = "/search-users",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2780,6 +3615,9 @@ function Client:searchViews(input, options)
         output_schema = types.SearchViewsOutput,
         http_method = "POST",
         http_path = "/search-views",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2790,6 +3628,9 @@ function Client:searchVocabularies(input, options)
         output_schema = types.SearchVocabulariesOutput,
         http_method = "POST",
         http_path = "/vocabulary-summary/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2800,6 +3641,9 @@ function Client:searchWorkspaceAssociations(input, options)
         output_schema = types.SearchWorkspaceAssociationsOutput,
         http_method = "POST",
         http_path = "/search-workspace-associations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2810,6 +3654,9 @@ function Client:searchWorkspaces(input, options)
         output_schema = types.SearchWorkspacesOutput,
         http_method = "POST",
         http_path = "/search-workspaces",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2820,6 +3667,9 @@ function Client:sendChatIntegrationEvent(input, options)
         output_schema = types.SendChatIntegrationEventOutput,
         http_method = "POST",
         http_path = "/chat-integration-event",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2830,6 +3680,9 @@ function Client:sendOutboundEmail(input, options)
         output_schema = types.SendOutboundEmailOutput,
         http_method = "PUT",
         http_path = "/instance/{InstanceId}/outbound-email",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2840,6 +3693,9 @@ function Client:startAttachedFileUpload(input, options)
         output_schema = types.StartAttachedFileUploadOutput,
         http_method = "PUT",
         http_path = "/attached-files/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2850,6 +3706,9 @@ function Client:startChatContact(input, options)
         output_schema = types.StartChatContactOutput,
         http_method = "PUT",
         http_path = "/contact/chat",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2860,6 +3719,9 @@ function Client:startContactEvaluation(input, options)
         output_schema = types.StartContactEvaluationOutput,
         http_method = "PUT",
         http_path = "/contact-evaluations/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2870,6 +3732,9 @@ function Client:startContactMediaProcessing(input, options)
         output_schema = types.StartContactMediaProcessingOutput,
         http_method = "POST",
         http_path = "/contact/start-contact-media-processing",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2880,6 +3745,9 @@ function Client:startContactRecording(input, options)
         output_schema = types.StartContactRecordingOutput,
         http_method = "POST",
         http_path = "/contact/start-recording",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2890,6 +3758,9 @@ function Client:startContactStreaming(input, options)
         output_schema = types.StartContactStreamingOutput,
         http_method = "POST",
         http_path = "/contact/start-streaming",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2900,6 +3771,9 @@ function Client:startEmailContact(input, options)
         output_schema = types.StartEmailContactOutput,
         http_method = "PUT",
         http_path = "/contact/email",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2910,6 +3784,9 @@ function Client:startOutboundChatContact(input, options)
         output_schema = types.StartOutboundChatContactOutput,
         http_method = "PUT",
         http_path = "/contact/outbound-chat",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2920,6 +3797,9 @@ function Client:startOutboundEmailContact(input, options)
         output_schema = types.StartOutboundEmailContactOutput,
         http_method = "PUT",
         http_path = "/contact/outbound-email",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2930,6 +3810,9 @@ function Client:startOutboundVoiceContact(input, options)
         output_schema = types.StartOutboundVoiceContactOutput,
         http_method = "PUT",
         http_path = "/contact/outbound-voice",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2940,6 +3823,9 @@ function Client:startScreenSharing(input, options)
         output_schema = types.StartScreenSharingOutput,
         http_method = "PUT",
         http_path = "/contact/screen-sharing",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2950,6 +3836,9 @@ function Client:startTaskContact(input, options)
         output_schema = types.StartTaskContactOutput,
         http_method = "PUT",
         http_path = "/contact/task",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2960,6 +3849,9 @@ function Client:startTestCaseExecution(input, options)
         output_schema = types.StartTestCaseExecutionOutput,
         http_method = "PUT",
         http_path = "/test-cases/{InstanceId}/{TestCaseId}/start-execution",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2970,6 +3862,9 @@ function Client:startWebRTCContact(input, options)
         output_schema = types.StartWebRTCContactOutput,
         http_method = "PUT",
         http_path = "/contact/webrtc",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2980,6 +3875,9 @@ function Client:stopContact(input, options)
         output_schema = types.StopContactOutput,
         http_method = "POST",
         http_path = "/contact/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -2990,6 +3888,9 @@ function Client:stopContactMediaProcessing(input, options)
         output_schema = types.StopContactMediaProcessingOutput,
         http_method = "POST",
         http_path = "/contact/stop-contact-media-processing",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3000,6 +3901,9 @@ function Client:stopContactRecording(input, options)
         output_schema = types.StopContactRecordingOutput,
         http_method = "POST",
         http_path = "/contact/stop-recording",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3010,6 +3914,9 @@ function Client:stopContactStreaming(input, options)
         output_schema = types.StopContactStreamingOutput,
         http_method = "POST",
         http_path = "/contact/stop-streaming",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3020,6 +3927,9 @@ function Client:stopTestCaseExecution(input, options)
         output_schema = types.StopTestCaseExecutionOutput,
         http_method = "POST",
         http_path = "/test-cases/{InstanceId}/{TestCaseId}/{TestCaseExecutionId}/stop-execution",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3030,6 +3940,9 @@ function Client:submitContactEvaluation(input, options)
         output_schema = types.SubmitContactEvaluationOutput,
         http_method = "POST",
         http_path = "/contact-evaluations/{InstanceId}/{EvaluationId}/submit",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3040,6 +3953,9 @@ function Client:suspendContactRecording(input, options)
         output_schema = types.SuspendContactRecordingOutput,
         http_method = "POST",
         http_path = "/contact/suspend-recording",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3050,6 +3966,9 @@ function Client:tagContact(input, options)
         output_schema = types.TagContactOutput,
         http_method = "POST",
         http_path = "/contact/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3060,6 +3979,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3070,6 +3992,9 @@ function Client:transferContact(input, options)
         output_schema = types.TransferContactOutput,
         http_method = "POST",
         http_path = "/contact/transfer",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3080,6 +4005,9 @@ function Client:untagContact(input, options)
         output_schema = types.UntagContactOutput,
         http_method = "DELETE",
         http_path = "/contact/tags/{InstanceId}/{ContactId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3090,6 +4018,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3100,6 +4031,9 @@ function Client:updateAgentStatus(input, options)
         output_schema = types.UpdateAgentStatusOutput,
         http_method = "POST",
         http_path = "/agent-status/{InstanceId}/{AgentStatusId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3110,6 +4044,9 @@ function Client:updateAttachedFilesConfiguration(input, options)
         output_schema = types.UpdateAttachedFilesConfigurationOutput,
         http_method = "POST",
         http_path = "/attached-files-configurations/{InstanceId}/{AttachmentScope}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3120,6 +4057,9 @@ function Client:updateAuthenticationProfile(input, options)
         output_schema = types.UpdateAuthenticationProfileOutput,
         http_method = "POST",
         http_path = "/authentication-profiles/{InstanceId}/{AuthenticationProfileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3130,6 +4070,9 @@ function Client:updateContact(input, options)
         output_schema = types.UpdateContactOutput,
         http_method = "POST",
         http_path = "/contacts/{InstanceId}/{ContactId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3140,6 +4083,9 @@ function Client:updateContactAttributes(input, options)
         output_schema = types.UpdateContactAttributesOutput,
         http_method = "POST",
         http_path = "/contact/attributes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3150,6 +4096,9 @@ function Client:updateContactEvaluation(input, options)
         output_schema = types.UpdateContactEvaluationOutput,
         http_method = "POST",
         http_path = "/contact-evaluations/{InstanceId}/{EvaluationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3160,6 +4109,9 @@ function Client:updateContactFlowContent(input, options)
         output_schema = types.UpdateContactFlowContentOutput,
         http_method = "POST",
         http_path = "/contact-flows/{InstanceId}/{ContactFlowId}/content",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3170,6 +4122,9 @@ function Client:updateContactFlowMetadata(input, options)
         output_schema = types.UpdateContactFlowMetadataOutput,
         http_method = "POST",
         http_path = "/contact-flows/{InstanceId}/{ContactFlowId}/metadata",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3180,6 +4135,9 @@ function Client:updateContactFlowModuleAlias(input, options)
         output_schema = types.UpdateContactFlowModuleAliasOutput,
         http_method = "POST",
         http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/alias/{AliasId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3190,6 +4148,9 @@ function Client:updateContactFlowModuleContent(input, options)
         output_schema = types.UpdateContactFlowModuleContentOutput,
         http_method = "POST",
         http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/content",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3200,6 +4161,9 @@ function Client:updateContactFlowModuleMetadata(input, options)
         output_schema = types.UpdateContactFlowModuleMetadataOutput,
         http_method = "POST",
         http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/metadata",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3210,6 +4174,9 @@ function Client:updateContactFlowName(input, options)
         output_schema = types.UpdateContactFlowNameOutput,
         http_method = "POST",
         http_path = "/contact-flows/{InstanceId}/{ContactFlowId}/name",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3220,6 +4187,9 @@ function Client:updateContactRoutingData(input, options)
         output_schema = types.UpdateContactRoutingDataOutput,
         http_method = "POST",
         http_path = "/contacts/{InstanceId}/{ContactId}/routing-data",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3230,6 +4200,9 @@ function Client:updateContactSchedule(input, options)
         output_schema = types.UpdateContactScheduleOutput,
         http_method = "POST",
         http_path = "/contact/schedule",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3240,6 +4213,9 @@ function Client:updateDataTableAttribute(input, options)
         output_schema = types.UpdateDataTableAttributeOutput,
         http_method = "POST",
         http_path = "/data-tables/{InstanceId}/{DataTableId}/attributes/{AttributeName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3250,6 +4226,9 @@ function Client:updateDataTableMetadata(input, options)
         output_schema = types.UpdateDataTableMetadataOutput,
         http_method = "POST",
         http_path = "/data-tables/{InstanceId}/{DataTableId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3260,6 +4239,9 @@ function Client:updateDataTablePrimaryValues(input, options)
         output_schema = types.UpdateDataTablePrimaryValuesOutput,
         http_method = "POST",
         http_path = "/data-tables/{InstanceId}/{DataTableId}/values/update-primary",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3270,6 +4252,9 @@ function Client:updateEmailAddressMetadata(input, options)
         output_schema = types.UpdateEmailAddressMetadataOutput,
         http_method = "POST",
         http_path = "/email-addresses/{InstanceId}/{EmailAddressId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3280,6 +4265,9 @@ function Client:updateEvaluationForm(input, options)
         output_schema = types.UpdateEvaluationFormOutput,
         http_method = "PUT",
         http_path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3290,6 +4278,9 @@ function Client:updateHoursOfOperation(input, options)
         output_schema = types.UpdateHoursOfOperationOutput,
         http_method = "POST",
         http_path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3300,6 +4291,9 @@ function Client:updateHoursOfOperationOverride(input, options)
         output_schema = types.UpdateHoursOfOperationOverrideOutput,
         http_method = "POST",
         http_path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/overrides/{HoursOfOperationOverrideId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3310,6 +4304,9 @@ function Client:updateInstanceAttribute(input, options)
         output_schema = types.UpdateInstanceAttributeOutput,
         http_method = "POST",
         http_path = "/instance/{InstanceId}/attribute/{AttributeType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3320,6 +4317,9 @@ function Client:updateInstanceStorageConfig(input, options)
         output_schema = types.UpdateInstanceStorageConfigOutput,
         http_method = "POST",
         http_path = "/instance/{InstanceId}/storage-config/{AssociationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3330,6 +4330,9 @@ function Client:updateNotificationContent(input, options)
         output_schema = types.UpdateNotificationContentOutput,
         http_method = "POST",
         http_path = "/notifications/{InstanceId}/{NotificationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3340,6 +4343,9 @@ function Client:updateParticipantAuthentication(input, options)
         output_schema = types.UpdateParticipantAuthenticationOutput,
         http_method = "POST",
         http_path = "/contact/update-participant-authentication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3350,6 +4356,9 @@ function Client:updateParticipantRoleConfig(input, options)
         output_schema = types.UpdateParticipantRoleConfigOutput,
         http_method = "PUT",
         http_path = "/contact/participant-role-config/{InstanceId}/{ContactId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3360,6 +4369,9 @@ function Client:updatePhoneNumber(input, options)
         output_schema = types.UpdatePhoneNumberOutput,
         http_method = "PUT",
         http_path = "/phone-number/{PhoneNumberId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3370,6 +4382,9 @@ function Client:updatePhoneNumberMetadata(input, options)
         output_schema = types.UpdatePhoneNumberMetadataOutput,
         http_method = "PUT",
         http_path = "/phone-number/{PhoneNumberId}/metadata",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3380,6 +4395,9 @@ function Client:updatePredefinedAttribute(input, options)
         output_schema = types.UpdatePredefinedAttributeOutput,
         http_method = "POST",
         http_path = "/predefined-attributes/{InstanceId}/{Name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3390,6 +4408,9 @@ function Client:updatePrompt(input, options)
         output_schema = types.UpdatePromptOutput,
         http_method = "POST",
         http_path = "/prompts/{InstanceId}/{PromptId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3400,6 +4421,9 @@ function Client:updateQueueHoursOfOperation(input, options)
         output_schema = types.UpdateQueueHoursOfOperationOutput,
         http_method = "POST",
         http_path = "/queues/{InstanceId}/{QueueId}/hours-of-operation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3410,6 +4434,9 @@ function Client:updateQueueMaxContacts(input, options)
         output_schema = types.UpdateQueueMaxContactsOutput,
         http_method = "POST",
         http_path = "/queues/{InstanceId}/{QueueId}/max-contacts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3420,6 +4447,9 @@ function Client:updateQueueName(input, options)
         output_schema = types.UpdateQueueNameOutput,
         http_method = "POST",
         http_path = "/queues/{InstanceId}/{QueueId}/name",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3430,6 +4460,9 @@ function Client:updateQueueOutboundCallerConfig(input, options)
         output_schema = types.UpdateQueueOutboundCallerConfigOutput,
         http_method = "POST",
         http_path = "/queues/{InstanceId}/{QueueId}/outbound-caller-config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3440,6 +4473,9 @@ function Client:updateQueueOutboundEmailConfig(input, options)
         output_schema = types.UpdateQueueOutboundEmailConfigOutput,
         http_method = "POST",
         http_path = "/queues/{InstanceId}/{QueueId}/outbound-email-config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3450,6 +4486,9 @@ function Client:updateQueueStatus(input, options)
         output_schema = types.UpdateQueueStatusOutput,
         http_method = "POST",
         http_path = "/queues/{InstanceId}/{QueueId}/status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3460,6 +4499,9 @@ function Client:updateQuickConnectConfig(input, options)
         output_schema = types.UpdateQuickConnectConfigOutput,
         http_method = "POST",
         http_path = "/quick-connects/{InstanceId}/{QuickConnectId}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3470,6 +4512,9 @@ function Client:updateQuickConnectName(input, options)
         output_schema = types.UpdateQuickConnectNameOutput,
         http_method = "POST",
         http_path = "/quick-connects/{InstanceId}/{QuickConnectId}/name",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3480,6 +4525,9 @@ function Client:updateRoutingProfileAgentAvailabilityTimer(input, options)
         output_schema = types.UpdateRoutingProfileAgentAvailabilityTimerOutput,
         http_method = "POST",
         http_path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/agent-availability-timer",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3490,6 +4538,9 @@ function Client:updateRoutingProfileConcurrency(input, options)
         output_schema = types.UpdateRoutingProfileConcurrencyOutput,
         http_method = "POST",
         http_path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/concurrency",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3500,6 +4551,9 @@ function Client:updateRoutingProfileDefaultOutboundQueue(input, options)
         output_schema = types.UpdateRoutingProfileDefaultOutboundQueueOutput,
         http_method = "POST",
         http_path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/default-outbound-queue",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3510,6 +4564,9 @@ function Client:updateRoutingProfileName(input, options)
         output_schema = types.UpdateRoutingProfileNameOutput,
         http_method = "POST",
         http_path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/name",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3520,6 +4577,9 @@ function Client:updateRoutingProfileQueues(input, options)
         output_schema = types.UpdateRoutingProfileQueuesOutput,
         http_method = "POST",
         http_path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/queues",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3530,6 +4590,9 @@ function Client:updateRule(input, options)
         output_schema = types.UpdateRuleOutput,
         http_method = "PUT",
         http_path = "/rules/{InstanceId}/{RuleId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3540,6 +4603,9 @@ function Client:updateSecurityProfile(input, options)
         output_schema = types.UpdateSecurityProfileOutput,
         http_method = "POST",
         http_path = "/security-profiles/{InstanceId}/{SecurityProfileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3550,6 +4616,9 @@ function Client:updateTaskTemplate(input, options)
         output_schema = types.UpdateTaskTemplateOutput,
         http_method = "POST",
         http_path = "/instance/{InstanceId}/task/template/{TaskTemplateId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3560,6 +4629,9 @@ function Client:updateTestCase(input, options)
         output_schema = types.UpdateTestCaseOutput,
         http_method = "POST",
         http_path = "/test-cases/{InstanceId}/{TestCaseId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3570,6 +4642,9 @@ function Client:updateTrafficDistribution(input, options)
         output_schema = types.UpdateTrafficDistributionOutput,
         http_method = "PUT",
         http_path = "/traffic-distribution/{Id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3580,6 +4655,9 @@ function Client:updateUserConfig(input, options)
         output_schema = types.UpdateUserConfigOutput,
         http_method = "POST",
         http_path = "/users/{InstanceId}/{UserId}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3590,6 +4668,9 @@ function Client:updateUserHierarchy(input, options)
         output_schema = types.UpdateUserHierarchyOutput,
         http_method = "POST",
         http_path = "/users/{InstanceId}/{UserId}/hierarchy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3600,6 +4681,9 @@ function Client:updateUserHierarchyGroupName(input, options)
         output_schema = types.UpdateUserHierarchyGroupNameOutput,
         http_method = "POST",
         http_path = "/user-hierarchy-groups/{InstanceId}/{HierarchyGroupId}/name",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3610,6 +4694,9 @@ function Client:updateUserHierarchyStructure(input, options)
         output_schema = types.UpdateUserHierarchyStructureOutput,
         http_method = "POST",
         http_path = "/user-hierarchy-structure/{InstanceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3620,6 +4707,9 @@ function Client:updateUserIdentityInfo(input, options)
         output_schema = types.UpdateUserIdentityInfoOutput,
         http_method = "POST",
         http_path = "/users/{InstanceId}/{UserId}/identity-info",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3630,6 +4720,9 @@ function Client:updateUserNotificationStatus(input, options)
         output_schema = types.UpdateUserNotificationStatusOutput,
         http_method = "POST",
         http_path = "/users/{InstanceId}/{UserId}/notifications/{NotificationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3640,6 +4733,9 @@ function Client:updateUserPhoneConfig(input, options)
         output_schema = types.UpdateUserPhoneConfigOutput,
         http_method = "POST",
         http_path = "/users/{InstanceId}/{UserId}/phone-config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3650,6 +4746,9 @@ function Client:updateUserProficiencies(input, options)
         output_schema = types.UpdateUserProficienciesOutput,
         http_method = "POST",
         http_path = "/users/{InstanceId}/{UserId}/proficiencies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3660,6 +4759,9 @@ function Client:updateUserRoutingProfile(input, options)
         output_schema = types.UpdateUserRoutingProfileOutput,
         http_method = "POST",
         http_path = "/users/{InstanceId}/{UserId}/routing-profile",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3670,6 +4772,9 @@ function Client:updateUserSecurityProfiles(input, options)
         output_schema = types.UpdateUserSecurityProfilesOutput,
         http_method = "POST",
         http_path = "/users/{InstanceId}/{UserId}/security-profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3680,6 +4785,9 @@ function Client:updateViewContent(input, options)
         output_schema = types.UpdateViewContentOutput,
         http_method = "POST",
         http_path = "/views/{InstanceId}/{ViewId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3690,6 +4798,9 @@ function Client:updateViewMetadata(input, options)
         output_schema = types.UpdateViewMetadataOutput,
         http_method = "POST",
         http_path = "/views/{InstanceId}/{ViewId}/metadata",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3700,6 +4811,9 @@ function Client:updateWorkspaceMetadata(input, options)
         output_schema = types.UpdateWorkspaceMetadataOutput,
         http_method = "POST",
         http_path = "/workspaces/{InstanceId}/{WorkspaceId}/metadata",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3710,6 +4824,9 @@ function Client:updateWorkspacePage(input, options)
         output_schema = types.UpdateWorkspacePageOutput,
         http_method = "POST",
         http_path = "/workspaces/{InstanceId}/{WorkspaceId}/pages/{Page}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3720,6 +4837,9 @@ function Client:updateWorkspaceTheme(input, options)
         output_schema = types.UpdateWorkspaceThemeOutput,
         http_method = "POST",
         http_path = "/workspaces/{InstanceId}/{WorkspaceId}/theme",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -3730,6 +4850,9 @@ function Client:updateWorkspaceVisibility(input, options)
         output_schema = types.UpdateWorkspaceVisibilityOutput,
         http_method = "POST",
         http_path = "/workspaces/{InstanceId}/{WorkspaceId}/visibility",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

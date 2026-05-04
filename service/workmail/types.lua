@@ -318,6 +318,7 @@ M.CancelMailboxExportJobInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -437,6 +438,9 @@ M.CreateAvailabilityConfigurationInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         OrganizationId = {
             type = "string",
@@ -529,6 +533,9 @@ M.CreateIdentityCenterApplicationInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -584,6 +591,9 @@ M.CreateImpersonationRoleInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         OrganizationId = {
             type = "string",
@@ -641,6 +651,9 @@ M.CreateMobileDeviceAccessRuleInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Name = {
             type = "string",
@@ -730,6 +743,9 @@ M.CreateOrganizationInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Domains = {
             type = "list",
@@ -1154,6 +1170,9 @@ M.DeleteOrganizationInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         OrganizationId = {
             type = "string",
@@ -3618,6 +3637,9 @@ M.RegisterMailDomainInput = {
     members = {
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         OrganizationId = {
             type = "string",
@@ -3700,6 +3722,7 @@ M.StartMailboxExportJobInput = {
         ClientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },

@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "CodeCatalyst"
-    cfg.signing_name = "codecatalyst"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "codecatalyst", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createAccessToken(input, options)
         output_schema = types.CreateAccessTokenOutput,
         http_method = "PUT",
         http_path = "/v1/accessTokens",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createDevEnvironment(input, options)
         output_schema = types.CreateDevEnvironmentOutput,
         http_method = "PUT",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createProject(input, options)
         output_schema = types.CreateProjectOutput,
         http_method = "PUT",
         http_path = "/v1/spaces/{spaceName}/projects",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createSourceRepository(input, options)
         output_schema = types.CreateSourceRepositoryOutput,
         http_method = "PUT",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/sourceRepositories/{name}",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createSourceRepositoryBranch(input, options)
         output_schema = types.CreateSourceRepositoryBranchOutput,
         http_method = "PUT",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/sourceRepositories/{sourceRepositoryName}/branches/{name}",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteAccessToken(input, options)
         output_schema = types.DeleteAccessTokenOutput,
         http_method = "DELETE",
         http_path = "/v1/accessTokens/{id}",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteDevEnvironment(input, options)
         output_schema = types.DeleteDevEnvironmentOutput,
         http_method = "DELETE",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{id}",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteProject(input, options)
         output_schema = types.DeleteProjectOutput,
         http_method = "DELETE",
         http_path = "/v1/spaces/{spaceName}/projects/{name}",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteSourceRepository(input, options)
         output_schema = types.DeleteSourceRepositoryOutput,
         http_method = "DELETE",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/sourceRepositories/{name}",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteSpace(input, options)
         output_schema = types.DeleteSpaceOutput,
         http_method = "DELETE",
         http_path = "/v1/spaces/{name}",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getDevEnvironment(input, options)
         output_schema = types.GetDevEnvironmentOutput,
         http_method = "GET",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{id}",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getProject(input, options)
         output_schema = types.GetProjectOutput,
         http_method = "GET",
         http_path = "/v1/spaces/{spaceName}/projects/{name}",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getSourceRepository(input, options)
         output_schema = types.GetSourceRepositoryOutput,
         http_method = "GET",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/sourceRepositories/{name}",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getSourceRepositoryCloneUrls(input, options)
         output_schema = types.GetSourceRepositoryCloneUrlsOutput,
         http_method = "GET",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/sourceRepositories/{sourceRepositoryName}/cloneUrls",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getSpace(input, options)
         output_schema = types.GetSpaceOutput,
         http_method = "GET",
         http_path = "/v1/spaces/{name}",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getSubscription(input, options)
         output_schema = types.GetSubscriptionOutput,
         http_method = "GET",
         http_path = "/v1/spaces/{spaceName}/subscription",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getUserDetails(input, options)
         output_schema = types.GetUserDetailsOutput,
         http_method = "GET",
         http_path = "/userDetails",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getWorkflow(input, options)
         output_schema = types.GetWorkflowOutput,
         http_method = "GET",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/workflows/{id}",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getWorkflowRun(input, options)
         output_schema = types.GetWorkflowRunOutput,
         http_method = "GET",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/workflowRuns/{id}",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listAccessTokens(input, options)
         output_schema = types.ListAccessTokensOutput,
         http_method = "POST",
         http_path = "/v1/accessTokens",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listDevEnvironments(input, options)
         output_schema = types.ListDevEnvironmentsOutput,
         http_method = "POST",
         http_path = "/v1/spaces/{spaceName}/devEnvironments",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listDevEnvironmentSessions(input, options)
         output_schema = types.ListDevEnvironmentSessionsOutput,
         http_method = "POST",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{devEnvironmentId}/sessions",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listEventLogs(input, options)
         output_schema = types.ListEventLogsOutput,
         http_method = "POST",
         http_path = "/v1/spaces/{spaceName}/eventLogs",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listProjects(input, options)
         output_schema = types.ListProjectsOutput,
         http_method = "POST",
         http_path = "/v1/spaces/{spaceName}/projects",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listSourceRepositories(input, options)
         output_schema = types.ListSourceRepositoriesOutput,
         http_method = "POST",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/sourceRepositories",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listSourceRepositoryBranches(input, options)
         output_schema = types.ListSourceRepositoryBranchesOutput,
         http_method = "POST",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/sourceRepositories/{sourceRepositoryName}/branches",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:listSpaces(input, options)
         output_schema = types.ListSpacesOutput,
         http_method = "POST",
         http_path = "/v1/spaces",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:listWorkflowRuns(input, options)
         output_schema = types.ListWorkflowRunsOutput,
         http_method = "POST",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/workflowRuns",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listWorkflows(input, options)
         output_schema = types.ListWorkflowsOutput,
         http_method = "POST",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/workflows",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:startDevEnvironment(input, options)
         output_schema = types.StartDevEnvironmentOutput,
         http_method = "PUT",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{id}/start",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:startDevEnvironmentSession(input, options)
         output_schema = types.StartDevEnvironmentSessionOutput,
         http_method = "PUT",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{id}/session",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:startWorkflowRun(input, options)
         output_schema = types.StartWorkflowRunOutput,
         http_method = "PUT",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/workflowRuns",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:stopDevEnvironment(input, options)
         output_schema = types.StopDevEnvironmentOutput,
         http_method = "PUT",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{id}/stop",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:stopDevEnvironmentSession(input, options)
         output_schema = types.StopDevEnvironmentSessionOutput,
         http_method = "DELETE",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{id}/session/{sessionId}",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:updateDevEnvironment(input, options)
         output_schema = types.UpdateDevEnvironmentOutput,
         http_method = "PATCH",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{id}",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:updateProject(input, options)
         output_schema = types.UpdateProjectOutput,
         http_method = "PATCH",
         http_path = "/v1/spaces/{spaceName}/projects/{name}",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:updateSpace(input, options)
         output_schema = types.UpdateSpaceOutput,
         http_method = "PATCH",
         http_path = "/v1/spaces/{name}",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:verifySession(input, options)
         output_schema = types.VerifySessionOutput,
         http_method = "GET",
         http_path = "/session",
+        effective_auth_schemes = {
+            "smithy.api#httpBearerAuth",
+        },
     }, options)
 end
 

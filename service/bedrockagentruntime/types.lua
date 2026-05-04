@@ -1670,10 +1670,14 @@ M.GetFlowExecutionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         errors = {
             type = "list",
@@ -1776,6 +1780,7 @@ M.ConditionResultEvent = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         satisfiedConditions = {
@@ -1801,6 +1806,7 @@ M.FlowFailureEvent = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         errorCode = {
@@ -1855,6 +1861,7 @@ M.FlowExecutionInputEvent = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         fields = {
@@ -1895,6 +1902,7 @@ M.FlowExecutionOutputEvent = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         fields = {
@@ -1920,6 +1928,7 @@ M.NodeActionEvent = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         requestId = {
@@ -1972,6 +1981,7 @@ M.NodeDependencyEvent = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         traceElements = setmetatable({ traits = {
@@ -2000,6 +2010,7 @@ M.NodeFailureEvent = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         errorCode = {
@@ -2129,6 +2140,7 @@ M.NodeInputEvent = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         fields = {
@@ -2194,6 +2206,7 @@ M.NodeOutputEvent = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         fields = {
@@ -2305,10 +2318,14 @@ M.FlowExecutionSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         endedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2657,6 +2674,7 @@ M.FlowTraceConditionNodeResultEvent = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         satisfiedConditions = {
@@ -2682,6 +2700,7 @@ M.FlowTraceNodeActionEvent = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         requestId = {
@@ -2734,6 +2753,7 @@ M.FlowTraceDependencyEvent = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         traceElements = setmetatable({ traits = {
@@ -2835,6 +2855,7 @@ M.FlowTraceNodeInputEvent = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         fields = {
@@ -2909,6 +2930,7 @@ M.FlowTraceNodeOutputEvent = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         fields = {
@@ -3894,9 +3916,15 @@ M.MemorySessionSummary = {
         },
         sessionStartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         sessionExpiryTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         summaryText = {
             type = "string",
@@ -4643,6 +4671,7 @@ M.CreateSessionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -4740,12 +4769,14 @@ M.GetSessionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         sessionMetadata = {
@@ -4797,6 +4828,7 @@ M.CreateInvocationOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -4847,6 +4879,7 @@ M.InvocationSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -4983,6 +5016,7 @@ M.InvocationStep = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         payload = setmetatable({ traits = {
@@ -5054,6 +5088,7 @@ M.InvocationStepSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -5095,6 +5130,7 @@ M.PutInvocationStepInput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         payload = setmetatable({ traits = {
@@ -5162,12 +5198,14 @@ M.SessionSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -5232,12 +5270,14 @@ M.UpdateSessionOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastUpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },

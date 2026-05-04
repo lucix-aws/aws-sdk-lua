@@ -1095,6 +1095,9 @@ M.CreateAgentSpaceInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -1599,6 +1602,9 @@ M.CreateBacklogTaskInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1698,12 +1704,14 @@ M.Task = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         version = {
@@ -2126,12 +2134,14 @@ M.GetAccountUsageOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         usagePeriodEndTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2277,12 +2287,14 @@ M.Recommendation = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         version = {
@@ -2308,9 +2320,15 @@ M.TaskFilter = {
     members = {
         createdAfter = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         createdBefore = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         priority = {
             type = "list",
@@ -2653,16 +2671,21 @@ M.Goal = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         lastEvaluatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastTaskId = {
             type = "string",
@@ -4039,6 +4062,9 @@ M.UpdateBacklogTaskInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -4084,6 +4110,9 @@ M.UpdateGoalInput = {
         evaluationSchedule = M.GoalScheduleInput,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -4122,6 +4151,9 @@ M.UpdateRecommendationInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

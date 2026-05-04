@@ -16,16 +16,29 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "B2BI"
-    cfg.signing_name = "b2bi"
     if not cfg.protocol then
-        cfg.protocol = awsjson_protocol.new({ version = "1.0", service_id = cfg.service_id })
+        cfg.protocol = awsjson_protocol.new("1.0")
     end
     if not cfg.endpoint_provider then
         cfg.endpoint_provider = function(params)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "b2bi", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createCapability(input, options)
         output_schema = types.CreateCapabilityOutput,
         http_method = "POST",
         http_path = "/capabilities",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createPartnership(input, options)
         output_schema = types.CreatePartnershipOutput,
         http_method = "POST",
         http_path = "/partnerships",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createProfile(input, options)
         output_schema = types.CreateProfileOutput,
         http_method = "POST",
         http_path = "/profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createStarterMappingTemplate(input, options)
         output_schema = types.CreateStarterMappingTemplateOutput,
         http_method = "POST",
         http_path = "/createmappingstarttemplate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createTransformer(input, options)
         output_schema = types.CreateTransformerOutput,
         http_method = "POST",
         http_path = "/transformers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteCapability(input, options)
         output_schema = types.DeleteCapabilityOutput,
         http_method = "DELETE",
         http_path = "/capabilities/{capabilityId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deletePartnership(input, options)
         output_schema = types.DeletePartnershipOutput,
         http_method = "DELETE",
         http_path = "/partnerships/{partnershipId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteProfile(input, options)
         output_schema = types.DeleteProfileOutput,
         http_method = "DELETE",
         http_path = "/profiles/{profileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteTransformer(input, options)
         output_schema = types.DeleteTransformerOutput,
         http_method = "DELETE",
         http_path = "/transformers/{transformerId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:generateMapping(input, options)
         output_schema = types.GenerateMappingOutput,
         http_method = "POST",
         http_path = "/generate-mapping",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getCapability(input, options)
         output_schema = types.GetCapabilityOutput,
         http_method = "GET",
         http_path = "/capabilities/{capabilityId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getPartnership(input, options)
         output_schema = types.GetPartnershipOutput,
         http_method = "GET",
         http_path = "/partnerships/{partnershipId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getProfile(input, options)
         output_schema = types.GetProfileOutput,
         http_method = "GET",
         http_path = "/profiles/{profileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getTransformer(input, options)
         output_schema = types.GetTransformerOutput,
         http_method = "GET",
         http_path = "/transformers/{transformerId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getTransformerJob(input, options)
         output_schema = types.GetTransformerJobOutput,
         http_method = "GET",
         http_path = "/transformer-jobs/{transformerJobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listCapabilities(input, options)
         output_schema = types.ListCapabilitiesOutput,
         http_method = "GET",
         http_path = "/capabilities",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listPartnerships(input, options)
         output_schema = types.ListPartnershipsOutput,
         http_method = "GET",
         http_path = "/partnerships",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listProfiles(input, options)
         output_schema = types.ListProfilesOutput,
         http_method = "GET",
         http_path = "/profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceARN}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listTransformers(input, options)
         output_schema = types.ListTransformersOutput,
         http_method = "GET",
         http_path = "/transformers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:startTransformerJob(input, options)
         output_schema = types.StartTransformerJobOutput,
         http_method = "POST",
         http_path = "/transformer-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceARN}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:testConversion(input, options)
         output_schema = types.TestConversionOutput,
         http_method = "POST",
         http_path = "/testconversion",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:testMapping(input, options)
         output_schema = types.TestMappingOutput,
         http_method = "POST",
         http_path = "/testmapping",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:testParsing(input, options)
         output_schema = types.TestParsingOutput,
         http_method = "POST",
         http_path = "/testparsing",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceARN}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:updateCapability(input, options)
         output_schema = types.UpdateCapabilityOutput,
         http_method = "PATCH",
         http_path = "/capabilities/{capabilityId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:updatePartnership(input, options)
         output_schema = types.UpdatePartnershipOutput,
         http_method = "PATCH",
         http_path = "/partnerships/{partnershipId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:updateProfile(input, options)
         output_schema = types.UpdateProfileOutput,
         http_method = "PATCH",
         http_path = "/profiles/{profileId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:updateTransformer(input, options)
         output_schema = types.UpdateTransformerOutput,
         http_method = "PATCH",
         http_path = "/transformers/{transformerId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

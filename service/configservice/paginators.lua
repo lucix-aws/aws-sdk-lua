@@ -1,0 +1,653 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for describeAggregateComplianceByConfigRules.
+function M.pages_describe_aggregate_compliance_by_config_rules(client, input)
+    return paginator.pages(client, "describeAggregateComplianceByConfigRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for describeAggregateComplianceByConformancePacks.
+function M.pages_describe_aggregate_compliance_by_conformance_packs(client, input)
+    return paginator.pages(client, "describeAggregateComplianceByConformancePacks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AggregateComplianceByConformancePacks",
+    })
+end
+
+--- Returns an item iterator for describeAggregateComplianceByConformancePacks.
+function M.items_describe_aggregate_compliance_by_conformance_packs(client, input)
+    return paginator.items(client, "describeAggregateComplianceByConformancePacks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AggregateComplianceByConformancePacks",
+    })
+end
+
+--- Returns a page iterator for describeAggregationAuthorizations.
+function M.pages_describe_aggregation_authorizations(client, input)
+    return paginator.pages(client, "describeAggregationAuthorizations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AggregationAuthorizations",
+    })
+end
+
+--- Returns an item iterator for describeAggregationAuthorizations.
+function M.items_describe_aggregation_authorizations(client, input)
+    return paginator.items(client, "describeAggregationAuthorizations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AggregationAuthorizations",
+    })
+end
+
+--- Returns a page iterator for describeComplianceByConfigRule.
+function M.pages_describe_compliance_by_config_rule(client, input)
+    return paginator.pages(client, "describeComplianceByConfigRule", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ComplianceByConfigRules",
+    })
+end
+
+--- Returns an item iterator for describeComplianceByConfigRule.
+function M.items_describe_compliance_by_config_rule(client, input)
+    return paginator.items(client, "describeComplianceByConfigRule", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ComplianceByConfigRules",
+    })
+end
+
+--- Returns a page iterator for describeComplianceByResource.
+function M.pages_describe_compliance_by_resource(client, input)
+    return paginator.pages(client, "describeComplianceByResource", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ComplianceByResources",
+    })
+end
+
+--- Returns an item iterator for describeComplianceByResource.
+function M.items_describe_compliance_by_resource(client, input)
+    return paginator.items(client, "describeComplianceByResource", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ComplianceByResources",
+    })
+end
+
+--- Returns a page iterator for describeConfigRuleEvaluationStatus.
+function M.pages_describe_config_rule_evaluation_status(client, input)
+    return paginator.pages(client, "describeConfigRuleEvaluationStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConfigRulesEvaluationStatus",
+    })
+end
+
+--- Returns an item iterator for describeConfigRuleEvaluationStatus.
+function M.items_describe_config_rule_evaluation_status(client, input)
+    return paginator.items(client, "describeConfigRuleEvaluationStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConfigRulesEvaluationStatus",
+    })
+end
+
+--- Returns a page iterator for describeConfigRules.
+function M.pages_describe_config_rules(client, input)
+    return paginator.pages(client, "describeConfigRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConfigRules",
+    })
+end
+
+--- Returns an item iterator for describeConfigRules.
+function M.items_describe_config_rules(client, input)
+    return paginator.items(client, "describeConfigRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConfigRules",
+    })
+end
+
+--- Returns a page iterator for describeConfigurationAggregatorSourcesStatus.
+function M.pages_describe_configuration_aggregator_sources_status(client, input)
+    return paginator.pages(client, "describeConfigurationAggregatorSourcesStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AggregatedSourceStatusList",
+    })
+end
+
+--- Returns an item iterator for describeConfigurationAggregatorSourcesStatus.
+function M.items_describe_configuration_aggregator_sources_status(client, input)
+    return paginator.items(client, "describeConfigurationAggregatorSourcesStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AggregatedSourceStatusList",
+    })
+end
+
+--- Returns a page iterator for describeConfigurationAggregators.
+function M.pages_describe_configuration_aggregators(client, input)
+    return paginator.pages(client, "describeConfigurationAggregators", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConfigurationAggregators",
+    })
+end
+
+--- Returns an item iterator for describeConfigurationAggregators.
+function M.items_describe_configuration_aggregators(client, input)
+    return paginator.items(client, "describeConfigurationAggregators", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConfigurationAggregators",
+    })
+end
+
+--- Returns a page iterator for describeConformancePackCompliance.
+function M.pages_describe_conformance_pack_compliance(client, input)
+    return paginator.pages(client, "describeConformancePackCompliance", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConformancePackRuleComplianceList",
+    })
+end
+
+--- Returns an item iterator for describeConformancePackCompliance.
+function M.items_describe_conformance_pack_compliance(client, input)
+    return paginator.items(client, "describeConformancePackCompliance", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConformancePackRuleComplianceList",
+    })
+end
+
+--- Returns a page iterator for describeConformancePackStatus.
+function M.pages_describe_conformance_pack_status(client, input)
+    return paginator.pages(client, "describeConformancePackStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConformancePackStatusDetails",
+    })
+end
+
+--- Returns an item iterator for describeConformancePackStatus.
+function M.items_describe_conformance_pack_status(client, input)
+    return paginator.items(client, "describeConformancePackStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConformancePackStatusDetails",
+    })
+end
+
+--- Returns a page iterator for describeConformancePacks.
+function M.pages_describe_conformance_packs(client, input)
+    return paginator.pages(client, "describeConformancePacks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConformancePackDetails",
+    })
+end
+
+--- Returns an item iterator for describeConformancePacks.
+function M.items_describe_conformance_packs(client, input)
+    return paginator.items(client, "describeConformancePacks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConformancePackDetails",
+    })
+end
+
+--- Returns a page iterator for describeOrganizationConfigRuleStatuses.
+function M.pages_describe_organization_config_rule_statuses(client, input)
+    return paginator.pages(client, "describeOrganizationConfigRuleStatuses", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "OrganizationConfigRuleStatuses",
+    })
+end
+
+--- Returns an item iterator for describeOrganizationConfigRuleStatuses.
+function M.items_describe_organization_config_rule_statuses(client, input)
+    return paginator.items(client, "describeOrganizationConfigRuleStatuses", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "OrganizationConfigRuleStatuses",
+    })
+end
+
+--- Returns a page iterator for describeOrganizationConfigRules.
+function M.pages_describe_organization_config_rules(client, input)
+    return paginator.pages(client, "describeOrganizationConfigRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "OrganizationConfigRules",
+    })
+end
+
+--- Returns an item iterator for describeOrganizationConfigRules.
+function M.items_describe_organization_config_rules(client, input)
+    return paginator.items(client, "describeOrganizationConfigRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "OrganizationConfigRules",
+    })
+end
+
+--- Returns a page iterator for describeOrganizationConformancePackStatuses.
+function M.pages_describe_organization_conformance_pack_statuses(client, input)
+    return paginator.pages(client, "describeOrganizationConformancePackStatuses", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "OrganizationConformancePackStatuses",
+    })
+end
+
+--- Returns an item iterator for describeOrganizationConformancePackStatuses.
+function M.items_describe_organization_conformance_pack_statuses(client, input)
+    return paginator.items(client, "describeOrganizationConformancePackStatuses", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "OrganizationConformancePackStatuses",
+    })
+end
+
+--- Returns a page iterator for describeOrganizationConformancePacks.
+function M.pages_describe_organization_conformance_packs(client, input)
+    return paginator.pages(client, "describeOrganizationConformancePacks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "OrganizationConformancePacks",
+    })
+end
+
+--- Returns an item iterator for describeOrganizationConformancePacks.
+function M.items_describe_organization_conformance_packs(client, input)
+    return paginator.items(client, "describeOrganizationConformancePacks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "OrganizationConformancePacks",
+    })
+end
+
+--- Returns a page iterator for describePendingAggregationRequests.
+function M.pages_describe_pending_aggregation_requests(client, input)
+    return paginator.pages(client, "describePendingAggregationRequests", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "PendingAggregationRequests",
+    })
+end
+
+--- Returns an item iterator for describePendingAggregationRequests.
+function M.items_describe_pending_aggregation_requests(client, input)
+    return paginator.items(client, "describePendingAggregationRequests", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "PendingAggregationRequests",
+    })
+end
+
+--- Returns a page iterator for describeRemediationExceptions.
+function M.pages_describe_remediation_exceptions(client, input)
+    return paginator.pages(client, "describeRemediationExceptions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for describeRemediationExecutionStatus.
+function M.pages_describe_remediation_execution_status(client, input)
+    return paginator.pages(client, "describeRemediationExecutionStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RemediationExecutionStatuses",
+    })
+end
+
+--- Returns an item iterator for describeRemediationExecutionStatus.
+function M.items_describe_remediation_execution_status(client, input)
+    return paginator.items(client, "describeRemediationExecutionStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RemediationExecutionStatuses",
+    })
+end
+
+--- Returns a page iterator for describeRetentionConfigurations.
+function M.pages_describe_retention_configurations(client, input)
+    return paginator.pages(client, "describeRetentionConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RetentionConfigurations",
+    })
+end
+
+--- Returns an item iterator for describeRetentionConfigurations.
+function M.items_describe_retention_configurations(client, input)
+    return paginator.items(client, "describeRetentionConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RetentionConfigurations",
+    })
+end
+
+--- Returns a page iterator for getAggregateComplianceDetailsByConfigRule.
+function M.pages_get_aggregate_compliance_details_by_config_rule(client, input)
+    return paginator.pages(client, "getAggregateComplianceDetailsByConfigRule", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AggregateEvaluationResults",
+    })
+end
+
+--- Returns an item iterator for getAggregateComplianceDetailsByConfigRule.
+function M.items_get_aggregate_compliance_details_by_config_rule(client, input)
+    return paginator.items(client, "getAggregateComplianceDetailsByConfigRule", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AggregateEvaluationResults",
+    })
+end
+
+--- Returns a page iterator for getAggregateConfigRuleComplianceSummary.
+function M.pages_get_aggregate_config_rule_compliance_summary(client, input)
+    return paginator.pages(client, "getAggregateConfigRuleComplianceSummary", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for getAggregateConformancePackComplianceSummary.
+function M.pages_get_aggregate_conformance_pack_compliance_summary(client, input)
+    return paginator.pages(client, "getAggregateConformancePackComplianceSummary", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for getAggregateDiscoveredResourceCounts.
+function M.pages_get_aggregate_discovered_resource_counts(client, input)
+    return paginator.pages(client, "getAggregateDiscoveredResourceCounts", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for getComplianceDetailsByConfigRule.
+function M.pages_get_compliance_details_by_config_rule(client, input)
+    return paginator.pages(client, "getComplianceDetailsByConfigRule", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "EvaluationResults",
+    })
+end
+
+--- Returns an item iterator for getComplianceDetailsByConfigRule.
+function M.items_get_compliance_details_by_config_rule(client, input)
+    return paginator.items(client, "getComplianceDetailsByConfigRule", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "EvaluationResults",
+    })
+end
+
+--- Returns a page iterator for getComplianceDetailsByResource.
+function M.pages_get_compliance_details_by_resource(client, input)
+    return paginator.pages(client, "getComplianceDetailsByResource", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "EvaluationResults",
+    })
+end
+
+--- Returns an item iterator for getComplianceDetailsByResource.
+function M.items_get_compliance_details_by_resource(client, input)
+    return paginator.items(client, "getComplianceDetailsByResource", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "EvaluationResults",
+    })
+end
+
+--- Returns a page iterator for getConformancePackComplianceDetails.
+function M.pages_get_conformance_pack_compliance_details(client, input)
+    return paginator.pages(client, "getConformancePackComplianceDetails", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for getConformancePackComplianceSummary.
+function M.pages_get_conformance_pack_compliance_summary(client, input)
+    return paginator.pages(client, "getConformancePackComplianceSummary", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConformancePackComplianceSummaryList",
+    })
+end
+
+--- Returns an item iterator for getConformancePackComplianceSummary.
+function M.items_get_conformance_pack_compliance_summary(client, input)
+    return paginator.items(client, "getConformancePackComplianceSummary", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConformancePackComplianceSummaryList",
+    })
+end
+
+--- Returns a page iterator for getDiscoveredResourceCounts.
+function M.pages_get_discovered_resource_counts(client, input)
+    return paginator.pages(client, "getDiscoveredResourceCounts", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for getOrganizationConfigRuleDetailedStatus.
+function M.pages_get_organization_config_rule_detailed_status(client, input)
+    return paginator.pages(client, "getOrganizationConfigRuleDetailedStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "OrganizationConfigRuleDetailedStatus",
+    })
+end
+
+--- Returns an item iterator for getOrganizationConfigRuleDetailedStatus.
+function M.items_get_organization_config_rule_detailed_status(client, input)
+    return paginator.items(client, "getOrganizationConfigRuleDetailedStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "OrganizationConfigRuleDetailedStatus",
+    })
+end
+
+--- Returns a page iterator for getOrganizationConformancePackDetailedStatus.
+function M.pages_get_organization_conformance_pack_detailed_status(client, input)
+    return paginator.pages(client, "getOrganizationConformancePackDetailedStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "OrganizationConformancePackDetailedStatuses",
+    })
+end
+
+--- Returns an item iterator for getOrganizationConformancePackDetailedStatus.
+function M.items_get_organization_conformance_pack_detailed_status(client, input)
+    return paginator.items(client, "getOrganizationConformancePackDetailedStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "OrganizationConformancePackDetailedStatuses",
+    })
+end
+
+--- Returns a page iterator for getResourceConfigHistory.
+function M.pages_get_resource_config_history(client, input)
+    return paginator.pages(client, "getResourceConfigHistory", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "configurationItems",
+    })
+end
+
+--- Returns an item iterator for getResourceConfigHistory.
+function M.items_get_resource_config_history(client, input)
+    return paginator.items(client, "getResourceConfigHistory", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "configurationItems",
+    })
+end
+
+--- Returns a page iterator for listAggregateDiscoveredResources.
+function M.pages_list_aggregate_discovered_resources(client, input)
+    return paginator.pages(client, "listAggregateDiscoveredResources", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResourceIdentifiers",
+    })
+end
+
+--- Returns an item iterator for listAggregateDiscoveredResources.
+function M.items_list_aggregate_discovered_resources(client, input)
+    return paginator.items(client, "listAggregateDiscoveredResources", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResourceIdentifiers",
+    })
+end
+
+--- Returns a page iterator for listConfigurationRecorders.
+function M.pages_list_configuration_recorders(client, input)
+    return paginator.pages(client, "listConfigurationRecorders", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConfigurationRecorderSummaries",
+    })
+end
+
+--- Returns an item iterator for listConfigurationRecorders.
+function M.items_list_configuration_recorders(client, input)
+    return paginator.items(client, "listConfigurationRecorders", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConfigurationRecorderSummaries",
+    })
+end
+
+--- Returns a page iterator for listConformancePackComplianceScores.
+function M.pages_list_conformance_pack_compliance_scores(client, input)
+    return paginator.pages(client, "listConformancePackComplianceScores", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listDiscoveredResources.
+function M.pages_list_discovered_resources(client, input)
+    return paginator.pages(client, "listDiscoveredResources", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "resourceIdentifiers",
+    })
+end
+
+--- Returns an item iterator for listDiscoveredResources.
+function M.items_list_discovered_resources(client, input)
+    return paginator.items(client, "listDiscoveredResources", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "resourceIdentifiers",
+    })
+end
+
+--- Returns a page iterator for listResourceEvaluations.
+function M.pages_list_resource_evaluations(client, input)
+    return paginator.pages(client, "listResourceEvaluations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResourceEvaluations",
+    })
+end
+
+--- Returns an item iterator for listResourceEvaluations.
+function M.items_list_resource_evaluations(client, input)
+    return paginator.items(client, "listResourceEvaluations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResourceEvaluations",
+    })
+end
+
+--- Returns a page iterator for listStoredQueries.
+function M.pages_list_stored_queries(client, input)
+    return paginator.pages(client, "listStoredQueries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listTagsForResource.
+function M.pages_list_tags_for_resource(client, input)
+    return paginator.pages(client, "listTagsForResource", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Tags",
+    })
+end
+
+--- Returns an item iterator for listTagsForResource.
+function M.items_list_tags_for_resource(client, input)
+    return paginator.items(client, "listTagsForResource", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Tags",
+    })
+end
+
+--- Returns a page iterator for selectAggregateResourceConfig.
+function M.pages_select_aggregate_resource_config(client, input)
+    return paginator.pages(client, "selectAggregateResourceConfig", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Results",
+    })
+end
+
+--- Returns an item iterator for selectAggregateResourceConfig.
+function M.items_select_aggregate_resource_config(client, input)
+    return paginator.items(client, "selectAggregateResourceConfig", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Results",
+    })
+end
+
+--- Returns a page iterator for selectResourceConfig.
+function M.pages_select_resource_config(client, input)
+    return paginator.pages(client, "selectResourceConfig", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Results",
+    })
+end
+
+--- Returns an item iterator for selectResourceConfig.
+function M.items_select_resource_config(client, input)
+    return paginator.items(client, "selectResourceConfig", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Results",
+    })
+end
+
+return M

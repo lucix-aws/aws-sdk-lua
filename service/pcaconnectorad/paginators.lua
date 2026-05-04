@@ -1,0 +1,95 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listConnectors.
+function M.pages_list_connectors(client, input)
+    return paginator.pages(client, "listConnectors", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Connectors",
+    })
+end
+
+--- Returns an item iterator for listConnectors.
+function M.items_list_connectors(client, input)
+    return paginator.items(client, "listConnectors", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Connectors",
+    })
+end
+
+--- Returns a page iterator for listDirectoryRegistrations.
+function M.pages_list_directory_registrations(client, input)
+    return paginator.pages(client, "listDirectoryRegistrations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DirectoryRegistrations",
+    })
+end
+
+--- Returns an item iterator for listDirectoryRegistrations.
+function M.items_list_directory_registrations(client, input)
+    return paginator.items(client, "listDirectoryRegistrations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DirectoryRegistrations",
+    })
+end
+
+--- Returns a page iterator for listServicePrincipalNames.
+function M.pages_list_service_principal_names(client, input)
+    return paginator.pages(client, "listServicePrincipalNames", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ServicePrincipalNames",
+    })
+end
+
+--- Returns an item iterator for listServicePrincipalNames.
+function M.items_list_service_principal_names(client, input)
+    return paginator.items(client, "listServicePrincipalNames", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ServicePrincipalNames",
+    })
+end
+
+--- Returns a page iterator for listTemplateGroupAccessControlEntries.
+function M.pages_list_template_group_access_control_entries(client, input)
+    return paginator.pages(client, "listTemplateGroupAccessControlEntries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AccessControlEntries",
+    })
+end
+
+--- Returns an item iterator for listTemplateGroupAccessControlEntries.
+function M.items_list_template_group_access_control_entries(client, input)
+    return paginator.items(client, "listTemplateGroupAccessControlEntries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AccessControlEntries",
+    })
+end
+
+--- Returns a page iterator for listTemplates.
+function M.pages_list_templates(client, input)
+    return paginator.pages(client, "listTemplates", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Templates",
+    })
+end
+
+--- Returns an item iterator for listTemplates.
+function M.items_list_templates(client, input)
+    return paginator.items(client, "listTemplates", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Templates",
+    })
+end
+
+return M

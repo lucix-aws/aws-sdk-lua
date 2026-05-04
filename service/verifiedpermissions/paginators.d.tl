@@ -1,0 +1,14 @@
+local record M
+    pages_list_identity_sources: function(client: table, input: table): function(): table, table
+    items_list_identity_sources: function(client: table, input: table): function(): any
+    pages_list_policies: function(client: table, input: table): function(): table, table
+    items_list_policies: function(client: table, input: table): function(): any
+    pages_list_policy_store_aliases: function(client: table, input: table): function(): table, table
+    items_list_policy_store_aliases: function(client: table, input: table): function(): any
+    pages_list_policy_stores: function(client: table, input: table): function(): table, table
+    items_list_policy_stores: function(client: table, input: table): function(): any
+    pages_list_policy_templates: function(client: table, input: table): function(): table, table
+    items_list_policy_templates: function(client: table, input: table): function(): any
+end
+
+return M

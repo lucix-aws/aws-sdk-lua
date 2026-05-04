@@ -1,0 +1,31 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listCustomVerificationEmailTemplates.
+function M.pages_list_custom_verification_email_templates(client, input)
+    return paginator.pages(client, "listCustomVerificationEmailTemplates", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listIdentities.
+function M.pages_list_identities(client, input)
+    return paginator.pages(client, "listIdentities", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Identities",
+    })
+end
+
+--- Returns an item iterator for listIdentities.
+function M.items_list_identities(client, input)
+    return paginator.items(client, "listIdentities", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Identities",
+    })
+end
+
+return M

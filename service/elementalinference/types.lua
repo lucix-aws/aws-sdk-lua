@@ -76,6 +76,7 @@ M.AssociateFeedInput = {
         associatedResourceName = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -364,6 +365,7 @@ M.DisassociateFeedInput = {
         associatedResourceName = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },

@@ -1,0 +1,30 @@
+local record M
+    pages_get_similar_profiles: function(client: table, input: table): function(): table, table
+    items_get_similar_profiles: function(client: table, input: table): function(): any
+    pages_list_domain_layouts: function(client: table, input: table): function(): table, table
+    items_list_domain_layouts: function(client: table, input: table): function(): any
+    pages_list_domain_object_types: function(client: table, input: table): function(): table, table
+    items_list_domain_object_types: function(client: table, input: table): function(): any
+    pages_list_event_streams: function(client: table, input: table): function(): table, table
+    items_list_event_streams: function(client: table, input: table): function(): any
+    pages_list_event_triggers: function(client: table, input: table): function(): table, table
+    items_list_event_triggers: function(client: table, input: table): function(): any
+    pages_list_object_type_attributes: function(client: table, input: table): function(): table, table
+    items_list_object_type_attributes: function(client: table, input: table): function(): any
+    pages_list_recommender_filters: function(client: table, input: table): function(): table, table
+    items_list_recommender_filters: function(client: table, input: table): function(): any
+    pages_list_recommender_recipes: function(client: table, input: table): function(): table, table
+    items_list_recommender_recipes: function(client: table, input: table): function(): any
+    pages_list_recommender_schemas: function(client: table, input: table): function(): table, table
+    items_list_recommender_schemas: function(client: table, input: table): function(): any
+    pages_list_recommenders: function(client: table, input: table): function(): table, table
+    items_list_recommenders: function(client: table, input: table): function(): any
+    pages_list_rule_based_matches: function(client: table, input: table): function(): table, table
+    items_list_rule_based_matches: function(client: table, input: table): function(): any
+    pages_list_segment_definitions: function(client: table, input: table): function(): table, table
+    items_list_segment_definitions: function(client: table, input: table): function(): any
+    pages_list_upload_jobs: function(client: table, input: table): function(): table, table
+    items_list_upload_jobs: function(client: table, input: table): function(): any
+end
+
+return M

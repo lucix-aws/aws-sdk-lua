@@ -1,0 +1,12 @@
+local record M
+    pages_list_db_clusters: function(client: table, input: table): function(): table, table
+    items_list_db_clusters: function(client: table, input: table): function(): any
+    pages_list_db_instances: function(client: table, input: table): function(): table, table
+    items_list_db_instances: function(client: table, input: table): function(): any
+    pages_list_db_instances_for_cluster: function(client: table, input: table): function(): table, table
+    items_list_db_instances_for_cluster: function(client: table, input: table): function(): any
+    pages_list_db_parameter_groups: function(client: table, input: table): function(): table, table
+    items_list_db_parameter_groups: function(client: table, input: table): function(): any
+end
+
+return M

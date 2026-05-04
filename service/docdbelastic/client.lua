@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "ChimeraDbLionfishServiceLambda"
-    cfg.signing_name = "docdb-elastic"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "docdb-elastic", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:applyPendingMaintenanceAction(input, options)
         output_schema = types.ApplyPendingMaintenanceActionOutput,
         http_method = "POST",
         http_path = "/pending-action",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:copyClusterSnapshot(input, options)
         output_schema = types.CopyClusterSnapshotOutput,
         http_method = "POST",
         http_path = "/cluster-snapshot/{snapshotArn}/copy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createCluster(input, options)
         output_schema = types.CreateClusterOutput,
         http_method = "POST",
         http_path = "/cluster",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createClusterSnapshot(input, options)
         output_schema = types.CreateClusterSnapshotOutput,
         http_method = "POST",
         http_path = "/cluster-snapshot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteCluster(input, options)
         output_schema = types.DeleteClusterOutput,
         http_method = "DELETE",
         http_path = "/cluster/{clusterArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteClusterSnapshot(input, options)
         output_schema = types.DeleteClusterSnapshotOutput,
         http_method = "DELETE",
         http_path = "/cluster-snapshot/{snapshotArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:getCluster(input, options)
         output_schema = types.GetClusterOutput,
         http_method = "GET",
         http_path = "/cluster/{clusterArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:getClusterSnapshot(input, options)
         output_schema = types.GetClusterSnapshotOutput,
         http_method = "GET",
         http_path = "/cluster-snapshot/{snapshotArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getPendingMaintenanceAction(input, options)
         output_schema = types.GetPendingMaintenanceActionOutput,
         http_method = "GET",
         http_path = "/pending-action/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:listClusters(input, options)
         output_schema = types.ListClustersOutput,
         http_method = "GET",
         http_path = "/clusters",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:listClusterSnapshots(input, options)
         output_schema = types.ListClusterSnapshotsOutput,
         http_method = "GET",
         http_path = "/cluster-snapshots",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:listPendingMaintenanceActions(input, options)
         output_schema = types.ListPendingMaintenanceActionsOutput,
         http_method = "GET",
         http_path = "/pending-actions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:restoreClusterFromSnapshot(input, options)
         output_schema = types.RestoreClusterFromSnapshotOutput,
         http_method = "POST",
         http_path = "/cluster-snapshot/{snapshotArn}/restore",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:startCluster(input, options)
         output_schema = types.StartClusterOutput,
         http_method = "POST",
         http_path = "/cluster/{clusterArn}/start",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:stopCluster(input, options)
         output_schema = types.StopClusterOutput,
         http_method = "POST",
         http_path = "/cluster/{clusterArn}/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:updateCluster(input, options)
         output_schema = types.UpdateClusterOutput,
         http_method = "PUT",
         http_path = "/cluster/{clusterArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

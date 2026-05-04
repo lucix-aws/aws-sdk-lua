@@ -436,6 +436,7 @@ M.CreateChannelInput = {
             type = "string",
             traits = {
                 http_header = "x-amzn-client-token",
+                idempotency_token = true,
             },
         },
         InputType = {
@@ -1352,6 +1353,7 @@ M.CreateOriginEndpointInput = {
             type = "string",
             traits = {
                 http_header = "x-amzn-client-token",
+                idempotency_token = true,
             },
         },
         Description = {
@@ -2450,6 +2452,7 @@ M.CreateChannelGroupInput = {
             type = "string",
             traits = {
                 http_header = "x-amzn-client-token",
+                idempotency_token = true,
             },
         },
         Description = {
@@ -2732,6 +2735,7 @@ M.CreateHarvestJobInput = {
             type = "string",
             traits = {
                 http_header = "x-amzn-client-token",
+                idempotency_token = true,
             },
         },
         HarvestJobName = {

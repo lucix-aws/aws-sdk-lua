@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSIoTTwinMaker"
-    cfg.signing_name = "iottwinmaker"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "iottwinmaker", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:batchPutPropertyValues(input, options)
         output_schema = types.BatchPutPropertyValuesOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/entity-properties",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:cancelMetadataTransferJob(input, options)
         output_schema = types.CancelMetadataTransferJobOutput,
         http_method = "PUT",
         http_path = "/metadata-transfer-jobs/{metadataTransferJobId}/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createComponentType(input, options)
         output_schema = types.CreateComponentTypeOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/component-types/{componentTypeId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createEntity(input, options)
         output_schema = types.CreateEntityOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/entities",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createMetadataTransferJob(input, options)
         output_schema = types.CreateMetadataTransferJobOutput,
         http_method = "POST",
         http_path = "/metadata-transfer-jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createScene(input, options)
         output_schema = types.CreateSceneOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/scenes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createSyncJob(input, options)
         output_schema = types.CreateSyncJobOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/sync-jobs/{syncSource}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createWorkspace(input, options)
         output_schema = types.CreateWorkspaceOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteComponentType(input, options)
         output_schema = types.DeleteComponentTypeOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{workspaceId}/component-types/{componentTypeId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteEntity(input, options)
         output_schema = types.DeleteEntityOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{workspaceId}/entities/{entityId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteScene(input, options)
         output_schema = types.DeleteSceneOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{workspaceId}/scenes/{sceneId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteSyncJob(input, options)
         output_schema = types.DeleteSyncJobOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{workspaceId}/sync-jobs/{syncSource}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteWorkspace(input, options)
         output_schema = types.DeleteWorkspaceOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{workspaceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:executeQuery(input, options)
         output_schema = types.ExecuteQueryOutput,
         http_method = "POST",
         http_path = "/queries/execution",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getComponentType(input, options)
         output_schema = types.GetComponentTypeOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}/component-types/{componentTypeId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getEntity(input, options)
         output_schema = types.GetEntityOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}/entities/{entityId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getMetadataTransferJob(input, options)
         output_schema = types.GetMetadataTransferJobOutput,
         http_method = "GET",
         http_path = "/metadata-transfer-jobs/{metadataTransferJobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getPricingPlan(input, options)
         output_schema = types.GetPricingPlanOutput,
         http_method = "GET",
         http_path = "/pricingplan",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getPropertyValue(input, options)
         output_schema = types.GetPropertyValueOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/entity-properties/value",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:getPropertyValueHistory(input, options)
         output_schema = types.GetPropertyValueHistoryOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/entity-properties/history",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:getScene(input, options)
         output_schema = types.GetSceneOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}/scenes/{sceneId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:getSyncJob(input, options)
         output_schema = types.GetSyncJobOutput,
         http_method = "GET",
         http_path = "/sync-jobs/{syncSource}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:getWorkspace(input, options)
         output_schema = types.GetWorkspaceOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listComponents(input, options)
         output_schema = types.ListComponentsOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/entities/{entityId}/components-list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listComponentTypes(input, options)
         output_schema = types.ListComponentTypesOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/component-types-list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listEntities(input, options)
         output_schema = types.ListEntitiesOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/entities-list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:listMetadataTransferJobs(input, options)
         output_schema = types.ListMetadataTransferJobsOutput,
         http_method = "POST",
         http_path = "/metadata-transfer-jobs-list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:listProperties(input, options)
         output_schema = types.ListPropertiesOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/properties-list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listScenes(input, options)
         output_schema = types.ListScenesOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/scenes-list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:listSyncJobs(input, options)
         output_schema = types.ListSyncJobsOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/sync-jobs-list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:listSyncResources(input, options)
         output_schema = types.ListSyncResourcesOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/sync-jobs/{syncSource}/resources-list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/tags-list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:listWorkspaces(input, options)
         output_schema = types.ListWorkspacesOutput,
         http_method = "POST",
         http_path = "/workspaces-list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:updateComponentType(input, options)
         output_schema = types.UpdateComponentTypeOutput,
         http_method = "PUT",
         http_path = "/workspaces/{workspaceId}/component-types/{componentTypeId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:updateEntity(input, options)
         output_schema = types.UpdateEntityOutput,
         http_method = "PUT",
         http_path = "/workspaces/{workspaceId}/entities/{entityId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:updatePricingPlan(input, options)
         output_schema = types.UpdatePricingPlanOutput,
         http_method = "POST",
         http_path = "/pricingplan",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:updateScene(input, options)
         output_schema = types.UpdateSceneOutput,
         http_method = "PUT",
         http_path = "/workspaces/{workspaceId}/scenes/{sceneId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:updateWorkspace(input, options)
         output_schema = types.UpdateWorkspaceOutput,
         http_method = "PUT",
         http_path = "/workspaces/{workspaceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

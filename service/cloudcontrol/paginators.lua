@@ -1,0 +1,41 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listResourceRequests.
+function M.pages_list_resource_requests(client, input)
+    return paginator.pages(client, "listResourceRequests", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResourceRequestStatusSummaries",
+    })
+end
+
+--- Returns an item iterator for listResourceRequests.
+function M.items_list_resource_requests(client, input)
+    return paginator.items(client, "listResourceRequests", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResourceRequestStatusSummaries",
+    })
+end
+
+--- Returns a page iterator for listResources.
+function M.pages_list_resources(client, input)
+    return paginator.pages(client, "listResources", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResourceDescriptions",
+    })
+end
+
+--- Returns an item iterator for listResources.
+function M.items_list_resources(client, input)
+    return paginator.items(client, "listResources", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResourceDescriptions",
+    })
+end
+
+return M

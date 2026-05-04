@@ -1,0 +1,67 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listBuckets.
+function M.pages_list_buckets(client, input)
+    return paginator.pages(client, "listBuckets", input, {
+        input_token = "ContinuationToken",
+        output_token = "ContinuationToken",
+        items = "Buckets",
+    })
+end
+
+--- Returns an item iterator for listBuckets.
+function M.items_list_buckets(client, input)
+    return paginator.items(client, "listBuckets", input, {
+        input_token = "ContinuationToken",
+        output_token = "ContinuationToken",
+        items = "Buckets",
+    })
+end
+
+--- Returns a page iterator for listDirectoryBuckets.
+function M.pages_list_directory_buckets(client, input)
+    return paginator.pages(client, "listDirectoryBuckets", input, {
+        input_token = "ContinuationToken",
+        output_token = "ContinuationToken",
+        items = "Buckets",
+    })
+end
+
+--- Returns an item iterator for listDirectoryBuckets.
+function M.items_list_directory_buckets(client, input)
+    return paginator.items(client, "listDirectoryBuckets", input, {
+        input_token = "ContinuationToken",
+        output_token = "ContinuationToken",
+        items = "Buckets",
+    })
+end
+
+--- Returns a page iterator for listObjectsV2.
+function M.pages_list_objects_v2(client, input)
+    return paginator.pages(client, "listObjectsV2", input, {
+        input_token = "ContinuationToken",
+        output_token = "NextContinuationToken",
+    })
+end
+
+--- Returns a page iterator for listParts.
+function M.pages_list_parts(client, input)
+    return paginator.pages(client, "listParts", input, {
+        input_token = "PartNumberMarker",
+        output_token = "NextPartNumberMarker",
+        items = "Parts",
+    })
+end
+
+--- Returns an item iterator for listParts.
+function M.items_list_parts(client, input)
+    return paginator.items(client, "listParts", input, {
+        input_token = "PartNumberMarker",
+        output_token = "NextPartNumberMarker",
+        items = "Parts",
+    })
+end
+
+return M

@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSControlTowerApis"
-    cfg.signing_name = "controltower"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "controltower", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createLandingZone(input, options)
         output_schema = types.CreateLandingZoneOutput,
         http_method = "POST",
         http_path = "/create-landingzone",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:deleteLandingZone(input, options)
         output_schema = types.DeleteLandingZoneOutput,
         http_method = "POST",
         http_path = "/delete-landingzone",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:disableBaseline(input, options)
         output_schema = types.DisableBaselineOutput,
         http_method = "POST",
         http_path = "/disable-baseline",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:disableControl(input, options)
         output_schema = types.DisableControlOutput,
         http_method = "POST",
         http_path = "/disable-control",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:enableBaseline(input, options)
         output_schema = types.EnableBaselineOutput,
         http_method = "POST",
         http_path = "/enable-baseline",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:enableControl(input, options)
         output_schema = types.EnableControlOutput,
         http_method = "POST",
         http_path = "/enable-control",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:getBaseline(input, options)
         output_schema = types.GetBaselineOutput,
         http_method = "POST",
         http_path = "/get-baseline",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:getBaselineOperation(input, options)
         output_schema = types.GetBaselineOperationOutput,
         http_method = "POST",
         http_path = "/get-baseline-operation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getControlOperation(input, options)
         output_schema = types.GetControlOperationOutput,
         http_method = "POST",
         http_path = "/get-control-operation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:getEnabledBaseline(input, options)
         output_schema = types.GetEnabledBaselineOutput,
         http_method = "POST",
         http_path = "/get-enabled-baseline",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getEnabledControl(input, options)
         output_schema = types.GetEnabledControlOutput,
         http_method = "POST",
         http_path = "/get-enabled-control",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getLandingZone(input, options)
         output_schema = types.GetLandingZoneOutput,
         http_method = "POST",
         http_path = "/get-landingzone",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getLandingZoneOperation(input, options)
         output_schema = types.GetLandingZoneOperationOutput,
         http_method = "POST",
         http_path = "/get-landingzone-operation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:listBaselines(input, options)
         output_schema = types.ListBaselinesOutput,
         http_method = "POST",
         http_path = "/list-baselines",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:listControlOperations(input, options)
         output_schema = types.ListControlOperationsOutput,
         http_method = "POST",
         http_path = "/list-control-operations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listEnabledBaselines(input, options)
         output_schema = types.ListEnabledBaselinesOutput,
         http_method = "POST",
         http_path = "/list-enabled-baselines",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listEnabledControls(input, options)
         output_schema = types.ListEnabledControlsOutput,
         http_method = "POST",
         http_path = "/list-enabled-controls",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listLandingZoneOperations(input, options)
         output_schema = types.ListLandingZoneOperationsOutput,
         http_method = "POST",
         http_path = "/list-landingzone-operations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listLandingZones(input, options)
         output_schema = types.ListLandingZonesOutput,
         http_method = "POST",
         http_path = "/list-landingzones",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:resetEnabledBaseline(input, options)
         output_schema = types.ResetEnabledBaselineOutput,
         http_method = "POST",
         http_path = "/reset-enabled-baseline",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:resetEnabledControl(input, options)
         output_schema = types.ResetEnabledControlOutput,
         http_method = "POST",
         http_path = "/reset-enabled-control",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:resetLandingZone(input, options)
         output_schema = types.ResetLandingZoneOutput,
         http_method = "POST",
         http_path = "/reset-landingzone",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:updateEnabledBaseline(input, options)
         output_schema = types.UpdateEnabledBaselineOutput,
         http_method = "POST",
         http_path = "/update-enabled-baseline",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:updateEnabledControl(input, options)
         output_schema = types.UpdateEnabledControlOutput,
         http_method = "POST",
         http_path = "/update-enabled-control",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:updateLandingZone(input, options)
         output_schema = types.UpdateLandingZoneOutput,
         http_method = "POST",
         http_path = "/update-landingzone",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

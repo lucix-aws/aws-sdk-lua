@@ -1,0 +1,13 @@
+local record M
+    pages_list_ad_configurations: function(client: table, input: table): function(): table, table
+    items_list_ad_configurations: function(client: table, input: table): function(): any
+    pages_list_channels: function(client: table, input: table): function(): table, table
+    pages_list_playback_key_pairs: function(client: table, input: table): function(): table, table
+    pages_list_playback_restriction_policies: function(client: table, input: table): function(): table, table
+    pages_list_recording_configurations: function(client: table, input: table): function(): table, table
+    pages_list_stream_keys: function(client: table, input: table): function(): table, table
+    pages_list_stream_sessions: function(client: table, input: table): function(): table, table
+    pages_list_streams: function(client: table, input: table): function(): table, table
+end
+
+return M

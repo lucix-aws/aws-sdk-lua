@@ -250,6 +250,9 @@ M.StartDomainExportInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         domainName = {
             type = "string",

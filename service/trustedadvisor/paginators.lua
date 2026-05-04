@@ -1,0 +1,113 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listChecks.
+function M.pages_list_checks(client, input)
+    return paginator.pages(client, "listChecks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "checkSummaries",
+    })
+end
+
+--- Returns an item iterator for listChecks.
+function M.items_list_checks(client, input)
+    return paginator.items(client, "listChecks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "checkSummaries",
+    })
+end
+
+--- Returns a page iterator for listOrganizationRecommendationAccounts.
+function M.pages_list_organization_recommendation_accounts(client, input)
+    return paginator.pages(client, "listOrganizationRecommendationAccounts", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "accountRecommendationLifecycleSummaries",
+    })
+end
+
+--- Returns an item iterator for listOrganizationRecommendationAccounts.
+function M.items_list_organization_recommendation_accounts(client, input)
+    return paginator.items(client, "listOrganizationRecommendationAccounts", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "accountRecommendationLifecycleSummaries",
+    })
+end
+
+--- Returns a page iterator for listOrganizationRecommendationResources.
+function M.pages_list_organization_recommendation_resources(client, input)
+    return paginator.pages(client, "listOrganizationRecommendationResources", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "organizationRecommendationResourceSummaries",
+    })
+end
+
+--- Returns an item iterator for listOrganizationRecommendationResources.
+function M.items_list_organization_recommendation_resources(client, input)
+    return paginator.items(client, "listOrganizationRecommendationResources", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "organizationRecommendationResourceSummaries",
+    })
+end
+
+--- Returns a page iterator for listOrganizationRecommendations.
+function M.pages_list_organization_recommendations(client, input)
+    return paginator.pages(client, "listOrganizationRecommendations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "organizationRecommendationSummaries",
+    })
+end
+
+--- Returns an item iterator for listOrganizationRecommendations.
+function M.items_list_organization_recommendations(client, input)
+    return paginator.items(client, "listOrganizationRecommendations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "organizationRecommendationSummaries",
+    })
+end
+
+--- Returns a page iterator for listRecommendationResources.
+function M.pages_list_recommendation_resources(client, input)
+    return paginator.pages(client, "listRecommendationResources", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "recommendationResourceSummaries",
+    })
+end
+
+--- Returns an item iterator for listRecommendationResources.
+function M.items_list_recommendation_resources(client, input)
+    return paginator.items(client, "listRecommendationResources", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "recommendationResourceSummaries",
+    })
+end
+
+--- Returns a page iterator for listRecommendations.
+function M.pages_list_recommendations(client, input)
+    return paginator.pages(client, "listRecommendations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "recommendationSummaries",
+    })
+end
+
+--- Returns an item iterator for listRecommendations.
+function M.items_list_recommendations(client, input)
+    return paginator.items(client, "listRecommendations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "recommendationSummaries",
+    })
+end
+
+return M

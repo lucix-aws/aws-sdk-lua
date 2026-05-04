@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "QAppsService"
-    cfg.signing_name = "qapps"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "qapps", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateLibraryItemReview(input, options)
         output_schema = types.AssociateLibraryItemReviewOutput,
         http_method = "POST",
         http_path = "/catalog.associateItemRating",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:associateQAppWithUser(input, options)
         output_schema = types.AssociateQAppWithUserOutput,
         http_method = "POST",
         http_path = "/apps.install",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchCreateCategory(input, options)
         output_schema = types.BatchCreateCategoryOutput,
         http_method = "POST",
         http_path = "/catalog.createCategories",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:batchDeleteCategory(input, options)
         output_schema = types.BatchDeleteCategoryOutput,
         http_method = "POST",
         http_path = "/catalog.deleteCategories",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:batchUpdateCategory(input, options)
         output_schema = types.BatchUpdateCategoryOutput,
         http_method = "POST",
         http_path = "/catalog.updateCategories",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createLibraryItem(input, options)
         output_schema = types.CreateLibraryItemOutput,
         http_method = "POST",
         http_path = "/catalog.createItem",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createPresignedUrl(input, options)
         output_schema = types.CreatePresignedUrlOutput,
         http_method = "POST",
         http_path = "/apps.createPresignedUrl",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createQApp(input, options)
         output_schema = types.CreateQAppOutput,
         http_method = "POST",
         http_path = "/apps.create",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteLibraryItem(input, options)
         output_schema = types.DeleteLibraryItemOutput,
         http_method = "POST",
         http_path = "/catalog.deleteItem",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteQApp(input, options)
         output_schema = types.DeleteQAppOutput,
         http_method = "POST",
         http_path = "/apps.delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:describeQAppPermissions(input, options)
         output_schema = types.DescribeQAppPermissionsOutput,
         http_method = "GET",
         http_path = "/apps.describeQAppPermissions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:disassociateLibraryItemReview(input, options)
         output_schema = types.DisassociateLibraryItemReviewOutput,
         http_method = "POST",
         http_path = "/catalog.disassociateItemRating",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:disassociateQAppFromUser(input, options)
         output_schema = types.DisassociateQAppFromUserOutput,
         http_method = "POST",
         http_path = "/apps.uninstall",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:exportQAppSessionData(input, options)
         output_schema = types.ExportQAppSessionDataOutput,
         http_method = "POST",
         http_path = "/runtime.exportQAppSessionData",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getLibraryItem(input, options)
         output_schema = types.GetLibraryItemOutput,
         http_method = "GET",
         http_path = "/catalog.getItem",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getQApp(input, options)
         output_schema = types.GetQAppOutput,
         http_method = "GET",
         http_path = "/apps.get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getQAppSession(input, options)
         output_schema = types.GetQAppSessionOutput,
         http_method = "GET",
         http_path = "/runtime.getQAppSession",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getQAppSessionMetadata(input, options)
         output_schema = types.GetQAppSessionMetadataOutput,
         http_method = "GET",
         http_path = "/runtime.getQAppSessionMetadata",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:importDocument(input, options)
         output_schema = types.ImportDocumentOutput,
         http_method = "POST",
         http_path = "/apps.importDocument",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listCategories(input, options)
         output_schema = types.ListCategoriesOutput,
         http_method = "GET",
         http_path = "/catalog.listCategories",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listLibraryItems(input, options)
         output_schema = types.ListLibraryItemsOutput,
         http_method = "GET",
         http_path = "/catalog.list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listQApps(input, options)
         output_schema = types.ListQAppsOutput,
         http_method = "GET",
         http_path = "/apps.list",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listQAppSessionData(input, options)
         output_schema = types.ListQAppSessionDataOutput,
         http_method = "GET",
         http_path = "/runtime.listQAppSessionData",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceARN}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:predictQApp(input, options)
         output_schema = types.PredictQAppOutput,
         http_method = "POST",
         http_path = "/apps.predictQApp",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:startQAppSession(input, options)
         output_schema = types.StartQAppSessionOutput,
         http_method = "POST",
         http_path = "/runtime.startQAppSession",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:stopQAppSession(input, options)
         output_schema = types.StopQAppSessionOutput,
         http_method = "POST",
         http_path = "/runtime.deleteMiniAppRun",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceARN}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceARN}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:updateLibraryItem(input, options)
         output_schema = types.UpdateLibraryItemOutput,
         http_method = "POST",
         http_path = "/catalog.updateItem",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:updateLibraryItemMetadata(input, options)
         output_schema = types.UpdateLibraryItemMetadataOutput,
         http_method = "POST",
         http_path = "/catalog.updateItemMetadata",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:updateQApp(input, options)
         output_schema = types.UpdateQAppOutput,
         http_method = "POST",
         http_path = "/apps.update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:updateQAppPermissions(input, options)
         output_schema = types.UpdateQAppPermissionsOutput,
         http_method = "POST",
         http_path = "/apps.updateQAppPermissions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:updateQAppSession(input, options)
         output_schema = types.UpdateQAppSessionOutput,
         http_method = "POST",
         http_path = "/runtime.updateQAppSession",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:updateQAppSessionMetadata(input, options)
         output_schema = types.UpdateQAppSessionMetadataOutput,
         http_method = "POST",
         http_path = "/runtime.updateQAppSessionMetadata",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "ElasticDisasterRecoveryService"
-    cfg.signing_name = "drs"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "drs", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateSourceNetworkStack(input, options)
         output_schema = types.AssociateSourceNetworkStackOutput,
         http_method = "POST",
         http_path = "/AssociateSourceNetworkStack",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createExtendedSourceServer(input, options)
         output_schema = types.CreateExtendedSourceServerOutput,
         http_method = "POST",
         http_path = "/CreateExtendedSourceServer",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createLaunchConfigurationTemplate(input, options)
         output_schema = types.CreateLaunchConfigurationTemplateOutput,
         http_method = "POST",
         http_path = "/CreateLaunchConfigurationTemplate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createReplicationConfigurationTemplate(input, options)
         output_schema = types.CreateReplicationConfigurationTemplateOutput,
         http_method = "POST",
         http_path = "/CreateReplicationConfigurationTemplate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createSourceNetwork(input, options)
         output_schema = types.CreateSourceNetworkOutput,
         http_method = "POST",
         http_path = "/CreateSourceNetwork",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteJob(input, options)
         output_schema = types.DeleteJobOutput,
         http_method = "POST",
         http_path = "/DeleteJob",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteLaunchAction(input, options)
         output_schema = types.DeleteLaunchActionOutput,
         http_method = "POST",
         http_path = "/DeleteLaunchAction",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteLaunchConfigurationTemplate(input, options)
         output_schema = types.DeleteLaunchConfigurationTemplateOutput,
         http_method = "POST",
         http_path = "/DeleteLaunchConfigurationTemplate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteRecoveryInstance(input, options)
         output_schema = types.DeleteRecoveryInstanceOutput,
         http_method = "POST",
         http_path = "/DeleteRecoveryInstance",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteReplicationConfigurationTemplate(input, options)
         output_schema = types.DeleteReplicationConfigurationTemplateOutput,
         http_method = "POST",
         http_path = "/DeleteReplicationConfigurationTemplate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteSourceNetwork(input, options)
         output_schema = types.DeleteSourceNetworkOutput,
         http_method = "POST",
         http_path = "/DeleteSourceNetwork",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteSourceServer(input, options)
         output_schema = types.DeleteSourceServerOutput,
         http_method = "POST",
         http_path = "/DeleteSourceServer",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:describeJobLogItems(input, options)
         output_schema = types.DescribeJobLogItemsOutput,
         http_method = "POST",
         http_path = "/DescribeJobLogItems",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:describeJobs(input, options)
         output_schema = types.DescribeJobsOutput,
         http_method = "POST",
         http_path = "/DescribeJobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:describeLaunchConfigurationTemplates(input, options)
         output_schema = types.DescribeLaunchConfigurationTemplatesOutput,
         http_method = "POST",
         http_path = "/DescribeLaunchConfigurationTemplates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:describeRecoveryInstances(input, options)
         output_schema = types.DescribeRecoveryInstancesOutput,
         http_method = "POST",
         http_path = "/DescribeRecoveryInstances",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:describeRecoverySnapshots(input, options)
         output_schema = types.DescribeRecoverySnapshotsOutput,
         http_method = "POST",
         http_path = "/DescribeRecoverySnapshots",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:describeReplicationConfigurationTemplates(input, options)
         output_schema = types.DescribeReplicationConfigurationTemplatesOutput,
         http_method = "POST",
         http_path = "/DescribeReplicationConfigurationTemplates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:describeSourceNetworks(input, options)
         output_schema = types.DescribeSourceNetworksOutput,
         http_method = "POST",
         http_path = "/DescribeSourceNetworks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:describeSourceServers(input, options)
         output_schema = types.DescribeSourceServersOutput,
         http_method = "POST",
         http_path = "/DescribeSourceServers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:disconnectRecoveryInstance(input, options)
         output_schema = types.DisconnectRecoveryInstanceOutput,
         http_method = "POST",
         http_path = "/DisconnectRecoveryInstance",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:disconnectSourceServer(input, options)
         output_schema = types.DisconnectSourceServerOutput,
         http_method = "POST",
         http_path = "/DisconnectSourceServer",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:exportSourceNetworkCfnTemplate(input, options)
         output_schema = types.ExportSourceNetworkCfnTemplateOutput,
         http_method = "POST",
         http_path = "/ExportSourceNetworkCfnTemplate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:getFailbackReplicationConfiguration(input, options)
         output_schema = types.GetFailbackReplicationConfigurationOutput,
         http_method = "POST",
         http_path = "/GetFailbackReplicationConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:getLaunchConfiguration(input, options)
         output_schema = types.GetLaunchConfigurationOutput,
         http_method = "POST",
         http_path = "/GetLaunchConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:getReplicationConfiguration(input, options)
         output_schema = types.GetReplicationConfigurationOutput,
         http_method = "POST",
         http_path = "/GetReplicationConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:initializeService(input, options)
         output_schema = types.InitializeServiceOutput,
         http_method = "POST",
         http_path = "/InitializeService",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:listExtensibleSourceServers(input, options)
         output_schema = types.ListExtensibleSourceServersOutput,
         http_method = "POST",
         http_path = "/ListExtensibleSourceServers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listLaunchActions(input, options)
         output_schema = types.ListLaunchActionsOutput,
         http_method = "POST",
         http_path = "/ListLaunchActions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:listStagingAccounts(input, options)
         output_schema = types.ListStagingAccountsOutput,
         http_method = "GET",
         http_path = "/ListStagingAccounts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:putLaunchAction(input, options)
         output_schema = types.PutLaunchActionOutput,
         http_method = "POST",
         http_path = "/PutLaunchAction",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:retryDataReplication(input, options)
         output_schema = types.RetryDataReplicationOutput,
         http_method = "POST",
         http_path = "/RetryDataReplication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:reverseReplication(input, options)
         output_schema = types.ReverseReplicationOutput,
         http_method = "POST",
         http_path = "/ReverseReplication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:startFailbackLaunch(input, options)
         output_schema = types.StartFailbackLaunchOutput,
         http_method = "POST",
         http_path = "/StartFailbackLaunch",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:startRecovery(input, options)
         output_schema = types.StartRecoveryOutput,
         http_method = "POST",
         http_path = "/StartRecovery",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:startReplication(input, options)
         output_schema = types.StartReplicationOutput,
         http_method = "POST",
         http_path = "/StartReplication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:startSourceNetworkRecovery(input, options)
         output_schema = types.StartSourceNetworkRecoveryOutput,
         http_method = "POST",
         http_path = "/StartSourceNetworkRecovery",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:startSourceNetworkReplication(input, options)
         output_schema = types.StartSourceNetworkReplicationOutput,
         http_method = "POST",
         http_path = "/StartSourceNetworkReplication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:stopFailback(input, options)
         output_schema = types.StopFailbackOutput,
         http_method = "POST",
         http_path = "/StopFailback",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:stopReplication(input, options)
         output_schema = types.StopReplicationOutput,
         http_method = "POST",
         http_path = "/StopReplication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:stopSourceNetworkReplication(input, options)
         output_schema = types.StopSourceNetworkReplicationOutput,
         http_method = "POST",
         http_path = "/StopSourceNetworkReplication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:terminateRecoveryInstances(input, options)
         output_schema = types.TerminateRecoveryInstancesOutput,
         http_method = "POST",
         http_path = "/TerminateRecoveryInstances",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:updateFailbackReplicationConfiguration(input, options)
         output_schema = types.UpdateFailbackReplicationConfigurationOutput,
         http_method = "POST",
         http_path = "/UpdateFailbackReplicationConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:updateLaunchConfiguration(input, options)
         output_schema = types.UpdateLaunchConfigurationOutput,
         http_method = "POST",
         http_path = "/UpdateLaunchConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:updateLaunchConfigurationTemplate(input, options)
         output_schema = types.UpdateLaunchConfigurationTemplateOutput,
         http_method = "POST",
         http_path = "/UpdateLaunchConfigurationTemplate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:updateReplicationConfiguration(input, options)
         output_schema = types.UpdateReplicationConfigurationOutput,
         http_method = "POST",
         http_path = "/UpdateReplicationConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:updateReplicationConfigurationTemplate(input, options)
         output_schema = types.UpdateReplicationConfigurationTemplateOutput,
         http_method = "POST",
         http_path = "/UpdateReplicationConfigurationTemplate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

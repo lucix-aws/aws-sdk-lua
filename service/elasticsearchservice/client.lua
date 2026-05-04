@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonElasticsearchService2015"
-    cfg.signing_name = "es"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "es", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:acceptInboundCrossClusterSearchConnection(input, options)
         output_schema = types.AcceptInboundCrossClusterSearchConnectionOutput,
         http_method = "PUT",
         http_path = "/2015-01-01/es/ccs/inboundConnection/{CrossClusterSearchConnectionId}/accept",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:addTags(input, options)
         output_schema = types.AddTagsOutput,
         http_method = "POST",
         http_path = "/2015-01-01/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:associatePackage(input, options)
         output_schema = types.AssociatePackageOutput,
         http_method = "POST",
         http_path = "/2015-01-01/packages/associate/{PackageID}/{DomainName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:authorizeVpcEndpointAccess(input, options)
         output_schema = types.AuthorizeVpcEndpointAccessOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/domain/{DomainName}/authorizeVpcEndpointAccess",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:cancelDomainConfigChange(input, options)
         output_schema = types.CancelDomainConfigChangeOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/domain/{DomainName}/config/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:cancelElasticsearchServiceSoftwareUpdate(input, options)
         output_schema = types.CancelElasticsearchServiceSoftwareUpdateOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/serviceSoftwareUpdate/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createElasticsearchDomain(input, options)
         output_schema = types.CreateElasticsearchDomainOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/domain",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createOutboundCrossClusterSearchConnection(input, options)
         output_schema = types.CreateOutboundCrossClusterSearchConnectionOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/ccs/outboundConnection",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createPackage(input, options)
         output_schema = types.CreatePackageOutput,
         http_method = "POST",
         http_path = "/2015-01-01/packages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createVpcEndpoint(input, options)
         output_schema = types.CreateVpcEndpointOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/vpcEndpoints",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteElasticsearchDomain(input, options)
         output_schema = types.DeleteElasticsearchDomainOutput,
         http_method = "DELETE",
         http_path = "/2015-01-01/es/domain/{DomainName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteElasticsearchServiceRole(input, options)
         output_schema = types.DeleteElasticsearchServiceRoleOutput,
         http_method = "DELETE",
         http_path = "/2015-01-01/es/role",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteInboundCrossClusterSearchConnection(input, options)
         output_schema = types.DeleteInboundCrossClusterSearchConnectionOutput,
         http_method = "DELETE",
         http_path = "/2015-01-01/es/ccs/inboundConnection/{CrossClusterSearchConnectionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteOutboundCrossClusterSearchConnection(input, options)
         output_schema = types.DeleteOutboundCrossClusterSearchConnectionOutput,
         http_method = "DELETE",
         http_path = "/2015-01-01/es/ccs/outboundConnection/{CrossClusterSearchConnectionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deletePackage(input, options)
         output_schema = types.DeletePackageOutput,
         http_method = "DELETE",
         http_path = "/2015-01-01/packages/{PackageID}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteVpcEndpoint(input, options)
         output_schema = types.DeleteVpcEndpointOutput,
         http_method = "DELETE",
         http_path = "/2015-01-01/es/vpcEndpoints/{VpcEndpointId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:describeDomainAutoTunes(input, options)
         output_schema = types.DescribeDomainAutoTunesOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/domain/{DomainName}/autoTunes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:describeDomainChangeProgress(input, options)
         output_schema = types.DescribeDomainChangeProgressOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/domain/{DomainName}/progress",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:describeElasticsearchDomain(input, options)
         output_schema = types.DescribeElasticsearchDomainOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/domain/{DomainName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:describeElasticsearchDomainConfig(input, options)
         output_schema = types.DescribeElasticsearchDomainConfigOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/domain/{DomainName}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:describeElasticsearchDomains(input, options)
         output_schema = types.DescribeElasticsearchDomainsOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/domain-info",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:describeElasticsearchInstanceTypeLimits(input, options)
         output_schema = types.DescribeElasticsearchInstanceTypeLimitsOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/instanceTypeLimits/{ElasticsearchVersion}/{InstanceType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:describeInboundCrossClusterSearchConnections(input, options)
         output_schema = types.DescribeInboundCrossClusterSearchConnectionsOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/ccs/inboundConnection/search",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:describeOutboundCrossClusterSearchConnections(input, options)
         output_schema = types.DescribeOutboundCrossClusterSearchConnectionsOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/ccs/outboundConnection/search",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:describePackages(input, options)
         output_schema = types.DescribePackagesOutput,
         http_method = "POST",
         http_path = "/2015-01-01/packages/describe",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:describeReservedElasticsearchInstanceOfferings(input, options)
         output_schema = types.DescribeReservedElasticsearchInstanceOfferingsOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/reservedInstanceOfferings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:describeReservedElasticsearchInstances(input, options)
         output_schema = types.DescribeReservedElasticsearchInstancesOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/reservedInstances",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:describeVpcEndpoints(input, options)
         output_schema = types.DescribeVpcEndpointsOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/vpcEndpoints/describe",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:dissociatePackage(input, options)
         output_schema = types.DissociatePackageOutput,
         http_method = "POST",
         http_path = "/2015-01-01/packages/dissociate/{PackageID}/{DomainName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:getCompatibleElasticsearchVersions(input, options)
         output_schema = types.GetCompatibleElasticsearchVersionsOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/compatibleVersions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:getPackageVersionHistory(input, options)
         output_schema = types.GetPackageVersionHistoryOutput,
         http_method = "GET",
         http_path = "/2015-01-01/packages/{PackageID}/history",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:getUpgradeHistory(input, options)
         output_schema = types.GetUpgradeHistoryOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/upgradeDomain/{DomainName}/history",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:getUpgradeStatus(input, options)
         output_schema = types.GetUpgradeStatusOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/upgradeDomain/{DomainName}/status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:listDomainNames(input, options)
         output_schema = types.ListDomainNamesOutput,
         http_method = "GET",
         http_path = "/2015-01-01/domain",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:listDomainsForPackage(input, options)
         output_schema = types.ListDomainsForPackageOutput,
         http_method = "GET",
         http_path = "/2015-01-01/packages/{PackageID}/domains",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:listElasticsearchInstanceTypes(input, options)
         output_schema = types.ListElasticsearchInstanceTypesOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/instanceTypes/{ElasticsearchVersion}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:listElasticsearchVersions(input, options)
         output_schema = types.ListElasticsearchVersionsOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:listPackagesForDomain(input, options)
         output_schema = types.ListPackagesForDomainOutput,
         http_method = "GET",
         http_path = "/2015-01-01/domain/{DomainName}/packages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:listTags(input, options)
         output_schema = types.ListTagsOutput,
         http_method = "GET",
         http_path = "/2015-01-01/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:listVpcEndpointAccess(input, options)
         output_schema = types.ListVpcEndpointAccessOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/domain/{DomainName}/listVpcEndpointAccess",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:listVpcEndpoints(input, options)
         output_schema = types.ListVpcEndpointsOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/vpcEndpoints",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:listVpcEndpointsForDomain(input, options)
         output_schema = types.ListVpcEndpointsForDomainOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/domain/{DomainName}/vpcEndpoints",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:purchaseReservedElasticsearchInstanceOffering(input, options)
         output_schema = types.PurchaseReservedElasticsearchInstanceOfferingOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/purchaseReservedInstanceOffering",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:rejectInboundCrossClusterSearchConnection(input, options)
         output_schema = types.RejectInboundCrossClusterSearchConnectionOutput,
         http_method = "PUT",
         http_path = "/2015-01-01/es/ccs/inboundConnection/{CrossClusterSearchConnectionId}/reject",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:removeTags(input, options)
         output_schema = types.RemoveTagsOutput,
         http_method = "POST",
         http_path = "/2015-01-01/tags-removal",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:revokeVpcEndpointAccess(input, options)
         output_schema = types.RevokeVpcEndpointAccessOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/domain/{DomainName}/revokeVpcEndpointAccess",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:startElasticsearchServiceSoftwareUpdate(input, options)
         output_schema = types.StartElasticsearchServiceSoftwareUpdateOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/serviceSoftwareUpdate/start",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:updateElasticsearchDomainConfig(input, options)
         output_schema = types.UpdateElasticsearchDomainConfigOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/domain/{DomainName}/config",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:updatePackage(input, options)
         output_schema = types.UpdatePackageOutput,
         http_method = "POST",
         http_path = "/2015-01-01/packages/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:updateVpcEndpoint(input, options)
         output_schema = types.UpdateVpcEndpointOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/vpcEndpoints/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:upgradeElasticsearchDomain(input, options)
         output_schema = types.UpgradeElasticsearchDomainOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/upgradeDomain",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

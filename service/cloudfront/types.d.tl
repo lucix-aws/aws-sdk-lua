@@ -5859,11 +5859,11 @@ end
 
 local type CachePolicyType = "managed" | "custom"
 
+local type ConnectionMode = "direct" | "tenant-only"
+
 local type OriginRequestPolicyType = "managed" | "custom"
 
 local type ResponseHeadersPolicyType = "managed" | "custom"
-
-local type ConnectionMode = "direct" | "tenant-only"
 
 local type FunctionStage = "DEVELOPMENT" | "LIVE"
 

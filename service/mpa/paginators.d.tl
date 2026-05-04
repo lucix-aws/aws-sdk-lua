@@ -1,0 +1,16 @@
+local record M
+    pages_list_approval_teams: function(client: table, input: table): function(): table, table
+    items_list_approval_teams: function(client: table, input: table): function(): any
+    pages_list_identity_sources: function(client: table, input: table): function(): table, table
+    items_list_identity_sources: function(client: table, input: table): function(): any
+    pages_list_policies: function(client: table, input: table): function(): table, table
+    items_list_policies: function(client: table, input: table): function(): any
+    pages_list_policy_versions: function(client: table, input: table): function(): table, table
+    items_list_policy_versions: function(client: table, input: table): function(): any
+    pages_list_resource_policies: function(client: table, input: table): function(): table, table
+    items_list_resource_policies: function(client: table, input: table): function(): any
+    pages_list_sessions: function(client: table, input: table): function(): table, table
+    items_list_sessions: function(client: table, input: table): function(): any
+end
+
+return M

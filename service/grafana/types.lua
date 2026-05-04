@@ -718,6 +718,7 @@ M.DescribeWorkspaceConfigurationOutput = {
         configuration = {
             type = "string",
             traits = {
+                media_type = "application/json",
                 required = true,
             },
         },
@@ -733,6 +734,7 @@ M.UpdateWorkspaceConfigurationInput = {
         configuration = {
             type = "string",
             traits = {
+                media_type = "application/json",
                 required = true,
             },
         },
@@ -1482,6 +1484,9 @@ M.CreateWorkspaceInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         organizationRoleName = {
             type = "string",
@@ -1531,6 +1536,9 @@ M.CreateWorkspaceInput = {
         vpcConfiguration = M.VpcConfiguration,
         configuration = {
             type = "string",
+            traits = {
+                media_type = "application/json",
+            },
         },
         networkAccessControl = M.NetworkAccessConfiguration,
         grafanaVersion = {

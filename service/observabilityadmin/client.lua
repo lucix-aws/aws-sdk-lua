@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "ObservabilityAdmin"
-    cfg.signing_name = "observabilityadmin"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "observabilityadmin", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createCentralizationRuleForOrganization(input, options)
         output_schema = types.CreateCentralizationRuleForOrganizationOutput,
         http_method = "POST",
         http_path = "/CreateCentralizationRuleForOrganization",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createS3TableIntegration(input, options)
         output_schema = types.CreateS3TableIntegrationOutput,
         http_method = "POST",
         http_path = "/CreateS3TableIntegration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createTelemetryPipeline(input, options)
         output_schema = types.CreateTelemetryPipelineOutput,
         http_method = "POST",
         http_path = "/CreateTelemetryPipeline",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createTelemetryRule(input, options)
         output_schema = types.CreateTelemetryRuleOutput,
         http_method = "POST",
         http_path = "/CreateTelemetryRule",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createTelemetryRuleForOrganization(input, options)
         output_schema = types.CreateTelemetryRuleForOrganizationOutput,
         http_method = "POST",
         http_path = "/CreateTelemetryRuleForOrganization",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteCentralizationRuleForOrganization(input, options)
         output_schema = types.DeleteCentralizationRuleForOrganizationOutput,
         http_method = "POST",
         http_path = "/DeleteCentralizationRuleForOrganization",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteS3TableIntegration(input, options)
         output_schema = types.DeleteS3TableIntegrationOutput,
         http_method = "POST",
         http_path = "/DeleteS3TableIntegration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteTelemetryPipeline(input, options)
         output_schema = types.DeleteTelemetryPipelineOutput,
         http_method = "POST",
         http_path = "/DeleteTelemetryPipeline",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteTelemetryRule(input, options)
         output_schema = types.DeleteTelemetryRuleOutput,
         http_method = "POST",
         http_path = "/DeleteTelemetryRule",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteTelemetryRuleForOrganization(input, options)
         output_schema = types.DeleteTelemetryRuleForOrganizationOutput,
         http_method = "POST",
         http_path = "/DeleteTelemetryRuleForOrganization",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getCentralizationRuleForOrganization(input, options)
         output_schema = types.GetCentralizationRuleForOrganizationOutput,
         http_method = "POST",
         http_path = "/GetCentralizationRuleForOrganization",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getS3TableIntegration(input, options)
         output_schema = types.GetS3TableIntegrationOutput,
         http_method = "POST",
         http_path = "/GetS3TableIntegration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getTelemetryEnrichmentStatus(input, options)
         output_schema = types.GetTelemetryEnrichmentStatusOutput,
         http_method = "POST",
         http_path = "/GetTelemetryEnrichmentStatus",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getTelemetryEvaluationStatus(input, options)
         output_schema = types.GetTelemetryEvaluationStatusOutput,
         http_method = "POST",
         http_path = "/GetTelemetryEvaluationStatus",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getTelemetryEvaluationStatusForOrganization(input, options)
         output_schema = types.GetTelemetryEvaluationStatusForOrganizationOutput,
         http_method = "POST",
         http_path = "/GetTelemetryEvaluationStatusForOrganization",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getTelemetryPipeline(input, options)
         output_schema = types.GetTelemetryPipelineOutput,
         http_method = "POST",
         http_path = "/GetTelemetryPipeline",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getTelemetryRule(input, options)
         output_schema = types.GetTelemetryRuleOutput,
         http_method = "POST",
         http_path = "/GetTelemetryRule",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getTelemetryRuleForOrganization(input, options)
         output_schema = types.GetTelemetryRuleForOrganizationOutput,
         http_method = "POST",
         http_path = "/GetTelemetryRuleForOrganization",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listCentralizationRulesForOrganization(input, options)
         output_schema = types.ListCentralizationRulesForOrganizationOutput,
         http_method = "POST",
         http_path = "/ListCentralizationRulesForOrganization",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listResourceTelemetry(input, options)
         output_schema = types.ListResourceTelemetryOutput,
         http_method = "POST",
         http_path = "/ListResourceTelemetry",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listResourceTelemetryForOrganization(input, options)
         output_schema = types.ListResourceTelemetryForOrganizationOutput,
         http_method = "POST",
         http_path = "/ListResourceTelemetryForOrganization",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listS3TableIntegrations(input, options)
         output_schema = types.ListS3TableIntegrationsOutput,
         http_method = "POST",
         http_path = "/ListS3TableIntegrations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/ListTagsForResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listTelemetryPipelines(input, options)
         output_schema = types.ListTelemetryPipelinesOutput,
         http_method = "POST",
         http_path = "/ListTelemetryPipelines",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listTelemetryRules(input, options)
         output_schema = types.ListTelemetryRulesOutput,
         http_method = "POST",
         http_path = "/ListTelemetryRules",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listTelemetryRulesForOrganization(input, options)
         output_schema = types.ListTelemetryRulesForOrganizationOutput,
         http_method = "POST",
         http_path = "/ListTelemetryRulesForOrganization",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:startTelemetryEnrichment(input, options)
         output_schema = types.StartTelemetryEnrichmentOutput,
         http_method = "POST",
         http_path = "/StartTelemetryEnrichment",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:startTelemetryEvaluation(input, options)
         output_schema = types.StartTelemetryEvaluationOutput,
         http_method = "POST",
         http_path = "/StartTelemetryEvaluation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:startTelemetryEvaluationForOrganization(input, options)
         output_schema = types.StartTelemetryEvaluationForOrganizationOutput,
         http_method = "POST",
         http_path = "/StartTelemetryEvaluationForOrganization",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:stopTelemetryEnrichment(input, options)
         output_schema = types.StopTelemetryEnrichmentOutput,
         http_method = "POST",
         http_path = "/StopTelemetryEnrichment",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:stopTelemetryEvaluation(input, options)
         output_schema = types.StopTelemetryEvaluationOutput,
         http_method = "POST",
         http_path = "/StopTelemetryEvaluation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:stopTelemetryEvaluationForOrganization(input, options)
         output_schema = types.StopTelemetryEvaluationForOrganizationOutput,
         http_method = "POST",
         http_path = "/StopTelemetryEvaluationForOrganization",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/TagResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:testTelemetryPipeline(input, options)
         output_schema = types.TestTelemetryPipelineOutput,
         http_method = "POST",
         http_path = "/TestTelemetryPipeline",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/UntagResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:updateCentralizationRuleForOrganization(input, options)
         output_schema = types.UpdateCentralizationRuleForOrganizationOutput,
         http_method = "POST",
         http_path = "/UpdateCentralizationRuleForOrganization",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:updateTelemetryPipeline(input, options)
         output_schema = types.UpdateTelemetryPipelineOutput,
         http_method = "POST",
         http_path = "/UpdateTelemetryPipeline",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:updateTelemetryRule(input, options)
         output_schema = types.UpdateTelemetryRuleOutput,
         http_method = "POST",
         http_path = "/UpdateTelemetryRule",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:updateTelemetryRuleForOrganization(input, options)
         output_schema = types.UpdateTelemetryRuleForOrganizationOutput,
         http_method = "POST",
         http_path = "/UpdateTelemetryRuleForOrganization",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:validateTelemetryPipelineConfiguration(input, options)
         output_schema = types.ValidateTelemetryPipelineConfigurationOutput,
         http_method = "POST",
         http_path = "/ValidateTelemetryPipelineConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

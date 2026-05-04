@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonPrometheusService"
-    cfg.signing_name = "aps"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "aps", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createAlertManagerDefinition(input, options)
         output_schema = types.CreateAlertManagerDefinitionOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/alertmanager/definition",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createAnomalyDetector(input, options)
         output_schema = types.CreateAnomalyDetectorOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/anomalydetectors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createLoggingConfiguration(input, options)
         output_schema = types.CreateLoggingConfigurationOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/logging",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createQueryLoggingConfiguration(input, options)
         output_schema = types.CreateQueryLoggingConfigurationOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/logging/query",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createRuleGroupsNamespace(input, options)
         output_schema = types.CreateRuleGroupsNamespaceOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/rulegroupsnamespaces",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createScraper(input, options)
         output_schema = types.CreateScraperOutput,
         http_method = "POST",
         http_path = "/scrapers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createWorkspace(input, options)
         output_schema = types.CreateWorkspaceOutput,
         http_method = "POST",
         http_path = "/workspaces",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteAlertManagerDefinition(input, options)
         output_schema = types.DeleteAlertManagerDefinitionOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{workspaceId}/alertmanager/definition",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteAnomalyDetector(input, options)
         output_schema = types.DeleteAnomalyDetectorOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{workspaceId}/anomalydetectors/{anomalyDetectorId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteLoggingConfiguration(input, options)
         output_schema = types.DeleteLoggingConfigurationOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{workspaceId}/logging",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteQueryLoggingConfiguration(input, options)
         output_schema = types.DeleteQueryLoggingConfigurationOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{workspaceId}/logging/query",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteResourcePolicy(input, options)
         output_schema = types.DeleteResourcePolicyOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{workspaceId}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteRuleGroupsNamespace(input, options)
         output_schema = types.DeleteRuleGroupsNamespaceOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{workspaceId}/rulegroupsnamespaces/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteScraper(input, options)
         output_schema = types.DeleteScraperOutput,
         http_method = "DELETE",
         http_path = "/scrapers/{scraperId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteScraperLoggingConfiguration(input, options)
         output_schema = types.DeleteScraperLoggingConfigurationOutput,
         http_method = "DELETE",
         http_path = "/scrapers/{scraperId}/logging-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteWorkspace(input, options)
         output_schema = types.DeleteWorkspaceOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{workspaceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:describeAlertManagerDefinition(input, options)
         output_schema = types.DescribeAlertManagerDefinitionOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}/alertmanager/definition",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:describeAnomalyDetector(input, options)
         output_schema = types.DescribeAnomalyDetectorOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}/anomalydetectors/{anomalyDetectorId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:describeLoggingConfiguration(input, options)
         output_schema = types.DescribeLoggingConfigurationOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}/logging",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:describeQueryLoggingConfiguration(input, options)
         output_schema = types.DescribeQueryLoggingConfigurationOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}/logging/query",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:describeResourcePolicy(input, options)
         output_schema = types.DescribeResourcePolicyOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:describeRuleGroupsNamespace(input, options)
         output_schema = types.DescribeRuleGroupsNamespaceOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}/rulegroupsnamespaces/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:describeScraper(input, options)
         output_schema = types.DescribeScraperOutput,
         http_method = "GET",
         http_path = "/scrapers/{scraperId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:describeScraperLoggingConfiguration(input, options)
         output_schema = types.DescribeScraperLoggingConfigurationOutput,
         http_method = "GET",
         http_path = "/scrapers/{scraperId}/logging-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:describeWorkspace(input, options)
         output_schema = types.DescribeWorkspaceOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:describeWorkspaceConfiguration(input, options)
         output_schema = types.DescribeWorkspaceConfigurationOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}/configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:getDefaultScraperConfiguration(input, options)
         output_schema = types.GetDefaultScraperConfigurationOutput,
         http_method = "GET",
         http_path = "/scraperconfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:listAnomalyDetectors(input, options)
         output_schema = types.ListAnomalyDetectorsOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}/anomalydetectors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listRuleGroupsNamespaces(input, options)
         output_schema = types.ListRuleGroupsNamespacesOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}/rulegroupsnamespaces",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:listScrapers(input, options)
         output_schema = types.ListScrapersOutput,
         http_method = "GET",
         http_path = "/scrapers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:listWorkspaces(input, options)
         output_schema = types.ListWorkspacesOutput,
         http_method = "GET",
         http_path = "/workspaces",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:putAlertManagerDefinition(input, options)
         output_schema = types.PutAlertManagerDefinitionOutput,
         http_method = "PUT",
         http_path = "/workspaces/{workspaceId}/alertmanager/definition",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:putAnomalyDetector(input, options)
         output_schema = types.PutAnomalyDetectorOutput,
         http_method = "PUT",
         http_path = "/workspaces/{workspaceId}/anomalydetectors/{anomalyDetectorId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:putResourcePolicy(input, options)
         output_schema = types.PutResourcePolicyOutput,
         http_method = "PUT",
         http_path = "/workspaces/{workspaceId}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:putRuleGroupsNamespace(input, options)
         output_schema = types.PutRuleGroupsNamespaceOutput,
         http_method = "PUT",
         http_path = "/workspaces/{workspaceId}/rulegroupsnamespaces/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:updateLoggingConfiguration(input, options)
         output_schema = types.UpdateLoggingConfigurationOutput,
         http_method = "PUT",
         http_path = "/workspaces/{workspaceId}/logging",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:updateQueryLoggingConfiguration(input, options)
         output_schema = types.UpdateQueryLoggingConfigurationOutput,
         http_method = "PUT",
         http_path = "/workspaces/{workspaceId}/logging/query",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:updateScraper(input, options)
         output_schema = types.UpdateScraperOutput,
         http_method = "PUT",
         http_path = "/scrapers/{scraperId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:updateScraperLoggingConfiguration(input, options)
         output_schema = types.UpdateScraperLoggingConfigurationOutput,
         http_method = "PUT",
         http_path = "/scrapers/{scraperId}/logging-configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:updateWorkspaceAlias(input, options)
         output_schema = types.UpdateWorkspaceAliasOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/alias",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:updateWorkspaceConfiguration(input, options)
         output_schema = types.UpdateWorkspaceConfigurationOutput,
         http_method = "PATCH",
         http_path = "/workspaces/{workspaceId}/configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

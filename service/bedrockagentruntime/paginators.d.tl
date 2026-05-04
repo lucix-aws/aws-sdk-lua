@@ -1,0 +1,20 @@
+local record M
+    pages_get_agent_memory: function(client: table, input: table): function(): table, table
+    items_get_agent_memory: function(client: table, input: table): function(): any
+    pages_list_flow_execution_events: function(client: table, input: table): function(): table, table
+    items_list_flow_execution_events: function(client: table, input: table): function(): any
+    pages_list_flow_executions: function(client: table, input: table): function(): table, table
+    items_list_flow_executions: function(client: table, input: table): function(): any
+    pages_list_invocation_steps: function(client: table, input: table): function(): table, table
+    items_list_invocation_steps: function(client: table, input: table): function(): any
+    pages_list_invocations: function(client: table, input: table): function(): table, table
+    items_list_invocations: function(client: table, input: table): function(): any
+    pages_list_sessions: function(client: table, input: table): function(): table, table
+    items_list_sessions: function(client: table, input: table): function(): any
+    pages_rerank: function(client: table, input: table): function(): table, table
+    items_rerank: function(client: table, input: table): function(): any
+    pages_retrieve: function(client: table, input: table): function(): table, table
+    items_retrieve: function(client: table, input: table): function(): any
+end
+
+return M

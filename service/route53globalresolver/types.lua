@@ -57,6 +57,9 @@ M.CreateAccessSourceInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ipAddressType = {
             type = "string",
@@ -113,6 +116,7 @@ M.CreateAccessSourceOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         id = {
@@ -152,6 +156,7 @@ M.CreateAccessSourceOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -331,6 +336,7 @@ M.DeleteAccessSourceOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         id = {
@@ -370,6 +376,7 @@ M.DeleteAccessSourceOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -407,6 +414,7 @@ M.GetAccessSourceOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         id = {
@@ -446,6 +454,7 @@ M.GetAccessSourceOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -496,6 +505,7 @@ M.AccessSourcesItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         id = {
@@ -535,6 +545,7 @@ M.AccessSourcesItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -600,6 +611,7 @@ M.UpdateAccessSourceOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         id = {
@@ -639,6 +651,7 @@ M.UpdateAccessSourceOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -649,6 +662,9 @@ M.CreateAccessTokenInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         dnsViewId = {
             type = "string",
@@ -659,6 +675,9 @@ M.CreateAccessTokenInput = {
         },
         expiresAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         name = {
             type = "string",
@@ -699,6 +718,7 @@ M.CreateAccessTokenOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         dnsViewId = {
@@ -711,6 +731,7 @@ M.CreateAccessTokenOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         name = {
@@ -763,6 +784,7 @@ M.DeleteAccessTokenOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -803,6 +825,7 @@ M.GetAccessTokenOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         dnsViewId = {
@@ -815,6 +838,7 @@ M.GetAccessTokenOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         globalResolverId = {
@@ -836,6 +860,7 @@ M.GetAccessTokenOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         value = {
@@ -899,6 +924,7 @@ M.AccessTokenItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         dnsViewId = {
@@ -911,6 +937,7 @@ M.AccessTokenItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         globalResolverId = {
@@ -932,6 +959,7 @@ M.AccessTokenItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1055,12 +1083,14 @@ M.AssociateHostedZoneOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -1205,6 +1235,9 @@ M.BatchCreateFirewallRuleResult = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         description = {
             type = "string",
@@ -1244,6 +1277,9 @@ M.BatchCreateFirewallRuleResult = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1451,6 +1487,9 @@ M.BatchUpdateFirewallRuleResult = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         description = {
             type = "string",
@@ -1484,6 +1523,9 @@ M.BatchUpdateFirewallRuleResult = {
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1553,6 +1595,9 @@ M.CreateDNSViewInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         name = {
             type = "string",
@@ -1654,12 +1699,14 @@ M.CreateDNSViewOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -1676,6 +1723,9 @@ M.CreateFirewallDomainListInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         globalResolverId = {
             type = "string",
@@ -1720,6 +1770,7 @@ M.CreateFirewallDomainListOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         description = {
@@ -1753,6 +1804,7 @@ M.CreateFirewallDomainListOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1781,6 +1833,9 @@ M.CreateFirewallRuleInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         confidenceThreshold = {
             type = "string",
@@ -1843,6 +1898,7 @@ M.CreateFirewallRuleOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         description = {
@@ -1891,6 +1947,7 @@ M.CreateFirewallRuleOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -1906,6 +1963,9 @@ M.CreateGlobalResolverInput = {
     members = {
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         description = {
             type = "string",
@@ -1962,6 +2022,7 @@ M.CreateGlobalResolverOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         description = {
@@ -2013,6 +2074,7 @@ M.CreateGlobalResolverOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2086,12 +2148,14 @@ M.DeleteDNSViewOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -2187,6 +2251,7 @@ M.DeleteFirewallRuleOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         description = {
@@ -2235,6 +2300,7 @@ M.DeleteFirewallRuleOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -2303,12 +2369,14 @@ M.DeleteGlobalResolverOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -2402,12 +2470,14 @@ M.DisableDNSViewOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -2476,12 +2546,14 @@ M.DisassociateHostedZoneOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -2561,12 +2633,14 @@ M.EnableDNSViewOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -2646,12 +2720,14 @@ M.GetDNSViewOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -2746,12 +2822,14 @@ M.DNSViewSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -2862,12 +2940,14 @@ M.UpdateDNSViewOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -2914,6 +2994,7 @@ M.GetFirewallDomainListOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         description = {
@@ -2950,6 +3031,7 @@ M.GetFirewallDomainListOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -3047,6 +3129,7 @@ M.FirewallDomainListsItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         description = {
@@ -3074,6 +3157,7 @@ M.FirewallDomainListsItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -3227,6 +3311,7 @@ M.GetFirewallRuleOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         description = {
@@ -3275,6 +3360,7 @@ M.GetFirewallRuleOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -3341,6 +3427,7 @@ M.FirewallRulesItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         description = {
@@ -3389,6 +3476,7 @@ M.FirewallRulesItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -3431,6 +3519,7 @@ M.UpdateFirewallRuleInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -3487,6 +3576,7 @@ M.UpdateFirewallRuleOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         description = {
@@ -3535,6 +3625,7 @@ M.UpdateFirewallRuleOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -3603,12 +3694,14 @@ M.GetGlobalResolverOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -3702,12 +3795,14 @@ M.GlobalResolversItem = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -3828,12 +3923,14 @@ M.UpdateGlobalResolverOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -3909,12 +4006,14 @@ M.GetHostedZoneAssociationOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -3988,12 +4087,14 @@ M.HostedZoneAssociationSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {
@@ -4074,12 +4175,14 @@ M.UpdateHostedZoneAssociationOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         status = {

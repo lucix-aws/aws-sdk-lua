@@ -203,6 +203,9 @@ M.GetAccountInformationOutput = {
         },
         AccountCreatedDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         AccountState = {
             type = "string",

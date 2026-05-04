@@ -69,6 +69,9 @@ M.CreateRescoreExecutionPlanInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

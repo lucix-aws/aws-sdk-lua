@@ -225,6 +225,9 @@ M.CreateJobTemplateOutput = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -387,6 +390,7 @@ M.CreateSecurityConfigurationInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -438,6 +442,7 @@ M.CreateVirtualClusterInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -694,6 +699,9 @@ M.SecurityConfiguration = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         createdBy = {
             type = "string",
@@ -752,6 +760,9 @@ M.VirtualCluster = {
         containerProvider = M.ContainerProvider,
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         tags = {
             type = "map",
@@ -808,6 +819,9 @@ M.GetManagedEndpointSessionCredentialsInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -830,6 +844,9 @@ M.GetManagedEndpointSessionCredentialsOutput = {
         credentials = M.Credentials,
         expiresAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -858,12 +875,14 @@ M.ListJobRunsInput = {
             type = "timestamp",
             traits = {
                 http_query = "createdBefore",
+                timestamp_format = "date-time",
             },
         },
         createdAfter = {
             type = "timestamp",
             traits = {
                 http_query = "createdAfter",
+                timestamp_format = "date-time",
             },
         },
         name = {
@@ -901,12 +920,14 @@ M.ListJobTemplatesInput = {
             type = "timestamp",
             traits = {
                 http_query = "createdAfter",
+                timestamp_format = "date-time",
             },
         },
         createdBefore = {
             type = "timestamp",
             traits = {
                 http_query = "createdBefore",
+                timestamp_format = "date-time",
             },
         },
         maxResults = {
@@ -938,12 +959,14 @@ M.ListManagedEndpointsInput = {
             type = "timestamp",
             traits = {
                 http_query = "createdBefore",
+                timestamp_format = "date-time",
             },
         },
         createdAfter = {
             type = "timestamp",
             traits = {
                 http_query = "createdAfter",
+                timestamp_format = "date-time",
             },
         },
         types = {
@@ -982,12 +1005,14 @@ M.ListSecurityConfigurationsInput = {
             type = "timestamp",
             traits = {
                 http_query = "createdAfter",
+                timestamp_format = "date-time",
             },
         },
         createdBefore = {
             type = "timestamp",
             traits = {
                 http_query = "createdBefore",
+                timestamp_format = "date-time",
             },
         },
         maxResults = {
@@ -1061,12 +1086,14 @@ M.ListVirtualClustersInput = {
             type = "timestamp",
             traits = {
                 http_query = "createdAfter",
+                timestamp_format = "date-time",
             },
         },
         createdBefore = {
             type = "timestamp",
             traits = {
                 http_query = "createdBefore",
+                timestamp_format = "date-time",
             },
         },
         states = {
@@ -1262,6 +1289,7 @@ M.CreateManagedEndpointInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1310,6 +1338,9 @@ M.Endpoint = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         securityGroup = {
             type = "string",
@@ -1363,12 +1394,18 @@ M.JobRun = {
         jobDriver = M.JobDriver,
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         createdBy = {
             type = "string",
         },
         finishedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         stateDetails = {
             type = "string",
@@ -1434,6 +1471,7 @@ M.StartJobRunInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1474,6 +1512,7 @@ M.CreateJobTemplateInput = {
         clientToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1519,6 +1558,9 @@ M.JobTemplate = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         createdBy = {
             type = "string",

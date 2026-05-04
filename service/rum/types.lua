@@ -1142,10 +1142,14 @@ M.RumEvent = {
         },
         metadata = {
             type = "string",
+            traits = {
+                media_type = "application/json",
+            },
         },
         details = {
             type = "string",
             traits = {
+                media_type = "application/json",
                 required = true,
             },
         },

@@ -1633,6 +1633,9 @@ M.Stream = {
         },
         startTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         state = {
             type = "string",
@@ -1810,6 +1813,9 @@ M.StreamEvent = {
         },
         eventTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         code = {
             type = "string",
@@ -1825,9 +1831,15 @@ M.StreamSession = {
         },
         startTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         channel = M.Channel,
         ingestConfiguration = M.IngestConfiguration,
@@ -2279,6 +2291,9 @@ M.StreamSummary = {
         },
         startTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2325,9 +2340,15 @@ M.StreamSessionSummary = {
         },
         startTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         endTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         hasErrorEvent = {
             type = "boolean",

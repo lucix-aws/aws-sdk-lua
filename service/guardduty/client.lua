@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "GuardDutyAPIService"
-    cfg.signing_name = "guardduty"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "guardduty", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:acceptAdministratorInvitation(input, options)
         output_schema = types.AcceptAdministratorInvitationOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/administrator",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:acceptInvitation(input, options)
         output_schema = types.AcceptInvitationOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/master",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:archiveFindings(input, options)
         output_schema = types.ArchiveFindingsOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/findings/archive",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createDetector(input, options)
         output_schema = types.CreateDetectorOutput,
         http_method = "POST",
         http_path = "/detector",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createFilter(input, options)
         output_schema = types.CreateFilterOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/filter",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createIPSet(input, options)
         output_schema = types.CreateIPSetOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/ipset",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createMalwareProtectionPlan(input, options)
         output_schema = types.CreateMalwareProtectionPlanOutput,
         http_method = "POST",
         http_path = "/malware-protection-plan",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createMembers(input, options)
         output_schema = types.CreateMembersOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/member",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createPublishingDestination(input, options)
         output_schema = types.CreatePublishingDestinationOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/publishingDestination",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createSampleFindings(input, options)
         output_schema = types.CreateSampleFindingsOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/findings/create",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createThreatEntitySet(input, options)
         output_schema = types.CreateThreatEntitySetOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/threatentityset",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createThreatIntelSet(input, options)
         output_schema = types.CreateThreatIntelSetOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/threatintelset",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createTrustedEntitySet(input, options)
         output_schema = types.CreateTrustedEntitySetOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/trustedentityset",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:declineInvitations(input, options)
         output_schema = types.DeclineInvitationsOutput,
         http_method = "POST",
         http_path = "/invitation/decline",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteDetector(input, options)
         output_schema = types.DeleteDetectorOutput,
         http_method = "DELETE",
         http_path = "/detector/{DetectorId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteFilter(input, options)
         output_schema = types.DeleteFilterOutput,
         http_method = "DELETE",
         http_path = "/detector/{DetectorId}/filter/{FilterName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deleteInvitations(input, options)
         output_schema = types.DeleteInvitationsOutput,
         http_method = "POST",
         http_path = "/invitation/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteIPSet(input, options)
         output_schema = types.DeleteIPSetOutput,
         http_method = "DELETE",
         http_path = "/detector/{DetectorId}/ipset/{IpSetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteMalwareProtectionPlan(input, options)
         output_schema = types.DeleteMalwareProtectionPlanOutput,
         http_method = "DELETE",
         http_path = "/malware-protection-plan/{MalwareProtectionPlanId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deleteMembers(input, options)
         output_schema = types.DeleteMembersOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/member/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deletePublishingDestination(input, options)
         output_schema = types.DeletePublishingDestinationOutput,
         http_method = "DELETE",
         http_path = "/detector/{DetectorId}/publishingDestination/{DestinationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:deleteThreatEntitySet(input, options)
         output_schema = types.DeleteThreatEntitySetOutput,
         http_method = "DELETE",
         http_path = "/detector/{DetectorId}/threatentityset/{ThreatEntitySetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:deleteThreatIntelSet(input, options)
         output_schema = types.DeleteThreatIntelSetOutput,
         http_method = "DELETE",
         http_path = "/detector/{DetectorId}/threatintelset/{ThreatIntelSetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:deleteTrustedEntitySet(input, options)
         output_schema = types.DeleteTrustedEntitySetOutput,
         http_method = "DELETE",
         http_path = "/detector/{DetectorId}/trustedentityset/{TrustedEntitySetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:describeMalwareScans(input, options)
         output_schema = types.DescribeMalwareScansOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/malware-scans",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:describeOrganizationConfiguration(input, options)
         output_schema = types.DescribeOrganizationConfigurationOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/admin",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:describePublishingDestination(input, options)
         output_schema = types.DescribePublishingDestinationOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/publishingDestination/{DestinationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:disableOrganizationAdminAccount(input, options)
         output_schema = types.DisableOrganizationAdminAccountOutput,
         http_method = "POST",
         http_path = "/admin/disable",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:disassociateFromAdministratorAccount(input, options)
         output_schema = types.DisassociateFromAdministratorAccountOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/administrator/disassociate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:disassociateFromMasterAccount(input, options)
         output_schema = types.DisassociateFromMasterAccountOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/master/disassociate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:disassociateMembers(input, options)
         output_schema = types.DisassociateMembersOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/member/disassociate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:enableOrganizationAdminAccount(input, options)
         output_schema = types.EnableOrganizationAdminAccountOutput,
         http_method = "POST",
         http_path = "/admin/enable",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:getAdministratorAccount(input, options)
         output_schema = types.GetAdministratorAccountOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/administrator",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:getCoverageStatistics(input, options)
         output_schema = types.GetCoverageStatisticsOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/coverage/statistics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:getDetector(input, options)
         output_schema = types.GetDetectorOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:getFilter(input, options)
         output_schema = types.GetFilterOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/filter/{FilterName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:getFindings(input, options)
         output_schema = types.GetFindingsOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/findings/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:getFindingsStatistics(input, options)
         output_schema = types.GetFindingsStatisticsOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/findings/statistics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:getInvitationsCount(input, options)
         output_schema = types.GetInvitationsCountOutput,
         http_method = "GET",
         http_path = "/invitation/count",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:getIPSet(input, options)
         output_schema = types.GetIPSetOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/ipset/{IpSetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:getMalwareProtectionPlan(input, options)
         output_schema = types.GetMalwareProtectionPlanOutput,
         http_method = "GET",
         http_path = "/malware-protection-plan/{MalwareProtectionPlanId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:getMalwareScan(input, options)
         output_schema = types.GetMalwareScanOutput,
         http_method = "GET",
         http_path = "/malware-scan/{ScanId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:getMalwareScanSettings(input, options)
         output_schema = types.GetMalwareScanSettingsOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/malware-scan-settings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:getMasterAccount(input, options)
         output_schema = types.GetMasterAccountOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/master",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:getMemberDetectors(input, options)
         output_schema = types.GetMemberDetectorsOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/member/detector/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:getMembers(input, options)
         output_schema = types.GetMembersOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/member/get",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:getOrganizationStatistics(input, options)
         output_schema = types.GetOrganizationStatisticsOutput,
         http_method = "GET",
         http_path = "/organization/statistics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:getRemainingFreeTrialDays(input, options)
         output_schema = types.GetRemainingFreeTrialDaysOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/freeTrial/daysRemaining",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:getThreatEntitySet(input, options)
         output_schema = types.GetThreatEntitySetOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/threatentityset/{ThreatEntitySetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:getThreatIntelSet(input, options)
         output_schema = types.GetThreatIntelSetOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/threatintelset/{ThreatIntelSetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:getTrustedEntitySet(input, options)
         output_schema = types.GetTrustedEntitySetOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/trustedentityset/{TrustedEntitySetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:getUsageStatistics(input, options)
         output_schema = types.GetUsageStatisticsOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/usage/statistics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:inviteMembers(input, options)
         output_schema = types.InviteMembersOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/member/invite",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:listCoverage(input, options)
         output_schema = types.ListCoverageOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/coverage",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:listDetectors(input, options)
         output_schema = types.ListDetectorsOutput,
         http_method = "GET",
         http_path = "/detector",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:listFilters(input, options)
         output_schema = types.ListFiltersOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/filter",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:listFindings(input, options)
         output_schema = types.ListFindingsOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/findings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:listInvitations(input, options)
         output_schema = types.ListInvitationsOutput,
         http_method = "GET",
         http_path = "/invitation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:listIPSets(input, options)
         output_schema = types.ListIPSetsOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/ipset",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:listMalwareProtectionPlans(input, options)
         output_schema = types.ListMalwareProtectionPlansOutput,
         http_method = "GET",
         http_path = "/malware-protection-plan",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:listMalwareScans(input, options)
         output_schema = types.ListMalwareScansOutput,
         http_method = "POST",
         http_path = "/malware-scan",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:listMembers(input, options)
         output_schema = types.ListMembersOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/member",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:listOrganizationAdminAccounts(input, options)
         output_schema = types.ListOrganizationAdminAccountsOutput,
         http_method = "GET",
         http_path = "/admin",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:listPublishingDestinations(input, options)
         output_schema = types.ListPublishingDestinationsOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/publishingDestination",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:listThreatEntitySets(input, options)
         output_schema = types.ListThreatEntitySetsOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/threatentityset",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:listThreatIntelSets(input, options)
         output_schema = types.ListThreatIntelSetsOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/threatintelset",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:listTrustedEntitySets(input, options)
         output_schema = types.ListTrustedEntitySetsOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/trustedentityset",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:sendObjectMalwareScan(input, options)
         output_schema = types.SendObjectMalwareScanOutput,
         http_method = "POST",
         http_path = "/object-malware-scan/send",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:startMalwareScan(input, options)
         output_schema = types.StartMalwareScanOutput,
         http_method = "POST",
         http_path = "/malware-scan/start",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:startMonitoringMembers(input, options)
         output_schema = types.StartMonitoringMembersOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/member/start",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:stopMonitoringMembers(input, options)
         output_schema = types.StopMonitoringMembersOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/member/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:unarchiveFindings(input, options)
         output_schema = types.UnarchiveFindingsOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/findings/unarchive",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:updateDetector(input, options)
         output_schema = types.UpdateDetectorOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:updateFilter(input, options)
         output_schema = types.UpdateFilterOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/filter/{FilterName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:updateFindingsFeedback(input, options)
         output_schema = types.UpdateFindingsFeedbackOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/findings/feedback",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:updateIPSet(input, options)
         output_schema = types.UpdateIPSetOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/ipset/{IpSetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:updateMalwareProtectionPlan(input, options)
         output_schema = types.UpdateMalwareProtectionPlanOutput,
         http_method = "PATCH",
         http_path = "/malware-protection-plan/{MalwareProtectionPlanId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:updateMalwareScanSettings(input, options)
         output_schema = types.UpdateMalwareScanSettingsOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/malware-scan-settings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:updateMemberDetectors(input, options)
         output_schema = types.UpdateMemberDetectorsOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/member/detector/update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:updateOrganizationConfiguration(input, options)
         output_schema = types.UpdateOrganizationConfigurationOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/admin",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:updatePublishingDestination(input, options)
         output_schema = types.UpdatePublishingDestinationOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/publishingDestination/{DestinationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:updateThreatEntitySet(input, options)
         output_schema = types.UpdateThreatEntitySetOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/threatentityset/{ThreatEntitySetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -890,6 +1158,9 @@ function Client:updateThreatIntelSet(input, options)
         output_schema = types.UpdateThreatIntelSetOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/threatintelset/{ThreatIntelSetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -900,6 +1171,9 @@ function Client:updateTrustedEntitySet(input, options)
         output_schema = types.UpdateTrustedEntitySetOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/trustedentityset/{TrustedEntitySetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

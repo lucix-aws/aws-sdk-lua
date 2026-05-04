@@ -1,0 +1,221 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for getApiKeys.
+function M.pages_get_api_keys(client, input)
+    return paginator.pages(client, "getApiKeys", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for getApiKeys.
+function M.items_get_api_keys(client, input)
+    return paginator.items(client, "getApiKeys", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for getBasePathMappings.
+function M.pages_get_base_path_mappings(client, input)
+    return paginator.pages(client, "getBasePathMappings", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for getBasePathMappings.
+function M.items_get_base_path_mappings(client, input)
+    return paginator.items(client, "getBasePathMappings", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for getClientCertificates.
+function M.pages_get_client_certificates(client, input)
+    return paginator.pages(client, "getClientCertificates", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for getClientCertificates.
+function M.items_get_client_certificates(client, input)
+    return paginator.items(client, "getClientCertificates", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for getDeployments.
+function M.pages_get_deployments(client, input)
+    return paginator.pages(client, "getDeployments", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for getDeployments.
+function M.items_get_deployments(client, input)
+    return paginator.items(client, "getDeployments", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for getDomainNames.
+function M.pages_get_domain_names(client, input)
+    return paginator.pages(client, "getDomainNames", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for getDomainNames.
+function M.items_get_domain_names(client, input)
+    return paginator.items(client, "getDomainNames", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for getModels.
+function M.pages_get_models(client, input)
+    return paginator.pages(client, "getModels", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for getModels.
+function M.items_get_models(client, input)
+    return paginator.items(client, "getModels", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for getResources.
+function M.pages_get_resources(client, input)
+    return paginator.pages(client, "getResources", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for getResources.
+function M.items_get_resources(client, input)
+    return paginator.items(client, "getResources", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for getRestApis.
+function M.pages_get_rest_apis(client, input)
+    return paginator.pages(client, "getRestApis", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for getRestApis.
+function M.items_get_rest_apis(client, input)
+    return paginator.items(client, "getRestApis", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for getUsage.
+function M.pages_get_usage(client, input)
+    return paginator.pages(client, "getUsage", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for getUsage.
+function M.items_get_usage(client, input)
+    return paginator.items(client, "getUsage", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for getUsagePlanKeys.
+function M.pages_get_usage_plan_keys(client, input)
+    return paginator.pages(client, "getUsagePlanKeys", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for getUsagePlanKeys.
+function M.items_get_usage_plan_keys(client, input)
+    return paginator.items(client, "getUsagePlanKeys", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for getUsagePlans.
+function M.pages_get_usage_plans(client, input)
+    return paginator.pages(client, "getUsagePlans", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for getUsagePlans.
+function M.items_get_usage_plans(client, input)
+    return paginator.items(client, "getUsagePlans", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for getVpcLinks.
+function M.pages_get_vpc_links(client, input)
+    return paginator.pages(client, "getVpcLinks", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for getVpcLinks.
+function M.items_get_vpc_links(client, input)
+    return paginator.items(client, "getVpcLinks", input, {
+        input_token = "position",
+        output_token = "position",
+        items = "items",
+    })
+end
+
+return M

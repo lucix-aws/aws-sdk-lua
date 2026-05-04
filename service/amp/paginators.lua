@@ -1,0 +1,77 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listAnomalyDetectors.
+function M.pages_list_anomaly_detectors(client, input)
+    return paginator.pages(client, "listAnomalyDetectors", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "anomalyDetectors",
+    })
+end
+
+--- Returns an item iterator for listAnomalyDetectors.
+function M.items_list_anomaly_detectors(client, input)
+    return paginator.items(client, "listAnomalyDetectors", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "anomalyDetectors",
+    })
+end
+
+--- Returns a page iterator for listRuleGroupsNamespaces.
+function M.pages_list_rule_groups_namespaces(client, input)
+    return paginator.pages(client, "listRuleGroupsNamespaces", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "ruleGroupsNamespaces",
+    })
+end
+
+--- Returns an item iterator for listRuleGroupsNamespaces.
+function M.items_list_rule_groups_namespaces(client, input)
+    return paginator.items(client, "listRuleGroupsNamespaces", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "ruleGroupsNamespaces",
+    })
+end
+
+--- Returns a page iterator for listScrapers.
+function M.pages_list_scrapers(client, input)
+    return paginator.pages(client, "listScrapers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "scrapers",
+    })
+end
+
+--- Returns an item iterator for listScrapers.
+function M.items_list_scrapers(client, input)
+    return paginator.items(client, "listScrapers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "scrapers",
+    })
+end
+
+--- Returns a page iterator for listWorkspaces.
+function M.pages_list_workspaces(client, input)
+    return paginator.pages(client, "listWorkspaces", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "workspaces",
+    })
+end
+
+--- Returns an item iterator for listWorkspaces.
+function M.items_list_workspaces(client, input)
+    return paginator.items(client, "listWorkspaces", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "workspaces",
+    })
+end
+
+return M

@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "Route53RecoveryReadiness"
-    cfg.signing_name = "route53-recovery-readiness"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "route53-recovery-readiness", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createCell(input, options)
         output_schema = types.CreateCellOutput,
         http_method = "POST",
         http_path = "/cells",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createCrossAccountAuthorization(input, options)
         output_schema = types.CreateCrossAccountAuthorizationOutput,
         http_method = "POST",
         http_path = "/crossaccountauthorizations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createReadinessCheck(input, options)
         output_schema = types.CreateReadinessCheckOutput,
         http_method = "POST",
         http_path = "/readinesschecks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createRecoveryGroup(input, options)
         output_schema = types.CreateRecoveryGroupOutput,
         http_method = "POST",
         http_path = "/recoverygroups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createResourceSet(input, options)
         output_schema = types.CreateResourceSetOutput,
         http_method = "POST",
         http_path = "/resourcesets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteCell(input, options)
         output_schema = types.DeleteCellOutput,
         http_method = "DELETE",
         http_path = "/cells/{CellName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteCrossAccountAuthorization(input, options)
         output_schema = types.DeleteCrossAccountAuthorizationOutput,
         http_method = "DELETE",
         http_path = "/crossaccountauthorizations/{CrossAccountAuthorization}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteReadinessCheck(input, options)
         output_schema = types.DeleteReadinessCheckOutput,
         http_method = "DELETE",
         http_path = "/readinesschecks/{ReadinessCheckName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteRecoveryGroup(input, options)
         output_schema = types.DeleteRecoveryGroupOutput,
         http_method = "DELETE",
         http_path = "/recoverygroups/{RecoveryGroupName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteResourceSet(input, options)
         output_schema = types.DeleteResourceSetOutput,
         http_method = "DELETE",
         http_path = "/resourcesets/{ResourceSetName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:getArchitectureRecommendations(input, options)
         output_schema = types.GetArchitectureRecommendationsOutput,
         http_method = "GET",
         http_path = "/recoverygroups/{RecoveryGroupName}/architectureRecommendations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getCell(input, options)
         output_schema = types.GetCellOutput,
         http_method = "GET",
         http_path = "/cells/{CellName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getCellReadinessSummary(input, options)
         output_schema = types.GetCellReadinessSummaryOutput,
         http_method = "GET",
         http_path = "/cellreadiness/{CellName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getReadinessCheck(input, options)
         output_schema = types.GetReadinessCheckOutput,
         http_method = "GET",
         http_path = "/readinesschecks/{ReadinessCheckName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getReadinessCheckResourceStatus(input, options)
         output_schema = types.GetReadinessCheckResourceStatusOutput,
         http_method = "GET",
         http_path = "/readinesschecks/{ReadinessCheckName}/resource/{ResourceIdentifier}/status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getReadinessCheckStatus(input, options)
         output_schema = types.GetReadinessCheckStatusOutput,
         http_method = "GET",
         http_path = "/readinesschecks/{ReadinessCheckName}/status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getRecoveryGroup(input, options)
         output_schema = types.GetRecoveryGroupOutput,
         http_method = "GET",
         http_path = "/recoverygroups/{RecoveryGroupName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getRecoveryGroupReadinessSummary(input, options)
         output_schema = types.GetRecoveryGroupReadinessSummaryOutput,
         http_method = "GET",
         http_path = "/recoverygroupreadiness/{RecoveryGroupName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getResourceSet(input, options)
         output_schema = types.GetResourceSetOutput,
         http_method = "GET",
         http_path = "/resourcesets/{ResourceSetName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listCells(input, options)
         output_schema = types.ListCellsOutput,
         http_method = "GET",
         http_path = "/cells",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listCrossAccountAuthorizations(input, options)
         output_schema = types.ListCrossAccountAuthorizationsOutput,
         http_method = "GET",
         http_path = "/crossaccountauthorizations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listReadinessChecks(input, options)
         output_schema = types.ListReadinessChecksOutput,
         http_method = "GET",
         http_path = "/readinesschecks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listRecoveryGroups(input, options)
         output_schema = types.ListRecoveryGroupsOutput,
         http_method = "GET",
         http_path = "/recoverygroups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listResourceSets(input, options)
         output_schema = types.ListResourceSetsOutput,
         http_method = "GET",
         http_path = "/resourcesets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listRules(input, options)
         output_schema = types.ListRulesOperationOutput,
         http_method = "GET",
         http_path = "/rules",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listTagsForResources(input, options)
         output_schema = types.ListTagsForResourcesOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:updateCell(input, options)
         output_schema = types.UpdateCellOutput,
         http_method = "PUT",
         http_path = "/cells/{CellName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:updateReadinessCheck(input, options)
         output_schema = types.UpdateReadinessCheckOutput,
         http_method = "PUT",
         http_path = "/readinesschecks/{ReadinessCheckName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:updateRecoveryGroup(input, options)
         output_schema = types.UpdateRecoveryGroupOutput,
         http_method = "PUT",
         http_path = "/recoverygroups/{RecoveryGroupName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:updateResourceSet(input, options)
         output_schema = types.UpdateResourceSetOutput,
         http_method = "PUT",
         http_path = "/resourcesets/{ResourceSetName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

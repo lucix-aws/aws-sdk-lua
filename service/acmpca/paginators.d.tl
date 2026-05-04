@@ -1,0 +1,10 @@
+local record M
+    pages_list_certificate_authorities: function(client: table, input: table): function(): table, table
+    items_list_certificate_authorities: function(client: table, input: table): function(): any
+    pages_list_permissions: function(client: table, input: table): function(): table, table
+    items_list_permissions: function(client: table, input: table): function(): any
+    pages_list_tags: function(client: table, input: table): function(): table, table
+    items_list_tags: function(client: table, input: table): function(): any
+end
+
+return M

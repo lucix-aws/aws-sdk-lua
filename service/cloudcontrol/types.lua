@@ -159,6 +159,9 @@ M.CreateResourceInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         DesiredState = {
             type = "string",
@@ -353,6 +356,9 @@ M.DeleteResourceInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Identifier = {
             type = "string",
@@ -569,6 +575,9 @@ M.UpdateResourceInput = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Identifier = {
             type = "string",

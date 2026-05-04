@@ -1962,6 +1962,7 @@ M.ChannelAlert = {
             type = "timestamp",
             traits = {
                 json_name = "clearedTimestamp",
+                timestamp_format = "date-time",
             },
         },
         Id = {
@@ -1986,6 +1987,7 @@ M.ChannelAlert = {
             type = "timestamp",
             traits = {
                 json_name = "setTimestamp",
+                timestamp_format = "date-time",
             },
         },
         State = {
@@ -2016,6 +2018,7 @@ M.ChannelEngineVersionResponse = {
             type = "timestamp",
             traits = {
                 json_name = "expirationDate",
+                timestamp_format = "date-time",
             },
         },
         Version = {
@@ -3023,6 +3026,7 @@ M.CloudWatchAlarmTemplateGroupSummary = {
             traits = {
                 json_name = "createdAt",
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -3042,6 +3046,7 @@ M.CloudWatchAlarmTemplateGroupSummary = {
             type = "timestamp",
             traits = {
                 json_name = "modifiedAt",
+                timestamp_format = "date-time",
             },
         },
         Name = {
@@ -3125,6 +3130,7 @@ M.CloudWatchAlarmTemplateSummary = {
             traits = {
                 json_name = "createdAt",
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         DatapointsToAlarm = {
@@ -3171,6 +3177,7 @@ M.CloudWatchAlarmTemplateSummary = {
             type = "timestamp",
             traits = {
                 json_name = "modifiedAt",
+                timestamp_format = "date-time",
             },
         },
         Name = {
@@ -3250,6 +3257,7 @@ M.ClusterAlert = {
             type = "timestamp",
             traits = {
                 json_name = "clearedTimestamp",
+                timestamp_format = "date-time",
             },
         },
         Id = {
@@ -3274,6 +3282,7 @@ M.ClusterAlert = {
             type = "timestamp",
             traits = {
                 json_name = "setTimestamp",
+                timestamp_format = "date-time",
             },
         },
         State = {
@@ -3775,6 +3784,7 @@ M.EventBridgeRuleTemplateGroupSummary = {
             traits = {
                 json_name = "createdAt",
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -3794,6 +3804,7 @@ M.EventBridgeRuleTemplateGroupSummary = {
             type = "timestamp",
             traits = {
                 json_name = "modifiedAt",
+                timestamp_format = "date-time",
             },
         },
         Name = {
@@ -3852,6 +3863,7 @@ M.EventBridgeRuleTemplateSummary = {
             traits = {
                 json_name = "createdAt",
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -3892,6 +3904,7 @@ M.EventBridgeRuleTemplateSummary = {
             type = "timestamp",
             traits = {
                 json_name = "modifiedAt",
+                timestamp_format = "date-time",
             },
         },
         Name = {
@@ -5237,6 +5250,7 @@ M.MultiplexAlert = {
             type = "timestamp",
             traits = {
                 json_name = "clearedTimestamp",
+                timestamp_format = "date-time",
             },
         },
         Id = {
@@ -5261,6 +5275,7 @@ M.MultiplexAlert = {
             type = "timestamp",
             traits = {
                 json_name = "setTimestamp",
+                timestamp_format = "date-time",
             },
         },
         State = {
@@ -9259,6 +9274,7 @@ M.SignalMapSummary = {
             traits = {
                 json_name = "createdAt",
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -9278,6 +9294,7 @@ M.SignalMapSummary = {
             type = "timestamp",
             traits = {
                 json_name = "modifiedAt",
+                timestamp_format = "date-time",
             },
         },
         MonitorDeploymentStatus = {
@@ -9393,6 +9410,7 @@ M.Thumbnail = {
             type = "timestamp",
             traits = {
                 json_name = "timeStamp",
+                timestamp_format = "date-time",
             },
         },
     },
@@ -12288,6 +12306,7 @@ M.CreateChannelInput = {
         RequestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "requestId",
             },
         },
@@ -12377,6 +12396,7 @@ M.CreateChannelPlacementGroupInput = {
         RequestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "requestId",
             },
         },
@@ -12537,6 +12557,7 @@ M.CreateCloudWatchAlarmTemplateInput = {
         RequestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "requestId",
             },
         },
@@ -12562,6 +12583,7 @@ M.CreateCloudWatchAlarmTemplateOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         DatapointsToAlarm = {
@@ -12604,6 +12626,7 @@ M.CreateCloudWatchAlarmTemplateOutput = {
             type = "timestamp",
             traits = {
                 json_name = "modifiedAt",
+                timestamp_format = "date-time",
             },
         },
         Name = {
@@ -12680,6 +12703,7 @@ M.CreateCloudWatchAlarmTemplateGroupInput = {
         RequestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "requestId",
             },
         },
@@ -12699,6 +12723,7 @@ M.CreateCloudWatchAlarmTemplateGroupOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -12717,6 +12742,7 @@ M.CreateCloudWatchAlarmTemplateGroupOutput = {
             type = "timestamp",
             traits = {
                 json_name = "modifiedAt",
+                timestamp_format = "date-time",
             },
         },
         Name = {
@@ -12763,6 +12789,7 @@ M.CreateClusterInput = {
         RequestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "requestId",
             },
         },
@@ -12877,6 +12904,7 @@ M.CreateEventBridgeRuleTemplateInput = {
         RequestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "requestId",
             },
         },
@@ -12896,6 +12924,7 @@ M.CreateEventBridgeRuleTemplateOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -12933,6 +12962,7 @@ M.CreateEventBridgeRuleTemplateOutput = {
             type = "timestamp",
             traits = {
                 json_name = "modifiedAt",
+                timestamp_format = "date-time",
             },
         },
         Name = {
@@ -12979,6 +13009,7 @@ M.CreateEventBridgeRuleTemplateGroupInput = {
         RequestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "requestId",
             },
         },
@@ -12998,6 +13029,7 @@ M.CreateEventBridgeRuleTemplateGroupOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -13016,6 +13048,7 @@ M.CreateEventBridgeRuleTemplateGroupOutput = {
             type = "timestamp",
             traits = {
                 json_name = "modifiedAt",
+                timestamp_format = "date-time",
             },
         },
         Name = {
@@ -13193,6 +13226,7 @@ M.CreateInputInput = {
         RequestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "requestId",
             },
         },
@@ -13350,6 +13384,7 @@ M.CreateMultiplexInput = {
         RequestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "requestId",
                 required = true,
             },
@@ -13555,6 +13590,7 @@ M.CreateMultiplexProgramInput = {
         RequestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "requestId",
                 required = true,
             },
@@ -13734,6 +13770,7 @@ M.CreateNetworkInput = {
         RequestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "requestId",
             },
         },
@@ -13832,6 +13869,7 @@ M.CreateNodeInput = {
         RequestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "requestId",
             },
         },
@@ -13959,6 +13997,7 @@ M.CreateNodeRegistrationScriptInput = {
         RequestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "requestId",
             },
         },
@@ -13996,6 +14035,7 @@ M.CreatePartnerInputInput = {
         RequestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "requestId",
             },
         },
@@ -14037,6 +14077,7 @@ M.CreateSdiSourceInput = {
         RequestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "requestId",
             },
         },
@@ -14163,6 +14204,7 @@ M.CreateSignalMapInput = {
         RequestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "requestId",
             },
         },
@@ -14260,6 +14302,7 @@ M.CreateSignalMapOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -14305,6 +14348,7 @@ M.CreateSignalMapOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastDiscoveredAt",
+                timestamp_format = "date-time",
             },
         },
         LastSuccessfulMonitorDeployment = setmetatable({ traits = {
@@ -14322,6 +14366,7 @@ M.CreateSignalMapOutput = {
             type = "timestamp",
             traits = {
                 json_name = "modifiedAt",
+                timestamp_format = "date-time",
             },
         },
         MonitorChangesPendingDeployment = {
@@ -16561,6 +16606,7 @@ M.GetCloudWatchAlarmTemplateOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         DatapointsToAlarm = {
@@ -16603,6 +16649,7 @@ M.GetCloudWatchAlarmTemplateOutput = {
             type = "timestamp",
             traits = {
                 json_name = "modifiedAt",
+                timestamp_format = "date-time",
             },
         },
         Name = {
@@ -16678,6 +16725,7 @@ M.GetCloudWatchAlarmTemplateGroupOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -16696,6 +16744,7 @@ M.GetCloudWatchAlarmTemplateGroupOutput = {
             type = "timestamp",
             traits = {
                 json_name = "modifiedAt",
+                timestamp_format = "date-time",
             },
         },
         Name = {
@@ -16741,6 +16790,7 @@ M.GetEventBridgeRuleTemplateOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -16778,6 +16828,7 @@ M.GetEventBridgeRuleTemplateOutput = {
             type = "timestamp",
             traits = {
                 json_name = "modifiedAt",
+                timestamp_format = "date-time",
             },
         },
         Name = {
@@ -16823,6 +16874,7 @@ M.GetEventBridgeRuleTemplateGroupOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -16841,6 +16893,7 @@ M.GetEventBridgeRuleTemplateGroupOutput = {
             type = "timestamp",
             traits = {
                 json_name = "modifiedAt",
+                timestamp_format = "date-time",
             },
         },
         Name = {
@@ -16893,6 +16946,7 @@ M.GetSignalMapOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -16938,6 +16992,7 @@ M.GetSignalMapOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastDiscoveredAt",
+                timestamp_format = "date-time",
             },
         },
         LastSuccessfulMonitorDeployment = setmetatable({ traits = {
@@ -16955,6 +17010,7 @@ M.GetSignalMapOutput = {
             type = "timestamp",
             traits = {
                 json_name = "modifiedAt",
+                timestamp_format = "date-time",
             },
         },
         MonitorChangesPendingDeployment = {
@@ -18211,6 +18267,7 @@ M.PurchaseOfferingInput = {
         RequestId = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 json_name = "requestId",
             },
         },
@@ -18605,6 +18662,7 @@ M.StartDeleteMonitorDeploymentOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -18650,6 +18708,7 @@ M.StartDeleteMonitorDeploymentOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastDiscoveredAt",
+                timestamp_format = "date-time",
             },
         },
         LastSuccessfulMonitorDeployment = setmetatable({ traits = {
@@ -18667,6 +18726,7 @@ M.StartDeleteMonitorDeploymentOutput = {
             type = "timestamp",
             traits = {
                 json_name = "modifiedAt",
+                timestamp_format = "date-time",
             },
         },
         MonitorChangesPendingDeployment = {
@@ -18774,6 +18834,7 @@ M.StartMonitorDeploymentOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -18819,6 +18880,7 @@ M.StartMonitorDeploymentOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastDiscoveredAt",
+                timestamp_format = "date-time",
             },
         },
         LastSuccessfulMonitorDeployment = setmetatable({ traits = {
@@ -18836,6 +18898,7 @@ M.StartMonitorDeploymentOutput = {
             type = "timestamp",
             traits = {
                 json_name = "modifiedAt",
+                timestamp_format = "date-time",
             },
         },
         MonitorChangesPendingDeployment = {
@@ -19021,6 +19084,7 @@ M.StartUpdateSignalMapOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -19066,6 +19130,7 @@ M.StartUpdateSignalMapOutput = {
             type = "timestamp",
             traits = {
                 json_name = "lastDiscoveredAt",
+                timestamp_format = "date-time",
             },
         },
         LastSuccessfulMonitorDeployment = setmetatable({ traits = {
@@ -19083,6 +19148,7 @@ M.StartUpdateSignalMapOutput = {
             type = "timestamp",
             traits = {
                 json_name = "modifiedAt",
+                timestamp_format = "date-time",
             },
         },
         MonitorChangesPendingDeployment = {
@@ -19733,6 +19799,7 @@ M.UpdateCloudWatchAlarmTemplateOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         DatapointsToAlarm = {
@@ -19775,6 +19842,7 @@ M.UpdateCloudWatchAlarmTemplateOutput = {
             type = "timestamp",
             traits = {
                 json_name = "modifiedAt",
+                timestamp_format = "date-time",
             },
         },
         Name = {
@@ -19856,6 +19924,7 @@ M.UpdateCloudWatchAlarmTemplateGroupOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -19874,6 +19943,7 @@ M.UpdateCloudWatchAlarmTemplateGroupOutput = {
             type = "timestamp",
             traits = {
                 json_name = "modifiedAt",
+                timestamp_format = "date-time",
             },
         },
         Name = {
@@ -20018,6 +20088,7 @@ M.UpdateEventBridgeRuleTemplateOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -20055,6 +20126,7 @@ M.UpdateEventBridgeRuleTemplateOutput = {
             type = "timestamp",
             traits = {
                 json_name = "modifiedAt",
+                timestamp_format = "date-time",
             },
         },
         Name = {
@@ -20106,6 +20178,7 @@ M.UpdateEventBridgeRuleTemplateGroupOutput = {
             type = "timestamp",
             traits = {
                 json_name = "createdAt",
+                timestamp_format = "date-time",
             },
         },
         Description = {
@@ -20124,6 +20197,7 @@ M.UpdateEventBridgeRuleTemplateGroupOutput = {
             type = "timestamp",
             traits = {
                 json_name = "modifiedAt",
+                timestamp_format = "date-time",
             },
         },
         Name = {

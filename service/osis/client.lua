@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonOpenSearchIngestionService"
-    cfg.signing_name = "osis"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "osis", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createPipeline(input, options)
         output_schema = types.CreatePipelineOutput,
         http_method = "POST",
         http_path = "/2022-01-01/osis/createPipeline",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createPipelineEndpoint(input, options)
         output_schema = types.CreatePipelineEndpointOutput,
         http_method = "POST",
         http_path = "/2022-01-01/osis/createPipelineEndpoint",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:deletePipeline(input, options)
         output_schema = types.DeletePipelineOutput,
         http_method = "DELETE",
         http_path = "/2022-01-01/osis/deletePipeline/{PipelineName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:deletePipelineEndpoint(input, options)
         output_schema = types.DeletePipelineEndpointOutput,
         http_method = "DELETE",
         http_path = "/2022-01-01/osis/deletePipelineEndpoint/{EndpointId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteResourcePolicy(input, options)
         output_schema = types.DeleteResourcePolicyOutput,
         http_method = "DELETE",
         http_path = "/2022-01-01/osis/resourcePolicy/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:getPipeline(input, options)
         output_schema = types.GetPipelineOutput,
         http_method = "GET",
         http_path = "/2022-01-01/osis/getPipeline/{PipelineName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:getPipelineBlueprint(input, options)
         output_schema = types.GetPipelineBlueprintOutput,
         http_method = "GET",
         http_path = "/2022-01-01/osis/getPipelineBlueprint/{BlueprintName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:getPipelineChangeProgress(input, options)
         output_schema = types.GetPipelineChangeProgressOutput,
         http_method = "GET",
         http_path = "/2022-01-01/osis/getPipelineChangeProgress/{PipelineName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getResourcePolicy(input, options)
         output_schema = types.GetResourcePolicyOutput,
         http_method = "GET",
         http_path = "/2022-01-01/osis/resourcePolicy/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:listPipelineBlueprints(input, options)
         output_schema = types.ListPipelineBlueprintsOutput,
         http_method = "POST",
         http_path = "/2022-01-01/osis/listPipelineBlueprints",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:listPipelineEndpointConnections(input, options)
         output_schema = types.ListPipelineEndpointConnectionsOutput,
         http_method = "GET",
         http_path = "/2022-01-01/osis/listPipelineEndpointConnections",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:listPipelineEndpoints(input, options)
         output_schema = types.ListPipelineEndpointsOutput,
         http_method = "GET",
         http_path = "/2022-01-01/osis/listPipelineEndpoints",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:listPipelines(input, options)
         output_schema = types.ListPipelinesOutput,
         http_method = "GET",
         http_path = "/2022-01-01/osis/listPipelines",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/2022-01-01/osis/listTagsForResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:putResourcePolicy(input, options)
         output_schema = types.PutResourcePolicyOutput,
         http_method = "PUT",
         http_path = "/2022-01-01/osis/resourcePolicy/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:revokePipelineEndpointConnections(input, options)
         output_schema = types.RevokePipelineEndpointConnectionsOutput,
         http_method = "POST",
         http_path = "/2022-01-01/osis/revokePipelineEndpointConnections",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:startPipeline(input, options)
         output_schema = types.StartPipelineOutput,
         http_method = "PUT",
         http_path = "/2022-01-01/osis/startPipeline/{PipelineName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:stopPipeline(input, options)
         output_schema = types.StopPipelineOutput,
         http_method = "PUT",
         http_path = "/2022-01-01/osis/stopPipeline/{PipelineName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/2022-01-01/osis/tagResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/2022-01-01/osis/untagResource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:updatePipeline(input, options)
         output_schema = types.UpdatePipelineOutput,
         http_method = "PUT",
         http_path = "/2022-01-01/osis/updatePipeline/{PipelineName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:validatePipeline(input, options)
         output_schema = types.ValidatePipelineOutput,
         http_method = "POST",
         http_path = "/2022-01-01/osis/validatePipeline",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

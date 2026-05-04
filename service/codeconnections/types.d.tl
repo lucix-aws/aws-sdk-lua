@@ -721,9 +721,9 @@ local type PullRequestComment = "ENABLED" | "DISABLED"
 
 local type SyncConfigurationType = "CFN_STACK_SYNC"
 
-local type PublishDeploymentStatus = "ENABLED" | "DISABLED"
-
 local type TriggerResourceUpdateOn = "ANY_CHANGE" | "FILE_CHANGE"
+
+local type PublishDeploymentStatus = "ENABLED" | "DISABLED"
 
 local type ProviderType = "Bitbucket" | "GitHub" | "GitHubEnterpriseServer" | "GitLab" | "GitLabSelfManaged" | "AzureDevOps"
 

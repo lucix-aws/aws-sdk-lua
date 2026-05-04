@@ -94,6 +94,7 @@ M.BatchCreateUserInput = {
             type = "string",
             traits = {
                 http_header = "X-Client-Token",
+                idempotency_token = true,
             },
         },
     },
@@ -301,6 +302,7 @@ M.BatchDeleteUserInput = {
             type = "string",
             traits = {
                 http_header = "X-Client-Token",
+                idempotency_token = true,
             },
         },
     },
@@ -386,6 +388,7 @@ M.BatchLookupUserUnameInput = {
             type = "string",
             traits = {
                 http_header = "X-Client-Token",
+                idempotency_token = true,
             },
         },
     },
@@ -465,6 +468,7 @@ M.BatchReinviteUserInput = {
             type = "string",
             traits = {
                 http_header = "X-Client-Token",
+                idempotency_token = true,
             },
         },
     },
@@ -515,6 +519,7 @@ M.BatchResetDevicesForUserInput = {
             type = "string",
             traits = {
                 http_header = "X-Client-Token",
+                idempotency_token = true,
             },
         },
     },
@@ -565,6 +570,7 @@ M.BatchToggleUserSuspendStatusInput = {
             type = "string",
             traits = {
                 http_header = "X-Client-Token",
+                idempotency_token = true,
             },
         },
     },
@@ -912,6 +918,7 @@ M.CreateSecurityGroupInput = {
             type = "string",
             traits = {
                 http_header = "X-Client-Token",
+                idempotency_token = true,
             },
         },
     },
@@ -1188,6 +1195,7 @@ M.DeleteNetworkInput = {
             type = "string",
             traits = {
                 http_header = "X-Client-Token",
+                idempotency_token = true,
             },
         },
     },
@@ -2863,6 +2871,7 @@ M.UpdateNetworkInput = {
             type = "string",
             traits = {
                 http_header = "X-Client-Token",
+                idempotency_token = true,
             },
         },
         encryptionKeyArn = {

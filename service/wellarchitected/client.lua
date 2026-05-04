@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "WellArchitectedApiServiceLambda"
-    cfg.signing_name = "wellarchitected"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "wellarchitected", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateLenses(input, options)
         output_schema = types.AssociateLensesOutput,
         http_method = "PATCH",
         http_path = "/workloads/{WorkloadId}/associateLenses",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:associateProfiles(input, options)
         output_schema = types.AssociateProfilesOutput,
         http_method = "PATCH",
         http_path = "/workloads/{WorkloadId}/associateProfiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createLensShare(input, options)
         output_schema = types.CreateLensShareOutput,
         http_method = "POST",
         http_path = "/lenses/{LensAlias}/shares",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createLensVersion(input, options)
         output_schema = types.CreateLensVersionOutput,
         http_method = "POST",
         http_path = "/lenses/{LensAlias}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createMilestone(input, options)
         output_schema = types.CreateMilestoneOutput,
         http_method = "POST",
         http_path = "/workloads/{WorkloadId}/milestones",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createProfile(input, options)
         output_schema = types.CreateProfileOutput,
         http_method = "POST",
         http_path = "/profiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createProfileShare(input, options)
         output_schema = types.CreateProfileShareOutput,
         http_method = "POST",
         http_path = "/profiles/{ProfileArn}/shares",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createReviewTemplate(input, options)
         output_schema = types.CreateReviewTemplateOutput,
         http_method = "POST",
         http_path = "/reviewTemplates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createTemplateShare(input, options)
         output_schema = types.CreateTemplateShareOutput,
         http_method = "POST",
         http_path = "/templates/shares/{TemplateArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createWorkload(input, options)
         output_schema = types.CreateWorkloadOutput,
         http_method = "POST",
         http_path = "/workloads",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createWorkloadShare(input, options)
         output_schema = types.CreateWorkloadShareOutput,
         http_method = "POST",
         http_path = "/workloads/{WorkloadId}/shares",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteLens(input, options)
         output_schema = types.DeleteLensOutput,
         http_method = "DELETE",
         http_path = "/lenses/{LensAlias}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteLensShare(input, options)
         output_schema = types.DeleteLensShareOutput,
         http_method = "DELETE",
         http_path = "/lenses/{LensAlias}/shares/{ShareId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteProfile(input, options)
         output_schema = types.DeleteProfileOutput,
         http_method = "DELETE",
         http_path = "/profiles/{ProfileArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteProfileShare(input, options)
         output_schema = types.DeleteProfileShareOutput,
         http_method = "DELETE",
         http_path = "/profiles/{ProfileArn}/shares/{ShareId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteReviewTemplate(input, options)
         output_schema = types.DeleteReviewTemplateOutput,
         http_method = "DELETE",
         http_path = "/reviewTemplates/{TemplateArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deleteTemplateShare(input, options)
         output_schema = types.DeleteTemplateShareOutput,
         http_method = "DELETE",
         http_path = "/templates/shares/{TemplateArn}/{ShareId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteWorkload(input, options)
         output_schema = types.DeleteWorkloadOutput,
         http_method = "DELETE",
         http_path = "/workloads/{WorkloadId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteWorkloadShare(input, options)
         output_schema = types.DeleteWorkloadShareOutput,
         http_method = "DELETE",
         http_path = "/workloads/{WorkloadId}/shares/{ShareId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:disassociateLenses(input, options)
         output_schema = types.DisassociateLensesOutput,
         http_method = "PATCH",
         http_path = "/workloads/{WorkloadId}/disassociateLenses",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:disassociateProfiles(input, options)
         output_schema = types.DisassociateProfilesOutput,
         http_method = "PATCH",
         http_path = "/workloads/{WorkloadId}/disassociateProfiles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:exportLens(input, options)
         output_schema = types.ExportLensOutput,
         http_method = "GET",
         http_path = "/lenses/{LensAlias}/export",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:getAnswer(input, options)
         output_schema = types.GetAnswerOutput,
         http_method = "GET",
         http_path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}/answers/{QuestionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:getConsolidatedReport(input, options)
         output_schema = types.GetConsolidatedReportOutput,
         http_method = "GET",
         http_path = "/consolidatedReport",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:getGlobalSettings(input, options)
         output_schema = types.GetGlobalSettingsOutput,
         http_method = "GET",
         http_path = "/global-settings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:getLens(input, options)
         output_schema = types.GetLensOutput,
         http_method = "GET",
         http_path = "/lenses/{LensAlias}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:getLensReview(input, options)
         output_schema = types.GetLensReviewOutput,
         http_method = "GET",
         http_path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:getLensReviewReport(input, options)
         output_schema = types.GetLensReviewReportOutput,
         http_method = "GET",
         http_path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}/report",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:getLensVersionDifference(input, options)
         output_schema = types.GetLensVersionDifferenceOutput,
         http_method = "GET",
         http_path = "/lenses/{LensAlias}/versionDifference",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:getMilestone(input, options)
         output_schema = types.GetMilestoneOutput,
         http_method = "GET",
         http_path = "/workloads/{WorkloadId}/milestones/{MilestoneNumber}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:getProfile(input, options)
         output_schema = types.GetProfileOutput,
         http_method = "GET",
         http_path = "/profiles/{ProfileArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:getProfileTemplate(input, options)
         output_schema = types.GetProfileTemplateOutput,
         http_method = "GET",
         http_path = "/profileTemplate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:getReviewTemplate(input, options)
         output_schema = types.GetReviewTemplateOutput,
         http_method = "GET",
         http_path = "/reviewTemplates/{TemplateArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:getReviewTemplateAnswer(input, options)
         output_schema = types.GetReviewTemplateAnswerOutput,
         http_method = "GET",
         http_path = "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}/answers/{QuestionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:getReviewTemplateLensReview(input, options)
         output_schema = types.GetReviewTemplateLensReviewOutput,
         http_method = "GET",
         http_path = "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:getWorkload(input, options)
         output_schema = types.GetWorkloadOutput,
         http_method = "GET",
         http_path = "/workloads/{WorkloadId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:importLens(input, options)
         output_schema = types.ImportLensOutput,
         http_method = "PUT",
         http_path = "/importLens",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:listAnswers(input, options)
         output_schema = types.ListAnswersOutput,
         http_method = "GET",
         http_path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}/answers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:listCheckDetails(input, options)
         output_schema = types.ListCheckDetailsOutput,
         http_method = "POST",
         http_path = "/workloads/{WorkloadId}/checks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:listCheckSummaries(input, options)
         output_schema = types.ListCheckSummariesOutput,
         http_method = "POST",
         http_path = "/workloads/{WorkloadId}/checkSummaries",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:listLenses(input, options)
         output_schema = types.ListLensesOutput,
         http_method = "GET",
         http_path = "/lenses",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:listLensReviewImprovements(input, options)
         output_schema = types.ListLensReviewImprovementsOutput,
         http_method = "GET",
         http_path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}/improvements",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:listLensReviews(input, options)
         output_schema = types.ListLensReviewsOutput,
         http_method = "GET",
         http_path = "/workloads/{WorkloadId}/lensReviews",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:listLensShares(input, options)
         output_schema = types.ListLensSharesOutput,
         http_method = "GET",
         http_path = "/lenses/{LensAlias}/shares",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:listMilestones(input, options)
         output_schema = types.ListMilestonesOutput,
         http_method = "POST",
         http_path = "/workloads/{WorkloadId}/milestonesSummaries",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:listNotifications(input, options)
         output_schema = types.ListNotificationsOutput,
         http_method = "POST",
         http_path = "/notifications",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:listProfileNotifications(input, options)
         output_schema = types.ListProfileNotificationsOutput,
         http_method = "GET",
         http_path = "/profileNotifications",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:listProfiles(input, options)
         output_schema = types.ListProfilesOutput,
         http_method = "GET",
         http_path = "/profileSummaries",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:listProfileShares(input, options)
         output_schema = types.ListProfileSharesOutput,
         http_method = "GET",
         http_path = "/profiles/{ProfileArn}/shares",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:listReviewTemplateAnswers(input, options)
         output_schema = types.ListReviewTemplateAnswersOutput,
         http_method = "GET",
         http_path = "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}/answers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:listReviewTemplates(input, options)
         output_schema = types.ListReviewTemplatesOutput,
         http_method = "GET",
         http_path = "/reviewTemplates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:listShareInvitations(input, options)
         output_schema = types.ListShareInvitationsOutput,
         http_method = "GET",
         http_path = "/shareInvitations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{WorkloadArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:listTemplateShares(input, options)
         output_schema = types.ListTemplateSharesOutput,
         http_method = "GET",
         http_path = "/templates/shares/{TemplateArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:listWorkloads(input, options)
         output_schema = types.ListWorkloadsOutput,
         http_method = "POST",
         http_path = "/workloadsSummaries",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:listWorkloadShares(input, options)
         output_schema = types.ListWorkloadSharesOutput,
         http_method = "GET",
         http_path = "/workloads/{WorkloadId}/shares",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{WorkloadArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{WorkloadArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:updateAnswer(input, options)
         output_schema = types.UpdateAnswerOutput,
         http_method = "PATCH",
         http_path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}/answers/{QuestionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:updateGlobalSettings(input, options)
         output_schema = types.UpdateGlobalSettingsOutput,
         http_method = "PATCH",
         http_path = "/global-settings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:updateIntegration(input, options)
         output_schema = types.UpdateIntegrationOutput,
         http_method = "POST",
         http_path = "/workloads/{WorkloadId}/updateIntegration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:updateLensReview(input, options)
         output_schema = types.UpdateLensReviewOutput,
         http_method = "PATCH",
         http_path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:updateProfile(input, options)
         output_schema = types.UpdateProfileOutput,
         http_method = "PATCH",
         http_path = "/profiles/{ProfileArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:updateReviewTemplate(input, options)
         output_schema = types.UpdateReviewTemplateOutput,
         http_method = "PATCH",
         http_path = "/reviewTemplates/{TemplateArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:updateReviewTemplateAnswer(input, options)
         output_schema = types.UpdateReviewTemplateAnswerOutput,
         http_method = "PATCH",
         http_path = "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}/answers/{QuestionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:updateReviewTemplateLensReview(input, options)
         output_schema = types.UpdateReviewTemplateLensReviewOutput,
         http_method = "PATCH",
         http_path = "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:updateShareInvitation(input, options)
         output_schema = types.UpdateShareInvitationOutput,
         http_method = "PATCH",
         http_path = "/shareInvitations/{ShareInvitationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:updateWorkload(input, options)
         output_schema = types.UpdateWorkloadOutput,
         http_method = "PATCH",
         http_path = "/workloads/{WorkloadId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:updateWorkloadShare(input, options)
         output_schema = types.UpdateWorkloadShareOutput,
         http_method = "PATCH",
         http_path = "/workloads/{WorkloadId}/shares/{ShareId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:upgradeLensReview(input, options)
         output_schema = types.UpgradeLensReviewOutput,
         http_method = "PUT",
         http_path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}/upgrade",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:upgradeProfileVersion(input, options)
         output_schema = types.UpgradeProfileVersionOutput,
         http_method = "PUT",
         http_path = "/workloads/{WorkloadId}/profiles/{ProfileArn}/upgrade",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:upgradeReviewTemplateLensReview(input, options)
         output_schema = types.UpgradeReviewTemplateLensReviewOutput,
         http_method = "PUT",
         http_path = "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}/upgrade",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

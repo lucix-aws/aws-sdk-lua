@@ -85,6 +85,9 @@ M.Account = {
         },
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         DefaultLicense = {
             type = "string",
@@ -579,9 +582,15 @@ M.Bot = {
         },
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         BotEmail = {
             type = "string",
@@ -793,9 +802,15 @@ M.PhoneNumberOrder = {
         },
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -825,6 +840,9 @@ M.CreateRoomInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -846,9 +864,15 @@ M.Room = {
         },
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -931,6 +955,9 @@ M.RoomMembership = {
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1011,9 +1038,15 @@ M.User = {
         },
         RegisteredOn = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         InvitedOn = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         AlexaForBusinessMetadata = M.AlexaForBusinessMetadata,
         PersonalPIN = {
@@ -1371,6 +1404,9 @@ M.PhoneNumberAssociation = {
         },
         AssociatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1449,12 +1485,21 @@ M.PhoneNumber = {
         },
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         DeletionTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1498,6 +1543,9 @@ M.GetPhoneNumberSettingsOutput = {
         },
         CallingNameUpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1538,6 +1586,9 @@ M.GetRetentionSettingsOutput = {
         RetentionSettings = M.RetentionSettings,
         InitiateDeletionTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2128,6 +2179,9 @@ M.PutRetentionSettingsOutput = {
         RetentionSettings = M.RetentionSettings,
         InitiateDeletionTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }

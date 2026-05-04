@@ -1,0 +1,131 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listClientDevicesAssociatedWithCoreDevice.
+function M.pages_list_client_devices_associated_with_core_device(client, input)
+    return paginator.pages(client, "listClientDevicesAssociatedWithCoreDevice", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "associatedClientDevices",
+    })
+end
+
+--- Returns an item iterator for listClientDevicesAssociatedWithCoreDevice.
+function M.items_list_client_devices_associated_with_core_device(client, input)
+    return paginator.items(client, "listClientDevicesAssociatedWithCoreDevice", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "associatedClientDevices",
+    })
+end
+
+--- Returns a page iterator for listComponentVersions.
+function M.pages_list_component_versions(client, input)
+    return paginator.pages(client, "listComponentVersions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "componentVersions",
+    })
+end
+
+--- Returns an item iterator for listComponentVersions.
+function M.items_list_component_versions(client, input)
+    return paginator.items(client, "listComponentVersions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "componentVersions",
+    })
+end
+
+--- Returns a page iterator for listComponents.
+function M.pages_list_components(client, input)
+    return paginator.pages(client, "listComponents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "components",
+    })
+end
+
+--- Returns an item iterator for listComponents.
+function M.items_list_components(client, input)
+    return paginator.items(client, "listComponents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "components",
+    })
+end
+
+--- Returns a page iterator for listCoreDevices.
+function M.pages_list_core_devices(client, input)
+    return paginator.pages(client, "listCoreDevices", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "coreDevices",
+    })
+end
+
+--- Returns an item iterator for listCoreDevices.
+function M.items_list_core_devices(client, input)
+    return paginator.items(client, "listCoreDevices", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "coreDevices",
+    })
+end
+
+--- Returns a page iterator for listDeployments.
+function M.pages_list_deployments(client, input)
+    return paginator.pages(client, "listDeployments", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "deployments",
+    })
+end
+
+--- Returns an item iterator for listDeployments.
+function M.items_list_deployments(client, input)
+    return paginator.items(client, "listDeployments", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "deployments",
+    })
+end
+
+--- Returns a page iterator for listEffectiveDeployments.
+function M.pages_list_effective_deployments(client, input)
+    return paginator.pages(client, "listEffectiveDeployments", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "effectiveDeployments",
+    })
+end
+
+--- Returns an item iterator for listEffectiveDeployments.
+function M.items_list_effective_deployments(client, input)
+    return paginator.items(client, "listEffectiveDeployments", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "effectiveDeployments",
+    })
+end
+
+--- Returns a page iterator for listInstalledComponents.
+function M.pages_list_installed_components(client, input)
+    return paginator.pages(client, "listInstalledComponents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "installedComponents",
+    })
+end
+
+--- Returns an item iterator for listInstalledComponents.
+function M.items_list_installed_components(client, input)
+    return paginator.items(client, "listInstalledComponents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "installedComponents",
+    })
+end
+
+return M

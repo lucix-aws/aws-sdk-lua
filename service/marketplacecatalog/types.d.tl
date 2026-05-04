@@ -411,11 +411,11 @@ end
 
 local type FailureCode = "CLIENT_ERROR" | "SERVER_FAULT"
 
+local type OwnershipType = "SELF" | "SHARED"
+
 local type ChangeStatus = "PREPARING" | "APPLYING" | "SUCCEEDED" | "CANCELLED" | "FAILED"
 
 local type Intent = "VALIDATE" | "APPLY"
-
-local type OwnershipType = "SELF" | "SHARED"
 
 local record M
     BatchDescribeEntitiesInput: BatchDescribeEntitiesInput

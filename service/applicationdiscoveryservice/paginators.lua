@@ -1,0 +1,131 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for describeAgents.
+function M.pages_describe_agents(client, input)
+    return paginator.pages(client, "describeAgents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "agentsInfo",
+    })
+end
+
+--- Returns an item iterator for describeAgents.
+function M.items_describe_agents(client, input)
+    return paginator.items(client, "describeAgents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "agentsInfo",
+    })
+end
+
+--- Returns a page iterator for describeContinuousExports.
+function M.pages_describe_continuous_exports(client, input)
+    return paginator.pages(client, "describeContinuousExports", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "descriptions",
+    })
+end
+
+--- Returns an item iterator for describeContinuousExports.
+function M.items_describe_continuous_exports(client, input)
+    return paginator.items(client, "describeContinuousExports", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "descriptions",
+    })
+end
+
+--- Returns a page iterator for describeExportConfigurations.
+function M.pages_describe_export_configurations(client, input)
+    return paginator.pages(client, "describeExportConfigurations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "exportsInfo",
+    })
+end
+
+--- Returns an item iterator for describeExportConfigurations.
+function M.items_describe_export_configurations(client, input)
+    return paginator.items(client, "describeExportConfigurations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "exportsInfo",
+    })
+end
+
+--- Returns a page iterator for describeExportTasks.
+function M.pages_describe_export_tasks(client, input)
+    return paginator.pages(client, "describeExportTasks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "exportsInfo",
+    })
+end
+
+--- Returns an item iterator for describeExportTasks.
+function M.items_describe_export_tasks(client, input)
+    return paginator.items(client, "describeExportTasks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "exportsInfo",
+    })
+end
+
+--- Returns a page iterator for describeImportTasks.
+function M.pages_describe_import_tasks(client, input)
+    return paginator.pages(client, "describeImportTasks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "tasks",
+    })
+end
+
+--- Returns an item iterator for describeImportTasks.
+function M.items_describe_import_tasks(client, input)
+    return paginator.items(client, "describeImportTasks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "tasks",
+    })
+end
+
+--- Returns a page iterator for describeTags.
+function M.pages_describe_tags(client, input)
+    return paginator.pages(client, "describeTags", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "tags",
+    })
+end
+
+--- Returns an item iterator for describeTags.
+function M.items_describe_tags(client, input)
+    return paginator.items(client, "describeTags", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "tags",
+    })
+end
+
+--- Returns a page iterator for listConfigurations.
+function M.pages_list_configurations(client, input)
+    return paginator.pages(client, "listConfigurations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "configurations",
+    })
+end
+
+--- Returns an item iterator for listConfigurations.
+function M.items_list_configurations(client, input)
+    return paginator.items(client, "listConfigurations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "configurations",
+    })
+end
+
+return M

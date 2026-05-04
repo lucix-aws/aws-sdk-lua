@@ -1882,6 +1882,9 @@ M.StartChangeSetInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ChangeSetTags = {
             type = "list",

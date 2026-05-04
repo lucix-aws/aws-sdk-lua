@@ -1,0 +1,20 @@
+local record M
+    pages_list_endpoints_by_platform_application: function(client: table, input: table): function(): table, table
+    items_list_endpoints_by_platform_application: function(client: table, input: table): function(): any
+    pages_list_origination_numbers: function(client: table, input: table): function(): table, table
+    items_list_origination_numbers: function(client: table, input: table): function(): any
+    pages_list_phone_numbers_opted_out: function(client: table, input: table): function(): table, table
+    items_list_phone_numbers_opted_out: function(client: table, input: table): function(): any
+    pages_list_platform_applications: function(client: table, input: table): function(): table, table
+    items_list_platform_applications: function(client: table, input: table): function(): any
+    pages_list_s_m_s_sandbox_phone_numbers: function(client: table, input: table): function(): table, table
+    items_list_s_m_s_sandbox_phone_numbers: function(client: table, input: table): function(): any
+    pages_list_subscriptions: function(client: table, input: table): function(): table, table
+    items_list_subscriptions: function(client: table, input: table): function(): any
+    pages_list_subscriptions_by_topic: function(client: table, input: table): function(): table, table
+    items_list_subscriptions_by_topic: function(client: table, input: table): function(): any
+    pages_list_topics: function(client: table, input: table): function(): table, table
+    items_list_topics: function(client: table, input: table): function(): any
+end
+
+return M

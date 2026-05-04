@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSVeniceService"
-    cfg.signing_name = "entityresolution"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "entityresolution", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:addPolicyStatement(input, options)
         output_schema = types.AddPolicyStatementOutput,
         http_method = "POST",
         http_path = "/policies/{arn}/{statementId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchDeleteUniqueId(input, options)
         output_schema = types.BatchDeleteUniqueIdOutput,
         http_method = "DELETE",
         http_path = "/matchingworkflows/{workflowName}/uniqueids",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createIdMappingWorkflow(input, options)
         output_schema = types.CreateIdMappingWorkflowOutput,
         http_method = "POST",
         http_path = "/idmappingworkflows",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createIdNamespace(input, options)
         output_schema = types.CreateIdNamespaceOutput,
         http_method = "POST",
         http_path = "/idnamespaces",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createMatchingWorkflow(input, options)
         output_schema = types.CreateMatchingWorkflowOutput,
         http_method = "POST",
         http_path = "/matchingworkflows",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createSchemaMapping(input, options)
         output_schema = types.CreateSchemaMappingOutput,
         http_method = "POST",
         http_path = "/schemas",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteIdMappingWorkflow(input, options)
         output_schema = types.DeleteIdMappingWorkflowOutput,
         http_method = "DELETE",
         http_path = "/idmappingworkflows/{workflowName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteIdNamespace(input, options)
         output_schema = types.DeleteIdNamespaceOutput,
         http_method = "DELETE",
         http_path = "/idnamespaces/{idNamespaceName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteMatchingWorkflow(input, options)
         output_schema = types.DeleteMatchingWorkflowOutput,
         http_method = "DELETE",
         http_path = "/matchingworkflows/{workflowName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deletePolicyStatement(input, options)
         output_schema = types.DeletePolicyStatementOutput,
         http_method = "DELETE",
         http_path = "/policies/{arn}/{statementId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteSchemaMapping(input, options)
         output_schema = types.DeleteSchemaMappingOutput,
         http_method = "DELETE",
         http_path = "/schemas/{schemaName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:generateMatchId(input, options)
         output_schema = types.GenerateMatchIdOutput,
         http_method = "POST",
         http_path = "/matchingworkflows/{workflowName}/generateMatches",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getIdMappingJob(input, options)
         output_schema = types.GetIdMappingJobOutput,
         http_method = "GET",
         http_path = "/idmappingworkflows/{workflowName}/jobs/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getIdMappingWorkflow(input, options)
         output_schema = types.GetIdMappingWorkflowOutput,
         http_method = "GET",
         http_path = "/idmappingworkflows/{workflowName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getIdNamespace(input, options)
         output_schema = types.GetIdNamespaceOutput,
         http_method = "GET",
         http_path = "/idnamespaces/{idNamespaceName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getMatchId(input, options)
         output_schema = types.GetMatchIdOutput,
         http_method = "POST",
         http_path = "/matchingworkflows/{workflowName}/matches",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getMatchingJob(input, options)
         output_schema = types.GetMatchingJobOutput,
         http_method = "GET",
         http_path = "/matchingworkflows/{workflowName}/jobs/{jobId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:getMatchingWorkflow(input, options)
         output_schema = types.GetMatchingWorkflowOutput,
         http_method = "GET",
         http_path = "/matchingworkflows/{workflowName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getPolicy(input, options)
         output_schema = types.GetPolicyOutput,
         http_method = "GET",
         http_path = "/policies/{arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:getProviderService(input, options)
         output_schema = types.GetProviderServiceOutput,
         http_method = "GET",
         http_path = "/providerservices/{providerName}/{providerServiceName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:getSchemaMapping(input, options)
         output_schema = types.GetSchemaMappingOutput,
         http_method = "GET",
         http_path = "/schemas/{schemaName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listIdMappingJobs(input, options)
         output_schema = types.ListIdMappingJobsOutput,
         http_method = "GET",
         http_path = "/idmappingworkflows/{workflowName}/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listIdMappingWorkflows(input, options)
         output_schema = types.ListIdMappingWorkflowsOutput,
         http_method = "GET",
         http_path = "/idmappingworkflows",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listIdNamespaces(input, options)
         output_schema = types.ListIdNamespacesOutput,
         http_method = "GET",
         http_path = "/idnamespaces",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listMatchingJobs(input, options)
         output_schema = types.ListMatchingJobsOutput,
         http_method = "GET",
         http_path = "/matchingworkflows/{workflowName}/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listMatchingWorkflows(input, options)
         output_schema = types.ListMatchingWorkflowsOutput,
         http_method = "GET",
         http_path = "/matchingworkflows",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:listProviderServices(input, options)
         output_schema = types.ListProviderServicesOutput,
         http_method = "GET",
         http_path = "/providerservices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:listSchemaMappings(input, options)
         output_schema = types.ListSchemaMappingsOutput,
         http_method = "GET",
         http_path = "/schemas",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:putPolicy(input, options)
         output_schema = types.PutPolicyOutput,
         http_method = "PUT",
         http_path = "/policies/{arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:startIdMappingJob(input, options)
         output_schema = types.StartIdMappingJobOutput,
         http_method = "POST",
         http_path = "/idmappingworkflows/{workflowName}/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:startMatchingJob(input, options)
         output_schema = types.StartMatchingJobOutput,
         http_method = "POST",
         http_path = "/matchingworkflows/{workflowName}/jobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:updateIdMappingWorkflow(input, options)
         output_schema = types.UpdateIdMappingWorkflowOutput,
         http_method = "PUT",
         http_path = "/idmappingworkflows/{workflowName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:updateIdNamespace(input, options)
         output_schema = types.UpdateIdNamespaceOutput,
         http_method = "PUT",
         http_path = "/idnamespaces/{idNamespaceName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:updateMatchingWorkflow(input, options)
         output_schema = types.UpdateMatchingWorkflowOutput,
         http_method = "PUT",
         http_path = "/matchingworkflows/{workflowName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:updateSchemaMapping(input, options)
         output_schema = types.UpdateSchemaMappingOutput,
         http_method = "PUT",
         http_path = "/schemas/{schemaName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

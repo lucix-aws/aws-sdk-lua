@@ -1,0 +1,311 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listCloudFrontOriginAccessIdentities.
+function M.pages_list_cloud_front_origin_access_identities(client, input)
+    return paginator.pages(client, "listCloudFrontOriginAccessIdentities", input, {
+        input_token = "Marker",
+        output_token = "CloudFrontOriginAccessIdentityList.NextMarker",
+        items = "CloudFrontOriginAccessIdentityList.Items",
+    })
+end
+
+--- Returns an item iterator for listCloudFrontOriginAccessIdentities.
+function M.items_list_cloud_front_origin_access_identities(client, input)
+    return paginator.items(client, "listCloudFrontOriginAccessIdentities", input, {
+        input_token = "Marker",
+        output_token = "CloudFrontOriginAccessIdentityList.NextMarker",
+        items = "CloudFrontOriginAccessIdentityList.Items",
+    })
+end
+
+--- Returns a page iterator for listConnectionFunctions.
+function M.pages_list_connection_functions(client, input)
+    return paginator.pages(client, "listConnectionFunctions", input, {
+        input_token = "Marker",
+        output_token = "NextMarker",
+        items = "ConnectionFunctions",
+    })
+end
+
+--- Returns an item iterator for listConnectionFunctions.
+function M.items_list_connection_functions(client, input)
+    return paginator.items(client, "listConnectionFunctions", input, {
+        input_token = "Marker",
+        output_token = "NextMarker",
+        items = "ConnectionFunctions",
+    })
+end
+
+--- Returns a page iterator for listConnectionGroups.
+function M.pages_list_connection_groups(client, input)
+    return paginator.pages(client, "listConnectionGroups", input, {
+        input_token = "Marker",
+        output_token = "NextMarker",
+        items = "ConnectionGroups",
+    })
+end
+
+--- Returns an item iterator for listConnectionGroups.
+function M.items_list_connection_groups(client, input)
+    return paginator.items(client, "listConnectionGroups", input, {
+        input_token = "Marker",
+        output_token = "NextMarker",
+        items = "ConnectionGroups",
+    })
+end
+
+--- Returns a page iterator for listDistributionTenants.
+function M.pages_list_distribution_tenants(client, input)
+    return paginator.pages(client, "listDistributionTenants", input, {
+        input_token = "Marker",
+        output_token = "NextMarker",
+        items = "DistributionTenantList",
+    })
+end
+
+--- Returns an item iterator for listDistributionTenants.
+function M.items_list_distribution_tenants(client, input)
+    return paginator.items(client, "listDistributionTenants", input, {
+        input_token = "Marker",
+        output_token = "NextMarker",
+        items = "DistributionTenantList",
+    })
+end
+
+--- Returns a page iterator for listDistributionTenantsByCustomization.
+function M.pages_list_distribution_tenants_by_customization(client, input)
+    return paginator.pages(client, "listDistributionTenantsByCustomization", input, {
+        input_token = "Marker",
+        output_token = "NextMarker",
+        items = "DistributionTenantList",
+    })
+end
+
+--- Returns an item iterator for listDistributionTenantsByCustomization.
+function M.items_list_distribution_tenants_by_customization(client, input)
+    return paginator.items(client, "listDistributionTenantsByCustomization", input, {
+        input_token = "Marker",
+        output_token = "NextMarker",
+        items = "DistributionTenantList",
+    })
+end
+
+--- Returns a page iterator for listDistributions.
+function M.pages_list_distributions(client, input)
+    return paginator.pages(client, "listDistributions", input, {
+        input_token = "Marker",
+        output_token = "DistributionList.NextMarker",
+        items = "DistributionList.Items",
+    })
+end
+
+--- Returns an item iterator for listDistributions.
+function M.items_list_distributions(client, input)
+    return paginator.items(client, "listDistributions", input, {
+        input_token = "Marker",
+        output_token = "DistributionList.NextMarker",
+        items = "DistributionList.Items",
+    })
+end
+
+--- Returns a page iterator for listDistributionsByConnectionFunction.
+function M.pages_list_distributions_by_connection_function(client, input)
+    return paginator.pages(client, "listDistributionsByConnectionFunction", input, {
+        input_token = "Marker",
+        output_token = "DistributionList.NextMarker",
+        items = "DistributionList.Items",
+    })
+end
+
+--- Returns an item iterator for listDistributionsByConnectionFunction.
+function M.items_list_distributions_by_connection_function(client, input)
+    return paginator.items(client, "listDistributionsByConnectionFunction", input, {
+        input_token = "Marker",
+        output_token = "DistributionList.NextMarker",
+        items = "DistributionList.Items",
+    })
+end
+
+--- Returns a page iterator for listDistributionsByConnectionMode.
+function M.pages_list_distributions_by_connection_mode(client, input)
+    return paginator.pages(client, "listDistributionsByConnectionMode", input, {
+        input_token = "Marker",
+        output_token = "DistributionList.NextMarker",
+        items = "DistributionList.Items",
+    })
+end
+
+--- Returns an item iterator for listDistributionsByConnectionMode.
+function M.items_list_distributions_by_connection_mode(client, input)
+    return paginator.items(client, "listDistributionsByConnectionMode", input, {
+        input_token = "Marker",
+        output_token = "DistributionList.NextMarker",
+        items = "DistributionList.Items",
+    })
+end
+
+--- Returns a page iterator for listDistributionsByTrustStore.
+function M.pages_list_distributions_by_trust_store(client, input)
+    return paginator.pages(client, "listDistributionsByTrustStore", input, {
+        input_token = "Marker",
+        output_token = "DistributionList.NextMarker",
+        items = "DistributionList.Items",
+    })
+end
+
+--- Returns an item iterator for listDistributionsByTrustStore.
+function M.items_list_distributions_by_trust_store(client, input)
+    return paginator.items(client, "listDistributionsByTrustStore", input, {
+        input_token = "Marker",
+        output_token = "DistributionList.NextMarker",
+        items = "DistributionList.Items",
+    })
+end
+
+--- Returns a page iterator for listDomainConflicts.
+function M.pages_list_domain_conflicts(client, input)
+    return paginator.pages(client, "listDomainConflicts", input, {
+        input_token = "Marker",
+        output_token = "NextMarker",
+        items = "DomainConflicts",
+    })
+end
+
+--- Returns an item iterator for listDomainConflicts.
+function M.items_list_domain_conflicts(client, input)
+    return paginator.items(client, "listDomainConflicts", input, {
+        input_token = "Marker",
+        output_token = "NextMarker",
+        items = "DomainConflicts",
+    })
+end
+
+--- Returns a page iterator for listInvalidations.
+function M.pages_list_invalidations(client, input)
+    return paginator.pages(client, "listInvalidations", input, {
+        input_token = "Marker",
+        output_token = "InvalidationList.NextMarker",
+        items = "InvalidationList.Items",
+    })
+end
+
+--- Returns an item iterator for listInvalidations.
+function M.items_list_invalidations(client, input)
+    return paginator.items(client, "listInvalidations", input, {
+        input_token = "Marker",
+        output_token = "InvalidationList.NextMarker",
+        items = "InvalidationList.Items",
+    })
+end
+
+--- Returns a page iterator for listInvalidationsForDistributionTenant.
+function M.pages_list_invalidations_for_distribution_tenant(client, input)
+    return paginator.pages(client, "listInvalidationsForDistributionTenant", input, {
+        input_token = "Marker",
+        output_token = "InvalidationList.NextMarker",
+        items = "InvalidationList.Items",
+    })
+end
+
+--- Returns an item iterator for listInvalidationsForDistributionTenant.
+function M.items_list_invalidations_for_distribution_tenant(client, input)
+    return paginator.items(client, "listInvalidationsForDistributionTenant", input, {
+        input_token = "Marker",
+        output_token = "InvalidationList.NextMarker",
+        items = "InvalidationList.Items",
+    })
+end
+
+--- Returns a page iterator for listKeyValueStores.
+function M.pages_list_key_value_stores(client, input)
+    return paginator.pages(client, "listKeyValueStores", input, {
+        input_token = "Marker",
+        output_token = "KeyValueStoreList.NextMarker",
+        items = "KeyValueStoreList.Items",
+    })
+end
+
+--- Returns an item iterator for listKeyValueStores.
+function M.items_list_key_value_stores(client, input)
+    return paginator.items(client, "listKeyValueStores", input, {
+        input_token = "Marker",
+        output_token = "KeyValueStoreList.NextMarker",
+        items = "KeyValueStoreList.Items",
+    })
+end
+
+--- Returns a page iterator for listOriginAccessControls.
+function M.pages_list_origin_access_controls(client, input)
+    return paginator.pages(client, "listOriginAccessControls", input, {
+        input_token = "Marker",
+        output_token = "OriginAccessControlList.NextMarker",
+        items = "OriginAccessControlList.Items",
+    })
+end
+
+--- Returns an item iterator for listOriginAccessControls.
+function M.items_list_origin_access_controls(client, input)
+    return paginator.items(client, "listOriginAccessControls", input, {
+        input_token = "Marker",
+        output_token = "OriginAccessControlList.NextMarker",
+        items = "OriginAccessControlList.Items",
+    })
+end
+
+--- Returns a page iterator for listPublicKeys.
+function M.pages_list_public_keys(client, input)
+    return paginator.pages(client, "listPublicKeys", input, {
+        input_token = "Marker",
+        output_token = "PublicKeyList.NextMarker",
+        items = "PublicKeyList.Items",
+    })
+end
+
+--- Returns an item iterator for listPublicKeys.
+function M.items_list_public_keys(client, input)
+    return paginator.items(client, "listPublicKeys", input, {
+        input_token = "Marker",
+        output_token = "PublicKeyList.NextMarker",
+        items = "PublicKeyList.Items",
+    })
+end
+
+--- Returns a page iterator for listStreamingDistributions.
+function M.pages_list_streaming_distributions(client, input)
+    return paginator.pages(client, "listStreamingDistributions", input, {
+        input_token = "Marker",
+        output_token = "StreamingDistributionList.NextMarker",
+        items = "StreamingDistributionList.Items",
+    })
+end
+
+--- Returns an item iterator for listStreamingDistributions.
+function M.items_list_streaming_distributions(client, input)
+    return paginator.items(client, "listStreamingDistributions", input, {
+        input_token = "Marker",
+        output_token = "StreamingDistributionList.NextMarker",
+        items = "StreamingDistributionList.Items",
+    })
+end
+
+--- Returns a page iterator for listTrustStores.
+function M.pages_list_trust_stores(client, input)
+    return paginator.pages(client, "listTrustStores", input, {
+        input_token = "Marker",
+        output_token = "NextMarker",
+        items = "TrustStoreList",
+    })
+end
+
+--- Returns an item iterator for listTrustStores.
+function M.items_list_trust_stores(client, input)
+    return paginator.items(client, "listTrustStores", input, {
+        input_token = "Marker",
+        output_token = "NextMarker",
+        items = "TrustStoreList",
+    })
+end
+
+return M

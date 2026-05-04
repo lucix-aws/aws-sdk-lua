@@ -631,6 +631,7 @@ M.CreateBillEstimateInput = {
             type = "string",
             traits = {
                 http_header = "X-Amzn-Client-Token",
+                idempotency_token = true,
             },
         },
         tags = {
@@ -946,6 +947,7 @@ M.BatchCreateBillScenarioCommitmentModificationInput = {
             type = "string",
             traits = {
                 http_header = "X-Amzn-Client-Token",
+                idempotency_token = true,
             },
         },
     },
@@ -1395,6 +1397,7 @@ M.CreateBillScenarioInput = {
             type = "string",
             traits = {
                 http_header = "X-Amzn-Client-Token",
+                idempotency_token = true,
             },
         },
         tags = {
@@ -1812,6 +1815,7 @@ M.CreateWorkloadEstimateInput = {
             type = "string",
             traits = {
                 http_header = "X-Amzn-Client-Token",
+                idempotency_token = true,
             },
         },
         rateType = {
@@ -2659,6 +2663,7 @@ M.BatchCreateBillScenarioUsageModificationInput = {
             type = "string",
             traits = {
                 http_header = "X-Amzn-Client-Token",
+                idempotency_token = true,
             },
         },
     },
@@ -2698,6 +2703,7 @@ M.BatchCreateWorkloadEstimateUsageInput = {
             type = "string",
             traits = {
                 http_header = "X-Amzn-Client-Token",
+                idempotency_token = true,
             },
         },
     },

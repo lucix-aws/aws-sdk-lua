@@ -1256,6 +1256,9 @@ M.CreateStackInstancesInput = {
         OperationPreferences = M.StackSetOperationPreferences,
         OperationId = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         CallAs = {
             type = "string",
@@ -1464,6 +1467,9 @@ M.CreateStackSetInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ManagedExecution = M.ManagedExecution,
     },
@@ -1634,6 +1640,9 @@ M.DeleteStackInstancesInput = {
         },
         OperationId = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         CallAs = {
             type = "string",
@@ -3682,6 +3691,9 @@ M.DetectStackSetDriftInput = {
         OperationPreferences = M.StackSetOperationPreferences,
         OperationId = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         CallAs = {
             type = "string",
@@ -4105,6 +4117,9 @@ M.ImportStacksToStackSetInput = {
         OperationPreferences = M.StackSetOperationPreferences,
         OperationId = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         CallAs = {
             type = "string",
@@ -6082,6 +6097,9 @@ M.UpdateStackInstancesInput = {
         OperationPreferences = M.StackSetOperationPreferences,
         OperationId = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         CallAs = {
             type = "string",
@@ -6145,6 +6163,9 @@ M.UpdateStackSetInput = {
         AutoDeployment = M.AutoDeployment,
         OperationId = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Accounts = {
             type = "list",

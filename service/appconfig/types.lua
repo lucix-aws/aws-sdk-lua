@@ -1188,6 +1188,9 @@ M.DeploymentEvent = {
         },
         OccurredAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1265,9 +1268,15 @@ M.GetDeploymentOutput = {
         },
         StartedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         CompletedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         AppliedExtensions = {
             type = "list",
@@ -1746,9 +1755,15 @@ M.DeploymentSummary = {
         },
         StartedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         CompletedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         VersionLabel = {
             type = "string",
@@ -2247,9 +2262,15 @@ M.StartDeploymentOutput = {
         },
         StartedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         CompletedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         AppliedExtensions = {
             type = "list",
@@ -2365,9 +2386,15 @@ M.StopDeploymentOutput = {
         },
         StartedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         CompletedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         AppliedExtensions = {
             type = "list",

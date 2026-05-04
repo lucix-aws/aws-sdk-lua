@@ -1,0 +1,20 @@
+local record M
+    pages_describe_model_versions: function(client: table, input: table): function(): table, table
+    pages_get_batch_import_jobs: function(client: table, input: table): function(): table, table
+    pages_get_batch_prediction_jobs: function(client: table, input: table): function(): table, table
+    pages_get_detectors: function(client: table, input: table): function(): table, table
+    pages_get_entity_types: function(client: table, input: table): function(): table, table
+    pages_get_event_types: function(client: table, input: table): function(): table, table
+    pages_get_external_models: function(client: table, input: table): function(): table, table
+    pages_get_labels: function(client: table, input: table): function(): table, table
+    pages_get_list_elements: function(client: table, input: table): function(): table, table
+    pages_get_lists_metadata: function(client: table, input: table): function(): table, table
+    pages_get_models: function(client: table, input: table): function(): table, table
+    pages_get_outcomes: function(client: table, input: table): function(): table, table
+    pages_get_rules: function(client: table, input: table): function(): table, table
+    pages_get_variables: function(client: table, input: table): function(): table, table
+    pages_list_event_predictions: function(client: table, input: table): function(): table, table
+    pages_list_tags_for_resource: function(client: table, input: table): function(): table, table
+end
+
+return M

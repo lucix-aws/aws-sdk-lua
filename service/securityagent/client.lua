@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "SecurityAgent"
-    cfg.signing_name = "securityagent"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "securityagent", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:addArtifact(input, options)
         output_schema = types.AddArtifactOutput,
         http_method = "POST",
         http_path = "/AddArtifact",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchDeletePentests(input, options)
         output_schema = types.BatchDeletePentestsOutput,
         http_method = "POST",
         http_path = "/BatchDeletePentests",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchGetAgentSpaces(input, options)
         output_schema = types.BatchGetAgentSpacesOutput,
         http_method = "POST",
         http_path = "/BatchGetAgentSpaces",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:batchGetArtifactMetadata(input, options)
         output_schema = types.BatchGetArtifactMetadataOutput,
         http_method = "POST",
         http_path = "/BatchGetArtifactMetadata",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:batchGetFindings(input, options)
         output_schema = types.BatchGetFindingsOutput,
         http_method = "POST",
         http_path = "/BatchGetFindings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:batchGetPentestJobs(input, options)
         output_schema = types.BatchGetPentestJobsOutput,
         http_method = "POST",
         http_path = "/BatchGetPentestJobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:batchGetPentestJobTasks(input, options)
         output_schema = types.BatchGetPentestJobTasksOutput,
         http_method = "POST",
         http_path = "/BatchGetPentestJobTasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:batchGetPentests(input, options)
         output_schema = types.BatchGetPentestsOutput,
         http_method = "POST",
         http_path = "/BatchGetPentests",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:batchGetTargetDomains(input, options)
         output_schema = types.BatchGetTargetDomainsOutput,
         http_method = "POST",
         http_path = "/BatchGetTargetDomains",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createAgentSpace(input, options)
         output_schema = types.CreateAgentSpaceOutput,
         http_method = "POST",
         http_path = "/CreateAgentSpace",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createApplication(input, options)
         output_schema = types.CreateApplicationOutput,
         http_method = "POST",
         http_path = "/CreateApplication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createIntegration(input, options)
         output_schema = types.CreateIntegrationOutput,
         http_method = "POST",
         http_path = "/CreateIntegration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createMembership(input, options)
         output_schema = types.CreateMembershipOutput,
         http_method = "POST",
         http_path = "/CreateMembership",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:createPentest(input, options)
         output_schema = types.CreatePentestOutput,
         http_method = "POST",
         http_path = "/CreatePentest",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:createTargetDomain(input, options)
         output_schema = types.CreateTargetDomainOutput,
         http_method = "POST",
         http_path = "/CreateTargetDomain",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteAgentSpace(input, options)
         output_schema = types.DeleteAgentSpaceOutput,
         http_method = "POST",
         http_path = "/DeleteAgentSpace",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deleteApplication(input, options)
         output_schema = types.DeleteApplicationOutput,
         http_method = "POST",
         http_path = "/DeleteApplication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteArtifact(input, options)
         output_schema = types.DeleteArtifactOutput,
         http_method = "POST",
         http_path = "/DeleteArtifact",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteIntegration(input, options)
         output_schema = types.DeleteIntegrationOutput,
         http_method = "POST",
         http_path = "/DeleteIntegration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deleteMembership(input, options)
         output_schema = types.DeleteMembershipOutput,
         http_method = "POST",
         http_path = "/DeleteMembership",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deleteTargetDomain(input, options)
         output_schema = types.DeleteTargetDomainOutput,
         http_method = "POST",
         http_path = "/DeleteTargetDomain",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:getApplication(input, options)
         output_schema = types.GetApplicationOutput,
         http_method = "POST",
         http_path = "/GetApplication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:getArtifact(input, options)
         output_schema = types.GetArtifactOutput,
         http_method = "POST",
         http_path = "/GetArtifact",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:getIntegration(input, options)
         output_schema = types.GetIntegrationOutput,
         http_method = "POST",
         http_path = "/GetIntegration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:initiateProviderRegistration(input, options)
         output_schema = types.InitiateProviderRegistrationOutput,
         http_method = "POST",
         http_path = "/oauth2/provider/register",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listAgentSpaces(input, options)
         output_schema = types.ListAgentSpacesOutput,
         http_method = "POST",
         http_path = "/ListAgentSpaces",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:listApplications(input, options)
         output_schema = types.ListApplicationsOutput,
         http_method = "POST",
         http_path = "/ListApplications",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:listArtifacts(input, options)
         output_schema = types.ListArtifactsOutput,
         http_method = "POST",
         http_path = "/ListArtifacts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listDiscoveredEndpoints(input, options)
         output_schema = types.ListDiscoveredEndpointsOutput,
         http_method = "POST",
         http_path = "/ListDiscoveredEndpoints",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:listFindings(input, options)
         output_schema = types.ListFindingsOutput,
         http_method = "POST",
         http_path = "/ListFindings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:listIntegratedResources(input, options)
         output_schema = types.ListIntegratedResourcesOutput,
         http_method = "POST",
         http_path = "/ListIntegratedResources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:listIntegrations(input, options)
         output_schema = types.ListIntegrationsOutput,
         http_method = "POST",
         http_path = "/ListIntegrations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:listMemberships(input, options)
         output_schema = types.ListMembershipsOutput,
         http_method = "POST",
         http_path = "/ListMemberships",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:listPentestJobsForPentest(input, options)
         output_schema = types.ListPentestJobsForPentestOutput,
         http_method = "POST",
         http_path = "/ListPentestJobsForPentest",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:listPentestJobTasks(input, options)
         output_schema = types.ListPentestJobTasksOutput,
         http_method = "POST",
         http_path = "/ListPentestJobTasks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:listPentests(input, options)
         output_schema = types.ListPentestsOutput,
         http_method = "POST",
         http_path = "/ListPentests",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:listTargetDomains(input, options)
         output_schema = types.ListTargetDomainsOutput,
         http_method = "POST",
         http_path = "/ListTargetDomains",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:startCodeRemediation(input, options)
         output_schema = types.StartCodeRemediationOutput,
         http_method = "POST",
         http_path = "/StartCodeRemediation",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:startPentestJob(input, options)
         output_schema = types.StartPentestJobOutput,
         http_method = "POST",
         http_path = "/StartPentestJob",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:stopPentestJob(input, options)
         output_schema = types.StopPentestJobOutput,
         http_method = "POST",
         http_path = "/StopPentestJob",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:updateAgentSpace(input, options)
         output_schema = types.UpdateAgentSpaceOutput,
         http_method = "POST",
         http_path = "/UpdateAgentSpace",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:updateApplication(input, options)
         output_schema = types.UpdateApplicationOutput,
         http_method = "POST",
         http_path = "/UpdateApplication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:updateFinding(input, options)
         output_schema = types.UpdateFindingOutput,
         http_method = "POST",
         http_path = "/UpdateFinding",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:updateIntegratedResources(input, options)
         output_schema = types.UpdateIntegratedResourcesOutput,
         http_method = "POST",
         http_path = "/UpdateIntegratedResources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:updatePentest(input, options)
         output_schema = types.UpdatePentestOutput,
         http_method = "POST",
         http_path = "/UpdatePentest",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:updateTargetDomain(input, options)
         output_schema = types.UpdateTargetDomainOutput,
         http_method = "POST",
         http_path = "/UpdateTargetDomain",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:verifyTargetDomain(input, options)
         output_schema = types.VerifyTargetDomainOutput,
         http_method = "POST",
         http_path = "/VerifyTargetDomain",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

@@ -225,6 +225,9 @@ M.CreateSecretInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Description = {
             type = "string",
@@ -908,6 +911,9 @@ M.PutSecretValueInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         SecretBinary = {
             type = "blob",
@@ -1049,6 +1055,9 @@ M.RotateSecretInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         RotationLambdaARN = {
             type = "string",
@@ -1163,6 +1172,9 @@ M.UpdateSecretInput = {
         },
         ClientRequestToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Description = {
             type = "string",

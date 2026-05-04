@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AwsChicagoWebService"
-    cfg.signing_name = "emr-containers"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "emr-containers", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:cancelJobRun(input, options)
         output_schema = types.CancelJobRunOutput,
         http_method = "DELETE",
         http_path = "/virtualclusters/{virtualClusterId}/jobruns/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createJobTemplate(input, options)
         output_schema = types.CreateJobTemplateOutput,
         http_method = "POST",
         http_path = "/jobtemplates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createManagedEndpoint(input, options)
         output_schema = types.CreateManagedEndpointOutput,
         http_method = "POST",
         http_path = "/virtualclusters/{virtualClusterId}/endpoints",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createSecurityConfiguration(input, options)
         output_schema = types.CreateSecurityConfigurationOutput,
         http_method = "POST",
         http_path = "/securityconfigurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createVirtualCluster(input, options)
         output_schema = types.CreateVirtualClusterOutput,
         http_method = "POST",
         http_path = "/virtualclusters",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteJobTemplate(input, options)
         output_schema = types.DeleteJobTemplateOutput,
         http_method = "DELETE",
         http_path = "/jobtemplates/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteManagedEndpoint(input, options)
         output_schema = types.DeleteManagedEndpointOutput,
         http_method = "DELETE",
         http_path = "/virtualclusters/{virtualClusterId}/endpoints/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteVirtualCluster(input, options)
         output_schema = types.DeleteVirtualClusterOutput,
         http_method = "DELETE",
         http_path = "/virtualclusters/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:describeJobRun(input, options)
         output_schema = types.DescribeJobRunOutput,
         http_method = "GET",
         http_path = "/virtualclusters/{virtualClusterId}/jobruns/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:describeJobTemplate(input, options)
         output_schema = types.DescribeJobTemplateOutput,
         http_method = "GET",
         http_path = "/jobtemplates/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:describeManagedEndpoint(input, options)
         output_schema = types.DescribeManagedEndpointOutput,
         http_method = "GET",
         http_path = "/virtualclusters/{virtualClusterId}/endpoints/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:describeSecurityConfiguration(input, options)
         output_schema = types.DescribeSecurityConfigurationOutput,
         http_method = "GET",
         http_path = "/securityconfigurations/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:describeVirtualCluster(input, options)
         output_schema = types.DescribeVirtualClusterOutput,
         http_method = "GET",
         http_path = "/virtualclusters/{id}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getManagedEndpointSessionCredentials(input, options)
         output_schema = types.GetManagedEndpointSessionCredentialsOutput,
         http_method = "POST",
         http_path = "/virtualclusters/{virtualClusterIdentifier}/endpoints/{endpointIdentifier}/credentials",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:listJobRuns(input, options)
         output_schema = types.ListJobRunsOutput,
         http_method = "GET",
         http_path = "/virtualclusters/{virtualClusterId}/jobruns",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listJobTemplates(input, options)
         output_schema = types.ListJobTemplatesOutput,
         http_method = "GET",
         http_path = "/jobtemplates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listManagedEndpoints(input, options)
         output_schema = types.ListManagedEndpointsOutput,
         http_method = "GET",
         http_path = "/virtualclusters/{virtualClusterId}/endpoints",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listSecurityConfigurations(input, options)
         output_schema = types.ListSecurityConfigurationsOutput,
         http_method = "GET",
         http_path = "/securityconfigurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listVirtualClusters(input, options)
         output_schema = types.ListVirtualClustersOutput,
         http_method = "GET",
         http_path = "/virtualclusters",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:startJobRun(input, options)
         output_schema = types.StartJobRunOutput,
         http_method = "POST",
         http_path = "/virtualclusters/{virtualClusterId}/jobruns",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

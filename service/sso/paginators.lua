@@ -1,0 +1,41 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listAccountRoles.
+function M.pages_list_account_roles(client, input)
+    return paginator.pages(client, "listAccountRoles", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "roleList",
+    })
+end
+
+--- Returns an item iterator for listAccountRoles.
+function M.items_list_account_roles(client, input)
+    return paginator.items(client, "listAccountRoles", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "roleList",
+    })
+end
+
+--- Returns a page iterator for listAccounts.
+function M.pages_list_accounts(client, input)
+    return paginator.pages(client, "listAccounts", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "accountList",
+    })
+end
+
+--- Returns an item iterator for listAccounts.
+function M.items_list_accounts(client, input)
+    return paginator.items(client, "listAccounts", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "accountList",
+    })
+end
+
+return M

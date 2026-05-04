@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSFluffyCoreService"
-    cfg.signing_name = "mpa"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "mpa", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:cancelSession(input, options)
         output_schema = types.CancelSessionOutput,
         http_method = "PUT",
         http_path = "/sessions/{SessionArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createApprovalTeam(input, options)
         output_schema = types.CreateApprovalTeamOutput,
         http_method = "POST",
         http_path = "/approval-teams",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createIdentitySource(input, options)
         output_schema = types.CreateIdentitySourceOutput,
         http_method = "POST",
         http_path = "/identity-sources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:deleteIdentitySource(input, options)
         output_schema = types.DeleteIdentitySourceOutput,
         http_method = "DELETE",
         http_path = "/identity-sources/{IdentitySourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteInactiveApprovalTeamVersion(input, options)
         output_schema = types.DeleteInactiveApprovalTeamVersionOutput,
         http_method = "DELETE",
         http_path = "/approval-teams/{Arn}/{VersionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:getApprovalTeam(input, options)
         output_schema = types.GetApprovalTeamOutput,
         http_method = "GET",
         http_path = "/approval-teams/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:getIdentitySource(input, options)
         output_schema = types.GetIdentitySourceOutput,
         http_method = "GET",
         http_path = "/identity-sources/{IdentitySourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:getPolicyVersion(input, options)
         output_schema = types.GetPolicyVersionOutput,
         http_method = "GET",
         http_path = "/policy-versions/{PolicyVersionArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:getResourcePolicy(input, options)
         output_schema = types.GetResourcePolicyOutput,
         http_method = "POST",
         http_path = "/GetResourcePolicy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:getSession(input, options)
         output_schema = types.GetSessionOutput,
         http_method = "GET",
         http_path = "/sessions/{SessionArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:listApprovalTeams(input, options)
         output_schema = types.ListApprovalTeamsOutput,
         http_method = "POST",
         http_path = "/approval-teams/?List",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:listIdentitySources(input, options)
         output_schema = types.ListIdentitySourcesOutput,
         http_method = "POST",
         http_path = "/identity-sources/?List",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:listPolicies(input, options)
         output_schema = types.ListPoliciesOutput,
         http_method = "POST",
         http_path = "/policies/?List",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:listPolicyVersions(input, options)
         output_schema = types.ListPolicyVersionsOutput,
         http_method = "POST",
         http_path = "/policies/{PolicyArn}/?List",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:listResourcePolicies(input, options)
         output_schema = types.ListResourcePoliciesOutput,
         http_method = "POST",
         http_path = "/resource-policies/{ResourceArn}/?List",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:listSessions(input, options)
         output_schema = types.ListSessionsOutput,
         http_method = "POST",
         http_path = "/approval-teams/{ApprovalTeamArn}/sessions/?List",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:startActiveApprovalTeamDeletion(input, options)
         output_schema = types.StartActiveApprovalTeamDeletionOutput,
         http_method = "POST",
         http_path = "/approval-teams/{Arn}?Delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:startApprovalTeamBaseline(input, options)
         output_schema = types.StartApprovalTeamBaselineOutput,
         http_method = "POST",
         http_path = "/approval-teams/{Arn}/baseline",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "PUT",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:updateApprovalTeam(input, options)
         output_schema = types.UpdateApprovalTeamOutput,
         http_method = "PATCH",
         http_path = "/approval-teams/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

@@ -1,0 +1,19 @@
+local record M
+    pages_describe_budget_action_histories: function(client: table, input: table): function(): table, table
+    items_describe_budget_action_histories: function(client: table, input: table): function(): any
+    pages_describe_budget_actions_for_account: function(client: table, input: table): function(): table, table
+    items_describe_budget_actions_for_account: function(client: table, input: table): function(): any
+    pages_describe_budget_actions_for_budget: function(client: table, input: table): function(): table, table
+    items_describe_budget_actions_for_budget: function(client: table, input: table): function(): any
+    pages_describe_budget_notifications_for_account: function(client: table, input: table): function(): table, table
+    items_describe_budget_notifications_for_account: function(client: table, input: table): function(): any
+    pages_describe_budget_performance_history: function(client: table, input: table): function(): table, table
+    pages_describe_budgets: function(client: table, input: table): function(): table, table
+    items_describe_budgets: function(client: table, input: table): function(): any
+    pages_describe_notifications_for_budget: function(client: table, input: table): function(): table, table
+    items_describe_notifications_for_budget: function(client: table, input: table): function(): any
+    pages_describe_subscribers_for_notification: function(client: table, input: table): function(): table, table
+    items_describe_subscribers_for_notification: function(client: table, input: table): function(): any
+end
+
+return M

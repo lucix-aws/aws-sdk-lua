@@ -456,12 +456,21 @@ M.PhoneNumberOrder = {
         },
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         FocDate = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -596,12 +605,21 @@ M.ProxySession = {
         },
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         EndedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Participants = {
             type = "list",
@@ -711,9 +729,15 @@ M.SipMediaApplication = {
         },
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         SipMediaApplicationArn = {
             type = "string",
@@ -854,9 +878,15 @@ M.SipRule = {
         },
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -942,9 +972,15 @@ M.VoiceConnector = {
         },
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         VoiceConnectorArn = {
             type = "string",
@@ -1014,9 +1050,15 @@ M.VoiceConnectorGroup = {
         },
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         VoiceConnectorGroupArn = {
             type = "string",
@@ -1057,12 +1099,21 @@ M.VoiceProfile = {
         },
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ExpirationTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1142,9 +1193,15 @@ M.VoiceProfileDomain = {
         ServerSideEncryptionConfiguration = M.ServerSideEncryptionConfiguration,
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1535,6 +1592,9 @@ M.PhoneNumberAssociation = {
         },
         AssociatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1616,12 +1676,21 @@ M.PhoneNumber = {
         },
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         DeletionTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         OrderId = {
             type = "string",
@@ -1671,6 +1740,9 @@ M.GetPhoneNumberSettingsOutput = {
         },
         CallingNameUpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -1871,12 +1943,21 @@ M.SpeakerSearchTask = {
         SpeakerSearchDetails = M.SpeakerSearchDetails,
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         StartedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         StatusMessage = {
             type = "string",
@@ -2292,6 +2373,9 @@ M.TerminationHealth = {
     members = {
         Timestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         Source = {
             type = "string",
@@ -2385,12 +2469,21 @@ M.VoiceToneAnalysisTask = {
         CallDetails = M.CallDetails,
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         StartedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         StatusMessage = {
             type = "string",
@@ -2796,9 +2889,15 @@ M.VoiceProfileDomainSummary = {
         },
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -2855,12 +2954,21 @@ M.VoiceProfileSummary = {
         },
         CreatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ExpirationTimestamp = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }

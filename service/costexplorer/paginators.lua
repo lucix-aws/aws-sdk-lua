@@ -1,0 +1,255 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for getAnomalies.
+function M.pages_get_anomalies(client, input)
+    return paginator.pages(client, "getAnomalies", input, {
+        input_token = "NextPageToken",
+        output_token = "NextPageToken",
+        items = "Anomalies",
+    })
+end
+
+--- Returns an item iterator for getAnomalies.
+function M.items_get_anomalies(client, input)
+    return paginator.items(client, "getAnomalies", input, {
+        input_token = "NextPageToken",
+        output_token = "NextPageToken",
+        items = "Anomalies",
+    })
+end
+
+--- Returns a page iterator for getAnomalyMonitors.
+function M.pages_get_anomaly_monitors(client, input)
+    return paginator.pages(client, "getAnomalyMonitors", input, {
+        input_token = "NextPageToken",
+        output_token = "NextPageToken",
+        items = "AnomalyMonitors",
+    })
+end
+
+--- Returns an item iterator for getAnomalyMonitors.
+function M.items_get_anomaly_monitors(client, input)
+    return paginator.items(client, "getAnomalyMonitors", input, {
+        input_token = "NextPageToken",
+        output_token = "NextPageToken",
+        items = "AnomalyMonitors",
+    })
+end
+
+--- Returns a page iterator for getAnomalySubscriptions.
+function M.pages_get_anomaly_subscriptions(client, input)
+    return paginator.pages(client, "getAnomalySubscriptions", input, {
+        input_token = "NextPageToken",
+        output_token = "NextPageToken",
+        items = "AnomalySubscriptions",
+    })
+end
+
+--- Returns an item iterator for getAnomalySubscriptions.
+function M.items_get_anomaly_subscriptions(client, input)
+    return paginator.items(client, "getAnomalySubscriptions", input, {
+        input_token = "NextPageToken",
+        output_token = "NextPageToken",
+        items = "AnomalySubscriptions",
+    })
+end
+
+--- Returns a page iterator for getCostAndUsageComparisons.
+function M.pages_get_cost_and_usage_comparisons(client, input)
+    return paginator.pages(client, "getCostAndUsageComparisons", input, {
+        input_token = "NextPageToken",
+        output_token = "NextPageToken",
+        items = "CostAndUsageComparisons",
+    })
+end
+
+--- Returns an item iterator for getCostAndUsageComparisons.
+function M.items_get_cost_and_usage_comparisons(client, input)
+    return paginator.items(client, "getCostAndUsageComparisons", input, {
+        input_token = "NextPageToken",
+        output_token = "NextPageToken",
+        items = "CostAndUsageComparisons",
+    })
+end
+
+--- Returns a page iterator for getCostComparisonDrivers.
+function M.pages_get_cost_comparison_drivers(client, input)
+    return paginator.pages(client, "getCostComparisonDrivers", input, {
+        input_token = "NextPageToken",
+        output_token = "NextPageToken",
+        items = "CostComparisonDrivers",
+    })
+end
+
+--- Returns an item iterator for getCostComparisonDrivers.
+function M.items_get_cost_comparison_drivers(client, input)
+    return paginator.items(client, "getCostComparisonDrivers", input, {
+        input_token = "NextPageToken",
+        output_token = "NextPageToken",
+        items = "CostComparisonDrivers",
+    })
+end
+
+--- Returns a page iterator for getReservationPurchaseRecommendation.
+function M.pages_get_reservation_purchase_recommendation(client, input)
+    return paginator.pages(client, "getReservationPurchaseRecommendation", input, {
+        input_token = "NextPageToken",
+        output_token = "NextPageToken",
+        items = "Recommendations",
+    })
+end
+
+--- Returns an item iterator for getReservationPurchaseRecommendation.
+function M.items_get_reservation_purchase_recommendation(client, input)
+    return paginator.items(client, "getReservationPurchaseRecommendation", input, {
+        input_token = "NextPageToken",
+        output_token = "NextPageToken",
+        items = "Recommendations",
+    })
+end
+
+--- Returns a page iterator for getRightsizingRecommendation.
+function M.pages_get_rightsizing_recommendation(client, input)
+    return paginator.pages(client, "getRightsizingRecommendation", input, {
+        input_token = "NextPageToken",
+        output_token = "NextPageToken",
+        items = "RightsizingRecommendations",
+    })
+end
+
+--- Returns an item iterator for getRightsizingRecommendation.
+function M.items_get_rightsizing_recommendation(client, input)
+    return paginator.items(client, "getRightsizingRecommendation", input, {
+        input_token = "NextPageToken",
+        output_token = "NextPageToken",
+        items = "RightsizingRecommendations",
+    })
+end
+
+--- Returns a page iterator for getSavingsPlansCoverage.
+function M.pages_get_savings_plans_coverage(client, input)
+    return paginator.pages(client, "getSavingsPlansCoverage", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for getSavingsPlansUtilizationDetails.
+function M.pages_get_savings_plans_utilization_details(client, input)
+    return paginator.pages(client, "getSavingsPlansUtilizationDetails", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listCommitmentPurchaseAnalyses.
+function M.pages_list_commitment_purchase_analyses(client, input)
+    return paginator.pages(client, "listCommitmentPurchaseAnalyses", input, {
+        input_token = "NextPageToken",
+        output_token = "NextPageToken",
+        items = "AnalysisSummaryList",
+    })
+end
+
+--- Returns an item iterator for listCommitmentPurchaseAnalyses.
+function M.items_list_commitment_purchase_analyses(client, input)
+    return paginator.items(client, "listCommitmentPurchaseAnalyses", input, {
+        input_token = "NextPageToken",
+        output_token = "NextPageToken",
+        items = "AnalysisSummaryList",
+    })
+end
+
+--- Returns a page iterator for listCostAllocationTagBackfillHistory.
+function M.pages_list_cost_allocation_tag_backfill_history(client, input)
+    return paginator.pages(client, "listCostAllocationTagBackfillHistory", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BackfillRequests",
+    })
+end
+
+--- Returns an item iterator for listCostAllocationTagBackfillHistory.
+function M.items_list_cost_allocation_tag_backfill_history(client, input)
+    return paginator.items(client, "listCostAllocationTagBackfillHistory", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BackfillRequests",
+    })
+end
+
+--- Returns a page iterator for listCostAllocationTags.
+function M.pages_list_cost_allocation_tags(client, input)
+    return paginator.pages(client, "listCostAllocationTags", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CostAllocationTags",
+    })
+end
+
+--- Returns an item iterator for listCostAllocationTags.
+function M.items_list_cost_allocation_tags(client, input)
+    return paginator.items(client, "listCostAllocationTags", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CostAllocationTags",
+    })
+end
+
+--- Returns a page iterator for listCostCategoryDefinitions.
+function M.pages_list_cost_category_definitions(client, input)
+    return paginator.pages(client, "listCostCategoryDefinitions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CostCategoryReferences",
+    })
+end
+
+--- Returns an item iterator for listCostCategoryDefinitions.
+function M.items_list_cost_category_definitions(client, input)
+    return paginator.items(client, "listCostCategoryDefinitions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CostCategoryReferences",
+    })
+end
+
+--- Returns a page iterator for listCostCategoryResourceAssociations.
+function M.pages_list_cost_category_resource_associations(client, input)
+    return paginator.pages(client, "listCostCategoryResourceAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CostCategoryResourceAssociations",
+    })
+end
+
+--- Returns an item iterator for listCostCategoryResourceAssociations.
+function M.items_list_cost_category_resource_associations(client, input)
+    return paginator.items(client, "listCostCategoryResourceAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CostCategoryResourceAssociations",
+    })
+end
+
+--- Returns a page iterator for listSavingsPlansPurchaseRecommendationGeneration.
+function M.pages_list_savings_plans_purchase_recommendation_generation(client, input)
+    return paginator.pages(client, "listSavingsPlansPurchaseRecommendationGeneration", input, {
+        input_token = "NextPageToken",
+        output_token = "NextPageToken",
+        items = "GenerationSummaryList",
+    })
+end
+
+--- Returns an item iterator for listSavingsPlansPurchaseRecommendationGeneration.
+function M.items_list_savings_plans_purchase_recommendation_generation(client, input)
+    return paginator.items(client, "listSavingsPlansPurchaseRecommendationGeneration", input, {
+        input_token = "NextPageToken",
+        output_token = "NextPageToken",
+        items = "GenerationSummaryList",
+    })
+end
+
+return M

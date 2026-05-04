@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "ApiGatewayV2"
-    cfg.signing_name = "apigateway"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "apigateway", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createApi(input, options)
         output_schema = types.CreateApiOutput,
         http_method = "POST",
         http_path = "/v2/apis",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createApiMapping(input, options)
         output_schema = types.CreateApiMappingOutput,
         http_method = "POST",
         http_path = "/v2/domainnames/{DomainName}/apimappings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createAuthorizer(input, options)
         output_schema = types.CreateAuthorizerOutput,
         http_method = "POST",
         http_path = "/v2/apis/{ApiId}/authorizers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createDeployment(input, options)
         output_schema = types.CreateDeploymentOutput,
         http_method = "POST",
         http_path = "/v2/apis/{ApiId}/deployments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createDomainName(input, options)
         output_schema = types.CreateDomainNameOutput,
         http_method = "POST",
         http_path = "/v2/domainnames",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createIntegration(input, options)
         output_schema = types.CreateIntegrationOutput,
         http_method = "POST",
         http_path = "/v2/apis/{ApiId}/integrations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createIntegrationResponse(input, options)
         output_schema = types.CreateIntegrationResponseOutput,
         http_method = "POST",
         http_path = "/v2/apis/{ApiId}/integrations/{IntegrationId}/integrationresponses",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createModel(input, options)
         output_schema = types.CreateModelOutput,
         http_method = "POST",
         http_path = "/v2/apis/{ApiId}/models",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createPortal(input, options)
         output_schema = types.CreatePortalOutput,
         http_method = "POST",
         http_path = "/v2/portals",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createPortalProduct(input, options)
         output_schema = types.CreatePortalProductOutput,
         http_method = "POST",
         http_path = "/v2/portalproducts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createProductPage(input, options)
         output_schema = types.CreateProductPageOutput,
         http_method = "POST",
         http_path = "/v2/portalproducts/{PortalProductId}/productpages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createProductRestEndpointPage(input, options)
         output_schema = types.CreateProductRestEndpointPageOutput,
         http_method = "POST",
         http_path = "/v2/portalproducts/{PortalProductId}/productrestendpointpages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createRoute(input, options)
         output_schema = types.CreateRouteOutput,
         http_method = "POST",
         http_path = "/v2/apis/{ApiId}/routes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:createRouteResponse(input, options)
         output_schema = types.CreateRouteResponseOutput,
         http_method = "POST",
         http_path = "/v2/apis/{ApiId}/routes/{RouteId}/routeresponses",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:createRoutingRule(input, options)
         output_schema = types.CreateRoutingRuleOutput,
         http_method = "POST",
         http_path = "/v2/domainnames/{DomainName}/routingrules",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:createStage(input, options)
         output_schema = types.CreateStageOutput,
         http_method = "POST",
         http_path = "/v2/apis/{ApiId}/stages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:createVpcLink(input, options)
         output_schema = types.CreateVpcLinkOutput,
         http_method = "POST",
         http_path = "/v2/vpclinks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteAccessLogSettings(input, options)
         output_schema = types.DeleteAccessLogSettingsOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/stages/{StageName}/accesslogsettings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteApi(input, options)
         output_schema = types.DeleteApiOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deleteApiMapping(input, options)
         output_schema = types.DeleteApiMappingOutput,
         http_method = "DELETE",
         http_path = "/v2/domainnames/{DomainName}/apimappings/{ApiMappingId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:deleteAuthorizer(input, options)
         output_schema = types.DeleteAuthorizerOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/authorizers/{AuthorizerId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:deleteCorsConfiguration(input, options)
         output_schema = types.DeleteCorsConfigurationOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/cors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:deleteDeployment(input, options)
         output_schema = types.DeleteDeploymentOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/deployments/{DeploymentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:deleteDomainName(input, options)
         output_schema = types.DeleteDomainNameOutput,
         http_method = "DELETE",
         http_path = "/v2/domainnames/{DomainName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:deleteIntegration(input, options)
         output_schema = types.DeleteIntegrationOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/integrations/{IntegrationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:deleteIntegrationResponse(input, options)
         output_schema = types.DeleteIntegrationResponseOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/integrations/{IntegrationId}/integrationresponses/{IntegrationResponseId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:deleteModel(input, options)
         output_schema = types.DeleteModelOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/models/{ModelId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:deletePortal(input, options)
         output_schema = types.DeletePortalOutput,
         http_method = "DELETE",
         http_path = "/v2/portals/{PortalId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:deletePortalProduct(input, options)
         output_schema = types.DeletePortalProductOutput,
         http_method = "DELETE",
         http_path = "/v2/portalproducts/{PortalProductId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:deletePortalProductSharingPolicy(input, options)
         output_schema = types.DeletePortalProductSharingPolicyOutput,
         http_method = "DELETE",
         http_path = "/v2/portalproducts/{PortalProductId}/sharingpolicy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:deleteProductPage(input, options)
         output_schema = types.DeleteProductPageOutput,
         http_method = "DELETE",
         http_path = "/v2/portalproducts/{PortalProductId}/productpages/{ProductPageId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:deleteProductRestEndpointPage(input, options)
         output_schema = types.DeleteProductRestEndpointPageOutput,
         http_method = "DELETE",
         http_path = "/v2/portalproducts/{PortalProductId}/productrestendpointpages/{ProductRestEndpointPageId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:deleteRoute(input, options)
         output_schema = types.DeleteRouteOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/routes/{RouteId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:deleteRouteRequestParameter(input, options)
         output_schema = types.DeleteRouteRequestParameterOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/routes/{RouteId}/requestparameters/{RequestParameterKey}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:deleteRouteResponse(input, options)
         output_schema = types.DeleteRouteResponseOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/routes/{RouteId}/routeresponses/{RouteResponseId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:deleteRouteSettings(input, options)
         output_schema = types.DeleteRouteSettingsOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/stages/{StageName}/routesettings/{RouteKey}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:deleteRoutingRule(input, options)
         output_schema = types.DeleteRoutingRuleOutput,
         http_method = "DELETE",
         http_path = "/v2/domainnames/{DomainName}/routingrules/{RoutingRuleId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:deleteStage(input, options)
         output_schema = types.DeleteStageOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/stages/{StageName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:deleteVpcLink(input, options)
         output_schema = types.DeleteVpcLinkOutput,
         http_method = "DELETE",
         http_path = "/v2/vpclinks/{VpcLinkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:disablePortal(input, options)
         output_schema = types.DisablePortalOutput,
         http_method = "DELETE",
         http_path = "/v2/portals/{PortalId}/publish",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:exportApi(input, options)
         output_schema = types.ExportApiOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/exports/{Specification}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:getApi(input, options)
         output_schema = types.GetApiOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:getApiMapping(input, options)
         output_schema = types.GetApiMappingOutput,
         http_method = "GET",
         http_path = "/v2/domainnames/{DomainName}/apimappings/{ApiMappingId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:getApiMappings(input, options)
         output_schema = types.GetApiMappingsOutput,
         http_method = "GET",
         http_path = "/v2/domainnames/{DomainName}/apimappings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:getApis(input, options)
         output_schema = types.GetApisOutput,
         http_method = "GET",
         http_path = "/v2/apis",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:getAuthorizer(input, options)
         output_schema = types.GetAuthorizerOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/authorizers/{AuthorizerId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:getAuthorizers(input, options)
         output_schema = types.GetAuthorizersOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/authorizers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:getDeployment(input, options)
         output_schema = types.GetDeploymentOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/deployments/{DeploymentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:getDeployments(input, options)
         output_schema = types.GetDeploymentsOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/deployments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:getDomainName(input, options)
         output_schema = types.GetDomainNameOutput,
         http_method = "GET",
         http_path = "/v2/domainnames/{DomainName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:getDomainNames(input, options)
         output_schema = types.GetDomainNamesOutput,
         http_method = "GET",
         http_path = "/v2/domainnames",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:getIntegration(input, options)
         output_schema = types.GetIntegrationOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/integrations/{IntegrationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:getIntegrationResponse(input, options)
         output_schema = types.GetIntegrationResponseOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/integrations/{IntegrationId}/integrationresponses/{IntegrationResponseId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:getIntegrationResponses(input, options)
         output_schema = types.GetIntegrationResponsesOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/integrations/{IntegrationId}/integrationresponses",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:getIntegrations(input, options)
         output_schema = types.GetIntegrationsOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/integrations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:getModel(input, options)
         output_schema = types.GetModelOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/models/{ModelId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:getModels(input, options)
         output_schema = types.GetModelsOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/models",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:getModelTemplate(input, options)
         output_schema = types.GetModelTemplateOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/models/{ModelId}/template",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:getPortal(input, options)
         output_schema = types.GetPortalOutput,
         http_method = "GET",
         http_path = "/v2/portals/{PortalId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:getPortalProduct(input, options)
         output_schema = types.GetPortalProductOutput,
         http_method = "GET",
         http_path = "/v2/portalproducts/{PortalProductId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:getPortalProductSharingPolicy(input, options)
         output_schema = types.GetPortalProductSharingPolicyOutput,
         http_method = "GET",
         http_path = "/v2/portalproducts/{PortalProductId}/sharingpolicy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:getProductPage(input, options)
         output_schema = types.GetProductPageOutput,
         http_method = "GET",
         http_path = "/v2/portalproducts/{PortalProductId}/productpages/{ProductPageId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:getProductRestEndpointPage(input, options)
         output_schema = types.GetProductRestEndpointPageOutput,
         http_method = "GET",
         http_path = "/v2/portalproducts/{PortalProductId}/productrestendpointpages/{ProductRestEndpointPageId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:getRoute(input, options)
         output_schema = types.GetRouteOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/routes/{RouteId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:getRouteResponse(input, options)
         output_schema = types.GetRouteResponseOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/routes/{RouteId}/routeresponses/{RouteResponseId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:getRouteResponses(input, options)
         output_schema = types.GetRouteResponsesOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/routes/{RouteId}/routeresponses",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:getRoutes(input, options)
         output_schema = types.GetRoutesOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/routes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:getRoutingRule(input, options)
         output_schema = types.GetRoutingRuleOutput,
         http_method = "GET",
         http_path = "/v2/domainnames/{DomainName}/routingrules/{RoutingRuleId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:getStage(input, options)
         output_schema = types.GetStageOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/stages/{StageName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:getStages(input, options)
         output_schema = types.GetStagesOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/stages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:getTags(input, options)
         output_schema = types.GetTagsOutput,
         http_method = "GET",
         http_path = "/v2/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:getVpcLink(input, options)
         output_schema = types.GetVpcLinkOutput,
         http_method = "GET",
         http_path = "/v2/vpclinks/{VpcLinkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:getVpcLinks(input, options)
         output_schema = types.GetVpcLinksOutput,
         http_method = "GET",
         http_path = "/v2/vpclinks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:importApi(input, options)
         output_schema = types.ImportApiOutput,
         http_method = "PUT",
         http_path = "/v2/apis",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:listPortalProducts(input, options)
         output_schema = types.ListPortalProductsOutput,
         http_method = "GET",
         http_path = "/v2/portalproducts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:listPortals(input, options)
         output_schema = types.ListPortalsOutput,
         http_method = "GET",
         http_path = "/v2/portals",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:listProductPages(input, options)
         output_schema = types.ListProductPagesOutput,
         http_method = "GET",
         http_path = "/v2/portalproducts/{PortalProductId}/productpages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:listProductRestEndpointPages(input, options)
         output_schema = types.ListProductRestEndpointPagesOutput,
         http_method = "GET",
         http_path = "/v2/portalproducts/{PortalProductId}/productrestendpointpages",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:listRoutingRules(input, options)
         output_schema = types.ListRoutingRulesOutput,
         http_method = "GET",
         http_path = "/v2/domainnames/{DomainName}/routingrules",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:previewPortal(input, options)
         output_schema = types.PreviewPortalOutput,
         http_method = "POST",
         http_path = "/v2/portals/{PortalId}/preview",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:publishPortal(input, options)
         output_schema = types.PublishPortalOutput,
         http_method = "POST",
         http_path = "/v2/portals/{PortalId}/publish",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:putPortalProductSharingPolicy(input, options)
         output_schema = types.PutPortalProductSharingPolicyOutput,
         http_method = "PUT",
         http_path = "/v2/portalproducts/{PortalProductId}/sharingpolicy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:putRoutingRule(input, options)
         output_schema = types.PutRoutingRuleOutput,
         http_method = "PUT",
         http_path = "/v2/domainnames/{DomainName}/routingrules/{RoutingRuleId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:reimportApi(input, options)
         output_schema = types.ReimportApiOutput,
         http_method = "PUT",
         http_path = "/v2/apis/{ApiId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:resetAuthorizersCache(input, options)
         output_schema = types.ResetAuthorizersCacheOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/stages/{StageName}/cache/authorizers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -890,6 +1158,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/v2/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -900,6 +1171,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/v2/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -910,6 +1184,9 @@ function Client:updateApi(input, options)
         output_schema = types.UpdateApiOutput,
         http_method = "PATCH",
         http_path = "/v2/apis/{ApiId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -920,6 +1197,9 @@ function Client:updateApiMapping(input, options)
         output_schema = types.UpdateApiMappingOutput,
         http_method = "PATCH",
         http_path = "/v2/domainnames/{DomainName}/apimappings/{ApiMappingId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -930,6 +1210,9 @@ function Client:updateAuthorizer(input, options)
         output_schema = types.UpdateAuthorizerOutput,
         http_method = "PATCH",
         http_path = "/v2/apis/{ApiId}/authorizers/{AuthorizerId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -940,6 +1223,9 @@ function Client:updateDeployment(input, options)
         output_schema = types.UpdateDeploymentOutput,
         http_method = "PATCH",
         http_path = "/v2/apis/{ApiId}/deployments/{DeploymentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -950,6 +1236,9 @@ function Client:updateDomainName(input, options)
         output_schema = types.UpdateDomainNameOutput,
         http_method = "PATCH",
         http_path = "/v2/domainnames/{DomainName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -960,6 +1249,9 @@ function Client:updateIntegration(input, options)
         output_schema = types.UpdateIntegrationOutput,
         http_method = "PATCH",
         http_path = "/v2/apis/{ApiId}/integrations/{IntegrationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -970,6 +1262,9 @@ function Client:updateIntegrationResponse(input, options)
         output_schema = types.UpdateIntegrationResponseOutput,
         http_method = "PATCH",
         http_path = "/v2/apis/{ApiId}/integrations/{IntegrationId}/integrationresponses/{IntegrationResponseId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -980,6 +1275,9 @@ function Client:updateModel(input, options)
         output_schema = types.UpdateModelOutput,
         http_method = "PATCH",
         http_path = "/v2/apis/{ApiId}/models/{ModelId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -990,6 +1288,9 @@ function Client:updatePortal(input, options)
         output_schema = types.UpdatePortalOutput,
         http_method = "PATCH",
         http_path = "/v2/portals/{PortalId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1000,6 +1301,9 @@ function Client:updatePortalProduct(input, options)
         output_schema = types.UpdatePortalProductOutput,
         http_method = "PATCH",
         http_path = "/v2/portalproducts/{PortalProductId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1010,6 +1314,9 @@ function Client:updateProductPage(input, options)
         output_schema = types.UpdateProductPageOutput,
         http_method = "PATCH",
         http_path = "/v2/portalproducts/{PortalProductId}/productpages/{ProductPageId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1020,6 +1327,9 @@ function Client:updateProductRestEndpointPage(input, options)
         output_schema = types.UpdateProductRestEndpointPageOutput,
         http_method = "PATCH",
         http_path = "/v2/portalproducts/{PortalProductId}/productrestendpointpages/{ProductRestEndpointPageId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1030,6 +1340,9 @@ function Client:updateRoute(input, options)
         output_schema = types.UpdateRouteOutput,
         http_method = "PATCH",
         http_path = "/v2/apis/{ApiId}/routes/{RouteId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1040,6 +1353,9 @@ function Client:updateRouteResponse(input, options)
         output_schema = types.UpdateRouteResponseOutput,
         http_method = "PATCH",
         http_path = "/v2/apis/{ApiId}/routes/{RouteId}/routeresponses/{RouteResponseId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1050,6 +1366,9 @@ function Client:updateStage(input, options)
         output_schema = types.UpdateStageOutput,
         http_method = "PATCH",
         http_path = "/v2/apis/{ApiId}/stages/{StageName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1060,6 +1379,9 @@ function Client:updateVpcLink(input, options)
         output_schema = types.UpdateVpcLinkOutput,
         http_method = "PATCH",
         http_path = "/v2/vpclinks/{VpcLinkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "MediaLive"
-    cfg.signing_name = "medialive"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "medialive", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:acceptInputDeviceTransfer(input, options)
         output_schema = types.AcceptInputDeviceTransferOutput,
         http_method = "POST",
         http_path = "/prod/inputDevices/{InputDeviceId}/accept",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchDelete(input, options)
         output_schema = types.BatchDeleteOutput,
         http_method = "POST",
         http_path = "/prod/batch/delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchStart(input, options)
         output_schema = types.BatchStartOutput,
         http_method = "POST",
         http_path = "/prod/batch/start",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:batchStop(input, options)
         output_schema = types.BatchStopOutput,
         http_method = "POST",
         http_path = "/prod/batch/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:batchUpdateSchedule(input, options)
         output_schema = types.BatchUpdateScheduleOutput,
         http_method = "PUT",
         http_path = "/prod/channels/{ChannelId}/schedule",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:cancelInputDeviceTransfer(input, options)
         output_schema = types.CancelInputDeviceTransferOutput,
         http_method = "POST",
         http_path = "/prod/inputDevices/{InputDeviceId}/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:claimDevice(input, options)
         output_schema = types.ClaimDeviceOutput,
         http_method = "POST",
         http_path = "/prod/claimDevice",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createChannel(input, options)
         output_schema = types.CreateChannelOutput,
         http_method = "POST",
         http_path = "/prod/channels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createChannelPlacementGroup(input, options)
         output_schema = types.CreateChannelPlacementGroupOutput,
         http_method = "POST",
         http_path = "/prod/clusters/{ClusterId}/channelplacementgroups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createCloudWatchAlarmTemplate(input, options)
         output_schema = types.CreateCloudWatchAlarmTemplateOutput,
         http_method = "POST",
         http_path = "/prod/cloudwatch-alarm-templates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createCloudWatchAlarmTemplateGroup(input, options)
         output_schema = types.CreateCloudWatchAlarmTemplateGroupOutput,
         http_method = "POST",
         http_path = "/prod/cloudwatch-alarm-template-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:createCluster(input, options)
         output_schema = types.CreateClusterOutput,
         http_method = "POST",
         http_path = "/prod/clusters",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:createEventBridgeRuleTemplate(input, options)
         output_schema = types.CreateEventBridgeRuleTemplateOutput,
         http_method = "POST",
         http_path = "/prod/eventbridge-rule-templates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:createEventBridgeRuleTemplateGroup(input, options)
         output_schema = types.CreateEventBridgeRuleTemplateGroupOutput,
         http_method = "POST",
         http_path = "/prod/eventbridge-rule-template-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:createInput(input, options)
         output_schema = types.CreateInputOutput,
         http_method = "POST",
         http_path = "/prod/inputs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:createInputSecurityGroup(input, options)
         output_schema = types.CreateInputSecurityGroupOutput,
         http_method = "POST",
         http_path = "/prod/inputSecurityGroups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:createMultiplex(input, options)
         output_schema = types.CreateMultiplexOutput,
         http_method = "POST",
         http_path = "/prod/multiplexes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:createMultiplexProgram(input, options)
         output_schema = types.CreateMultiplexProgramOutput,
         http_method = "POST",
         http_path = "/prod/multiplexes/{MultiplexId}/programs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:createNetwork(input, options)
         output_schema = types.CreateNetworkOutput,
         http_method = "POST",
         http_path = "/prod/networks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:createNode(input, options)
         output_schema = types.CreateNodeOutput,
         http_method = "POST",
         http_path = "/prod/clusters/{ClusterId}/nodes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:createNodeRegistrationScript(input, options)
         output_schema = types.CreateNodeRegistrationScriptOutput,
         http_method = "POST",
         http_path = "/prod/clusters/{ClusterId}/nodeRegistrationScript",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:createPartnerInput(input, options)
         output_schema = types.CreatePartnerInputOutput,
         http_method = "POST",
         http_path = "/prod/inputs/{InputId}/partners",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:createSdiSource(input, options)
         output_schema = types.CreateSdiSourceOutput,
         http_method = "POST",
         http_path = "/prod/sdiSources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:createSignalMap(input, options)
         output_schema = types.CreateSignalMapOutput,
         http_method = "POST",
         http_path = "/prod/signal-maps",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:createTags(input, options)
         output_schema = types.CreateTagsOutput,
         http_method = "POST",
         http_path = "/prod/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:deleteChannel(input, options)
         output_schema = types.DeleteChannelOutput,
         http_method = "DELETE",
         http_path = "/prod/channels/{ChannelId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:deleteChannelPlacementGroup(input, options)
         output_schema = types.DeleteChannelPlacementGroupOutput,
         http_method = "DELETE",
         http_path = "/prod/clusters/{ClusterId}/channelplacementgroups/{ChannelPlacementGroupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:deleteCloudWatchAlarmTemplate(input, options)
         output_schema = types.DeleteCloudWatchAlarmTemplateOutput,
         http_method = "DELETE",
         http_path = "/prod/cloudwatch-alarm-templates/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:deleteCloudWatchAlarmTemplateGroup(input, options)
         output_schema = types.DeleteCloudWatchAlarmTemplateGroupOutput,
         http_method = "DELETE",
         http_path = "/prod/cloudwatch-alarm-template-groups/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:deleteCluster(input, options)
         output_schema = types.DeleteClusterOutput,
         http_method = "DELETE",
         http_path = "/prod/clusters/{ClusterId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:deleteEventBridgeRuleTemplate(input, options)
         output_schema = types.DeleteEventBridgeRuleTemplateOutput,
         http_method = "DELETE",
         http_path = "/prod/eventbridge-rule-templates/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:deleteEventBridgeRuleTemplateGroup(input, options)
         output_schema = types.DeleteEventBridgeRuleTemplateGroupOutput,
         http_method = "DELETE",
         http_path = "/prod/eventbridge-rule-template-groups/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:deleteInput(input, options)
         output_schema = types.DeleteInputOutput,
         http_method = "DELETE",
         http_path = "/prod/inputs/{InputId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:deleteInputSecurityGroup(input, options)
         output_schema = types.DeleteInputSecurityGroupOutput,
         http_method = "DELETE",
         http_path = "/prod/inputSecurityGroups/{InputSecurityGroupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:deleteMultiplex(input, options)
         output_schema = types.DeleteMultiplexOutput,
         http_method = "DELETE",
         http_path = "/prod/multiplexes/{MultiplexId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:deleteMultiplexProgram(input, options)
         output_schema = types.DeleteMultiplexProgramOutput,
         http_method = "DELETE",
         http_path = "/prod/multiplexes/{MultiplexId}/programs/{ProgramName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:deleteNetwork(input, options)
         output_schema = types.DeleteNetworkOutput,
         http_method = "DELETE",
         http_path = "/prod/networks/{NetworkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:deleteNode(input, options)
         output_schema = types.DeleteNodeOutput,
         http_method = "DELETE",
         http_path = "/prod/clusters/{ClusterId}/nodes/{NodeId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:deleteReservation(input, options)
         output_schema = types.DeleteReservationOutput,
         http_method = "DELETE",
         http_path = "/prod/reservations/{ReservationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:deleteSchedule(input, options)
         output_schema = types.DeleteScheduleOutput,
         http_method = "DELETE",
         http_path = "/prod/channels/{ChannelId}/schedule",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:deleteSdiSource(input, options)
         output_schema = types.DeleteSdiSourceOutput,
         http_method = "DELETE",
         http_path = "/prod/sdiSources/{SdiSourceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:deleteSignalMap(input, options)
         output_schema = types.DeleteSignalMapOutput,
         http_method = "DELETE",
         http_path = "/prod/signal-maps/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:deleteTags(input, options)
         output_schema = types.DeleteTagsOutput,
         http_method = "DELETE",
         http_path = "/prod/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:describeAccountConfiguration(input, options)
         output_schema = types.DescribeAccountConfigurationOutput,
         http_method = "GET",
         http_path = "/prod/accountConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:describeChannel(input, options)
         output_schema = types.DescribeChannelOutput,
         http_method = "GET",
         http_path = "/prod/channels/{ChannelId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:describeChannelPlacementGroup(input, options)
         output_schema = types.DescribeChannelPlacementGroupOutput,
         http_method = "GET",
         http_path = "/prod/clusters/{ClusterId}/channelplacementgroups/{ChannelPlacementGroupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:describeCluster(input, options)
         output_schema = types.DescribeClusterOutput,
         http_method = "GET",
         http_path = "/prod/clusters/{ClusterId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:describeInput(input, options)
         output_schema = types.DescribeInputOutput,
         http_method = "GET",
         http_path = "/prod/inputs/{InputId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:describeInputDevice(input, options)
         output_schema = types.DescribeInputDeviceOutput,
         http_method = "GET",
         http_path = "/prod/inputDevices/{InputDeviceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:describeInputDeviceThumbnail(input, options)
         output_schema = types.DescribeInputDeviceThumbnailOutput,
         http_method = "GET",
         http_path = "/prod/inputDevices/{InputDeviceId}/thumbnailData",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:describeInputSecurityGroup(input, options)
         output_schema = types.DescribeInputSecurityGroupOutput,
         http_method = "GET",
         http_path = "/prod/inputSecurityGroups/{InputSecurityGroupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:describeMultiplex(input, options)
         output_schema = types.DescribeMultiplexOutput,
         http_method = "GET",
         http_path = "/prod/multiplexes/{MultiplexId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:describeMultiplexProgram(input, options)
         output_schema = types.DescribeMultiplexProgramOutput,
         http_method = "GET",
         http_path = "/prod/multiplexes/{MultiplexId}/programs/{ProgramName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:describeNetwork(input, options)
         output_schema = types.DescribeNetworkOutput,
         http_method = "GET",
         http_path = "/prod/networks/{NetworkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:describeNode(input, options)
         output_schema = types.DescribeNodeOutput,
         http_method = "GET",
         http_path = "/prod/clusters/{ClusterId}/nodes/{NodeId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:describeOffering(input, options)
         output_schema = types.DescribeOfferingOutput,
         http_method = "GET",
         http_path = "/prod/offerings/{OfferingId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:describeReservation(input, options)
         output_schema = types.DescribeReservationOutput,
         http_method = "GET",
         http_path = "/prod/reservations/{ReservationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:describeSchedule(input, options)
         output_schema = types.DescribeScheduleOutput,
         http_method = "GET",
         http_path = "/prod/channels/{ChannelId}/schedule",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:describeSdiSource(input, options)
         output_schema = types.DescribeSdiSourceOutput,
         http_method = "GET",
         http_path = "/prod/sdiSources/{SdiSourceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:describeThumbnails(input, options)
         output_schema = types.DescribeThumbnailsOutput,
         http_method = "GET",
         http_path = "/prod/channels/{ChannelId}/thumbnails",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:getCloudWatchAlarmTemplate(input, options)
         output_schema = types.GetCloudWatchAlarmTemplateOutput,
         http_method = "GET",
         http_path = "/prod/cloudwatch-alarm-templates/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:getCloudWatchAlarmTemplateGroup(input, options)
         output_schema = types.GetCloudWatchAlarmTemplateGroupOutput,
         http_method = "GET",
         http_path = "/prod/cloudwatch-alarm-template-groups/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:getEventBridgeRuleTemplate(input, options)
         output_schema = types.GetEventBridgeRuleTemplateOutput,
         http_method = "GET",
         http_path = "/prod/eventbridge-rule-templates/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:getEventBridgeRuleTemplateGroup(input, options)
         output_schema = types.GetEventBridgeRuleTemplateGroupOutput,
         http_method = "GET",
         http_path = "/prod/eventbridge-rule-template-groups/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:getSignalMap(input, options)
         output_schema = types.GetSignalMapOutput,
         http_method = "GET",
         http_path = "/prod/signal-maps/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:listAlerts(input, options)
         output_schema = types.ListAlertsOutput,
         http_method = "GET",
         http_path = "/prod/channels/{ChannelId}/alerts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:listChannelPlacementGroups(input, options)
         output_schema = types.ListChannelPlacementGroupsOutput,
         http_method = "GET",
         http_path = "/prod/clusters/{ClusterId}/channelplacementgroups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:listChannels(input, options)
         output_schema = types.ListChannelsOutput,
         http_method = "GET",
         http_path = "/prod/channels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:listCloudWatchAlarmTemplateGroups(input, options)
         output_schema = types.ListCloudWatchAlarmTemplateGroupsOutput,
         http_method = "GET",
         http_path = "/prod/cloudwatch-alarm-template-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:listCloudWatchAlarmTemplates(input, options)
         output_schema = types.ListCloudWatchAlarmTemplatesOutput,
         http_method = "GET",
         http_path = "/prod/cloudwatch-alarm-templates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:listClusterAlerts(input, options)
         output_schema = types.ListClusterAlertsOutput,
         http_method = "GET",
         http_path = "/prod/clusters/{ClusterId}/alerts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:listClusters(input, options)
         output_schema = types.ListClustersOutput,
         http_method = "GET",
         http_path = "/prod/clusters",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:listEventBridgeRuleTemplateGroups(input, options)
         output_schema = types.ListEventBridgeRuleTemplateGroupsOutput,
         http_method = "GET",
         http_path = "/prod/eventbridge-rule-template-groups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:listEventBridgeRuleTemplates(input, options)
         output_schema = types.ListEventBridgeRuleTemplatesOutput,
         http_method = "GET",
         http_path = "/prod/eventbridge-rule-templates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:listInputDevices(input, options)
         output_schema = types.ListInputDevicesOutput,
         http_method = "GET",
         http_path = "/prod/inputDevices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:listInputDeviceTransfers(input, options)
         output_schema = types.ListInputDeviceTransfersOutput,
         http_method = "GET",
         http_path = "/prod/inputDeviceTransfers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:listInputs(input, options)
         output_schema = types.ListInputsOutput,
         http_method = "GET",
         http_path = "/prod/inputs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:listInputSecurityGroups(input, options)
         output_schema = types.ListInputSecurityGroupsOutput,
         http_method = "GET",
         http_path = "/prod/inputSecurityGroups",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:listMultiplexAlerts(input, options)
         output_schema = types.ListMultiplexAlertsOutput,
         http_method = "GET",
         http_path = "/prod/multiplexes/{MultiplexId}/alerts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:listMultiplexes(input, options)
         output_schema = types.ListMultiplexesOutput,
         http_method = "GET",
         http_path = "/prod/multiplexes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:listMultiplexPrograms(input, options)
         output_schema = types.ListMultiplexProgramsOutput,
         http_method = "GET",
         http_path = "/prod/multiplexes/{MultiplexId}/programs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:listNetworks(input, options)
         output_schema = types.ListNetworksOutput,
         http_method = "GET",
         http_path = "/prod/networks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:listNodes(input, options)
         output_schema = types.ListNodesOutput,
         http_method = "GET",
         http_path = "/prod/clusters/{ClusterId}/nodes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:listOfferings(input, options)
         output_schema = types.ListOfferingsOutput,
         http_method = "GET",
         http_path = "/prod/offerings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:listReservations(input, options)
         output_schema = types.ListReservationsOutput,
         http_method = "GET",
         http_path = "/prod/reservations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -890,6 +1158,9 @@ function Client:listSdiSources(input, options)
         output_schema = types.ListSdiSourcesOutput,
         http_method = "GET",
         http_path = "/prod/sdiSources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -900,6 +1171,9 @@ function Client:listSignalMaps(input, options)
         output_schema = types.ListSignalMapsOutput,
         http_method = "GET",
         http_path = "/prod/signal-maps",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -910,6 +1184,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/prod/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -920,6 +1197,9 @@ function Client:listVersions(input, options)
         output_schema = types.ListVersionsOutput,
         http_method = "GET",
         http_path = "/prod/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -930,6 +1210,9 @@ function Client:purchaseOffering(input, options)
         output_schema = types.PurchaseOfferingOutput,
         http_method = "POST",
         http_path = "/prod/offerings/{OfferingId}/purchase",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -940,6 +1223,9 @@ function Client:rebootInputDevice(input, options)
         output_schema = types.RebootInputDeviceOutput,
         http_method = "POST",
         http_path = "/prod/inputDevices/{InputDeviceId}/reboot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -950,6 +1236,9 @@ function Client:rejectInputDeviceTransfer(input, options)
         output_schema = types.RejectInputDeviceTransferOutput,
         http_method = "POST",
         http_path = "/prod/inputDevices/{InputDeviceId}/reject",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -960,6 +1249,9 @@ function Client:restartChannelPipelines(input, options)
         output_schema = types.RestartChannelPipelinesOutput,
         http_method = "POST",
         http_path = "/prod/channels/{ChannelId}/restartChannelPipelines",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -970,6 +1262,9 @@ function Client:startChannel(input, options)
         output_schema = types.StartChannelOutput,
         http_method = "POST",
         http_path = "/prod/channels/{ChannelId}/start",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -980,6 +1275,9 @@ function Client:startDeleteMonitorDeployment(input, options)
         output_schema = types.StartDeleteMonitorDeploymentOutput,
         http_method = "DELETE",
         http_path = "/prod/signal-maps/{Identifier}/monitor-deployment",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -990,6 +1288,9 @@ function Client:startInputDevice(input, options)
         output_schema = types.StartInputDeviceOutput,
         http_method = "POST",
         http_path = "/prod/inputDevices/{InputDeviceId}/start",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1000,6 +1301,9 @@ function Client:startInputDeviceMaintenanceWindow(input, options)
         output_schema = types.StartInputDeviceMaintenanceWindowOutput,
         http_method = "POST",
         http_path = "/prod/inputDevices/{InputDeviceId}/startInputDeviceMaintenanceWindow",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1010,6 +1314,9 @@ function Client:startMonitorDeployment(input, options)
         output_schema = types.StartMonitorDeploymentOutput,
         http_method = "POST",
         http_path = "/prod/signal-maps/{Identifier}/monitor-deployment",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1020,6 +1327,9 @@ function Client:startMultiplex(input, options)
         output_schema = types.StartMultiplexOutput,
         http_method = "POST",
         http_path = "/prod/multiplexes/{MultiplexId}/start",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1030,6 +1340,9 @@ function Client:startUpdateSignalMap(input, options)
         output_schema = types.StartUpdateSignalMapOutput,
         http_method = "PATCH",
         http_path = "/prod/signal-maps/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1040,6 +1353,9 @@ function Client:stopChannel(input, options)
         output_schema = types.StopChannelOutput,
         http_method = "POST",
         http_path = "/prod/channels/{ChannelId}/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1050,6 +1366,9 @@ function Client:stopInputDevice(input, options)
         output_schema = types.StopInputDeviceOutput,
         http_method = "POST",
         http_path = "/prod/inputDevices/{InputDeviceId}/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1060,6 +1379,9 @@ function Client:stopMultiplex(input, options)
         output_schema = types.StopMultiplexOutput,
         http_method = "POST",
         http_path = "/prod/multiplexes/{MultiplexId}/stop",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1070,6 +1392,9 @@ function Client:transferInputDevice(input, options)
         output_schema = types.TransferInputDeviceOutput,
         http_method = "POST",
         http_path = "/prod/inputDevices/{InputDeviceId}/transfer",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1080,6 +1405,9 @@ function Client:updateAccountConfiguration(input, options)
         output_schema = types.UpdateAccountConfigurationOutput,
         http_method = "PUT",
         http_path = "/prod/accountConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1090,6 +1418,9 @@ function Client:updateChannel(input, options)
         output_schema = types.UpdateChannelOutput,
         http_method = "PUT",
         http_path = "/prod/channels/{ChannelId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1100,6 +1431,9 @@ function Client:updateChannelClass(input, options)
         output_schema = types.UpdateChannelClassOutput,
         http_method = "PUT",
         http_path = "/prod/channels/{ChannelId}/channelClass",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1110,6 +1444,9 @@ function Client:updateChannelPlacementGroup(input, options)
         output_schema = types.UpdateChannelPlacementGroupOutput,
         http_method = "PUT",
         http_path = "/prod/clusters/{ClusterId}/channelplacementgroups/{ChannelPlacementGroupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1120,6 +1457,9 @@ function Client:updateCloudWatchAlarmTemplate(input, options)
         output_schema = types.UpdateCloudWatchAlarmTemplateOutput,
         http_method = "PATCH",
         http_path = "/prod/cloudwatch-alarm-templates/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1130,6 +1470,9 @@ function Client:updateCloudWatchAlarmTemplateGroup(input, options)
         output_schema = types.UpdateCloudWatchAlarmTemplateGroupOutput,
         http_method = "PATCH",
         http_path = "/prod/cloudwatch-alarm-template-groups/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1140,6 +1483,9 @@ function Client:updateCluster(input, options)
         output_schema = types.UpdateClusterOutput,
         http_method = "PUT",
         http_path = "/prod/clusters/{ClusterId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1150,6 +1496,9 @@ function Client:updateEventBridgeRuleTemplate(input, options)
         output_schema = types.UpdateEventBridgeRuleTemplateOutput,
         http_method = "PATCH",
         http_path = "/prod/eventbridge-rule-templates/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1160,6 +1509,9 @@ function Client:updateEventBridgeRuleTemplateGroup(input, options)
         output_schema = types.UpdateEventBridgeRuleTemplateGroupOutput,
         http_method = "PATCH",
         http_path = "/prod/eventbridge-rule-template-groups/{Identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1170,6 +1522,9 @@ function Client:updateInput(input, options)
         output_schema = types.UpdateInputOutput,
         http_method = "PUT",
         http_path = "/prod/inputs/{InputId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1180,6 +1535,9 @@ function Client:updateInputDevice(input, options)
         output_schema = types.UpdateInputDeviceOutput,
         http_method = "PUT",
         http_path = "/prod/inputDevices/{InputDeviceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1190,6 +1548,9 @@ function Client:updateInputSecurityGroup(input, options)
         output_schema = types.UpdateInputSecurityGroupOutput,
         http_method = "PUT",
         http_path = "/prod/inputSecurityGroups/{InputSecurityGroupId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1200,6 +1561,9 @@ function Client:updateMultiplex(input, options)
         output_schema = types.UpdateMultiplexOutput,
         http_method = "PUT",
         http_path = "/prod/multiplexes/{MultiplexId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1210,6 +1574,9 @@ function Client:updateMultiplexProgram(input, options)
         output_schema = types.UpdateMultiplexProgramOutput,
         http_method = "PUT",
         http_path = "/prod/multiplexes/{MultiplexId}/programs/{ProgramName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1220,6 +1587,9 @@ function Client:updateNetwork(input, options)
         output_schema = types.UpdateNetworkOutput,
         http_method = "PUT",
         http_path = "/prod/networks/{NetworkId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1230,6 +1600,9 @@ function Client:updateNode(input, options)
         output_schema = types.UpdateNodeOutput,
         http_method = "PUT",
         http_path = "/prod/clusters/{ClusterId}/nodes/{NodeId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1240,6 +1613,9 @@ function Client:updateNodeState(input, options)
         output_schema = types.UpdateNodeStateOutput,
         http_method = "PUT",
         http_path = "/prod/clusters/{ClusterId}/nodes/{NodeId}/state",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1250,6 +1626,9 @@ function Client:updateReservation(input, options)
         output_schema = types.UpdateReservationOutput,
         http_method = "PUT",
         http_path = "/prod/reservations/{ReservationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -1260,6 +1639,9 @@ function Client:updateSdiSource(input, options)
         output_schema = types.UpdateSdiSourceOutput,
         http_method = "PUT",
         http_path = "/prod/sdiSources/{SdiSourceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

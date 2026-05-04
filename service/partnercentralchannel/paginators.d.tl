@@ -1,0 +1,10 @@
+local record M
+    pages_list_channel_handshakes: function(client: table, input: table): function(): table, table
+    items_list_channel_handshakes: function(client: table, input: table): function(): any
+    pages_list_program_management_accounts: function(client: table, input: table): function(): table, table
+    items_list_program_management_accounts: function(client: table, input: table): function(): any
+    pages_list_relationships: function(client: table, input: table): function(): table, table
+    items_list_relationships: function(client: table, input: table): function(): any
+end
+
+return M

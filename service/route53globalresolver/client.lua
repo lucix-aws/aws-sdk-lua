@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "EC2DNSGlobalResolverCustomerAPI"
-    cfg.signing_name = "route53globalresolver"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "route53globalresolver", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateHostedZone(input, options)
         output_schema = types.AssociateHostedZoneOutput,
         http_method = "POST",
         http_path = "/hosted-zone-associations/{hostedZoneId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchCreateFirewallRule(input, options)
         output_schema = types.BatchCreateFirewallRuleOutput,
         http_method = "POST",
         http_path = "/firewall-rules/batch-create",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchDeleteFirewallRule(input, options)
         output_schema = types.BatchDeleteFirewallRuleOutput,
         http_method = "POST",
         http_path = "/firewall-rules/batch-delete",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:batchUpdateFirewallRule(input, options)
         output_schema = types.BatchUpdateFirewallRuleOutput,
         http_method = "POST",
         http_path = "/firewall-rules/batch-update",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createAccessSource(input, options)
         output_schema = types.CreateAccessSourceOutput,
         http_method = "POST",
         http_path = "/access-sources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createAccessToken(input, options)
         output_schema = types.CreateAccessTokenOutput,
         http_method = "POST",
         http_path = "/tokens/{dnsViewId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createDNSView(input, options)
         output_schema = types.CreateDNSViewOutput,
         http_method = "POST",
         http_path = "/dns-views/{globalResolverId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createFirewallDomainList(input, options)
         output_schema = types.CreateFirewallDomainListOutput,
         http_method = "POST",
         http_path = "/firewall-domain-lists/{globalResolverId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createFirewallRule(input, options)
         output_schema = types.CreateFirewallRuleOutput,
         http_method = "POST",
         http_path = "/firewall-rules",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createGlobalResolver(input, options)
         output_schema = types.CreateGlobalResolverOutput,
         http_method = "POST",
         http_path = "/global-resolver",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteAccessSource(input, options)
         output_schema = types.DeleteAccessSourceOutput,
         http_method = "DELETE",
         http_path = "/access-sources/{accessSourceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteAccessToken(input, options)
         output_schema = types.DeleteAccessTokenOutput,
         http_method = "DELETE",
         http_path = "/tokens/{accessTokenId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteDNSView(input, options)
         output_schema = types.DeleteDNSViewOutput,
         http_method = "DELETE",
         http_path = "/dns-views/{dnsViewId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteFirewallDomainList(input, options)
         output_schema = types.DeleteFirewallDomainListOutput,
         http_method = "DELETE",
         http_path = "/firewall-domain-lists/{firewallDomainListId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteFirewallRule(input, options)
         output_schema = types.DeleteFirewallRuleOutput,
         http_method = "DELETE",
         http_path = "/firewall-rules/{firewallRuleId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteGlobalResolver(input, options)
         output_schema = types.DeleteGlobalResolverOutput,
         http_method = "DELETE",
         http_path = "/global-resolver/{globalResolverId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:disableDNSView(input, options)
         output_schema = types.DisableDNSViewOutput,
         http_method = "PATCH",
         http_path = "/dns-views/{dnsViewId}/disable",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:disassociateHostedZone(input, options)
         output_schema = types.DisassociateHostedZoneOutput,
         http_method = "DELETE",
         http_path = "/hosted-zone-associations/hosted-zone/{hostedZoneId}/resource-arn/{resourceArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:enableDNSView(input, options)
         output_schema = types.EnableDNSViewOutput,
         http_method = "PATCH",
         http_path = "/dns-views/{dnsViewId}/enable",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:getAccessSource(input, options)
         output_schema = types.GetAccessSourceOutput,
         http_method = "GET",
         http_path = "/access-sources/{accessSourceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:getAccessToken(input, options)
         output_schema = types.GetAccessTokenOutput,
         http_method = "GET",
         http_path = "/tokens/{accessTokenId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:getDNSView(input, options)
         output_schema = types.GetDNSViewOutput,
         http_method = "GET",
         http_path = "/dns-views/{dnsViewId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:getFirewallDomainList(input, options)
         output_schema = types.GetFirewallDomainListOutput,
         http_method = "GET",
         http_path = "/firewall-domain-lists/{firewallDomainListId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:getFirewallRule(input, options)
         output_schema = types.GetFirewallRuleOutput,
         http_method = "GET",
         http_path = "/firewall-rules/{firewallRuleId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:getGlobalResolver(input, options)
         output_schema = types.GetGlobalResolverOutput,
         http_method = "GET",
         http_path = "/global-resolver/{globalResolverId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:getHostedZoneAssociation(input, options)
         output_schema = types.GetHostedZoneAssociationOutput,
         http_method = "GET",
         http_path = "/hosted-zone-associations/{hostedZoneAssociationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:getManagedFirewallDomainList(input, options)
         output_schema = types.GetManagedFirewallDomainListOutput,
         http_method = "GET",
         http_path = "/managed-firewall-domain-lists/{managedFirewallDomainListId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:importFirewallDomains(input, options)
         output_schema = types.ImportFirewallDomainsOutput,
         http_method = "PATCH",
         http_path = "/firewall-domain-lists/{firewallDomainListId}/domains/s3_file_url",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listAccessSources(input, options)
         output_schema = types.ListAccessSourcesOutput,
         http_method = "GET",
         http_path = "/access-sources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:listAccessTokens(input, options)
         output_schema = types.ListAccessTokensOutput,
         http_method = "GET",
         http_path = "/tokens/dns-view/{dnsViewId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:listDNSViews(input, options)
         output_schema = types.ListDNSViewsOutput,
         http_method = "GET",
         http_path = "/dns-views/resolver/{globalResolverId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:listFirewallDomainLists(input, options)
         output_schema = types.ListFirewallDomainListsOutput,
         http_method = "GET",
         http_path = "/firewall-domain-lists",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:listFirewallDomains(input, options)
         output_schema = types.ListFirewallDomainsOutput,
         http_method = "GET",
         http_path = "/firewall-domain-lists/{firewallDomainListId}/domains",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:listFirewallRules(input, options)
         output_schema = types.ListFirewallRulesOutput,
         http_method = "GET",
         http_path = "/firewall-rules",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:listGlobalResolvers(input, options)
         output_schema = types.ListGlobalResolversOutput,
         http_method = "GET",
         http_path = "/global-resolver",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:listHostedZoneAssociations(input, options)
         output_schema = types.ListHostedZoneAssociationsOutput,
         http_method = "GET",
         http_path = "/hosted-zone-associations/resource-arn/{resourceArn+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:listManagedFirewallDomainLists(input, options)
         output_schema = types.ListManagedFirewallDomainListsOutput,
         http_method = "GET",
         http_path = "/list-managed-firewall-domain-lists/{managedFirewallDomainListType}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/get-all-tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tag-resource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "POST",
         http_path = "/untag-resource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:updateAccessSource(input, options)
         output_schema = types.UpdateAccessSourceOutput,
         http_method = "PATCH",
         http_path = "/access-sources/{accessSourceId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:updateAccessToken(input, options)
         output_schema = types.UpdateAccessTokenOutput,
         http_method = "PATCH",
         http_path = "/tokens/{accessTokenId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:updateDNSView(input, options)
         output_schema = types.UpdateDNSViewOutput,
         http_method = "PATCH",
         http_path = "/dns-views/{dnsViewId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:updateFirewallDomains(input, options)
         output_schema = types.UpdateFirewallDomainsOutput,
         http_method = "PATCH",
         http_path = "/firewall-domain-lists/{firewallDomainListId}/domains",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:updateFirewallRule(input, options)
         output_schema = types.UpdateFirewallRuleOutput,
         http_method = "PATCH",
         http_path = "/firewall-rules/{firewallRuleId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:updateGlobalResolver(input, options)
         output_schema = types.UpdateGlobalResolverOutput,
         http_method = "PATCH",
         http_path = "/global-resolver/{globalResolverId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:updateHostedZoneAssociation(input, options)
         output_schema = types.UpdateHostedZoneAssociationOutput,
         http_method = "PATCH",
         http_path = "/hosted-zone-associations/{hostedZoneAssociationId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

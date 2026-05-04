@@ -1,0 +1,95 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listChangesets.
+function M.pages_list_changesets(client, input)
+    return paginator.pages(client, "listChangesets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "changesets",
+    })
+end
+
+--- Returns an item iterator for listChangesets.
+function M.items_list_changesets(client, input)
+    return paginator.items(client, "listChangesets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "changesets",
+    })
+end
+
+--- Returns a page iterator for listDataViews.
+function M.pages_list_data_views(client, input)
+    return paginator.pages(client, "listDataViews", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "dataViews",
+    })
+end
+
+--- Returns an item iterator for listDataViews.
+function M.items_list_data_views(client, input)
+    return paginator.items(client, "listDataViews", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "dataViews",
+    })
+end
+
+--- Returns a page iterator for listDatasets.
+function M.pages_list_datasets(client, input)
+    return paginator.pages(client, "listDatasets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "datasets",
+    })
+end
+
+--- Returns an item iterator for listDatasets.
+function M.items_list_datasets(client, input)
+    return paginator.items(client, "listDatasets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "datasets",
+    })
+end
+
+--- Returns a page iterator for listPermissionGroups.
+function M.pages_list_permission_groups(client, input)
+    return paginator.pages(client, "listPermissionGroups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "permissionGroups",
+    })
+end
+
+--- Returns an item iterator for listPermissionGroups.
+function M.items_list_permission_groups(client, input)
+    return paginator.items(client, "listPermissionGroups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "permissionGroups",
+    })
+end
+
+--- Returns a page iterator for listUsers.
+function M.pages_list_users(client, input)
+    return paginator.pages(client, "listUsers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "users",
+    })
+end
+
+--- Returns an item iterator for listUsers.
+function M.items_list_users(client, input)
+    return paginator.items(client, "listUsers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "users",
+    })
+end
+
+return M

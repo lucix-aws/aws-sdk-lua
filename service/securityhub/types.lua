@@ -1014,9 +1014,15 @@ M.AutomationRulesConfig = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         CreatedBy = {
             type = "string",
@@ -1047,9 +1053,15 @@ M.AutomationRulesMetadata = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         CreatedBy = {
             type = "string",
@@ -1089,9 +1101,15 @@ M.AutomationRulesMetadataV2 = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -13242,6 +13260,9 @@ M.ConfigurationPolicyAssociationSummary = {
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         AssociationStatus = {
             type = "string",
@@ -13529,6 +13550,9 @@ M.StandardsControlAssociationDetail = {
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedReason = {
             type = "string",
@@ -14330,6 +14354,9 @@ M.ConfigurationPolicySummary = {
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ServiceEnabled = {
             type = "boolean",
@@ -14394,6 +14421,7 @@ M.ConnectorSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -14473,6 +14501,9 @@ M.CreateAggregatorV2Input = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -14668,9 +14699,15 @@ M.CreateConfigurationPolicyOutput = {
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ConfigurationPolicy = M.Policy,
     },
@@ -14736,6 +14773,9 @@ M.CreateConnectorV2Input = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -14888,6 +14928,9 @@ M.CreateTicketV2Input = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         Mode = {
             type = "string",
@@ -15500,6 +15543,9 @@ M.StandardsControl = {
         },
         ControlStatusUpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ControlId = {
             type = "string",
@@ -15762,6 +15808,9 @@ M.FindingHistoryRecord = {
         FindingIdentifier = M.AwsSecurityFindingIdentifier,
         UpdateTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         FindingCreated = {
             type = "boolean",
@@ -15825,6 +15874,9 @@ M.Invitation = {
         },
         InvitedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         MemberStatus = {
             type = "string",
@@ -15914,9 +15966,15 @@ M.GetConfigurationPolicyOutput = {
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ConfigurationPolicy = M.Policy,
     },
@@ -15948,6 +16006,9 @@ M.GetConfigurationPolicyAssociationOutput = {
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         AssociationStatus = {
             type = "string",
@@ -15987,6 +16048,7 @@ M.HealthCheck = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -16070,12 +16132,14 @@ M.GetConnectorV2Output = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         LastUpdatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         Health = setmetatable({ traits = {
@@ -16156,9 +16220,15 @@ M.GetFindingHistoryInput = {
         } }, { __index = M.AwsSecurityFindingIdentifier }),
         StartTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         EndTime = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         NextToken = {
             type = "string",
@@ -16396,6 +16466,7 @@ M.TrendsMetricsResult = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         TrendsValues = setmetatable({ traits = {
@@ -16620,9 +16691,15 @@ M.Member = {
         },
         InvitedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -16791,6 +16868,7 @@ M.ResourcesTrendsMetricsResult = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         TrendsValues = setmetatable({ traits = {
@@ -17569,6 +17647,9 @@ M.StandardsControlAssociationSummary = {
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedReason = {
             type = "string",
@@ -17717,6 +17798,9 @@ M.StartConfigurationPolicyAssociationOutput = {
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         AssociationStatus = {
             type = "string",
@@ -17903,9 +17987,15 @@ M.UpdateConfigurationPolicyOutput = {
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         ConfigurationPolicy = M.Policy,
     },
@@ -18267,12 +18357,14 @@ M.GetFindingsTrendsV2Input = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         EndTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         NextToken = {
@@ -18310,12 +18402,14 @@ M.GetResourcesTrendsV2Input = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         EndTime = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         NextToken = {
@@ -18412,6 +18506,9 @@ M.CreateAutomationRuleV2Input = {
         },
         ClientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -18444,9 +18541,15 @@ M.GetAutomationRuleV2Output = {
         },
         CreatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         UpdatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }

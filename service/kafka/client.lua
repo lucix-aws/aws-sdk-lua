@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "Kafka"
-    cfg.signing_name = "kafka"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "kafka", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:batchAssociateScramSecret(input, options)
         output_schema = types.BatchAssociateScramSecretOutput,
         http_method = "POST",
         http_path = "/v1/clusters/{ClusterArn}/scram-secrets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchDisassociateScramSecret(input, options)
         output_schema = types.BatchDisassociateScramSecretOutput,
         http_method = "PATCH",
         http_path = "/v1/clusters/{ClusterArn}/scram-secrets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createCluster(input, options)
         output_schema = types.CreateClusterOutput,
         http_method = "POST",
         http_path = "/v1/clusters",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createClusterV2(input, options)
         output_schema = types.CreateClusterV2Output,
         http_method = "POST",
         http_path = "/api/v2/clusters",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createConfiguration(input, options)
         output_schema = types.CreateConfigurationOutput,
         http_method = "POST",
         http_path = "/v1/configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createReplicator(input, options)
         output_schema = types.CreateReplicatorOutput,
         http_method = "POST",
         http_path = "/replication/v1/replicators",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createTopic(input, options)
         output_schema = types.CreateTopicOutput,
         http_method = "POST",
         http_path = "/v1/clusters/{ClusterArn}/topics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createVpcConnection(input, options)
         output_schema = types.CreateVpcConnectionOutput,
         http_method = "POST",
         http_path = "/v1/vpc-connection",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteCluster(input, options)
         output_schema = types.DeleteClusterOutput,
         http_method = "DELETE",
         http_path = "/v1/clusters/{ClusterArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteClusterPolicy(input, options)
         output_schema = types.DeleteClusterPolicyOutput,
         http_method = "DELETE",
         http_path = "/v1/clusters/{ClusterArn}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteConfiguration(input, options)
         output_schema = types.DeleteConfigurationOutput,
         http_method = "DELETE",
         http_path = "/v1/configurations/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteReplicator(input, options)
         output_schema = types.DeleteReplicatorOutput,
         http_method = "DELETE",
         http_path = "/replication/v1/replicators/{ReplicatorArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteTopic(input, options)
         output_schema = types.DeleteTopicOutput,
         http_method = "DELETE",
         http_path = "/v1/clusters/{ClusterArn}/topics/{TopicName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteVpcConnection(input, options)
         output_schema = types.DeleteVpcConnectionOutput,
         http_method = "DELETE",
         http_path = "/v1/vpc-connection/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:describeCluster(input, options)
         output_schema = types.DescribeClusterOutput,
         http_method = "GET",
         http_path = "/v1/clusters/{ClusterArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:describeClusterOperation(input, options)
         output_schema = types.DescribeClusterOperationOutput,
         http_method = "GET",
         http_path = "/v1/operations/{ClusterOperationArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:describeClusterOperationV2(input, options)
         output_schema = types.DescribeClusterOperationV2Output,
         http_method = "GET",
         http_path = "/api/v2/operations/{ClusterOperationArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:describeClusterV2(input, options)
         output_schema = types.DescribeClusterV2Output,
         http_method = "GET",
         http_path = "/api/v2/clusters/{ClusterArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:describeConfiguration(input, options)
         output_schema = types.DescribeConfigurationOutput,
         http_method = "GET",
         http_path = "/v1/configurations/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:describeConfigurationRevision(input, options)
         output_schema = types.DescribeConfigurationRevisionOutput,
         http_method = "GET",
         http_path = "/v1/configurations/{Arn}/revisions/{Revision}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:describeReplicator(input, options)
         output_schema = types.DescribeReplicatorOutput,
         http_method = "GET",
         http_path = "/replication/v1/replicators/{ReplicatorArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:describeTopic(input, options)
         output_schema = types.DescribeTopicOutput,
         http_method = "GET",
         http_path = "/v1/clusters/{ClusterArn}/topics/{TopicName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:describeTopicPartitions(input, options)
         output_schema = types.DescribeTopicPartitionsOutput,
         http_method = "GET",
         http_path = "/v1/clusters/{ClusterArn}/topics/{TopicName}/partitions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:describeVpcConnection(input, options)
         output_schema = types.DescribeVpcConnectionOutput,
         http_method = "GET",
         http_path = "/v1/vpc-connection/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:getBootstrapBrokers(input, options)
         output_schema = types.GetBootstrapBrokersOutput,
         http_method = "GET",
         http_path = "/v1/clusters/{ClusterArn}/bootstrap-brokers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:getClusterPolicy(input, options)
         output_schema = types.GetClusterPolicyOutput,
         http_method = "GET",
         http_path = "/v1/clusters/{ClusterArn}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:getCompatibleKafkaVersions(input, options)
         output_schema = types.GetCompatibleKafkaVersionsOutput,
         http_method = "GET",
         http_path = "/v1/compatible-kafka-versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:listClientVpcConnections(input, options)
         output_schema = types.ListClientVpcConnectionsOutput,
         http_method = "GET",
         http_path = "/v1/clusters/{ClusterArn}/client-vpc-connections",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listClusterOperations(input, options)
         output_schema = types.ListClusterOperationsOutput,
         http_method = "GET",
         http_path = "/v1/clusters/{ClusterArn}/operations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:listClusterOperationsV2(input, options)
         output_schema = types.ListClusterOperationsV2Output,
         http_method = "GET",
         http_path = "/api/v2/clusters/{ClusterArn}/operations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:listClusters(input, options)
         output_schema = types.ListClustersOutput,
         http_method = "GET",
         http_path = "/v1/clusters",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:listClustersV2(input, options)
         output_schema = types.ListClustersV2Output,
         http_method = "GET",
         http_path = "/api/v2/clusters",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:listConfigurationRevisions(input, options)
         output_schema = types.ListConfigurationRevisionsOutput,
         http_method = "GET",
         http_path = "/v1/configurations/{Arn}/revisions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:listConfigurations(input, options)
         output_schema = types.ListConfigurationsOutput,
         http_method = "GET",
         http_path = "/v1/configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:listKafkaVersions(input, options)
         output_schema = types.ListKafkaVersionsOutput,
         http_method = "GET",
         http_path = "/v1/kafka-versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:listNodes(input, options)
         output_schema = types.ListNodesOutput,
         http_method = "GET",
         http_path = "/v1/clusters/{ClusterArn}/nodes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:listReplicators(input, options)
         output_schema = types.ListReplicatorsOutput,
         http_method = "GET",
         http_path = "/replication/v1/replicators",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:listScramSecrets(input, options)
         output_schema = types.ListScramSecretsOutput,
         http_method = "GET",
         http_path = "/v1/clusters/{ClusterArn}/scram-secrets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/v1/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:listTopics(input, options)
         output_schema = types.ListTopicsOutput,
         http_method = "GET",
         http_path = "/v1/clusters/{ClusterArn}/topics",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:listVpcConnections(input, options)
         output_schema = types.ListVpcConnectionsOutput,
         http_method = "GET",
         http_path = "/v1/vpc-connections",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:putClusterPolicy(input, options)
         output_schema = types.PutClusterPolicyOutput,
         http_method = "PUT",
         http_path = "/v1/clusters/{ClusterArn}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:rebootBroker(input, options)
         output_schema = types.RebootBrokerOutput,
         http_method = "PUT",
         http_path = "/v1/clusters/{ClusterArn}/reboot-broker",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:rejectClientVpcConnection(input, options)
         output_schema = types.RejectClientVpcConnectionOutput,
         http_method = "PUT",
         http_path = "/v1/clusters/{ClusterArn}/client-vpc-connection",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/v1/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/v1/tags/{ResourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:updateBrokerCount(input, options)
         output_schema = types.UpdateBrokerCountOutput,
         http_method = "PUT",
         http_path = "/v1/clusters/{ClusterArn}/nodes/count",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:updateBrokerStorage(input, options)
         output_schema = types.UpdateBrokerStorageOutput,
         http_method = "PUT",
         http_path = "/v1/clusters/{ClusterArn}/nodes/storage",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:updateBrokerType(input, options)
         output_schema = types.UpdateBrokerTypeOutput,
         http_method = "PUT",
         http_path = "/v1/clusters/{ClusterArn}/nodes/type",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:updateClusterConfiguration(input, options)
         output_schema = types.UpdateClusterConfigurationOutput,
         http_method = "PUT",
         http_path = "/v1/clusters/{ClusterArn}/configuration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:updateClusterKafkaVersion(input, options)
         output_schema = types.UpdateClusterKafkaVersionOutput,
         http_method = "PUT",
         http_path = "/v1/clusters/{ClusterArn}/version",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:updateConfiguration(input, options)
         output_schema = types.UpdateConfigurationOutput,
         http_method = "PUT",
         http_path = "/v1/configurations/{Arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:updateConnectivity(input, options)
         output_schema = types.UpdateConnectivityOutput,
         http_method = "PUT",
         http_path = "/v1/clusters/{ClusterArn}/connectivity",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:updateMonitoring(input, options)
         output_schema = types.UpdateMonitoringOutput,
         http_method = "PUT",
         http_path = "/v1/clusters/{ClusterArn}/monitoring",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:updateRebalancing(input, options)
         output_schema = types.UpdateRebalancingOutput,
         http_method = "PUT",
         http_path = "/v1/clusters/{ClusterArn}/rebalancing",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:updateReplicationInfo(input, options)
         output_schema = types.UpdateReplicationInfoOutput,
         http_method = "PUT",
         http_path = "/replication/v1/replicators/{ReplicatorArn}/replication-info",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:updateSecurity(input, options)
         output_schema = types.UpdateSecurityOutput,
         http_method = "PATCH",
         http_path = "/v1/clusters/{ClusterArn}/security",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:updateStorage(input, options)
         output_schema = types.UpdateStorageOutput,
         http_method = "PUT",
         http_path = "/v1/clusters/{ClusterArn}/storage",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:updateTopic(input, options)
         output_schema = types.UpdateTopicOutput,
         http_method = "PUT",
         http_path = "/v1/clusters/{ClusterArn}/topics/{TopicName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

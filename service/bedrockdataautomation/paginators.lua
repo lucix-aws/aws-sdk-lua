@@ -1,0 +1,95 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listBlueprints.
+function M.pages_list_blueprints(client, input)
+    return paginator.pages(client, "listBlueprints", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "blueprints",
+    })
+end
+
+--- Returns an item iterator for listBlueprints.
+function M.items_list_blueprints(client, input)
+    return paginator.items(client, "listBlueprints", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "blueprints",
+    })
+end
+
+--- Returns a page iterator for listDataAutomationLibraries.
+function M.pages_list_data_automation_libraries(client, input)
+    return paginator.pages(client, "listDataAutomationLibraries", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "libraries",
+    })
+end
+
+--- Returns an item iterator for listDataAutomationLibraries.
+function M.items_list_data_automation_libraries(client, input)
+    return paginator.items(client, "listDataAutomationLibraries", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "libraries",
+    })
+end
+
+--- Returns a page iterator for listDataAutomationLibraryEntities.
+function M.pages_list_data_automation_library_entities(client, input)
+    return paginator.pages(client, "listDataAutomationLibraryEntities", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "entities",
+    })
+end
+
+--- Returns an item iterator for listDataAutomationLibraryEntities.
+function M.items_list_data_automation_library_entities(client, input)
+    return paginator.items(client, "listDataAutomationLibraryEntities", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "entities",
+    })
+end
+
+--- Returns a page iterator for listDataAutomationLibraryIngestionJobs.
+function M.pages_list_data_automation_library_ingestion_jobs(client, input)
+    return paginator.pages(client, "listDataAutomationLibraryIngestionJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "jobs",
+    })
+end
+
+--- Returns an item iterator for listDataAutomationLibraryIngestionJobs.
+function M.items_list_data_automation_library_ingestion_jobs(client, input)
+    return paginator.items(client, "listDataAutomationLibraryIngestionJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "jobs",
+    })
+end
+
+--- Returns a page iterator for listDataAutomationProjects.
+function M.pages_list_data_automation_projects(client, input)
+    return paginator.pages(client, "listDataAutomationProjects", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "projects",
+    })
+end
+
+--- Returns an item iterator for listDataAutomationProjects.
+function M.items_list_data_automation_projects(client, input)
+    return paginator.items(client, "listDataAutomationProjects", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "projects",
+    })
+end
+
+return M

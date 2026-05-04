@@ -1,0 +1,149 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for listBlockedGuestUsers.
+function M.pages_list_blocked_guest_users(client, input)
+    return paginator.pages(client, "listBlockedGuestUsers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "blocklist",
+    })
+end
+
+--- Returns an item iterator for listBlockedGuestUsers.
+function M.items_list_blocked_guest_users(client, input)
+    return paginator.items(client, "listBlockedGuestUsers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "blocklist",
+    })
+end
+
+--- Returns a page iterator for listBots.
+function M.pages_list_bots(client, input)
+    return paginator.pages(client, "listBots", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "bots",
+    })
+end
+
+--- Returns an item iterator for listBots.
+function M.items_list_bots(client, input)
+    return paginator.items(client, "listBots", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "bots",
+    })
+end
+
+--- Returns a page iterator for listDevicesForUser.
+function M.pages_list_devices_for_user(client, input)
+    return paginator.pages(client, "listDevicesForUser", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "devices",
+    })
+end
+
+--- Returns an item iterator for listDevicesForUser.
+function M.items_list_devices_for_user(client, input)
+    return paginator.items(client, "listDevicesForUser", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "devices",
+    })
+end
+
+--- Returns a page iterator for listGuestUsers.
+function M.pages_list_guest_users(client, input)
+    return paginator.pages(client, "listGuestUsers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "guestlist",
+    })
+end
+
+--- Returns an item iterator for listGuestUsers.
+function M.items_list_guest_users(client, input)
+    return paginator.items(client, "listGuestUsers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "guestlist",
+    })
+end
+
+--- Returns a page iterator for listNetworks.
+function M.pages_list_networks(client, input)
+    return paginator.pages(client, "listNetworks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "networks",
+    })
+end
+
+--- Returns an item iterator for listNetworks.
+function M.items_list_networks(client, input)
+    return paginator.items(client, "listNetworks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "networks",
+    })
+end
+
+--- Returns a page iterator for listSecurityGroupUsers.
+function M.pages_list_security_group_users(client, input)
+    return paginator.pages(client, "listSecurityGroupUsers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "users",
+    })
+end
+
+--- Returns an item iterator for listSecurityGroupUsers.
+function M.items_list_security_group_users(client, input)
+    return paginator.items(client, "listSecurityGroupUsers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "users",
+    })
+end
+
+--- Returns a page iterator for listSecurityGroups.
+function M.pages_list_security_groups(client, input)
+    return paginator.pages(client, "listSecurityGroups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "securityGroups",
+    })
+end
+
+--- Returns an item iterator for listSecurityGroups.
+function M.items_list_security_groups(client, input)
+    return paginator.items(client, "listSecurityGroups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "securityGroups",
+    })
+end
+
+--- Returns a page iterator for listUsers.
+function M.pages_list_users(client, input)
+    return paginator.pages(client, "listUsers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "users",
+    })
+end
+
+--- Returns an item iterator for listUsers.
+function M.items_list_users(client, input)
+    return paginator.items(client, "listUsers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "users",
+    })
+end
+
+return M

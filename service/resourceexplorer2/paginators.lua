@@ -1,0 +1,203 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for getResourceExplorerSetup.
+function M.pages_get_resource_explorer_setup(client, input)
+    return paginator.pages(client, "getResourceExplorerSetup", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Regions",
+    })
+end
+
+--- Returns an item iterator for getResourceExplorerSetup.
+function M.items_get_resource_explorer_setup(client, input)
+    return paginator.items(client, "getResourceExplorerSetup", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Regions",
+    })
+end
+
+--- Returns a page iterator for listIndexes.
+function M.pages_list_indexes(client, input)
+    return paginator.pages(client, "listIndexes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Indexes",
+    })
+end
+
+--- Returns an item iterator for listIndexes.
+function M.items_list_indexes(client, input)
+    return paginator.items(client, "listIndexes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Indexes",
+    })
+end
+
+--- Returns a page iterator for listIndexesForMembers.
+function M.pages_list_indexes_for_members(client, input)
+    return paginator.pages(client, "listIndexesForMembers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Indexes",
+    })
+end
+
+--- Returns an item iterator for listIndexesForMembers.
+function M.items_list_indexes_for_members(client, input)
+    return paginator.items(client, "listIndexesForMembers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Indexes",
+    })
+end
+
+--- Returns a page iterator for listManagedViews.
+function M.pages_list_managed_views(client, input)
+    return paginator.pages(client, "listManagedViews", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ManagedViews",
+    })
+end
+
+--- Returns an item iterator for listManagedViews.
+function M.items_list_managed_views(client, input)
+    return paginator.items(client, "listManagedViews", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ManagedViews",
+    })
+end
+
+--- Returns a page iterator for listResources.
+function M.pages_list_resources(client, input)
+    return paginator.pages(client, "listResources", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Resources",
+    })
+end
+
+--- Returns an item iterator for listResources.
+function M.items_list_resources(client, input)
+    return paginator.items(client, "listResources", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Resources",
+    })
+end
+
+--- Returns a page iterator for listServiceIndexes.
+function M.pages_list_service_indexes(client, input)
+    return paginator.pages(client, "listServiceIndexes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Indexes",
+    })
+end
+
+--- Returns an item iterator for listServiceIndexes.
+function M.items_list_service_indexes(client, input)
+    return paginator.items(client, "listServiceIndexes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Indexes",
+    })
+end
+
+--- Returns a page iterator for listServiceViews.
+function M.pages_list_service_views(client, input)
+    return paginator.pages(client, "listServiceViews", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ServiceViews",
+    })
+end
+
+--- Returns an item iterator for listServiceViews.
+function M.items_list_service_views(client, input)
+    return paginator.items(client, "listServiceViews", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ServiceViews",
+    })
+end
+
+--- Returns a page iterator for listStreamingAccessForServices.
+function M.pages_list_streaming_access_for_services(client, input)
+    return paginator.pages(client, "listStreamingAccessForServices", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "StreamingAccessForServices",
+    })
+end
+
+--- Returns an item iterator for listStreamingAccessForServices.
+function M.items_list_streaming_access_for_services(client, input)
+    return paginator.items(client, "listStreamingAccessForServices", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "StreamingAccessForServices",
+    })
+end
+
+--- Returns a page iterator for listSupportedResourceTypes.
+function M.pages_list_supported_resource_types(client, input)
+    return paginator.pages(client, "listSupportedResourceTypes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResourceTypes",
+    })
+end
+
+--- Returns an item iterator for listSupportedResourceTypes.
+function M.items_list_supported_resource_types(client, input)
+    return paginator.items(client, "listSupportedResourceTypes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResourceTypes",
+    })
+end
+
+--- Returns a page iterator for listViews.
+function M.pages_list_views(client, input)
+    return paginator.pages(client, "listViews", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Views",
+    })
+end
+
+--- Returns an item iterator for listViews.
+function M.items_list_views(client, input)
+    return paginator.items(client, "listViews", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Views",
+    })
+end
+
+--- Returns a page iterator for search.
+function M.pages_search(client, input)
+    return paginator.pages(client, "search", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Resources",
+    })
+end
+
+--- Returns an item iterator for search.
+function M.items_search(client, input)
+    return paginator.items(client, "search", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Resources",
+    })
+end
+
+return M

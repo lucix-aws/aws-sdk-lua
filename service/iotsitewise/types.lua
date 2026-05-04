@@ -1438,6 +1438,9 @@ M.AssociateAssetsInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1645,6 +1648,9 @@ M.AssociateTimeSeriesToAssetPropertyInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1677,6 +1683,9 @@ M.BatchAssociateProjectAssetsInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1710,6 +1719,9 @@ M.BatchDisassociateProjectAssetsInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2381,6 +2393,9 @@ M.CreateAccessPolicyInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -2431,6 +2446,9 @@ M.CreateAssetInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -2499,6 +2517,9 @@ M.CreateAssetModelInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -2565,6 +2586,9 @@ M.CreateAssetModelCompositeModelInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         composedAssetModelId = {
             type = "string",
@@ -2888,6 +2912,9 @@ M.CreateDashboardInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -2987,6 +3014,9 @@ M.CreateDatasetInput = {
         } }, { __index = M.DatasetSource }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -3190,6 +3220,9 @@ M.CreatePortalInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         portalLogoImageFile = M.ImageFile,
         roleArn = {
@@ -3314,6 +3347,9 @@ M.CreateProjectInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -3355,6 +3391,7 @@ M.DeleteAccessPolicyInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -3378,6 +3415,7 @@ M.DeleteAssetInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -3406,6 +3444,7 @@ M.DeleteAssetModelInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
         ifMatch = {
@@ -3459,6 +3498,7 @@ M.DeleteAssetModelCompositeModelInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
         ifMatch = {
@@ -3512,6 +3552,7 @@ M.DeleteAssetModelInterfaceRelationshipInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -3558,6 +3599,7 @@ M.DeleteComputationModelInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -3586,6 +3628,7 @@ M.DeleteDashboardInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -3609,6 +3652,7 @@ M.DeleteDatasetInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -3654,6 +3698,7 @@ M.DeletePortalInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -3682,6 +3727,7 @@ M.DeleteProjectInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -3714,6 +3760,9 @@ M.DeleteTimeSeriesInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -5382,6 +5431,9 @@ M.DisassociateAssetsInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -5416,6 +5468,9 @@ M.DisassociateTimeSeriesFromAssetPropertyInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -5475,6 +5530,9 @@ M.ExecuteQueryInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -7593,6 +7651,9 @@ M.PutAssetModelInterfaceRelationshipInput = {
         } }, { __index = M.PropertyMappingConfiguration }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -7808,6 +7869,9 @@ M.UpdateAccessPolicyInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -7837,6 +7901,9 @@ M.UpdateAssetInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         assetDescription = {
             type = "string",
@@ -7889,6 +7956,9 @@ M.UpdateAssetModelInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         ifMatch = {
             type = "string",
@@ -7951,6 +8021,9 @@ M.UpdateAssetModelCompositeModelInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         assetModelCompositeModelProperties = {
             type = "list",
@@ -8018,6 +8091,9 @@ M.UpdateAssetPropertyInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         propertyUnit = {
             type = "string",
@@ -8065,6 +8141,9 @@ M.UpdateDashboardInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -8097,6 +8176,9 @@ M.UpdateDatasetInput = {
         } }, { __index = M.DatasetSource }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -8224,6 +8306,9 @@ M.UpdatePortalInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         notificationSenderEmail = {
             type = "string",
@@ -8270,6 +8355,9 @@ M.UpdateProjectInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -8315,6 +8403,9 @@ M.CreateComputationModelInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         tags = {
             type = "map",
@@ -8422,6 +8513,9 @@ M.UpdateComputationModelInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

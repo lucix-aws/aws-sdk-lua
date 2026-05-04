@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSBatchV20160810"
-    cfg.signing_name = "batch"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "batch", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:cancelJob(input, options)
         output_schema = types.CancelJobOutput,
         http_method = "POST",
         http_path = "/v1/canceljob",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createComputeEnvironment(input, options)
         output_schema = types.CreateComputeEnvironmentOutput,
         http_method = "POST",
         http_path = "/v1/createcomputeenvironment",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createConsumableResource(input, options)
         output_schema = types.CreateConsumableResourceOutput,
         http_method = "POST",
         http_path = "/v1/createconsumableresource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createJobQueue(input, options)
         output_schema = types.CreateJobQueueOutput,
         http_method = "POST",
         http_path = "/v1/createjobqueue",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createQuotaShare(input, options)
         output_schema = types.CreateQuotaShareOutput,
         http_method = "POST",
         http_path = "/v1/createquotashare",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createSchedulingPolicy(input, options)
         output_schema = types.CreateSchedulingPolicyOutput,
         http_method = "POST",
         http_path = "/v1/createschedulingpolicy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createServiceEnvironment(input, options)
         output_schema = types.CreateServiceEnvironmentOutput,
         http_method = "POST",
         http_path = "/v1/createserviceenvironment",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteComputeEnvironment(input, options)
         output_schema = types.DeleteComputeEnvironmentOutput,
         http_method = "POST",
         http_path = "/v1/deletecomputeenvironment",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteConsumableResource(input, options)
         output_schema = types.DeleteConsumableResourceOutput,
         http_method = "POST",
         http_path = "/v1/deleteconsumableresource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:deleteJobQueue(input, options)
         output_schema = types.DeleteJobQueueOutput,
         http_method = "POST",
         http_path = "/v1/deletejobqueue",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteQuotaShare(input, options)
         output_schema = types.DeleteQuotaShareOutput,
         http_method = "POST",
         http_path = "/v1/deletequotashare",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteSchedulingPolicy(input, options)
         output_schema = types.DeleteSchedulingPolicyOutput,
         http_method = "POST",
         http_path = "/v1/deleteschedulingpolicy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteServiceEnvironment(input, options)
         output_schema = types.DeleteServiceEnvironmentOutput,
         http_method = "POST",
         http_path = "/v1/deleteserviceenvironment",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deregisterJobDefinition(input, options)
         output_schema = types.DeregisterJobDefinitionOutput,
         http_method = "POST",
         http_path = "/v1/deregisterjobdefinition",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:describeComputeEnvironments(input, options)
         output_schema = types.DescribeComputeEnvironmentsOutput,
         http_method = "POST",
         http_path = "/v1/describecomputeenvironments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:describeConsumableResource(input, options)
         output_schema = types.DescribeConsumableResourceOutput,
         http_method = "POST",
         http_path = "/v1/describeconsumableresource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:describeJobDefinitions(input, options)
         output_schema = types.DescribeJobDefinitionsOutput,
         http_method = "POST",
         http_path = "/v1/describejobdefinitions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:describeJobQueues(input, options)
         output_schema = types.DescribeJobQueuesOutput,
         http_method = "POST",
         http_path = "/v1/describejobqueues",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:describeJobs(input, options)
         output_schema = types.DescribeJobsOutput,
         http_method = "POST",
         http_path = "/v1/describejobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:describeQuotaShare(input, options)
         output_schema = types.DescribeQuotaShareOutput,
         http_method = "POST",
         http_path = "/v1/describequotashare",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:describeSchedulingPolicies(input, options)
         output_schema = types.DescribeSchedulingPoliciesOutput,
         http_method = "POST",
         http_path = "/v1/describeschedulingpolicies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:describeServiceEnvironments(input, options)
         output_schema = types.DescribeServiceEnvironmentsOutput,
         http_method = "POST",
         http_path = "/v1/describeserviceenvironments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:describeServiceJob(input, options)
         output_schema = types.DescribeServiceJobOutput,
         http_method = "POST",
         http_path = "/v1/describeservicejob",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:getJobQueueSnapshot(input, options)
         output_schema = types.GetJobQueueSnapshotOutput,
         http_method = "POST",
         http_path = "/v1/getjobqueuesnapshot",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listConsumableResources(input, options)
         output_schema = types.ListConsumableResourcesOutput,
         http_method = "POST",
         http_path = "/v1/listconsumableresources",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:listJobs(input, options)
         output_schema = types.ListJobsOutput,
         http_method = "POST",
         http_path = "/v1/listjobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:listJobsByConsumableResource(input, options)
         output_schema = types.ListJobsByConsumableResourceOutput,
         http_method = "POST",
         http_path = "/v1/listjobsbyconsumableresource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:listQuotaShares(input, options)
         output_schema = types.ListQuotaSharesOutput,
         http_method = "POST",
         http_path = "/v1/listquotashares",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:listSchedulingPolicies(input, options)
         output_schema = types.ListSchedulingPoliciesOutput,
         http_method = "POST",
         http_path = "/v1/listschedulingpolicies",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:listServiceJobs(input, options)
         output_schema = types.ListServiceJobsOutput,
         http_method = "POST",
         http_path = "/v1/listservicejobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/v1/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:registerJobDefinition(input, options)
         output_schema = types.RegisterJobDefinitionOutput,
         http_method = "POST",
         http_path = "/v1/registerjobdefinition",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:submitJob(input, options)
         output_schema = types.SubmitJobOutput,
         http_method = "POST",
         http_path = "/v1/submitjob",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:submitServiceJob(input, options)
         output_schema = types.SubmitServiceJobOutput,
         http_method = "POST",
         http_path = "/v1/submitservicejob",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/v1/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:terminateJob(input, options)
         output_schema = types.TerminateJobOutput,
         http_method = "POST",
         http_path = "/v1/terminatejob",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:terminateServiceJob(input, options)
         output_schema = types.TerminateServiceJobOutput,
         http_method = "POST",
         http_path = "/v1/terminateservicejob",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/v1/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:updateComputeEnvironment(input, options)
         output_schema = types.UpdateComputeEnvironmentOutput,
         http_method = "POST",
         http_path = "/v1/updatecomputeenvironment",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:updateConsumableResource(input, options)
         output_schema = types.UpdateConsumableResourceOutput,
         http_method = "POST",
         http_path = "/v1/updateconsumableresource",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:updateJobQueue(input, options)
         output_schema = types.UpdateJobQueueOutput,
         http_method = "POST",
         http_path = "/v1/updatejobqueue",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:updateQuotaShare(input, options)
         output_schema = types.UpdateQuotaShareOutput,
         http_method = "POST",
         http_path = "/v1/updatequotashare",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:updateSchedulingPolicy(input, options)
         output_schema = types.UpdateSchedulingPolicyOutput,
         http_method = "POST",
         http_path = "/v1/updateschedulingpolicy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:updateServiceEnvironment(input, options)
         output_schema = types.UpdateServiceEnvironmentOutput,
         http_method = "POST",
         http_path = "/v1/updateserviceenvironment",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:updateServiceJob(input, options)
         output_schema = types.UpdateServiceJobOutput,
         http_method = "POST",
         http_path = "/v1/updateservicejob",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

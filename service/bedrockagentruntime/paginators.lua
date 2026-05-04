@@ -1,0 +1,149 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for getAgentMemory.
+function M.pages_get_agent_memory(client, input)
+    return paginator.pages(client, "getAgentMemory", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "memoryContents",
+    })
+end
+
+--- Returns an item iterator for getAgentMemory.
+function M.items_get_agent_memory(client, input)
+    return paginator.items(client, "getAgentMemory", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "memoryContents",
+    })
+end
+
+--- Returns a page iterator for listFlowExecutionEvents.
+function M.pages_list_flow_execution_events(client, input)
+    return paginator.pages(client, "listFlowExecutionEvents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "flowExecutionEvents",
+    })
+end
+
+--- Returns an item iterator for listFlowExecutionEvents.
+function M.items_list_flow_execution_events(client, input)
+    return paginator.items(client, "listFlowExecutionEvents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "flowExecutionEvents",
+    })
+end
+
+--- Returns a page iterator for listFlowExecutions.
+function M.pages_list_flow_executions(client, input)
+    return paginator.pages(client, "listFlowExecutions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "flowExecutionSummaries",
+    })
+end
+
+--- Returns an item iterator for listFlowExecutions.
+function M.items_list_flow_executions(client, input)
+    return paginator.items(client, "listFlowExecutions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "flowExecutionSummaries",
+    })
+end
+
+--- Returns a page iterator for listInvocationSteps.
+function M.pages_list_invocation_steps(client, input)
+    return paginator.pages(client, "listInvocationSteps", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "invocationStepSummaries",
+    })
+end
+
+--- Returns an item iterator for listInvocationSteps.
+function M.items_list_invocation_steps(client, input)
+    return paginator.items(client, "listInvocationSteps", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "invocationStepSummaries",
+    })
+end
+
+--- Returns a page iterator for listInvocations.
+function M.pages_list_invocations(client, input)
+    return paginator.pages(client, "listInvocations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "invocationSummaries",
+    })
+end
+
+--- Returns an item iterator for listInvocations.
+function M.items_list_invocations(client, input)
+    return paginator.items(client, "listInvocations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "invocationSummaries",
+    })
+end
+
+--- Returns a page iterator for listSessions.
+function M.pages_list_sessions(client, input)
+    return paginator.pages(client, "listSessions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "sessionSummaries",
+    })
+end
+
+--- Returns an item iterator for listSessions.
+function M.items_list_sessions(client, input)
+    return paginator.items(client, "listSessions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "sessionSummaries",
+    })
+end
+
+--- Returns a page iterator for rerank.
+function M.pages_rerank(client, input)
+    return paginator.pages(client, "rerank", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "results",
+    })
+end
+
+--- Returns an item iterator for rerank.
+function M.items_rerank(client, input)
+    return paginator.items(client, "rerank", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "results",
+    })
+end
+
+--- Returns a page iterator for retrieve.
+function M.pages_retrieve(client, input)
+    return paginator.pages(client, "retrieve", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "retrievalResults",
+    })
+end
+
+--- Returns an item iterator for retrieve.
+function M.items_retrieve(client, input)
+    return paginator.items(client, "retrieve", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "retrievalResults",
+    })
+end
+
+return M

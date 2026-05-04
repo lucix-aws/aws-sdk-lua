@@ -1,0 +1,18 @@
+local record M
+    pages_describe_endpoints: function(client: table, input: table): function(): table, table
+    items_describe_endpoints: function(client: table, input: table): function(): any
+    pages_list_job_templates: function(client: table, input: table): function(): table, table
+    items_list_job_templates: function(client: table, input: table): function(): any
+    pages_list_jobs: function(client: table, input: table): function(): table, table
+    items_list_jobs: function(client: table, input: table): function(): any
+    pages_list_presets: function(client: table, input: table): function(): table, table
+    items_list_presets: function(client: table, input: table): function(): any
+    pages_list_queues: function(client: table, input: table): function(): table, table
+    items_list_queues: function(client: table, input: table): function(): any
+    pages_list_versions: function(client: table, input: table): function(): table, table
+    items_list_versions: function(client: table, input: table): function(): any
+    pages_search_jobs: function(client: table, input: table): function(): table, table
+    items_search_jobs: function(client: table, input: table): function(): any
+end
+
+return M

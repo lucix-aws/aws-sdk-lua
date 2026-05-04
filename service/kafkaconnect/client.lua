@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "KafkaConnect"
-    cfg.signing_name = "kafkaconnect"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "kafkaconnect", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:createConnector(input, options)
         output_schema = types.CreateConnectorOutput,
         http_method = "POST",
         http_path = "/v1/connectors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:createCustomPlugin(input, options)
         output_schema = types.CreateCustomPluginOutput,
         http_method = "POST",
         http_path = "/v1/custom-plugins",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:createWorkerConfiguration(input, options)
         output_schema = types.CreateWorkerConfigurationOutput,
         http_method = "POST",
         http_path = "/v1/worker-configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:deleteConnector(input, options)
         output_schema = types.DeleteConnectorOutput,
         http_method = "DELETE",
         http_path = "/v1/connectors/{connectorArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:deleteCustomPlugin(input, options)
         output_schema = types.DeleteCustomPluginOutput,
         http_method = "DELETE",
         http_path = "/v1/custom-plugins/{customPluginArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:deleteWorkerConfiguration(input, options)
         output_schema = types.DeleteWorkerConfigurationOutput,
         http_method = "DELETE",
         http_path = "/v1/worker-configurations/{workerConfigurationArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:describeConnector(input, options)
         output_schema = types.DescribeConnectorOutput,
         http_method = "GET",
         http_path = "/v1/connectors/{connectorArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:describeConnectorOperation(input, options)
         output_schema = types.DescribeConnectorOperationOutput,
         http_method = "GET",
         http_path = "/v1/connectorOperations/{connectorOperationArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:describeCustomPlugin(input, options)
         output_schema = types.DescribeCustomPluginOutput,
         http_method = "GET",
         http_path = "/v1/custom-plugins/{customPluginArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:describeWorkerConfiguration(input, options)
         output_schema = types.DescribeWorkerConfigurationOutput,
         http_method = "GET",
         http_path = "/v1/worker-configurations/{workerConfigurationArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:listConnectorOperations(input, options)
         output_schema = types.ListConnectorOperationsOutput,
         http_method = "GET",
         http_path = "/v1/connectors/{connectorArn}/operations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:listConnectors(input, options)
         output_schema = types.ListConnectorsOutput,
         http_method = "GET",
         http_path = "/v1/connectors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:listCustomPlugins(input, options)
         output_schema = types.ListCustomPluginsOutput,
         http_method = "GET",
         http_path = "/v1/custom-plugins",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/v1/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:listWorkerConfigurations(input, options)
         output_schema = types.ListWorkerConfigurationsOutput,
         http_method = "GET",
         http_path = "/v1/worker-configurations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/v1/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/v1/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:updateConnector(input, options)
         output_schema = types.UpdateConnectorOutput,
         http_method = "PUT",
         http_path = "/v1/connectors/{connectorArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

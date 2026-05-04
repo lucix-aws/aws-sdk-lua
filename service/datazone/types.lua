@@ -84,6 +84,9 @@ M.AcceptPredictionsInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -788,6 +791,9 @@ M.AddEntityOwnerInput = {
         } }, { __index = M.OwnerProperties }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1106,6 +1112,9 @@ M.AddPolicyGrantInput = {
         } }, { __index = M.PolicyGrantDetail }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1328,6 +1337,9 @@ M.CreateAssetInput = {
         predictionConfiguration = M.PredictionConfiguration,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -1496,6 +1508,9 @@ M.CreateAssetRevisionInput = {
         predictionConfiguration = M.PredictionConfiguration,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -3037,6 +3052,9 @@ M.BatchPutAttributesMetadataInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         attributes = {
             type = "list",
@@ -4290,6 +4308,9 @@ M.CreateConnectionInput = {
         awsLocation = M.AwsLocation,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         configurations = {
             type = "list",
@@ -4452,6 +4473,9 @@ M.CreateDataProductInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -4572,6 +4596,9 @@ M.CreateDataProductRevisionInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -4940,6 +4967,9 @@ M.CreateDataSourceInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -5131,14 +5161,23 @@ M.CreateDataSourceOutput = {
         },
         lastRunAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastRunErrorMessage = M.DataSourceErrorMessage,
         errorMessage = M.DataSourceErrorMessage,
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -5200,6 +5239,9 @@ M.CreateDomainInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -5288,6 +5330,9 @@ M.CreateDomainUnitInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -6060,6 +6105,9 @@ M.CreateGlossaryInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -6157,6 +6205,9 @@ M.CreateGlossaryTermInput = {
         termRelations = M.TermRelations,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -6226,6 +6277,9 @@ M.CreateGroupProfileInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -6297,6 +6351,9 @@ M.CreateListingChangeSetInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -6986,6 +7043,9 @@ M.CreateRuleInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -7109,6 +7169,9 @@ M.CreateSubscriptionGrantInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -7358,6 +7421,9 @@ M.CreateSubscriptionRequestInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         metadataForms = {
             type = "list",
@@ -7536,6 +7602,9 @@ M.CreateSubscriptionTargetInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         subscriptionGrantCreationMode = {
             type = "string",
@@ -7667,6 +7736,9 @@ M.CreateUserProfileInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -8054,6 +8126,7 @@ M.DeleteDataSourceInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
         retainPermissionsOnRevokeFailure = {
@@ -8192,14 +8265,23 @@ M.DeleteDataSourceOutput = {
         },
         lastRunAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastRunErrorMessage = M.DataSourceErrorMessage,
         errorMessage = M.DataSourceErrorMessage,
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         selfGrantStatus = M.SelfGrantStatusOutput,
         retainPermissionsOnRevokeFailure = {
@@ -8288,6 +8370,9 @@ M.GetDataSourceOutput = {
         },
         lastRunAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastRunErrorMessage = M.DataSourceErrorMessage,
         lastRunAssetCount = {
@@ -8296,9 +8381,15 @@ M.GetDataSourceOutput = {
         errorMessage = M.DataSourceErrorMessage,
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         selfGrantStatus = M.SelfGrantStatusOutput,
     },
@@ -8414,6 +8505,9 @@ M.DataSourceSummary = {
         },
         lastRunAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastRunErrorMessage = M.DataSourceErrorMessage,
         lastRunAssetCount = {
@@ -8421,9 +8515,15 @@ M.DataSourceSummary = {
         },
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         description = {
             type = "string",
@@ -8549,14 +8649,23 @@ M.UpdateDataSourceOutput = {
         },
         lastRunAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lastRunErrorMessage = M.DataSourceErrorMessage,
         errorMessage = M.DataSourceErrorMessage,
         createdAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         updatedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         selfGrantStatus = M.SelfGrantStatusOutput,
         retainPermissionsOnRevokeFailure = {
@@ -8676,19 +8785,27 @@ M.GetDataSourceRunOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         startedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         stoppedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -8770,19 +8887,27 @@ M.DataSourceRunSummary = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         startedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         stoppedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         lineageSummary = M.DataSourceRunLineageSummary,
     },
@@ -8823,6 +8948,9 @@ M.StartDataSourceRunInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -8875,19 +9003,27 @@ M.StartDataSourceRunOutput = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         startedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
         stoppedAt = {
             type = "timestamp",
+            traits = {
+                timestamp_format = "date-time",
+            },
         },
     },
 }
@@ -8959,12 +9095,14 @@ M.DataSourceRunActivity = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
         updatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
+                timestamp_format = "date-time",
             },
         },
     },
@@ -9434,6 +9572,7 @@ M.DeleteTimeSeriesDataPointsInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -9526,6 +9665,7 @@ M.DeleteDomainInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
         skipDeletionCheck = {
@@ -9743,6 +9883,7 @@ M.UpdateDomainInput = {
             type = "string",
             traits = {
                 http_query = "clientToken",
+                idempotency_token = true,
             },
         },
     },
@@ -12245,6 +12386,9 @@ M.UpdateGlossaryInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -15523,6 +15667,9 @@ M.StartMetadataGenerationRunInput = {
         } }, { __index = M.MetadataGenerationRunTarget }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
         owningProjectIdentifier = {
             type = "string",
@@ -15955,6 +16102,9 @@ M.StartNotebookRunInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -16056,6 +16206,9 @@ M.StopNotebookRunInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -16111,6 +16264,7 @@ M.PostLineageEventInput = {
             type = "string",
             traits = {
                 http_header = "Client-Token",
+                idempotency_token = true,
             },
         },
     },
@@ -16191,6 +16345,9 @@ M.PostTimeSeriesDataPointsInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -16233,6 +16390,9 @@ M.PutDataExportConfigurationInput = {
         encryptionConfiguration = M.EncryptionConfiguration,
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -16457,6 +16617,9 @@ M.RejectPredictionsInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -16615,6 +16778,9 @@ M.RemoveEntityOwnerInput = {
         } }, { __index = M.OwnerProperties }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -16661,6 +16827,9 @@ M.RemovePolicyGrantInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -18503,6 +18672,9 @@ M.UpdateRootDomainUnitOwnerInput = {
         },
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -19139,6 +19311,9 @@ M.CreateAssetFilterInput = {
         } }, { __index = M.AssetFilterConfiguration }),
         clientToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }

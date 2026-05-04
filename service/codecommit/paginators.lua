@@ -1,0 +1,137 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for describeMergeConflicts.
+function M.pages_describe_merge_conflicts(client, input)
+    return paginator.pages(client, "describeMergeConflicts", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for describePullRequestEvents.
+function M.pages_describe_pull_request_events(client, input)
+    return paginator.pages(client, "describePullRequestEvents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for getCommentReactions.
+function M.pages_get_comment_reactions(client, input)
+    return paginator.pages(client, "getCommentReactions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for getCommentsForComparedCommit.
+function M.pages_get_comments_for_compared_commit(client, input)
+    return paginator.pages(client, "getCommentsForComparedCommit", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for getCommentsForPullRequest.
+function M.pages_get_comments_for_pull_request(client, input)
+    return paginator.pages(client, "getCommentsForPullRequest", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for getDifferences.
+function M.pages_get_differences(client, input)
+    return paginator.pages(client, "getDifferences", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for getMergeConflicts.
+function M.pages_get_merge_conflicts(client, input)
+    return paginator.pages(client, "getMergeConflicts", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for listApprovalRuleTemplates.
+function M.pages_list_approval_rule_templates(client, input)
+    return paginator.pages(client, "listApprovalRuleTemplates", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for listAssociatedApprovalRuleTemplatesForRepository.
+function M.pages_list_associated_approval_rule_templates_for_repository(client, input)
+    return paginator.pages(client, "listAssociatedApprovalRuleTemplatesForRepository", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for listBranches.
+function M.pages_list_branches(client, input)
+    return paginator.pages(client, "listBranches", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "branches",
+    })
+end
+
+--- Returns an item iterator for listBranches.
+function M.items_list_branches(client, input)
+    return paginator.items(client, "listBranches", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "branches",
+    })
+end
+
+--- Returns a page iterator for listFileCommitHistory.
+function M.pages_list_file_commit_history(client, input)
+    return paginator.pages(client, "listFileCommitHistory", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for listPullRequests.
+function M.pages_list_pull_requests(client, input)
+    return paginator.pages(client, "listPullRequests", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+--- Returns a page iterator for listRepositories.
+function M.pages_list_repositories(client, input)
+    return paginator.pages(client, "listRepositories", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "repositories",
+    })
+end
+
+--- Returns an item iterator for listRepositories.
+function M.items_list_repositories(client, input)
+    return paginator.items(client, "listRepositories", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "repositories",
+    })
+end
+
+--- Returns a page iterator for listRepositoriesForApprovalRuleTemplate.
+function M.pages_list_repositories_for_approval_rule_template(client, input)
+    return paginator.pages(client, "listRepositoriesForApprovalRuleTemplate", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+    })
+end
+
+return M

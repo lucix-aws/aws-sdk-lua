@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "ApplicationMigrationService"
-    cfg.signing_name = "mgn"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "mgn", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:archiveApplication(input, options)
         output_schema = types.ArchiveApplicationOutput,
         http_method = "POST",
         http_path = "/ArchiveApplication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:archiveWave(input, options)
         output_schema = types.ArchiveWaveOutput,
         http_method = "POST",
         http_path = "/ArchiveWave",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:associateApplications(input, options)
         output_schema = types.AssociateApplicationsOutput,
         http_method = "POST",
         http_path = "/AssociateApplications",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:associateSourceServers(input, options)
         output_schema = types.AssociateSourceServersOutput,
         http_method = "POST",
         http_path = "/AssociateSourceServers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:changeServerLifeCycleState(input, options)
         output_schema = types.ChangeServerLifeCycleStateOutput,
         http_method = "POST",
         http_path = "/ChangeServerLifeCycleState",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createApplication(input, options)
         output_schema = types.CreateApplicationOutput,
         http_method = "POST",
         http_path = "/CreateApplication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createConnector(input, options)
         output_schema = types.CreateConnectorOutput,
         http_method = "POST",
         http_path = "/CreateConnector",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createLaunchConfigurationTemplate(input, options)
         output_schema = types.CreateLaunchConfigurationTemplateOutput,
         http_method = "POST",
         http_path = "/CreateLaunchConfigurationTemplate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createNetworkMigrationDefinition(input, options)
         output_schema = types.CreateNetworkMigrationDefinitionOutput,
         http_method = "POST",
         http_path = "/network-migration/CreateNetworkMigrationDefinition",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createReplicationConfigurationTemplate(input, options)
         output_schema = types.CreateReplicationConfigurationTemplateOutput,
         http_method = "POST",
         http_path = "/CreateReplicationConfigurationTemplate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:createWave(input, options)
         output_schema = types.CreateWaveOutput,
         http_method = "POST",
         http_path = "/CreateWave",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteApplication(input, options)
         output_schema = types.DeleteApplicationOutput,
         http_method = "POST",
         http_path = "/DeleteApplication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteConnector(input, options)
         output_schema = types.DeleteConnectorOutput,
         http_method = "POST",
         http_path = "/DeleteConnector",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteJob(input, options)
         output_schema = types.DeleteJobOutput,
         http_method = "POST",
         http_path = "/DeleteJob",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteLaunchConfigurationTemplate(input, options)
         output_schema = types.DeleteLaunchConfigurationTemplateOutput,
         http_method = "POST",
         http_path = "/DeleteLaunchConfigurationTemplate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteNetworkMigrationDefinition(input, options)
         output_schema = types.DeleteNetworkMigrationDefinitionOutput,
         http_method = "POST",
         http_path = "/network-migration/DeleteNetworkMigrationDefinition",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deleteReplicationConfigurationTemplate(input, options)
         output_schema = types.DeleteReplicationConfigurationTemplateOutput,
         http_method = "POST",
         http_path = "/DeleteReplicationConfigurationTemplate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:deleteSourceServer(input, options)
         output_schema = types.DeleteSourceServerOutput,
         http_method = "POST",
         http_path = "/DeleteSourceServer",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:deleteVcenterClient(input, options)
         output_schema = types.DeleteVcenterClientOutput,
         http_method = "POST",
         http_path = "/DeleteVcenterClient",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:deleteWave(input, options)
         output_schema = types.DeleteWaveOutput,
         http_method = "POST",
         http_path = "/DeleteWave",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:describeJobLogItems(input, options)
         output_schema = types.DescribeJobLogItemsOutput,
         http_method = "POST",
         http_path = "/DescribeJobLogItems",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:describeJobs(input, options)
         output_schema = types.DescribeJobsOutput,
         http_method = "POST",
         http_path = "/DescribeJobs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:describeLaunchConfigurationTemplates(input, options)
         output_schema = types.DescribeLaunchConfigurationTemplatesOutput,
         http_method = "POST",
         http_path = "/DescribeLaunchConfigurationTemplates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:describeReplicationConfigurationTemplates(input, options)
         output_schema = types.DescribeReplicationConfigurationTemplatesOutput,
         http_method = "POST",
         http_path = "/DescribeReplicationConfigurationTemplates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:describeSourceServers(input, options)
         output_schema = types.DescribeSourceServersOutput,
         http_method = "POST",
         http_path = "/DescribeSourceServers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:describeVcenterClients(input, options)
         output_schema = types.DescribeVcenterClientsOutput,
         http_method = "GET",
         http_path = "/DescribeVcenterClients",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:disassociateApplications(input, options)
         output_schema = types.DisassociateApplicationsOutput,
         http_method = "POST",
         http_path = "/DisassociateApplications",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:disassociateSourceServers(input, options)
         output_schema = types.DisassociateSourceServersOutput,
         http_method = "POST",
         http_path = "/DisassociateSourceServers",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:disconnectFromService(input, options)
         output_schema = types.DisconnectFromServiceOutput,
         http_method = "POST",
         http_path = "/DisconnectFromService",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:finalizeCutover(input, options)
         output_schema = types.FinalizeCutoverOutput,
         http_method = "POST",
         http_path = "/FinalizeCutover",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:getLaunchConfiguration(input, options)
         output_schema = types.GetLaunchConfigurationOutput,
         http_method = "POST",
         http_path = "/GetLaunchConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:getNetworkMigrationDefinition(input, options)
         output_schema = types.GetNetworkMigrationDefinitionOutput,
         http_method = "POST",
         http_path = "/network-migration/GetNetworkMigrationDefinition",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:getNetworkMigrationMapperSegmentConstruct(input, options)
         output_schema = types.GetNetworkMigrationMapperSegmentConstructOutput,
         http_method = "POST",
         http_path = "/network-migration/GetNetworkMigrationMapperSegmentConstruct",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:getReplicationConfiguration(input, options)
         output_schema = types.GetReplicationConfigurationOutput,
         http_method = "POST",
         http_path = "/GetReplicationConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:initializeService(input, options)
         output_schema = types.InitializeServiceOutput,
         http_method = "POST",
         http_path = "/InitializeService",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:listApplications(input, options)
         output_schema = types.ListApplicationsOutput,
         http_method = "POST",
         http_path = "/ListApplications",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:listConnectors(input, options)
         output_schema = types.ListConnectorsOutput,
         http_method = "POST",
         http_path = "/ListConnectors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:listExportErrors(input, options)
         output_schema = types.ListExportErrorsOutput,
         http_method = "POST",
         http_path = "/ListExportErrors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:listExports(input, options)
         output_schema = types.ListExportsOutput,
         http_method = "POST",
         http_path = "/ListExports",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:listImportErrors(input, options)
         output_schema = types.ListImportErrorsOutput,
         http_method = "POST",
         http_path = "/ListImportErrors",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:listImportFileEnrichments(input, options)
         output_schema = types.ListImportFileEnrichmentsOutput,
         http_method = "POST",
         http_path = "/network-migration/ListImportFileEnrichments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:listImports(input, options)
         output_schema = types.ListImportsOutput,
         http_method = "POST",
         http_path = "/ListImports",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:listManagedAccounts(input, options)
         output_schema = types.ListManagedAccountsOutput,
         http_method = "POST",
         http_path = "/ListManagedAccounts",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:listNetworkMigrationAnalyses(input, options)
         output_schema = types.ListNetworkMigrationAnalysesOutput,
         http_method = "POST",
         http_path = "/network-migration/ListNetworkMigrationAnalyses",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:listNetworkMigrationAnalysisResults(input, options)
         output_schema = types.ListNetworkMigrationAnalysisResultsOutput,
         http_method = "POST",
         http_path = "/network-migration/ListNetworkMigrationAnalysisResults",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:listNetworkMigrationCodeGenerations(input, options)
         output_schema = types.ListNetworkMigrationCodeGenerationsOutput,
         http_method = "POST",
         http_path = "/network-migration/ListNetworkMigrationCodeGenerations",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:listNetworkMigrationCodeGenerationSegments(input, options)
         output_schema = types.ListNetworkMigrationCodeGenerationSegmentsOutput,
         http_method = "POST",
         http_path = "/network-migration/ListNetworkMigrationCodeGenerationSegments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:listNetworkMigrationDefinitions(input, options)
         output_schema = types.ListNetworkMigrationDefinitionsOutput,
         http_method = "POST",
         http_path = "/network-migration/ListNetworkMigrationDefinitions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:listNetworkMigrationDeployedStacks(input, options)
         output_schema = types.ListNetworkMigrationDeployedStacksOutput,
         http_method = "POST",
         http_path = "/network-migration/ListNetworkMigrationDeployedStacks",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:listNetworkMigrationDeployments(input, options)
         output_schema = types.ListNetworkMigrationDeploymentsOutput,
         http_method = "POST",
         http_path = "/network-migration/ListNetworkMigrationDeployments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:listNetworkMigrationExecutions(input, options)
         output_schema = types.ListNetworkMigrationExecutionsOutput,
         http_method = "POST",
         http_path = "/network-migration/ListNetworkMigrationExecutions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:listNetworkMigrationMapperSegmentConstructs(input, options)
         output_schema = types.ListNetworkMigrationMapperSegmentConstructsOutput,
         http_method = "POST",
         http_path = "/network-migration/ListNetworkMigrationMapperSegmentConstructs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:listNetworkMigrationMapperSegments(input, options)
         output_schema = types.ListNetworkMigrationMapperSegmentsOutput,
         http_method = "POST",
         http_path = "/network-migration/ListNetworkMigrationMapperSegments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:listNetworkMigrationMappings(input, options)
         output_schema = types.ListNetworkMigrationMappingsOutput,
         http_method = "POST",
         http_path = "/network-migration/ListNetworkMigrationMappings",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:listNetworkMigrationMappingUpdates(input, options)
         output_schema = types.ListNetworkMigrationMappingUpdatesOutput,
         http_method = "POST",
         http_path = "/network-migration/ListNetworkMigrationMappingUpdates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:listSourceServerActions(input, options)
         output_schema = types.ListSourceServerActionsOutput,
         http_method = "POST",
         http_path = "/ListSourceServerActions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -610,6 +794,9 @@ function Client:listTemplateActions(input, options)
         output_schema = types.ListTemplateActionsOutput,
         http_method = "POST",
         http_path = "/ListTemplateActions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -620,6 +807,9 @@ function Client:listWaves(input, options)
         output_schema = types.ListWavesOutput,
         http_method = "POST",
         http_path = "/ListWaves",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -630,6 +820,9 @@ function Client:markAsArchived(input, options)
         output_schema = types.MarkAsArchivedOutput,
         http_method = "POST",
         http_path = "/MarkAsArchived",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -640,6 +833,9 @@ function Client:pauseReplication(input, options)
         output_schema = types.PauseReplicationOutput,
         http_method = "POST",
         http_path = "/PauseReplication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -650,6 +846,9 @@ function Client:putSourceServerAction(input, options)
         output_schema = types.PutSourceServerActionOutput,
         http_method = "POST",
         http_path = "/PutSourceServerAction",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -660,6 +859,9 @@ function Client:putTemplateAction(input, options)
         output_schema = types.PutTemplateActionOutput,
         http_method = "POST",
         http_path = "/PutTemplateAction",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -670,6 +872,9 @@ function Client:removeSourceServerAction(input, options)
         output_schema = types.RemoveSourceServerActionOutput,
         http_method = "POST",
         http_path = "/RemoveSourceServerAction",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -680,6 +885,9 @@ function Client:removeTemplateAction(input, options)
         output_schema = types.RemoveTemplateActionOutput,
         http_method = "POST",
         http_path = "/RemoveTemplateAction",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -690,6 +898,9 @@ function Client:resumeReplication(input, options)
         output_schema = types.ResumeReplicationOutput,
         http_method = "POST",
         http_path = "/ResumeReplication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -700,6 +911,9 @@ function Client:retryDataReplication(input, options)
         output_schema = types.RetryDataReplicationOutput,
         http_method = "POST",
         http_path = "/RetryDataReplication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -710,6 +924,9 @@ function Client:startCutover(input, options)
         output_schema = types.StartCutoverOutput,
         http_method = "POST",
         http_path = "/StartCutover",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -720,6 +937,9 @@ function Client:startExport(input, options)
         output_schema = types.StartExportOutput,
         http_method = "POST",
         http_path = "/StartExport",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -730,6 +950,9 @@ function Client:startImport(input, options)
         output_schema = types.StartImportOutput,
         http_method = "POST",
         http_path = "/StartImport",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -740,6 +963,9 @@ function Client:startImportFileEnrichment(input, options)
         output_schema = types.StartImportFileEnrichmentOutput,
         http_method = "POST",
         http_path = "/network-migration/StartImportFileEnrichment",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -750,6 +976,9 @@ function Client:startNetworkMigrationAnalysis(input, options)
         output_schema = types.StartNetworkMigrationAnalysisOutput,
         http_method = "POST",
         http_path = "/network-migration/StartNetworkMigrationAnalysis",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -760,6 +989,9 @@ function Client:startNetworkMigrationCodeGeneration(input, options)
         output_schema = types.StartNetworkMigrationCodeGenerationOutput,
         http_method = "POST",
         http_path = "/network-migration/StartNetworkMigrationCodeGeneration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -770,6 +1002,9 @@ function Client:startNetworkMigrationDeployment(input, options)
         output_schema = types.StartNetworkMigrationDeploymentOutput,
         http_method = "POST",
         http_path = "/network-migration/StartNetworkMigrationDeployment",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -780,6 +1015,9 @@ function Client:startNetworkMigrationMapping(input, options)
         output_schema = types.StartNetworkMigrationMappingOutput,
         http_method = "POST",
         http_path = "/network-migration/StartNetworkMigrationMapping",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -790,6 +1028,9 @@ function Client:startNetworkMigrationMappingUpdate(input, options)
         output_schema = types.StartNetworkMigrationMappingUpdateOutput,
         http_method = "POST",
         http_path = "/network-migration/StartNetworkMigrationMappingUpdate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -800,6 +1041,9 @@ function Client:startReplication(input, options)
         output_schema = types.StartReplicationOutput,
         http_method = "POST",
         http_path = "/StartReplication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -810,6 +1054,9 @@ function Client:startTest(input, options)
         output_schema = types.StartTestOutput,
         http_method = "POST",
         http_path = "/StartTest",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -820,6 +1067,9 @@ function Client:stopReplication(input, options)
         output_schema = types.StopReplicationOutput,
         http_method = "POST",
         http_path = "/StopReplication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -830,6 +1080,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -840,6 +1093,9 @@ function Client:terminateTargetInstances(input, options)
         output_schema = types.TerminateTargetInstancesOutput,
         http_method = "POST",
         http_path = "/TerminateTargetInstances",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -850,6 +1106,9 @@ function Client:unarchiveApplication(input, options)
         output_schema = types.UnarchiveApplicationOutput,
         http_method = "POST",
         http_path = "/UnarchiveApplication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -860,6 +1119,9 @@ function Client:unarchiveWave(input, options)
         output_schema = types.UnarchiveWaveOutput,
         http_method = "POST",
         http_path = "/UnarchiveWave",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -870,6 +1132,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -880,6 +1145,9 @@ function Client:updateApplication(input, options)
         output_schema = types.UpdateApplicationOutput,
         http_method = "POST",
         http_path = "/UpdateApplication",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -890,6 +1158,9 @@ function Client:updateConnector(input, options)
         output_schema = types.UpdateConnectorOutput,
         http_method = "POST",
         http_path = "/UpdateConnector",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -900,6 +1171,9 @@ function Client:updateLaunchConfiguration(input, options)
         output_schema = types.UpdateLaunchConfigurationOutput,
         http_method = "POST",
         http_path = "/UpdateLaunchConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -910,6 +1184,9 @@ function Client:updateLaunchConfigurationTemplate(input, options)
         output_schema = types.UpdateLaunchConfigurationTemplateOutput,
         http_method = "POST",
         http_path = "/UpdateLaunchConfigurationTemplate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -920,6 +1197,9 @@ function Client:updateNetworkMigrationDefinition(input, options)
         output_schema = types.UpdateNetworkMigrationDefinitionOutput,
         http_method = "POST",
         http_path = "/network-migration/UpdateNetworkMigrationDefinition",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -930,6 +1210,9 @@ function Client:updateNetworkMigrationMapperSegment(input, options)
         output_schema = types.UpdateNetworkMigrationMapperSegmentOutput,
         http_method = "POST",
         http_path = "/network-migration/UpdateNetworkMigrationMapperSegment",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -940,6 +1223,9 @@ function Client:updateReplicationConfiguration(input, options)
         output_schema = types.UpdateReplicationConfigurationOutput,
         http_method = "POST",
         http_path = "/UpdateReplicationConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -950,6 +1236,9 @@ function Client:updateReplicationConfigurationTemplate(input, options)
         output_schema = types.UpdateReplicationConfigurationTemplateOutput,
         http_method = "POST",
         http_path = "/UpdateReplicationConfigurationTemplate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -960,6 +1249,9 @@ function Client:updateSourceServer(input, options)
         output_schema = types.UpdateSourceServerOutput,
         http_method = "POST",
         http_path = "/UpdateSourceServer",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -970,6 +1262,9 @@ function Client:updateSourceServerReplicationType(input, options)
         output_schema = types.UpdateSourceServerReplicationTypeOutput,
         http_method = "POST",
         http_path = "/UpdateSourceServerReplicationType",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -980,6 +1275,9 @@ function Client:updateWave(input, options)
         output_schema = types.UpdateWaveOutput,
         http_method = "POST",
         http_path = "/UpdateWave",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

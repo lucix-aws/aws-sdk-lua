@@ -2298,27 +2298,27 @@ local type PlatformType = "WINDOWS" | "WINDOWS_SERVER_2016" | "WINDOWS_SERVER_20
 
 local type AgentSoftwareVersion = "CURRENT_LATEST" | "ALWAYS_LATEST"
 
-local type AuthenticationType = "API" | "SAML" | "USERPOOL" | "AWS_AD"
-
 local type FleetType = "ALWAYS_ON" | "ON_DEMAND" | "ELASTIC"
-
-local type AppBlockBuilderPlatformType = "WINDOWS_SERVER_2019"
-
-local type AppVisibility = "ALL" | "ASSOCIATED"
-
-local type StreamView = "APP" | "DESKTOP"
-
-local type UsageReportSchedule = "DAILY"
-
-local type ThemeStyling = "LIGHT_BLUE" | "BLUE" | "PINK" | "RED"
-
-local type PackagingType = "CUSTOM" | "APPSTREAM2"
 
 local type ThemeState = "ENABLED" | "DISABLED"
 
+local type MessageAction = "SUPPRESS" | "RESEND"
+
 local type VisibilityType = "PUBLIC" | "PRIVATE" | "SHARED"
 
-local type MessageAction = "SUPPRESS" | "RESEND"
+local type PackagingType = "CUSTOM" | "APPSTREAM2"
+
+local type StreamView = "APP" | "DESKTOP"
+
+local type ThemeStyling = "LIGHT_BLUE" | "BLUE" | "PINK" | "RED"
+
+local type AppVisibility = "ALL" | "ASSOCIATED"
+
+local type UsageReportSchedule = "DAILY"
+
+local type AuthenticationType = "API" | "SAML" | "USERPOOL" | "AWS_AD"
+
+local type AppBlockBuilderPlatformType = "WINDOWS_SERVER_2019"
 
 local record M
     AssociateAppBlockBuilderAppBlockInput: AssociateAppBlockBuilderAppBlockInput

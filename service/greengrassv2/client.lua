@@ -16,7 +16,6 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "GreengrassV2"
-    cfg.signing_name = "greengrass"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end
@@ -25,7 +24,21 @@ function M.new(cfg)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "greengrass", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateServiceRoleToAccount(input, options)
         output_schema = types.AssociateServiceRoleToAccountOutput,
         http_method = "PUT",
         http_path = "/greengrass/servicerole",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchAssociateClientDeviceWithCoreDevice(input, options)
         output_schema = types.BatchAssociateClientDeviceWithCoreDeviceOutput,
         http_method = "POST",
         http_path = "/greengrass/v2/coreDevices/{coreDeviceThingName}/associateClientDevices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchDisassociateClientDeviceFromCoreDevice(input, options)
         output_schema = types.BatchDisassociateClientDeviceFromCoreDeviceOutput,
         http_method = "POST",
         http_path = "/greengrass/v2/coreDevices/{coreDeviceThingName}/disassociateClientDevices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:cancelDeployment(input, options)
         output_schema = types.CancelDeploymentOutput,
         http_method = "POST",
         http_path = "/greengrass/v2/deployments/{deploymentId}/cancel",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createComponentVersion(input, options)
         output_schema = types.CreateComponentVersionOutput,
         http_method = "POST",
         http_path = "/greengrass/v2/createComponentVersion",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createDeployment(input, options)
         output_schema = types.CreateDeploymentOutput,
         http_method = "POST",
         http_path = "/greengrass/v2/deployments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:deleteComponent(input, options)
         output_schema = types.DeleteComponentOutput,
         http_method = "DELETE",
         http_path = "/greengrass/v2/components/{arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:deleteCoreDevice(input, options)
         output_schema = types.DeleteCoreDeviceOutput,
         http_method = "DELETE",
         http_path = "/greengrass/v2/coreDevices/{coreDeviceThingName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:deleteDeployment(input, options)
         output_schema = types.DeleteDeploymentOutput,
         http_method = "DELETE",
         http_path = "/greengrass/v2/deployments/{deploymentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:describeComponent(input, options)
         output_schema = types.DescribeComponentOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/components/{arn}/metadata",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:disassociateServiceRoleFromAccount(input, options)
         output_schema = types.DisassociateServiceRoleFromAccountOutput,
         http_method = "DELETE",
         http_path = "/greengrass/servicerole",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:getComponent(input, options)
         output_schema = types.GetComponentOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/components/{arn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:getComponentVersionArtifact(input, options)
         output_schema = types.GetComponentVersionArtifactOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/components/{arn}/artifacts/{artifactName+}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:getConnectivityInfo(input, options)
         output_schema = types.GetConnectivityInfoOutput,
         http_method = "GET",
         http_path = "/greengrass/things/{thingName}/connectivityInfo",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:getCoreDevice(input, options)
         output_schema = types.GetCoreDeviceOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/coreDevices/{coreDeviceThingName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:getDeployment(input, options)
         output_schema = types.GetDeploymentOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/deployments/{deploymentId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:getServiceRoleForAccount(input, options)
         output_schema = types.GetServiceRoleForAccountOutput,
         http_method = "GET",
         http_path = "/greengrass/servicerole",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:listClientDevicesAssociatedWithCoreDevice(input, options)
         output_schema = types.ListClientDevicesAssociatedWithCoreDeviceOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/coreDevices/{coreDeviceThingName}/associatedClientDevices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:listComponents(input, options)
         output_schema = types.ListComponentsOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/components",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:listComponentVersions(input, options)
         output_schema = types.ListComponentVersionsOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/components/{arn}/versions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:listCoreDevices(input, options)
         output_schema = types.ListCoreDevicesOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/coreDevices",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:listDeployments(input, options)
         output_schema = types.ListDeploymentsOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/deployments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:listEffectiveDeployments(input, options)
         output_schema = types.ListEffectiveDeploymentsOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/coreDevices/{coreDeviceThingName}/effectiveDeployments",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:listInstalledComponents(input, options)
         output_schema = types.ListInstalledComponentsOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/coreDevices/{coreDeviceThingName}/installedComponents",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:resolveComponentCandidates(input, options)
         output_schema = types.ResolveComponentCandidatesOutput,
         http_method = "POST",
         http_path = "/greengrass/v2/resolveComponentCandidates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:updateConnectivityInfo(input, options)
         output_schema = types.UpdateConnectivityInfoOutput,
         http_method = "PUT",
         http_path = "/greengrass/things/{thingName}/connectivityInfo",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 

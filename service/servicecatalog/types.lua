@@ -222,6 +222,9 @@ M.AssociateServiceActionWithProvisioningArtifactInput = {
         },
         IdempotencyToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -415,6 +418,7 @@ M.CopyProductInput = {
         IdempotencyToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -466,6 +470,7 @@ M.CreateConstraintInput = {
         IdempotencyToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -543,6 +548,7 @@ M.CreatePortfolioInput = {
         IdempotencyToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -795,6 +801,7 @@ M.CreateProductInput = {
         IdempotencyToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1017,6 +1024,7 @@ M.CreateProvisionedProductPlanInput = {
         IdempotencyToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1066,6 +1074,7 @@ M.CreateProvisioningArtifactInput = {
         IdempotencyToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1130,6 +1139,7 @@ M.CreateServiceActionInput = {
         IdempotencyToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -1378,6 +1388,9 @@ M.DeleteServiceActionInput = {
         },
         IdempotencyToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2653,6 +2666,9 @@ M.DisassociateServiceActionFromProvisioningArtifactInput = {
         },
         IdempotencyToken = {
             type = "string",
+            traits = {
+                idempotency_token = true,
+            },
         },
     },
 }
@@ -2708,6 +2724,7 @@ M.ExecuteProvisionedProductPlanInput = {
         IdempotencyToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -2739,6 +2756,7 @@ M.ExecuteProvisionedProductServiceActionInput = {
         ExecuteToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -2847,6 +2865,7 @@ M.ImportAsProvisionedProductInput = {
         IdempotencyToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -3703,6 +3722,7 @@ M.NotifyProvisionProductEngineWorkflowResultInput = {
         IdempotencyToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -3740,6 +3760,7 @@ M.NotifyTerminateProvisionedProductEngineWorkflowResultInput = {
         IdempotencyToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -3781,6 +3802,7 @@ M.NotifyUpdateProvisionedProductEngineWorkflowResultInput = {
         IdempotencyToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -3875,6 +3897,7 @@ M.ProvisionProductInput = {
         ProvisionToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -4203,6 +4226,7 @@ M.TerminateProvisionedProductInput = {
         TerminateToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -4478,6 +4502,7 @@ M.UpdateProvisionedProductInput = {
         UpdateToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },
@@ -4519,6 +4544,7 @@ M.UpdateProvisionedProductPropertiesInput = {
         IdempotencyToken = {
             type = "string",
             traits = {
+                idempotency_token = true,
                 required = true,
             },
         },

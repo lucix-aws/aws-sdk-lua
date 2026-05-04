@@ -1,0 +1,147 @@
+local paginator = require("paginator")
+
+local M = {}
+
+--- Returns a page iterator for describeOrganizationResourceCollectionHealth.
+function M.pages_describe_organization_resource_collection_health(client, input)
+    return paginator.pages(client, "describeOrganizationResourceCollectionHealth", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for describeResourceCollectionHealth.
+function M.pages_describe_resource_collection_health(client, input)
+    return paginator.pages(client, "describeResourceCollectionHealth", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for getCostEstimation.
+function M.pages_get_cost_estimation(client, input)
+    return paginator.pages(client, "getCostEstimation", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for getResourceCollection.
+function M.pages_get_resource_collection(client, input)
+    return paginator.pages(client, "getResourceCollection", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listAnomaliesForInsight.
+function M.pages_list_anomalies_for_insight(client, input)
+    return paginator.pages(client, "listAnomaliesForInsight", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listAnomalousLogGroups.
+function M.pages_list_anomalous_log_groups(client, input)
+    return paginator.pages(client, "listAnomalousLogGroups", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listEvents.
+function M.pages_list_events(client, input)
+    return paginator.pages(client, "listEvents", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Events",
+    })
+end
+
+--- Returns an item iterator for listEvents.
+function M.items_list_events(client, input)
+    return paginator.items(client, "listEvents", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Events",
+    })
+end
+
+--- Returns a page iterator for listInsights.
+function M.pages_list_insights(client, input)
+    return paginator.pages(client, "listInsights", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listMonitoredResources.
+function M.pages_list_monitored_resources(client, input)
+    return paginator.pages(client, "listMonitoredResources", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listNotificationChannels.
+function M.pages_list_notification_channels(client, input)
+    return paginator.pages(client, "listNotificationChannels", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Channels",
+    })
+end
+
+--- Returns an item iterator for listNotificationChannels.
+function M.items_list_notification_channels(client, input)
+    return paginator.items(client, "listNotificationChannels", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Channels",
+    })
+end
+
+--- Returns a page iterator for listOrganizationInsights.
+function M.pages_list_organization_insights(client, input)
+    return paginator.pages(client, "listOrganizationInsights", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for listRecommendations.
+function M.pages_list_recommendations(client, input)
+    return paginator.pages(client, "listRecommendations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Recommendations",
+    })
+end
+
+--- Returns an item iterator for listRecommendations.
+function M.items_list_recommendations(client, input)
+    return paginator.items(client, "listRecommendations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Recommendations",
+    })
+end
+
+--- Returns a page iterator for searchInsights.
+function M.pages_search_insights(client, input)
+    return paginator.pages(client, "searchInsights", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+--- Returns a page iterator for searchOrganizationInsights.
+function M.pages_search_organization_insights(client, input)
+    return paginator.pages(client, "searchOrganizationInsights", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+    })
+end
+
+return M

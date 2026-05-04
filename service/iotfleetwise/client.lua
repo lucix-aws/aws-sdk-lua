@@ -16,16 +16,29 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "IoTAutobahnControlPlane"
-    cfg.signing_name = "iotfleetwise"
     if not cfg.protocol then
-        cfg.protocol = awsjson_protocol.new({ version = "1.0", service_id = cfg.service_id })
+        cfg.protocol = awsjson_protocol.new("1.0")
     end
     if not cfg.endpoint_provider then
         cfg.endpoint_provider = function(params)
             return endpoint.resolve(endpoint_rules, params)
         end
     end
-    defaults.resolve_signer(cfg)
+    if not cfg.auth_scheme_resolver then
+        cfg.auth_scheme_resolver = function(operation)
+            local options = {}
+            for _, scheme_id in ipairs(operation.effective_auth_schemes) do
+                if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
+                    options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "iotfleetwise", signing_region = cfg.region } }
+                else
+                    options[#options + 1] = { scheme_id = scheme_id }
+                end
+            end
+            return options
+        end
+    end
+    defaults.resolve_auth_schemes(cfg)
+    defaults.resolve_identity_resolvers(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
@@ -40,6 +53,9 @@ function Client:associateVehicleFleet(input, options)
         output_schema = types.AssociateVehicleFleetOutput,
         http_method = "PUT",
         http_path = "/vehicles/{vehicleName}/associate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -50,6 +66,9 @@ function Client:batchCreateVehicle(input, options)
         output_schema = types.BatchCreateVehicleOutput,
         http_method = "POST",
         http_path = "/vehicles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -60,6 +79,9 @@ function Client:batchUpdateVehicle(input, options)
         output_schema = types.BatchUpdateVehicleOutput,
         http_method = "PUT",
         http_path = "/vehicles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -70,6 +92,9 @@ function Client:createCampaign(input, options)
         output_schema = types.CreateCampaignOutput,
         http_method = "POST",
         http_path = "/campaigns/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -80,6 +105,9 @@ function Client:createDecoderManifest(input, options)
         output_schema = types.CreateDecoderManifestOutput,
         http_method = "POST",
         http_path = "/decoder-manifests/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -90,6 +118,9 @@ function Client:createFleet(input, options)
         output_schema = types.CreateFleetOutput,
         http_method = "POST",
         http_path = "/fleets/{fleetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -100,6 +131,9 @@ function Client:createModelManifest(input, options)
         output_schema = types.CreateModelManifestOutput,
         http_method = "POST",
         http_path = "/model-manifests/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -110,6 +144,9 @@ function Client:createSignalCatalog(input, options)
         output_schema = types.CreateSignalCatalogOutput,
         http_method = "POST",
         http_path = "/signal-catalogs/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -120,6 +157,9 @@ function Client:createStateTemplate(input, options)
         output_schema = types.CreateStateTemplateOutput,
         http_method = "POST",
         http_path = "/state-templates/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -130,6 +170,9 @@ function Client:createVehicle(input, options)
         output_schema = types.CreateVehicleOutput,
         http_method = "POST",
         http_path = "/vehicles/{vehicleName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -140,6 +183,9 @@ function Client:deleteCampaign(input, options)
         output_schema = types.DeleteCampaignOutput,
         http_method = "DELETE",
         http_path = "/campaigns/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -150,6 +196,9 @@ function Client:deleteDecoderManifest(input, options)
         output_schema = types.DeleteDecoderManifestOutput,
         http_method = "DELETE",
         http_path = "/decoder-manifests/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -160,6 +209,9 @@ function Client:deleteFleet(input, options)
         output_schema = types.DeleteFleetOutput,
         http_method = "DELETE",
         http_path = "/fleets/{fleetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -170,6 +222,9 @@ function Client:deleteModelManifest(input, options)
         output_schema = types.DeleteModelManifestOutput,
         http_method = "DELETE",
         http_path = "/model-manifests/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -180,6 +235,9 @@ function Client:deleteSignalCatalog(input, options)
         output_schema = types.DeleteSignalCatalogOutput,
         http_method = "DELETE",
         http_path = "/signal-catalogs/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -190,6 +248,9 @@ function Client:deleteStateTemplate(input, options)
         output_schema = types.DeleteStateTemplateOutput,
         http_method = "DELETE",
         http_path = "/state-templates/{identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -200,6 +261,9 @@ function Client:deleteVehicle(input, options)
         output_schema = types.DeleteVehicleOutput,
         http_method = "DELETE",
         http_path = "/vehicles/{vehicleName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -210,6 +274,9 @@ function Client:disassociateVehicleFleet(input, options)
         output_schema = types.DisassociateVehicleFleetOutput,
         http_method = "PUT",
         http_path = "/vehicles/{vehicleName}/disassociate",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -220,6 +287,9 @@ function Client:getCampaign(input, options)
         output_schema = types.GetCampaignOutput,
         http_method = "GET",
         http_path = "/campaigns/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -230,6 +300,9 @@ function Client:getDecoderManifest(input, options)
         output_schema = types.GetDecoderManifestOutput,
         http_method = "GET",
         http_path = "/decoder-manifests/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -240,6 +313,9 @@ function Client:getEncryptionConfiguration(input, options)
         output_schema = types.GetEncryptionConfigurationOutput,
         http_method = "GET",
         http_path = "/encryptionConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -250,6 +326,9 @@ function Client:getFleet(input, options)
         output_schema = types.GetFleetOutput,
         http_method = "GET",
         http_path = "/fleets/{fleetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -260,6 +339,9 @@ function Client:getLoggingOptions(input, options)
         output_schema = types.GetLoggingOptionsOutput,
         http_method = "GET",
         http_path = "/loggingOptions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -270,6 +352,9 @@ function Client:getModelManifest(input, options)
         output_schema = types.GetModelManifestOutput,
         http_method = "GET",
         http_path = "/model-manifests/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -280,6 +365,9 @@ function Client:getRegisterAccountStatus(input, options)
         output_schema = types.GetRegisterAccountStatusOutput,
         http_method = "GET",
         http_path = "/account/registration_status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -290,6 +378,9 @@ function Client:getSignalCatalog(input, options)
         output_schema = types.GetSignalCatalogOutput,
         http_method = "GET",
         http_path = "/signal-catalogs/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -300,6 +391,9 @@ function Client:getStateTemplate(input, options)
         output_schema = types.GetStateTemplateOutput,
         http_method = "GET",
         http_path = "/state-templates/{identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -310,6 +404,9 @@ function Client:getVehicle(input, options)
         output_schema = types.GetVehicleOutput,
         http_method = "GET",
         http_path = "/vehicles/{vehicleName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -320,6 +417,9 @@ function Client:getVehicleStatus(input, options)
         output_schema = types.GetVehicleStatusOutput,
         http_method = "GET",
         http_path = "/vehicles/{vehicleName}/status",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -330,6 +430,9 @@ function Client:importDecoderManifest(input, options)
         output_schema = types.ImportDecoderManifestOutput,
         http_method = "PUT",
         http_path = "/decoder-manifests/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -340,6 +443,9 @@ function Client:importSignalCatalog(input, options)
         output_schema = types.ImportSignalCatalogOutput,
         http_method = "PUT",
         http_path = "/signal-catalogs/{name}/nodes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -350,6 +456,9 @@ function Client:listCampaigns(input, options)
         output_schema = types.ListCampaignsOutput,
         http_method = "GET",
         http_path = "/campaigns",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -360,6 +469,9 @@ function Client:listDecoderManifestNetworkInterfaces(input, options)
         output_schema = types.ListDecoderManifestNetworkInterfacesOutput,
         http_method = "GET",
         http_path = "/decoder-manifests/{name}/network-interfaces",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -370,6 +482,9 @@ function Client:listDecoderManifests(input, options)
         output_schema = types.ListDecoderManifestsOutput,
         http_method = "GET",
         http_path = "/decoder-manifests",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -380,6 +495,9 @@ function Client:listDecoderManifestSignals(input, options)
         output_schema = types.ListDecoderManifestSignalsOutput,
         http_method = "GET",
         http_path = "/decoder-manifests/{name}/signals",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -390,6 +508,9 @@ function Client:listFleets(input, options)
         output_schema = types.ListFleetsOutput,
         http_method = "GET",
         http_path = "/fleets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -400,6 +521,9 @@ function Client:listFleetsForVehicle(input, options)
         output_schema = types.ListFleetsForVehicleOutput,
         http_method = "GET",
         http_path = "/vehicles/{vehicleName}/fleets",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -410,6 +534,9 @@ function Client:listModelManifestNodes(input, options)
         output_schema = types.ListModelManifestNodesOutput,
         http_method = "GET",
         http_path = "/model-manifests/{name}/nodes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -420,6 +547,9 @@ function Client:listModelManifests(input, options)
         output_schema = types.ListModelManifestsOutput,
         http_method = "GET",
         http_path = "/model-manifests",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -430,6 +560,9 @@ function Client:listSignalCatalogNodes(input, options)
         output_schema = types.ListSignalCatalogNodesOutput,
         http_method = "GET",
         http_path = "/signal-catalogs/{name}/nodes",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -440,6 +573,9 @@ function Client:listSignalCatalogs(input, options)
         output_schema = types.ListSignalCatalogsOutput,
         http_method = "GET",
         http_path = "/signal-catalogs",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -450,6 +586,9 @@ function Client:listStateTemplates(input, options)
         output_schema = types.ListStateTemplatesOutput,
         http_method = "GET",
         http_path = "/state-templates",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -460,6 +599,9 @@ function Client:listTagsForResource(input, options)
         output_schema = types.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -470,6 +612,9 @@ function Client:listVehicles(input, options)
         output_schema = types.ListVehiclesOutput,
         http_method = "GET",
         http_path = "/vehicles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -480,6 +625,9 @@ function Client:listVehiclesInFleet(input, options)
         output_schema = types.ListVehiclesInFleetOutput,
         http_method = "GET",
         http_path = "/fleets/{fleetId}/vehicles",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -490,6 +638,9 @@ function Client:putEncryptionConfiguration(input, options)
         output_schema = types.PutEncryptionConfigurationOutput,
         http_method = "POST",
         http_path = "/encryptionConfiguration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -500,6 +651,9 @@ function Client:putLoggingOptions(input, options)
         output_schema = types.PutLoggingOptionsOutput,
         http_method = "PUT",
         http_path = "/loggingOptions",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -510,6 +664,9 @@ function Client:registerAccount(input, options)
         output_schema = types.RegisterAccountOutput,
         http_method = "POST",
         http_path = "/account/registration",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -520,6 +677,9 @@ function Client:tagResource(input, options)
         output_schema = types.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -530,6 +690,9 @@ function Client:untagResource(input, options)
         output_schema = types.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -540,6 +703,9 @@ function Client:updateCampaign(input, options)
         output_schema = types.UpdateCampaignOutput,
         http_method = "PUT",
         http_path = "/campaigns/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -550,6 +716,9 @@ function Client:updateDecoderManifest(input, options)
         output_schema = types.UpdateDecoderManifestOutput,
         http_method = "PATCH",
         http_path = "/decoder-manifests/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -560,6 +729,9 @@ function Client:updateFleet(input, options)
         output_schema = types.UpdateFleetOutput,
         http_method = "PATCH",
         http_path = "/fleets/{fleetId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -570,6 +742,9 @@ function Client:updateModelManifest(input, options)
         output_schema = types.UpdateModelManifestOutput,
         http_method = "PATCH",
         http_path = "/model-manifests/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -580,6 +755,9 @@ function Client:updateSignalCatalog(input, options)
         output_schema = types.UpdateSignalCatalogOutput,
         http_method = "PATCH",
         http_path = "/signal-catalogs/{name}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -590,6 +768,9 @@ function Client:updateStateTemplate(input, options)
         output_schema = types.UpdateStateTemplateOutput,
         http_method = "PATCH",
         http_path = "/state-templates/{identifier}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
@@ -600,6 +781,9 @@ function Client:updateVehicle(input, options)
         output_schema = types.UpdateVehicleOutput,
         http_method = "PATCH",
         http_path = "/vehicles/{vehicleName}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
     }, options)
 end
 
