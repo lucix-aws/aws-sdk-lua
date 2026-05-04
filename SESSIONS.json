@@ -44,5 +44,19 @@
       "commit directly in both repos"
     ],
     "outcome": "Built default credential chain: credentials/static.lua, credentials/shared_config.lua, credentials/process.lua, credentials/chain.lua. Rewrote sdk_defaults.lua to build chain (static > env > shared config > process) using load_config.load(). Created example/dynamodb_list_tables.lua. Found and fixed two codegen bugs in smithy-lua: (1) awsJson protocol missing service_id for X-Amz-Target, (2) signing_name using shape name instead of aws.auth#sigv4 trait. End-to-end DynamoDB ListTables call succeeded via credential_process. Regenerated all 424 service clients."
+  },
+  {
+    "session": 4,
+    "task": "Namespace prefix: move runtime modules under aws/ directory, add test-endpoints Makefile target",
+    "start": "2026-05-04T16:35:00-04:00",
+    "end": "2026-05-04T16:45:00-04:00",
+    "duration_minutes": 10,
+    "branch": "namespace-prefix",
+    "prompts": [
+      "move runtime modules to runtime/aws/, update requires to aws.*/smithy.* prefix",
+      "add test-endpoints Makefile target with proper LUA_PATH",
+      "merge to main"
+    ],
+    "outcome": "All runtime modules moved to runtime/aws/. Internal requires use aws.* prefix, smithy-lua deps use smithy.* prefix. Makefile test-endpoints target runs generated endpoint tests with correct LUA_PATH. Compat path included for bare requires in generated code until codegen is updated."
   }
 ]
